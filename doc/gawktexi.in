@@ -19896,8 +19896,9 @@ cannot have the same name as one of the special predefined variables
 (@pxref{Built-in Variables}), nor may a function parameter have the
 same name as another function.
 
+@cindex dark corner @subentry parameter name restrictions
 Not all versions of @command{awk} enforce
-these restrictions.
+these restrictions.  @value{DARKCORNER}
 @command{gawk} always enforces the first restriction.
 With @option{--posix} (@pxref{Options}),
 it also enforces the second restriction.
