@@ -1,3 +1,10 @@
+2020-10-09         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* xref.awk: Bug fix: Identifiers can have underscore in the middle.
+	Thanks to Tom Gray <tom_gray@sonic.net> for the report, way
+	back on Wed, 25 Jan 2012.
+	* profile2.ok: Updated after above code change.
+
 2020-10-05         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* iolint.awk, iolint.ok: Remove |& test to cat. It was
