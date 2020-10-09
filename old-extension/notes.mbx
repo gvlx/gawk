@@ -1,0 +1,86 @@
+From j.eh@mchsi.com  Fri Apr 27 12:23:51 2012
+Return-Path: <j.eh@mchsi.com>
+Received: from skeeve.com (skeeve.com [127.0.0.1])
+	by skeeve.com (8.14.3/8.14.3/Debian-9.2ubuntu1) with ESMTP id q3R9NkIS028459
+	for <arnold@localhost>; Fri, 27 Apr 2012 12:23:50 +0300
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on freefriends.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Envelope-From: j.eh@mchsi.com
+X-Envelope-To: <arnold@skeeve.com>
+Received: from b0.f7.net [66.148.120.132]
+	by skeeve.com with IMAP (fetchmail-6.3.17)
+	for <arnold@localhost> (single-drop); Fri, 27 Apr 2012 12:23:50 +0300 (IDT)
+Received: from dsmdc-mail-smtp.mcomdc.com (mail-smtp08.mcomdc.com [97.64.187.24])
+	by freefriends.org (8.14.4/8.14.4) with ESMTP id q3R9GqZY013169
+	for <arnold@skeeve.com>; Fri, 27 Apr 2012 02:16:55 -0700
+Received: from xseries232.localdomain ([173.31.3.137])
+	by dsmdc-mail-omta-03 with bizsmtp
+	id 2xGq1j0052xN38V01xGqAU; Fri, 27 Apr 2012 04:16:51 -0500
+X-Authority-Analysis: v=2.0 cv=UL1f7Vjy c=1 sm=1
+ a=nALRmQss2cY8VA/cNA4Qww==:17 a=SMvm06suB_QA:10 a=n22chI7NWcUA:10
+ a=BlNAP0SAIawA:10 a=kj9zAlcOel0A:10 a=81qNNyDI6TrPRGpOwUIA:9
+ a=p3QJbn2w2mbfS6yx1cMA:7 a=CjuIK1q_8ugA:10 a=nALRmQss2cY8VA/cNA4Qww==:117
+Received: from xseries232.localdomain (localhost.localdomain [127.0.0.1])
+	by xseries232.localdomain (8.13.8/8.13.8) with ESMTP id q3R8v832002472;
+	Fri, 27 Apr 2012 03:57:08 -0500
+Received: (from john@localhost)
+	by xseries232.localdomain (8.13.8/8.13.8/Submit) id q3R8v7LP002471;
+	Fri, 27 Apr 2012 03:57:07 -0500
+Date: Fri, 27 Apr 2012 03:57:07 -0500
+From: John Haque <j.eh@mchsi.com>
+To: Aharon Robbins <arnold@skeeve.com>
+Cc: gawk-devel@gnu.org
+Subject: Re: [gawk-devel] changes pushed
+Message-ID: <20120427085707.GA2461@xseries232.localdomain>
+References: <201204270712.q3R7CjTc020785@skeeve.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <201204270712.q3R7CjTc020785@skeeve.com>
+User-Agent: Mutt/1.4.2.2i
+Status: RO
+
+Hi Arnold,
+
+On Fri, Apr 27, 2012 at 10:12:45AM +0300, Aharon Robbins wrote:
+> Cleanups added, infrastructure updated.  gawk_mpfr and gawk-4.0-stable
+> with latest infrastructure merged into master.
+> 
+> John - we can delete the gawk_mpfr branch from the git repo - please do so.
+
+Will do.
+
+I started a new branch array-iface to fix/improve some issues with
+the array interface. It has currently the following commits:
+
+	New array extension.	
+	Add optional shutdown routine for an extension lib.
+	Improve array interface.
+	Polish array handling code.
+	Use unref when freeing a null array element.
+
+Thr new array extension shows how to override default array
+behavior, for example, to do deferred loading at run-time when
+an array or array element is referred to. I was going to "improve"
+slighly the similar mechanism available for scalars (update_FOO/set_FOO).
+If any extension adds large number of variables into  the symbol
+table but at a given moment the user only uses a few of them, this
+could have saved a lot of unnecessary work. But, I don't know
+if an extension can or should use these facilities with the new API.
+
+I was also considering adding an example extension for persistent
+arrays but ...
+
+The unrelated change 'shutdown routine for extension' makes
+gawk to run those when exiting normally or abnormally(fatal error). 
+
+Please take a look at what I have there. I may have to rebase
+this branch and I think I can remove anything not suitable
+for inclusion.
+
+Thanks,
+
+John
+
