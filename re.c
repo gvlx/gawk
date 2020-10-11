@@ -282,7 +282,7 @@ make_regexp(const char *s, size_t len, bool ignorecase, bool dfa, bool canfatal)
 	}
 
 	for (i = len - 1; i >= 0; i--) {
-		if (strchr("*+|?", buf[i]) != NULL) {
+		if (strchr("*+|?{}", buf[i]) != NULL) {
 			rp->maybe_long = true;
 			break;
 		}

@@ -1,3 +1,9 @@
+2020-10-11         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* re.c (make_regexp): Add {} to characters that cause rp->maybe_long
+	to be true.
+	* io.c (rsrescan): Update comment for step 4.
+
 2020-09-21         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* awk.h (enum redirect_flags): Add RED_NONE.

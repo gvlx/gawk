@@ -3753,7 +3753,7 @@ again:
          * "abc" into the front of the next record. Ooops.
          *
          * The re->maybe_long member is true if the
-         * regex contains one of: + * ? |.  This is a very
+         * regex contains one of: + * ? | { }.  This is a very
          * simple heuristic, but in combination with the
          * "end of match within a few bytes of end of buffer"
          * check, should keep things reasonable.
