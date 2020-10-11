@@ -640,8 +640,6 @@ bax
 baz
 bc
 bcd
-bduncan
-beachnet
 becky
 beebe
 beginfile
@@ -858,6 +856,7 @@ elem
 elif
 eliz
 elled
+elvish
 emalloc
 embeddable
 emory
@@ -1199,7 +1198,7 @@ lu
 lvalue
 lvalues
 lwall
-lwc
+lwcm
 madronabluff
 makeinfo
 malloc
@@ -1210,6 +1209,7 @@ mathworld
 mawk
 maxelt
 maxsub
+mbs
 mediaobject
 mem
 memcpy
@@ -1256,8 +1256,6 @@ murphy
 mv
 mydata
 myfile
-myfileaa
-myfileab
 myfiles
 myfunc
 mylongopts
@@ -1637,6 +1635,7 @@ tarball
 tarballs
 tbody
 tbreak
+tbytes
 tchars
 tcount
 tcp

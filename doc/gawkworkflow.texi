@@ -486,7 +486,7 @@ features.
 If possible, new features should be done using @command{gawk}'s extension
 mechanism. If you want to add a user-visible language change to the
 @command{gawk} core, you're going to have to convince the maintainer
-and other developers that it's really worthwile to do so.
+and other developers that it's really worthwhile to do so.
 
 Changes that improve performance or portability, or that fix bugs,
 or that enable more things in extensions,

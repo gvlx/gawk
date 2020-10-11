@@ -1,3 +1,8 @@
+2020-10-11         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawkworkflow.texi: Fix a spelling error.
+	* wordlist, wordlist2: Updated.
+
 2020-10-07         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawktexi.in: Add an additional dark corner notation.

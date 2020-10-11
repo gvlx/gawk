@@ -260,7 +260,7 @@ such as code fixes, documentation fixes, and/or new features.
      NOTE: If possible, new features should be done using 'gawk''s
      extension mechanism.  If you want to add a user-visible language
      change to the 'gawk' core, you're going to have to convince the
-     maintainer and other developers that it's really worthwile to do
+     maintainer and other developers that it's really worthwhile to do
      so.
 
      Changes that improve performance or portability, or that fix bugs,
@@ -1927,60 +1927,60 @@ Node: Conventions7584
 Node: Acknowledgments9053
 Node: Reviewers9490
 Node: Contributing9811
-Ref: Contributing-Footnote-113166
-Node: Using Git13198
-Node: Push Pull13954
-Node: Repo Copies15369
-Ref: savannah-repo16352
-Ref: your-repo17385
-Ref: Repo Copies-Footnote-119079
-Node: Local Branches19136
-Ref: your-repo-220909
-Ref: Local Branches-Footnote-121990
-Node: Branches are state22048
-Node: Repo State22771
-Node: Local State24891
-Node: Remotes25555
-Node: Configuring git26869
-Ref: Configuring git-Footnote-129222
-Node: Development without commit access29391
-Node: Cloning30393
-Node: Switching Branches32252
-Node: Starting A New Branch32870
-Ref: Starting A New Branch-Footnote-134758
-Ref: Starting A New Branch-Footnote-234816
-Node: Undoing a change34892
-Node: Updating35493
-Node: Rebasing35995
-Node: Merge Conflicts36607
-Node: Submitting Changes38107
-Ref: Submitting Changes-Footnote-140251
-Ref: Submitting Changes-Footnote-240288
-Ref: Submitting Changes-Footnote-340324
-Node: Removing Branches40370
-Node: Points to remember40906
-Node: Development with commit access42583
-Node: Initial setup43228
-Node: ssh clone44016
-Node: Developing patches44613
-Node: Developing new features45945
-Node: Developing fixes47845
-Node: General practices48928
-Node: Repo Maintenance53747
-Ref: Repo Maintenance-Footnote-156517
-Node: Development Stuff56650
-Node: Coding style57213
-Ref: Coding style-Footnote-157871
-Node: Doing paperwork57961
-Node: Tools58756
-Node: GNU Tools59338
-Node: Compilers61499
-Ref: Compilers-Footnote-164109
-Node: Debugging64147
-Node: Cheat Sheet64884
-Node: Resources68571
-Node: TODO69014
-Node: Index69234
+Ref: Contributing-Footnote-113167
+Node: Using Git13199
+Node: Push Pull13955
+Node: Repo Copies15370
+Ref: savannah-repo16353
+Ref: your-repo17386
+Ref: Repo Copies-Footnote-119080
+Node: Local Branches19137
+Ref: your-repo-220910
+Ref: Local Branches-Footnote-121991
+Node: Branches are state22049
+Node: Repo State22772
+Node: Local State24892
+Node: Remotes25556
+Node: Configuring git26870
+Ref: Configuring git-Footnote-129223
+Node: Development without commit access29392
+Node: Cloning30394
+Node: Switching Branches32253
+Node: Starting A New Branch32871
+Ref: Starting A New Branch-Footnote-134759
+Ref: Starting A New Branch-Footnote-234817
+Node: Undoing a change34893
+Node: Updating35494
+Node: Rebasing35996
+Node: Merge Conflicts36608
+Node: Submitting Changes38108
+Ref: Submitting Changes-Footnote-140252
+Ref: Submitting Changes-Footnote-240289
+Ref: Submitting Changes-Footnote-340325
+Node: Removing Branches40371
+Node: Points to remember40907
+Node: Development with commit access42584
+Node: Initial setup43229
+Node: ssh clone44017
+Node: Developing patches44614
+Node: Developing new features45946
+Node: Developing fixes47846
+Node: General practices48929
+Node: Repo Maintenance53748
+Ref: Repo Maintenance-Footnote-156518
+Node: Development Stuff56651
+Node: Coding style57214
+Ref: Coding style-Footnote-157872
+Node: Doing paperwork57962
+Node: Tools58757
+Node: GNU Tools59339
+Node: Compilers61500
+Ref: Compilers-Footnote-164110
+Node: Debugging64148
+Node: Cheat Sheet64885
+Node: Resources68572
+Node: TODO69015
+Node: Index69235
 
 End Tag Table
 
