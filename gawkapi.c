@@ -275,7 +275,7 @@ api_lintwarn(awk_ext_id_t id, const char *format, ...)
 	(void) id;
 
 	va_start(args, format);
-	if (lintwarn == r_fatal) {
+	if (lintfunc == r_fatal) {
 		err(true, _("fatal: "), format, args);
 	} else {
 		err(false, _("warning: "), format, args);

@@ -1,3 +1,9 @@
+2020-10-12         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawkapi.c (api_lintwarn): Fix comparison, should be to check
+	lintfunc, not lintwarn. Thanks to OLLIER Jean-François
+	<lalanne.51@wanadoo.fr>, reported 23 March, 2014.
+
 2020-10-11         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* re.c (make_regexp): Add {} to characters that cause rp->maybe_long
