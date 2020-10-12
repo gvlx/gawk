@@ -1,3 +1,9 @@
+2020-10-12         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.in: Explain `ls -l' earlier in the and small wording
+	improvement in explanation of options. Thanks to Yehezkel Bernat
+	<yehezkelshb@gmail.com> for the comments.
+
 2020-10-11         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawkworkflow.texi: Fix a spelling error.

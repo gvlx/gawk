@@ -3162,6 +3162,32 @@ need to read the rest of the @value{DOCUMENT} to become an @command{awk} expert!
 Most of the examples use a @value{DF} named @file{data}.  This is just a
 placeholder; if you use these programs yourself, substitute
 your own @value{FN}s for @file{data}.
+
+@cindex @command{ls} utility
+Some of the following examples use the output of @w{@samp{ls -l}} as input.
+@command{ls} is a system command that gives you a listing of the files in a
+directory. With the @option{-l} option, this listing includes each file's
+size and the date the file was last modified. Its output looks like this:
+
+@example
+-rw-r--r--  1 arnold   user   1933 Nov  7 13:05 Makefile
+-rw-r--r--  1 arnold   user  10809 Nov  7 13:03 awk.h
+-rw-r--r--  1 arnold   user    983 Apr 13 12:14 awk.tab.h
+-rw-r--r--  1 arnold   user  31869 Jun 15 12:20 awkgram.y
+-rw-r--r--  1 arnold   user  22414 Nov  7 13:03 awk1.c
+-rw-r--r--  1 arnold   user  37455 Nov  7 13:03 awk2.c
+-rw-r--r--  1 arnold   user  27511 Dec  9 13:07 awk3.c
+-rw-r--r--  1 arnold   user   7989 Nov  7 13:03 awk4.c
+@end example
+
+@noindent
+The first field contains read-write permissions, the second field contains
+the number of links to the file, and the third field identifies the
+file's owner.  The fourth field identifies the file's group.  The fifth
+field contains the file's size in bytes.  The sixth, seventh, and eighth
+fields contain the month, day, and time, respectively, that the file
+was last modified.  Finally, the ninth field contains the @value{FN}.
+
 For future reference, note that there is often more than
 one way to do things in @command{awk}.  At some point, you may want
 to look back at these examples and see if
@@ -3342,28 +3368,14 @@ ls -l | awk '$6 == "Nov" @{ sum += $5 @}
 @cindex @command{ls} utility
 This command prints the total number of bytes in all the files in the
 current directory that were last modified in November (of any year).
-The @w{@samp{ls -l}} part of this example is a system command that gives
-you a listing of the files in a directory, including each file's size and the date
-the file was last modified. Its output looks like this:
 
-@example
--rw-r--r--  1 arnold   user   1933 Nov  7 13:05 Makefile
--rw-r--r--  1 arnold   user  10809 Nov  7 13:03 awk.h
--rw-r--r--  1 arnold   user    983 Apr 13 12:14 awk.tab.h
--rw-r--r--  1 arnold   user  31869 Jun 15 12:20 awkgram.y
--rw-r--r--  1 arnold   user  22414 Nov  7 13:03 awk1.c
--rw-r--r--  1 arnold   user  37455 Nov  7 13:03 awk2.c
--rw-r--r--  1 arnold   user  27511 Dec  9 13:07 awk3.c
--rw-r--r--  1 arnold   user   7989 Nov  7 13:03 awk4.c
-@end example
-
-@noindent
-@cindex line continuations @subentry with C shell
-The first field contains read-write permissions, the second field contains
-the number of links to the file, and the third field identifies the file's owner.
-The fourth field identifies the file's group.
-The fifth field contains the file's size in bytes.  The
-sixth, seventh, and eighth fields contain the month, day, and time,
+As a reminder, the output of @w{@samp{ls -l}} gives you a listing of the
+files in a directory, including each file's size and the date the file
+was last modified.  The first field contains read-write permissions,
+the second field contains the number of links to the file, and the
+third field identifies the file's owner.  The fourth field identifies
+the file's group.  The fifth field contains the file's size in bytes.
+The sixth, seventh, and eighth fields contain the month, day, and time,
 respectively, that the file was last modified.  Finally, the ninth field
 contains the @value{FN}.
 
@@ -3456,6 +3468,7 @@ lines in the middle of a regular expression or a string.
 @c solaris 2.7 nawk does not. Solaris /usr/xpg4/bin/awk does though!  sigh.
 
 @cindex @command{csh} utility
+@cindex line continuations @subentry with C shell
 @cindex backslash (@code{\}) @subentry continuing lines and @subentry in @command{csh}
 @cindex @code{\} (backslash) @subentry continuing lines and @subentry in @command{csh}
 @quotation CAUTION
@@ -3729,8 +3742,8 @@ to be uniquely identified.  If the option takes an argument, either the
 keyword is immediately followed by an equals sign (@samp{=}) and the
 argument's value, or the keyword and the argument's value are separated
 by whitespace (spaces or TABs).
-If a particular option with a value is given more than once, it is the
-last value that counts.
+If a particular option with a value is given more than once, it is (usually)
+the last value that counts.
 
 @cindex POSIX @command{awk} @subentry GNU long options and
 Each long option for @command{gawk} has a corresponding
