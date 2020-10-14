@@ -56,7 +56,7 @@
 @c applies to and all the info about who's publishing this edition
 
 @c These apply across the board.
-@set UPDATE-MONTH Agosto 2020
+@set UPDATE-MONTH Settembre 2020
 @set VERSION 5.1
 @set PATCHLEVEL 0
 
@@ -3464,6 +3464,40 @@ idea di quel che si vuole ottenere, ma occorre leggere il resto del
 Molti degli esempi usano un @value{DF} di nome @file{data}.  Questo serve solo
 a indicare la posizione del nome; se questi programmi devono venir usati per
 se stessi, sostituire i propri @value{FNS} al posto di @file{data}.
+
+@cindex @command{ls} programma di utilit@`a
+@cindex programma di utilit@`a @subentry @command{ls}
+Alcuni degli esempi che seguono usano l'output di @w{@samp{ls -l}}
+come input.
+@command{ls} @`e un comando di sistema che elenca la lista dei file
+contenuti in una directory.  Specificando l'opzione @option{-l},
+la lista include anche la dimensione e la data di ultima modifica
+di ogni file.  Il suo output @`e simile a questo:
+
+@example
+-rw-r--r--  1 arnold   user   1933 Nov  7 13:05 Makefile
+-rw-r--r--  1 arnold   user  10809 Nov  7 13:03 awk.h
+-rw-r--r--  1 arnold   user    983 Apr 13 12:14 awk.tab.h
+-rw-r--r--  1 arnold   user  31869 Jun 15 12:20 awkgram.y
+-rw-r--r--  1 arnold   user  22414 Nov  7 13:03 awk1.c
+-rw-r--r--  1 arnold   user  37455 Nov  7 13:03 awk2.c
+-rw-r--r--  1 arnold   user  27511 Dec  9 13:07 awk3.c
+-rw-r--r--  1 arnold   user   7989 Nov  7 13:03 awk4.c
+@end example
+
+@noindent
+Il primo campo contiene le autorizzazioni di lettura-scrittura,
+il secondo campo contiene il numero di @dfn{link} di quel file
+[il numero di nomi con cui @`e conosciuto] e il terzo campo
+identifica il proprietario del file.
+Il quarto campo identifica il gruppo del file.
+Il quinto campo contiene la dimensione del file, in byte.
+Il sesto, settimo e ottavo campo contengono il mese, il giorno e
+l'ora, rispettivamente, in cui il file @`e stato modificato l'ultima
+volta. [Se la data di modifica @`e pi@`u di sei mesi nel passato,
+l'ottavo campo contiene l'anno, e non l'ora di modifica.]
+Finalmente il nono campo contiene il valore @value{FN}.
+
 Per futura memoria, si noti che spesso c'@`e pi@`u di un modo per fare qualcosa
 in @command{awk}.  In un altro momento, si potrebbe tornare a guardare questi
 esempi per vedere se si riescono a trovare modi differenti per fare le stesse
@@ -3647,34 +3681,24 @@ ls -l | awk '$6 == "Nov" @{ somma += $5 @}
              END @{ print somma @}'
 @end example
 
-@cindex comando @subentry @command{ls}
+@cindex @command{ls} programma di utilit@`a
+@cindex programma di utilit@`a @subentry @command{ls}
 Questo comando stampa il numero totale di byte in tutti i file contenuti
 nella directory corrente, la cui data di modifica @`e novembre (di qualsiasi
-anno).  La parte @w{@samp{ls -l}} dell'esempio @`e un comando di sistema che
-fornisce un elenco dei file in una directory, con anche la dimensione di
-ogni file e la data di ultima modifica.  Il suo output @`e del tipo:
+anno).
 
-@example
--rw-r--r--  1 arnold   user   1933 Nov  7 13:05 Makefile
--rw-r--r--  1 arnold   user  10809 Nov  7 13:03 awk.h
--rw-r--r--  1 arnold   user    983 Apr 13 12:14 awk.tab.h
--rw-r--r--  1 arnold   user  31869 Jun 15 12:20 awkgram.y
--rw-r--r--  1 arnold   user  22414 Nov  7 13:03 awk1.c
--rw-r--r--  1 arnold   user  37455 Nov  7 13:03 awk2.c
--rw-r--r--  1 arnold   user  27511 Dec  9 13:07 awk3.c
--rw-r--r--  1 arnold   user   7989 Nov  7 13:03 awk4.c
-@end example
-
-@noindent
-@cindex continuazione di riga @subentry nella C shell
-Il primo campo contiene le autorizzazioni di lettura/scrittura [r/w], il
-secondo il numero dei collegamenti al file [cio@`e il numero di nomi con cui
-il file @`e conosciuto], e il terzo campo identifica il proprietario del file.
-Il quarto campo identifica il gruppo a cui appartiene il file.
+Come gi@`a visto sopra, l'output di @w{@samp{ls -l}} elenca la lista
+dei file contenuti in una directory, compresa la lunghezza di ogni
+file la data in cui il file @`e stato modificato per l'ultima volta.
+Il primo campo contiene le autorizzazioni di lettura-scrittura,
+il secondo campo contiene il numero di @dfn{link} di quel file
+e il terzo campo identifica il proprietario del file.
+Il quarto campo identifica il gruppo del file.
 Il quinto campo contiene la dimensione del file, in byte.
-Il sesto, settimo e ottavo campo contengono il mese, il giorno e l'ora,
-rispettivamente, in cui il file @`e stato modificato.  Infine, il nono campo
-contiene il @value{FN}.
+Il sesto, settimo e ottavo campo contengono il mese, il giorno e
+l'ora, rispettivamente, in cui il file @`e stato modificato l'ultima
+volta.
+Finalmente il nono campo contiene il valore @value{FN}.
 
 @c @cindex automatic initialization
 @cindex inizializzazione @subentry automatica
@@ -3768,7 +3792,9 @@ mezzo di un'espressione regolare o di una stringa.
 @c 10/2000: gawk, mawk, and current bell labs awk allow it,
 @c solaris 2.7 nawk does not. Solaris /usr/xpg4/bin/awk does though!  sigh.
 
-@cindex comando @subentry @command{csh}
+@cindex comando di utilit@`a @subentry @command{csh}
+@cindex @command{csh} (comando di utilit@`a) @subentry continuazione di riga
+@cindex continuazione di riga @subentry con C shell
 @cindex barra inversa (@code{\}) @subentry continuazione di riga e @subentry in @command{csh}
 @cindex @code{\} (barra inversa) @subentry continuazione di riga e @subentry in @command{csh}
 @quotation ATTENZIONE
@@ -4076,7 +4102,7 @@ argomento, la parola chiave @`e immediatamente seguita da un segno di uguale
 (@samp{=}) e dal valore dell'argomento, oppure la parola chiave e il valore
 dell'argomento sono separati da spazio bianco (spazi o caratteri TAB).
 Se un'opzione con un valore viene immessa pi@`u di una volta,
-l'ultimo valore @`e quello che conta.
+l'ultimo valore @`e (di solito) quello che conta.
 
 @cindex POSIX @command{awk} @subentry opzioni estese GNU
 Ogni opzione estesa di @command{gawk} ha una corrispondente opzione
@@ -7378,7 +7404,7 @@ GNU/Linux, dove il carattere @sc{NUL} @`e di fatto un separatore di record..
 Comunque, quest'uso @emph{non} @`e portabile sulla maggior parte delle
 implementazioni di @command{awk}.
 
-@cindex angolo buio @subentry stringhe, memorizzazine di
+@cindex angolo buio @subentry stringhe, memorizzazione di
 Quasi tutte le altre implementazioni di @command{awk} @footnote{Almeno quelle
 che ci sono note.} memorizzano internamente le stringhe come stringhe
 in stile C.  Le stringhe in stile C usano il carattere @sc{NUL} come
@@ -21642,7 +21668,9 @@ Secondo lo standard POSIX, i parametri di funzione
 non possono avere lo stesso nome di una delle speciali variabili predefinite
 (@pxref{Variabili predefinite}), e un parametro di funzione non pu@`o avere
 lo stesso nome di un'altra funzione.
-Non tutte le versioni di @command{awk} applicano queste limitazioni.
+@cindex angolo buio @subentry limitazioni nel nome dei parametri
+Non tutte le versioni di @command{awk} applicano
+queste limitazioni. @value{DARKCORNER}
 @command{gawk} applica solo la prima di queste restrizioni.
 Se viene specificata l'opzione @option{--posix} (@pxref{Opzioni}),
 anche la seconda restrizione viene applicata.
@@ -22726,9 +22754,9 @@ Ecco una versione estesa del @value{DF}:
 
 @example
 @c file eg/data/class_data2
-Biologia_101 somma media ordina discendente dati: 87.0 92.4 78.5 94.9
-Chimica_305 somma media ordina discendente dati: 75.2 98.3 94.7 88.2
-Inglese_401 somma media ordina discendente dati: 100.0 95.6 87.1 93.4
+Biologia_101 somma media ascendente discendente dati: 87.0 92.4 78.5 94.9
+Chimica_305 somma media ascendente discendente dati: 75.2 98.3 94.7 88.2
+Inglese_401 somma media ascendente discendente dati: 100.0 95.6 87.1 93.4
 @c endfile
 @end example
 
@@ -23756,26 +23784,26 @@ con data e ora corrente formattata come nel programma di utilit@`a @command{date
 @c file eg/lib/gettime.awk
 
 # Restituisce una stringa nel formato dell'output di date(1)
-# Riempie l'argomento del vettore time con valori individuali:
-#    time["second"]       -- secondi (0 - 59)
-#    time["minute"]       -- minuti (0 - 59)
-#    time["hour"]         -- ore (0 - 23)
-#    time["althour"]      -- ore (0 - 12)
-#    time["monthday"]     -- giorno del mese (1 - 31)
-#    time["month"]        -- mese dell'anno (1 - 12)
-#    time["monthname"]    -- nome del mese
-#    time["shortmonth"]   -- nome breve del mese
-#    time["year"]         -- anno modulo 100 (0 - 99)
-#    time["fullyear"]     -- anno completo
-#    time["weekday"]      -- giorno della settimana (domenica = 0)
-#    time["altweekday"]   -- giorno della settimana (luned@`{@dotless{i}} = 0)
-#    time["dayname"]      -- nome del giorno della settimana
-#    time["shortdayname"] -- nome breve del giorno della settimana
-#    time["yearday"]      -- giorno dell'anno (0 - 365)
-#    time["timezone"]     -- abbreviazione del nome della zona di fuso orario
-#    time["ampm"]         -- designazione di AM o PM
-#    time["weeknum"]      -- numero della settimana, domenica primo giorno
-#    time["altweeknum"]   -- numero della settimana, luned@`{@dotless{i}} primmo giorno
+# Riempie l'argomento del vettore ora con valori individuali:
+#    ora["second"]       -- secondi (0 - 59)
+#    ora["minute"]       -- minuti (0 - 59)
+#    ora["hour"]         -- ore (0 - 23)
+#    ora["althour"]      -- ore (0 - 12)
+#    ora["monthday"]     -- giorno del mese (1 - 31)
+#    ora["month"]        -- mese dell'anno (1 - 12)
+#    ora["monthname"]    -- nome del mese
+#    ora["shortmonth"]   -- nome breve del mese
+#    ora["year"]         -- anno modulo 100 (0 - 99)
+#    ora["fullyear"]     -- anno completo
+#    ora["weekday"]      -- giorno della settimana (domenica = 0)
+#    ora["altweekday"]   -- giorno della settimana (luned@`{@dotless{i}} = 0)
+#    ora["dayname"]      -- nome del giorno della settimana
+#    ora["shortdayname"] -- nome breve del giorno della settimana
+#    ora["yearday"]      -- giorno dell'anno (0 - 365)
+#    ora["timezone"]     -- abbreviazione del nome della zona di fuso orario
+#    ora["ampm"]         -- designazione di AM o PM
+#    ora["weeknum"]      -- numero della settimana, domenica primo giorno
+#    ora["altweeknum"]   -- numero della settimana, luned@`{@dotless{i}} primmo giorno
 
 function getlocaltime(ora,    ret, adesso, i)
 @{
@@ -23793,25 +23821,25 @@ function getlocaltime(ora,    ret, adesso, i)
 
     # immette i valori, forzando i valori numerici
     # a essere numerici aggiungendo uno 0
-    time["second"]       = strftime("%S", adesso) + 0
-    time["minute"]       = strftime("%M", adesso) + 0
-    time["hour"]         = strftime("%H", adesso) + 0
-    time["althour"]      = strftime("%I", adesso) + 0
-    time["monthday"]     = strftime("%d", adesso) + 0
-    time["month"]        = strftime("%m", adesso) + 0
-    time["monthname"]    = strftime("%B", adesso)
-    time["shortmonth"]   = strftime("%b", adesso)
-    time["year"]         = strftime("%y", adesso) + 0
-    time["fullyear"]     = strftime("%Y", adesso) + 0
-    time["weekday"]      = strftime("%w", adesso) + 0
-    time["altweekday"]   = strftime("%u", adesso) + 0
-    time["dayname"]      = strftime("%A", adesso)
-    time["shortdayname"] = strftime("%a", adesso)
-    time["yearday"]      = strftime("%j", adesso) + 0
-    time["timezone"]     = strftime("%Z", adesso)
-    time["ampm"]         = strftime("%p", adesso)
-    time["weeknum"]      = strftime("%U", adesso) + 0
-    time["altweeknum"]   = strftime("%W", adesso) + 0
+    ora["second"]       = strftime("%S", adesso) + 0
+    ora["minute"]       = strftime("%M", adesso) + 0
+    ora["hour"]         = strftime("%H", adesso) + 0
+    ora["althour"]      = strftime("%I", adesso) + 0
+    ora["monthday"]     = strftime("%d", adesso) + 0
+    ora["month"]        = strftime("%m", adesso) + 0
+    ora["monthname"]    = strftime("%B", adesso)
+    ora["shortmonth"]   = strftime("%b", adesso)
+    ora["year"]         = strftime("%y", adesso) + 0
+    ora["fullyear"]     = strftime("%Y", adesso) + 0
+    ora["weekday"]      = strftime("%w", adesso) + 0
+    ora["altweekday"]   = strftime("%u", adesso) + 0
+    ora["dayname"]      = strftime("%A", adesso)
+    ora["shortdayname"] = strftime("%a", adesso)
+    ora["yearday"]      = strftime("%j", adesso) + 0
+    ora["timezone"]     = strftime("%Z", adesso)
+    ora["ampm"]         = strftime("%p", adesso)
+    ora["weeknum"]      = strftime("%U", adesso) + 0
+    ora["altweeknum"]   = strftime("%W", adesso) + 0
 
     return ret
 @}
@@ -24037,8 +24065,8 @@ comportamento desiderato.  Ci ha fornito anche il codice per far questo.
 Non @`e stato necessario aggiungere a @command{gawk} questi criteri di ricerca
 speciali; il lavoro si pu@`o fare tranquillamente usando @command{awk}, come
 illustrato nel seguente programma di libreria.  @`E strutturato in modo da
-chiamare due funzioni fornite dall'utente, @code{a_inizio_file()} e
-@code{a_fine_file()}, all'inizio e alla fine di ogni @value{DF}.  Oltre a risolvere
+chiamare due funzioni fornite dall'utente, @code{beginfile()} e
+@code{endfile()}, all'inizio e alla fine di ogni @value{DF}.  Oltre a risolvere
 il problema in sole nove(!) righe di codice,
 questa soluzione @`e @emph{portabile}; il
 programma funziona con qualsiasi implementazione di @command{awk}:
@@ -24049,7 +24077,7 @@ programma funziona con qualsiasi implementazione di @command{awk}:
 # Dare all'utente un aggancio per il passaggio
 # da un file in input a quello successivo
 #
-# L'utente deve fornire le funzioni a_inizio_file() ed a_fine_file()
+# L'utente deve fornire le funzioni beginfile() ed endfile()
 # ciascuna delle quali @`e invocata
 # quando il file, rispettivamente,
 # inizia e finisce.
@@ -24057,14 +24085,14 @@ programma funziona con qualsiasi implementazione di @command{awk}:
 @c # Arnold Robbins, arnold@@skeeve.com, Public Domain
 @c # January 1992
 
-FILENAME != _nome_file_vecchio @{
-    if (_nome_file_vecchio != "")
-        a_fine_file(_nome_file_vecchio)
-    _nome_file_vecchio = FILENAME
-    a_inizio_file(FILENAME)
+FILENAME != _oldfilename_ && _filename_ != FILENAME @{
+    if (_oldfilename_ != "")
+        endfile(_oldfilename_)
+    _oldfilename_ = FILENAME
+    beginfile(FILENAME)
 @}
 
-END @{ a_fine_file(FILENAME) @}
+END @{ endfile(FILENAME) @}
 @end example
 
 Questo file [transfile.awk] dev'essere caricato prima del programma
@@ -24073,30 +24101,30 @@ in modo che la regola ivi contenuta venga eseguita per prima.
 
 Questa regola dipende dalla variabile di @command{awk} @code{FILENAME}, che
 cambia automaticamente per ogni nuovo @value{DF}.  Il @value{FN} corrente viene
-salvato in una variabile privata, @code{_nome_file_vecchio}.  Se @code{FILENAME} non @`e
-uguale a @code{_nome_file_vecchio}, inizia l'elaborazioone di un nuovo @value{DF} ed
-@`e necessario chiamare @code{a_fine_file()} per il vecchio file.  Poich@'e
-@code{a_fine_file()} dovrebbe essere chiamato solo se un file @`e stato elaborato, il
-programma esegue prima un controllo per assicurarsi che @code{_nome_file_vecchio} non
+salvato in una variabile privata, @code{_oldfilename_}.  Se @code{FILENAME} non @`e
+uguale a @code{_oldfilename_}, inizia l'elaborazioone di un nuovo @value{DF} ed
+@`e necessario chiamare @code{endfile()} per il vecchio file.  Poich@'e
+@code{endfile()} dovrebbe essere chiamato solo se un file @`e stato elaborato, il
+programma esegue prima un controllo per assicurarsi che @code{_oldfilename_} non
 sia la stringa nulla.  Il programma assegna poi il valore corrente di
-@value{FN} a @code{_nome_file_vecchio} e chiama @code{a_inizio_file()} per il file.
-Poich@'e, come tutte le variabili di @command{awk}, @code{_nome_file_vecchio} @`e
+@value{FN} a @code{_oldfilename_} e chiama @code{beginfile()} per il file.
+Poich@'e, come tutte le variabili di @command{awk}, @code{_oldfilename_} @`e
 inizializzato alla stringa nulla, questa regola viene eseguita correttamente
 anche per il primo @value{DF}.
 
 Il programma contiene anche una regola @code{END} per completare l'elaborazione
 per l'ultimo file.  Poich@'e questa regola @code{END} viene prima di qualsiasi
 regola @code{END} contenuta nel programma ``principale'',
-@code{a_fine_file()} viene
+@code{endfile()} viene
 chiamata per prima.  Ancora una volta, l'utilit@`a di poter avere pi@`u regole
 @code{BEGIN} ed @code{END} dovrebbe risultare chiara.
 
-@cindex @code{a_inizio_file()} @subentry funzione definita dall'utente
-@cindex funzione definita dall'utente @subentry @code{a_inizio_file()}
-@cindex @code{a_fine_file()} @subentry funzione definita dall'utente
-@cindex funzione definita dall'utente @subentry @code{a_fine_file()}
+@cindex @code{beginfile()} @subentry funzione definita dall'utente
+@cindex funzione definita dall'utente @subentry @code{beginfile()}
+@cindex @code{endfile()} @subentry funzione definita dall'utente
+@cindex funzione definita dall'utente @subentry @code{endfile()}
 Se lo stesso @value{DF} compare due volte di fila sulla riga di comando,
-@code{a_fine_file()} e @code{a_inizio_file()} non vengono eseguite alla fine del primo
+@code{endfile()} e @code{beginfile()} non vengono eseguite alla fine del primo
 passaggio e all'inizio del secondo passaggio.
 La versione seguente risolve il problema:
 
@@ -24104,7 +24132,7 @@ La versione seguente risolve il problema:
 @c file eg/lib/ftrans.awk
 # ftrans.awk --- gestisce il passaggio da un file dati al successivo
 #
-# L'utente deve fornire le funzioni a_inizio_file() ed a_fine_file()
+# L'utente deve fornire le funzioni beginfile() ed endfile()
 @c endfile
 @ignore
 @c file eg/lib/ftrans.awk
@@ -24117,12 +24145,12 @@ La versione seguente risolve il problema:
 
 FNR == 1 @{
     if (_filename_ != "")
-        a_fine_file(_filename_)
+        endfile(_filename_)
     _filename_ = FILENAME
-    a_inizio_file(FILENAME)
+    beginfile(FILENAME)
 @}
 
-END @{ a_fine_file(_filename_) @}
+END @{ endfile(_filename_) @}
 @c endfile
 @end example
 
@@ -24135,8 +24163,8 @@ semplifichi la scrittura del programma principale.
 
 @sidebar Allora perch@'e @command{gawk} ha @code{BEGINFILE} e @code{ENDFILE}?
 
-Ci si chieder@`a, probabilmente: perch@'e, se le funzioni @code{a_inizio_file()} e
-@code{a_fine_file()} possono eseguire il compito, @command{gawk} prevede i
+Ci si chieder@`a, probabilmente: perch@'e, se le funzioni @code{beginfile()} e
+@code{endfile()} possono eseguire il compito, @command{gawk} prevede i
 criteri di
 ricerca @code{BEGINFILE} e @code{ENDFILE}?
 
@@ -24409,7 +24437,7 @@ function disable_assigns(argc, argv,    i)
 @}
 
 BEGIN @{
-    if (Disabilita_variabili)
+    if (No_command_assign)
         disable_assigns(ARGC, ARGV)
 @}
 @c endfile
@@ -24418,7 +24446,7 @@ BEGIN @{
 Il programma va poi eseguito in questo modo:
 
 @example
-awk -v Disabilita_variabili=1 -f noassign.awk -f vostro_programma.awk *
+awk -v No_command_assign=1 -f noassign.awk -f vostro_programma.awk *
 @end example
 
 La funzione esegue un ciclo che esamina ogni argomento.
@@ -24426,10 +24454,10 @@ Antepone @samp{./} a
 qualsiasi argomento che abbia la forma di un assegnamento
 di variabile, trasformando cos@`{@dotless{i}} quell'argomento in un @value{FN}.
 
-L'uso di @code{Disabilita_variabili} consente di disabilitare assegnamenti di
+L'uso di @code{No_command_assign} consente di disabilitare assegnamenti di
 variabile dati sulla riga di comando al momento dell'invocazione,
 assegnando alla variabile un valore @dfn{vero}.
-Se non viene impostata la variabile @`e inizializzata a zero (cio@`e
+Se non viene impostata, la variabile @`e inizializzata a zero (cio@`e
 @dfn{falso}), e gli argomenti sulla riga di comando
 non vengono modificati.
 
@@ -25398,7 +25426,6 @@ piccolo programma in C che genera la lista dei gruppi come suo output.
  * December 2010, move to ANSI C definition for main().
  */
 
-/* Per OS/2, non fare nulla. */
 #if HAVE_CONFIG_H
 #include <config.h>
 #endif
@@ -25426,9 +25453,7 @@ main(int argc, char **argv)
 @c endfile
 @ignore
 @c file eg/lib/grcat.c
-#ifdef ZOS_USS
-        printf("%s:%ld:", g->gr_name, (long) g->gr_gid);
-#else
+#ifdef HAVE_STRUCT_GROUP_GR_PASSWD
 @c endfile
 @end ignore
 @c file eg/lib/grcat.c
@@ -26523,40 +26548,57 @@ da implementare con @command{gawk}; basta usare la variabile predefinita
 @c file eg/prog/egrep.awk
 # Arnold Robbins, arnold@@skeeve.com, Public Domain
 # May 1993
+# Revised September 2020
 
 @c endfile
 @end ignore
 @c file eg/prog/egrep.awk
 # Opzioni:
 #    -c    conta le righe trovate
-#    -s    silenziosa: genera solo il codice di ritorno
-#    -v    inverte test, successo se @dfn{regexp} non presente
+#    -e    l'argomento @`e un'espressione regolare
 #    -i    ignora maiuscolo/minuscolo
 #    -l    stampa solo nomi file
-#    -e    espressione da ricercare
+#    -n    aggiungi numeri linea in output
+#    -q    quieto - usa solo il codice di ritorno
+#    -s    silenzioso - non stampa messaggi di errore
+#    -v    inverte test, successo se espression non trovata
+#    -x    l'intera linea deve corrispondere
 #
-# Richiede la funzione getopt() e il programma di libreria
-#   che gestisce il passaggio da un file dati al successivo
+# Richiede la funzione getopt()
+# Usa IGNORECASE, BEGINFILE ed ENDFILE
+# Chiamare immettendo: gawk -f egrep.awk -- opzioni ...
 
 BEGIN @{
-    while ((c = getopt(ARGC, ARGV, "ce:svil")) != -1) @{
+    while ((c = getopt(ARGC, ARGV, "ce:ilnqsvx")) != -1) @{
         if (c == "c")
             conta_e_basta++
-        else if (c == "s")
-            non_stampare++
-        else if (c == "v")
-            inverti_test++
+        else if (c == "e")
+            criterio_di_ricerca = Optarg
         else if (c == "i")
             IGNORECASE = 1
         else if (c == "l")
             solo_nomi_file++
-        else if (c == "e")
-            criterio_di_ricerca = Optarg
+        else if (c == "n")
+            numero_riga++
+        else if (c == "q")
+            non_stampare++
+        else if (c == "s")
+            non_stampare_errori++
+        else if (c == "v")
+            inverti_test++
+        else if (c == "x")
+            riga_intera++
         else
             sintassi()
     @}
 @c endfile
 @end example
+
+@noindent
+Si noti il commento relativo alla chiamata del programma:
+Poich@'e parecchie opzioni possono essere sepcificate anche per
+@command{gawk}, occorre immettere @option{--} per far s@`@{dotless{i}} che
+@command{gawk} non prosegua nell'analisi delle opzioni.
 
 Nel seguito c'@`e il codice che gestisce il comportamento specifico di
 @command{egrep}.  Se non @`e fornito esplicitamente alcun criterio di ricerca
@@ -26574,80 +26616,65 @@ vengano scritti prima di ogni riga di output corrispondente:
     if (criterio_di_ricerca == "")
         criterio_di_ricerca = ARGV[Optind++]
 
+    if (criterio_di_ricerca == "")
+        sintassi()
+
     for (i = 1; i < Optind; i++)
         ARGV[i] = ""
+
     if (Optind >= ARGC) @{
         ARGV[1] = "-"
         ARGC = 2
     @} else if (ARGC - Optind > 1)
-        servono_nomi_file++
-
-#    if (IGNORECASE)
-#        criterio_di_ricerca = tolower(criterio_di_ricerca)
+        elabora_nomi_file++
 @}
 @c endfile
 @end example
 
-Le ultime due righe sono solo dei commenti, in quanto non necessarie in
-@command{gawk}.  Per altre versioni di
-@command{awk}, potrebbe essere necessario utilizzarle come istruzioni
-effettive (togliendo il "#").
+La regola @code{BEGINFILE} viene eseguita quando si inizia a
+elaborare un nuovo file.  In questo caso, essa @`e piuttosto semplice;
+inizializza la variabile @code{contatore_file} a zero.
+@code{contatore_file} viene incrementata ogni volta che una riga
+nel file corrente corrisponde all'espressione di ricerca.
 
-Il prossimo insieme di righe dovrebbe essere decommentato
-se non si sta usando @command{gawk}.
-Questa regola converte in minuscolo tutti i caratteri della riga in input,
-se @`e stata specificata l'opzione @option{-i}.@footnote{Inoltre, qui si
-introduce un errore subdolo; se una corrispondenza viene trovata, viene
-inviata in output la riga tradotta, non quella originale.}
-La regola @`e
-commentata perch@'e non @`e necessaria se si usa @command{gawk}:
-
-@example
-@c file eg/prog/egrep.awk
-#@{
-#    if (IGNORECASE)
-#        $0 = tolower($0)
-#@}
-@c endfile
-@end example
-
-La funzione @code{a_inizio_file()} @`e chiamata dalla regola in @file{ftrans.awk}
-quando ogni nuovo file viene elaborato.  In questo caso, non c'@`e molto da fare;
-ci si limita a inizializzare una variabile @code{contatore_file} a zero.
-@code{contatore_file} serve a ricordare quante righe nel file corrente
-corrispondono al criterio di ricerca.
-Scegliere come nome di parametro @code{da_buttare} indica che sappiamo che
-@code{a_inizio_file()} @`e chiamata con un parametro, ma che noi non siamo
-interessati al suo valore:
+Qui si implementa anche l'opzione @option{-s}.
+Si controlla se @code{ERRNO} @`e stato impostato,
+e se l'opzione @option{-s} era stata specificata.
+In tal caso, @`e necessario passare al file successivo
+[di solito, perch@'e questo file non @`e leggibile].
+Altrimenti @command{gawk} termina l'esecuzione
+con un messaggio di errore:
 
 @example
 @c file eg/prog/egrep.awk
-function a_inizio_file(da_buttare)
-@{
+BEGINFILE @{
     contatore_file = 0
+    if (ERRNO && nessun_errore)
+        nextfile
 @}
 @c endfile
 @end example
 
-La funzione @code{endfile()} viene chiamata dopo l'elaborazione di ogni file.
-Ha influenza sull'output solo quando l'utente desidera un contatore del
-numero di righe che sono state individuate.  @code{non_stampare} @`e vero nel
-caso si desideri solo il codice di ritorno.
-@code{conta_e_basta} @`e vero se si desiderano solo i contatori
-delle righe trovate.  @command{egrep}
-quindi stampa i contatori solo se
-sia la stampa che il conteggio delle righe sono stati abilitati.
-Il formato di output deve tenere conto del numero di file sui quali si
-opera.  Per finire, @code{contatore_file} @`e aggiunto a @code{totale}, in
-modo da stabilire qual @`e il numero totale di righe che ha soddisfatto il
-criterio di ricerca:
+La regola @code{ENDFILE} viene eseguita alla fine dell'elaborazione
+di ogni file.  Genera dell'output solo quando l'utente richiede un
+contatore del numero di righe che sono state trovate corrispondere.
+
+La variabile @code{non_stampare} @`e vera qualora si chieda di
+impostare solo il codice di ritorno.
+La variabile @code{conta_e_basta} @`e vera qualora si chieda solo
+il numero delle righe che sono state trovare corrispondere.
+@command{egrep} quindi stampa il contatore delle corrispondenze
+trovate solo se sia la stampa che il conteggio righe sono richieste.
+Il formato dell'output dev'essere adattato, a seconda del numero di
+file da elaborare.  Infine @code{contatore_file} @`e aggiunto
+a @code{totale}, in modo da poter stabilire il numero totale di
+righe corrispondenti all'espressione cercata:
 
 @example
 @c file eg/prog/egrep.awk
-function endfile(file)
-@{
+ENDFILE @{
     if (! non_stampare && conta_e_basta) @{
-        if (servono_nomi_file)
+        if (elabora_nomi_file)
             print file ":" contatore_file
         else
             print contatore_file
@@ -26660,18 +26687,18 @@ function endfile(file)
 @c endfile
 @end example
 
-Si potrebbero usare i criteri di ricerca speciali @code{BEGINFILE} ed
-@code{ENDFILE}
-(@pxref{BEGINFILE/ENDFILE}),
-ma in quel caso il programma funzionerebbe solo usando @command{gawk}.
-Inoltre, questo esempio @`e stato scritto prima che a @command{gawk} venissero
-aggiunti i criteri speciali @code{BEGINFILE} ed @code{ENDFILE}.
-
 La regola seguente fa il grosso del lavoro per trovare righe corrispondenti
 al criterio di ricerca fornito.  La variabile
-@code{corrisponde} @`e vera se la riga @`e individuata dal criterio di ricerca.
-Se l'utente chiede invece le righe che non corrispondono, il senso di
-@code{corrisponde} @`e invertito, usando l'operatore @samp{!}.
+@code{corrisponde} @'e vera (diversa da zero) se la riga @'e individuata
+dal criterio di ricerca.
+Se l'utente ha specificato che la riga intera deve corrispondere
+(con l'opzione @option{-x}), il codice controlla la condizione
+verificando i valori delle variabili @code{RSTART} e @code{RLENGTH}.
+Se questi indicano che la corrispondenza non coincide con l'intera
+riga, la variabile @code{corrisponde} @`e impostata a zero (falsa).
+
+Se l'utente chiede invece le righe che @emph{non} corrispondono,
+il senso di @code{corrisponde} @`e invertito, usando l'operatore @samp{!}.
 @code{contatore_file} @`e incrementato con il valore di
 @code{corrisponde}, che vale uno o zero, a seconda che la corrispondenza sia
 stata trovata oppure no.  Se la riga non corrisponde, l'istruzione
@@ -26693,6 +26720,9 @@ dai due punti (@code{:}):
 @c file eg/prog/egrep.awk
 @{
     corrisponde = ($0 ~ criterio_di_ricerca)
+    if (corrisponde && riga_intera && (RSTART != 1 || RLENGTH != length()))
+         corrisponde = 0
+
     if (inverti_test)
         corrisponde = ! corrisponde
 
@@ -26706,12 +26736,15 @@ dai due punti (@code{:}):
             nextfile
 
         if (solo_nomi_file) @{
-            print nome_file
+            print FILENAME
             nextfile
         @}
 
-        if (servono_nomi_file)
-            print nome_file ":" $0
+        if (elabora_nomi_file)
+            if (numero_riga)
+               print FILENAME ":" FNR ":" $0
+            else
+               print FILENAME ":" $0
         else
             print
     @}
@@ -26720,7 +26753,8 @@ dai due punti (@code{:}):
 @end example
 
 La regola @code{END} serve a produrre il codice di ritorno corretto.  Se
-non ci sono corrispondenze, il codice di ritorno @`e uno; altrimenti, @`e zero:
+non ci sono corrispondenze, il codice di ritorno @`e uno;
+altrimenti, @`e zero:
 
 @example
 @c file eg/prog/egrep.awk
@@ -27074,7 +27108,7 @@ I campi in questi file sono separati da caratteri @samp{:}:
 
 @example
 @c file eg/prog/id.awk
-function stampa_primo_campo(str,  a)
+function ottieni_primo_campo(str,  a)
 @{
     if (str != "") @{
         split(str, a, ":")
@@ -27234,6 +27268,7 @@ funzione @code{sintassi()} che ne descrive le opzioni:
 
 @c endfile
 @end ignore
+@c file eg/prog/split.awk
 function sintassi()
 @{
     print("Uso: split [-l contatore]  [-a lunghezza-suffisso] [file [nome-output-file]]") > "/dev/stderr"
@@ -27256,13 +27291,13 @@ BEGIN @{
     Lunghezza_suffisso = 2
     Contatore_righe = 1000
     Contatore_byte = 0
-    Output_file = "x"
+    Outfile = "x"
 
     analizza_argomenti()
 
     inizializza_suffisso()
 
-    Output = (Output_file calcola_suffisso())
+    Output_file = (Outfile calcola_suffisso())
 @}
 @c endfile
 @end example
@@ -27305,7 +27340,7 @@ function analizza_argomenti(   i, c, l, modificatore)
 
         # Controlla se il prefisso @`e differente
         if (ARGV[Optind]) @{
-            Output_file = ARGV[Optind]
+            Outfile = ARGV[Optind]
             ARGV[Optind] = ""
 
             if (++Optind < ARGC)
@@ -27455,19 +27490,19 @@ opzioni mutuamente esclusive, lo si fa semplicemente usando due regole,
 una per quando @code{Contatore_righe} @`e maggiore di zero, e l'altra
 per quando @code{Contatore_byte} @`e maggiore di zero.
 
-La variabile @code{contorighe} conta quante righe sono state elaborate
+La variabile @code{righe_totali} conta quante righe sono state elaborate
 finora.  Quando il suo valore supera @code{Contatore_righe}, occorre
 chiudere il file precedente e passare ad uno nuovo:
 
 @example
 @c file eg/prog/split.awk
 Contatore_righe > 0 @{
-    if (++contorighe > Contatore_righe) @{
-        close(Output)
-        Output = (Outfile calcola_suffisso())
-        contorighe = 1
+    if (++righe_totali > Contatore_righe) @{
+        close(Output_file)
+        Output_file = (Outfile calcola_suffisso())
+        righe_totali = 1
     @}
-    print > Output
+    print > Output_file
 @}
 @c endfile
 @end example
@@ -27485,25 +27520,25 @@ Il codice che segue fa esattamente tutto ci@`o:
 @c file eg/prog/split.awk
 Contatore_byte > 0 @{
     # `+ 1' @`e per il carattere di fine riga che va aggiunto
-    if (contorighe + length($0) + 1 > Contatore_byte) @{ # Supera il limite
+    if (righe_totali + length($0) + 1 > Contatore_byte) @{ # Supera il limite
         # Calcola byte a inizio record
-        byte_iniziali = Contatore_byte - contorighe
+        byte_iniziali = Contatore_byte - righe_totali
 
         # Scrivi i byte iniziali
-        printf("%s", substr($0, 1, byte_iniziali)) > Output
+        printf("%s", substr($0, 1, byte_iniziali)) > Output_file
 
         # Chiudi il vecchio file, aprine uno nuovo
-        close(Output)
-        Output = (Outfile calcola_suffisso())
+        close(Output_file)
+        Output_file = (Outfile calcola_suffisso())
 
         # Prepara i primi byte per il nuovo file
         $0 = substr($0, byte_iniziali + 1)  # Byte finali del record
-        contorighe = 0
+        righe_totali = 0
     @}
 
     # Scrivi record intero o la parte finale restante
-    contorighe += length($0) + 1
-    print > Output
+    righe_totali += length($0) + 1
+    print > Output_file
 @}
 @c endfile
 @end example
@@ -27514,7 +27549,7 @@ file in output:
 @example
 @c file eg/prog/split.awk
 END @{
-    close(Output)
+    close(Output_file)
 @}
 @c endfile
 @end example
@@ -28136,13 +28171,13 @@ BEGIN @{
 @c endfile
 @end example
 
-La funzione @code{a_inizio_file()} @`e semplice; si limita ad azzerare i contatori
+La funzione @code{beginfile()} @`e semplice; si limita ad azzerare i contatori
 di righe, parole, caratteri e byte, e salva il valore corrente di @value{FN} in
 @code{nome_file}:
 
 @example
 @c file eg/prog/wc.awk
-function a_inizio_file(file)
+function beginfile(file)
 @{
     righe = parole = caratteri = byte = 0
     nome_file = FILENAME
@@ -28150,14 +28185,14 @@ function a_inizio_file(file)
 @c endfile
 @end example
 
-La funzione @code{a_fine_file()} aggiunge i numeri del file corrente al totale
+La funzione @code{endfile()} aggiunge i numeri del file corrente al totale
 di righe, parole, e caratteri.  Poi stampa i numeri relativi al file appena
 letto.  La funzione
-@code{a_inizio_file()} azzera i numeri relativi al @value{DF} seguente:
+@code{beginfile()} azzera i numeri relativi al @value{DF} seguente:
 
 @example
 @c file eg/prog/wc.awk
-function a_fine_file(file)
+function endfile(file)
 @{
     totale_righe += righe
     totale_parole += parole
@@ -28389,6 +28424,7 @@ Ecco il programma:
 # alarm.awk --- impostare una sveglia
 #
 # Richiede la funzione di libreria getlocaltime()
+# che si trova in gettime.awk
 @c endfile
 @ignore
 @c file eg/prog/alarm.awk
@@ -28466,15 +28502,15 @@ prima di far scattare la sveglia:
     # (p.es., impostare `alarm 5:30' alle 9 del mattino
     # vuol dire far suonare la sveglia alle 5:30 pomeridiane)
     # aggiungere 12 all'ora richiesta
-    if (hour < 12 && adesso["hour"] > ora)
+    if (ora < 12 && adesso["hour"] > ora)
         ora += 12
 
     # imposta l'ora in secondi dalla mezzanotte
     sveglia = (ora * 60 * 60) + (minuto * 60)
 
     # ottieni l'ora corrente in secondi dalla mezzanotte
-    corrente = (now["hour"] * 60 * 60) + \
-               (now["minute"] * 60) + now["second"]
+    corrente = (adesso["hour"] * 60 * 60) + \
+               (adesso["minute"] * 60) + adesso["second"]
 
     # quanto restare appisolati
     sonno = sveglia - corrente
@@ -29276,6 +29312,26 @@ La riga @`e poi stampata nel file di output:
             print riga > file_corrente
             continue
         @}
+        # gestisci istruzioni che convertono caratteri accentati
+        if (index(riga, "gsub(\"@@@@") > 0) @{
+            gsub("@@@{","@{",riga)
+            gsub("@@@}","@}",riga)
+            gsub("@@@@","@@",riga)
+            print riga > file_corrente
+            continue
+        @}
+        # istruzioni che convertono caratteri accentati
+        gsub("@@`a","à",riga)
+        gsub("@@`e","è",riga)
+        gsub("@@'e","é",riga)
+        gsub("@@`@{@@dotless@{i@}@}","ì",riga)
+        gsub("@@`o","ò",riga)
+        gsub("@@`u","ù",riga)
+        # riga contiene ancora caratteri @@?
+        if (index(riga, "@@") == 0) {
+            print riga > file_corrente
+            continue
+        @}
         n = split(riga, a, "@@")
         # if a[1] == "", vuol dire riga che inizia per @@,
         # non salvare un @@
@@ -29639,6 +29695,7 @@ Il programma @`e il seguente:
 # Arnold Robbins, arnold@@skeeve.com, Public Domain
 # July 1993
 # December 2010, minor edits
+# Antonio Colombo, October 2020, test for Italian accented letters
 @c endfile
 @end ignore
 @c file eg/prog/igawk.sh
@@ -30306,7 +30363,7 @@ programma seguendo questa indicazione.
 
 @item
 Perch@'e il programma @file{wc.awk} (@pxref{Programma wc}) non pu@`o
-limitarsi a usare il valore di @code{FNR} nella funziona @code{a_fine_file()}?
+limitarsi a usare il valore di @code{FNR} nella funzione @code{endfile()}?
 Suggerimento: Esaminare il codice
 @iftex
 nella
@@ -32803,7 +32860,7 @@ $ @kbd{echo $LANGUAGE}
 @end example
 
 @noindent
-Il passo succesivo @`e creare le directory:
+Il passo successivo @`e creare le directory:
 
 @example
 $ @kbd{mkdir en_US.UTF-8 en_US.UTF-8/LC_MESSAGES}
