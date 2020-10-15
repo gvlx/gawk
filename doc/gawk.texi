@@ -3686,6 +3686,7 @@ used once, and thrown away.  Because @command{awk} programs are interpreted, you
 can avoid the (usually lengthy) compilation part of the typical
 edit-compile-test-debug cycle of software development.
 
+@cindex BWK @command{awk} @seeentry{Brian Kernighan's @command{awk}}
 @cindex Brian Kernighan's @command{awk}
 Complex programs have been written in @command{awk}, including a complete
 retargetable assembler for
