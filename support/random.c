@@ -270,8 +270,7 @@ static uint32_t *end_ptr = &randtbl[DEG_3 + 1];
 
 static inline uint32_t good_rand(int32_t);
 
-static inline uint32_t good_rand (x)
-	int32_t x;
+static inline uint32_t good_rand (int32_t x)
 {
 #ifdef  USE_WEAK_SEEDING
 /*
@@ -316,8 +315,7 @@ static inline uint32_t good_rand (x)
  * for default usage relies on values produced by this routine.
  */
 void
-srandom(x)
-	unsigned long x;
+srandom(unsigned long x)
 {
 	int i, lim;
 
@@ -408,10 +406,10 @@ srandomdev()
  * complain about mis-alignment, but you should disregard these messages.
  */
 char *
-initstate(seed, arg_state, n)
-	unsigned long seed;		/* seed for R.N.G. */
-	char *arg_state;		/* pointer to state array */
-	long n;				/* # bytes of state info */
+initstate(
+	unsigned long seed,		/* seed for R.N.G. */
+	char *arg_state,		/* pointer to state array */
+	long n)				/* # bytes of state info */
 {
 	char *ostate = (char *)(&state[-1]);
 	uint32_t *int_arg_state = (uint32_t *)arg_state;
@@ -476,8 +474,7 @@ initstate(seed, arg_state, n)
  * complain about mis-alignment, but you should disregard these messages.
  */
 char *
-setstate(arg_state)
-	char *arg_state;		/* pointer to state array */
+setstate(char *arg_state)		/* pointer to state array */
 {
 	uint32_t *new_state = (uint32_t *)arg_state;
 	uint32_t type = new_state[0] % MAX_TYPES;
