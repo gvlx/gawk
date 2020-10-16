@@ -3623,7 +3623,6 @@ and Perl.}
 @node Intro Summary
 @section Summary
 
-@c FIXME: Review this chapter for summary of builtin functions called.
 @itemize @value{BULLET}
 @item
 Programs in @command{awk} consist of @var{pattern}--@var{action} pairs.
@@ -4363,7 +4362,7 @@ input files to be processed in the order specified.   However, an
 argument that has the form @code{@var{var}=@var{value}}, assigns
 the value @var{value} to the variable @var{var}---it does not specify a
 file at all.  (See @ref{Assignment Options}.) In the following example,
-@var{count=1} is a variable assignment, not a @value{FN}:
+@samp{count=1} is a variable assignment, not a @value{FN}:
 
 @example
 awk -f program.awk file1 count=1 file2
@@ -4393,7 +4392,6 @@ current element.  (@command{gawk} makes the full command line,
 including program text and options, available in @code{PROCINFO["argv"]};
 @pxref{Auto-set}.)
 
-@c FIXME: One day, move the ARGC and ARGV node closer to here.
 Changing @code{ARGC} and @code{ARGV} in your @command{awk} program lets
 you control how @command{awk} processes the input files; this is described
 in more detail in @ref{ARGC and ARGV}.
@@ -7932,10 +7930,14 @@ contain at least one character.  A straightforward modification
 FPAT = "([^,]*)|(\"[^\"]+\")"
 @end example
 
-@c FIXME: 4/2015
+@c 4/2015:
 @c Consider use of FPAT = "([^,]*)|(\"[^\"]*\")"
 @c (star in latter part of value) to allow quoted strings to be empty.
 @c Per email from Ed Morton <mortoneccc@comcast.net>
+@c
+@c WONTFIX: 10/2020
+@c This is too much work. FPAT and CSV files are very flakey and
+@c fragile. Doing something like this is merely inviting trouble.
 
 As with @code{FS}, the @code{IGNORECASE} variable (@pxref{User-modified})
 affects field splitting with @code{FPAT}.

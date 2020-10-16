@@ -1,11 +1,16 @@
+2020-10-16         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.in: After review, remove/update some FIXMEs, and
+	and fix a markup error.
+
 2020-10-15         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawktexi.in: Add an index entry.
 
 2020-10-12         Arnold D. Robbins     <arnold@skeeve.com>
 
-	* gawktexi.in: Explain `ls -l' earlier in the and small wording
-	improvement in explanation of options. Thanks to Yehezkel Bernat
+	* gawktexi.in: Explain `ls -l' earlier in the book, and small wording
+	improvement in explanation of options. Thanks to Yehezkel Bernat.
 	<yehezkelshb@gmail.com> for the comments.
 
 2020-10-11         Arnold D. Robbins     <arnold@skeeve.com>
