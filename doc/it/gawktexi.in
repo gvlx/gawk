@@ -3937,6 +3937,7 @@ e buttati via.  Poich@'e i programmi @command{awk} sono interpretati, si pu@`o
 evitare la (normalmente laboriosa) parte di compilazione nel ciclo tipico
 dello sviluppo software, ossia edita-compila-prova-correggi.
 
+@cindex BWK @command{awk} @seeentry{Brian Kernighan @subentry @command{awk} di}
 @cindex Brian Kernighan @subentry @command{awk} di
 In @command{awk} sono stati scritti programmi complessi, compreso un assembler
 completo, pluri-piattaforma per
@@ -3970,7 +3971,6 @@ e Perl.}
 @node Sommario dell'introduzione
 @section Sommario
 
-@c FIXME: Review this chapter for summary of builtin functions called.
 @itemize @value{BULLET}
 @item
 I programmi in @command{awk} consistono di coppie di
@@ -4821,7 +4821,7 @@ file in input da elaborare nell'ordine con cui @`e specificato. Comunque, un
 argomento che ha la forma @code{@var{var}=@var{valore}}, assegna
 il valore @var{valore} alla variabile @var{var} --- non specifica affatto
 un file.  (Si veda @ref{Opzioni di assegnamento}.)  Nel seguente esempio,
-@var{count=1} @`e un assegnamento di variabile, non un @value{FN}:
+@samp{count=1} @`e un assegnamento di variabile, non un @value{FN}:
 
 @example
 awk -f programma.awk file1 count=1 file2
@@ -4853,7 +4853,6 @@ dell'elemento corrente.  (@command{gawk} mette a disposizione l'intera
 riga di comando, ed @`e contenuta in @code{PROCINFO["argv"]};
 @pxref{Variabili auto-assegnate}.)
 
-@c FIXME: One day, move the ARGC and ARGV node closer to here.
 La modifica di @code{ARGC} e @code{ARGV} nel proprio programma @command{awk}
 consente di controllare come @command{awk} elabora i file in input; questo @`e
 descritto pi@`u dettagliatamente in @ref{ARGC e ARGV}.
@@ -8671,10 +8670,14 @@ campi vuoti:
 FPAT = "([^,]*)|(\"[^\"]+\")"
 @end example
 
-@c FIXME: 4/2015
+@c 4/2015
 @c Consider use of FPAT = "([^,]*)|(\"[^\"]*\")"
 @c (star in latter part of value) to allow quoted strings to be empty.
 @c Per email from Ed Morton <mortoneccc@comcast.net>
+@c
+@c WONTFIX: 10/2020
+@c This is too much work. FPAT and CSV files are very flakey and
+@c fragile. Doing something like this is merely inviting trouble.
 
 Come per @code{FS}, la variabile @code{IGNORECASE}
 (@pxref{Variabili modificabili dall'utente}) ha effetto sulla separazione dei
