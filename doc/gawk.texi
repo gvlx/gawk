@@ -4532,6 +4532,80 @@ Given the variable assignment feature, the @option{-F} option for setting
 the value of @code{FS} is not
 strictly necessary.  It remains for historical compatibility.
 
+@cindex sidebar @subentry Quoting Shell Variables On The @command{awk} Command Line
+@ifdocbook
+@docbook
+<sidebar><title>Quoting Shell Variables On The @command{awk} Command Line</title>
+@end docbook
+
+@cindex quoting @subentry in @command{gawk} command lines
+@cindex shell quoting, rules for
+@cindex null strings @subentry in @command{gawk} arguments, quoting and
+
+Small @command{awk} programs are often embedded in larger shell scripts,
+so it's worthwhile to understand some shell basics. Consider the following:
+
+@example
+f=""
+awk '@{ print("hi") @}' $f
+@end example
+
+In this case, @command{awk} reads from standard input instead of trying
+to open any command line files. To the unwary, this looks like @command{awk}
+is hanging.
+
+However @command{awk} doesn't see an explicit empty string. When a
+variable expansion is the null string, @emph{and} it's not quoted,
+the shell simply removes it from the command line. To demonstrate:
+
+@example
+$ @kbd{f=""}
+$ @kbd{awk 'BEGIN @{ print ARGC @}' $f}
+@print{} 1
+$ @kbd{awk 'BEGIN @{ print ARGC @}' "$f"}
+@print{} 2
+@end example
+
+@docbook
+</sidebar>
+@end docbook
+@end ifdocbook
+
+@ifnotdocbook
+@cartouche
+@center @b{Quoting Shell Variables On The @command{awk} Command Line}
+
+
+@cindex quoting @subentry in @command{gawk} command lines
+@cindex shell quoting, rules for
+@cindex null strings @subentry in @command{gawk} arguments, quoting and
+
+Small @command{awk} programs are often embedded in larger shell scripts,
+so it's worthwhile to understand some shell basics. Consider the following:
+
+@example
+f=""
+awk '@{ print("hi") @}' $f
+@end example
+
+In this case, @command{awk} reads from standard input instead of trying
+to open any command line files. To the unwary, this looks like @command{awk}
+is hanging.
+
+However @command{awk} doesn't see an explicit empty string. When a
+variable expansion is the null string, @emph{and} it's not quoted,
+the shell simply removes it from the command line. To demonstrate:
+
+@example
+$ @kbd{f=""}
+$ @kbd{awk 'BEGIN @{ print ARGC @}' $f}
+@print{} 1
+$ @kbd{awk 'BEGIN @{ print ARGC @}' "$f"}
+@print{} 2
+@end example
+@end cartouche
+@end ifnotdocbook
+
 @node Naming Standard Input
 @section Naming Standard Input
 

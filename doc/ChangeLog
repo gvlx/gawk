@@ -1,3 +1,8 @@
+2020-10-28         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.in (Other Arguments): Add a sidebar about quoting shell
+	variables on the command line. Based on a bug list discussion in 2018.
+
 2020-10-22         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* texinfo.tex: Updated from GNULIB.
