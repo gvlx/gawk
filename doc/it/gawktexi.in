@@ -3012,7 +3012,7 @@ La prossima @value{SUBSECTION} descrive le regole di protezione della shell.
 
 @node Protezione
 @subsection Uso di apici nella shell.
-@cindex shell @subentry protezione @subentry regole per
+@cindex shell @subentry protezione @subentry regole per la
 
 @menu
 * Doppi apici in DOS::              Passaggio di apici in file .BAT Windows.
@@ -3030,7 +3030,7 @@ di shell di maggiori dimensioni:
 awk '@var{testo del programma}' @var{input-file1} @var{input-file2} @dots{}
 @end example
 
-@cindex shell @subentry protezione @subentry regole per
+@cindex shell @subentry protezione @subentry regole per la
 @cindex Bourne shell @subentry protezione @subentry regole per la
 Quando si lavora con la shell, non guasta avere una conoscenza
 di base sulle regole per l'uso di apici nella shell.  Le regole
@@ -3135,7 +3135,7 @@ awk -F "" '@var{programma}' @var{file} # corretto
 @end example
 
 @noindent
-@cindex stringa nulla @subentry come argomento a @command{gawk}, protezione della
+@cindex stringa nulla @subentry come argomento a @command{gawk} @subentry protezione per
 Non @`e invece da usare:
 
 @example
@@ -4905,6 +4905,40 @@ pass == 2  @{ @var{istruzioni pass 2} @}' pass=1 mydata pass=2 mydata
 Una volta disponibile la funzionalit@`a per assegnare una variabile, l'opzione
 @option{-F} per impostare il valore di @code{FS} non @`e pi@`u strettamente
 necessaria.  Rimane per compatibilit@`a all'indietro.
+
+@sidebar Proteggere le variabili della shell nella riga di comando @command{awk}
+@cindex protezione @subentry nella riga di comando di @command{gawk}
+@cindex shell @subentry protezione @subentry regole per la
+@cindex stringa nulla @subentry come argomento a @command{gawk} @subentry protezione per
+
+Alcuni piccoli programmi @command{awk} sono spesso inseriti in @dfn{script}
+della shell di grosse dimensioni.  Per questo motivo vale la pena di
+approfondire alcune nozioni di base riguardo alla shell.
+Si consideri quanto segue:
+
+@example
+f=""
+awk '@{ print("hi") @}' $f
+@end example
+
+In questo caso @command{awk} legge dallo standard input invece di
+tentare di aprire il file specificato nella riga di comando.
+A prima vista, potrebbe sembrare che @command{awk} si sia bloccato.
+
+Peraltro a @command{awk} non viene passata una stringa nulla vera
+e propria.  Quando una variabile assume il valore della stringa nulla,
+@emph{e} questo valore non @`e protetto da una sequenza, la shell
+non fa altro che toglierla completamente dalla riga di comando.
+Lo si pu@`o vedere in questo modo:
+
+@example
+$ @kbd{f=""}
+$ @kbd{awk 'BEGIN @{ print ARGC @}' $f}
+@print{} 1
+$ @kbd{awk 'BEGIN @{ print ARGC @}' "$f"}
+@print{} 2
+@end example
+@end sidebar
 
 @node Specificare lo standard input
 @section Come specificare lo standard input insieme ad altri file
@@ -15174,7 +15208,7 @@ stampa il primo campo di ogni record.
 
 @node Usare variabili di shell
 @section Usare variabili di shell in programmi
-@cindex shell @subentry variabili di
+@cindex shell @subentry variabili della
 @cindex programmi @command{awk} @subentry variabili di shell nei
 @c @cindex shell and @command{awk} interaction
 
@@ -15186,7 +15220,7 @@ individuare.
 Ci sono due modi per rendere disponibile il valore di una variabile di shell
 all'interno di un programma @command{awk}.
 
-@cindex shell @subentry uso di doppio apice
+@cindex shell @subentry uso di doppio apice nella
 Un modo comune @`e quello di usare i doppi apici per sostituire il valore della
 variabile nel progamma @command{awk} contenuto nello @dfn{script}:
 
@@ -19995,7 +20029,7 @@ Sebbene questo sia abbastanza sensato, pu@`o suscitare una certa sorpresa.
 @node Dettagli ostici
 @subsubsection Ulteriori dettagli su @samp{\} e @samp{&} con @code{sub()}, @code{gsub()} e @code{gensub()}
 
-@cindex protezione caratteri nelle funzioni @code{gsub()}/@code{gensub()}/@code{sub()}
+@cindex protezione @subentry nelle funzioni @code{gsub()}/@code{gensub()}/@code{sub()}
 @cindex funzione @subentry @code{sub()} @subentry protezione caratteri
 @cindex @code{sub()} (funzione) @subentry protezione caratteri
 @cindex funzione @subentry @code{gsub()} @subentry protezione caratteri
@@ -29577,7 +29611,7 @@ sorgenti tramite l'opzione @option{-f}
 e la capacit@`a di mescolare istruzioni da riga di comando e file di sorgenti di
 libreria.
 
-Il programma @`e scritto usando il linguaggio della Shell POSIX
+Il programma @`e scritto usando il linguaggio della shell POSIX
 (@command{sh}).@footnote{Una spiegazione dettagliata del linguaggio della
 @command{sh} non rientra negli intenti di questo libro.  Qualche spiegazione
 sommaria viene fornita, ma se si desidera una comprensione pi@`u dettagliata, si
