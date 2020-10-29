@@ -1337,6 +1337,13 @@ setup_frame(INSTRUCTION *pc)
 			r->var_value = m;
 			break;
 
+		case Node_func:
+		case Node_builtin_func:
+		case Node_ext_func:
+			r->type = Node_var;
+			r->var_value = make_string(m->vname, strlen(m->vname));
+			break;
+
 		default:
 			cant_happen();
 		}

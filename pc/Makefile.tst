@@ -237,7 +237,7 @@ LOCALE_CHARSET_TESTS = \
 
 SHLIB_TESTS = \
 	apiterm \
-	filefuncs fnmatch fork fork2 fts functab4 \
+	filefuncs fnmatch fork fork2 fts functab4 functab5 \
 	getfile \
 	inplace1 inplace2 inplace2bcomp inplace3 inplace3bcomp \
 	ordchr ordchr2 \
@@ -3484,6 +3484,11 @@ fork2:
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 functab4:
+	@echo $@
+	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
+	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
+
+functab5:
 	@echo $@
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@

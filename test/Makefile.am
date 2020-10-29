@@ -407,6 +407,8 @@ EXTRA_DIST = \
 	functab3.ok \
 	functab4.awk \
 	functab4.ok \
+	functab5.awk \
+	functab5.ok \
 	funlen.awk \
 	funlen.in \
 	funlen.ok \
@@ -1461,7 +1463,7 @@ LOCALE_CHARSET_TESTS = \
 
 SHLIB_TESTS = \
 	apiterm \
-	filefuncs fnmatch fork fork2 fts functab4 \
+	filefuncs fnmatch fork fork2 fts functab4 functab5 \
 	getfile \
 	inplace1 inplace2 inplace2bcomp inplace3 inplace3bcomp \
 	ordchr ordchr2 \

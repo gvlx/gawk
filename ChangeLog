@@ -1,3 +1,8 @@
+2020-10-29         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* eval.c (setup_frame): Handle the case of values from FUNCTAB.
+	Thanks to Denis Shirokov <cosmogen@gmail.com> for the report.
+
 2020-10-12         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawkapi.c (api_lintwarn): Fix comparison, should be to check

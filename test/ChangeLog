@@ -1,3 +1,9 @@
+2020-10-29         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.am (EXTRA_DIST): functab5, new test.
+	(SHLIB_TESTS): Ditto.
+	* functab5.awk, functab5.ok: New files.
+
 2020-10-09         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* xref.awk: Bug fix: Identifiers can have underscore in the middle.
