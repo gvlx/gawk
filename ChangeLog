@@ -1,3 +1,9 @@
+2020-10-31         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* re.c (make_regexp): When re_compile_pattern fails, use the
+	original text of the regexp in the error message. Thanks to Neil
+	R. Ormos <ormos-gnulists17@ormos.org> for the report.
+
 2020-10-29         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* eval.c (setup_frame): Handle the case of values from FUNCTAB.

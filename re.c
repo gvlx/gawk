@@ -258,10 +258,10 @@ make_regexp(const char *s, size_t len, bool ignorecase, bool dfa, bool canfatal)
 		refree(rp);
 		if (! canfatal) {
 			/* rerr already gettextized inside regex routines */
-			error("%s: /%s/", rerr, buf);
+			error("%s: /%.*s/", rerr, len, s);
  			return NULL;
 		}
-		fatal("invalid regexp: %s: /%s/", rerr, buf);
+		fatal("invalid regexp: %s: /%.*s/", rerr, len, s);
 	}
 
 	/* gack. this must be done *after* re_compile_pattern */
