@@ -1,3 +1,7 @@
+2020-10-31         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* texinfo.tex: Updated from GNULIB.
+
 2020-10-28         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawktexi.in (Other Arguments): Add a sidebar about quoting shell
