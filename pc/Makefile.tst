@@ -149,7 +149,8 @@ BASIC_TESTS = \
 	back89 backgsub badassign1 badbuild \
 	callparam childin clobber closebad clsflnam compare compare2 \
 	concat1 concat2 concat3 concat4 concat5 convfmt \
-	datanonl defref delargv delarpm2 delarprm delfunc dfamb1 dfastress dynlj \
+	datanonl defref delargv delarpm2 delarprm delfunc \
+	dfacheck2 dfamb1 dfastress dynlj \
 	escapebrace eofsplit eofsrc1 exit2 exitval1 exitval2 exitval3 \
 	fcall_exit fcall_exit2 fldchg fldchgnf fldterm fnamedat fnarray fnarray2 \
 	fnaryscl fnasgnm fnmisc fordel forref forsimp fsbs fscaret fsnul1 \
@@ -1493,6 +1494,11 @@ delarprm:
 delfunc:
 	@echo $@
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
+	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
+
+dfacheck2:
+	@echo $@
+	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  < "$(srcdir)"/$@.in >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 dfamb1:

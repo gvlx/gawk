@@ -2437,13 +2437,16 @@ merge_nfa_state (struct dfa *d, idx_t tindex, char *flags,
           continue;
         }
 
-      if (!(flags[sindex] & (OPT_LPAREN | OPT_RPAREN)))
+      if (sindex != tindex && !(flags[sindex] & (OPT_LPAREN | OPT_RPAREN)))
         {
           idx_t j;
 
           for (j = 0; j < nelem; j++)
             {
               idx_t dindex = follows[tindex].elems[j].index;
+
+              if (dindex == tindex)
+                continue;
 
               if (follows[tindex].elems[j].constraint != iconstraint)
                 continue;

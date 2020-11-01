@@ -1,3 +1,7 @@
+2020-11-01         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* dfa.c: Synced from GNULIB.
+
 2020-10-15         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* random.c: Move code to using prototypes.
