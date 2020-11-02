@@ -24,10 +24,8 @@
  */
 
 #include "awk.h"
+#include <math.h>
 
-extern double pow(double x, double y);
-extern double modf(double x, double *yp);
-extern double fmod(double x, double y);
 NODE **fcall_list = NULL;
 long fcall_count = 0;
 int currule = 0;
@@ -1520,18 +1518,17 @@ eval_condition(NODE *t)
 	return boolval(t);
 }
 
-typedef enum {
-	SCALAR_EQ_NEQ,
-	SCALAR_RELATIONAL
-} scalar_cmp_t;
+static bool cmp_doubles(const NODE *t1, const NODE *t2, scalar_cmp_t comparison_type);
+extern bool mpg_cmp_as_numbers(const NODE *t1, const NODE *t2, scalar_cmp_t comparison_type);
 
 /* cmp_scalars -- compare two nodes on the stack */
 
-static inline int
+static bool
 cmp_scalars(scalar_cmp_t comparison_type)
 {
 	NODE *t1, *t2;
 	int di;
+	bool ret;
 
 	t2 = POP_SCALAR();
 	t1 = TOP();
@@ -1539,11 +1536,90 @@ cmp_scalars(scalar_cmp_t comparison_type)
 		DEREF(t2);
 		fatal(_("attempt to use array `%s' in a scalar context"), array_vname(t1));
 	}
-	di = cmp_nodes(t1, t2, comparison_type == SCALAR_EQ_NEQ);
+
+	if ((t1->flags & STRING) != 0 || (t2->flags & STRING) != 0) {
+		bool use_strcmp = (comparison_type == SCALAR_EQ || comparison_type == SCALAR_NEQ);
+		di = cmp_nodes(t1, t2, use_strcmp);
+
+		switch (comparison_type) {
+		case SCALAR_EQ:
+			ret = (di == 0);
+			break;
+		case SCALAR_NEQ:
+			ret = (di != 0);
+			break;
+		case SCALAR_LT:
+			ret = (di < 0);
+			break;
+		case SCALAR_LE:
+			ret = (di <= 0);
+			break;
+		case SCALAR_GT:
+			ret = (di > 0);
+			break;
+		case SCALAR_GE:
+			ret = (di >= 0);
+			break;
+		}
+	} else {
+		fixtype(t1);
+		fixtype(t2);
+
+#ifdef HAVE_MPFR
+		if (do_mpfr)
+			ret = mpg_cmp_as_numbers(t1, t2, comparison_type);
+		else
+#endif
+			ret = cmp_doubles(t1, t2, comparison_type);
+	}
+
 	DEREF(t1);
 	DEREF(t2);
-	return di;
+	return ret;
 }
+
+
+/* cmp_doubles --- compare two doubles */
+
+static bool
+cmp_doubles(const NODE *t1, const NODE *t2, scalar_cmp_t comparison_type)
+{
+	/*
+	 * This routine provides numeric comparisons that should work
+	 * the same as in C.  It should NOT be used for sorting.
+	 */
+
+	bool t1_nan = isnan(t1->numbr);
+	bool t2_nan = isnan(t2->numbr);
+	int ret;
+
+	if ((t1_nan || t2_nan) && comparison_type != SCALAR_NEQ)
+		return false;
+
+	switch (comparison_type) {
+	case SCALAR_EQ:
+		ret = (t1->numbr == t2->numbr);
+		break;
+	case SCALAR_NEQ:
+		ret = (t1->numbr != t2->numbr);
+		break;
+	case SCALAR_LT:
+		ret = (t1->numbr < t2->numbr);
+		break;
+	case SCALAR_LE:
+		ret = (t1->numbr <= t2->numbr);
+		break;
+	case SCALAR_GT:
+		ret = (t1->numbr > t2->numbr);
+		break;
+	case SCALAR_GE:
+		ret = (t1->numbr >= t2->numbr);
+		break;
+	}
+
+	return ret;
+}
+
 
 /* op_assign --- assignment operators excluding = */
 

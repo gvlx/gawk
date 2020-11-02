@@ -486,37 +486,37 @@ uninitialized_scalar:
 			break;
 
 		case Op_equal:
-			r = node_Boolean[cmp_scalars(SCALAR_EQ_NEQ) == 0];
+			r = node_Boolean[cmp_scalars(SCALAR_EQ)];
 			UPREF(r);
 			REPLACE(r);
 			break;
 
 		case Op_notequal:
-			r = node_Boolean[cmp_scalars(SCALAR_EQ_NEQ) != 0];
+			r = node_Boolean[cmp_scalars(SCALAR_NEQ)];
 			UPREF(r);
 			REPLACE(r);
 			break;
 
 		case Op_less:
-			r = node_Boolean[cmp_scalars(SCALAR_RELATIONAL) < 0];
+			r = node_Boolean[cmp_scalars(SCALAR_LT)];
 			UPREF(r);
 			REPLACE(r);
 			break;
 
 		case Op_greater:
-			r = node_Boolean[cmp_scalars(SCALAR_RELATIONAL) > 0];
+			r = node_Boolean[cmp_scalars(SCALAR_GT)];
 			UPREF(r);
 			REPLACE(r);
 			break;
 
 		case Op_leq:
-			r = node_Boolean[cmp_scalars(SCALAR_RELATIONAL) <= 0];
+			r = node_Boolean[cmp_scalars(SCALAR_LE)];
 			UPREF(r);
 			REPLACE(r);
 			break;
 
 		case Op_geq:
-			r = node_Boolean[cmp_scalars(SCALAR_RELATIONAL) >= 0];
+			r = node_Boolean[cmp_scalars(SCALAR_GE)];
 			UPREF(r);
 			REPLACE(r);
 			break;

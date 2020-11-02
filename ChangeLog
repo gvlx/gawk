@@ -1,5 +1,18 @@
 2020-11-02         Arnold D. Robbins     <arnold@skeeve.com>
 
+	Make gawk numeric comparisons act like C doubles.
+	MPFR differs from doubles w.r.t. NaN, not sure why yet.
+
+	* awk.h (scalar_cmp_t): New enum.
+	* builtin.c (format_nan_inf): Use mpfr_signbit, not mpfr_sgn.
+	* eval.c (cmp_doubles): New routine.
+	(cmp_scalars): Change type to bool, rework logic.
+	* interpret.h (r_interpret): Rework scalar comparisons.
+	* mpfr.c (mpg_cmp_as_numbers): New routine.
+	* node.c: Use <math.h>, not "math.h", minor comment edits.
+
+2020-11-02         Arnold D. Robbins     <arnold@skeeve.com>
+
 	* re.c (make_regexp): Cast len parameter to int to avoid
 	compiler warnings.
 

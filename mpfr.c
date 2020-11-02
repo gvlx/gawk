@@ -433,6 +433,50 @@ mpg_cmp(const NODE *t1, const NODE *t2)
 	return cmp_awknums(t1, t2);
 }
 
+/* mpg_cmp_as_numbers --- compare two numbers, similar to doubles */
+
+bool
+mpg_cmp_as_numbers(const NODE *t1, const NODE *t2, scalar_cmp_t comparison_type)
+{
+	/*
+	 * This routine provides numeric comparisons that should work
+	 * the same as in C.  It should NOT be used for sorting.
+	 */
+
+	bool t1_nan = mpfr_nan_p(t1->mpg_numbr);
+	bool t2_nan = mpfr_nan_p(t2->mpg_numbr);
+	int ret;
+
+	// MPFR is different than native doubles...
+	if (t1_nan || t2_nan)
+		return comparison_type == SCALAR_NEQ;
+
+	int di = mpg_cmp(t1, t2);
+
+	switch (comparison_type) {
+	case SCALAR_EQ:
+		ret = (di == 0);
+		break;
+	case SCALAR_NEQ:
+		ret = (di != 0);
+		break;
+	case SCALAR_LT:
+		ret = (di < 0);
+		break;
+	case SCALAR_LE:
+		ret = (di <= 0);
+		break;
+	case SCALAR_GT:
+		ret = (di > 0);
+		break;
+	case SCALAR_GE:
+		ret = (di >= 0);
+		break;
+	}
+
+	return ret;
+}
+
 
 /*
  * mpg_update_var --- update NR or FNR.

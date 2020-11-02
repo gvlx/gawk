@@ -1574,6 +1574,15 @@ typedef enum {
 extern field_sep_type current_field_sep(void);
 extern const char *current_field_sep_str(void);
 
+typedef enum {
+	SCALAR_EQ,
+	SCALAR_NEQ,
+	SCALAR_LT,
+	SCALAR_LE,
+	SCALAR_GT,
+	SCALAR_GE,
+} scalar_cmp_t;
+
 /* gawkapi.c: */
 extern gawk_api_t api_impl;
 extern void init_ext_api(void);

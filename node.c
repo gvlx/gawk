@@ -25,7 +25,7 @@
  */
 
 #include "awk.h"
-#include "math.h"
+#include <math.h>
 #include "floatmagic.h"	/* definition of isnan */
 
 static int is_ieee_magic_val(const char *val);
@@ -367,7 +367,7 @@ int
 cmp_awknums(const NODE *t1, const NODE *t2)
 {
 	/*
-	 * This routine is also used to sort numeric array indices or values.
+	 * This routine is used to sort numeric array indices or values.
 	 * For the purposes of sorting, NaN is considered greater than
 	 * any other value, and all NaN values are considered equivalent and equal.
 	 * This isn't in compliance with IEEE standard, but compliance w.r.t. NaN
@@ -386,7 +386,6 @@ cmp_awknums(const NODE *t1, const NODE *t2)
 		return -1;
 	return 1;
 }
-
 
 /* make_str_node --- make a string node */
 
