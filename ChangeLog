@@ -1,3 +1,8 @@
+2020-11-02         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* re.c (make_regexp): Cast len parameter to int to avoid
+	compiler warnings.
+
 2020-10-31         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* re.c (make_regexp): When re_compile_pattern fails, use the
