@@ -919,6 +919,7 @@ particular records in a file and perform operations upon them.
 * Inexact representation::              Numbers are not exactly represented.
 * Comparing FP Values::                 How to compare floating point values.
 * Errors accumulate::                   Errors get bigger as they go.
+* Strange values::                      A few words about infinities and NaNs.
 * Getting Accuracy::                    Getting more accuracy takes some work.
 * Try To Round::                        Add digits and round.
 * Setting precision::                   How to set the precision.
@@ -8413,7 +8414,7 @@ FPAT = "([^,]*)|(\"[^\"]+\")"
 @c Per email from Ed Morton <mortoneccc@comcast.net>
 @c
 @c WONTFIX: 10/2020
-@c This is too much work. FPAT and CSV files are very flakey and
+@c This is too much work. FPAT and CSV files are very flaky and
 @c fragile. Doing something like this is merely inviting trouble.
 
 As with @code{FS}, the @code{IGNORECASE} variable (@pxref{User-modified})
@@ -10063,7 +10064,7 @@ infinity are formatted as
 and positive infinity as
 @samp{inf} or @samp{infinity}.
 The special ``not a number'' value formats as @samp{-nan} or @samp{nan}
-(@pxref{Math Definitions}).
+(@pxref{Strange values}).
 
 @item @code{%F}
 Like @samp{%f}, but the infinity and ``not a number'' values are spelled
@@ -18298,7 +18299,7 @@ compatibility mode (@pxref{Options}).
 @cindexawkfunc{log}
 @cindex logarithm
 Return the natural logarithm of @var{x}, if @var{x} is positive;
-otherwise, return @code{NaN} (``not a number'') on IEEE 754 systems.
+otherwise, return NaN (``not a number'') on IEEE 754 systems.
 Additionally, @command{gawk} prints a warning message when @code{x}
 is negative.
 
@@ -33586,21 +33587,9 @@ A special value representing infinity. Operations involving another
 number and infinity produce infinity.
 
 @item NaN
-``Not a number.''@footnote{Thanks to Michael Brennan for this description,
-which we have paraphrased, and for the examples.} A special value that
-results from attempting a calculation that has no answer as a real number.
-In such a case, programs can either receive a floating-point exception,
-or get @code{NaN} back as the result. The IEEE 754 standard recommends
-that systems return @code{NaN}. Some examples:
-
-@table @code
-@item sqrt(-1)
-This makes sense in the range of complex numbers, but not in the
-range of real numbers, so the result is @code{NaN}.
-
-@item log(-8)
-@minus{}8 is out of the domain of @code{log()}, so the result is @code{NaN}.
-@end table
+``Not a number.''  A special value that results from attempting a
+calculation that has no answer as a real number.  @xref{Strange values},
+for more information about infinity and not-a-number values.
 
 @item Normalized
 How the significand (see later in this list) is usually stored. The
@@ -33769,6 +33758,7 @@ decimal places in the final result.
 * Inexact representation::      Numbers are not exactly represented.
 * Comparing FP Values::         How to compare floating point values.
 * Errors accumulate::           Errors get bigger as they go.
+* Strange values::              A few words about infinities and NaNs.
 @end menu
 
 @node Inexact representation
@@ -33889,6 +33879,54 @@ $ @kbd{gawk 'BEGIN @{}
 > @kbd{@}'}
 @print{} 4
 @end example
+
+@node Strange values
+@subsubsection Floating Point Values They Didn't Talk About In School
+
+Both IEEE 754 floating-point hardware, and MPFR, support two kinds of
+values that you probably didn't learn about in school.  The first is
+@dfn{infinity}, a special value, that can be either negative or positive,
+and which is either smaller than any other value (negative infinity),
+or larger than any other value (positive infinity).  When such values
+are generated, @command{gawk} prints them as either @samp{-inf} or
+@samp{+inf}, respectively.  It accepts those strings as data input and
+converts them to the proper floating-point values internally.
+
+Infinity values of the same sign compare as equal to each other.
+Otherwise, operations (addition, subtraction, etc.) involving another
+number and infinity produce infinity.
+
+The second kind of value is ``not a number'', or NaN for
+short.@footnote{Thanks to Michael Brennan for this description, which we
+have paraphrased, and for the examples.} This is a special value that results
+from attempting a calculation that has no answer as a real number.
+In such a case, programs can either receive a floating-point exception,
+or get NaN back as the result. The IEEE 754 standard recommends
+that systems return NaN. Some examples:
+
+@table @code
+@item sqrt(-1)
+This makes sense in the range of complex numbers, but not in the
+range of real numbers, so the result is NaN.
+
+@item log(-8)
+@minus{}8 is out of the domain of @code{log()}, so the result is NaN.
+@end table
+
+NaN values are strange. In particular, they cannot be compared with other
+floating point values; any such comparison, except for ``is not equal
+to'', returns false.  NaN values are so much unequal to other values that
+even comparing two identical NaN values with @code{!=} returns true!
+
+NaN values can also be signed, although it depends upon the implementation
+as to which sign you get for any operation that returns a NaN. For
+example, on some systems, @code{sqrt(-1)} returns a negative NaN. On
+others, it returns a positive NaN.
+
+When such values are generated, @command{gawk} prints them as either
+@samp{-nan} or @samp{+nan}, respectively.  Here too, @command{gawk}
+accepts those strings as data input and converts them to the proper
+floating-point values internally.
 
 @node Getting Accuracy
 @subsection Getting the Accuracy You Need

@@ -1,3 +1,9 @@
+2020-11-04         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.in (Strange values): New section on NaN and infinity.
+	Update some other bits to point to it.
+	* wordlist: Updated with more words.
+
 2020-10-31         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* texinfo.tex: Updated from GNULIB.
