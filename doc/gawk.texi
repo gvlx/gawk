@@ -33906,7 +33906,13 @@ that systems return NaN. Some examples:
 
 @table @code
 @item sqrt(-1)
-This makes sense in the range of complex numbers, but not in the
+@iftex
+The @math{\sqrt{-1}}
+@end iftex
+@ifnottex
+This
+@end ifnottex
+makes sense in the range of complex numbers, but not in the
 range of real numbers, so the result is NaN.
 
 @item log(-8)

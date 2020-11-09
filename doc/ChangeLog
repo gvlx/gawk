@@ -1,3 +1,7 @@
+2020-11-09         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.in: Samll improvement in strange numbers section.
+
 2020-11-04         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawktexi.in (Strange values): New section on NaN and infinity.
