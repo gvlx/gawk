@@ -1,3 +1,8 @@
+2020-11-15         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.in (Strange values): Add test programs inside
+	@ignore; extracted to example directory.
+
 2020-11-09         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawktexi.in: Samll improvement in strange numbers section.

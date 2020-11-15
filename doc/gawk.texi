@@ -3136,11 +3136,12 @@ column means that the person is a friend.
 An @samp{R} means that the person is a relative:
 
 @example
-@c system if test ! -d eg      ; then mkdir eg      ; fi
-@c system if test ! -d eg/lib  ; then mkdir eg/lib  ; fi
-@c system if test ! -d eg/data ; then mkdir eg/data ; fi
-@c system if test ! -d eg/prog ; then mkdir eg/prog ; fi
-@c system if test ! -d eg/misc ; then mkdir eg/misc ; fi
+@c system if test ! -d eg               ; then mkdir eg      ; fi
+@c system if test ! -d eg/lib           ; then mkdir eg/lib  ; fi
+@c system if test ! -d eg/data          ; then mkdir eg/data ; fi
+@c system if test ! -d eg/prog          ; then mkdir eg/prog ; fi
+@c system if test ! -d eg/misc          ; then mkdir eg/misc ; fi
+@c system if test ! -d eg/test-programs ; then mkdir eg/test-programs ; fi
 @c file eg/data/mail-list
 Amelia       555-5553     amelia.zodiacusque@@gmail.com    F
 Anthony      555-3412     anthony.asserturo@@hotmail.com   A
@@ -33933,6 +33934,182 @@ When such values are generated, @command{gawk} prints them as either
 @samp{-nan} or @samp{+nan}, respectively.  Here too, @command{gawk}
 accepts those strings as data input and converts them to the proper
 floating-point values internally.
+
+@ignore
+@c file eg/test-programs/gen-float-table.awk
+function eq(left, right)
+{
+        return left == right
+}
+
+function ne(left, right)
+{
+        return left != right
+}
+
+function lt(left, right)
+{
+        return left <  right
+}
+
+function le(left, right)
+{
+        return left <= right
+}
+
+function gt(left, right)
+{
+        return left >  right
+}
+
+function ge(left, right)
+{
+        return left >= right
+}
+
+BEGIN {
+	nan = sqrt(-1)
+	inf = -log(0)
+        split("== != < <= > >=", names)
+	names[3] = names[3] " "
+	names[5] = names[5] " "
+        split("eq ne lt le gt ge", funcs)
+
+	compare[1] =              2.0
+        compare[2] = values[1] = -sqrt(-1.0)	# nan
+        compare[3] = values[2] =  sqrt(-1.0)	# -nan
+        compare[4] = values[3] = -log(0.0)	# inf
+        compare[5] = values[4] =  log(0.0)	# -inf
+
+	for (i = 1; i in values; i++) {
+		for (j = 1; j in compare; j++) {
+			for (k = 1; k in names; k++) {
+				the_func = funcs[k]
+				printf("%g %s %g -> %s\n",
+                                                values[i],
+						names[k],
+						compare[j],
+					        @the_func(values[i], compare[j]) ?
+                                                        "true" : "false");
+			}
+			printf("\n");
+		}
+	}
+}
+@c endfile
+@end ignore
+
+@ignore
+@c file eg/test-programs/gen-float-table.c
+#include <stdio.h>
+#include <math.h>
+#include <stdbool.h>
+
+#define def_func(name, op) \
+    bool name(double left, double right) { \
+        return left op right; \
+    }
+
+def_func(eq, ==)
+def_func(ne, !=)
+def_func(lt, <)
+def_func(le, <=)
+def_func(gt, >)
+def_func(ge, >=)
+
+struct {
+    const char *name;
+    bool (*func)(double left, double right);
+} functions[] = {
+    { "==", eq },
+    { "!=", ne },
+    { "< ", lt },
+    { "<=", le },
+    { "> ", gt },
+    { ">=", ge },
+    { 0, 0 }
+};
+
+int main()
+{
+    double values[] = {
+        -sqrt(-1),     // nan
+        sqrt(-1),      // -nan
+        -log(0.0),     // inf
+        log(0.0)       // -inf
+    };
+    double compare[] = { 2.0,
+        -sqrt(-1),     // nan
+        sqrt(-1),      // -nan
+        -log(0.0),     // inf
+        log(0.0)       // -inf
+    };
+
+    int i, j, k;
+
+    for (i = 0; i < 4; i++) {
+        for (j = 0; j < 5; j++) {
+            for (k = 0; functions[k].name != NULL; k++) {
+                printf("%g %s %g -> %s\n", values[i],
+                                functions[k].name,
+                                compare[j],
+                    functions[k].func(values[i], compare[j]) ? "true" : "false");
+            }
+            printf("\n");
+        }
+    }
+
+    return 0;
+}
+@c endfile
+@end ignore
+
+@ignore
+@c file eg/test-programs/gen-float-table.py
+from math import *
+
+nan = float('NaN')
+inf = float('Inf')
+
+def eq(left, right):
+    return left == right
+
+def ne(left, right):
+    return left != right
+
+def lt(left, right):
+    return left < right
+
+def le(left, right):
+    return left <= right
+
+def gt(left, right):
+    return left > right
+
+def ge(left, right):
+    return left >= right
+
+func_map = {
+    "==": eq,
+    "!=": ne,
+    "< ": lt,
+    "<=": le,
+    "> ": gt,
+    ">=": ge,
+}
+
+compare = [2.0, nan, -nan, inf, -inf]
+values = [nan, -nan, inf, -inf]
+
+for i in range(len(values)):
+    for j in range(len(compare)):
+        for op in func_map:
+            print("%g %s %g -> %s" %
+                    (values[i], op, compare[j], func_map[op](values[i], compare[j])))
+
+        print("")
+@c endfile
+@end ignore
 
 @node Getting Accuracy
 @subsection Getting the Accuracy You Need
