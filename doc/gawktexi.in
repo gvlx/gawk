@@ -14782,9 +14782,10 @@ not currently in an @code{END} rule, @code{ARGIND} is
 incremented, and any @code{BEGINFILE} rules are executed.  (@code{ARGIND}
 hasn't been introduced yet. @xref{Built-in Variables}.)
 
-With @command{gawk}, @code{nextfile} is useful inside a @code{BEGINFILE}
+There is an additional, special, use case
+with @command{gawk}. @code{nextfile} is useful inside a @code{BEGINFILE}
 rule to skip over a file that would otherwise cause @command{gawk}
-to exit with a fatal error. In this case, @code{ENDFILE} rules are not
+to exit with a fatal error. In this special case, @code{ENDFILE} rules are not
 executed. @xref{BEGINFILE/ENDFILE}.
 
 Although it might seem that @samp{close(FILENAME)} would accomplish
