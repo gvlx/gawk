@@ -15507,7 +15507,7 @@ statement accomplishes this much more efficiently.
 
 In @command{gawk}, execution of @code{nextfile} causes additional things
 to happen: any @code{ENDFILE} rules are executed if @command{gawk} is
-not currently in an @code{END} or @code{BEGINFILE} rule, @code{ARGIND} is
+not currently in an @code{END} rule, @code{ARGIND} is
 incremented, and any @code{BEGINFILE} rules are executed.  (@code{ARGIND}
 hasn't been introduced yet. @xref{Built-in Variables}.)
 

@@ -1,3 +1,8 @@
+2020-11-16         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.in (Nextfile Statement): Clarify what happens in
+	a BEGINFILE rule.
+
 2020-10-31         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* texinfo.tex: Updated from GNULIB.
