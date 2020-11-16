@@ -2,6 +2,7 @@
 
 	* gawktexi.in (Nextfile Statement): Clarify what happens in
 	a BEGINFILE rule.
+	* gawktexi.in: Additional small fixes.
 
 2020-11-15         Arnold D. Robbins     <arnold@skeeve.com>
 
