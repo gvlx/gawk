@@ -33935,6 +33935,12 @@ When such values are generated, @command{gawk} prints them as either
 accepts those strings as data input and converts them to the proper
 floating-point values internally.
 
+If you want to dive more deeply into this topic, you can find
+test programs in C, @command{awk} and Python in the directory
+@file{awklib/eg/test-programs} in the @command{gawk} distribution.
+These programs enable comparison among programming languages as to how
+they hanle NaN and infinity values.
+
 @ignore
 @c file eg/test-programs/gen-float-table.awk
 function eq(left, right)
