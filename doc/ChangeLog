@@ -1,3 +1,8 @@
+2020-11-16         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.in (Nextfile Statement): Clarify what happens in
+	a BEGINFILE rule.
+
 2020-11-15         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawktexi.in (Strange values): Add test programs inside
@@ -12,6 +17,12 @@
 	* gawktexi.in (Strange values): New section on NaN and infinity.
 	Update some other bits to point to it.
 	* wordlist: Updated with more words.
+
+2020-11-16         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.in (Nextfile Statement): Clarify what happens in
+	a BEGINFILE rule.
+>>>>>>> master
 
 2020-10-31         Arnold D. Robbins     <arnold@skeeve.com>
 
