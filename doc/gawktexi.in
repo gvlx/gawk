@@ -32862,7 +32862,7 @@ converts them to the proper floating-point values internally.
 
 Infinity values of the same sign compare as equal to each other.
 Otherwise, operations (addition, subtraction, etc.) involving another
-number and infinity produce infinity.
+number and infinity produce mathematically reasonable results.
 
 The second kind of value is ``not a number'', or NaN for
 short.@footnote{Thanks to Michael Brennan for this description, which we

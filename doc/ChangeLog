@@ -1,3 +1,9 @@
+2020-11-20         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.in (Strange values): Correct the description of what
+	happens with infinity. Thanks to Antonio Columbo for pointing
+	out the problem.
+
 2020-11-16         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawktexi.in (Nextfile Statement): Clarify what happens in
