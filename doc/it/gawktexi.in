@@ -1065,13 +1065,14 @@ Copyright dell'edizione italiana @copyright{} 2016 -- Free Software Foundation, 
                                         esattamente.
 * Confronti tra valori in VM::          Come confrontare valori in virgola mobile.
 * Gli errori si sommano::               Gli errori diventano sempre maggiori.
+* Valori strani::                       Un cenno riguardo ai valori infiniti e a NaN [``non @`e un numero''].
 * Ottenere la precisione::              Ottenere la precisione voluta.
 * Tentare di arrotondare::              Tentare di aggiungere bit di precisione e
                                         arrotondare.
 * Impostare la precisione::             Impostare la precisione.
 * Impostare modo di arrotondare::       Impostare la modalit@`a di
                                         arrotondamento.
-* Controllare disponibilit@`a MPFR::      Come controllare se MPFR @`e disponibile.
+* Controllare disponibilit@`a MPFR::    Come controllare se MPFR @`e disponibile.
 * Interi a precisione arbitraria::      Aritmetica dei numeri interi a precisione
                                         arbitraria con @command{gawk}.
 * Problemi virgola mobile POSIX::       Confronto tra standard e uso corrente.
@@ -3338,11 +3339,12 @@ persona @`e un amico [Friend].  Una @samp{R} vuol dire che quella persona @`e
 un parente [Relative]:
 
 @example
-@c system if test ! -d eg      ; then mkdir eg      ; fi
-@c system if test ! -d eg/lib  ; then mkdir eg/lib  ; fi
-@c system if test ! -d eg/data ; then mkdir eg/data ; fi
-@c system if test ! -d eg/prog ; then mkdir eg/prog ; fi
-@c system if test ! -d eg/misc ; then mkdir eg/misc ; fi
+@c system if test ! -d eg               ; then mkdir eg      ; fi
+@c system if test ! -d eg/lib           ; then mkdir eg/lib  ; fi
+@c system if test ! -d eg/data          ; then mkdir eg/data ; fi
+@c system if test ! -d eg/prog          ; then mkdir eg/prog ; fi
+@c system if test ! -d eg/misc          ; then mkdir eg/misc ; fi
+@c system if test ! -d eg/test-programs ; then mkdir eg/test-programs ; fi
 @c file eg/data/mail-list
 Amelia       555-5553     amelia.zodiacusque@@gmail.com    F
 Anthony      555-3412     anthony.asserturo@@hotmail.com   A
@@ -8710,7 +8712,7 @@ FPAT = "([^,]*)|(\"[^\"]+\")"
 @c Per email from Ed Morton <mortoneccc@comcast.net>
 @c
 @c WONTFIX: 10/2020
-@c This is too much work. FPAT and CSV files are very flakey and
+@c This is too much work. FPAT and CSV files are very flaky and
 @c fragile. Doing something like this is merely inviting trouble.
 
 Come per @code{FS}, la variabile @code{IGNORECASE}
@@ -10473,9 +10475,9 @@ dallo standard IEEE 754, il valore infinito negativo @`e rappresentato come
 @samp{-inf} o @samp{-infinity},
 e l'infinito positivo come
 @samp{inf} o @samp{infinity}.
-Il valore speciale ``not a number'' [non @`e un numero] viene scritto come
+Il valore speciale ``not a number'' ["non @`e un numero"] viene scritto come
 @samp{-nan} o @samp{nan}
-(@pxref{Definizioni matematiche}).
+(@pxref{Valori strani}).
 
 @item @code{%F}
 Come @samp{%f}, ma i valori di infinito e di ``not a number'' sono scritti
@@ -16060,16 +16062,17 @@ risultato.
 In @command{gawk}, l'esecuzione di @code{nextfile} produce ulteriori effetti:
 le eventuali regole @code{ENDFILE}
 sono eseguite se @command{gawk} non
-si trova correntemente all'interno di una regola @code{END} o
-@code{BEGINFILE}; @code{ARGIND} @`e
+si trova correntemente all'interno di una regola @code{END},
+@code{ARGIND} @`e
 incrementato e le eventuali regole @code{BEGINFILE} sono eseguite.
 (@code{ARGIND} non @`e stato ancora trattato.
 @xref{Variabili predefinite}.)
 
-In @command{gawk}, @code{nextfile} @`e utile all'interno di una regola
+C'@`e un ulteriore caso speciale di utilizzo in @command{gawk}.
+@code{nextfile} @`e utile all'interno di una regola
 @code{BEGINFILE} per evitare di elaborare un file che altrimenti causerebbe
 un errore fatale in @command{gawk}.
-In questo caso, le regole @code{ENDFILE} non vengono eseguite.
+In questo caso speciale, le regole @code{ENDFILE} non vengono eseguite.
 @xref{BEGINFILE/ENDFILE}.
 
 Sebbene possa sembrare che @samp{close(FILENAME)} ottenga lo stesso
@@ -19051,8 +19054,8 @@ modalit@`a compatibile (@pxref{Opzioni}).
 @cindexawkfunc{log}
 @cindex logaritmo
 Restituisce il logaritmo naturale di @var{x}, se @var{x} @`e positivo;
-altrimenti, restituisce @code{NaN} (``not a number'') sui sistemi che
-implementano lo standard IEEE 754.
+altrimenti, restituisce NaN (``not a number'',[``non @`e un numero''])
+sui sistemi che implementano lo standard IEEE 754.
 Inoltre, @command{gawk} stampa un messaggio di avvertimento qualora @code{x}
 sia negativo.
 
@@ -35366,23 +35369,10 @@ Come i numeri vanno arrotondati, per eccesso o per difetto, quando necessario.
 Maggiori dettagli verranno forniti in seguito.
 
 @item NaN
-``Not a number'' (Non un Numero).@footnote{Grazie a Michael
-Brennan per questa descrizione, che abbiamo parafrasato, e per gli esempi.} Un
-valore speciale che risulta da un calcolo che non ha risposta come numero
-reale. In tal caso, i programmi possono o ricevere un'eccezione di virgola
-mobile, o restituire @code{NaN} come risultato. Lo standard IEEE 754
-consiglia che i sistemi restituiscano @code{NaN}. Alcuni esempi:
-
-@table @code
-@item sqrt(-1)
-La radice quadrata di @minus{}1 ha senso nell'insieme dei numeri complessi,
-ma non nell'insieme dei numeri reali,
-per cui il risultato @`e @code{NaN}.
-
-@item log(-8)
-Il logaritmo di @minus{}8 @`e fuori dal dominio di @code{log()},
-per cui il risultato @`e @code{NaN}.
-@end table
+``Not a number'' (``non @`e un numero''). Un valore speciale
+che risulta da un calcolo che non ha come risposta un numero
+reale.  @xref{Valori strani}, per maggiori informazioni riguardo
+ai valori infiniti e ai valori ``non-un-numero''.
 
 @item Normalizzato (formato)
 Come la mantissa (vedi oltre in questa lista) @`e usualmente memorizzata. Il
@@ -35534,8 +35524,7 @@ ottenere ulteriori informazioni, e non basarsi solo su quanto qui detto.
 * Ottenere la precisione::        Ottenere pi@`u precisione richiede qualche
                                   sforzo.
 * Tentare di arrotondare::        Aggiungere cifre di precisione e arrotondare.
-* Impostare la precisione::       Come impostare la precisione.
-* Impostare modo di arrotondare:: Impostare le modalit@`a di arrotondamento.
+* Valori strani::                 Un cenno riguardo ai valori infiniti e a NaN [``non @`e un numero''].
 @end menu
 
 @node Inesattezza nei calcoli
@@ -35681,6 +35670,257 @@ $ @kbd{gawk 'BEGIN @{}
 > @kbd{@}'}
 @print{} 4
 @end example
+
+@node Valori strani
+@subsubsection Valori in virgola mobile non spiegati a scuola
+
+Sia l'hardware che implementa lo standard per i numeri in virgola
+mobili IEEE 754, che la libreria matematica MPFR, prevedono due
+tipi di valori di cui probabilmente non vi hanno parlato a scuola.
+Il primo @`e il valore @dfn{infinity} (``infinito''), un valore speciale
+che pu@`o avere un segno sia negativo che positivo, e che @`e pi@`u
+piccolo di ogni altro valore (infinito negativo), o maggiore di ogni
+altro valore (infinito positivo).  Quando vengono generati tali valori
+@command{gawk} li stampa come @samp{-inf} o @samp{+inf}, rispettivamente.
+@command{gawk} accetta queste stringhe come dati in input, e li converte
+internamente all'appropriato valore in virgola mobile.
+
+Valori di infinito che abbiano lo stesso segno risultano uguali
+quando sono confrontati fra loro.
+Per il resto, altre operazioni (addizione, sottrazione, etc.)
+che hanno come operando un infinito e un altro numero producono
+risultati matematicamente ragionevoli.
+
+Il secondo tipo di valore @`e ``not a number'' [``non @`e un numero'']
+scritto in forma abbreviata come NaN.@footnote{Grazie a Michael Brennan
+per questa descrizione, che abbiamo parafrasato, e per gli esempi.}
+
+Questo @`e un valore speciale che risulta da un calcolo che non ha come
+risposta un numero reale.  In tal caso, i programmi possono o ricevere
+un’eccezione di virgola mobile, o restituire NaN come risultato.
+Lo standard IEEE 754 consiglia che i sistemi restituiscano NaN.
+Alcuni esempi:
+
+@table @code
+@item sqrt(-1)
+@iftex
+La funzione @math{\sqrt{-1}}
+@end iftex
+@ifnottex
+Questa funzione
+@end ifnottex
+ha senso nell'insieme dei numeri complessi,
+ma non nell'insieme dei numeri reali,
+per cui il risultato @`e @code{NaN}.
+
+@item log(-8)
+Il logaritmo di @minus{}8 @`e fuori dal dominio di @code{log()},
+per cui il risultato @`e @code{NaN}.
+@end table
+
+I valori Nan sono strani.  In particolare, non possono essere confrontati
+con altri numeri in virgola mobile; ogni confronto di questo tipo, eccetto
+quello ``non uguale a'', restituisce il valore ``falso''.
+I valori NaN sono talmente differenti da altri valori che perfino il
+confronto di due valori NaN identici fra loro con @code{!=} restituisce
+il valore ``vero''!
+
+I valori NaN possono anche avere un segno (positivo o negativo),
+anche se dipende dall'implementazione quale segno viene restituito
+da qualsiasi operazione il cui risultato sia un valore NaN.
+Per esempio, su alcuni sistemi la funzione @code{sqrt(-1)}
+restituisce un NaN negativo.  Su altri sistemi il NaN restituito
+@`e invece positivo.
+
+Quando tali valori vengono generati, @command{gawk} li stampa
+come @samp{-nan} o @samp{+nan}, rispettivamente.  Anche per
+questi valori, @command{gawk} accetta queste stringhe come 
+dati in input e le converte internamente ai valori loro
+assegnati come numeri in virgola mobile.
+
+Se si desidera approfondire ulteriormente questo argomento, si possono
+trovare programmi di test scritti in C, @command{awk} e Python
+nella directory @file{awklib/eg/test-programs} disponibile
+nella distribuzione di @command{gawk}.
+Tali programmi permettono un confronto tra i linguaggi di
+programmazione, riguardo al modo con cui vengono trattati
+i valori di infinito e quelli NaN.
+
+@ignore
+@c file eg/test-programs/gen-float-table.awk
+function eq(left, right)
+{
+        return left == right
+}
+
+function ne(left, right)
+{
+        return left != right
+}
+
+function lt(left, right)
+{
+        return left <  right
+}
+
+function le(left, right)
+{
+        return left <= right
+}
+
+function gt(left, right)
+{
+        return left >  right
+}
+
+function ge(left, right)
+{
+        return left >= right
+}
+
+BEGIN {
+	nan = sqrt(-1)
+	inf = -log(0)
+        split("== != < <= > >=", names)
+	names[3] = names[3] " "
+	names[5] = names[5] " "
+        split("eq ne lt le gt ge", funcs)
+
+	compare[1] =              2.0
+        compare[2] = values[1] = -sqrt(-1.0)	# nan
+        compare[3] = values[2] =  sqrt(-1.0)	# -nan
+        compare[4] = values[3] = -log(0.0)	# inf
+        compare[5] = values[4] =  log(0.0)	# -inf
+
+	for (i = 1; i in values; i++) {
+		for (j = 1; j in compare; j++) {
+			for (k = 1; k in names; k++) {
+				the_func = funcs[k]
+				printf("%g %s %g -> %s\n",
+                                                values[i],
+						names[k],
+						compare[j],
+					        @the_func(values[i], compare[j]) ?
+                                                        "true" : "false");
+			}
+			printf("\n");
+		}
+	}
+}
+@c endfile
+@end ignore
+
+@ignore
+@c file eg/test-programs/gen-float-table.c
+#include <stdio.h>
+#include <math.h>
+#include <stdbool.h>
+
+#define def_func(name, op) \
+    bool name(double left, double right) { \
+        return left op right; \
+    }
+
+def_func(eq, ==)
+def_func(ne, !=)
+def_func(lt, <)
+def_func(le, <=)
+def_func(gt, >)
+def_func(ge, >=)
+
+struct {
+    const char *name;
+    bool (*func)(double left, double right);
+} functions[] = {
+    { "==", eq },
+    { "!=", ne },
+    { "< ", lt },
+    { "<=", le },
+    { "> ", gt },
+    { ">=", ge },
+    { 0, 0 }
+};
+
+int main()
+{
+    double values[] = {
+        -sqrt(-1),     // nan
+        sqrt(-1),      // -nan
+        -log(0.0),     // inf
+        log(0.0)       // -inf
+    };
+    double compare[] = { 2.0,
+        -sqrt(-1),     // nan
+        sqrt(-1),      // -nan
+        -log(0.0),     // inf
+        log(0.0)       // -inf
+    };
+
+    int i, j, k;
+
+    for (i = 0; i < 4; i++) {
+        for (j = 0; j < 5; j++) {
+            for (k = 0; functions[k].name != NULL; k++) {
+                printf("%g %s %g -> %s\n", values[i],
+                                functions[k].name,
+                                compare[j],
+                    functions[k].func(values[i], compare[j]) ? "true" : "false");
+            }
+            printf("\n");
+        }
+    }
+
+    return 0;
+}
+@c endfile
+@end ignore
+
+@ignore
+@c file eg/test-programs/gen-float-table.py
+from math import *
+
+nan = float('NaN')
+inf = float('Inf')
+
+def eq(left, right):
+    return left == right
+
+def ne(left, right):
+    return left != right
+
+def lt(left, right):
+    return left < right
+
+def le(left, right):
+    return left <= right
+
+def gt(left, right):
+    return left > right
+
+def ge(left, right):
+    return left >= right
+
+func_map = {
+    "==": eq,
+    "!=": ne,
+    "< ": lt,
+    "<=": le,
+    "> ": gt,
+    ">=": ge,
+}
+
+compare = [2.0, nan, -nan, inf, -inf]
+values = [nan, -nan, inf, -inf]
+
+for i in range(len(values)):
+    for j in range(len(compare)):
+        for op in func_map:
+            print("%g %s %g -> %s" %
+                    (values[i], op, compare[j], func_map[op](values[i], compare[j])))
+
+        print("")
+@c endfile
+@end ignore
 
 @node Ottenere la precisione
 @subsection Ottenere la precisione voluta
