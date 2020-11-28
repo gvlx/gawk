@@ -4,9 +4,9 @@
 # May 1993
 
 # Options:
+#    -c list     Cut characters
 #    -f list     Cut fields
 #    -d c        Field delimiter character
-#    -c list     Cut characters
 #
 #    -s          Suppress lines without the delimiter
 #

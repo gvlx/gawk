@@ -7,10 +7,12 @@
 # Revised slightly, May 2014
 # Rewritten September 2020
 
-function usage()
+
+function usage(		common)
 {
-    print("usage: split [-l count]  [-a suffix-len] [file [outname]]") > "/dev/stderr"
-    print("       split [-b N[k|m]] [-a suffix-len] [file [outname]]") > "/dev/stderr"
+    common = "[-a suffix-len] [file [outname]]"
+    printf("usage: split [-l count]  %s\n", common) > "/dev/stderr"
+    printf("       split [-b N[k|m]] %s\n", common) > "/dev/stderr"
     exit 1
 }
 BEGIN {
