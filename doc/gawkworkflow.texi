@@ -2147,6 +2147,10 @@ In particular, the @uref{https://git-scm.com/book/en/v2,
 See also @uref{http://savannah.gnu.org/maintenance/UsingGit,
 the Savannah quick introduction to Git}.
 
+A nice article on how Git works is
+@uref{http://jwiegley.github.io/git-from-the-bottom-up/,
+@cite{Git From The Bottom Up}}, by John Wiegley.
+
 @node TODO
 @appendix Stuff Still To Do In This Document
 

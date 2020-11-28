@@ -25118,12 +25118,12 @@ may be separated by commas, and ranges of characters can be separated with
 dashes.  The list @samp{1-8,15,22-35} specifies characters 1 through
 8, 15, and 22 through 35.
 
-@item -f @var{list}
-Use @var{list} as the list of fields to cut out.
-
 @item -d @var{delim}
 Use @var{delim} as the field-separator character instead of the TAB
 character.
+
+@item -f @var{list}
+Use @var{list} as the list of fields to cut out.
 
 @item -s
 Suppress printing of lines that do not contain the field delimiter.
@@ -25133,6 +25133,10 @@ The @command{awk} implementation of @command{cut} uses the @code{getopt()} libra
 function (@pxref{Getopt Function})
 and the @code{join()} library function
 (@pxref{Join Function}).
+
+The current POSIX version of @command{cut} has options to cut fields based on
+both bytes and characters. This version does not attempt to implement those options,
+as @command{awk} works exclusively in terms of characters.
 
 The program begins with a comment describing the options, the library
 functions needed, and a @code{usage()} function that prints out a usage
@@ -25154,9 +25158,9 @@ supplied:
 @c file eg/prog/cut.awk
 
 # Options:
+#    -c list     Cut characters
 #    -f list     Cut fields
 #    -d c        Field delimiter character
-#    -c list     Cut characters
 #
 #    -s          Suppress lines without the delimiter
 #
@@ -25228,7 +25232,7 @@ incorrect---@command{awk} would separate fields with runs of spaces,
 TABs, and/or newlines, and we want them to be separated with individual
 spaces.
 To this end, we save the original space character in the variable
-@code{fs} for later use; after setting @code{FS} to @code{"[ ]"} we can't
+@code{fs} for later use; after setting @code{FS} to @code{@w{"[ ]"}} we can't
 use it directly to see if the field delimiter character is in the string.
 
 Also remember that after @code{getopt()} is through
@@ -25555,9 +25559,9 @@ Note the comment about invocation: Because several of the options overlap
 with @command{gawk}'s, a @option{--} is needed to tell @command{gawk}
 to stop looking for options.
 
-Next comes the code that handles the @command{egrep}-specific behavior. If no
-pattern is supplied with @option{-e}, the first nonoption on the
-command line is used.
+Next comes the code that handles the @command{egrep}-specific behavior.
+@command{egrep} uses the first nonoption on the command line is used.
+if no pattern is supplied with @option{-e}.
 If the pattern is empty, that means no pattern was supplied, so it's
 necessary to print an error message and exit.
 The @command{awk} command-line arguments up to @code{ARGV[Optind]}
@@ -25640,13 +25644,13 @@ the code checks this condition by looking at the values of
 is not over the full line, @code{matches} is set to zero (false).
 
 If the user
-wants lines that did not match, the sense of @code{matches} is inverted
-using the @samp{!} operator. @code{fcount} is incremented with the value of
+wants lines that did not match, we invert the sense of @code{matches}
+using the @samp{!} operator. We then increment @code{fcount} with the value of
 @code{matches}, which is either one or zero, depending upon a
 successful or unsuccessful match.  If the line does not match, the
 @code{next} statement just moves on to the next input line.
 
-A number of additional tests are made, but they are only done if we
+We make a number of additional tests, but only if we
 are not counting lines.  First, if the user only wants the exit status
 (@code{no_print} is true), then it is enough to know that @emph{one}
 line in this file matched, and we can skip on to the next file with
@@ -26158,7 +26162,9 @@ Here is an implementation of @command{split} in @command{awk}. It uses the
 @code{getopt()} function presented in @ref{Getopt Function}.
 
 The program begins with a standard descriptive comment and then
-a @code{usage()} function describing the options:
+a @code{usage()} function describing the options. The variable
+@code{common} keeps the function's lines short so that they
+look nice on the page:
 
 @cindex @code{split.awk} program
 @example
@@ -26178,10 +26184,12 @@ a @code{usage()} function describing the options:
 @c endfile
 @end ignore
 @c file eg/prog/split.awk
-function usage()
+
+function usage(		common)
 @{
-    print("usage: split [-l count]  [-a suffix-len] [file [outname]]") > "/dev/stderr"
-    print("       split [-b N[k|m]] [-a suffix-len] [file [outname]]") > "/dev/stderr"
+    common = "[-a suffix-len] [file [outname]]"
+    printf("usage: split [-l count]  %s\n", common) > "/dev/stderr"
+    printf("       split [-b N[k|m]] %s\n", common) > "/dev/stderr"
     exit 1
 @}
 @c endfile
@@ -26646,7 +26654,8 @@ the options and their meanings in comments:
 
 function usage()
 @{
-    print("Usage: uniq [-udc [-f fields] [-s chars]] [ in [ out ]]") > "/dev/stderr"
+    print("Usage: uniq [-udc [-f fields] [-s chars]] " \
+          "[ in [ out ]]") > "/dev/stderr"
     exit 1
 @}
 
@@ -26665,7 +26674,7 @@ so that the @code{getopt()} function can parse the options:
 
 @example
 @c file eg/prog/uniq.awk
-# As of 2020, '+' can be used as option character in addition to '-'
+# As of 2020, '+' can be used as the option character in addition to '-'
 # Previously allowed use of -N to skip fields and +N to skip
 # characters is no longer allowed, and not supported by this version.
 
@@ -26914,7 +26923,7 @@ For the purposes of
 @file{wc.awk}, it's enough to know that the extension is loaded
 with the @code{@@load} directive, and the additional function we
 will use is called @code{mbs_length()}.  This function returns the
-number of bytes in a string, and not the number of characters.
+number of bytes in a string, not the number of characters.
 
 The @code{"mbs"} extension comes from the @code{gawkextlib}
 project. @xref{gawkextlib} for more information.
@@ -26933,23 +26942,23 @@ input. If there are multiple files, it also prints total counts for all
 the files.  The options and their meanings are as follows:
 
 @table @code
-@item -l
-Count only lines.
-
-@item -w
-Count only words.
-A ``word'' is a contiguous sequence of nonwhitespace characters, separated
-by spaces and/or TABs.  Luckily, this is the normal way @command{awk} separates
-fields in its input data.
-
 @item -c
 Count only bytes.
 Once upon a time, the @samp{c} in this option stood for ``characters.''
 But, as explained earlier, bytes and character are no longer synonymous
 with each other.
 
+@item -l
+Count only lines.
+
 @item -m
 Count only characters.
+
+@item -w
+Count only words.
+A ``word'' is a contiguous sequence of nonwhitespace characters, separated
+by spaces and/or TABs.  Luckily, this is the normal way @command{awk} separates
+fields in its input data.
 @end table
 
 Implementing @command{wc} in @command{awk} is particularly elegant,

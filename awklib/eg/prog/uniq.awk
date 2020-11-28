@@ -8,7 +8,8 @@
 
 function usage()
 {
-    print("Usage: uniq [-udc [-f fields] [-s chars]] [ in [ out ]]") > "/dev/stderr"
+    print("Usage: uniq [-udc [-f fields] [-s chars]] " \
+          "[ in [ out ]]") > "/dev/stderr"
     exit 1
 }
 
@@ -17,7 +18,7 @@ function usage()
 # -u    only nonrepeated lines
 # -f n  skip n fields
 # -s n  skip n characters, skip fields first
-# As of 2020, '+' can be used as option character in addition to '-'
+# As of 2020, '+' can be used as the option character in addition to '-'
 # Previously allowed use of -N to skip fields and +N to skip
 # characters is no longer allowed, and not supported by this version.
 
