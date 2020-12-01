@@ -1686,6 +1686,9 @@ Git' book (https://git-scm.com/book/en/v2) is available online.
    See also the Savannah quick introduction to Git
 (http://savannah.gnu.org/maintenance/UsingGit).
 
+   A nice article on how Git works is 'Git From The Bottom Up'
+(http://jwiegley.github.io/git-from-the-bottom-up/), by John Wiegley.
+
 
 File: gawkworkflow.info,  Node: TODO,  Next: Index,  Prev: Resources,  Up: Top
 
@@ -1979,8 +1982,8 @@ Ref: Compilers-Footnote-164110
 Node: Debugging64148
 Node: Cheat Sheet64885
 Node: Resources68572
-Node: TODO69015
-Node: Index69235
+Node: TODO69149
+Node: Index69369
 
 End Tag Table
 
