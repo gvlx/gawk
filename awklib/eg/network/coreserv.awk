@@ -58,7 +58,7 @@ BEGIN {
   }
 }
 
-function CGI_setup(   method, uri, version, i)
+function CGI_setup(method, uri, version,    i)
 {
     delete GETARG
     delete MENU

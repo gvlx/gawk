@@ -863,6 +863,7 @@ particular records in a file and perform operations upon them.
 * TCP/IP Networking::                   Using @command{gawk} for network
                                         programming.
 * Profiling::                           Profiling your @command{awk} programs.
+* Extension Philosophy::                What should be built-in and what should not.
 * Advanced Features Summary::           Summary of advanced features.
 * I18N and L10N::                       Internationalization and Localization.
 * Explaining gettext::                  How GNU @command{gettext} works.
@@ -28217,6 +28218,7 @@ discusses the ability to dynamically add new built-in functions to
 * Two-way I/O::                 Two-way communications with another process.
 * TCP/IP Networking::           Using @command{gawk} for network programming.
 * Profiling::                   Profiling your @command{awk} programs.
+* Extension Philosophy::        What should be built-in and what should not.
 * Advanced Features Summary::   Summary of advanced features.
 @end menu
 
@@ -29491,6 +29493,52 @@ Profiling and pretty-printing also preserve the original format of numeric
 constants; if you used an octal or hexadecimal value in your source
 code, it will appear that way in the output.
 
+@node Extension Philosophy
+@section Builtin Features vs.@: Extensions
+
+As this and subsequent @value{CHAPTER}s show, @command{gawk} has a
+large number of extensions over standard @command{awk} built-in to
+the program.  These have developed over time.  More recently, the
+focus has moved to using the extension mechanism (@pxref{Dynamic Extensions})
+for adding features.  This @value{SECTION} discusses the ``guiding philosophy''
+behind what should be added to the interpreter as a built-in
+feature vs.@: what should be done in extensions.
+
+There are several goals:
+
+@enumerate 1
+@item
+Keep the language @command{awk}; it should not become unrecognizable, even
+if programs in it will only run on @command{gawk}.
+
+@item
+Keep the core from getting any larger unless absolutely necessary.
+
+@item
+Add new functionality either in @command{awk} scripts (@option{-f},
+@code{@@include}) or in loadable extensions written in C or C++
+(@option{-l}, @code{@@load}).
+
+@item
+Extend the core interpreter only if some feature is:
+
+@c sublist
+@enumerate A
+@item
+Truly desirable.
+@item
+Cannot be done via (2) or (3) above.
+@item
+Can be implemented without too much pain in the core.
+@end enumerate
+@end enumerate
+
+Combining modules with @command{awk} files is a powerful technique.
+Some of the sample extensions demonstrate this.
+
+Loading extensions and library files should not be done automatically,
+because then there's overhead that most users don't want or need.
+
 @node Advanced Features Summary
 @section Summary
 
@@ -29533,6 +29581,9 @@ you tune them more easily.  Sending the @code{USR1} signal while profiling cause
 @item
 You can also just ``pretty-print'' the program.
 
+@item
+New features should be developed using the extension mechansim if possible, and added
+to the core interpreter only as a last resort.
 @end itemize
 
 

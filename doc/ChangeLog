@@ -2,6 +2,7 @@
 
 	* gawkinet.texi: Lots of cleanup edits. Bump the minor part
 	of the edition.
+	* gawktexi.in: New section on extension philosphy.
 
 2020-11-28         Arnold D. Robbins     <arnold@skeeve.com>
 
