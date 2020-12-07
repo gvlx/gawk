@@ -4,6 +4,9 @@
 @settitle TCP/IP Internetworking With @command{gawk}
 @c %**end of header (This is for running Texinfo on a region.)
 @c FIXME: web vs. Web
+@c Correct spelling of web is still under discussion.
+@c https://english.stackexchange.com/questions/120869/should-i-capitalize-the-word-web-in-this-sentence
+@c We leave the many occurrences of web in this file as they are.
 
 @dircategory Network applications
 @direntry
@@ -995,7 +998,6 @@ flavor of Microsoft Windows usually do @emph{not} support these services.
 Nevertheless, it @emph{is} possible to do networking with @command{gawk} on
 Microsoft
 Windows.@footnote{Microsoft preferred to ignore the TCP/IP
-@c FIXME: What about Windows 7, 8, 10?
 family of protocols until 1995. Then came the rise of the Netscape browser
 as a landmark ``killer application.'' Microsoft added TCP/IP support and
 their own browser to Microsoft Windows 95 at the last minute. They even back-ported
@@ -1003,7 +1005,13 @@ their TCP/IP implementation to Microsoft Windows for Workgroups 3.11, but it was
 a rather rudimentary and half-hearted implementation. Nevertheless,
 the equivalent of @file{/etc/services} resides under
 @file{C:\WINNT\system32\drivers\etc\services} on Microsoft Windows 2000
-and Microsoft Windows XP.}
+and Microsoft Windows XP.
+On Microsoft Windows 7, 8 and 10 there is a directory
+@file{%WinDir%\System32\Drivers\Etc}
+that holds the
+@uref{https://support.microsoft.com/en-us/help/972034/how-to-reset-the-hosts-file-back-to-the-default, @file{hosts} file}
+and probably also a
+@uref{https://www.ibm.com/support/knowledgecenter/SSRNYG_7.2.1/com.ibm.rational.synergy.install.win.doc/topics/sg_r_igw_services_file.html, @file{services} file}.}
 The first column of the file gives the name of the service, and
 the second column gives a unique number and the protocol that one can use to connect to
 this service.
@@ -1146,7 +1154,12 @@ than 1024 (@samp{echo} is at port 7) are reserved for @code{root}.
 On machines running some flavor of Microsoft Windows, there is no restriction
 that reserves ports 1 to 1024 for a privileged user; hence, you can start
 an @samp{echo} server there.
-@c FIXME: Is this still true?
+Even in later version of Microsoft Windows, this restriction of
+the Unix world seems to have never been adopted
+@uref{https://social.technet.microsoft.com/Forums/windowsserver/en-US/334f0770-eda9-475a-a27f-46b80ab7e872/does-windows10server2016-have-privileged-ports-?forum=ws2016,
+@cite{Does windows(10/server-2016) have privileged ports?}}.
+In Microsoft Windows it is the level of the firewall that handles
+port access restrictions, not the level of the operating system's kernel.
 
 Turning this short server program into something really useful is simple.
 Imagine a server that first reads a @value{FN} from the client through the
@@ -1285,11 +1298,21 @@ HTTP request that existed when the web was created in the early 1990s.
 HTTP calls this @code{GET} request a ``method,'' which tells the
 service to transmit a web page (here the home page of the Yahoo! search
 engine). Version 1.0 added the request methods @code{HEAD} and
-@c FIXME: Update this footnote?
 @code{POST}. The current version of HTTP is 1.1,@footnote{Version 1.0 of
 HTTP was defined in RFC 1945.  HTTP 1.1 was initially specified in RFC
 2068. In June 1999, RFC 2068 was made obsolete by RFC 2616, an update
-without any substantial changes.} and knows the additional request
+without any substantial changes.}@footnote{@uref{https://en.wikipedia.org/wiki/HTTP/2,
+Version 2.0 of HTTP}
+was defined in
+@uref{https://tools.ietf.org/html/rfc7540,RFC7540}
+and was derived from Google's
+@uref{https://en.wikipedia.org/wiki/SPDY,SPDY}
+protocol. It is said to be widely supported. As of 2020 the most popular
+web sites still identify themselves as supporting HTTP/1.1.
+@uref{https://en.wikipedia.org/wiki/HTTP/3, Version 3.0 of HTTP}
+is still a draft and was derived from Google's
+@uref{https://en.wikipedia.org/wiki/QUIC,QUIC} protocol.}
+and knows the additional request
 methods @code{OPTIONS}, @code{PUT}, @code{DELETE}, and @code{TRACE}.
 You can fill in any valid web address, and the program prints the
 HTML code of that page to your screen.
@@ -2199,14 +2222,16 @@ function SetUpEliza() @{
 @c endfile
 @end example
 
-@c FIXME: Not sure what this home page is, or if available any more. Needs updating.
 @cindex Humphrys, Mark
 @cindex ELIZA program
 Some interesting remarks and details (including the original source code
-of ELIZA) are found on Mark Humphrys' home page.  Yahoo!  also has a
-page with a collection of ELIZA-like programs. Many of them are written
-in Java, some of them disclosing the Java source code, and a few even
-explain how to modify the Java source code.
+of ELIZA) are found on Mark Humphrys's home page
+@uref{https://computing.dcu.ie/~humphrys/eliza.html,
+@cite{How my program passed the Turing Test}}.
+Wikipedia provides much background information about
+@uref{https://en.wikipedia.org/wiki/ELIZA, ELIZA},
+including the original design of the software and
+its early implementations.
 
 @node Caveats, Challenges, Simple Server, Using Networking
 @section Network Programming Caveats
@@ -2902,8 +2927,7 @@ files.@footnote{Due to licensing problems, the default
 installation of GNUPlot disables the generation of @file{.gif} files.
 If your installed version does not accept @samp{set term gif},
 just download and install the most recent version of GNUPlot and the
-@c FIXME: URL doesn't work
-@uref{http://www.boutell.com/gd/, GD library}
+@uref{https://libgd.github.io/, GD library}
 by Thomas Boutell.
 Otherwise you still have the chance to generate some
 ASCII-art style images with GNUPlot by using @samp{set term dumb}.
@@ -3311,7 +3335,7 @@ paradigm that enables us to significantly increase the efficiency
 of our work. Mobile agents could become the mediators between users and
 the networking world. For an unbiased view at this technology,
 see the remarkable paper @cite{Mobile Agents: Are they a good
-idea?}.@footnote{@uref{http://www.research.ibm.com/massive/mobag.ps}}
+idea?}.@footnote{@uref{https://link.springer.com/chapter/10.1007/3-540-62852-5_4}}
 
 When trying to migrate a process from one system to another,
 a server process is needed on the receiving side. Depending on the kind
@@ -4298,7 +4322,7 @@ They are presented in the order in which they appear.
 @table @asis
 
 @item @cite{Internet Programming with Python}
-@uref{http://www.fsbassociates.com/books/python.htm}
+@uref{http://cewing.github.io/training.python_web/html/index.html}
 
 @item @cite{Advanced Perl Programming}
 @uref{http://www.oreilly.com/catalog/advperl}
@@ -4307,73 +4331,59 @@ They are presented in the order in which they appear.
 @uref{http://www.oreilly.com/catalog/webclient}
 
 @item Richard Stevens's home page and book
-@uref{http://www.kohala.com/~rstevens}
-
-@item The SPAK home page
-@uref{http://www.userfriendly.net/linux/RPM/contrib/libc6/i386/spak-0.6b-1.i386.html}
+@uref{http://www.kohala.com/start}
 
 @item Volume III of @cite{Internetworking with TCP/IP}, by Comer and Stevens
 @uref{http://www.cs.purdue.edu/homes/dec/tcpip3s.cont.html}
 
 @item XBM Graphics File Format
-@uref{http://www.wotsit.org/download.asp?f=xbm}
+@uref{https://en.wikipedia.org/wiki/X_BitMap}
 
 @item GNUPlot
-@uref{http://www.cs.dartmouth.edu/gnuplot_info.html}
+@uref{http://www.gnuplot.info}
 
 @item Mark Humphrys' Eliza page
-@uref{http://www.compapp.dcu.ie/~humphrys/eliza.html}
+@uref{https://computing.dcu.ie/~humphrys/eliza.html}
 
-@item Yahoo! Eliza Information
-@uref{http://dir.yahoo.com/Recreation/Games/Computer_Games/Internet_Games/Web_Games/Artificial_Intelligence}
-
-@item Java versions of Eliza
-@uref{http://www.tjhsst.edu/Psych/ch1/eliza.html}
+@item Eliza on Wikipedia 
+@uref{https://en.wikipedia.org/wiki/ELIZA}
 
 @item Java versions of Eliza with source code
-@uref{http://home.adelphia.net/~lifeisgood/eliza/eliza.htm}
-
-@item Eliza Programs with Explanations
-@uref{http://chayden.net/chayden/eliza/Eliza.shtml}
+@uref{https://github.com/codeanticode/eliza}
 
 @item Loebner Contest
-@uref{http://acm.org/~loebner/loebner-prize.htmlx}
+@uref{https://www.ocf.berkeley.edu/~arihuang/academic/research/loebner.html}
 
 @item Tck/Tk Information
-@uref{http://www.scriptics.com/}
+@uref{https://en.wikipedia.org/wiki/Tcl}
 
 @item Intel 80x86 Processors
-@uref{http://developer.intel.com/design/platform/embedpc/what_is.htm}
+@item Embedded PCs
+@uref{https://en.wikipedia.org/wiki/Embedded_system}
 
 @item AMD Elan Processors
-@uref{http://www.amd.com/products/epd/processors/4.32bitcont/32bitcont/index.html}
+@uref{https://en.wikipedia.org/wiki/Am5x86}
 
 @item XINU
-@uref{http://willow.canberra.edu.au/~chrisc/xinu.html }
+@uref{https://xinu.cs.purdue.edu}
 
 @item GNU/Linux
-@uref{http://uclinux.lineo.com/}
-
-@item Embedded PCs
-@uref{http://dir.yahoo.com/Business_and_Economy/Business_to_Business/Computers/Hardware/Embedded_Control/}
+@uref{https://en.wikipedia.org/wiki/GNU/Linux_naming_controversy}
 
 @item MiniSQL
-@uref{http://www.hughes.com.au/library/}
+@uref{https://hughestech.com.au/products/msql}
 
 @item Market Share Surveys
 @uref{http://www.netcraft.com/survey}
 
 @item @cite{Numerical Recipes in C: The Art of Scientific Computing}
-@uref{http://www.nr.com}
+@uref{http://numerical.recipes/}
 
 @item VRML
-@uref{http://www.vrml.org}
-
-@item The VRML FAQ
-@uref{http://www.vrml.org/technicalinfo/specifications/specifications.htm#FAQ}
+@uref{https://en.wikipedia.org/wiki/VRML}
 
 @item The UMBC Agent Web
-@uref{http://www.cs.umbc.edu/agents }
+@uref{https://agents.umbc.edu}
 
 @item Apache Web Server
 @uref{http://www.apache.org}
@@ -4382,34 +4392,31 @@ They are presented in the order in which they appear.
 @uref{http://www.ncbi.nlm.nih.gov}
 
 @item Basic Local Alignment Search Tool (BLAST)
-@uref{http://www.ncbi.nlm.nih.gov/BLAST/blast_overview.html}
-
-@item NCBI Home Page
-@uref{http://www.ncbi.nlm.nih.gov}
+@uref{https://www.nature.com/scitable/topicpage/basic-local-alignment-search-tool-blast-29096}
 
 @item BLAST Pages
 @uref{http://www.ncbi.nlm.nih.gov/BLAST}
 
 @item BLAST Demonstration Client
-@uref{ftp://ncbi.nlm.nih.gov/blast/blasturl/}
+@uref{http://www.genebee.msu.su/blast/blast_overview.html#Network}
 
 @item BLAST anonymous FTP location
-@uref{ftp://ncbi.nlm.nih.gov/blast/network/netblast/}
+@uref{https://www.ncbi.nlm.nih.gov/books/NBK62345/}
 
 @item BLAST 2.0 Executables
-@uref{ftp://ncbi.nlm.nih.gov/blast/executables/}
+@uref{ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST}
 
 @item IUB/IUPAC Amino Acid and Nucleic Acid Codes
-@uref{http://www.uthscsa.edu/geninfo/blastmail.html#item6}
+@uref{https://en.wikipedia.org/wiki/Nucleic_acid_notation}
 
 @item FASTA/Pearson Format
-@uref{http://www.ncbi.nlm.nih.gov/BLAST/fasta.html}
+@uref{https://de.wikipedia.org/wiki/FASTA-Format}
 
 @item Fasta/Pearson Sequence in Java
 @uref{http://www.kazusa.or.jp/java/codon_table_java/}
 
 @item Book Review of @cite{Introduction to Computational Biology}
-@uref{http://www.acm.org/crossroads/xrds5-1/introcb.html}
+@uref{https://dl.acm.org/doi/abs/10.1145/332925.332927}
 
 @item @cite{Developing Bioinformatics Computer Skills}
 @uref{http://www.oreilly.com/catalog/bioskills/}

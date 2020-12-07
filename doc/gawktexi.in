@@ -6643,22 +6643,6 @@ character in the value of @code{RS} has no special effect: it is
 treated literally. This is required for backwards compatibility with
 both Unix @command{awk} and with POSIX.
 
-When using regular characters as the record separator,
-there is one unusual case that occurs when @command{gawk} is
-being fully POSIX-compliant (@pxref{Options}).
-Then, the following (extreme) pipeline prints a surprising @samp{1}:
-
-@example
-$ @kbd{echo | gawk --posix 'BEGIN @{ RS = "a" @} ; @{ print NF @}'}
-@print{} 1
-@end example
-
-There is one field, consisting of a newline.  The value of the built-in
-variable @code{NF} is the number of fields in the current record.
-(In the normal case, @command{gawk} treats the newline as whitespace,
-printing @samp{0} as the result. Most other versions of @command{awk}
-also act this way.)
-
 @cindex dark corner @subentry input files
 Reaching the end of an input file terminates the current input record,
 even if the last character in the file is not the character in @code{RS}.

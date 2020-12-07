@@ -1,3 +1,18 @@
+2020-12-07         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.in (awk split records): Remove the bit about POSIX
+	mode not treating newline as a field separator; it's been not
+	true since 2015. Thanks to Arkadiusz Drabczyk <arkadiusz@drabczyk.org>
+	for the report.
+
+2020-12-07         Juergen Kahrs         <Juergen.Kahrs@googlemail.com>
+
+	* gawkinet.texi: Fix a number of FIXMEs.
+
+2020-12-04         Juergen Kahrs         <Juergen.Kahrs@googlemail.com>
+
+	* gawkinet.texi: Update urefs.
+
 2020-12-01         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawkinet.texi: Lots of cleanup edits. Bump the minor part

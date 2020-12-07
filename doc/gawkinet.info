@@ -820,7 +820,11 @@ back-ported their TCP/IP implementation to Microsoft Windows for
 Workgroups 3.11, but it was a rather rudimentary and half-hearted
 implementation.  Nevertheless, the equivalent of '/etc/services' resides
 under 'C:\WINNT\system32\drivers\etc\services' on Microsoft Windows 2000
-and Microsoft Windows XP.
+and Microsoft Windows XP. On Microsoft Windows 7, 8 and 10 there is a
+directory '%WinDir%\System32\Drivers\Etc' that holds the 'hosts' file
+(https://support.microsoft.com/en-us/help/972034/how-to-reset-the-hosts-file-back-to-the-default)
+and probably also a 'services' file
+(https://www.ibm.com/support/knowledgecenter/SSRNYG_7.2.1/com.ibm.rational.synergy.install.win.doc/topics/sg_r_igw_services_file.html).
 
 
 File: gawkinet.info,  Node: Interacting,  Next: Setting Up,  Prev: Troubleshooting,  Up: Using Networking
@@ -927,7 +931,12 @@ running on a Unix machine, because the ports with numbers smaller than
 1024 ('echo' is at port 7) are reserved for 'root'.  On machines running
 some flavor of Microsoft Windows, there is no restriction that reserves
 ports 1 to 1024 for a privileged user; hence, you can start an 'echo'
-server there.
+server there.  Even in later version of Microsoft Windows, this
+restriction of the Unix world seems to have never been adopted 'Does
+windows(10/server-2016) have privileged ports?'
+(https://social.technet.microsoft.com/Forums/windowsserver/en-US/334f0770-eda9-475a-a27f-46b80ab7e872/does-windows10server2016-have-privileged-ports-?forum=ws2016).
+In Microsoft Windows it is the level of the firewall that handles port
+access restrictions, not the level of the operating system's kernel.
 
    Turning this short server program into something really useful is
 simple.  Imagine a server that first reads a file name from the client
@@ -1039,7 +1048,7 @@ existed when the web was created in the early 1990s.  HTTP calls this
 'GET' request a "method," which tells the service to transmit a web page
 (here the home page of the Yahoo!  search engine).  Version 1.0 added
 the request methods 'HEAD' and 'POST'.  The current version of HTTP is
-1.1,(1) and knows the additional request methods 'OPTIONS', 'PUT',
+1.1,(1)(2) and knows the additional request methods 'OPTIONS', 'PUT',
 'DELETE', and 'TRACE'.  You can fill in any valid web address, and the
 program prints the HTML code of that page to your screen.
 
@@ -1068,6 +1077,14 @@ following:
    (1) Version 1.0 of HTTP was defined in RFC 1945.  HTTP 1.1 was
 initially specified in RFC 2068.  In June 1999, RFC 2068 was made
 obsolete by RFC 2616, an update without any substantial changes.
+
+   (2) Version 2.0 of HTTP (https://en.wikipedia.org/wiki/HTTP/2) was
+defined in RFC7540 (https://tools.ietf.org/html/rfc7540) and was derived
+from Google's SPDY (https://en.wikipedia.org/wiki/SPDY) protocol.  It is
+said to be widely supported.  As of 2020 the most popular web sites
+still identify themselves as supporting HTTP/1.1.  Version 3.0 of HTTP
+(https://en.wikipedia.org/wiki/HTTP/3) is still a draft and was derived
+from Google's QUIC (https://en.wikipedia.org/wiki/QUIC) protocol.
 
 
 File: gawkinet.info,  Node: Primitive Service,  Next: Interacting Service,  Prev: Web page,  Up: Using Networking
@@ -1695,10 +1712,11 @@ ELIZA just picks an index randomly:
      }
 
    Some interesting remarks and details (including the original source
-code of ELIZA) are found on Mark Humphrys' home page.  Yahoo!  also has
-a page with a collection of ELIZA-like programs.  Many of them are
-written in Java, some of them disclosing the Java source code, and a few
-even explain how to modify the Java source code.
+code of ELIZA) are found on Mark Humphrys's home page 'How my program
+passed the Turing Test' (https://computing.dcu.ie/~humphrys/eliza.html).
+Wikipedia provides much background information about ELIZA
+(https://en.wikipedia.org/wiki/ELIZA), including the original design of
+the software and its early implementations.
 
    ---------- Footnotes ----------
 
@@ -2565,7 +2583,7 @@ negative variances causes invalid results.
    (1) Due to licensing problems, the default installation of GNUPlot
 disables the generation of '.gif' files.  If your installed version does
 not accept 'set term gif', just download and install the most recent
-version of GNUPlot and the GD library (http://www.boutell.com/gd/) by
+version of GNUPlot and the GD library (https://libgd.github.io/) by
 Thomas Boutell.  Otherwise you still have the chance to generate some
 ASCII-art style images with GNUPlot by using 'set term dumb'.  (We tried
 it and it worked.)
@@ -2984,7 +3002,7 @@ and report it to the originating host, whose name is stored in
 
    ---------- Footnotes ----------
 
-   (1) <http://www.research.ibm.com/massive/mobag.ps>
+   (1) <https://link.springer.com/chapter/10.1007/3-540-62852-5_4>
 
 
 File: gawkinet.info,  Node: STOXPRED,  Next: PROTBASE,  Prev: MOBAGWHO,  Up: Some Applications and Techniques
@@ -3568,7 +3586,7 @@ This section lists the URLs for various items discussed in this Info
 file.  They are presented in the order in which they appear.
 
 'Internet Programming with Python'
-     <http://www.fsbassociates.com/books/python.htm>
+     <http://cewing.github.io/training.python_web/html/index.html>
 
 'Advanced Perl Programming'
      <http://www.oreilly.com/catalog/advperl>
@@ -3577,73 +3595,59 @@ file.  They are presented in the order in which they appear.
      <http://www.oreilly.com/catalog/webclient>
 
 Richard Stevens's home page and book
-     <http://www.kohala.com/~rstevens>
-
-The SPAK home page
-     <http://www.userfriendly.net/linux/RPM/contrib/libc6/i386/spak-0.6b-1.i386.html>
+     <http://www.kohala.com/start>
 
 Volume III of 'Internetworking with TCP/IP', by Comer and Stevens
      <http://www.cs.purdue.edu/homes/dec/tcpip3s.cont.html>
 
 XBM Graphics File Format
-     <http://www.wotsit.org/download.asp?f=xbm>
+     <https://en.wikipedia.org/wiki/X_BitMap>
 
 GNUPlot
-     <http://www.cs.dartmouth.edu/gnuplot_info.html>
+     <http://www.gnuplot.info>
 
 Mark Humphrys' Eliza page
-     <http://www.compapp.dcu.ie/~humphrys/eliza.html>
+     <https://computing.dcu.ie/~humphrys/eliza.html>
 
-Yahoo! Eliza Information
-     <http://dir.yahoo.com/Recreation/Games/Computer_Games/Internet_Games/Web_Games/Artificial_Intelligence>
-
-Java versions of Eliza
-     <http://www.tjhsst.edu/Psych/ch1/eliza.html>
+Eliza on Wikipedia
+     <https://en.wikipedia.org/wiki/ELIZA>
 
 Java versions of Eliza with source code
-     <http://home.adelphia.net/~lifeisgood/eliza/eliza.htm>
-
-Eliza Programs with Explanations
-     <http://chayden.net/chayden/eliza/Eliza.shtml>
+     <https://github.com/codeanticode/eliza>
 
 Loebner Contest
-     <http://acm.org/~loebner/loebner-prize.htmlx>
+     <https://www.ocf.berkeley.edu/~arihuang/academic/research/loebner.html>
 
 Tck/Tk Information
-     <http://www.scriptics.com/>
+     <https://en.wikipedia.org/wiki/Tcl>
 
 Intel 80x86 Processors
-     <http://developer.intel.com/design/platform/embedpc/what_is.htm>
+Embedded PCs
+     <https://en.wikipedia.org/wiki/Embedded_system>
 
 AMD Elan Processors
-     <http://www.amd.com/products/epd/processors/4.32bitcont/32bitcont/index.html>
+     <https://en.wikipedia.org/wiki/Am5x86>
 
 XINU
-     <http://willow.canberra.edu.au/~chrisc/xinu.html>
+     <https://xinu.cs.purdue.edu>
 
 GNU/Linux
-     <http://uclinux.lineo.com/>
-
-Embedded PCs
-     <http://dir.yahoo.com/Business_and_Economy/Business_to_Business/Computers/Hardware/Embedded_Control/>
+     <https://en.wikipedia.org/wiki/GNU/Linux_naming_controversy>
 
 MiniSQL
-     <http://www.hughes.com.au/library/>
+     <https://hughestech.com.au/products/msql>
 
 Market Share Surveys
      <http://www.netcraft.com/survey>
 
 'Numerical Recipes in C: The Art of Scientific Computing'
-     <http://www.nr.com>
+     <http://numerical.recipes/>
 
 VRML
-     <http://www.vrml.org>
-
-The VRML FAQ
-     <http://www.vrml.org/technicalinfo/specifications/specifications.htm#FAQ>
+     <https://en.wikipedia.org/wiki/VRML>
 
 The UMBC Agent Web
-     <http://www.cs.umbc.edu/agents>
+     <https://agents.umbc.edu>
 
 Apache Web Server
      <http://www.apache.org>
@@ -3652,34 +3656,31 @@ National Center for Biotechnology Information (NCBI)
      <http://www.ncbi.nlm.nih.gov>
 
 Basic Local Alignment Search Tool (BLAST)
-     <http://www.ncbi.nlm.nih.gov/BLAST/blast_overview.html>
-
-NCBI Home Page
-     <http://www.ncbi.nlm.nih.gov>
+     <https://www.nature.com/scitable/topicpage/basic-local-alignment-search-tool-blast-29096>
 
 BLAST Pages
      <http://www.ncbi.nlm.nih.gov/BLAST>
 
 BLAST Demonstration Client
-     <ftp://ncbi.nlm.nih.gov/blast/blasturl/>
+     <http://www.genebee.msu.su/blast/blast_overview.html#Network>
 
 BLAST anonymous FTP location
-     <ftp://ncbi.nlm.nih.gov/blast/network/netblast/>
+     <https://www.ncbi.nlm.nih.gov/books/NBK62345/>
 
 BLAST 2.0 Executables
-     <ftp://ncbi.nlm.nih.gov/blast/executables/>
+     <ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST>
 
 IUB/IUPAC Amino Acid and Nucleic Acid Codes
-     <http://www.uthscsa.edu/geninfo/blastmail.html#item6>
+     <https://en.wikipedia.org/wiki/Nucleic_acid_notation>
 
 FASTA/Pearson Format
-     <http://www.ncbi.nlm.nih.gov/BLAST/fasta.html>
+     <https://de.wikipedia.org/wiki/FASTA-Format>
 
 Fasta/Pearson Sequence in Java
      <http://www.kazusa.or.jp/java/codon_table_java/>
 
 Book Review of 'Introduction to Computational Biology'
-     <http://www.acm.org/crossroads/xrds5-1/introcb.html>
+     <https://dl.acm.org/doi/abs/10.1145/332925.332927>
 
 'Developing Bioinformatics Computer Skills'
      <http://www.oreilly.com/catalog/bioskills/>
@@ -4382,37 +4383,38 @@ Ref: File /inet/udp-Footnote-129645
 Node: TCP Connecting29899
 Node: Troubleshooting32245
 Ref: Troubleshooting-Footnote-135073
-Node: Interacting35646
-Node: Setting Up38370
-Node: Email41870
-Node: Web page44253
-Ref: Web page-Footnote-147070
-Node: Primitive Service47268
-Node: Interacting Service50002
-Ref: Interacting Service-Footnote-159157
-Node: CGI Lib59189
-Node: Simple Server66189
-Ref: Simple Server-Footnote-173934
-Node: Caveats74035
-Node: Challenges75178
-Ref: Challenges-Footnote-183920
-Node: Some Applications and Techniques84021
-Node: PANIC86482
-Node: GETURL88208
-Node: REMCONF90841
-Node: URLCHK96337
-Node: WEBGRAB100181
-Node: STATIST104645
-Ref: STATIST-Footnote-1117793
-Node: MAZE118238
-Node: MOBAGWHO124463
-Ref: MOBAGWHO-Footnote-1138365
-Node: STOXPRED138420
-Node: PROTBASE152712
-Ref: PROTBASE-Footnote-1165879
-Node: Links165994
-Node: GNU Free Documentation License169426
-Node: Index194546
+Node: Interacting36030
+Node: Setting Up38754
+Node: Email42726
+Node: Web page45109
+Ref: Web page-Footnote-147929
+Ref: Web page-Footnote-248127
+Node: Primitive Service48621
+Node: Interacting Service51355
+Ref: Interacting Service-Footnote-160510
+Node: CGI Lib60542
+Node: Simple Server67542
+Ref: Simple Server-Footnote-175344
+Node: Caveats75445
+Node: Challenges76588
+Ref: Challenges-Footnote-185330
+Node: Some Applications and Techniques85431
+Node: PANIC87892
+Node: GETURL89618
+Node: REMCONF92251
+Node: URLCHK97747
+Node: WEBGRAB101591
+Node: STATIST106055
+Ref: STATIST-Footnote-1119203
+Node: MAZE119646
+Node: MOBAGWHO125871
+Ref: MOBAGWHO-Footnote-1139773
+Node: STOXPRED139841
+Node: PROTBASE154133
+Ref: PROTBASE-Footnote-1167300
+Node: Links167415
+Node: GNU Free Documentation License170306
+Node: Index195426
 
 End Tag Table
 
