@@ -820,7 +820,11 @@ back-ported their TCP/IP implementation to Microsoft Windows for
 Workgroups 3.11, but it was a rather rudimentary and half-hearted
 implementation.  Nevertheless, the equivalent of '/etc/services' resides
 under 'C:\WINNT\system32\drivers\etc\services' on Microsoft Windows 2000
-and Microsoft Windows XP.
+and Microsoft Windows XP. On Microsoft Windows 7, 8 and 10 there is a
+directory '%WinDir%\System32\Drivers\Etc' that holds the 'hosts' file
+(https://support.microsoft.com/en-us/help/972034/how-to-reset-the-hosts-file-back-to-the-default)
+and probably also a 'services' file
+(https://www.ibm.com/support/knowledgecenter/SSRNYG_7.2.1/com.ibm.rational.synergy.install.win.doc/topics/sg_r_igw_services_file.html).
 
 
 File: gawkinet.info,  Node: Interacting,  Next: Setting Up,  Prev: Troubleshooting,  Up: Using Networking
@@ -927,7 +931,12 @@ running on a Unix machine, because the ports with numbers smaller than
 1024 ('echo' is at port 7) are reserved for 'root'.  On machines running
 some flavor of Microsoft Windows, there is no restriction that reserves
 ports 1 to 1024 for a privileged user; hence, you can start an 'echo'
-server there.
+server there.  Even in later version of Microsoft Windows, this
+restriction of the Unix world seems to have never been adopted 'Does
+windows(10/server-2016) have privileged ports?'
+(https://social.technet.microsoft.com/Forums/windowsserver/en-US/334f0770-eda9-475a-a27f-46b80ab7e872/does-windows10server2016-have-privileged-ports-?forum=ws2016).
+In Microsoft Windows it is the level of the firewall that handles port
+access restrictions, not the level of the operating system's kernel.
 
    Turning this short server program into something really useful is
 simple.  Imagine a server that first reads a file name from the client
@@ -1039,7 +1048,7 @@ existed when the web was created in the early 1990s.  HTTP calls this
 'GET' request a "method," which tells the service to transmit a web page
 (here the home page of the Yahoo!  search engine).  Version 1.0 added
 the request methods 'HEAD' and 'POST'.  The current version of HTTP is
-1.1,(1) and knows the additional request methods 'OPTIONS', 'PUT',
+1.1,(1)(2) and knows the additional request methods 'OPTIONS', 'PUT',
 'DELETE', and 'TRACE'.  You can fill in any valid web address, and the
 program prints the HTML code of that page to your screen.
 
@@ -1068,6 +1077,14 @@ following:
    (1) Version 1.0 of HTTP was defined in RFC 1945.  HTTP 1.1 was
 initially specified in RFC 2068.  In June 1999, RFC 2068 was made
 obsolete by RFC 2616, an update without any substantial changes.
+
+   (2) Version 2.0 of HTTP (https://en.wikipedia.org/wiki/HTTP/2) was
+defined in RFC7540 (https://tools.ietf.org/html/rfc7540) and was derived
+from Google's SPDY (https://en.wikipedia.org/wiki/SPDY) protocol.  It is
+said to be widely supported.  As of 2020 the most popular web sites
+still identify themselves as supporting HTTP/1.1.  Version 3.0 of HTTP
+(https://en.wikipedia.org/wiki/HTTP/3) is still a draft and was derived
+from Google's QUIC (https://en.wikipedia.org/wiki/QUIC) protocol.
 
 
 File: gawkinet.info,  Node: Primitive Service,  Next: Interacting Service,  Prev: Web page,  Up: Using Networking
@@ -1695,10 +1712,11 @@ ELIZA just picks an index randomly:
      }
 
    Some interesting remarks and details (including the original source
-code of ELIZA) are found on Mark Humphrys' home page.  Yahoo!  also has
-a page with a collection of ELIZA-like programs.  Many of them are
-written in Java, some of them disclosing the Java source code, and a few
-even explain how to modify the Java source code.
+code of ELIZA) are found on Mark Humphrys's home page 'How my program
+passed the Turing Test' (https://computing.dcu.ie/~humphrys/eliza.html).
+Wikipedia provides much background information about ELIZA
+(https://en.wikipedia.org/wiki/ELIZA), including the original design of
+the software and its early implementations.
 
    ---------- Footnotes ----------
 
@@ -4365,37 +4383,38 @@ Ref: File /inet/udp-Footnote-129645
 Node: TCP Connecting29899
 Node: Troubleshooting32245
 Ref: Troubleshooting-Footnote-135073
-Node: Interacting35646
-Node: Setting Up38370
-Node: Email41870
-Node: Web page44253
-Ref: Web page-Footnote-147070
-Node: Primitive Service47268
-Node: Interacting Service50002
-Ref: Interacting Service-Footnote-159157
-Node: CGI Lib59189
-Node: Simple Server66189
-Ref: Simple Server-Footnote-173934
-Node: Caveats74035
-Node: Challenges75178
-Ref: Challenges-Footnote-183920
-Node: Some Applications and Techniques84021
-Node: PANIC86482
-Node: GETURL88208
-Node: REMCONF90841
-Node: URLCHK96337
-Node: WEBGRAB100181
-Node: STATIST104645
-Ref: STATIST-Footnote-1117793
-Node: MAZE118236
-Node: MOBAGWHO124461
-Ref: MOBAGWHO-Footnote-1138363
-Node: STOXPRED138431
-Node: PROTBASE152723
-Ref: PROTBASE-Footnote-1165890
-Node: Links166005
-Node: GNU Free Documentation License168896
-Node: Index194016
+Node: Interacting36030
+Node: Setting Up38754
+Node: Email42726
+Node: Web page45109
+Ref: Web page-Footnote-147929
+Ref: Web page-Footnote-248127
+Node: Primitive Service48621
+Node: Interacting Service51355
+Ref: Interacting Service-Footnote-160510
+Node: CGI Lib60542
+Node: Simple Server67542
+Ref: Simple Server-Footnote-175344
+Node: Caveats75445
+Node: Challenges76588
+Ref: Challenges-Footnote-185330
+Node: Some Applications and Techniques85431
+Node: PANIC87892
+Node: GETURL89618
+Node: REMCONF92251
+Node: URLCHK97747
+Node: WEBGRAB101591
+Node: STATIST106055
+Ref: STATIST-Footnote-1119203
+Node: MAZE119646
+Node: MOBAGWHO125871
+Ref: MOBAGWHO-Footnote-1139773
+Node: STOXPRED139841
+Node: PROTBASE154133
+Ref: PROTBASE-Footnote-1167300
+Node: Links167415
+Node: GNU Free Documentation License170306
+Node: Index195426
 
 End Tag Table
 
