@@ -1,3 +1,11 @@
+2020-12-19         Arnold D. Robbins     <arnold@skeeve.com>
+
+	First steps fixing +inform, +nancy. Sigh.
+
+	* awk.h (is_ieee_magic_val): Add declaration.
+	* node.c (is_ieee_magic_val): Make extern, not static.
+	(r_force_number): Make the check smarter, catch -nan.
+
 2020-11-02         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* re.c (make_regexp): Cast len parameter to int to avoid
