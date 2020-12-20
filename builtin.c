@@ -4293,7 +4293,7 @@ format_nan_inf(NODE *n, char format)
 		return NULL;
 	else if (is_mpg_float(n)) {
 		if (mpfr_nan_p(n->mpg_numbr)) {
-			strcpy(buf, mpfr_signbit(n->mpg_numbr) ? "-nan" : "+nan");
+			strcpy(buf, mpfr_signbit(n->mpg_numbr) != 0 ? "-nan" : "+nan");
 
 			goto fmt;
 		} else if (mpfr_inf_p(n->mpg_numbr)) {

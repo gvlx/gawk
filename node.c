@@ -28,7 +28,6 @@
 #include <math.h>
 #include "floatmagic.h"	/* definition of isnan */
 
-static int is_ieee_magic_val(const char *val);
 static NODE *r_make_number(double x);
 static AWKNUM get_ieee_magic_val(char *val);
 extern NODE **fmt_list;          /* declared in eval.c */
@@ -101,9 +100,12 @@ r_force_number(NODE *n)
 	if (! do_posix) {
 		if (is_alpha((unsigned char) *cp))
 			goto badnum;
-		else if (cpend == cp+4 && is_ieee_magic_val(cp)) {
-			n->numbr = get_ieee_magic_val(cp);
-			goto goodnum;
+		else if (is_ieee_magic_val(cp)) {
+			if (cpend == cp + 4) {
+				n->numbr = get_ieee_magic_val(cp);
+				goto goodnum;
+			} else
+				goto badnum;
 		}
 		/* else
 			fall through */
@@ -165,6 +167,9 @@ badnum:
 	return n;
 
 goodnum:
+	if (isnan(n->numbr) && *cp == '-' && signbit(n->numbr) == 0)
+		n->numbr = -(n->numbr);
+
 	if ((n->flags & USER_INPUT) != 0) {
 		/* leave USER_INPUT enabled to indicate that this is a strnum */
 		n->flags &= ~STRING;
@@ -958,7 +963,7 @@ out:	;
 
 /* is_ieee_magic_val --- return true for +inf, -inf, +nan, -nan */
 
-static int
+bool
 is_ieee_magic_val(const char *val)
 {
 	/*

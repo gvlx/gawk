@@ -328,6 +328,8 @@ force_mpnum(NODE *n, int do_nondec, int use_locale)
 
 	errno = 0;
 	tval = mpfr_strtofr(n->mpg_numbr, cp, & ptr, base, ROUND_MODE);
+	if (mpfr_nan_p(n->mpg_numbr) && *cp == '-')
+		tval = mpfr_setsign(n->mpg_numbr, n->mpg_numbr, 1, ROUND_MODE);
 	IEEE_FMT(n->mpg_numbr, tval);
 done:
 	/* trailing space is OK for NUMBER */
@@ -345,9 +347,46 @@ done:
 static NODE *
 mpg_force_number(NODE *n)
 {
+	char *cp, *cpend;
+
 	if ((n->flags & NUMCUR) != 0)
 		return n;
 	n->flags |= NUMCUR;
+
+	/* Trim leading white space, bailing out if there's nothing else */
+	for (cp = n->stptr, cpend = cp + n->stlen;
+	     cp < cpend && isspace((unsigned char) *cp); cp++)
+		continue;
+
+	if (cp == cpend)
+		goto badnum;
+
+	/* At this point, we know the string is not entirely white space */
+	/* Trim trailing white space */
+	while (isspace((unsigned char) cpend[-1]))
+		cpend--;
+
+	/*
+	 * 2/2007:
+	 * POSIX, by way of severe language lawyering, seems to
+	 * allow things like "inf" and "nan" to mean something.
+	 * So if do_posix, the user gets what he deserves.
+	 * This also allows hexadecimal floating point. Ugh.
+	 */
+	if (! do_posix) {
+		if (is_alpha((unsigned char) *cp))
+			goto badnum;
+		else if (is_ieee_magic_val(cp)) {
+			if (cpend != cp + 4)
+				goto badnum;
+			/* else
+				fall through */
+		}
+		/* else
+			fall through */
+	}
+	/* else POSIX, so
+		fall through */
 
 	if (force_mpnum(n, (do_non_decimal_data && ! do_traditional), true)) {
 		if ((n->flags & USER_INPUT) != 0) {
@@ -357,6 +396,10 @@ mpg_force_number(NODE *n)
 		}
 	} else
 		n->flags &= ~USER_INPUT;
+	return n;
+badnum:
+	mpg_zero(n);
+	n->flags &= ~USER_INPUT;
 	return n;
 }
 

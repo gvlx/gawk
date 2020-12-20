@@ -1730,6 +1730,7 @@ extern void init_btowc_cache();
 #define is_valid_character(b)	(btowc_cache[(b)&0xFF] != WEOF)
 extern bool out_of_range(NODE *n);
 extern char *format_nan_inf(NODE *n, char format);
+extern bool is_ieee_magic_val(const char *val);
 /* re.c */
 extern Regexp *make_regexp(const char *s, size_t len, bool ignorecase, bool dfa, bool canfatal);
 extern int research(Regexp *rp, char *str, int start, size_t len, int flags);

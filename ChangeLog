@@ -1,3 +1,21 @@
+2020-12-20         Arnold D. Robbins     <arnold@skeeve.com>
+
+	Second steps fixing +inform, +nancy, for MPFR.
+
+	* builtin.c (format_nan_inf): Use mpfr_signbit instead of mpfr_sgn.
+	* mpfr.c (force_mpnum): Check for NaN and leading minus and if so
+	set the signbit with mpfr_setsign.
+	(mpg_force_number): Copy in code from f_force_number to check
+	properly for +inf, +nan.
+
+2020-12-19         Arnold D. Robbins     <arnold@skeeve.com>
+
+	First steps fixing +inform, +nancy. Sigh.
+
+	* awk.h (is_ieee_magic_val): Add declaration.
+	* node.c (is_ieee_magic_val): Make extern, not static.
+	(r_force_number): Make the check smarter, catch -nan.
+
 2020-11-02         Arnold D. Robbins     <arnold@skeeve.com>
 
 	Make gawk numeric comparisons act like C doubles.

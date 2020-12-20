@@ -1,3 +1,14 @@
+2020-12-20         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.am (EXTRA_DIST): Remove forcenum-mpfr.ok.
+	* forcenum-mpfr.ok: File deleted, no longer needed.
+
+2020-12-19         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.am (EXTRA_DIST): inf-nan-torture, new test.
+	* inf-nan-torture.awk, inf-nan-torture.in, inf-nan-torture.ok: New
+	files.
+
 2020-10-29         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* Makefile.am (EXTRA_DIST): functab5, new test.

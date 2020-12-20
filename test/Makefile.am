@@ -344,7 +344,6 @@ EXTRA_DIST = \
 	fnparydl.ok \
 	forcenum.awk \
 	forcenum.ok \
-	forcenum-mpfr.ok \
 	fordel.awk \
 	fordel.ok \
 	fork.awk \
@@ -563,6 +562,9 @@ EXTRA_DIST = \
 	indirectcall.awk \
 	indirectcall.in \
 	indirectcall.ok \
+	inf-nan-torture.awk \
+	inf-nan-torture.in \
+	inf-nan-torture.ok \
 	inftest.awk \
 	inftest.ok \
 	inplace1.1.ok \
@@ -1428,7 +1430,8 @@ GAWK_EXT_TESTS = \
 	genpot gensub gensub2 gensub3 getlndir gnuops2 gnuops3 gnureops gsubind \
 	icasefs icasers id igncdym igncfs ignrcas2 ignrcas4 ignrcase incdupe \
 	incdupe2 incdupe3 incdupe4 incdupe5 incdupe6 incdupe7 include include2 \
-	indirectbuiltin indirectcall indirectcall2 intarray iolint isarrayunset \
+	indirectbuiltin indirectcall indirectcall2 inf-nan-torture \
+	intarray iolint isarrayunset \
 	lint lintexp lintindex lintint lintlength lintplus lintold lintset lintwarn \
 	manyfiles match1 match2 match3 mbstr1 mbstr2 mixed1 mktime muldimposix \
 	nastyparm negtime next nondec nondec2 nonfatal1 nonfatal2 nonfatal3 \

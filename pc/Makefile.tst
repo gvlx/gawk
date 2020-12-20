@@ -203,7 +203,8 @@ GAWK_EXT_TESTS = \
 	genpot gensub gensub2 gensub3 getlndir gnuops2 gnuops3 gnureops gsubind \
 	icasefs icasers id igncdym igncfs ignrcas2 ignrcas4 ignrcase incdupe \
 	incdupe2 incdupe3 incdupe4 incdupe5 incdupe6 incdupe7 include include2 \
-	indirectbuiltin indirectcall indirectcall2 intarray iolint isarrayunset \
+	indirectbuiltin indirectcall indirectcall2 inf-nan-torture \
+	intarray iolint isarrayunset \
 	lint lintexp lintindex lintint lintlength lintplus lintold lintset lintwarn \
 	manyfiles match1 match2 match3 mbstr1 mbstr2 mixed1 mktime muldimposix \
 	nastyparm negtime next nondec nondec2 nonfatal1 nonfatal2 nonfatal3 \
@@ -2664,9 +2665,7 @@ fieldwdth:
 forcenum:
 	@echo $@ $(ZOS_FAIL)
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  --non-decimal-data >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
-	@-if echo "$$GAWK_TEST_ARGS" | egrep -q -e '-M|--bignum' > /dev/null ; \
-	then $(CMP) "$(srcdir)"/$@-mpfr.ok _$@ && rm -f _$@ ; \
-	else $(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@ ; fi
+	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 fpat1:
 	@echo $@
@@ -2881,6 +2880,11 @@ indirectcall:
 indirectcall2:
 	@echo $@
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
+	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
+
+inf-nan-torture:
+	@echo $@
+	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  < "$(srcdir)"/$@.in >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 intarray:
