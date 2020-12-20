@@ -344,7 +344,6 @@ EXTRA_DIST = \
 	fnparydl.ok \
 	forcenum.awk \
 	forcenum.ok \
-	forcenum-mpfr.ok \
 	fordel.awk \
 	fordel.ok \
 	fork.awk \
