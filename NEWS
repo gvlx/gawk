@@ -48,6 +48,8 @@ Changes from 5.1.0 to 5.1.1
 9. Several example programs in the manual have been updated to their
    modern POSIX equivalents.
 
+10. Handling of Infinity and NaN values has been improved.
+
 xx. There have been numerous minor code cleanups and bug fixes. See the
     ChangeLog for details.
 

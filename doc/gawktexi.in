@@ -7846,6 +7846,8 @@ words, @code{FS} defines what a field @emph{is not}, instead of what a field
 However, there are times when you really want to define the fields by
 what they are, and not by what they are not.
 
+@cindex CSV (comma separated values) data @subentry parsing with @code{FPAT}
+@cindex Comma separated values (CSV) data @subentry parsing with @code{FPAT}
 The most notorious such case
 is so-called @dfn{comma-separated values} (CSV) data. Many spreadsheet programs,
 for example, can export their data into text files, where each record is
@@ -8028,6 +8030,15 @@ $ @kbd{gawk -v fpat=2 -f test-csv.awk sample.csv}
 @print{} <p,,s>
 @print{} NF = 3 <p><><s>
 @end example
+
+@cindex Collado, Manuel
+@cindex @code{CSVMODE} library for @command{gawk}
+@cindex CSV (comma separated values) data @subentry parsing with @code{CSVMODE} library
+@cindex Comma separated values (CSV) data @subentry parsing with @code{FPAT} library
+In general, using @code{FPAT} to do your own CSV parsing is like having
+a bed with a blanket that's not quite big enough. There's always a corner
+that isn't covered. We recommend, instead, that you use Manuel Collado's
+@uref{http://mcollado.z15.es/xgawk/, @code{CSVMODE} library for @command{gawk}}.
 
 @node Testing field creation
 @section Checking How @command{gawk} Is Splitting Records
