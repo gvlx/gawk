@@ -700,22 +700,26 @@ File: gawkinet.info,  Node: TCP Connecting,  Next: Troubleshooting,  Prev: Gawk 
 
 Let's observe a network connection at work.  Type in the following
 program and watch the output.  Within a second, it connects via TCP
-('/inet/tcp') to the machine it is running on ('localhost') and asks the
-service 'daytime' on the machine what time it is:
+('/inet/tcp') to a remote server and asks the service 'daytime' on the
+machine what time it is:
 
      BEGIN {
-       "/inet/tcp/0/localhost/daytime" |& getline
+       daytime_server     = "time-a-g.nist.gov"
+       daytime_connection = "/inet/tcp/0/" daytime_server "/daytime"
+       daytime_connection |& getline
        print $0
-       close("/inet/tcp/0/localhost/daytime")
+       daytime_connection |& getline
+       print $0
+       close(daytime_connection)
      }
 
-   Even experienced 'awk' users will find the second line strange in two
-respects:
+   Even experienced 'awk' users will find the fourth and sixth line
+strange in two respects:
 
-   * A special file is used as a shell command that pipes its output
-     into 'getline'.  One would rather expect to see the special file
-     being read like any other file ('getline <
-     "/inet/tcp/0/localhost/daytime"').
+   * A string containg the name of a special file is used as a shell
+     command that pipes its output into 'getline'.  One would rather
+     expect to see the special file being read like any other file
+     ('getline < "/inet/tcp/0/time-a-g.nist.gov/daytime"').
 
    * The operator '|&' has not been part of any 'awk' implementation
      (until now).  It is actually the only extension of the 'awk'
@@ -738,12 +742,26 @@ operator except for two additions:
      written to, just like a full-duplex network connection.
 
    In the earlier example, the '|&' operator tells 'getline' to read a
-line from the special file '/inet/tcp/0/localhost/daytime'.  We could
-also have printed a line into the special file.  But instead we just
-read a line with the time, printed it, and closed the connection.
-(While we could just let 'gawk' close the connection by finishing the
-program, in this Info file we are pedantic and always explicitly close
-the connections.)
+line from the special file '/inet/tcp/0/time-a-g.nist.gov/daytime'.  We
+could also have printed a line into the special file.  But instead we
+just consumed an empty leading line, printed it, then read a line with
+the time, printed that, and closed the connection.  (While we could just
+let 'gawk' close the connection by finishing the program, in this Info
+file we are pedantic and always explicitly close the connections.)
+
+   Network services like 'daytime' are not really useful because there
+are so many better ways to print the current time.  In the early days of
+TCP networking, such a service may have looked like a good idea for
+testing purposes.  Later, simple TCP services like these have been used
+to teach TCP/IP networking and therefore you can still find much
+educational material of good quality on the Internet about such outdated
+services.  The list of servers (https://tf.nist.gov/tf-cgi/servers.cgi)
+that still support the legacy service daytime
+(https://en.wikipedia.org/wiki/Daytime_Protocol) can be found at
+Wikipedia.  We hesitated to use this service in this manual because it
+is hard to find servers that still support services like 'daytime'
+openly to the Internet.  Later on we will see that some of these
+nostalgic protocols have turned into security risks.
 
 
 File: gawkinet.info,  Node: Troubleshooting,  Next: Interacting,  Prev: TCP Connecting,  Up: Using Networking
@@ -4179,7 +4197,7 @@ Index
 * /inet/ files (gawk):                   Gawk Special Files.  (line  34)
 * /inet/tcp special files (gawk):        File /inet/tcp.      (line   6)
 * /inet/udp special files (gawk):        File /inet/udp.      (line   6)
-* | (vertical bar), |& operator (I/O):   TCP Connecting.      (line  25)
+* | (vertical bar), |& operator (I/O):   TCP Connecting.      (line  29)
 * advanced features, network connections: Troubleshooting.    (line   6)
 * agent:                                 Challenges.          (line  75)
 * agent <1>:                             MOBAGWHO.            (line   6)
@@ -4283,7 +4301,7 @@ Index
 * Perl:                                  Using Networking.    (line  14)
 * Perl, gawk networking and:             Using Networking.    (line  24)
 * Perlis, Alan:                          MAZE.                (line   6)
-* pipes, networking and:                 TCP Connecting.      (line  30)
+* pipes, networking and:                 TCP Connecting.      (line  34)
 * PNG image format:                      Web page.            (line  45)
 * PNG image format <1>:                  STATIST.             (line   6)
 * POP (Post Office Protocol):            Email.               (line   6)
@@ -4342,7 +4360,7 @@ Index
 * UDP (User Datagram Protocol), TCP and: Interacting.         (line  48)
 * Unix, network ports and:               Setting Up.          (line  37)
 * URLCHK program:                        URLCHK.              (line   6)
-* vertical bar (|), |& operator (I/O):   TCP Connecting.      (line  25)
+* vertical bar (|), |& operator (I/O):   TCP Connecting.      (line  29)
 * VRML:                                  MAZE.                (line   6)
 * web pages:                             Web page.            (line   6)
 * web pages, images in:                  Interacting Service. (line 190)
@@ -4381,40 +4399,40 @@ Node: File /inet/tcp26947
 Node: File /inet/udp27933
 Ref: File /inet/udp-Footnote-129645
 Node: TCP Connecting29899
-Node: Troubleshooting32245
-Ref: Troubleshooting-Footnote-135073
-Node: Interacting36030
-Node: Setting Up38754
-Node: Email42726
-Node: Web page45109
-Ref: Web page-Footnote-147929
-Ref: Web page-Footnote-248127
-Node: Primitive Service48621
-Node: Interacting Service51355
-Ref: Interacting Service-Footnote-160510
-Node: CGI Lib60542
-Node: Simple Server67542
-Ref: Simple Server-Footnote-175344
-Node: Caveats75445
-Node: Challenges76588
-Ref: Challenges-Footnote-185330
-Node: Some Applications and Techniques85431
-Node: PANIC87892
-Node: GETURL89618
-Node: REMCONF92251
-Node: URLCHK97747
-Node: WEBGRAB101591
-Node: STATIST106055
-Ref: STATIST-Footnote-1119203
-Node: MAZE119646
-Node: MOBAGWHO125871
-Ref: MOBAGWHO-Footnote-1139773
-Node: STOXPRED139841
-Node: PROTBASE154133
-Ref: PROTBASE-Footnote-1167300
-Node: Links167415
-Node: GNU Free Documentation License170306
-Node: Index195426
+Node: Troubleshooting33332
+Ref: Troubleshooting-Footnote-136160
+Node: Interacting37117
+Node: Setting Up39841
+Node: Email43813
+Node: Web page46196
+Ref: Web page-Footnote-149016
+Ref: Web page-Footnote-249214
+Node: Primitive Service49708
+Node: Interacting Service52442
+Ref: Interacting Service-Footnote-161597
+Node: CGI Lib61629
+Node: Simple Server68629
+Ref: Simple Server-Footnote-176431
+Node: Caveats76532
+Node: Challenges77675
+Ref: Challenges-Footnote-186417
+Node: Some Applications and Techniques86518
+Node: PANIC88979
+Node: GETURL90705
+Node: REMCONF93338
+Node: URLCHK98834
+Node: WEBGRAB102678
+Node: STATIST107142
+Ref: STATIST-Footnote-1120290
+Node: MAZE120733
+Node: MOBAGWHO126958
+Ref: MOBAGWHO-Footnote-1140860
+Node: STOXPRED140928
+Node: PROTBASE155220
+Ref: PROTBASE-Footnote-1168387
+Node: Links168502
+Node: GNU Free Documentation License171393
+Node: Index196513
 
 End Tag Table
 
