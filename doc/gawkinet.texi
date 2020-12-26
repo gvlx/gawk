@@ -234,6 +234,8 @@ Arnold Robbins @*
 Nof Ayalon, ISRAEL @*
 March, 2001
 
+@c system if test ! -d eg         ; then mkdir eg         ; fi
+@c system if test ! -d eg/network ; then mkdir eg/network ; fi
 @node Introduction, Using Networking, Preface, Top
 @chapter Networking Concepts
 
@@ -867,27 +869,33 @@ the original versions of NFS.
 @cindex @command{gawk} @subentry networking @subentry connections
 Let's observe a network connection at work. Type in the following program
 and watch the output. Within a second, it connects via TCP (@file{/inet/tcp})
-to the machine it is running on (@samp{localhost}) and asks the service
+to a remote server and asks the service
 @samp{daytime} on the machine what time it is:
 
 @cindex @code{getline} command
 @example
+@c file eg/network/daytimeclient.awk
 BEGIN @{
-  "/inet/tcp/0/localhost/daytime" |& getline
+  daytime_server     = "time-a-g.nist.gov"
+  daytime_connection = "/inet/tcp/0/" daytime_server "/daytime"
+  daytime_connection |& getline
   print $0
-  close("/inet/tcp/0/localhost/daytime")
+  daytime_connection |& getline
+  print $0
+  close(daytime_connection)
 @}
+@c endfile
 @end example
 
-Even experienced @command{awk} users will find the second line strange in two
-respects:
+Even experienced @command{awk} users will find the fourth and sixth line
+strange in two respects:
 
 @itemize @bullet
 @item
-A special file is used as a shell command that pipes its output
+A string containg the name of a special file is used as a shell command that pipes its output
 into @code{getline}. One would rather expect to see the special file
 being read like any other file (@samp{getline <
-"/inet/tcp/0/localhost/daytime"}).
+"/inet/tcp/0/time-a-g.nist.gov/daytime"}).
 
 @item
 @cindex @code{|} (vertical bar), @code{|&} operator (I/O)
@@ -919,12 +927,29 @@ like a full-duplex network connection.
 @end itemize
 
 In the earlier example, the @samp{|&} operator tells @code{getline}
-to read a line from the special file @file{/inet/tcp/0/localhost/daytime}.
+to read a line from the special file @file{/inet/tcp/0/time-a-g.nist.gov/daytime}.
 We could also have printed a line into the special file. But instead we just
-read a line with the time, printed it, and closed the connection.
+consumed an empty leading line, printed it, then read a line with the time,
+printed that, and closed the connection.
 (While we could just let @command{gawk} close the connection by finishing
 the program, in this @value{DOCUMENT}
 we are pedantic and always explicitly close the connections.)
+
+Network services like @file{daytime} are not really useful because
+there are so many better ways to print the current time.
+In the early days of TCP networking, such a service may have looked
+like a good idea for testing purposes. Later, simple TCP services
+like these have been used to teach TCP/IP networking and therefore
+you can still find much educational material of good quality on the
+Internet about such outdated services. The
+@uref{https://tf.nist.gov/tf-cgi/servers.cgi, list of servers}
+that still support the legacy service 
+@uref{https://en.wikipedia.org/wiki/Daytime_Protocol, daytime}
+can be found at Wikipedia. We hesitated to use this service in
+this manual because it is hard to find servers that still support
+services like @file{daytime} openly to the Internet.
+Later on we will see that some of these nostalgic
+protocols have turned into security risks.
 
 @node Troubleshooting, Interacting, TCP Connecting, Using Networking
 @section Troubleshooting Connection Problems
@@ -1028,8 +1053,6 @@ so-called @command{finger} service if a user of the machine is logged in. When
 testing this program, try to change @samp{localhost} to
 some other machine name in your local network:
 
-@c system if test ! -d eg         ; then mkdir eg         ; fi
-@c system if test ! -d eg/network ; then mkdir eg/network ; fi
 @example
 @c file eg/network/fingerclient.awk
 BEGIN @{
