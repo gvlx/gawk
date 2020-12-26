@@ -1,3 +1,8 @@
+2020-12-26         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.in (More CSV): Add indexing and reference to
+	Manuel Collado's CSVMODE library.
+
 2020-12-07         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawktexi.in (awk split records): Remove the bit about POSIX
