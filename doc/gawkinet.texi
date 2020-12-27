@@ -970,12 +970,11 @@ DECnet or Novell's IPX.
 
 For the rest of this @value{CHAPTER}, we will assume you work on a POSIX-style
 system that supports TCP/IP. If the previous example program does not
-run on your machine, it may help to replace the name
-@samp{localhost} with the name of your machine or its IP address. If it
-does, you could replace @samp{localhost} with the name of another machine
-in your vicinity---this way, the program connects to another machine.
+run on your machine, it may help to replace the value assigned to the variable
+@samp{daytime_server} with the name (or the IP address) of another server
+from the list mentioned above.
 Now you should see the date and time being printed by the program,
-otherwise your machine may not support the @samp{daytime} service.
+otherwise you may have run out of servers that support the @samp{daytime} service.
 
 Try changing the service to @samp{chargen} or @samp{ftp}. This way, the program
 connects to other services that should give you some response. If you are
@@ -1050,17 +1049,21 @@ well as UDP.
 The next program begins really interacting with a
 network service by printing something into the special file. It asks the
 so-called @command{finger} service if a user of the machine is logged in. When
-testing this program, try to change @samp{localhost} to
-some other machine name in your local network:
+testing this program, try to change the variable @samp{finger_server}
+to some other machine name in your local network:
+@c This really worked in 2020.
+@c Thanks to some people at cmu.edu who keep this service alive.
+@c https://www.techrepublic.com/article/everything-you-need-to-know-about-tcp-ips-finger-utility/
 
 @example
 @c file eg/network/fingerclient.awk
 BEGIN @{
-  NetService = "/inet/tcp/0/localhost/finger"
-  print "@var{name}" |& NetService
-  while ((NetService |& getline) > 0)
+  finger_server     = "andrew.cmu.edu"
+  finger_connection = "/inet/tcp/0/" finger_server "/finger"
+  print "wnace" |& finger_connection
+  while ((finger_connection |& getline) > 0)
     print $0
-  close(NetService)
+  close(finger_connection)
 @}
 @c endfile
 @end example
@@ -1068,10 +1071,13 @@ BEGIN @{
 After telling the service on the machine which user to look for,
 the program repeatedly reads lines that come as a reply. When no more
 lines are available (because the service has closed the connection), the
-program also closes the connection. Try replacing @code{"@var{name}"} with your
-login name (or the name of someone else logged in).  For a list
-of all users currently logged in, replace @var{name} with an empty string
-(@code{""}).
+program also closes the connection. If you tried to replace @samp{finger_server}
+with some other server name, the script probably reported being unable to
+open the connection, because most servers today no longer support this
+service.  Try replacing the login name of Professor Nace (@code{wnace})
+with another login name (like @code{help}). You will receive a list of
+login names similar to the one you asked for. In the 1980s you could get
+a list of all users currently logged in by asking for an empty string (@code{""}).
 
 @cindex Linux
 @cindex GNU/Linux
@@ -1087,9 +1093,10 @@ the close happen by default may result in discarding buffers.
 
 When looking at @file{/etc/services} you may have noticed that the
 @samp{daytime} service is also available with @samp{udp}. In the earlier
-example, change @samp{tcp} to @samp{udp},
-and change @samp{finger} to @samp{daytime}.
-After starting the modified program, you see the expected day and time message.
+examples, change @samp{tcp} to @samp{udp} and try if the @samp{finger} and @samp{daytime}
+clients still work as expected. They probably will not respond because
+a wise administrator switched off these services.
+But if they do, you may see the expected day and time message.
 The program then hangs, because it waits for more lines to come from the
 service. However, they never do. This behavior is a consequence of the
 differences between TCP and UDP. When using UDP, neither party is
@@ -1110,6 +1117,24 @@ communication. Programs only use UDP if the application protocol handles
 reliability, the application requires hardware broadcast or multicast,
 or the application cannot tolerate virtual circuit overhead.
 @end quotation
+
+This advice is actually quite dated and we hesitated to repeat it here.
+But we left it in because we are still observing beginners running
+into this pitfall. While this advice has aged quite well, some other
+ideas from the 1980s have not. The @samp{finger} service may still be
+available in Microsoft
+@uref{https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/finger, Windows Server 2019},
+but it turned out to be a never-ending cause of trouble. First of all,
+it is now obvious that a server should never reveal personal data about
+its users to anonymous client software that connects over the wild wild Internet.
+So every server on the Internet should reject @samp{finger} requests
+(by disabling the port and by disabling the software serving this port).
+But things got even worse in 2020 when it turned out that even the client
+software (the @samp{finger} command documented in the link above) is a
+security problem. A tool called
+@uref{https://seclists.org/fulldisclosure/2020/Sep/30, DarkFinger}
+allows to leverage the Microsoft Windows @samp{finger.exe} as a file downloader
+and help evade network security devices.
 
 @node Setting Up, Email, Interacting, Using Networking
 @section Setting Up a Service
@@ -1136,22 +1161,25 @@ of the special @value{FN} because we are setting up a server, not a client:
 @cindex @command{finger} utility
 @cindex servers
 @example
+@c file eg/network/daytimeserver.awk
 BEGIN @{
   print strftime() |& "/inet/tcp/8888/0/0"
   close("/inet/tcp/8888/0/0")
 @}
+@c endfile
 @end example
 
 Now open another window on the same machine.
 Copy the client program given as the first example
 (@pxref{TCP Connecting, ,Establishing a TCP Connection})
-to a new file and edit it, changing the name @samp{daytime} to
-@samp{8888}.  Then start the modified client.  You should get a reply
-like this:
+to a new file and edit it, changing the variable @samp{daytime_server} to
+@samp{localhost} and the port name @samp{daytime} to @samp{8888}.
+Then start the modified client.  You should get a reply like this:
 
-@c FIXME: Let's put a newer date here...
 @example
-Sat Sep 27 19:08:16 CEST 1997
+$ @kbd{gawk -f awklib/eg/network/daytimeclient.awk}
+@print{} Sun Dec 27 17:33:57 CET 2020
+@print{} Sun Dec 27 17:33:57 CET 2020
 @end example
 
 @noindent
@@ -1191,6 +1219,7 @@ sends a result back to the client. The server-side processing
 could be:
 
 @example
+@c file eg/network/catpipeserver.awk
 BEGIN @{
   NetService = "/inet/tcp/8888/0/0"
   NetService |& getline       # sets $0 and the fields
@@ -1199,6 +1228,7 @@ BEGIN @{
     print $0 |& NetService
   close(NetService)
 @}
+@c endfile
 @end example
 
 @noindent
@@ -1210,6 +1240,23 @@ the execution of a command that is transmitted across the network. From this
 example, you can see how simple it is to open up a security hole on your
 machine. If you allow clients to connect to your machine and
 execute arbitrary commands, anyone would be free to do @samp{rm -rf *}.
+
+The client side connects to port number 8888 on the server side and 
+sends the name of the desired file to be sent across the same TCP
+connection. The main loop reads all content coming in from the TCP
+connection line-wise and prints it.
+
+@example
+@c file eg/network/catpipeclient.awk
+BEGIN @{
+  NetService = "/inet/tcp/0/localhost/8888"
+  print "README" |& NetService
+  while ((NetService |& getline) > 0)
+    print $0
+  close(NetService)
+@}
+@c endfile
+@end example
 
 @node Email, Web page, Setting Up, Using Networking
 @section Reading Email
