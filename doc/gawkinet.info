@@ -776,12 +776,11 @@ network programming.
 
    For the rest of this major node, we will assume you work on a
 POSIX-style system that supports TCP/IP. If the previous example program
-does not run on your machine, it may help to replace the name
-'localhost' with the name of your machine or its IP address.  If it
-does, you could replace 'localhost' with the name of another machine in
-your vicinity--this way, the program connects to another machine.  Now
-you should see the date and time being printed by the program, otherwise
-your machine may not support the 'daytime' service.
+does not run on your machine, it may help to replace the value assigned
+to the variable 'daytime_server' with the name (or the IP address) of
+another server from the list mentioned above.  Now you should see the
+date and time being printed by the program, otherwise you may have run
+out of servers that support the 'daytime' service.
 
    Try changing the service to 'chargen' or 'ftp'.  This way, the
 program connects to other services that should give you some response.
@@ -853,23 +852,29 @@ File: gawkinet.info,  Node: Interacting,  Next: Setting Up,  Prev: Troubleshooti
 The next program begins really interacting with a network service by
 printing something into the special file.  It asks the so-called
 'finger' service if a user of the machine is logged in.  When testing
-this program, try to change 'localhost' to some other machine name in
-your local network:
+this program, try to change the variable 'finger_server' to some other
+machine name in your local network:
 
      BEGIN {
-       NetService = "/inet/tcp/0/localhost/finger"
-       print "NAME" |& NetService
-       while ((NetService |& getline) > 0)
+       finger_server     = "andrew.cmu.edu"
+       finger_connection = "/inet/tcp/0/" finger_server "/finger"
+       print "wnace" |& finger_connection
+       while ((finger_connection |& getline) > 0)
          print $0
-       close(NetService)
+       close(finger_connection)
      }
 
    After telling the service on the machine which user to look for, the
 program repeatedly reads lines that come as a reply.  When no more lines
 are available (because the service has closed the connection), the
-program also closes the connection.  Try replacing '"NAME"' with your
-login name (or the name of someone else logged in).  For a list of all
-users currently logged in, replace NAME with an empty string ('""').
+program also closes the connection.  If you tried to replace
+'finger_server' with some other server name, the script probably
+reported being unable to open the connection, because most servers today
+no longer support this service.  Try replacing the login name of
+Professor Nace ('wnace') with another login name (like 'help').  You
+will receive a list of login names similar to the one you asked for.  In
+the 1980s you could get a list of all users currently logged in by
+asking for an empty string ('""').
 
    The final 'close()' call could be safely deleted from the above
 script, because the operating system closes any open connection by
@@ -880,17 +885,19 @@ in flushing of buffers.  Letting the close happen by default may result
 in discarding buffers.
 
    When looking at '/etc/services' you may have noticed that the
-'daytime' service is also available with 'udp'.  In the earlier example,
-change 'tcp' to 'udp', and change 'finger' to 'daytime'.  After starting
-the modified program, you see the expected day and time message.  The
-program then hangs, because it waits for more lines to come from the
-service.  However, they never do.  This behavior is a consequence of the
-differences between TCP and UDP. When using UDP, neither party is
-automatically informed about the other closing the connection.
-Continuing to experiment this way reveals many other subtle differences
-between TCP and UDP. To avoid such trouble, you should always remember
-the advice Douglas E. Comer and David Stevens give in Volume III of
-their series 'Internetworking With TCP' (page 14):
+'daytime' service is also available with 'udp'.  In the earlier
+examples, change 'tcp' to 'udp' and try if the 'finger' and 'daytime'
+clients still work as expected.  They probably will not respond because
+a wise administrator switched off these services.  But if they do, you
+may see the expected day and time message.  The program then hangs,
+because it waits for more lines to come from the service.  However, they
+never do.  This behavior is a consequence of the differences between TCP
+and UDP. When using UDP, neither party is automatically informed about
+the other closing the connection.  Continuing to experiment this way
+reveals many other subtle differences between TCP and UDP. To avoid such
+trouble, you should always remember the advice Douglas E. Comer and
+David Stevens give in Volume III of their series 'Internetworking With
+TCP' (page 14):
 
      When designing client-server applications, beginners are strongly
      advised to use TCP because it provides reliable,
@@ -898,6 +905,24 @@ their series 'Internetworking With TCP' (page 14):
      application protocol handles reliability, the application requires
      hardware broadcast or multicast, or the application cannot tolerate
      virtual circuit overhead.
+
+   This advice is actually quite dated and we hesitated to repeat it
+here.  But we left it in because we are still observing beginners
+running into this pitfall.  While this advice has aged quite well, some
+other ideas from the 1980s have not.  The 'finger' service may still be
+available in Microsoft Windows Server 2019
+(https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/finger),
+but it turned out to be a never-ending cause of trouble.  First of all,
+it is now obvious that a server should never reveal personal data about
+its users to anonymous client software that connects over the wild wild
+Internet.  So every server on the Internet should reject 'finger'
+requests (by disabling the port and by disabling the software serving
+this port).  But things got even worse in 2020 when it turned out that
+even the client software (the 'finger' command documented in the link
+above) is a security problem.  A tool called DarkFinger
+(https://seclists.org/fulldisclosure/2020/Sep/30) allows to leverage the
+Microsoft Windows 'finger.exe' as a file downloader and help evade
+network security devices.
 
 
 File: gawkinet.info,  Node: Setting Up,  Next: Email,  Prev: Interacting,  Up: Using Networking
@@ -928,11 +953,13 @@ setting up a server, not a client:
 
    Now open another window on the same machine.  Copy the client program
 given as the first example (*note Establishing a TCP Connection: TCP
-Connecting.) to a new file and edit it, changing the name 'daytime' to
-'8888'.  Then start the modified client.  You should get a reply like
-this:
+Connecting.) to a new file and edit it, changing the variable
+'daytime_server' to 'localhost' and the port name 'daytime' to '8888'.
+Then start the modified client.  You should get a reply like this:
 
-     Sat Sep 27 19:08:16 CEST 1997
+     $ gawk -f awklib/eg/network/daytimeclient.awk
+     -| Sun Dec 27 17:33:57 CET 2020
+     -| Sun Dec 27 17:33:57 CET 2020
 
 Both programs explicitly close the connection.
 
@@ -978,6 +1005,19 @@ network.  From this example, you can see how simple it is to open up a
 security hole on your machine.  If you allow clients to connect to your
 machine and execute arbitrary commands, anyone would be free to do 'rm
 -rf *'.
+
+   The client side connects to port number 8888 on the server side and
+sends the name of the desired file to be sent across the same TCP
+connection.  The main loop reads all content coming in from the TCP
+connection line-wise and prints it.
+
+     BEGIN {
+       NetService = "/inet/tcp/0/localhost/8888"
+       print "README" |& NetService
+       while ((NetService |& getline) > 0)
+         print $0
+       close(NetService)
+     }
 
 
 File: gawkinet.info,  Node: Email,  Next: Web page,  Prev: Setting Up,  Up: Using Networking
@@ -4247,8 +4287,8 @@ Index
 * GIF image format <1>:                  STATIST.             (line   6)
 * GNU Free Documentation License:        GNU Free Documentation License.
                                                               (line   6)
-* GNU/Linux:                             Troubleshooting.     (line  54)
-* GNU/Linux <1>:                         Interacting.         (line  27)
+* GNU/Linux:                             Troubleshooting.     (line  53)
+* GNU/Linux <1>:                         Interacting.         (line  33)
 * GNU/Linux <2>:                         REMCONF.             (line   6)
 * GNUPlot utility:                       Interacting Service. (line 190)
 * GNUPlot utility <1>:                   STATIST.             (line   6)
@@ -4269,16 +4309,16 @@ Index
 * images, in web pages:                  Interacting Service. (line 190)
 * input/output, two-way,:                Gawk Special Files.  (line  19)
 * JavaScript:                            STATIST.             (line  57)
-* Linux:                                 Troubleshooting.     (line  54)
-* Linux <1>:                             Interacting.         (line  27)
+* Linux:                                 Troubleshooting.     (line  53)
+* Linux <1>:                             Interacting.         (line  33)
 * Linux <2>:                             REMCONF.             (line   6)
 * Lisp:                                  MOBAGWHO.            (line  96)
 * localport field:                       Gawk Special Files.  (line  34)
 * Loebner, Hugh:                         Challenges.          (line   6)
 * Loui, Ronald:                          Challenges.          (line  75)
 * MAZE:                                  MAZE.                (line   6)
-* Microsoft Windows, networking:         Troubleshooting.     (line  54)
-* Microsoft Windows, networking, ports:  Setting Up.          (line  37)
+* Microsoft Windows, networking:         Troubleshooting.     (line  53)
+* Microsoft Windows, networking, ports:  Setting Up.          (line  39)
 * Microsoft Windows:                     WEBGRAB.             (line  43)
 * MiniSQL:                               REMCONF.             (line 109)
 * MOBAGWHO program:                      MOBAGWHO.            (line   6)
@@ -4291,7 +4331,7 @@ Index
 * networks, gawk and, connections:       Special File Fields. (line  56)
 * networks, gawk and, connections <1>:   TCP Connecting.      (line   6)
 * networks, gawk and, service, establishing: Setting Up.      (line   6)
-* networks, ports, reserved:             Setting Up.          (line  37)
+* networks, ports, reserved:             Setting Up.          (line  39)
 * networks, gawk and, email:             Email.               (line   6)
 * networks, gawk and, troubleshooting:   Caveats.             (line   6)
 * Numerical Recipes:                     STATIST.             (line  13)
@@ -4349,7 +4389,7 @@ Index
 * TCP (Transmission Control Protocol) <1>: File /inet/tcp.    (line   6)
 * TCP (Transmission Control Protocol), connection, establishing: TCP Connecting.
                                                               (line   6)
-* TCP (Transmission Control Protocol), UDP and: Interacting.  (line  48)
+* TCP (Transmission Control Protocol), UDP and: Interacting.  (line  56)
 * TCP/IP, sockets and:                   Gawk Special Files.  (line  19)
 * TCP/IP, network type, selecting:       Special File Fields. (line  11)
 * TCP/IP, protocols, selecting:          Special File Fields. (line  17)
@@ -4357,8 +4397,8 @@ Index
 * troubleshooting, gawk, networks:       Caveats.             (line   6)
 * troubleshooting, networks, timeouts:   Caveats.             (line  18)
 * UDP (User Datagram Protocol):          File /inet/udp.      (line   6)
-* UDP (User Datagram Protocol), TCP and: Interacting.         (line  48)
-* Unix, network ports and:               Setting Up.          (line  37)
+* UDP (User Datagram Protocol), TCP and: Interacting.         (line  56)
+* Unix, network ports and:               Setting Up.          (line  39)
 * URLCHK program:                        URLCHK.              (line   6)
 * vertical bar (|), |& operator (I/O):   TCP Connecting.      (line  29)
 * VRML:                                  MAZE.                (line   6)
@@ -4400,39 +4440,39 @@ Node: File /inet/udp27933
 Ref: File /inet/udp-Footnote-129645
 Node: TCP Connecting29899
 Node: Troubleshooting33332
-Ref: Troubleshooting-Footnote-136160
-Node: Interacting37117
-Node: Setting Up39841
-Node: Email43813
-Node: Web page46196
-Ref: Web page-Footnote-149016
-Ref: Web page-Footnote-249214
-Node: Primitive Service49708
-Node: Interacting Service52442
-Ref: Interacting Service-Footnote-161597
-Node: CGI Lib61629
-Node: Simple Server68629
-Ref: Simple Server-Footnote-176431
-Node: Caveats76532
-Node: Challenges77675
-Ref: Challenges-Footnote-186417
-Node: Some Applications and Techniques86518
-Node: PANIC88979
-Node: GETURL90705
-Node: REMCONF93338
-Node: URLCHK98834
-Node: WEBGRAB102678
-Node: STATIST107142
-Ref: STATIST-Footnote-1120290
-Node: MAZE120733
-Node: MOBAGWHO126958
-Ref: MOBAGWHO-Footnote-1140860
-Node: STOXPRED140928
-Node: PROTBASE155220
-Ref: PROTBASE-Footnote-1168387
-Node: Links168502
-Node: GNU Free Documentation License171393
-Node: Index196513
+Ref: Troubleshooting-Footnote-136096
+Node: Interacting37053
+Node: Setting Up41411
+Node: Email45960
+Node: Web page48343
+Ref: Web page-Footnote-151163
+Ref: Web page-Footnote-251361
+Node: Primitive Service51855
+Node: Interacting Service54589
+Ref: Interacting Service-Footnote-163744
+Node: CGI Lib63776
+Node: Simple Server70776
+Ref: Simple Server-Footnote-178578
+Node: Caveats78679
+Node: Challenges79822
+Ref: Challenges-Footnote-188564
+Node: Some Applications and Techniques88665
+Node: PANIC91126
+Node: GETURL92852
+Node: REMCONF95485
+Node: URLCHK100981
+Node: WEBGRAB104825
+Node: STATIST109289
+Ref: STATIST-Footnote-1122437
+Node: MAZE122880
+Node: MOBAGWHO129105
+Ref: MOBAGWHO-Footnote-1143007
+Node: STOXPRED143075
+Node: PROTBASE157367
+Ref: PROTBASE-Footnote-1170534
+Node: Links170649
+Node: GNU Free Documentation License173540
+Node: Index198660
 
 End Tag Table
 
