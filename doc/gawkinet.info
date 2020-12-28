@@ -1027,7 +1027,7 @@ File: gawkinet.info,  Node: Email,  Next: Web page,  Prev: Setting Up,  Up: Usin
 
 The distribution of email is usually done by dedicated email servers
 that communicate with your machine using special protocols.  In this
-node we show how simple the basic steps are.
+node we show how simple the basic steps are.(1)
 
    To receive email, we use the Post Office Protocol (POP). Sending can
 be done with the much older Simple Mail Transfer Protocol (SMTP).
@@ -1070,6 +1070,21 @@ dot.  The program looks for this using 'RS = "\r\n\\.\r\n"'.  When it
 finds this sequence in the mail message, it quits.  You can invoke this
 program as often as you like; it does not delete the message it reads,
 but instead leaves it on the server.
+
+   ---------- Footnotes ----------
+
+   (1) No, things are _not_ that simple any more.  Things _were_ that
+simple when email was young in the 20th century.  These days,
+unencrypted plaintext authentication is usually disallowed on non-secure
+connections.  Since encryption of network connections is not supported
+in 'gawk', you should not use 'gawk' to write such scripts.  We left
+this node as it is because it demonstrates how application level
+protocols work in principle (a command being issued by the client
+followed by a reply coming back).  Unfortunately, modern application
+level protocols are much more flexible in the sequence of actions.  For
+example, modern POP3 servers may introduce themselves with an unprompted
+initial line that arrives before the initial command.  Dealing with such
+variance is not worth the effort in 'gawk'.
 
 
 File: gawkinet.info,  Node: Web page,  Next: Primitive Service,  Prev: Email,  Up: Using Networking
@@ -4444,35 +4459,36 @@ Ref: Troubleshooting-Footnote-136096
 Node: Interacting37053
 Node: Setting Up41411
 Node: Email45960
-Node: Web page48343
-Ref: Web page-Footnote-151163
-Ref: Web page-Footnote-251361
-Node: Primitive Service51855
-Node: Interacting Service54589
-Ref: Interacting Service-Footnote-163744
-Node: CGI Lib63776
-Node: Simple Server70776
-Ref: Simple Server-Footnote-178578
-Node: Caveats78679
-Node: Challenges79822
-Ref: Challenges-Footnote-188564
-Node: Some Applications and Techniques88665
-Node: PANIC91126
-Node: GETURL92852
-Node: REMCONF95485
-Node: URLCHK100981
-Node: WEBGRAB104825
-Node: STATIST109289
-Ref: STATIST-Footnote-1122437
-Node: MAZE122880
-Node: MOBAGWHO129105
-Ref: MOBAGWHO-Footnote-1143007
-Node: STOXPRED143075
-Node: PROTBASE157367
-Ref: PROTBASE-Footnote-1170534
-Node: Links170649
-Node: GNU Free Documentation License173540
-Node: Index198660
+Ref: Email-Footnote-148382
+Node: Web page49190
+Ref: Web page-Footnote-152010
+Ref: Web page-Footnote-252208
+Node: Primitive Service52702
+Node: Interacting Service55436
+Ref: Interacting Service-Footnote-164591
+Node: CGI Lib64623
+Node: Simple Server71623
+Ref: Simple Server-Footnote-179425
+Node: Caveats79526
+Node: Challenges80669
+Ref: Challenges-Footnote-189411
+Node: Some Applications and Techniques89512
+Node: PANIC91973
+Node: GETURL93699
+Node: REMCONF96332
+Node: URLCHK101828
+Node: WEBGRAB105672
+Node: STATIST110136
+Ref: STATIST-Footnote-1123284
+Node: MAZE123727
+Node: MOBAGWHO129952
+Ref: MOBAGWHO-Footnote-1143854
+Node: STOXPRED143922
+Node: PROTBASE158214
+Ref: PROTBASE-Footnote-1171381
+Node: Links171496
+Node: GNU Free Documentation License174387
+Node: Index199507
 
 End Tag Table
 
