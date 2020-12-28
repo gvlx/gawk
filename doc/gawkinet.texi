@@ -1270,7 +1270,21 @@ BEGIN @{
 @cindex Simple Mail Transfer Protocol (SMTP)
 The distribution of email is usually done by dedicated email servers that
 communicate with your machine using special protocols.
-In this @value{SECTION} we show how simple the basic steps are.
+In this @value{SECTION} we show how simple the basic steps are.@footnote{No,
+things are @emph{not} that simple any more. Things @emph{were} that simple
+when email was young in the 20th century. These days, unencrypted plaintext
+authentication is usually disallowed on non-secure connections.
+Since encryption of network connections is not supported in @command{gawk},
+you should not use @command{gawk} to write such scripts.
+We left this @value{SECTION} as it is because it demonstrates how
+application level protocols work in principle (a command being issued
+by the client followed by a reply coming back). Unfortunately, modern
+application level protocols are much more flexible in the sequence of
+actions. For example, modern POP3 servers may introduce themselves
+with an unprompted initial line that arrives before the initial command.
+Dealing with such variance is not worth the effort in @command{gawk}.}
+@c FIXME: This would be the proper place to refer to Arnold's work on
+@c writing SMTP client and server.
 
 To receive email, we use the Post Office Protocol (POP).  Sending can
 be done with the much older Simple Mail Transfer Protocol (SMTP).
@@ -1285,6 +1299,7 @@ name or password. Replace them in the program and it
 shows you the first email the server has in store:
 
 @example
+@c file eg/network/mailpopclient.awk
 BEGIN @{
   POPService  = "/inet/tcp/0/@var{emailhost}/pop3"
   RS = ORS = "\r\n"
@@ -1301,6 +1316,7 @@ BEGIN @{
   print $0
   close(POPService)
 @}
+@c endfile
 @end example
 
 @cindex RFC 1939
