@@ -1,3 +1,13 @@
+2021-01-07         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.am (EXTRA_DIST): modifiers, new test.
+	* modifiers.sh, modifiers.ok: New files.
+
+	Unrelated:
+
+	* Makefile.am (EXTRA_DIST): rsnullre, new test.
+	* rsnullre.awk, rsnullre.in, rsnullre.ok: New files.
+
 2020-12-26         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* Makefile.am (EXTRA_DIST): fpat9, new test.

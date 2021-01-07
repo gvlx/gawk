@@ -693,7 +693,7 @@ format_tree(
 	NODE *arg;
 	long fw, prec, argnum;
 	bool used_dollar;
-	bool lj, alt, big_flag, bigbig_flag, small_flag, have_prec, need_format;
+	bool lj, alt, have_prec, need_format;
 	long *cur = NULL;
 	uintmax_t uval;
 	bool sgn;
@@ -735,6 +735,11 @@ format_tree(
 	static const char zero_string[] = "0";
 	static const char lchbuf[] = "0123456789abcdef";
 	static const char Uchbuf[] = "0123456789ABCDEF";
+	static const char bad_modifiers[] = "hjlLtz";
+	static bool warned[sizeof(bad_modifiers)-1];	// auto-init to zero
+
+	bool modifier_seen[sizeof(bad_modifiers)-1];
+#define modifier_index(c)  (strchr(bad_modifiers, c) - bad_modifiers)
 
 #define INITIAL_OUT_SIZE	64
 	emalloc(obuf, char *, INITIAL_OUT_SIZE, "format_tree");
@@ -830,7 +835,8 @@ format_tree(
 #endif
 		fmt_type = MP_NONE;
 
-		lj = alt = big_flag = bigbig_flag = small_flag = false;
+		lj = alt = false;
+		memset(modifier_seen, 0, sizeof(modifier_seen));
 		magic_posix_flag = false;
 		fill = sp;
 		cp = cend;
@@ -1014,57 +1020,29 @@ check_pos:
 #else
 			goto retry;
 #endif
-		case 'l':
-			if (big_flag)
-				break;
-			else {
-				static bool warned = false;
-
-				if (do_lint && ! warned) {
-					lintwarn(_("`l' is meaningless in awk formats; ignored"));
-					warned = true;
-				}
-				if (do_posix) {
-					msg(_("fatal: `l' is not permitted in POSIX awk formats"));
-					goto out;
-				}
-			}
-			big_flag = true;
-			goto retry;
-		case 'L':
-			if (bigbig_flag)
-				break;
-			else {
-				static bool warned = false;
-
-				if (do_lint && ! warned) {
-					lintwarn(_("`L' is meaningless in awk formats; ignored"));
-					warned = true;
-				}
-				if (do_posix) {
-					msg(_("fatal: `L' is not permitted in POSIX awk formats"));
-					goto out;
-				}
-			}
-			bigbig_flag = true;
-			goto retry;
 		case 'h':
-			if (small_flag)
+		case 'j':
+		case 'l':
+		case 'L':
+		case 't':
+		case 'z':
+			if (modifier_seen[modifier_index(cs1)])
 				break;
 			else {
-				static bool warned = false;
+				int ind = modifier_index(cs1);
 
-				if (do_lint && ! warned) {
-					lintwarn(_("`h' is meaningless in awk formats; ignored"));
-					warned = true;
+				if (do_lint && ! warned[ind]) {
+					lintwarn(_("`%c' is meaningless in awk formats; ignored"), cs1);
+					warned[ind] = true;
 				}
 				if (do_posix) {
-					msg(_("fatal: `h' is not permitted in POSIX awk formats"));
+					msg(_("fatal: `%c' is not permitted in POSIX awk formats"), cs1);
 					goto out;
 				}
 			}
-			small_flag = true;
+			modifier_seen[modifier_index(cs1)] = true;
 			goto retry;
+
 		case 'P':
 			if (magic_posix_flag)
 				break;

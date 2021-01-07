@@ -661,6 +661,8 @@ EXTRA_DIST = \
 	manglprm.ok \
 	manyfiles.awk \
 	manyfiles.ok \
+	modifiers.sh \
+	modifiers.ok \
 	muldimposix.awk \
 	muldimposix.ok \
 	match1.awk \
@@ -1098,6 +1100,9 @@ EXTRA_DIST = \
 	rsnul1nl.ok \
 	rsnulbig.ok \
 	rsnulbig2.ok \
+	rsnullre.awk \
+	rsnullre.in \
+	rsnullre.ok \
 	rsnulw.awk \
 	rsnulw.in \
 	rsnulw.ok \
@@ -1402,7 +1407,7 @@ BASIC_TESTS = \
 	printf1 printfchar prmarscl prmreuse prt1eval prtoeval \
 	rand randtest range1 range2 readbuf rebrackloc rebt8b1 rebuild redfilnm regeq \
 	regexpbrack regexpbrack2 regexprange regrange reindops reparse resplit \
-	rri1 rs rscompat rsnul1nl rsnulbig rsnulbig2 rsnulw \
+	rri1 rs rscompat rsnul1nl rsnulbig rsnulbig2 rsnullre rsnulw \
 	rstest1 rstest2 rstest3 rstest4 rstest5 rswhite \
 	scalar sclforin sclifin setrec0 setrec1 \
 	sigpipe1 sortempty sortglos spacere splitargv splitarr \
@@ -1436,7 +1441,8 @@ GAWK_EXT_TESTS = \
 	indirectbuiltin indirectcall indirectcall2 inf-nan-torture \
 	intarray iolint isarrayunset \
 	lint lintexp lintindex lintint lintlength lintplus lintold lintset lintwarn \
-	manyfiles match1 match2 match3 mbstr1 mbstr2 mixed1 mktime muldimposix \
+	manyfiles match1 match2 match3 mbstr1 mbstr2 mixed1 mktime \
+	modifiers muldimposix \
 	nastyparm negtime next nondec nondec2 nonfatal1 nonfatal2 nonfatal3 \
 	nsawk1a nsawk1b nsawk1c nsawk2a nsawk2b \
 	nsbad nsbad_cmd nsforloop nsfuncrecurse nsindirect1 nsindirect2 nsprof1 nsprof2 \
@@ -1518,7 +1524,7 @@ NEED_SANDBOX = sandbox1
 NEED_TRADITIONAL = litoct tradanch rscompat
 
 # Lists of tests that run a shell script
-RUN_SHELL = exit fflush localenl next randtest rtlen rtlen01
+RUN_SHELL = exit fflush localenl modifiers next randtest rtlen rtlen01
 
 # List of the tests which fail with EXIT CODE 1
 FAIL_CODE1 = \
