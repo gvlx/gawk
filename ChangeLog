@@ -4,6 +4,12 @@
 	format modifiers. Add support for three more letters. Thanks to
 	Arkadiusz Drabczyk <arkadiusz@drabczyk.org> for the report.
 
+	Unrelated:
+
+	* io.c (rsnullscan): Adjust loop test to get to end of string
+	when re match is null string. Thanks to Ed Morton
+	<mortoneccc@comcast.net> for the report.
+
 2020-12-26         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* NEWS: Updated.
@@ -380,7 +386,7 @@
 2020-06-08         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* awkgram.y: Fix `print $"2"' case. Thanks to Ed Morton
-	Morton <mortoneccc@comcast.net> for the report.
+	<mortoneccc@comcast.net> for the report.
 
 	Unrelated:
 

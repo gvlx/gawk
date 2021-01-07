@@ -1100,6 +1100,9 @@ EXTRA_DIST = \
 	rsnul1nl.ok \
 	rsnulbig.ok \
 	rsnulbig2.ok \
+	rsnullre.awk \
+	rsnullre.in \
+	rsnullre.ok \
 	rsnulw.awk \
 	rsnulw.in \
 	rsnulw.ok \
@@ -1404,7 +1407,7 @@ BASIC_TESTS = \
 	printf1 printfchar prmarscl prmreuse prt1eval prtoeval \
 	rand randtest range1 range2 readbuf rebrackloc rebt8b1 rebuild redfilnm regeq \
 	regexpbrack regexpbrack2 regexprange regrange reindops reparse resplit \
-	rri1 rs rscompat rsnul1nl rsnulbig rsnulbig2 rsnulw \
+	rri1 rs rscompat rsnul1nl rsnulbig rsnulbig2 rsnullre rsnulw \
 	rstest1 rstest2 rstest3 rstest4 rstest5 rswhite \
 	scalar sclforin sclifin setrec0 setrec1 \
 	sigpipe1 sortempty sortglos spacere splitargv splitarr \
