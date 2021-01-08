@@ -22,19 +22,19 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
  */
 
-char quote = '\'';
-char envsep = ';';
+const char quote = '\'';
+const char envsep = ';';
 
 # ifdef DEFPATH
-char *defpath = DEFPATH;
+const char *defpath = DEFPATH;
 # else
-char *defpath = ".;c:\\lib\\awk;c:\\gnu\\lib\\awk";
+const char *defpath = ".;c:\\lib\\awk;c:\\gnu\\lib\\awk";
 # endif
 /* the Makefile should define DEFLIBPATH */
-char *deflibpath = DEFLIBPATH;
+const char *deflibpath = DEFLIBPATH;
 
 #ifdef __EMX__
-#include<io.h>
+#include <io.h>
 
 static int _os2_is_abs_path(const char *dirname);
 static char* _os2_unixroot(const char *path);
@@ -61,7 +61,7 @@ static const char* _os2_unixroot_path(const char *path);
 
 /* gawk_name --- pull out the "gawk" part from how the OS called us */
 
-char *
+const char *
 gawk_name(filespec)
 const char *filespec;
 {

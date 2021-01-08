@@ -25,7 +25,6 @@
  */
 
 #include "awk.h"
-#include <math.h>
 #include "floatmagic.h"	/* definition of isnan */
 
 static NODE *r_make_number(double x);
@@ -61,7 +60,6 @@ r_force_number(NODE *n)
 	char *cpend;
 	char save;
 	char *ptr;
-	extern double strtod();
 
 	if ((n->flags & NUMCUR) != 0)
 		return n;

@@ -613,7 +613,7 @@ check_bracket_exp(char *s, size_t length)
 	sp = s;
 
 again:
-	sp = sp2 = memchr(sp, '[', (end - sp));
+	sp = sp2 = (char *) memchr(sp, '[', (end - sp));
 	if (sp == NULL)
 		goto done;
 

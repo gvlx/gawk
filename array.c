@@ -111,7 +111,8 @@ null_array(NODE *symbol)
 	symbol->type = Node_var_array;
 	symbol->array_funcs = & null_array_func;
 	symbol->buckets = NULL;
-	symbol->table_size = symbol->array_size = 0;
+	symbol->table_size = 0;
+	symbol->array_size = 0;
 	symbol->array_capacity = 0;
 	symbol->flags = 0;
 

@@ -24,10 +24,10 @@
 #include <io.h>
 #endif
 
-char quote = '\'';
-char *defpath = DEFPATH;
-char *deflibpath = DEFLIBPATH;
-char envsep = ':';
+const char quote = '\'';
+const char *defpath = DEFPATH;
+const char *deflibpath = DEFLIBPATH;
+const char envsep = ':';
 
 #ifndef INVALID_HANDLE
 /* FIXME: is this value for INVALID_HANDLE correct? */
@@ -36,10 +36,10 @@ char envsep = ':';
 
 /* gawk_name --- pull out the "gawk" part from how the OS called us */
 
-char *
+const char *
 gawk_name(const char *filespec)
 {
-	char *p;
+	const char *p;
 
 	/* "path/name" -> "name" */
 	p = strrchr(filespec, '/');

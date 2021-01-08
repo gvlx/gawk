@@ -52,6 +52,7 @@
 #include <limits.h>
 #include <ctype.h>
 #include <setjmp.h>
+#include <math.h>
 
 #include "gettext.h"
 #define _(msgid)  gettext(msgid)
@@ -1105,7 +1106,7 @@ extern int OFSlen;
 extern char *ORS;
 extern int ORSlen;
 extern char *OFMT;
-extern char *CONVFMT;
+extern const char *CONVFMT;
 extern int CONVFMTidx;
 extern int OFMTidx;
 #ifdef HAVE_MPFR
@@ -1146,6 +1147,7 @@ extern bool do_itrace;	/* separate so can poke from a debugger */
 extern SRCFILE *srcfiles; /* source files */
 
 extern enum do_flag_values {
+	DO_FLAG_NONE       = 0x00000,
 	DO_LINT_INVALID	   = 0x00001,	/* only warn about invalid */
 	DO_LINT_EXTENSIONS = 0x00002,	/* warn about gawk extensions */
 	DO_LINT_ALL	   = 0x00004,	/* warn about all things */
@@ -1214,10 +1216,10 @@ extern bool do_ieee_fmt;	/* emulate IEEE 754 floating-point format */
 extern const char *myname;
 extern const char def_strftime_format[];
 
-extern char quote;
-extern char *defpath;
-extern char *deflibpath;
-extern char envsep;
+extern const char quote;
+extern const char *defpath;
+extern const char *deflibpath;
+extern const char envsep;
 
 extern char casetable[];	/* for case-independent regexp matching */
 
@@ -1338,7 +1340,7 @@ DEREF(NODE *r)
 
 extern void *r_getblock(int id);
 extern void r_freeblock(void *, int id);
-#define getblock(p, id, ty)	(void) (p = r_getblock(id))
+#define getblock(p, id, ty)	(void) (p = (ty) r_getblock(id))
 #define freeblock(p, id)	(void) (r_freeblock(p, id))
 
 #else /* MEMDEBUG */
@@ -1449,7 +1451,7 @@ extern bool is_alpha(int c);
 extern bool is_alnum(int c);
 extern bool is_letter(int c);
 extern bool is_identchar(int c);
-extern NODE *make_regnode(int type, NODE *exp);
+extern NODE *make_regnode(NODETYPE type, NODE *exp);
 extern bool validate_qualified_name(char *token);
 /* builtin.c */
 extern double double_to_int(double d);
@@ -1593,7 +1595,7 @@ extern void print_ext_versions(void);
 extern void free_api_string_copies(void);
 
 /* gawkmisc.c */
-extern char *gawk_name(const char *filespec);
+extern const char *gawk_name(const char *filespec);
 extern void os_arg_fixup(int *argcp, char ***argvp);
 extern int os_devopen(const char *name, int flag);
 extern void os_close_on_exec(int fd, const char *name, const char *what, const char *dir);

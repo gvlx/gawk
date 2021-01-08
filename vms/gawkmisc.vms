@@ -79,10 +79,10 @@ int   SYS$TRNLNM(
         const unsigned char * acmode,
         const struct item_list_3 * item_list);
 
-char quote = '\'';
-char *defpath = DEFPATH;
-char *deflibpath = DEFLIBPATH;
-char envsep  = ',';
+const char quote = '\'';
+const char *defpath = DEFPATH;
+const char *deflibpath = DEFLIBPATH;
+const char envsep  = ',';
 #define VMS_NAME_LEN 255
 static char vms_name[VMS_NAME_LEN+1];
 
@@ -132,7 +132,7 @@ static int sys_trnlnm
  * passed exec() argv[0] and handle both cases.
  */
 
-char *
+const char *
 gawk_name(filespec)
 const char *filespec;
 {

@@ -25,7 +25,6 @@
  */
 
 #include "awk.h"
-#include <math.h>
 
 #ifdef HAVE_UINTMAX_T
 

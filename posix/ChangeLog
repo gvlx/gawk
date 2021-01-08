@@ -1,3 +1,11 @@
+2021-01-08         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawkmisc.c (quote): Make const char *.
+	(defpath): Make const char *.
+	(deflibpath): Make const char *.
+	(envsep): Make const char *.
+	(gawk_name): Now returns const char *.
+
 2020-04-14         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* 5.1.0: Release tar ball made.

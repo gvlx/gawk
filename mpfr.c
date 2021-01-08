@@ -683,7 +683,7 @@ get_rnd_mode(const char rmode)
 	default:
 		break;
 	}
-	return -1;
+	return (mpfr_rnd_t) -1;
 }
 
 /*
@@ -695,7 +695,7 @@ void
 set_ROUNDMODE()
 {
 	if (do_mpfr) {
-		mpfr_rnd_t rndm = -1;
+		mpfr_rnd_t rndm = (mpfr_rnd_t) -1;
 		NODE *n;
 		n = force_string(ROUNDMODE_node->var_value);
 		if (n->stlen == 1)
@@ -792,7 +792,7 @@ do_mpfr_atan2(int nargs)
 
 static inline NODE *
 do_mpfr_func(const char *name,
-		int (*mpfr_func)(),	/* putting argument types just gets the compiler confused */
+		int (*mpfr_func)(mpfr_ptr, mpfr_srcptr, mpfr_rnd_t),
 		int nargs)
 {
 	NODE *t1, *res;

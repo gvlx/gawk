@@ -1007,7 +1007,7 @@ set_TEXTDOMAIN()
 void
 update_ERRNO_int(int errcode)
 {
-	char *cp;
+	const char *cp;
 
 	update_PROCINFO_num("errno", errcode);
 	if (errcode) {
