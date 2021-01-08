@@ -190,7 +190,7 @@ typedef struct awk_input {
 	 * No argument prototype on read_func to allow for older systems
 	 * whose headers are not up to date.
 	 */
-	ssize_t (*read_func)();
+	ssize_t (*read_func)(int, void *, size_t);
 
 	/*
 	 * The close_func is called to allow the parser to free private data.

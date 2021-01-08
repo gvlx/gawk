@@ -1250,7 +1250,7 @@ match_re:
 			JUMPTO(ni);
 
 		case Op_K_getline_redir:
-			r = do_getline_redir(pc->into_var, pc->redir_type);
+			r = do_getline_redir(pc->into_var, (enum redirval) pc->redir_type);
 			PUSH(r);
 			break;
 

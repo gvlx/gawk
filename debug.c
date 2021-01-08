@@ -54,9 +54,9 @@ static char *linebuf = NULL;	/* used to print a single line of source */
 static size_t linebuf_len;
 
 FILE *out_fp;
-char *dbg_prompt;
-char *commands_prompt = "> ";	/* breakpoint or watchpoint commands list */
-char *eval_prompt = "@> ";	/* awk statement(s) */
+const char *dbg_prompt;
+const char *commands_prompt = "> ";	/* breakpoint or watchpoint commands list */
+const char *eval_prompt = "@> ";	/* awk statement(s) */
 
 bool input_from_tty = false;
 int input_fd;
@@ -219,7 +219,7 @@ static char line_sep;
 struct dbg_option {
 	const char *name;
 	int *num_val;
-	char **str_val;
+	const char **str_val;
 	void (*assign)(const char *);
 	const char *help_txt;
 };
@@ -244,8 +244,8 @@ static const char *history_file = DEFAULT_HISTFILE;
 
 /* debugger option related variables */
 
-static char *output_file = "/dev/stdout";  /* gawk output redirection */
-char *dgawk_prompt = NULL;                 /* initialized in interpret */
+static const char *output_file = "/dev/stdout";  /* gawk output redirection */
+const char *dgawk_prompt = NULL;                 /* initialized in interpret */
 static int list_size = DEFAULT_LISTSIZE;   /* # of lines that 'list' prints */
 static int do_trace = false;
 static int do_save_history = true;
@@ -766,7 +766,7 @@ do_info(CMDARG *arg, int cmd ATTRIBUTE_UNUSED)
 
 			gprintf(out_fp, _("Number  Disp  Enabled  Location\n\n"));
 			for (b = breakpoints.prev; b != &breakpoints; b = b->prev) {
-				char *disp = "keep";
+				const char *disp = "keep";
 				if ((b->flags & BP_ENABLE_ONCE) != 0)
 					disp = "dis";
 				else if ((b->flags & BP_TEMP) != 0)
@@ -3051,7 +3051,7 @@ next_step(CMDARG *arg, int cmd)
 		stop.repeat_count = arg->a_int;
 	else
 		stop.repeat_count = 1;
-	stop.command = cmd;
+	stop.command = (enum argtype) cmd;
 	return true;
 }
 
@@ -3231,7 +3231,7 @@ do_finish(CMDARG *arg ATTRIBUTE_UNUSED, int cmd)
 	fprintf(out_fp, _("Run until return from "));
 	print_numbered_frame(cur_frame);
 	stop.check_func = check_finish;
-	stop.command = cmd;
+	stop.command = (enum argtype) cmd;
 	stop.print_ret = true;
 	return true;
 }
@@ -3279,7 +3279,7 @@ do_return(CMDARG *arg, int cmd)
 	assert(stop.fcall_count >= 0);
 	stop.pc = (func->code_ptr + 1)->lasti;
 	assert(stop.pc->opcode == Op_K_return);
-	stop.command = cmd;
+	stop.command = (enum argtype) cmd;
 
 	stop.check_func = check_return;
 
@@ -3342,7 +3342,7 @@ do_until(CMDARG *arg, int cmd)
 		stop.sourceline = sourceline;
 		stop.fcall_count = fcall_count - cur_frame;
 		stop.check_func = check_until;
-		stop.command = cmd;
+		stop.command = (enum argtype) cmd;
 		return true;
 	}
 
@@ -3381,7 +3381,7 @@ func:
 				stop.pc = ip;
 				stop.fcall_count = fcall_count - cur_frame;
 				stop.check_func = check_until;
-				stop.command = cmd;
+				stop.command = (enum argtype) cmd;
 				return true;
 			}
 		}
@@ -3402,7 +3402,7 @@ func:
 			stop.pc = ip;
 			stop.fcall_count = fcall_count - cur_frame;
 			stop.check_func = check_until;
-			stop.command = cmd;
+			stop.command = (enum argtype) cmd;
 			return true;
 		}
 		if (ip == (rp + 1)->lasti)
@@ -3873,7 +3873,7 @@ print_instruction(INSTRUCTION *pc, Func_print print_func, FILE *fp, int in_dump)
 	case Op_var_assign:
 		print_func(fp, "[set_%s()]", get_spec_varname(pc->assign_var));
 		if (pc->assign_ctxt != 0)
-			print_func(fp, " [assign_ctxt = %s]", opcode2str(pc->assign_ctxt));
+			print_func(fp, " [assign_ctxt = %s]", opcode2str((OPCODE) pc->assign_ctxt));
 		print_func(fp, "\n");
 		break;
 
@@ -5284,7 +5284,7 @@ set_gawk_output(const char *file)
 	if (output_fp != stdout) {
 		if (output_fp != stderr) {
 			fclose(output_fp);
-			efree(output_file);
+			efree((void*) output_file);
 		}
 		output_fp = stdout;
 		output_is_tty = os_isatty(fileno(stdout));
@@ -5355,7 +5355,7 @@ set_gawk_output(const char *file)
 static void
 set_prompt(const char *value)
 {
-	efree(dgawk_prompt);
+	efree((void *) dgawk_prompt);
 	dgawk_prompt = estrdup(value, strlen(value));
 	dbg_prompt = dgawk_prompt;
 }

@@ -31,7 +31,7 @@ extern INSTRUCTION *main_beginfile;
 extern int currule;
 
 static awk_bool_t node_to_awk_value(NODE *node, awk_value_t *result, awk_valtype_t wanted);
-static char *valtype2str(awk_valtype_t type);
+static const char *valtype2str(awk_valtype_t type);
 static NODE *ns_lookup(const char *name_space, const char *name, char **full_name);
 
 /*
@@ -71,7 +71,7 @@ api_get_argument(awk_ext_id_t id, size_t count,
 	/* if type is undefined */
 	if (arg->type == Node_var_new) {
 		if (wanted == AWK_UNDEFINED)
-			return true;
+			return awk_true;
 		else if (wanted == AWK_ARRAY) {
 			goto array;
 		} else {
@@ -82,7 +82,7 @@ api_get_argument(awk_ext_id_t id, size_t count,
 	/* at this point, we have real type */
 	if (arg->type == Node_var_array || arg->type == Node_array_ref) {
 		if (wanted != AWK_ARRAY && wanted != AWK_UNDEFINED)
-			return false;
+			return awk_false;
 		goto array;
 	} else
 		goto scalar;
@@ -148,6 +148,7 @@ awk_value_to_node(const awk_value_t *retval)
 {
 	NODE *ext_ret_val = NULL;
 	NODE *v;
+	int tval = 0;
 
 	if (retval == NULL)
 		fatal(_("awk_value_to_node: received null retval"));
@@ -169,7 +170,7 @@ awk_value_to_node(const awk_value_t *retval)
 			if (! do_mpfr)
 				fatal(_("awk_value_to_node: not in MPFR mode"));
 			ext_ret_val = make_number_node(MPFN);
-			int tval = mpfr_set(ext_ret_val->mpg_numbr, (mpfr_ptr) retval->num_ptr, ROUND_MODE);
+			tval = mpfr_set(ext_ret_val->mpg_numbr, (mpfr_ptr) retval->num_ptr, ROUND_MODE);
 			IEEE_FMT(ext_ret_val->mpg_numbr, tval);
 #else
 			fatal(_("awk_value_to_node: MPFR not supported"));
@@ -1228,7 +1229,7 @@ api_release_flattened_array(awk_ext_id_t id,
 		awk_array_t a_cookie,
 		awk_flat_array_t *data)
 {
-	NODE *array = a_cookie;
+	NODE *array = (NODE *) a_cookie;
 	NODE **list;
 	size_t i, j, k;
 
@@ -1559,13 +1560,13 @@ print_ext_versions(void)
 
 /* valtype2str --- return a printable representation of a value type */
 
-static char *
+static const char *
 valtype2str(awk_valtype_t type)
 {
 	static char buf[100];
 
 	// Important: keep in same order as in gawkapi.h!
-	static char *values[] = {
+	static const char *values[] = {
 		"AWK_UNDEFINED",
 		"AWK_NUMBER",
 		"AWK_STRING",

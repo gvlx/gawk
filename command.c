@@ -1703,7 +1703,7 @@ yyreduce:
   case 34: /* command: frame_cmd opt_integer  */
 #line 288 "command.y"
           {
-		if (cmdtab[cmd_idx].class == D_FRAME
+		if (cmdtab[cmd_idx].lex_class == D_FRAME
 				&& yyvsp[0] != NULL && yyvsp[0]->a_int < 0)
 			yyerror(_("invalid frame number: %d"), yyvsp[0]->a_int);
 	  }
@@ -2817,7 +2817,7 @@ again:
 				add_history(h->line);
 #endif
 			cmd_idx = repeat_idx;
-			return cmdtab[cmd_idx].class;	/* repeat last command */
+			return cmdtab[cmd_idx].lex_class;	/* repeat last command */
 		}
 		repeat_idx = -1;
 	}
@@ -2877,7 +2877,7 @@ again:
 				arg->a_string = estrdup(lexptr_begin, lexend - lexptr_begin);
 				append_cmdarg(arg);
 			}
-			return cmdtab[cmd_idx].class;
+			return cmdtab[cmd_idx].lex_class;
 		} else {
 			yyerror(_("unknown command - `%.*s', try help"), toklen, tokstart);
 			return '\n';
@@ -3138,7 +3138,7 @@ concat_args(CMDARG *arg, int count)
 static int
 find_command(const char *token, size_t toklen)
 {
-	char *name, *abrv;
+	const char *name, *abrv;
 	int i, k;
 	bool try_exact = true;
 	int abrv_match = -1;

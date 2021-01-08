@@ -1,3 +1,59 @@
+2021-01-08         Arnold D. Robbins     <arnold@skeeve.com>
+
+	General tightening up use of const and types. Thanks to
+	the C++ porting experiment.
+
+	* array.c (null_array): Separate out multiple assignment of zero.
+	* awk.h: Add <math.h> here and pull it out of individual files.
+	(CONVFMT): Make const char *.
+	(quote): Make const char *.
+	(defpath): Make const char *.
+	(deflibpath): Make const char *.
+	(envsep): Make const char *.
+	(DO_FLAG_NONE): New zero enum value.
+	(getblock): Add a cast to the ty argument.
+	(make_regnode): First argument is now NODETYPE.
+	(gawk_name): Returns const char *.
+	* awkgram.y: Include argument types in read_func pointer.
+	(make_regnode): First argument is now NODETYPE.
+	* builtin.c (do_typeof): Use const char *.
+	(format_nan_inf): Move declaration of val to top of function.
+	* cmd.h (dbg_prompt, commands_prompt, eval_prompt, dgawk_prompt):
+	Make const char *.
+	(struct cmd_token): Use const char *. Rename `class' to `lex_class'.
+	* command.y (lex_class): Update all uses.
+	(find_command): Use const char *.
+	* debug.c (dbg_prompt, commands_prompt, eval_prompt, dgawk_prompt,
+	output_file): Make const char *.
+	(struct dbg_option): Use const char *.
+	(do_info): Use const char *. Cast stop.command to enum argtype.
+	(do_finish): Cast stop.command to enum argtype.
+	(do_return, do_until): Ditto.
+	(print_instruction, set_gawk_output, set_prompt): Add casts to
+	some function parameters.
+	* eval.c (update_ERRNO_int): Use const char *.
+	* gawk.api.c (valtype2str): Return const char *.
+	(api_get_argument): Use awk_true instead of true in return statements.
+	(awk_value_to_node): Move declaration of tval to top of function.
+	(api_release): Cast a_cookie to NODE *.
+	* gawkapi.h (struct awk_input): Include argument types in
+	read_func pointer.
+	* interpret.h (r_interpret): Add cast to argument in call to
+	do_getline_redir.
+	* io.c (read_with_timeout): Change second param to void * from char *.
+	(redirect_string): Add casts to function call parameters.
+	(path_info): Use const char *.
+	(init_awkpath): Ditto.
+	* main.c (CONVFMT, locale_dir): Now const char *.
+	(do_flags): Init to DO_FLAG_NONE instead of zero.
+	* mfpr.c (get_rnd_mode): Add cast to return value.
+	(set_round_mode): Add cast to assignment of rndm.
+	(do_mpfr_func): Include argument types in type of second parameter.
+	* node.c (r_make_number): Remove declaration of strtod.
+	* profile.c (pp_push): Add cast in assignment to n->type. Use
+	const char * for `pre' at Op_func_call.
+	* re.c (check_bracket_exp): Add cast to return from memchr.
+
 2021-01-07         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* builtin.c (format_tree): Generalize handling of invalid

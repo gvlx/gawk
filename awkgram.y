@@ -3090,7 +3090,7 @@ get_src_buf()
 	 * avoids problems with some ancient systems where
 	 * the types of arguments to read() aren't up to date.
 	 */
-	static ssize_t (*readfunc)() = 0;
+	static ssize_t (*readfunc)(int, void *, size_t) = NULL;
 
 	if (readfunc == NULL) {
 		char *cp = getenv("AWKREADFUNC");
@@ -3101,7 +3101,7 @@ get_src_buf()
 			 * cast is to remove warnings on systems with
 			 * different return types for read.
 			 */
-			readfunc = ( ssize_t(*)() ) read;
+			readfunc = ( ssize_t(*)(int, void *, size_t) ) read;
 		else
 			readfunc = read_one_line;
 	}
@@ -5261,7 +5261,7 @@ variable(int location, char *name, NODETYPE type)
 /* make_regnode --- make a regular expression node */
 
 NODE *
-make_regnode(int type, NODE *exp)
+make_regnode(NODETYPE type, NODE *exp)
 {
 	NODE *n;
 

@@ -1,3 +1,7 @@
+2021-01-08         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* random.h (initstate, setstate, srandom): Add declarations.
+
 2020-11-06         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* dfa.h, regex_internal.c, regex_internal.h: Synced from GNULIB.
