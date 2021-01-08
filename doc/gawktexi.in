@@ -54,7 +54,7 @@
 @c applies to and all the info about who's publishing this edition
 
 @c These apply across the board.
-@set UPDATE-MONTH September, 2020
+@set UPDATE-MONTH January, 2021
 @set VERSION 5.1
 @set PATCHLEVEL 0
 
@@ -280,13 +280,13 @@ Fax: +1-617-542-2652
 Email: <email>gnu@@gnu.org</email>
 URL: <ulink url="https://www.gnu.org">https://www.gnu.org/</ulink></literallayout>
 
-<literallayout class="normal">Copyright &copy; 1989, 1991, 1992, 1993, 1996&ndash;2005, 2007, 2009&ndash;2020
+<literallayout class="normal">Copyright &copy; 1989, 1991, 1992, 1993, 1996&ndash;2005, 2007, 2009&ndash;2021
 Free Software Foundation, Inc.
 All Rights Reserved.</literallayout>
 @end docbook
 
 @ifnotdocbook
-Copyright @copyright{} 1989, 1991, 1992, 1993, 1996--2005, 2007, 2009--2020 @*
+Copyright @copyright{} 1989, 1991, 1992, 1993, 1996--2005, 2007, 2009--2021 @*
 Free Software Foundation, Inc.
 @end ifnotdocbook
 @sp 2
@@ -6733,7 +6733,7 @@ if the input text that could match the trailing part is fairly long.
 @command{gawk} attempts to avoid this problem, but currently, there's
 no guarantee that this will never happen.
 
-@quotation NOTE
+@sidebar Caveats When Using Regular Expressions for @code{RS}
 Remember that in @command{awk}, the @samp{^} and @samp{$} anchor
 metacharacters match the beginning and end of a @emph{string}, and not
 the beginning and end of a @emph{line}.  As a result, something like
@@ -6741,7 +6741,13 @@ the beginning and end of a @emph{line}.  As a result, something like
 This is because @command{gawk} views the input file as one long string
 that happens to contain newline characters.
 It is thus best to avoid anchor metacharacters in the value of @code{RS}.
-@end quotation
+
+Record splitting with regular expressions works differently than
+regexp matching with the @code{sub()}, @code{gsub()}, and @code{gensub()}
+(@pxref{String Functions}).  Those functions allow a regexp to match the empty string;
+record splitting does not.  Thus, for example @samp{RS = "()"} does @emph{not}
+split records between characters.
+@end sidebar
 
 @cindex @command{gawk} @subentry @code{RT} variable in
 @cindex @code{RT} variable
@@ -7360,6 +7366,12 @@ $ @kbd{echo 'xxAA  xxBxx  C' |}
 @print{} -->xxBxx<--
 @print{} -->C<--
 @end example
+
+Finally, field splitting with regular expressions works differently than
+regexp matching with the @code{sub()}, @code{gsub()}, and @code{gensub()}
+(@pxref{String Functions}).  Those functions allow a regexp to match the
+empty string; field splitting does not.  Thus, for example @samp{FS =
+"()"} does @emph{not} split fields between characters.
 
 @node Single Character Fields
 @subsection Making Each Character a Separate Field
