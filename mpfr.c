@@ -3,7 +3,7 @@
  */
 
 /*
- * Copyright (C) 2012, 2013, 2015, 2017, 2018, 2019,
+ * Copyright (C) 2012, 2013, 2015, 2017, 2018, 2019, 2021
  * the Free Software Foundation, Inc.
  *
  * This file is part of GAWK, the GNU implementation of the
@@ -176,7 +176,7 @@ mpg_strtoui(mpz_ptr zi, char *str, size_t len, char **end, int base)
 		case '8':
 		case '9':
 			if (base == 8)
-				goto done;
+				base = 10;
 			break;
 		case 'a':
 		case 'b':

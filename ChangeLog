@@ -1,3 +1,19 @@
+2021-01-09         Arnold D. Robbins     <arnold@skeeve.com>
+
+	Fix problems turning something like 018 into decimal.
+	Thanks to Arkadiusz Drabczyk <arkadiusz@drabczyk.org> and to
+	Jean-Philippe Guérard <jean-philippe.guerard@xn--tigreray-i1a.org>
+	for the reports.
+
+	* builtin.c (nondec2awknum): Use a copy of len, in case we detect
+	8 or 9 and have to restart as decimal.
+	* mpfr.c (mpg_strtoui): For 8 or 9, set base to 10.
+
+	Unrelated:
+	* array.c, awk.h, awkgram., builtin.c, cmd.h, command.y, debug.c,
+	eval.c, gawk.api.c, gawkapi.h, interpret.h, io.c, main.c, mfpr.c,
+	node.c, profile.c, re.c: Update copyright year.
+
 2021-01-08         Arnold D. Robbins     <arnold@skeeve.com>
 
 	General tightening up use of const and types. Thanks to
