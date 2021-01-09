@@ -3,7 +3,7 @@
  */
 
 /*
- * Copyright (C) 1986, 1988, 1989, 1991-2020,
+ * Copyright (C) 1986, 1988, 1989, 1991-2021,
  * the Free Software Foundation, Inc.
  *
  * This file is part of GAWK, the GNU implementation of the
@@ -3684,7 +3684,9 @@ nondec2awknum(char *str, size_t len, char **endptr)
 		if (endptr)
 			*endptr = str;
 	} else if (len >= 1 && *str == '0') {
-		for (; len > 0; len--) {
+		int l;
+		// preserve len in case we go to decimal
+		for (l = len; l > 0; l--) {
 			if (! isdigit((unsigned char) *str)) {
 				if (endptr)
 					*endptr = str;

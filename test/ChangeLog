@@ -1,3 +1,8 @@
+2021-01-09         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.am (EXTRA_DIST): octdec, new test.
+	* octdec.awk, octdec.ok: New files.
+
 2021-01-07         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* Makefile.am (EXTRA_DIST): modifiers, new test.
