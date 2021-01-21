@@ -42144,7 +42144,7 @@ The source code for @command{gawk} generally attempts to adhere to formal
 standards wherever possible.  This means that @command{gawk} uses library
 routines that are specified by the ISO C standard and by the POSIX
 operating system interface standard.
-The @command{gawk} source code requires using an ISO C compiler (the 1990
+The @command{gawk} source code requires using an ISO C compiler (the 1999
 standard).
 
 Many Unix systems do not support all of either the ISO or the
@@ -43082,6 +43082,10 @@ To get @command{awka}, go to @url{https://sourceforge.net/projects/awka}.
 The project seems to be frozen; no new code changes have been made
 since approximately 2001.
 
+@item Revive Awka
+This project, available at @uref{https://github.com/noyesno/awka},
+intends to fix bugs in @command{awka} and add more features.
+
 @cindex Beebe, Nelson H.F.@:
 @cindex @command{pawk} (profiling version of Brian Kernighan's @command{awk})
 @cindex source code @subentry @command{pawk} (profiling version of Brian Kernighan's @command{awk})
@@ -43126,6 +43130,16 @@ However, that project was ended and the website shut down.  Fortunately, the
 makes this implementation available.  You can view the files one at a time from
 @uref{https://github.com/joyent/illumos-joyent/blob/master/usr/src/cmd/awk_xpg4}.
 
+@cindex @command{frawk}
+@cindex source code @subentry @command{frawk}
+@item @command{frawk}
+This is a language for writing short programs.  ``To a first
+approximation, it is an implementation of the AWK language;
+many common @command{awk} programs produce equivalent output
+when passed to @command{frawk}.''  However, it has a number of
+important additional features.  The code is available at
+@uref{https://github.com/ezrosent/frawk}.
+
 @cindex @command{goawk}
 @cindex Go implementation of @command{awk}
 @cindex source code @subentry @command{goawk}
@@ -43147,7 +43161,12 @@ This is an interpreter for @command{awk} written in Java. It claims
 to be a full interpreter, although because it uses Java facilities
 for I/O and for regexp matching, the language it supports is different
 from POSIX @command{awk}.  More information is available on the
-@uref{https://jawk.sourceforge.net, project's home page}.
+@uref{http://jawk.sourceforge.net, project's home page}.
+
+@item Hoijui's @command{jawk}
+This project, available at @uref{https://github.com/hoijui/Jawk},
+is another @command{awk} interpreter written in Java. It uses
+modern Java build tools.
 
 @item Libmawk
 @cindex libmawk
@@ -43197,6 +43216,9 @@ See also the ``Versions and implementations'' section of the
 Wikipedia article} on @command{awk} for information on additional versions.
 
 @end table
+
+An interesting collection of library functions is available
+at @uref{https://github.com/e36freak/awk-libs}.
 
 @node Installation summary
 @appendixsec Summary
