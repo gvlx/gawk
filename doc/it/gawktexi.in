@@ -56,7 +56,7 @@
 @c applies to and all the info about who's publishing this edition
 
 @c These apply across the board.
-@set UPDATE-MONTH Settembre 2020
+@set UPDATE-MONTH Gennaio 2021
 @set VERSION 5.1
 @set PATCHLEVEL 0
 
@@ -76,6 +76,7 @@
 @iftex
 @set DOCUMENT libro
 @set CHAPTER capitolo
+@set CHAPTERS capitoli
 @set APPENDIX appendice
 @set SECTION sezione
 @set SECTIONS sezioni
@@ -93,6 +94,7 @@
 @ifinfo
 @set DOCUMENT File Info
 @set CHAPTER nodo principale
+@set CHAPTERS nodi principali
 @set APPENDIX nodo principale
 @set SECTION nodo secondario
 @set SECTIONS nodi secondari
@@ -105,6 +107,7 @@
 @ifhtml
 @set DOCUMENT Documento
 @set CHAPTER capitolo
+@set CHAPTERS capitoli
 @set APPENDIX appendice
 @set SECTION sezione
 @set SECTIONS sezioni
@@ -117,6 +120,7 @@
 @ifdocbook
 @set DOCUMENT libro
 @set CHAPTER capitolo
+@set CHAPTERS capitoli
 @set APPENDIX appendice
 @set SECTION sezione
 @set SECTIONS sezioni
@@ -129,6 +133,7 @@
 @ifxml
 @set DOCUMENT libro
 @set CHAPTER capitolo
+@set CHAPTERS capitoli
 @set APPENDIX appendice
 @set SECTION sezione
 @set SECTIONS sezioni
@@ -141,6 +146,7 @@
 @ifplaintext
 @set DOCUMENT libro
 @set CHAPTER capitolo
+@set CHAPTERS capitoli
 @set APPENDIX appendice
 @set SECTION sezione
 @set SECTIONS sezioni
@@ -309,7 +315,7 @@ Some comments on the layout for TeX.
 Tel.: +1-617-542-5942 Fax: +1-617-542-2652 Email: <email>gnu@@gnu.org</email>
 URL: <ulink url="https://www.gnu.org">https://www.gnu.org/</ulink></literallayout>
 
-<literallayout class="normal">Copyright &copy; 1989, 1991, 1992, 1993, 1996&ndash;2005, 2007, 2009&ndash;2020
+<literallayout class="normal">Copyright &copy; 1989, 1991, 1992, 1993, 1996&ndash;2005, 2007, 2009&ndash;2021
 Free Software Foundation, Inc.
 All Rights Reserved.
 </literallayout>
@@ -331,7 +337,7 @@ Italian Linux Documentation Project (ILDP)
 Email: <emailildp@@pluto.it
 URL: <ulink url="http://www.pluto.it/ildp">http://www.pluto.it/ildp/</ulink></literallayout>
 
-<literallayout class="normal">Copyright &copy; 2016&ndash;2020
+<literallayout class="normal">Copyright &copy; 2016&ndash;2021
 Free Software Foundation, Inc.
 All Rights Reserved.
 </literallayout>
@@ -339,7 +345,7 @@ All Rights Reserved.
 
 @ifnotdocbook
 @iftex
-Copyright @copyright{} 1989, 1991, 1992, 1993, 1996--2005, 2007, 2009--2020 @*
+Copyright @copyright{} 1989, 1991, 1992, 1993, 1996--2005, 2007, 2009--2021 @*
 Free Software Foundation, Inc.
 @end iftex
 @end ifnotdocbook
@@ -687,7 +693,7 @@ Copyright dell'edizione italiana @copyright{} 2016 -- Free Software Foundation, 
 * Separazione in base al contenuto::    Definire campi dal loro contenuto.
 * File CSV::                            Ancora sui file CSV.
 * Controllare la creazione di campi::   Controllare come @command{gawk} sta
-                                        dividendo i record.
+                                        suddividendo i record.
 * Righe multiple::                      Record su righe multiple
 * Getline::                             Richiedere input usando @code{getline}.
 * Getline semplice::                    Usare @code{getline} senza argomenti.
@@ -1005,6 +1011,7 @@ Copyright dell'edizione italiana @copyright{} 2016 -- Free Software Foundation, 
                                         programmazione di rete.
 * Profilare::                           Profilare i propri programmi
                                         @command{awk}.
+* Filosofia delle estensioni::          Cosa dovrebbe essere incluso e cosa no.
 * Sommario funzionalit@`a avanzate::    Sommario funzionalit@`a avanzate.
 * I18N e L10N::                         Internazionalizzazione e localiz.
 * Utilizzare @command{gettext}::        Come funziona GNU @code{gettext}.
@@ -3260,7 +3267,7 @@ Le ``shell'' nei sistemi Microsoft Windows usano il carattere doppio apice
 per protezione, e rendono difficile o impossibile inserire un carattere
 doppio apice letterale in uno @dfn{script} scritto su una riga di comando.
 L'esempio che segue, per il quale ringraziamo Jeroen Brink, mostra come
-proteggere i doppi apici, con questo script di una sola riga, che stampa
+proteggere i doppi apici, con questo @dfn{script} di una sola riga, che stampa
 tutte le righe di un file, racchiudendole tra doppi apici:
 
 @example
@@ -6386,7 +6393,7 @@ che occupano un unico byte (caratteri il cui valore stia
 nell'intervallo 0--256).  Per individuare un intervallo di
 caratteri in cui i punti di inizio e fine dell'intervello
 abbiano valori maggiori di 256, occorre immettere direttamente
-le codifiche multi-byte dei caratteri in questione.
+le codifiche multibyte dei caratteri in questione.
 
 @cindex @code{\} (barra inversa) @subentry in espressioni tra parentesi quadre
 @cindex barra inversa (@code{\}) @subentry in espressioni tra parentesi quadre
@@ -6525,7 +6532,7 @@ sono equivalenti).  Queste sequenze sono:
 @cindex espressioni @subentry tra parentesi quadre @subentry elementi di collazione
 @cindex elementi @subentry di collazione
 @item elementi di collazione
-Elementi di collazione multi-byte racchiusi fra
+Elementi di collazione multibyte racchiusi fra
 @samp{[.} e @samp{.]}.  Per esempio, se @samp{ch} @`e un elemento di collazione,
 @samp{[[.ch.]]} @`e una @dfn{regexp} che individua questo elemento di
 collazione, mentre @samp{[ch]} @`e una @dfn{regexp} che individua le lettere
@@ -7098,7 +7105,7 @@ getline (@pxref{Getline}).
 * Dimensione costante::              Leggere campi di larghezza costante.
 * Separazione in base al contenuto:: Definire campi dal loro contenuto.
 * Controllare la creazione di campi:: Controllare come @command{gawk} sta
-                                     dividendo i record.
+                                     suddividendo i record.
 * Righe multiple::                   Leggere record che sono su pi@`u righe.
 * Getline::                          Leggere file sotto il controllo del
                                      programma, usando la funzione
@@ -7276,23 +7283,6 @@ in questione non viene trattato come tale, ma viene usato letteralmente.
 Ci@`o viene fatto per compatibilit@`a all'indietro sia con il comando
 Unix @command{awk} che con lo standard POSIX.
 
-Quando si usano caratteri normali come separatore di record,
-c'@`e un caso insolito che capita quando @command{gawk}
-@`e reso completamente conforme a POSIX (@pxref{Opzioni}).
-In quel caso, la seguente (estrema) @dfn{pipeline} stampa un sorprendente
-@samp{1}:
-
-@example
-$ echo | gawk --posix 'BEGIN @{ RS = "a" @} ; @{ print NF @}'
-@print{} 1
-@end example
-
-C'@`e un solo campo, consistente in un ritorno a capo.  Il valore della
-variabile predefinita @code{NF} @`e il numero di campi nel record corrente.
-(Normalmente @command{gawk} tratta il ritorno a capo come uno spazio
-vuoto, stampando @samp{0} come risultato.  Anche molte altre versioni di
-@command{awk} agiscono in questo modo.)
-
 @cindex angolo buio @subentry file in input
 Il raggiungimento della fine di un file in input fa terminare il record di
 input corrente, anche se l'ultimo carattere nel file non @`e il carattere in
@@ -7389,7 +7379,7 @@ particolare se il testo di input che potrebbe avere una corrispondenza con la
 parte finale @`e piuttosto lungo.  @command{gawk} cerca di evitare questo
 problema, ma al momento non ci sono garanzie che questo funzioni sempre.
 
-@quotation NOTA
+@sidebar Avvertenze per quando si usano espressioni regolari come @code{RS}
 Si ricordi che in @command{awk}, i metacaratteri di ancoraggio @samp{^} e
 @samp{$} trovano l'inizio e la fine di una @emph{stringa}, e non l'inizio e la
 fine di una @emph{riga}.  Come risultato, qualcosa come
@@ -7397,7 +7387,15 @@ fine di una @emph{riga}.  Come risultato, qualcosa come
 Questo perch@'e @command{gawk} vede il file in input come un'unica lunga stringa
 in cui possono essere presenti dei caratteri di ritorno a capo.
 @`E meglio perci@`o evitare metacaratteri di ancoraggio nel valore di @code{RS}.
-@end quotation
+
+La suddivisione in campi usando espressioni regolari funziona in maniera
+differente di quando la si usa con le funzioni @code{sub()}, @code{gsub()}, e
+@code{gensub()} (@pxref{Funzioni per stringhe}). Tali funzioni consentono
+che un'espressione regolare sia soddisfatta da una stringa nulla;
+La suddivisione in campi non lo consente.  Quindi, per esempio,
+@samp{RS = "()"} @emph{non} divide un record in campi di un carattere
+ciascuno.
+@end sidebar
 
 @cindex @command{gawk} @subentry variabile @subentry @code{RT} in
 @cindex @code{RT} (variabile)
@@ -8036,6 +8034,15 @@ $ @kbd{echo 'xxAA  xxBxx  C' |}
 @print{} -->C<--
 @end example
 
+Inoltre,
+la suddivisione in campi usando espressioni regolari funziona in maniera
+differente di quando la si usa con le funzioni @code{sub()}, @code{gsub()}, e
+@code{gensub()} (@pxref{Funzioni per stringhe}). Tali funzioni consentono
+che un'espressione regolare sia soddisfatta da una stringa nulla;
+La suddivisione in campi non lo consente.  Quindi, per esempio,
+@samp{RS = "()"} @emph{non} divide un record in campi di un carattere
+ciascuno.
+
 @node Campi di un solo carattere
 @subsection Fare di ogni carattere un campo separato
 
@@ -8594,6 +8601,10 @@ parole, @code{FS} definisce cosa un campo @emph{non @`e}, invece di cosa
 Tuttavia, ci sono casi in cui effettivamente si ha bisogno di definire i campi
 in base a cosa essi sono, e non in base a cosa non sono.
 
+@cindex dati CSV (valori separati da virgole) @subentry analizzare con @code{FPAT}
+@cindex CSV (valori separati da virgole) come dati @subentry analizzare con @code{FPAT}
+@cindex Comma Separated Values (CSV) come dati @subentry analizzare con @code{FPAT}
+@cindex valori separati da virgole (CSV) come dati @subentry analizzare con @code{FPAT}
 Il caso pi@`u emblematico @`e quello dei dati cosiddetti @dfn{comma-separated
 value} (CSV).  Molti fogli elettronici, per esempio, possono esportare i dati
 in file di testo, dove ogni record termina con un ritorno a capo e i campi
@@ -8791,8 +8802,20 @@ $ @kbd{gawk -v fpat=2 -f test-csv.awk sample.csv}
 @print{} NF = 3 <p><><s>
 @end example
 
+@cindex Collado, Manuel
+@cindex @code{CSVMODE}, libreria per @command{gawk}
+@cindex libreria @code{CSVMODE} per @command{gawk}
+@cindex dati CSV (valori separati da virgole) @subentry analizzare con libreria @code{CSVMODE}
+@cindex CSV (valori separati da virgole) come dati @subentry analizzare con libreria @code{CSVMODE}
+@cindex valori separati da virgole (CSV) come dati @subentry analizzare con libreria @code{CSVMODE}
+In generale, usare @code{FPAT} per effettuare l'analisi di dati in formato CSV
+@`e come utilizzare un lenzuolo troppo corto.  Rimane sempre un angolo che non
+@`e coperto.  Si raccomanda, in alternativa, di usare la libreria @code{CSVMODE} 
+messa a disposizione da Manuel Collado.  Vedere:
+@uref{http://mcollado.z15.es/xgawk/, @code{CSVMODE} libreria per @command{gawk}}.
+
 @node Controllare la creazione di campi
-@section Controllare come @command{gawk} sta dividendo i record
+@section Controllare come @command{gawk} sta suddividendo i record
 
 @cindex @command{gawk} @subentry separazione in campi e
 Come visto sopra, @command{gawk} fornisce tre metodi indipendenti per
@@ -26202,12 +26225,12 @@ possono essere separati da virgole, e intervalli di caratteri possono essere
 separated da trattini.  La lista
 @samp{1-8,15,22-35} specifica i caratteri da 1 a 8, 15, e da 22 a 35.
 
-@item -f @var{lista}
-Usare @var{lista} come lista di campi da ritagliare.
-
 @item -d @var{delimitatore}
 Usare @var{delimitatore} come carattere che separa i campi invece del
 carattere TAB.
+
+@item -f @var{lista}
+Usare @var{lista} come lista di campi da ritagliare.
 
 @item -s
 Evita la stampa di righe che non contengono il delimitatore di campo.
@@ -26218,6 +26241,12 @@ di libreria @code{getopt()}
 (@pxref{Funzione getopt})
 e la funzione di libreria @code{join()}
 (@pxref{Funzione join}).
+
+La versione POSIX corrente del comando @command{cut} prevede opzioni
+per ritagliare dei campi che possono essere sia byte che caratteri
+[possibilmente multibyte].  Questa versione non tenta di implementare
+tali opzioni, poich@'e @command{awk} lavora esclusivamente in termini
+di caratteri.
 
 Il programma inizia con un commento che descrive le opzioni, le funzioni
 di libreria necessarie, e una funzione @code{sintassi()} che stampa un
@@ -26240,9 +26269,9 @@ argomenti non validi:
 @c file eg/prog/cut.awk
 
 # Opzioni:
+#    -c lista    Ritagliare caratteri
 #    -f lista    Ritagliare campi
 #    -d c        Carattere di delimitazione di campo
-#    -c lista    Ritagliare caratteri
 #
 #    -s          Sopprimere righe che non contengono il delimitatore
 #
@@ -26318,7 +26347,7 @@ un semplice spazio (@code{@w{" "}}) come valore per @code{FS} @`e
 sbagliato: @command{awk} separerebbe i campi con serie di spazi,
 TAB, e/o ritorni a capo, mentre devono essere separati solo da uno spazio.
 Per far questo, salviamo il carattere di spazio originale nella variabile
-@code{fs} per un uso futuro; dopo aver impostato @code{FS} a @code{"[ ]"} non
+@code{fs} per un uso futuro; dopo aver impostato @code{FS} a @code{@w"[ ]"} non
 @`e possibile usarlo direttamente per vedere se il carattere delimitatore di
 campo @`e nella stringa.
 
@@ -26636,14 +26665,17 @@ BEGIN @{
 
 @noindent
 Si noti il commento relativo alla chiamata del programma:
-Poich@'e parecchie opzioni possono essere sepcificate anche per
+Poich@'e parecchie opzioni possono essere specificate anche per
 @command{gawk}, occorre immettere @option{--} per far s@`@{dotless{i}} che
 @command{gawk} non prosegua nell'analisi delle opzioni.
 
 Nel seguito c'@`e il codice che gestisce il comportamento specifico di
-@command{egrep}.  Se non @`e fornito esplicitamente alcun criterio di ricerca
-tramite l'opzione @option{-e}, si usa il primo argomento sulla riga di
-comando che non sia un'opzione.
+@command{egrep}.  @command{egrep} utilizza il primo argomento sulla
+riga di comando che non sia un'opzione, se non @`e fornito esplicitamente
+alcun criterio di ricerca tramite l'opzione @option{-e}.
+Se il criterio di ricerca @`e la stringa nulla, ci@`o significa che non
+@`e stato fornito alcun criterio, quindi @`e necessario stampare un
+messaggio di errore e terminare il programma.
 Gli argomenti della riga di comando di @command{awk} fino ad
 @code{ARGV[Optind]} vengono cancellati,
 in modo che @command{awk} non tenti di elaborarli come file.  Se
@@ -26737,9 +26769,9 @@ verificando i valori delle variabili @code{RSTART} e @code{RLENGTH}.
 Se questi indicano che la corrispondenza non coincide con l'intera
 riga, la variabile @code{corrisponde} @`e impostata a zero (falsa).
 
-Se l'utente chiede invece le righe che @emph{non} corrispondono,
-il senso di @code{corrisponde} @`e invertito, usando l'operatore @samp{!}.
-@code{contatore_file} @`e incrementato con il valore di
+Se l'utente chiede invece le righe che non corrispondono, si inverte
+il senso di @code{corrisponde}, usando l'operatore @samp{!}.
+Poi, @code{contatore_file} @`e incrementato con il valore di
 @code{corrisponde}, che vale uno o zero, a seconda che la corrispondenza sia
 stata trovata oppure no.  Se la riga non corrisponde, l'istruzione
 @code{next} passa ad esaminare il record successivo.
@@ -27288,7 +27320,9 @@ Ecco un'implementazione di @command{split} in @command{awk}.  Viene utilizzata
 la funzione @code{getopt()} presentata in @ref{Funzione getopt}.
 
 Il programma inizia con un commento descrittivo e poi con la
-funzione @code{sintassi()} che ne descrive le opzioni:
+funzione @code{sintassi()} che ne descrive le opzioni.  La variabile
+@code{comune} permettere di avere delle righe brevi nella funzione,
+in modo che sia stampata in maniera elegante nella pagina:
 
 @cindex @code{split.awk} (programma)
 @cindex programma @subentry @code{split.awk}
@@ -27309,10 +27343,11 @@ funzione @code{sintassi()} che ne descrive le opzioni:
 @c endfile
 @end ignore
 @c file eg/prog/split.awk
-function sintassi()
+function sintassi(              comune)
 @{
-    print("Uso: split [-l contatore]  [-a lunghezza-suffisso] [file [nome-output-file]]") > "/dev/stderr"
-    print("     split [-b N[k|m]] [-a lunghezza-suffisso] [file [nome-output-file]]") > "/dev/stderr"
+    common = "[-a lunghezza-suffisso] [file [nome-output-file]]"
+    printf("Uso: split [-l contatore] %s\n", comune) > "/dev/stderr"
+    printf("     split [-b N[k|m]]    %s\n", comune) > "/dev/stderr"
     exit 1
 @}
 @c endfile
@@ -27804,7 +27839,8 @@ spiegazione delle opzioni e del loro significato, sotto forma di commenti:
 
 function sintassi()
 @{
-    print("Uso: uniq [-udc [-f campi]] [-s caratteri] [ in [ out ]]") > "/dev/stderr"
+    print("Uso: uniq [-udc [-f campi] [-s caratteri]] " \
+          "[ in [ out ]]") > "/dev/stderr"
     exit 1
 @}
 
@@ -28066,7 +28102,7 @@ Klingon e il linguaggio degli elfi di J.R.R.@: Tolkien).
 Per risparmiare spazio nei file, i @dfn{code points} Unicode sono
 @dfn{codificati}, e la rappresentazione di ogni carattere pu@`o richiedere
 da uno a quattro byte nel file.  UTF-8 @`e verosimilmente la pi@`u diffusa
-fra queste codifiche multi-byte (@dfn{multibyte encodings}).
+fra queste codifiche multibyte (@dfn{multibyte encodings}).
 
 Lo standard POSIX richiede che @command{awk} gestisca dei caratteri,
 non dei byte.  Per questo motivo, in @command{gawk}, le funzioni
@@ -28094,7 +28130,7 @@ Per quanto riguarda
 @file{wc.awk}, @`e sufficiente sapere che l'estensione viene caricata
 con la direttiva @code{@@load}, e la funzione ulteriore che dovr@`a essere
 usata si chiama @code{mbs_length()}.  Questa funzione restiuisce il numero
-di byte in una stringa, e non il numero di caratteri.
+di byte in una stringa, non il numero di caratteri.
 
 L'estensione @code{"mbs"} fa parte del progetto @code{gawkextlib}.
 @xref{gawkextlib} for ulteriori informazioni.
@@ -28113,23 +28149,23 @@ standard input. Se ci sono pi@`u file, stampa anche il contatore totale di
 tutti i file.  Le opzioni e il loro significato sono i seguenti:
 
 @table @code
-@item -l
-Conta solo le righe.
-
-@item -w
-Conta solo le parole.
-Una ``parola'' @`e una sequenza contigua di caratteri non bianchi, separata da
-spazi e/o TAB.  Fortunatamente, questo @`e il modo normale in cui @command{awk}
-separa i campi nei suoi record in input.
-
 @item -c
 Conta solo i byte.
 Un tempo, la lettera @samp{c} di questa opzione stava per ``caratteri.''
 Ma, come spiegato pi@`u sopra, byte e carattere non sono pi@`u sinonimi
 tra loro.
 
+@item -l
+Conta solo le righe.
+
 @item -m
 Conta solo caratteri.
+
+@item -w
+Conta solo le parole.
+Una ``parola'' @`e una sequenza contigua di caratteri non bianchi, separata da
+spazi e/o TAB.  Fortunatamente, questo @`e il modo normale in cui @command{awk}
+separa i campi nei suoi record in input.
 @end table
 
 L'implementazione di @command{wc} in @command{awk} @`e particolarmente
@@ -30621,6 +30657,7 @@ tratta della capacit@`a di aggiungere dinamicamente nuove funzioni predefinite a
                                 processo.
 * Reti TCP/IP::                 Usare @command{gawk} per programmazione di rete.
 * Profilare::                   Profilare i propri programmi @command{awk}.
+* Filosofia delle estensioni::  Cosa dovrebbe essere incluso e cosa no.
 * Sommario funzionalit@`a avanzate:: Sommario delle funzionalit@`a avanzate.
 @end menu
 
@@ -31968,6 +32005,66 @@ delle costanti numeriche; se sono stati usati dei valori ottali o esadecimali
 nel codice sorgente, questi compariranno nell'output nello stesso
 formato con cui sono stati inseriti.
 
+@node Filosofia delle estensioni
+@section Funzionalit@`a incluse vs.@: estensioni
+
+Come descritto in questo e nei successivi @value{CHAPTERS},
+@command{gawk} ha numerose estensioni ulteriori,
+rispetto a quelle presenti nel comando @command{awk} standard.
+Queste sono state sviluppate col passare del tempo.
+Pi@`u recentemente, l'attenzione si @`e spostata sull'utilizzo
+del meccanismo delle estensioni (@pxref{Estensioni dinamiche}),
+per aggiungere ulteriori funzionalit@`a.
+@ifnotinfo
+Questa @value{SECTION}
+@end ifnotinfo
+@ifinfo
+Questo @value{SECTION}
+@end ifinfo
+tratta della ``filosofia ispiratrice'' riguardo a ci@`o che dovrebbe
+essere aggiunto all'interprete come funzionalit@`a interna,
+rispetto a quello che dovrebbe essere reso disponibile con delle
+estensioni.
+
+Ci sono parecchi obiettivi:
+
+@enumerate 1
+@item
+Conservare il comando @command{awk}; non dovrebbe divenire irriconoscibile
+anche se i programmi scritti per esso verranno eseguito solo usando
+@command{gawk}.
+
+@item
+Non aumentare le dimensioni del nucleo del programma, a meno che ci@`o
+sia assolutamente indispensabile.
+
+@item
+Aggiungere nuove funzionalit@`a o tramite @dfn{script}
+(opzione @option{-f}, direttiva @code{@@include})
+o in un'estensione caricabile scritta in C o C++
+(opzione @option{-l}, direttiva @code{@@load}).
+
+@item
+Estendere il nucleo dell'interpretatore solo se qualche funzionalit@`a @`e:
+
+@c sublist
+@enumerate A
+@item
+Veramente desiderabile.
+@item
+Non si pu@`o fare tramite i punti (2) o (3) sopra elencati.
+@item
+Pu@`o essere aggiunta al nucleo senza troppe difficolt@`a.
+@end enumerate
+@end enumerate
+
+Combinare dei moduli con dei file @command{awk} @`e una tecnica efficace.
+Lo si pu@`o vedere in alcuni degli esempi di estensione.
+
+Il caricamento di estensioni e file di libreria non dovrebbe essere
+fatto automaticamente, perch@'e questo richiede un consumo di risorse
+che molti utenti non desiderano, o di cui non hanno bisogno.
+
 @node Sommario funzionalit@`a avanzate
 @section Sommario
 
@@ -32017,7 +32114,12 @@ profilazione @command{gawk} scrive il profilo, includendo lo
 @item
 Si pu@`o anche fare solo una ``stampa elegante'' del programma.
 
+@item
+Nuove funzionalit@`a dovrebbero essere sviluppate usando, se possibile,
+il meccanismo delle estensioni, ed essere aggiunte al nucleo
+dell'interpretatore solo come ultima risorsa.
 @end itemize
+
 @node Internazionalizzazione
 @chapter Internazionalizzazione con @command{gawk}
 
@@ -38263,7 +38365,7 @@ I campi sono:
 @table @code
 @item awk_bool_t use_chars;
 Impostare ad @code{awk_true} se le lunghezze di campo sono specificate in
-unit@`a di caratteri potenzialmente multi-byte, oppure impostarlo a
+unit@`a di caratteri potenzialmente multibyte, oppure impostarlo a
 @code{awk_false} se le lunghezze sono espresse in numero di byte.
 L'efficienza del programma sar@`a maggiore utilizzando la dimensione in byte.
 
@@ -44630,7 +44732,7 @@ Il codice sorgente di @command{gawk}, in generale, cerca di aderire, nei limiti
 del possibile, a degli standard formali.  Ci@`o significa che @command{gawk} usa
 routine di libreria che sono specificate nello standard ISO C e nello standard
 POSIX per le interfacce dei sistemi operativi.  Il codice sorgente di
-@command{gawk} richiede l'uso di un compilatore ISO C (standard 1990).
+@command{gawk} richiede l'uso di un compilatore ISO C (standard 1999).
 
 Molti sistemi Unix non aderiscono completamente n@'e allo standard ISO n@'e a
 quello POSIX.  La sottodirectory @file{missing_d} nella distribuzione di
@@ -45651,6 +45753,10 @@ il sito @url{https://sourceforge.net/projects/awka}.
 Il progetto sembra essere stato congelato; non ci sono state modifiche nel
 codice sorgente dal 2001 circa.
 
+@item Resuscitare Awka
+Questo progetto, disponibile nel sito @uref{https://github.com/noyesno/awka},
+si propone di fissare bug in @command{awka} e di aggiungere nuove funzionalit@`a.
+
 @cindex Beebe, Nelson H.F.@:
 @cindex @command{pawk} (versione con profilazione di Brian Kernighan @command{awk})
 @cindex codice sorgente @subentry @command{pawk}
@@ -45704,6 +45810,17 @@ il progetto
 mette a disposizione questa implementazione.  Si possono vedere i singoli file in
 @uref{https://github.com/joyent/illumos-joyent/blob/master/usr/src/cmd/awk_xpg4}.
 
+@cindex @command{frawk}
+@cindex sorgente @subentry codice @subentry @command{frawk}
+@cindex codice sorgente @subentry @command{frawk}
+@item @command{frawk}
+Questo @`e un linguaggio per scrivere programmi corti.
+``In prima approssimazione, @`e un'implementazione del linguaggio AWK;
+molti comuni programmi @command{awk} producono un output equivalente
+quando passati a @command{frawk}.''  Comunque, ha anche numerose e
+importanti funzionalit@`a ulteriori.  Il codice sorgente @`e disponibile
+sul sito @uref{https://github.com/ezrosent/frawk}.
+
 @cindex @command{goawk}
 @cindex Go @subentry implementazione di @command{awk}
 @cindex sorgente @subentry @command{goawk}
@@ -45730,7 +45847,13 @@ essere un interprete completo, anche se, poich@'e usa funzionalit@`a di Java
 per l'I/O e per la ricerca di @dfn{regexp}, il linguaggio che supporta
 @`e differente da @command{awk} POSIX.
 Ulteriori informazioni sono disponibili sulla
-@uref{https://jawk.sourceforge.net, pagina principale del progetto}.
+@uref{http://jawk.sourceforge.net, pagina principale del progetto}.
+
+@item Hoijui's @command{jawk}
+Questo progetto, disponibili sul sito
+@uref{https://github.com/hoijui/Jawk},
+@`e un altro interpretatore di @command{awk} scritto in Java.
+Usa i moderni strumenti di sviluppo software di Java.
 
 @item Libmawk
 @cindex @command{libmawk} (interpretatore)
@@ -45744,7 +45867,6 @@ Questo @`e un interprete @command{awk} incorporabile, derivato da
 @cindex interpretatore @command{awk} incorporabile @subentry codice sorgente
 @cindex Neacsu, Mircea
 @item @command{awk} incorporabile di Mircea Neacsu
-@item incorporabile, @command{awk}, di Mircea Neacsu
 Mircea Neacsu ha creato un interpretatore @command{awk}
 incorporabile, basato su BWK @command{awk}.  @`E disponibile
 nel sito @uref{https://github.com/neacsum/awk}.
@@ -45788,6 +45910,9 @@ della voce di
 Wikipedia} su @command{awk} per informazioni su ulteriori versioni.
 
 @end table
+
+Un'interessante raccolta di funzioni di libreria @`e disponibile sul sito
+@uref{https://github.com/e36freak/awk-libs}.
 
 @node Sommario dell'installazione
 @appendixsec Sommario
