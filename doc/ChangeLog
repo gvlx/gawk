@@ -1,3 +1,12 @@
+2021-01-23         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.in: A number of small fixes, thanks to
+	Antonio Columbo.
+
+	Unrelated:
+
+	* texinfo.tex: Updated via GNULIB.
+
 2021-01-21         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawktexi.in (Other Versions): Add information on more

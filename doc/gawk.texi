@@ -12740,17 +12740,17 @@ For maximum portability, do not use the @samp{**=} operator.
 @end docbook
 
 @cindex dark corner @subentry regexp constants @subentry @code{/=} operator and
-@cindex @code{/} (forward slash) @subentry @code{/=} operator @subentry vs. @code{/=@dots{}/} regexp constant
-@cindex forward slash (@code{/}) @subentry @code{/=} operator @subentry vs. @code{/=@dots{}/} regexp constant
+@cindex @code{/} (forward slash) @subentry @code{/=} operator @subentry vs.@: @code{/=@dots{}/} regexp constant
+@cindex forward slash (@code{/}) @subentry @code{/=} operator @subentry vs.@: @code{/=@dots{}/} regexp constant
 @cindex regexp constants @subentry @code{/=@dots{}/} @subentry @code{/=} operator and
 
 @c derived from email from  "Nelson H. F. Beebe" <beebe@math.utah.edu>
 @c Date: Mon, 1 Sep 1997 13:38:35 -0600 (MDT)
 
-@cindex dark corner @subentry @code{/=} operator vs. @code{/=@dots{}/} regexp constant
-@cindex ambiguity, syntactic: @code{/=} operator vs. @code{/=@dots{}/} regexp constant
-@cindex syntactic ambiguity: @code{/=} operator vs. @code{/=@dots{}/} regexp constant
-@cindex @code{/=} operator vs. @code{/=@dots{}/} regexp constant
+@cindex dark corner @subentry @code{/=} operator vs.@: @code{/=@dots{}/} regexp constant
+@cindex ambiguity, syntactic: @code{/=} operator vs.@: @code{/=@dots{}/} regexp constant
+@cindex syntactic ambiguity: @code{/=} operator vs.@: @code{/=@dots{}/} regexp constant
+@cindex @code{/=} operator vs.@: @code{/=@dots{}/} regexp constant
 There is a syntactic ambiguity between the @code{/=} assignment
 operator and regexp constants whose first character is an @samp{=}.
 @value{DARKCORNER}
@@ -12786,17 +12786,17 @@ and @command{mawk} also do not.
 
 
 @cindex dark corner @subentry regexp constants @subentry @code{/=} operator and
-@cindex @code{/} (forward slash) @subentry @code{/=} operator @subentry vs. @code{/=@dots{}/} regexp constant
-@cindex forward slash (@code{/}) @subentry @code{/=} operator @subentry vs. @code{/=@dots{}/} regexp constant
+@cindex @code{/} (forward slash) @subentry @code{/=} operator @subentry vs.@: @code{/=@dots{}/} regexp constant
+@cindex forward slash (@code{/}) @subentry @code{/=} operator @subentry vs.@: @code{/=@dots{}/} regexp constant
 @cindex regexp constants @subentry @code{/=@dots{}/} @subentry @code{/=} operator and
 
 @c derived from email from  "Nelson H. F. Beebe" <beebe@math.utah.edu>
 @c Date: Mon, 1 Sep 1997 13:38:35 -0600 (MDT)
 
-@cindex dark corner @subentry @code{/=} operator vs. @code{/=@dots{}/} regexp constant
-@cindex ambiguity, syntactic: @code{/=} operator vs. @code{/=@dots{}/} regexp constant
-@cindex syntactic ambiguity: @code{/=} operator vs. @code{/=@dots{}/} regexp constant
-@cindex @code{/=} operator vs. @code{/=@dots{}/} regexp constant
+@cindex dark corner @subentry @code{/=} operator vs.@: @code{/=@dots{}/} regexp constant
+@cindex ambiguity, syntactic: @code{/=} operator vs.@: @code{/=@dots{}/} regexp constant
+@cindex syntactic ambiguity: @code{/=} operator vs.@: @code{/=@dots{}/} regexp constant
+@cindex @code{/=} operator vs.@: @code{/=@dots{}/} regexp constant
 There is a syntactic ambiguity between the @code{/=} assignment
 operator and regexp constants whose first character is an @samp{=}.
 @value{DARKCORNER}
@@ -25598,7 +25598,7 @@ with @command{gawk}'s, a @option{--} is needed to tell @command{gawk}
 to stop looking for options.
 
 Next comes the code that handles the @command{egrep}-specific behavior.
-@command{egrep} uses the first nonoption on the command line is used.
+@command{egrep} uses the first nonoption on the command line
 if no pattern is supplied with @option{-e}.
 If the pattern is empty, that means no pattern was supplied, so it's
 necessary to print an error message and exit.
@@ -30565,7 +30565,7 @@ constants; if you used an octal or hexadecimal value in your source
 code, it will appear that way in the output.
 
 @node Extension Philosophy
-@section Builtin Features vs.@: Extensions
+@section Builtin Features versus Extensions
 
 As this and subsequent @value{CHAPTER}s show, @command{gawk} has a
 large number of extensions over standard @command{awk} built-in to
@@ -30573,7 +30573,7 @@ the program.  These have developed over time.  More recently, the
 focus has moved to using the extension mechanism (@pxref{Dynamic Extensions})
 for adding features.  This @value{SECTION} discusses the ``guiding philosophy''
 behind what should be added to the interpreter as a built-in
-feature vs.@: what should be done in extensions.
+feature versus what should be done in extensions.
 
 There are several goals:
 
@@ -30598,12 +30598,11 @@ Extend the core interpreter only if some feature is:
 @item
 Truly desirable.
 @item
-Cannot be done via (2) or (3) above.
+Cannot be done via library files or loadable extensions.
 @item
 Can be implemented without too much pain in the core.
 @end enumerate
 @end enumerate
-
 Combining modules with @command{awk} files is a powerful technique.
 Some of the sample extensions demonstrate this.
 
@@ -30653,8 +30652,8 @@ you tune them more easily.  Sending the @code{USR1} signal while profiling cause
 You can also just ``pretty-print'' the program.
 
 @item
-New features should be developed using the extension mechansim if possible, and added
-to the core interpreter only as a last resort.
+New features should be developed using the extension mechansim if possible;
+they should be added to the core interpreter only as a last resort.
 @end itemize
 
 
