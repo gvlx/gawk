@@ -21,6 +21,7 @@ TODO
 Ta
 Texinfo
 UsingGit
+Wiegley
 Yehezkel
 ac
 api
@@ -89,7 +90,9 @@ iftex
 ifxml
 inlineraw
 insertcopying
+io
 jpdev
+jwiegley
 kbd
 labelled
 libtool

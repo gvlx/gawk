@@ -716,7 +716,7 @@ machine what time it is:
    Even experienced 'awk' users will find the fourth and sixth line
 strange in two respects:
 
-   * A string containg the name of a special file is used as a shell
+   * A string containing the name of a special file is used as a shell
      command that pipes its output into 'getline'.  One would rather
      expect to see the special file being read like any other file
      ('getline < "/inet/tcp/0/time-a-g.nist.gov/daytime"').
@@ -4454,41 +4454,41 @@ Node: File /inet/tcp26947
 Node: File /inet/udp27933
 Ref: File /inet/udp-Footnote-129645
 Node: TCP Connecting29899
-Node: Troubleshooting33332
-Ref: Troubleshooting-Footnote-136096
-Node: Interacting37053
-Node: Setting Up41411
-Node: Email45960
-Ref: Email-Footnote-148382
-Node: Web page49190
-Ref: Web page-Footnote-152010
-Ref: Web page-Footnote-252208
-Node: Primitive Service52702
-Node: Interacting Service55436
-Ref: Interacting Service-Footnote-164591
-Node: CGI Lib64623
-Node: Simple Server71623
-Ref: Simple Server-Footnote-179425
-Node: Caveats79526
-Node: Challenges80669
-Ref: Challenges-Footnote-189411
-Node: Some Applications and Techniques89512
-Node: PANIC91973
-Node: GETURL93699
-Node: REMCONF96332
-Node: URLCHK101828
-Node: WEBGRAB105672
-Node: STATIST110136
-Ref: STATIST-Footnote-1123284
-Node: MAZE123727
-Node: MOBAGWHO129952
-Ref: MOBAGWHO-Footnote-1143854
-Node: STOXPRED143922
-Node: PROTBASE158214
-Ref: PROTBASE-Footnote-1171381
-Node: Links171496
-Node: GNU Free Documentation License174387
-Node: Index199507
+Node: Troubleshooting33334
+Ref: Troubleshooting-Footnote-136098
+Node: Interacting37055
+Node: Setting Up41413
+Node: Email45962
+Ref: Email-Footnote-148384
+Node: Web page49192
+Ref: Web page-Footnote-152012
+Ref: Web page-Footnote-252210
+Node: Primitive Service52704
+Node: Interacting Service55438
+Ref: Interacting Service-Footnote-164593
+Node: CGI Lib64625
+Node: Simple Server71625
+Ref: Simple Server-Footnote-179427
+Node: Caveats79528
+Node: Challenges80671
+Ref: Challenges-Footnote-189413
+Node: Some Applications and Techniques89514
+Node: PANIC91975
+Node: GETURL93701
+Node: REMCONF96334
+Node: URLCHK101830
+Node: WEBGRAB105674
+Node: STATIST110138
+Ref: STATIST-Footnote-1123286
+Node: MAZE123729
+Node: MOBAGWHO129954
+Ref: MOBAGWHO-Footnote-1143856
+Node: STOXPRED143924
+Node: PROTBASE158216
+Ref: PROTBASE-Footnote-1171383
+Node: Links171498
+Node: GNU Free Documentation License174389
+Node: Index199509
 
 End Tag Table
 

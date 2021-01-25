@@ -30652,7 +30652,7 @@ you tune them more easily.  Sending the @code{USR1} signal while profiling cause
 You can also just ``pretty-print'' the program.
 
 @item
-New features should be developed using the extension mechansim if possible;
+New features should be developed using the extension mechanism if possible;
 they should be added to the core interpreter only as a last resort.
 @end itemize
 

@@ -21897,7 +21897,7 @@ File: gawk.info,  Node: Advanced Features Summary,  Prev: Extension Philosophy, 
 
    * You can also just "pretty-print" the program.
 
-   * New features should be developed using the extension mechansim if
+   * New features should be developed using the extension mechanism if
      possible; they should be added to the core interpreter only as a
      last resort.
 
