@@ -4543,7 +4543,7 @@ Forza l'uso del carattere di separazione decimale della localizzazione
 quando analizza i dati in input
 (@pxref{Localizzazioni}).
 
-@cindex stampa elegante
+@cindex stampa-elegante
 @item @option{-o}[@var{file}]
 @itemx @option{--pretty-print}[@code{=}@var{file}]
 @cindex @option{-o} (opzione)
@@ -5027,7 +5027,7 @@ variabile non esiste, o se ha un come valore la stringa nulla,
 @command{gawk} usa un percorso di default (descritto tra poco).
 
 La funzionalit@`a del percorso di ricerca @`e particolarmente utile per costruire
-librerie di funzioni di @command{awk}.  I file di libreria possono essere messi
+librerie di funzioni di @command{awk}.  Le librerie di file possono essere messe
 in una directory standard inclusa nel percorso di ricerca
 e richiamati sulla riga di comando con un
 @value{FN} breve.  Altrimenti, si dovrebbe scrivere l'intero @value{FN} per
@@ -5035,7 +5035,7 @@ ciascun file.
 
 Usando l'opzione @option{-i}, o l'opzione @option{-f}, i programmi di
 @command{awk} scritti sulla riga di comando possono usare le funzionalit@`a
-contenute nei file di libreria di @command{awk}
+contenute nelle librerie di file di @command{awk}
 @iftex
 (@pxrefil{Funzioni di libreria}).
 @end iftex
@@ -5395,7 +5395,7 @@ possono includere queste ``librerie'' usando il percorso completo dei
 file, o impostando opportunamente la variabile d'ambiente @env{AWKPATH} e
 quindi usando @code{@@include} con la sola parte del percorso completo che
 designa il file.  Naturalmente,
-si possono tenere i file di libreria in pi@`u di una directory;
+si possono tenere le librerie di file in pi@`u di una directory;
 pi@`u @`e complesso l'ambiente di lavoro, pi@`u
 directory possono essere necessarie per organizzare i file da includere.
 
@@ -13185,16 +13185,18 @@ Per avere la massima portabilit@`a, non usare l'operatore @samp{**=}.
 
 @sidebar Ambiguit@`a sintattiche tra @samp{/=} e le espressioni regolari
 @cindex angolo buio @subentry costanti @dfn{regexp} @subentry operatore @code{/=} e
-@cindex @code{/} (barra) @subentry operatore @code{/=} @subentry vs. costante @dfn{regexp} @code{/=@dots{}/}
-@cindex barra (@code{/}) @subentry operatore @code{/=} @subentry vs. costante @dfn{regexp} @code{/=@dots{}/}
+@cindex @code{/} (barra) @subentry operatore @code{/=} @subentry vs.@: costante @dfn{regexp} @code{/=@dots{}/}
+@cindex barra (@code{/}) @subentry operatore @code{/=} @subentry vs.@: costante @dfn{regexp} @code{/=@dots{}/}
 @cindex @dfn{regexp} @subentry costanti @subentry @code{/=@dots{}/}, operatore @code{/=} e
 
 @c derived from email from  "Nelson H. F. Beebe" <beebe@math.utah.edu>
 @c Date: Mon, 1 Sep 1997 13:38:35 -0600 (MDT)
 
-@cindex angolo buio @subentry operatore @code{/=} vs. costante @dfn{regexp} @code{/=@dots{}/}
-@cindex ambiguit@`a sintattica: operatore @code{/=} vs. costante @dfn{regexp} @code{/=@dots{}/}
-@cindex sintattica @subentry ambiguit@`a: operatore @code{/=} vs. costante @dfn{regexp} @code{/=@dots{}/}
+@cindex angolo buio @subentry operatore @code{/=} vs.@: costante @dfn{regexp} @code{/=@dots{}/}
+@cindex ambiguit@`a sintattica: operatore @code{/=} vs.@: costante @dfn{regexp} @code{/=@dots{}/}
+@cindex sintattica @subentry ambiguit@`a: operatore @code{/=} vs.@: costante @dfn{regexp} @code{/=@dots{}/}
+@cindex @code{/=} (uguale) @subentry operatore vs.@: @code{/=@dots{}/} costante @dfn{regexp}
+@cindex uguale (@code{/=}) @subentry operatore vs.@: @code{/=@dots{}/} costante @dfn{regexp}
 C'@`e un'ambiguit@`a sintattica tra l'operatore di assegnamento @code{/=}
 e le costanti @dfn{regexp} il cui primo carattere sia @samp{=}.
 @value{DARKCORNER}
@@ -15021,12 +15023,13 @@ Ci@`o non @`e pi@`u obbligatorio, ma @`e una buona idea continuare a seguire que
 modello per migliorare l'organizzazione e la leggibilit@`a del programma.
 
 Regole multiple @code{BEGIN} ed @code{END} sono utili per scrivere funzioni
-di libreria, poich@'e ogni file di libreria pu@`o avere la sua propria regola
-@code{BEGIN} e/o @code{END} per fare la propria inizializzazione e/o pulizia.
+di libreria, poich@'e ogni file di una libreria pu@`o avere la sua propria
+regola @code{BEGIN} e/o @code{END} per fare la propria inizializzazione e/o
+pulizia.
 L'ordine in cui le funzioni di libreria sono menzionate nella riga dei comandi
 determina l'ordine in cui le rispettive regole @code{BEGIN} ed @code{END} sono
 eseguite.  Per questo motivi, occorre prestare attenzione nello scrivere tali
-regole nei file di libreria, in modo che non sia importante
+regole nelle librerie di file, in modo che non sia importante
 l'ordine in cui tali regole vengono eseguite.
 @xref{Opzioni} per maggiori informazioni sull'uso di funzioni di libreria.
 @iftex
@@ -26671,7 +26674,7 @@ Poich@'e parecchie opzioni possono essere specificate anche per
 
 Nel seguito c'@`e il codice che gestisce il comportamento specifico di
 @command{egrep}.  @command{egrep} utilizza il primo argomento sulla
-riga di comando che non sia un'opzione, se non @`e fornito esplicitamente
+riga di comando che non sia un'opzione se non @`e fornito esplicitamente
 alcun criterio di ricerca tramite l'opzione @option{-e}.
 Se il criterio di ricerca @`e la stringa nulla, ci@`o significa che non
 @`e stato fornito alcun criterio, quindi @`e necessario stampare un
@@ -31868,7 +31871,7 @@ alfabetico.
 
 La versione profilata del proprio programma potrebbe non apparire esattamente
 come quella scritta durante la stesura del programma.  Questo perch@'e
-@command{gawk} crea la versione profilata facendo una ``stampa elegante'' della
+@command{gawk} crea la versione profilata facendo una ``stampa-elegante'' della
 sua rappresentazione interna del programma.  Un vantaggio di ci@`o @`e che
 @command{gawk} pu@`o produrre una rappresentazione standard.
 Inoltre, cose come:
@@ -31963,9 +31966,9 @@ tastiera.  Il segnale @code{INT} @`e generato dalle combinazioni di tasti
 @kbd{Ctrl-c} o @kbd{Ctrl-BREAK}, mentre il segnale
 @code{QUIT} @`e generato dalla combinazione di tasti @kbd{Ctrl-\}.
 
-@cindex stampa elegante
+@cindex stampa-elegante
 Infine, @command{gawk} accetta anche un'altra opzione, @option{--pretty-print}.
-Quando viene chiamato in questo modo, @command{gawk} fa una ``stampa elegante''
+Quando viene chiamato in questo modo, @command{gawk} fa una ``stampa-elegante''
 del programma nel file @file{awkprof.out}, senza conteggi sull'esecuzione.
 
 @quotation NOTA
@@ -31973,10 +31976,10 @@ Una volta, l'opzione @option{--pretty-print} eseguiva anche il programma.
 Ora non pi@`u.
 @end quotation
 
-@cindex profilazione @subentry differenza rispetto alla stampa elegante
-@cindex stampa elegante @subentry differenza rispetto alla profilazione
+@cindex profilazione @subentry differenza rispetto alla ``stampa-elegante''
+@cindex stampa-elegante @subentry differenza rispetto alla profilazione
 C'@`e una differenza significativa tra l'output creato durante la profilazione,
-e quello creato durante la stampa elegante.  L'output della stampa elegante
+e quello creato durante la ``stampa-elegante''.  L'output della ``stampa-elegante''
 preserva i commenti originali che erano nel programma, anche se la loro
 posizione pu@`o non corrispondere esattamente alle posizioni originali che
 avevano nel codice sorgente.  Tuttavia, nessun commento dovrebbe andare
@@ -31988,25 +31991,25 @@ in maniera perfetta.
 Comunque, per una precisa scelta progettuale, l'output della profilazione
 @emph{omette} i commenti del programma originale. Questo permette di
 concentrarsi sui dati del conteggio di esecuzione ed evita la tentazione di
-usare il profilatore per creare una stampa elegante.
+usare il profilatore per creare una ``stampa-elegante''.
 
 Oltre a ci@`o, l'output stampato in modo elegante non ha l'indentazione iniziale
-che ha l'output della profilazione. Questo rende agevole la stampa elegante
+che ha l'output della profilazione. Questo rende agevole la ``stampa-elegante''
 del proprio codice una volta completato lo sviluppo, usando poi il risultato
 come versione finale del programma.
 
 Poich@'e la rappresentazione interna del programma @`e formattata per
 essere aderente al programma @command{awk} in questione, la profilazione
-e la stampa elegante (opzione @option{--pretty-print}) disabilitano
+e la ``stampa-elegante'' (opzione @option{--pretty-print}) disabilitano
 automaticamente le optimizzazioni di default di @command{gawk}.
 
-La profilazione e la stampa elegante mantengono anche il formato originale
+La profilazione e la ``stampa-elegante'' mantengono anche il formato originale
 delle costanti numeriche; se sono stati usati dei valori ottali o esadecimali
 nel codice sorgente, questi compariranno nell'output nello stesso
 formato con cui sono stati inseriti.
 
 @node Filosofia delle estensioni
-@section Funzionalit@`a incluse vs.@: estensioni
+@section Funzionalit@`a incluse @dfn{versus} estensioni
 
 Come descritto in questo e nei successivi @value{CHAPTERS},
 @command{gawk} ha numerose estensioni ulteriori,
@@ -32023,7 +32026,7 @@ Questo @value{SECTION}
 @end ifinfo
 tratta della ``filosofia ispiratrice'' riguardo a ci@`o che dovrebbe
 essere aggiunto all'interprete come funzionalit@`a interna,
-rispetto a quello che dovrebbe essere reso disponibile con delle
+rispetto a quello che dovrebbe essere reso disponibile tramite
 estensioni.
 
 Ci sono parecchi obiettivi:
@@ -32052,7 +32055,7 @@ Estendere il nucleo dell'interpretatore solo se qualche funzionalit@`a @`e:
 @item
 Veramente desiderabile.
 @item
-Non si pu@`o fare tramite i punti (2) o (3) sopra elencati.
+Non si pu@`o fare tramite dei file di libreria o estensioni caricabili.
 @item
 Pu@`o essere aggiunta al nucleo senza troppe difficolt@`a.
 @end enumerate
@@ -32061,7 +32064,7 @@ Pu@`o essere aggiunta al nucleo senza troppe difficolt@`a.
 Combinare dei moduli con dei file @command{awk} @`e una tecnica efficace.
 Lo si pu@`o vedere in alcuni degli esempi di estensione.
 
-Il caricamento di estensioni e file di libreria non dovrebbe essere
+Il caricamento di estensioni e librerie di file non dovrebbe essere
 fatto automaticamente, perch@'e questo richiede un consumo di risorse
 che molti utenti non desiderano, o di cui non hanno bisogno.
 
@@ -32112,11 +32115,11 @@ profilazione @command{gawk} scrive il profilo, includendo lo
 @dfn{stack} della chiamata alla funzione e prosegue nell'elaborazione.
 
 @item
-Si pu@`o anche fare solo una ``stampa elegante'' del programma.
+Si pu@`o anche fare solo una ``stampa-elegante'' del programma.
 
 @item
 Nuove funzionalit@`a dovrebbero essere sviluppate usando, se possibile,
-il meccanismo delle estensioni, ed essere aggiunte al nucleo
+il meccanismo delle estensioni; si dovrebbero aggiungere al nucleo
 dell'interpretatore solo come ultima risorsa.
 @end itemize
 
@@ -35184,10 +35187,10 @@ Questo
 interagisce con altre importanti funzionalit@`a di @command{gawk}.
 
 @cindex spazio-dei-nomi @subentry interazione con la profilazione
-@cindex spazio-dei-nomi @subentry interazione con la stampa elegante
+@cindex spazio-dei-nomi @subentry interazione con la ``stampa-elegante''
 @cindex profilazione @subentry interazione con spazio-dei-nomi
-@cindex stampa elegante @subentry interazione con spazio-dei-nomi
-La profilazione e la stampa elegante (@pxref{Profilare}) sono state
+@cindex stampa-elegante @subentry interazione con spazio-dei-nomi
+La profilazione e la ``stampa-elegante'' (@pxref{Profilare}) sono state
 migliorate per trattare gli spazi-dei-nomi e le regole per assegnare nomi in
 uno spazio-dei-nomi @ref{Regole per i nomi}.
 In particolare, l'output tiene insieme le funzioni che appartengono
@@ -35248,7 +35251,7 @@ disponibile la potenza e la flessibilit@`a necessarie.
 @item
 Altre parti di @command{gawk} sono state estese come necessario per
 integrare gli spazi-dei-nomi nel loro funzionamento.
-Questo vale soprattutto per la profilazione / stampa elegante
+Questo vale soprattutto per la profilazione / ``stampa-elegante''
 (@pxref{Profilare}) e per le funzionalit@`a relative alle
 estensioni (@pxref{Estensioni dinamiche}).
 
@@ -42897,7 +42900,7 @@ con @option{--}.
 
 @item
 L'opzione @option{--source} per combinare codice sorgente immesso nella riga
-di comando e codice sorgente proveniente da file di libreria.
+di comando e codice sorgente proveniente da librerie di file.
 @end itemize
 @end itemize
 
@@ -43399,7 +43402,7 @@ L'opzione @option{-D} attiva il debugger.
 
 @item
 Le opzioni @option{-i} e @option{--include}
-caricano dei file di libreria @command{awk}.
+caricano delle librerie di file @command{awk}.
 
 @item
 Le opzioni @option{-l} e @option{--load} caricano estensioni dinamiche
