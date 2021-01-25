@@ -1,3 +1,9 @@
+2021-01-25         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.in: Fix some spelling errors.
+	* gawkinet.texi: Ditto.
+	* wordlist, wordlist2, wordlist4: Updated.
+
 2021-01-23         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawktexi.in: A number of small fixes, thanks to
