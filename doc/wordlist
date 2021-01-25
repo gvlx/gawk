@@ -34,6 +34,7 @@ Automake
 Autotools
 Avahi
 Awk
+Awka
 Awklib
 Awkstuff
 Ayalon
@@ -77,6 +78,7 @@ CONVFMT
 CRC
 CRTL
 CSV
+CSVMODE
 CTYPE
 Cc
 Chana
@@ -89,6 +91,7 @@ Cloutier
 Cn
 Co
 Collado
+Collado's
 Coprocess
 Coprocesses
 Coreutils
@@ -202,6 +205,7 @@ Hartholz
 Hasegawa
 Hermann
 Hoare's
+Hoijui's
 Hurd
 IA
 IDs
@@ -241,6 +245,7 @@ JUN
 JVM
 Jaegermann
 Jannick
+Jawk
 Jeroen
 Johansen's
 Jul
@@ -895,6 +900,7 @@ expat
 expr
 ext
 ezalloc
+ezrosent
 ezwinports
 fPIC
 fabi
@@ -951,6 +957,7 @@ fpath
 fpbits
 fprintf
 fr
+frawk
 freebsd
 freefriends
 freq
@@ -1047,6 +1054,7 @@ hhhh
 hhob
 histsort
 hlp
+hoijui
 hotmail
 hpmuseum
 hrule
@@ -1170,6 +1178,7 @@ li
 libexec
 libintl
 libmawk
+libs
 libtool
 licensors
 lineannotation
@@ -1212,6 +1221,7 @@ mawk
 maxelt
 maxsub
 mbs
+mcollado
 mediaobject
 mem
 memcpy
@@ -1337,6 +1347,7 @@ nonrectangular
 nonrepeated
 nonspecial
 nonwhitespace
+noyesno
 nr
 ns
 nul

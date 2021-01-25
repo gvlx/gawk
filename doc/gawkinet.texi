@@ -892,7 +892,7 @@ strange in two respects:
 
 @itemize @bullet
 @item
-A string containg the name of a special file is used as a shell command that pipes its output
+A string containing the name of a special file is used as a shell command that pipes its output
 into @code{getline}. One would rather expect to see the special file
 being read like any other file (@samp{getline <
 "/inet/tcp/0/time-a-g.nist.gov/daytime"}).
