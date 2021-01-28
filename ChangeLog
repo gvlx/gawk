@@ -1,3 +1,10 @@
+2021-01-28         Arnold D. Robbins     <arnold@skeeve.com>
+
+	Fix a Day One Bug!
+
+	* main.c (main): For -b option, only set LC_ALL to C if
+	not --posix. Ooops.
+
 2021-01-09         Arnold D. Robbins     <arnold@skeeve.com>
 
 	Fix problems turning something like 018 into decimal.

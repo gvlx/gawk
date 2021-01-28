@@ -359,11 +359,12 @@ main(int argc, char **argv)
 	if (do_binary) {
 		if (do_posix)
 			warning(_("`--posix' overrides `--characters-as-bytes'"));
-		else
+		else {
 			gawk_mb_cur_max = 1;	/* hands off my data! */
 #if defined(LC_ALL)
-		setlocale(LC_ALL, "C");
+			setlocale(LC_ALL, "C");
 #endif
+		}
 	}
 
 	if (do_lint && os_is_setuid())
