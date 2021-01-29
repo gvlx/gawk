@@ -1,3 +1,7 @@
+2021-01-29         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* es.po: Updated.
+
 2020-07-20  gettextize  <bug-gnu-gettext@gnu.org>
 
 	* Makefile.in.in: Upgrade to gettext-0.20.2.
