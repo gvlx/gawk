@@ -50,7 +50,7 @@ int main()
                 printf("%g %s %g -> %s\n", values[i],
                                 functions[k].name,
                                 compare[j],
-                    functions[k].func(values[i], compare[j]) ? "true" : "false");
+                    functions[k].func(values[i], compare[j]) ? "True" : "False");
             }
             printf("\n");
         }

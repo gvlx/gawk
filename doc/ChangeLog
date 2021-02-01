@@ -1,3 +1,10 @@
+2021-02-01         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.in (Strange values): Fix a typo in the awk test
+	program. Make the C and Awk versions print "True" and
+	"False" to match Python, making comparisons easier. Thanks to
+	Antonio Columbo for the suggestions.
+
 2021-01-25         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawktexi.in: Fix some spelling errors.

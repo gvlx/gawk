@@ -50,8 +50,8 @@ BEGIN {
                                                 values[i],
 						names[k],
 						compare[j],
-					        the_func(values[i], compare[j]) ?
-                                                        "true" : "false");
+					        @the_func(values[i], compare[j]) ?
+                                                        "True" : "False");
 			}
 			printf("\n");
 		}
