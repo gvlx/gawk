@@ -25,7 +25,8 @@ regex.h
 regex_internal.c
 regex_internal.h
 verify.h
-xalloc.h"
+malloc/dynarray.h
+malloc/dynarray-skeleton.c"
 
 for i in $FILE_LIST
 do
