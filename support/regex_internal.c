@@ -1,5 +1,5 @@
 /* Extended regular expression matching and search library.
-   Copyright (C) 2002-2020 Free Software Foundation, Inc.
+   Copyright (C) 2002-2021 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
    Contributed by Isamu Hasegawa <isamu@yamato.ibm.com>.
 
@@ -1314,6 +1314,7 @@ re_node_set_insert (re_node_set *set, Idx elem)
     {
       for (idx = set->nelem; set->elems[idx - 1] > elem; idx--)
 	set->elems[idx] = set->elems[idx - 1];
+      DEBUG_ASSERT (set->elems[idx - 1] < elem);
     }
 
   /* Insert the new element.  */
