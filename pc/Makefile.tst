@@ -141,7 +141,7 @@ CLEANFILES = core core.* fmtspcl.ok
 
 # try to keep these sorted. each letter starts a new line
 BASIC_TESTS = \
-	addcomma anchgsub anchor argarray arrayind1 arrayind2 arrayind3 arrayparm \
+	addcomma anchgsub anchor argarray argcasfile arrayind1 arrayind2 arrayind3 arrayparm \
 	arrayprm2 arrayprm3 arrayref arrymem1 arryref2 arryref3 arryref4 arryref5 \
 	arynasty arynocls aryprm1 aryprm2 aryprm3 aryprm4 aryprm5 aryprm6 aryprm7 \
 	aryprm8 aryprm9 arysubnm aryunasgn asgext awkpath \
@@ -1241,6 +1241,11 @@ iolint:
 	@$(AWK) -f "$(srcdir)"/$@.awk >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 	@-$(RM) -f cat 'echo hello' 'exec cat' f1 f2 md5sum
+
+argcasfile:
+	@echo $@
+	@$(AWK) -f "$(srcdir)"/$@.awk ARGC=1 /no/such/file < "$(srcdir)/$@.in" >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
+	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 Gt-dummy:
 # file Maketests, generated from Makefile.am by the Gentests program
 addcomma:
