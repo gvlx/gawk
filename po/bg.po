@@ -1,0 +1,3504 @@
+# Bulgarian translation of GNU gawl po-file.
+# Copyright (C) 2021 Free Software Foundation, Inc.
+# This file is distributed under the same license as the gawk package.
+# Alexander Shopov <ash@kambanaria.org>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gawk-5.0.64\n"
+"Report-Msgid-Bugs-To: bug-gawk@gnu.org\n"
+"POT-Creation-Date: 2020-03-15 15:25+0200\n"
+"PO-Revision-Date: 2021-02-13 12:06+0100\n"
+"Last-Translator: Alexander Shopov <ash@kambanaria.org>\n"
+"Language-Team: Bulgarian <dict@ludost.net>\n"
+"Language: bg\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Bugs: Report translation errors to the Language-Team address.\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: array.c:248
+#, c-format
+msgid "from %s"
+msgstr "от „%s“"
+
+#: array.c:349
+msgid "attempt to use a scalar value as array"
+msgstr "опит скаларна стойност да се ползва като масив"
+
+#: array.c:351
+#, c-format
+msgid "attempt to use scalar parameter `%s' as an array"
+msgstr "опит скаларният параметър „%s“ да се ползва като масив"
+
+#: array.c:354
+#, c-format
+msgid "attempt to use scalar `%s' as an array"
+msgstr "опит скаларът „%s“ да се ползва като масив"
+
+#: array.c:401 array.c:568 builtin.c:89 builtin.c:1688 builtin.c:1734
+#: builtin.c:1747 builtin.c:2242 builtin.c:2269 eval.c:1151 eval.c:1155
+#: eval.c:1530
+#, c-format
+msgid "attempt to use array `%s' in a scalar context"
+msgstr "опит масивът „%s“ да се ползва в скаларен контекст"
+
+#: array.c:575
+#, c-format
+msgid "delete: index `%.*s' not in array `%s'"
+msgstr "изтриване: индексът „%.*s“ не е в масива „%s“"
+
+#: array.c:589
+#, c-format
+msgid "attempt to use scalar `%s[\"%.*s\"]' as an array"
+msgstr "опит скаларът „%s[\"%.*s\"]“ да се ползва като масив"
+
+#: array.c:783 array.c:831
+#, c-format
+msgid "%s: first argument is not an array"
+msgstr "„%s“: първият аргумент трябва да е масив"
+
+#: array.c:824
+#, c-format
+msgid "%s: second argument is not an array"
+msgstr "„%s“: вторият аргумент трябва да е масив"
+
+#: array.c:835
+#, c-format
+msgid "%s: first argument cannot be SYMTAB"
+msgstr "„%s“: първият аргумент не трябва да е таблицата от символи"
+
+#: array.c:838
+#, c-format
+msgid "%s: first argument cannot be FUNCTAB"
+msgstr "„%s“: първият аргумент не трябва да е таблицата от функции"
+
+#: array.c:844
+#, c-format
+msgid "%s: cannot use a subarray of first argument for second argument"
+msgstr "„%s“: вторият аргумент не трябва да е подмасив на първия"
+
+#: array.c:849
+#, c-format
+msgid "%s: cannot use a subarray of second argument for first argument"
+msgstr "„%s“: първият аргумент не трябва да е подмасив на втория"
+
+#: array.c:1355
+#, c-format
+msgid "`%s' is invalid as a function name"
+msgstr "%s: неправилно име на функция"
+
+#: array.c:1359
+#, c-format
+msgid "sort comparison function `%s' is not defined"
+msgstr "функцията „%s“ за сравнение при подредба не е дефинирана"
+
+#: awkgram.y:275
+#, c-format
+msgid "%s blocks must have an action part"
+msgstr "блоковете „%s“ изискват част за действие"
+
+#: awkgram.y:278
+msgid "each rule must have a pattern or an action part"
+msgstr "всяко правило трябва да има шаблон или част за действие"
+
+#: awkgram.y:419 awkgram.y:431
+msgid "old awk does not support multiple `BEGIN' or `END' rules"
+msgstr "старите версии на awk не поддържат повече от едно правило „BEGIN“ и „END“"
+
+#: awkgram.y:484
+#, c-format
+msgid "`%s' is a built-in function, it cannot be redefined"
+msgstr "„%s“ е вградена функция и не може да се предефинира"
+
+#: awkgram.y:548
+msgid "regexp constant `//' looks like a C++ comment, but is not"
+msgstr "константата за регулярен израз „//“ изглежда като коментар на C++, но не е"
+
+#: awkgram.y:552
+#, c-format
+msgid "regexp constant `/%s/' looks like a C comment, but is not"
+msgstr "константата за регулярен израз „/%s/“ изглежда като коментар на C, но не е"
+
+#: awkgram.y:679
+#, c-format
+msgid "duplicate case values in switch body: %s"
+msgstr "повтарящи се стойности за „case“ в тялото на „switch“: %s"
+
+#: awkgram.y:700
+msgid "duplicate `default' detected in switch body"
+msgstr "повтарящи се стойности за „default“ в тялото на „switch“: %s"
+
+#: awkgram.y:1036 awkgram.y:4463
+msgid "`break' is not allowed outside a loop or switch"
+msgstr "„break“ не може да се ползва извън цикъл или „switch“"
+
+#: awkgram.y:1046 awkgram.y:4455
+msgid "`continue' is not allowed outside a loop"
+msgstr "„continue“ не може да се ползва извън цикъл"
+
+#: awkgram.y:1057
+#, c-format
+msgid "`next' used in %s action"
+msgstr "„next“ е ползван в действие „%s“"
+
+#: awkgram.y:1068
+#, c-format
+msgid "`nextfile' used in %s action"
+msgstr "„nextfile“ е ползван в действие „%s“"
+
+#: awkgram.y:1096
+msgid "`return' used outside function context"
+msgstr "„return“ е ползван извън функция"
+
+#: awkgram.y:1169
+msgid "plain `print' in BEGIN or END rule should probably be `print \"\"'"
+msgstr "обикновеният „print“ в правилата „BEGIN“ и „END“ вероятно трябва да е „print \"\"“"
+
+#: awkgram.y:1239 awkgram.y:1288
+msgid "`delete' is not allowed with SYMTAB"
+msgstr "„delete“ не може да се прилага към таблицата със символи"
+
+#: awkgram.y:1241 awkgram.y:1290
+msgid "`delete' is not allowed with FUNCTAB"
+msgstr "„delete“ не може да се прилага към таблицата с функции"
+
+#: awkgram.y:1275 awkgram.y:1279
+msgid "`delete(array)' is a non-portable tawk extension"
+msgstr "„delete(МАСИВ)“ е разширение на tawk, което не се поддържа навсякъде"
+
+#: awkgram.y:1415
+msgid "multistage two-way pipelines don't work"
+msgstr "двупосочните многостепенни конвейери не работят"
+
+#: awkgram.y:1417
+msgid "concatenation as I/O `>' redirection target is ambiguous"
+msgstr "свързване, защото целта на пренасочването на входа/изхода с „>“ не е еднозначна"
+
+#: awkgram.y:1623
+msgid "regular expression on right of assignment"
+msgstr "регулярен израз в дясната страна на присвояване"
+
+#: awkgram.y:1638 awkgram.y:1651
+msgid "regular expression on left of `~' or `!~' operator"
+msgstr "регулярен израз в лявата страна на оператор „~“ или „!~“"
+
+#: awkgram.y:1668 awkgram.y:1818
+msgid "old awk does not support the keyword `in' except after `for'"
+msgstr "старите версии на awk поддържат ключовата дума „in“ само след „for“"
+
+#: awkgram.y:1678
+msgid "regular expression on right of comparison"
+msgstr "регулярен израз в дясната страна на сравнение"
+
+#: awkgram.y:1797
+#, c-format
+msgid "non-redirected `getline' invalid inside `%s' rule"
+msgstr "„getline“ без пренасочване не може да се ползва в правило „%s“"
+
+#: awkgram.y:1800
+msgid "non-redirected `getline' undefined inside END action"
+msgstr "„getline“ без пренасочване не може да се ползва в действие „END“"
+
+#: awkgram.y:1820
+msgid "old awk does not support multidimensional arrays"
+msgstr "старите версии на awk не поддържат многомерни масиви"
+
+#: awkgram.y:1923
+msgid "call of `length' without parentheses is not portable"
+msgstr "ползване на „length“ без скоби не се поддържа навсякъде"
+
+#: awkgram.y:1997
+msgid "indirect function calls are a gawk extension"
+msgstr "недиректното извикване на функции е разширение на gawk"
+
+#: awkgram.y:2010
+#, c-format
+msgid "cannot use special variable `%s' for indirect function call"
+msgstr "специалната променлива „%s“ не може да се ползва за недиректно извикване на функция"
+
+#: awkgram.y:2043
+#, c-format
+msgid "attempt to use non-function `%s' in function call"
+msgstr "опит да се извика „%s“, което не е функция"
+
+#: awkgram.y:2108
+msgid "invalid subscript expression"
+msgstr "неправилен индексиращ израз"
+
+#: awkgram.y:2481 awkgram.y:2501 gawkapi.c:273 gawkapi.c:290 msg.c:137
+msgid "warning: "
+msgstr "предупреждение: "
+
+#: awkgram.y:2499 gawkapi.c:245 gawkapi.c:288 msg.c:169
+msgid "fatal: "
+msgstr "фатална грешка: "
+
+#: awkgram.y:2552
+msgid "unexpected newline or end of string"
+msgstr "неочакван нов ред или край на низ"
+
+#: awkgram.y:2573
+msgid "source files / command-line arguments must contain complete functions or rules"
+msgstr "файловете с изходен код/аргументите на командния ред трябва да съдържат цели функции или правила"
+
+#: awkgram.y:2855 awkgram.y:2933 awkgram.y:3171 debug.c:536 debug.c:552
+#: debug.c:2829 debug.c:5195
+#, c-format
+msgid "cannot open source file `%s' for reading: %s"
+msgstr "изходният файл с код „%s“ не може да се отвори за четене: %s"
+
+#: awkgram.y:2856 awkgram.y:2993
+#, c-format
+msgid "cannot open shared library `%s' for reading: %s"
+msgstr "споделената библиотека „%s“ не може да се отвори за четене: %s"
+
+#: awkgram.y:2858 awkgram.y:2934 awkgram.y:2994 builtin.c:150 debug.c:5346
+msgid "reason unknown"
+msgstr "непозната причина"
+
+#: awkgram.y:2867 awkgram.y:2891
+#, c-format
+msgid "cannot include `%s' and use it as a program file"
+msgstr "„%s“ не може да се вмъкне, за да се ползва като файл с програма"
+
+#: awkgram.y:2880
+#, c-format
+msgid "already included source file `%s'"
+msgstr "файлът с изходен код „%s“ вече е вмъкнат"
+
+#: awkgram.y:2881
+#, c-format
+msgid "already loaded shared library `%s'"
+msgstr "споделената библиотека „%s“ вече е заредена"
+
+#: awkgram.y:2918
+msgid "@include is a gawk extension"
+msgstr "„@include“ е разширение на gawk"
+
+#: awkgram.y:2924
+msgid "empty filename after @include"
+msgstr "празно име на файл след „@include“"
+
+#: awkgram.y:2973
+msgid "@load is a gawk extension"
+msgstr "„@load“ е разширение на gawk"
+
+#: awkgram.y:2980
+msgid "empty filename after @load"
+msgstr "празно име на файл след „@load“"
+
+#: awkgram.y:3123
+msgid "empty program text on command line"
+msgstr "празен текст на програма на командния ред"
+
+#: awkgram.y:3239 debug.c:461 debug.c:619
+#, c-format
+msgid "cannot read source file `%s': %s"
+msgstr "файлът с изходен код „%s“ не може да се отвори: %s"
+
+#: awkgram.y:3250
+#, c-format
+msgid "source file `%s' is empty"
+msgstr "файлът с изходен код „%s“ е празен"
+
+#: awkgram.y:3310
+#, c-format
+msgid "error: invalid character '\\%03o' in source code"
+msgstr "ГРЕШКА: неправилен знак „\\%03o“ в изходния код"
+
+#: awkgram.y:3537
+msgid "source file does not end in newline"
+msgstr "файлът с изходен код не завършва с нов ред"
+
+#: awkgram.y:3658
+msgid "unterminated regexp ends with `\\' at end of file"
+msgstr "незавършен регулярен израз свършва с „\\“ в края на файл"
+
+#: awkgram.y:3685
+#, c-format
+msgid "%s: %d: tawk regex modifier `/.../%c' doesn't work in gawk"
+msgstr "%s: %d: модификаторът на регулярен израз на tawk „/…/%c“ не работи в gawk"
+
+#: awkgram.y:3689
+#, c-format
+msgid "tawk regex modifier `/.../%c' doesn't work in gawk"
+msgstr "модификаторът на регулярен израз на tawk „/…/%c“ не работи в gawk"
+
+#: awkgram.y:3702
+msgid "unterminated regexp"
+msgstr "незавършен регулярен израз"
+
+#: awkgram.y:3706
+msgid "unterminated regexp at end of file"
+msgstr "Липсва нов ред в края на файла"
+
+#: awkgram.y:3795
+msgid "use of `\\ #...' line continuation is not portable"
+msgstr "ползването на „\\ #…“ за пренасяне на ред не се поддържа навсякъде"
+
+#: awkgram.y:3817
+msgid "backslash not last character on line"
+msgstr "„\\“ не е последният знак на реда"
+
+#: awkgram.y:3864 awkgram.y:3866
+msgid "multidimensional arrays are a gawk extension"
+msgstr "многомерните масиви са разширение на gawk"
+
+#: awkgram.y:3891 awkgram.y:3902
+#, c-format
+msgid "POSIX does not allow operator `%s'"
+msgstr "POSIX не поддържа оператора „%s“"
+
+#: awkgram.y:3893 awkgram.y:3904 awkgram.y:3939 awkgram.y:3947
+#, c-format
+msgid "operator `%s' is not supported in old awk"
+msgstr "операторът „%s“ не се поддържа от старите версии на awk"
+
+#: awkgram.y:4044 awkgram.y:4066 command.y:1187
+msgid "unterminated string"
+msgstr "незавършен низ"
+
+#: awkgram.y:4054 main.c:1218
+msgid "POSIX does not allow physical newlines in string values"
+msgstr "POSIX не позволява дословен знак за нов ред в низовите променливи"
+
+#: awkgram.y:4056 node.c:453
+msgid "backslash string continuation is not portable"
+msgstr "пренасянето на низ с „\\“ не се поддържа навсякъде"
+
+#: awkgram.y:4294
+#, c-format
+msgid "invalid char '%c' in expression"
+msgstr "неправилен знак „%c“ в израза"
+
+#: awkgram.y:4389
+#, c-format
+msgid "`%s' is a gawk extension"
+msgstr "„%s“ е разширение на gawk"
+
+#: awkgram.y:4394
+#, c-format
+msgid "POSIX does not allow `%s'"
+msgstr "POSIX не позволява „%s“"
+
+#: awkgram.y:4402
+#, c-format
+msgid "`%s' is not supported in old awk"
+msgstr "„%s“ не се поддържа от старите версии на awk"
+
+#: awkgram.y:4500
+msgid "`goto' considered harmful!"
+msgstr "„goto“ се счита за вреден!"
+
+#: awkgram.y:4569
+#, c-format
+msgid "%d is invalid as number of arguments for %s"
+msgstr "%d е неправилен брой аргументи за „%s“"
+
+#: awkgram.y:4604
+#, c-format
+msgid "%s: string literal as last argument of substitute has no effect"
+msgstr "%s: низов литерал като последен аргумент при заместване няма никакъв ефект"
+
+#: awkgram.y:4609
+#, c-format
+msgid "%s third parameter is not a changeable object"
+msgstr "третият параметър на „%s“ е обект, който не може да се променя"
+
+#: awkgram.y:4713 awkgram.y:4716
+msgid "match: third argument is a gawk extension"
+msgstr "match: третият аргумент е разширение на gawk"
+
+#: awkgram.y:4770 awkgram.y:4773
+msgid "close: second argument is a gawk extension"
+msgstr "close: вторият аргумент е разширение на gawk"
+
+#: awkgram.y:4785
+msgid "use of dcgettext(_\"...\") is incorrect: remove leading underscore"
+msgstr "неправилна употреба на „dcgettext(_\"…\")“: изтрийте първия знак „_“"
+
+#: awkgram.y:4800
+msgid "use of dcngettext(_\"...\") is incorrect: remove leading underscore"
+msgstr "неправилна употреба на „dcngettext(_\"…\")“: изтрийте първия знак „_“"
+
+#: awkgram.y:4819
+msgid "index: regexp constant as second argument is not allowed"
+msgstr "index: не се приема константа-регулярен израз като втори аргумент"
+
+#: awkgram.y:4872
+#, c-format
+msgid "function `%s': parameter `%s' shadows global variable"
+msgstr "функция „%s“: параметърът „%s“ засенчва глобална променлива"
+
+#: awkgram.y:4921 debug.c:4179 debug.c:4222 debug.c:5344 profile.c:110
+#, c-format
+msgid "could not open `%s' for writing: %s"
+msgstr "„%s“ не може да се отвори за запис: %s"
+
+#: awkgram.y:4922
+msgid "sending variable list to standard error"
+msgstr "извеждане на списъка с променливи на стандартния изход"
+
+#: awkgram.y:4930
+#, c-format
+msgid "%s: close failed: %s"
+msgstr "%s: неуспешно изпълнение на „close“: %s"
+
+#: awkgram.y:4955
+msgid "shadow_funcs() called twice!"
+msgstr "„shadow_funcs()“ е извикана повторно!"
+
+#: awkgram.y:4963
+msgid "there were shadowed variables."
+msgstr "има засенчени променливи."
+
+#: awkgram.y:5040
+#, c-format
+msgid "function name `%s' previously defined"
+msgstr "вече има дефиниция на функция с име „%s“"
+
+#: awkgram.y:5091
+#, c-format
+msgid "function `%s': cannot use function name as parameter name"
+msgstr "функция „%s“: името на функцията не може да се ползва за име на параметър"
+
+#: awkgram.y:5094
+#, c-format
+msgid "function `%s': cannot use special variable `%s' as a function parameter"
+msgstr "функция „%s“: специалната променлива „%s“ не може да се ползва за име на параметър"
+
+#: awkgram.y:5098
+#, c-format
+msgid "function `%s': parameter `%s' cannot contain a namespace"
+msgstr "функция „%s“: параметърът „%s“ не може да съдържа пространство от имена"
+
+#: awkgram.y:5105
+#, c-format
+msgid "function `%s': parameter #%d, `%s', duplicates parameter #%d"
+msgstr "функция „%s“: параметър №%d, „%s“ повтаря параметър №%d"
+
+#: awkgram.y:5194
+#, c-format
+msgid "function `%s' called but never defined"
+msgstr "функцията „%s“ е извикана, но не е дефинирана"
+
+#: awkgram.y:5198
+#, c-format
+msgid "function `%s' defined but never called directly"
+msgstr "функцията „%s“ е дефинирана, но никога не е извикана пряко"
+
+#: awkgram.y:5230
+#, c-format
+msgid "regexp constant for parameter #%d yields boolean value"
+msgstr "константата-регулярен израз за параметър №%d дава булева стойност"
+
+#: awkgram.y:5245
+#, c-format
+msgid ""
+"function `%s' called with space between name and `(',\n"
+"or used as a variable or an array"
+msgstr ""
+"функцията „%s“ е извикана с интервал между името и „(“,\n"
+"или е ползвана като променлива или масив"
+
+#: awkgram.y:5454
+msgid "division by zero attempted"
+msgstr "опит за делене на нула"
+
+#: awkgram.y:5463
+#, c-format
+msgid "division by zero attempted in `%%'"
+msgstr "опит за делене на нула в „%%“"
+
+#: awkgram.y:5802
+msgid "cannot assign a value to the result of a field post-increment expression"
+msgstr "не може да се присвои стойност на резултата на последващо увеличаване на поле"
+
+#: awkgram.y:5805
+#, c-format
+msgid "invalid target of assignment (opcode %s)"
+msgstr "неправилна цел на присвояване (код за операция „%s“)"
+
+#: awkgram.y:6697
+#, c-format
+msgid "identifier %s: qualified names not allowed in traditional / POSIX mode"
+msgstr "идентификатор „%s“: квалифицирани имена не са позволени в традиционния (POSIX) режим"
+
+#: awkgram.y:6702
+#, c-format
+msgid "identifier %s: namespace separator is two colons, not one"
+msgstr "идентификатор „%s“: разделителят за пространство от имена трябва да е две двоеточия, не едно"
+
+#: awkgram.y:6708
+#, c-format
+msgid "qualified identifier `%s' is badly formed"
+msgstr "квалифицирания идентификатор „%s“ е неправилен"
+
+#: awkgram.y:6715
+#, c-format
+msgid "identifier `%s': namespace separator can only appear once in a qualified name"
+msgstr "идентификатор „%s“: разделителят за пространство от имена може да се ползва само веднъж в квалифицирано име"
+
+#: awkgram.y:6764 awkgram.y:6815
+#, c-format
+msgid "using reserved identifier `%s' as a namespace is not allowed"
+msgstr "резервираният идентификатор „%s“ не трябва да се ползва като пространство от имена"
+
+#: awkgram.y:6771 awkgram.y:6781
+#, c-format
+msgid "using reserved identifier `%s' as second component of a qualified name is not allowed"
+msgstr "резервираният идентификатор „%s“ не трябва да се ползва като втора част от квалифицирано име"
+
+#: awkgram.y:6799
+msgid "@namespace is a gawk extension"
+msgstr "„@namespace“ е разширение на gawk"
+
+#: awkgram.y:6806
+#, c-format
+msgid "namespace name `%s' must meet identifier naming rules"
+msgstr "името на пространство от имена „%s“ трябва да спазва правилата за идентификатор"
+
+#: builtin.c:144
+#, c-format
+msgid "%s to \"%s\" failed: %s"
+msgstr "%s към „%s“ не успя: %s"
+
+#: builtin.c:148
+msgid "standard output"
+msgstr "стандартен изход"
+
+#: builtin.c:149
+msgid "standard error"
+msgstr "стандартна грешка"
+
+#: builtin.c:163 builtin.c:493 builtin.c:583 builtin.c:1797 builtin.c:2519
+#: builtin.c:2535 builtin.c:2649 builtin.c:3606 mpfr.c:707
+#, c-format
+msgid "%s: received non-numeric argument"
+msgstr "%s: очаква се нечислов аргумент"
+
+#: builtin.c:169
+#, c-format
+msgid "exp: argument %g is out of range"
+msgstr "exp: аргументът %g е извън допустимия диапазон"
+
+#: builtin.c:246
+#, c-format
+msgid "fflush: cannot flush: pipe `%.*s' opened for reading, not writing"
+msgstr "fflush: буферите не може да се изчистят — програмният канал „%.*s“ е отворен за четене, а не за запис"
+
+#: builtin.c:249
+#, c-format
+msgid "fflush: cannot flush: file `%.*s' opened for reading, not writing"
+msgstr "fflush: буферите не може да се изчистят — файлът „%.*s“ е отворен за четене, а не за запис"
+
+#: builtin.c:260
+#, c-format
+msgid "fflush: cannot flush file `%.*s': %s"
+msgstr "fflush: буферите към файла „%.*s“ не може да се изчистят: %s"
+
+#: builtin.c:265
+#, c-format
+msgid "fflush: cannot flush: two-way pipe `%.*s' has closed write end"
+msgstr "fflush: буферите не може да се изчистят — страната за запис в двупосочният програмен канал „%.*s“ е затворена"
+
+#: builtin.c:271
+#, c-format
+msgid "fflush: `%.*s' is not an open file, pipe or co-process"
+msgstr "fflush: „%.*s“ не е нито отворен файл, нито програмен канал, нито копроцес"
+
+#: builtin.c:378 builtin.c:2034
+#, c-format
+msgid "%s: received non-string first argument"
+msgstr "%s: първият получен аргумент трябва да е низ"
+
+#: builtin.c:380
+#, c-format
+msgid "%s: received non-string second argument"
+msgstr "%s: вторият получен аргумент трябва да е низ"
+
+#: builtin.c:532
+msgid "length: received array argument"
+msgstr "length: получен е аргумент-масив"
+
+#: builtin.c:535
+msgid "`length(array)' is a gawk extension"
+msgstr "„length(масив)“ е разширение на gawk"
+
+#: builtin.c:554 builtin.c:2124 builtin.c:2182 builtin.c:2434 builtin.c:2465
+#, c-format
+msgid "%s: received non-string argument"
+msgstr "%s: получен е аргумент, който не е низ"
+
+#: builtin.c:586 builtin.c:1801
+#, c-format
+msgid "%s: received negative argument %g"
+msgstr "%s: получен е аргумент, който е отрицателно число, а не трябва: %g"
+
+#: builtin.c:786 builtin.c:791 builtin.c:944
+msgid "fatal: must use `count$' on all formats or none"
+msgstr "ФАТАЛНА ГРЕШКА: „count$“ трябва да се ползва или за всички формати, или за никои"
+
+#: builtin.c:863
+#, c-format
+msgid "field width is ignored for `%%' specifier"
+msgstr "дължината на полето няма значение при ползването на спецификацията „%%“"
+
+#: builtin.c:865
+#, c-format
+msgid "precision is ignored for `%%' specifier"
+msgstr "точността няма значение при ползването на спецификацията „%%“"
+
+#: builtin.c:867
+#, c-format
+msgid "field width and precision are ignored for `%%' specifier"
+msgstr "дължината на полето и точността нямат значение при ползването на спецификацията „%%“"
+
+#: builtin.c:918
+msgid "fatal: `$' is not permitted in awk formats"
+msgstr "ФАТАЛНА ГРЕШКА: знакът „$“ не е позволен във форматите на awk"
+
+#: builtin.c:927
+msgid "fatal: argument index with `$' must be > 0"
+msgstr "ФАТАЛНА ГРЕШКА: аргументът-индекс към „$“ трябва да е строго положителен"
+
+#: builtin.c:931
+#, c-format
+msgid "fatal: argument index %ld greater than total number of supplied arguments"
+msgstr "ФАТАЛНА ГРЕШКА: индексът за аргумент %ld е по-голям от общия брой подадени аргументи"
+
+#: builtin.c:935
+msgid "fatal: `$' not permitted after period in format"
+msgstr "ФАТАЛНА ГРЕШКА: знакът „$“ не е позволен след точка във формат"
+
+#: builtin.c:954
+msgid "fatal: no `$' supplied for positional field width or precision"
+msgstr "ФАТАЛНА ГРЕШКА: не е указан „$“ за поле по позиция с дължина или точност"
+
+#: builtin.c:1024
+msgid "`l' is meaningless in awk formats; ignored"
+msgstr "знакът „l“ е безсмислен във форматите на awk и се прескача"
+
+#: builtin.c:1028
+msgid "fatal: `l' is not permitted in POSIX awk formats"
+msgstr "ФАТАЛНА ГРЕШКА: знакът „l“ не е позволен във форматите на awk по POSIX"
+
+#: builtin.c:1041
+msgid "`L' is meaningless in awk formats; ignored"
+msgstr "знакът „L“ е безсмислен във форматите на awk и се прескача"
+
+#: builtin.c:1045
+msgid "fatal: `L' is not permitted in POSIX awk formats"
+msgstr "ФАТАЛНА ГРЕШКА: знакът „L“ не е позволен във форматите на awk по POSIX"
+
+#: builtin.c:1058
+msgid "`h' is meaningless in awk formats; ignored"
+msgstr "знакът „h“ е безсмислен във форматите на awk и се прескача"
+
+#: builtin.c:1062
+msgid "fatal: `h' is not permitted in POSIX awk formats"
+msgstr "ФАТАЛНА ГРЕШКА: знакът „h“ не е позволен във форматите на awk по POSIX"
+
+#: builtin.c:1092
+#, c-format
+msgid "[s]printf: value %g is too big for %%c format"
+msgstr "[s]printf: стойността %g е прекалено голяма за форма̀та „%%c“"
+
+#: builtin.c:1105
+#, c-format
+msgid "[s]printf: value %g is not a valid wide character"
+msgstr "[s]printf: стойността %g не е правилен широк знак"
+
+#: builtin.c:1497
+#, c-format
+msgid "[s]printf: value %g is out of range for `%%%c' format"
+msgstr "[s]printf: стойността %g извън допустимия диапазон за „%%%c“"
+
+#: builtin.c:1505
+#, c-format
+msgid "[s]printf: value %s is out of range for `%%%c' format"
+msgstr "[s]printf: стойността %s извън допустимия диапазон за „%%%c“"
+
+#: builtin.c:1530
+#, c-format
+msgid "%%%c format is POSIX standard but not portable to other awks"
+msgstr "форматът „%%%c“ е в стандарта POSIX, но не се поддържа навсякъде"
+
+#: builtin.c:1630
+#, c-format
+msgid "ignoring unknown format specifier character `%c': no argument converted"
+msgstr "прескачане на непознатия знак за форматиране „%c“: никой аргумент не е покрит"
+
+#: builtin.c:1635
+msgid "fatal: not enough arguments to satisfy format string"
+msgstr "ФАТАЛНА ГРЕШКИ: няма достатъчно аргументи за форматиращия низ"
+
+#: builtin.c:1637
+msgid "^ ran out for this one"
+msgstr "↑ не работи за този"
+
+#: builtin.c:1644
+msgid "[s]printf: format specifier does not have control letter"
+msgstr "[s]printf: липсва контролна буква във форматиращата комбинация"
+
+#: builtin.c:1647
+msgid "too many arguments supplied for format string"
+msgstr "прекалено много аргументи към форматиращия низ"
+
+#: builtin.c:1707
+msgid "sprintf: no arguments"
+msgstr "sprintf: липсват аргументи"
+
+#: builtin.c:1730 builtin.c:1741
+msgid "printf: no arguments"
+msgstr "printf: липсват аргументи"
+
+#: builtin.c:1756
+msgid "printf: attempt to write to closed write end of two-way pipe"
+msgstr "printf: опит за писане към затворения за запис край на двупосочен програмен канал"
+
+#: builtin.c:1832
+#, c-format
+msgid "substr: length %g is not >= 1"
+msgstr "substr: дължината %g трябва да е >= 1"
+
+#: builtin.c:1834
+#, c-format
+msgid "substr: length %g is not >= 0"
+msgstr "substr: дължината %g трябва да е >= 0"
+
+#: builtin.c:1848
+#, c-format
+msgid "substr: non-integer length %g will be truncated"
+msgstr "substr: дължината %g, която не е цяло число, ще бъде отрязана"
+
+#: builtin.c:1853
+#, c-format
+msgid "substr: length %g too big for string indexing, truncating to %g"
+msgstr "substr: дължината %g е прекалено голяма за индексиране на низ, тя ще бъде отрязана до %g"
+
+#: builtin.c:1865
+#, c-format
+msgid "substr: start index %g is invalid, using 1"
+msgstr "substr: началният индекс %g е неправилен, ще се ползва 1"
+
+#: builtin.c:1870
+#, c-format
+msgid "substr: non-integer start index %g will be truncated"
+msgstr "substr: началният индекс %g, който не е цяло число, ще бъде отрязан"
+
+#: builtin.c:1893
+msgid "substr: source string is zero length"
+msgstr "substr: изходният низ е с нулева дължина"
+
+#: builtin.c:1907
+#, c-format
+msgid "substr: start index %g is past end of string"
+msgstr "substr: началният индекс %g е след края на низа"
+
+#: builtin.c:1915
+#, c-format
+msgid "substr: length %g at start index %g exceeds length of first argument (%lu)"
+msgstr "substr: дължината %g при начален индекс %g е по-голяма от дължината на първия аргумент (%lu)"
+
+#: builtin.c:1988
+msgid "strftime: format value in PROCINFO[\"strftime\"] has numeric type"
+msgstr "strftime: стойността за форматиране в PROCINFO[\"strftime\"] е от цифров вид"
+
+#: builtin.c:2008 builtin.c:2500 builtin.c:3438 builtin.c:3477 builtin.c:4032
+#, c-format
+msgid "%s: received non-numeric second argument"
+msgstr "%s: вторият получен аргумент трябва да е число"
+
+#: builtin.c:2018
+msgid "strftime: second argument less than 0 or too big for time_t"
+msgstr "strftime: вторият аргумент е или по-малък от 0, или прекалено голям за time_t"
+
+#: builtin.c:2025
+msgid "strftime: second argument out of range for time_t"
+msgstr "strftime: вторият аргумент е извън диапазона на позволени стойности за time_t"
+
+#: builtin.c:2041
+msgid "strftime: received empty format string"
+msgstr "strftime: получен е празен форматиращ низ"
+
+#: builtin.c:2141
+msgid "mktime: at least one of the values is out of the default range"
+msgstr "mktime: поне една от величините е извън стандартния диапазон на позволени стойности"
+
+#: builtin.c:2177
+msgid "'system' function not allowed in sandbox mode"
+msgstr "в безопасен режим функцията „system“ е изключена"
+
+#: builtin.c:2251 builtin.c:2326
+msgid "print: attempt to write to closed write end of two-way pipe"
+msgstr "print: опит за писане към затворения за запис край на двупосочен програмен канал"
+
+#: builtin.c:2349
+#, c-format
+msgid "reference to uninitialized field `$%d'"
+msgstr "указател към неинициализирано поле „$%d“"
+
+#: builtin.c:2498 builtin.c:3436 builtin.c:3475 builtin.c:4030
+#, c-format
+msgid "%s: received non-numeric first argument"
+msgstr "%s: първият аргумент трябва да е числова стойност"
+
+#: builtin.c:2680
+msgid "match: third argument is not an array"
+msgstr "match: третият аргумент трябва да е масив"
+
+#: builtin.c:2923
+#, c-format
+msgid "gensub: third argument `%.*s' treated as 1"
+msgstr "gensub: третият аргумент „%.*s“ се приема за 1"
+
+#: builtin.c:3246
+#, c-format
+msgid "%s: can be called indirectly only with two arguments"
+msgstr "%s: недиректно извикване е възможно само с два аргумента"
+
+#: builtin.c:3369
+#, c-format
+msgid "indirect call to %s requires at least two arguments"
+msgstr "недиректното извикване на „%s“ изисква поне два аргумента"
+
+#: builtin.c:3444
+#, c-format
+msgid "lshift(%f, %f): negative values are not allowed"
+msgstr "lshift(%f, %f): не са позволени отрицателни стойности"
+
+#: builtin.c:3448
+#, c-format
+msgid "lshift(%f, %f): fractional values will be truncated"
+msgstr "lshift(%f, %f): десетичните дроби ще бъдат отрязани до цели стойности"
+
+#: builtin.c:3450
+#, c-format
+msgid "lshift(%f, %f): too large shift value will give strange results"
+msgstr "lshift(%f, %f): прекалено големите стойности за побитово изместване дават странни резултати"
+
+#: builtin.c:3483
+#, c-format
+msgid "rshift(%f, %f): negative values are not allowed"
+msgstr "rshift(%f, %f): не са позволени отрицателни стойности"
+
+#: builtin.c:3487
+#, c-format
+msgid "rshift(%f, %f): fractional values will be truncated"
+msgstr "rshift(%f, %f): десетичните дроби ще бъдат отрязани до цели стойности"
+
+#: builtin.c:3489
+#, c-format
+msgid "rshift(%f, %f): too large shift value will give strange results"
+msgstr "rshift(%f, %f): прекалено големите стойности за побитово изместване дават странни резултати"
+
+#: builtin.c:3513 builtin.c:3544 builtin.c:3574
+#, c-format
+msgid "%s: called with less than two arguments"
+msgstr "%s: извикана без или с един аргумент"
+
+#: builtin.c:3518 builtin.c:3549 builtin.c:3580
+#, c-format
+msgid "%s: argument %d is non-numeric"
+msgstr "%s: аргумент %d трябва да е число"
+
+#: builtin.c:3522 builtin.c:3553 builtin.c:3584
+#, c-format
+msgid "%s: argument %d negative value %g is not allowed"
+msgstr "%s: аргумент %d не приема отрицателни стойности като %g"
+
+#: builtin.c:3611
+#, c-format
+msgid "compl(%f): negative value is not allowed"
+msgstr "compl(%f): отрицателни стойности не се приемат"
+
+#: builtin.c:3614
+#, c-format
+msgid "compl(%f): fractional value will be truncated"
+msgstr "compl(%f): десетичните дроби ще бъдат отрязани до цели стойности"
+
+#: builtin.c:3798
+#, c-format
+msgid "dcgettext: `%s' is not a valid locale category"
+msgstr "dcgettext: „%s“ не е поддържана категория локали"
+
+#: builtin.c:4022 mpfr.c:1203
+msgid "intdiv: third argument is not an array"
+msgstr "intdiv: третият аргумент трябва да е масив"
+
+#: builtin.c:4041 mpfr.c:1252
+msgid "intdiv: division by zero attempted"
+msgstr "intdiv: опит за делене на нула"
+
+#: builtin.c:4080
+msgid "typeof: second argument is not an array"
+msgstr "typeof: вторият аргумент трябва да е масив"
+
+#: builtin.c:4152
+#, c-format
+msgid "typeof detected invalid flags combination `%s'; please file a bug report."
+msgstr "„typeof“ засече неправилна комбинация от флагове „%s“.  Молим да докладвате тази грешка."
+
+#: builtin.c:4172
+#, c-format
+msgid "typeof: invalid argument type `%s'"
+msgstr "typeof: неправилен вид аргумент „%s“"
+
+#: builtin.c:4176
+#, c-format
+msgid "typeof: unknown argument type `%s'"
+msgstr "typeof: непознат вид аргумент „%s“"
+
+#: cint_array.c:1268 cint_array.c:1296
+#, c-format
+msgid "cannot add a new file (%.*s) to ARGV in sandbox mode"
+msgstr "в безопасен режим не може да се добави нов файл (%.*s) към ARGV"
+
+#: command.y:227
+#, c-format
+msgid "Type (g)awk statement(s). End with the command `end'\n"
+msgstr "Въведете изрази на (g)awk. Завършете командата с „end“\n"
+
+#: command.y:291
+#, c-format
+msgid "invalid frame number: %d"
+msgstr "неправилен номер на рамка: %d"
+
+#: command.y:297
+#, c-format
+msgid "info: invalid option - `%s'"
+msgstr "info: неправилна опция — „%s“"
+
+#: command.y:323
+#, c-format
+msgid "source: `%s': already sourced."
+msgstr "source: „%s“: вече е вмъкнат."
+
+#: command.y:328
+#, c-format
+msgid "save: `%s': command not permitted."
+msgstr "save: „%s“: командата не е позволена."
+
+#: command.y:341
+msgid "cannot use command `commands' for breakpoint/watchpoint commands"
+msgstr "командата „commands“ не може да се използва за точки за прекъсване или наблюдение"
+
+#: command.y:343
+msgid "no breakpoint/watchpoint has been set yet"
+msgstr "не са зададени точки за прекъсване или наблюдение"
+
+#: command.y:345
+msgid "invalid breakpoint/watchpoint number"
+msgstr "неправилен номер на точка за прекъсване или наблюдение"
+
+#: command.y:350
+#, c-format
+msgid "Type commands for when %s %d is hit, one per line.\n"
+msgstr "Въведете команди за изпълнение, по една на ред, при достигането на %s %d.\n"
+
+#: command.y:352
+#, c-format
+msgid "End with the command `end'\n"
+msgstr "Завършете командата с „end“\n"
+
+#: command.y:359
+msgid "`end' valid only in command `commands' or `eval'"
+msgstr "командата „end“ може са се ползва само в командите „commands“ и „eval“"
+
+#: command.y:369
+msgid "`silent' valid only in command `commands'"
+msgstr "командата „silent“ може са се ползва само в командата „commands“"
+
+#: command.y:375
+#, c-format
+msgid "trace: invalid option - `%s'"
+msgstr "trace: неправилна опция — „%s“"
+
+#: command.y:389
+msgid "condition: invalid breakpoint/watchpoint number"
+msgstr "condition: неправилен номер на точка за прекъсване или наблюдение"
+
+#: command.y:451
+msgid "argument not a string"
+msgstr "аргументът трябва да е низ"
+
+#: command.y:461 command.y:466
+#, c-format
+msgid "option: invalid parameter - `%s'"
+msgstr "option: неправилен аргумент — „%s“"
+
+#: command.y:476
+#, c-format
+msgid "no such function - `%s'"
+msgstr "няма функция с име „%s“"
+
+#: command.y:533
+#, c-format
+msgid "enable: invalid option - `%s'"
+msgstr "enable: неправилна опция — „%s“"
+
+#: command.y:599
+#, c-format
+msgid "invalid range specification: %d - %d"
+msgstr "неправилен диапазон: %d - %d"
+
+#: command.y:661
+msgid "non-numeric value for field number"
+msgstr "нечислова стойност за номер на поле"
+
+#: command.y:682 command.y:689
+msgid "non-numeric value found, numeric expected"
+msgstr "номерът на поле не приема нечислови стойности"
+
+#: command.y:714 command.y:720
+msgid "non-zero integer value"
+msgstr "цяло число над 0"
+
+#: command.y:819
+msgid "backtrace [N] - print trace of all or N innermost (outermost if N < 0) frames."
+msgstr "backtrace [БРОЙ] — извеждане на състоянието на този БРОЙ рамки на изпълнение най-отгоре на стека (или най-отдолу, ако БРОят < 0)."
+
+#: command.y:821
+msgid "break [[filename:]N|function] - set breakpoint at the specified location."
+msgstr "break [[ИМЕ_НА_ФАЙЛ:]РЕД|ФУНКЦИЯ] — задаване на точки на прекъсване на зададеното място."
+
+#: command.y:823
+msgid "clear [[filename:]N|function] - delete breakpoints previously set."
+msgstr "clear [[ИМЕ_НА_ФАЙЛ:]РЕД|ФУНКЦИЯ] — изтриване на вече зададени точки на прекъсване."
+
+#: command.y:825
+msgid "commands [num] - starts a list of commands to be executed at a breakpoint(watchpoint) hit."
+msgstr "commands [НОМЕР] — начало на списък с команди за изпълнение при това достигане на точката за прекъсване или наблюдение."
+
+#: command.y:827
+msgid "condition num [expr] - set or clear breakpoint or watchpoint condition."
+msgstr "condition НОМЕР [ИЗРАЗ] — задаване или изчистване на условие при достигане на точка за прекъсване или наблюдение."
+
+#: command.y:829
+msgid "continue [COUNT] - continue program being debugged."
+msgstr "continue [БРОЙ] — продължаване на изпълнението на трасираната програма."
+
+#: command.y:831
+msgid "delete [breakpoints] [range] - delete specified breakpoints."
+msgstr "delete [ТОЧКА_НА_ПРЕКЪСВАНЕ…] [ОБХВАТ] — изтриване на зададените точки на прекъсване."
+
+#: command.y:833
+msgid "disable [breakpoints] [range] - disable specified breakpoints."
+msgstr "disable [ТОЧКА_НА_ПРЕКЪСВАНЕ…] [ОБХВАТ] — изключване на зададените точки на прекъсване."
+
+#: command.y:835
+msgid "display [var] - print value of variable each time the program stops."
+msgstr "display [ПРОМЕНЛИВА] — извеждане на стойността на променливата при всяко спиране на програмата."
+
+#: command.y:837
+msgid "down [N] - move N frames down the stack."
+msgstr "down [БРОЙ] — преместване с този БРОЙ рамки надолу в стека."
+
+#: command.y:839
+msgid "dump [filename] - dump instructions to file or stdout."
+msgstr "dump [ИМЕ_НА_ФАЙЛ] — извеждане на инструкциите във файл или на стандартния изход."
+
+#: command.y:841
+msgid "enable [once|del] [breakpoints] [range] - enable specified breakpoints."
+msgstr "enable [once|del] [ТОЧКА_НА_ПРЕКЪСВАНЕ…] [ОБХВАТ] — включване на зададените точки на прекъсване."
+
+#: command.y:843
+msgid "end - end a list of commands or awk statements."
+msgstr "end — завършване на списък на команди или изрази на awk."
+
+#: command.y:845
+msgid "eval stmt|[p1, p2, ...] - evaluate awk statement(s)."
+msgstr "eval ИЗРАЗ|[ПРОМЕНЛИВА_1, ПРОМЕНЛИВА_2, …] — изчисляване на изрази на awk."
+
+#: command.y:847
+msgid "exit - (same as quit) exit debugger."
+msgstr "exit — (същото като „quit“) изход от дебъгера."
+
+#: command.y:849
+msgid "finish - execute until selected stack frame returns."
+msgstr "finish — изпълнение до приключване на изпълнението на текущия кадър."
+
+#: command.y:851
+msgid "frame [N] - select and print stack frame number N."
+msgstr "frame [НОМЕР] — избор и отпечатване на рамката за изпълнение с този НОМЕР."
+
+#: command.y:853
+msgid "help [command] - print list of commands or explanation of command."
+msgstr "help [КОМАНДА] — извеждане на списъка с команди или обяснение за КОМАНДАта."
+
+#: command.y:855
+msgid "ignore N COUNT - set ignore-count of breakpoint number N to COUNT."
+msgstr "ignore N БРОЙ — точка на прекъсване N да се прескочи този БРОЙ пъти."
+
+#: command.y:857
+msgid "info topic - source|sources|variables|functions|break|frame|args|locals|display|watch."
+msgstr "info ТЕМА — source|sources|variables|functions|break|frame|args|locals|display|watch."
+
+#: command.y:859
+msgid "list [-|+|[filename:]lineno|function|range] - list specified line(s)."
+msgstr "list [-|+|[ИМЕ_НА_ФАЙЛ:]НОМЕР_НА_РЕД|ФУНКЦИЯ|ОБХВАТ] — извеждане на указаните редове."
+
+#: command.y:861
+msgid "next [COUNT] - step program, proceeding through subroutine calls."
+msgstr "next [БРОЙ] — трасиране на програмата като извикванията на функции са една стъпка."
+
+#: command.y:863
+msgid "nexti [COUNT] - step one instruction, but proceed through subroutine calls."
+msgstr "nexti [БРОЙ] — изпълнение на този брой стъпки от програмата като извикванията на функции са една стъпка."
+
+#: command.y:865
+msgid "option [name[=value]] - set or display debugger option(s)."
+msgstr "option [ИМЕ[=СТОЙНОСТ]] — задаване или извеждане на опция на дебъгера."
+
+#: command.y:867
+msgid "print var [var] - print value of a variable or array."
+msgstr "print ПРОМЕНЛИВА [ПРОМЕНЛИВА] — извеждане на стойността на променлива или масив."
+
+#: command.y:869
+msgid "printf format, [arg], ... - formatted output."
+msgstr "printf ФОРМАТ, [АРГУМЕНТ], … — форматиран изход."
+
+#: command.y:871
+msgid "quit - exit debugger."
+msgstr "quit — изход от дебъгера."
+
+#: command.y:873
+msgid "return [value] - make selected stack frame return to its caller."
+msgstr "return [НОМЕР] — рамката за изпълнение с този номер да се върне към извикалата я."
+
+#: command.y:875
+msgid "run - start or restart executing program."
+msgstr "run — (наново) начало на изпълнение на програма."
+
+#: command.y:878
+msgid "save filename - save commands from the session to file."
+msgstr "save ФАЙЛ — запазване на командите от сесията в този ФАЙЛ."
+
+#: command.y:881
+msgid "set var = value - assign value to a scalar variable."
+msgstr "set ПРОМЕНЛИВА = СТОЙНОСТ — задаване на СТОЙНОСТ на скаларна ПРОМЕНЛИВА."
+
+#: command.y:883
+msgid "silent - suspends usual message when stopped at a breakpoint/watchpoint."
+msgstr "silent — без обичайните съобщения при спиране при точка за прекъсване или наблюдение."
+
+#: command.y:885
+msgid "source file - execute commands from file."
+msgstr "source ФАЙЛ — изпълнение на командите в указания ФАЙЛ."
+
+#: command.y:887
+msgid "step [COUNT] - step program until it reaches a different source line."
+msgstr "step [БРОЙ] — изпълнение на този брой стъпки на програмата или до достигане на различен ред код."
+
+#: command.y:889
+msgid "stepi [COUNT] - step one instruction exactly."
+msgstr "stepi [БРОЙ] — изпълнение на този брой стъпки (или 1) на програмата."
+
+#: command.y:891
+msgid "tbreak [[filename:]N|function] - set a temporary breakpoint."
+msgstr "tbreak [[ИМЕ_НА_ФАЙЛ:]РЕД|ФУНКЦИЯ] — задаване на временна точка на прекъсване."
+
+#: command.y:893
+msgid "trace on|off - print instruction before executing."
+msgstr "trace on|off — дали инструкциите да се извеждат преди изпълнението им."
+
+#: command.y:895
+msgid "undisplay [N] - remove variable(s) from automatic display list."
+msgstr "undisplay [ПРОМЕНЛИВА] — без извеждане на стойността на ПРОМЕНЛИВАта при всяко спиране на програмата."
+
+#: command.y:897
+msgid "until [[filename:]N|function] - execute until program reaches a different line or line N within current frame."
+msgstr "until [[ИМЕ_НА_ФАЙЛ:]РЕД|ФУНКЦИЯ] — изпълнение докато програмата стигне различен ред или този РЕД в текущата рамка на изпълнение."
+
+#: command.y:899
+msgid "unwatch [N] - remove variable(s) from watch list."
+msgstr "unwatch [НОМЕР] — изваждане на променлива/и от списъка за наблюдение."
+
+#: command.y:901
+msgid "up [N] - move N frames up the stack."
+msgstr "up [БРОЙ] — преместване с този БРОЙ рамки нагоре в стека."
+
+#: command.y:903
+msgid "watch var - set a watchpoint for a variable."
+msgstr "watch ПРОМЕНЛИВА — задаване на точка за наблюдение на променлива."
+
+#: command.y:905
+msgid "where [N] - (same as backtrace) print trace of all or N innermost (outermost if N < 0) frames."
+msgstr "where [БРОЙ] — (същото като backtrace) извеждане на състоянието на този БРОЙ рамки на изпълнение най-отгоре на стека (или най-отдолу, ако БРОят < 0)."
+
+#: command.y:1016 debug.c:414 gawkapi.c:259 msg.c:146
+#, c-format
+msgid "error: "
+msgstr "грешка:"
+
+#: command.y:1060
+#, c-format
+msgid "cannot read command: %s\n"
+msgstr "командата не може да се прочете: %s\n"
+
+#: command.y:1074
+#, c-format
+msgid "cannot read command: %s"
+msgstr "командата не може да се прочете: %s"
+
+#: command.y:1125
+msgid "invalid character in command"
+msgstr "неправилен знак в команда"
+
+#: command.y:1161
+#, c-format
+msgid "unknown command - `%.*s', try help"
+msgstr "неизвестна команда — „%.*s“, проверете ръководството"
+
+#: command.y:1231
+#, c-format
+msgid "%s"
+msgstr "%s"
+
+#: command.y:1293
+msgid "invalid character"
+msgstr "неправилeн знак"
+
+#: command.y:1497
+#, c-format
+msgid "undefined command: %s\n"
+msgstr "недефинирана команда: %s\n"
+
+#: debug.c:257
+msgid "set or show the number of lines to keep in history file."
+msgstr "задаване или извеждане на броя редове, които да се държат във файла с историята."
+
+#: debug.c:259
+msgid "set or show the list command window size."
+msgstr "задаване или извеждане на размера на прозореца за извеждане на списъка."
+
+#: debug.c:261
+msgid "set or show gawk output file."
+msgstr "задаване или извеждане на изходния файл на gawk."
+
+#: debug.c:263
+msgid "set or show debugger prompt."
+msgstr "задаване или показване на началото на реда на дебъгера."
+
+#: debug.c:265
+msgid "(un)set or show saving of command history (value=on|off)."
+msgstr "задаване, изтриване или извеждане на състоянието на запазването на историята на командите (СТОЙНОСТ=on|off)."
+
+#: debug.c:267
+msgid "(un)set or show saving of options (value=on|off)."
+msgstr "задаване, изтриване или извеждане на състоянието на опциите (СТОЙНОСТ=on|off)."
+
+#: debug.c:269
+msgid "(un)set or show instruction tracing (value=on|off)."
+msgstr "задаване, изтриване или извеждане на трасирането на инструкции (СТОЙНОСТ=on|off)."
+
+#: debug.c:358
+msgid "program not running."
+msgstr "програмата не се изпълнява."
+
+#: debug.c:466
+#, c-format
+msgid "source file `%s' is empty.\n"
+msgstr "празен файл с изходен код „%s“.\n"
+
+#: debug.c:493
+msgid "no current source file."
+msgstr "няма текущ файл с изходен код."
+
+#: debug.c:518
+#, c-format
+msgid "cannot find source file named `%s': %s"
+msgstr "файлът с изходен код „%s“ липсва: %s"
+
+#: debug.c:542
+#, c-format
+msgid "WARNING: source file `%s' modified since program compilation.\n"
+msgstr "ПРЕДУПРЕЖДЕНИЕ: файлът с изходен код „%s“ е променян след компилирането на програмата.\n"
+
+#: debug.c:564
+#, c-format
+msgid "line number %d out of range; `%s' has %d lines"
+msgstr "номерът на ред %d е извън диапазона: „%s“ има %d реда"
+
+#: debug.c:624
+#, c-format
+msgid "unexpected eof while reading file `%s', line %d"
+msgstr "неочакван край на файл при прочитането на „%s“, ред %d"
+
+#: debug.c:633
+#, c-format
+msgid "source file `%s' modified since start of program execution"
+msgstr "файлът с изходен код „%s“ е променян след началото на изпълнението на програмата."
+
+#: debug.c:745
+#, c-format
+msgid "Current source file: %s\n"
+msgstr "Текущ файл с изходен код: „%s“\n"
+
+#: debug.c:746
+#, c-format
+msgid "Number of lines: %d\n"
+msgstr "Брой редове: %d\n"
+
+#: debug.c:753
+#, c-format
+msgid "Source file (lines): %s (%d)\n"
+msgstr "Файл с изходен код (редове): %s (%d)\n"
+
+#: debug.c:767
+msgid ""
+"Number  Disp  Enabled  Location\n"
+"\n"
+msgstr ""
+"Ред     Изв.  Включ.   Място\n"
+"\n"
+
+#: debug.c:778
+#, c-format
+msgid "\tno of hits = %ld\n"
+msgstr "    брой попадения = %ld\n"
+
+#: debug.c:780
+#, c-format
+msgid "\tignore next %ld hit(s)\n"
+msgstr "    прескачане на следващите %ld попадения\n"
+
+#: debug.c:782 debug.c:922
+#, c-format
+msgid "\tstop condition: %s\n"
+msgstr "    условие за край: %s\n"
+
+#: debug.c:784 debug.c:924
+msgid "\tcommands:\n"
+msgstr "    команди:\n"
+
+#: debug.c:806
+#, c-format
+msgid "Current frame: "
+msgstr "Текуща рамка: "
+
+#: debug.c:809
+#, c-format
+msgid "Called by frame: "
+msgstr "Извикана от рамка: "
+
+#: debug.c:813
+#, c-format
+msgid "Caller of frame: "
+msgstr "Извикал рамката: "
+
+#: debug.c:831
+#, c-format
+msgid "None in main().\n"
+msgstr "Нищо в „main()“.\n"
+
+#: debug.c:861
+msgid "No arguments.\n"
+msgstr "Няма аргументи.\n"
+
+#: debug.c:862
+msgid "No locals.\n"
+msgstr "Няма локални променливи.\n"
+
+#: debug.c:870
+msgid ""
+"All defined variables:\n"
+"\n"
+msgstr ""
+"Всички дефинирани променливи:\n"
+"\n"
+
+#: debug.c:880
+msgid ""
+"All defined functions:\n"
+"\n"
+msgstr ""
+"Всички дефинирани функции:\n"
+"\n"
+
+#: debug.c:899
+msgid ""
+"Auto-display variables:\n"
+"\n"
+msgstr ""
+"Променливи за постоянно извеждане:\n"
+"\n"
+
+#: debug.c:902
+msgid ""
+"Watch variables:\n"
+"\n"
+msgstr ""
+"Променливи за оценка:\n"
+"\n"
+
+#: debug.c:1042
+#, c-format
+msgid "no symbol `%s' in current context\n"
+msgstr "В текущия масив няма символ „%s“\n"
+
+#: debug.c:1054 debug.c:1442
+#, c-format
+msgid "`%s' is not an array\n"
+msgstr "„%s“ трябва да е масив\n"
+
+#: debug.c:1068
+#, c-format
+msgid "$%ld = uninitialized field\n"
+msgstr "$%ld = неинициализирано поле\n"
+
+#: debug.c:1089
+#, c-format
+msgid "array `%s' is empty\n"
+msgstr "масивът „%s“ е празен\n"
+
+#: debug.c:1132 debug.c:1184
+#, c-format
+msgid "[\"%.*s\"] not in array `%s'\n"
+msgstr "[\"%.*s\"] не е в масива „%s“\n"
+
+#: debug.c:1188
+#, c-format
+msgid "`%s[\"%.*s\"]' is not an array\n"
+msgstr "„%s[\"%.*s\"]“ не е масив\n"
+
+#: debug.c:1249 debug.c:5104
+#, c-format
+msgid "`%s' is not a scalar variable"
+msgstr "„%s“: не е скаларна променлива"
+
+#: debug.c:1272 debug.c:5134
+#, c-format
+msgid "attempt to use array `%s[\"%.*s\"]' in a scalar context"
+msgstr "опит за ползване на масива „%s[\"%.*s\"]“ в скаларен контекст"
+
+#: debug.c:1295 debug.c:5145
+#, c-format
+msgid "attempt to use scalar `%s[\"%.*s\"]' as array"
+msgstr "опит за ползване на скалара „%s[\"%.*s\"]“ като масив"
+
+#: debug.c:1438
+#, c-format
+msgid "`%s' is a function"
+msgstr "„%s“ е функция"
+
+#: debug.c:1480
+#, c-format
+msgid "watchpoint %d is unconditional\n"
+msgstr "точката за наблюдение №%d не е условна\n"
+
+#: debug.c:1514
+#, c-format
+msgid "No display item numbered %ld"
+msgstr "Няма елемент за извеждане №%ld"
+
+#: debug.c:1517
+#, c-format
+msgid "No watch item numbered %ld"
+msgstr "Няма елемент за наблюдение №%ld"
+
+#: debug.c:1543
+#, c-format
+msgid "%d: [\"%.*s\"] not in array `%s'\n"
+msgstr "%d: [\"%.*s\"] не е в масива „%s“\n"
+
+#: debug.c:1782
+msgid "attempt to use scalar value as array"
+msgstr "опит за ползване на скаларна стойност като масив"
+
+#: debug.c:1873
+#, c-format
+msgid "Watchpoint %d deleted because parameter is out of scope.\n"
+msgstr "Точката за наблюдение №%d е изтрита, защото е извън обхват.\n"
+
+#: debug.c:1884
+#, c-format
+msgid "Display %d deleted because parameter is out of scope.\n"
+msgstr "Променливата за извеждане №%d е изтрита, защото е извън обхват.\n"
+
+#: debug.c:1917
+#, c-format
+msgid " in file `%s', line %d\n"
+msgstr "файл „%s“, ред %d\n"
+
+#: debug.c:1938
+#, c-format
+msgid " at `%s':%d"
+msgstr "при „%s“:%d"
+
+#: debug.c:1954 debug.c:2017
+#, c-format
+msgid "#%ld\tin "
+msgstr "№%ld    в "
+
+#: debug.c:1991
+#, c-format
+msgid "More stack frames follow ...\n"
+msgstr "Следват още рамки от стека…\n"
+
+#: debug.c:2034
+msgid "invalid frame number"
+msgstr "неправилен номер на рамка"
+
+#: debug.c:2217
+#, c-format
+msgid "Note: breakpoint %d (enabled, ignore next %ld hits), also set at %s:%d"
+msgstr "Бележка: точка за прекъсване №%d (включена, ще се прескочи следващите %ld пъти), също зададена на %s:%d"
+
+#: debug.c:2224
+#, c-format
+msgid "Note: breakpoint %d (enabled), also set at %s:%d"
+msgstr "Бележка: точка за прекъсване №%d (включена), също зададена на %s:%d"
+
+#: debug.c:2231
+#, c-format
+msgid "Note: breakpoint %d (disabled, ignore next %ld hits), also set at %s:%d"
+msgstr "Бележка: точка за прекъсване №%d (изключена, ще се прескочи следващите %ld пъти), също зададена на %s:%d"
+
+#: debug.c:2238
+#, c-format
+msgid "Note: breakpoint %d (disabled), also set at %s:%d"
+msgstr "Бележка: точка за прекъсване №%d (изключена), също зададена на %s:%d"
+
+#: debug.c:2255
+#, c-format
+msgid "Breakpoint %d set at file `%s', line %d\n"
+msgstr "Зададена и точка за прекъсване %d във файл „%s“, ред %d\n"
+
+#: debug.c:2357
+#, c-format
+msgid "cannot set breakpoint in file `%s'\n"
+msgstr "неуспешно задаване на точка за прекъсване във файл „%s“\n"
+
+#: debug.c:2386 debug.c:2509 debug.c:3367
+#, c-format
+msgid "line number %d in file `%s' out of range"
+msgstr "номерът на ред %d във файла „%s“ е извън диапазона"
+
+#: debug.c:2390
+#, c-format
+msgid "internal error: cannot find rule\n"
+msgstr "вътрешна грешка: правилото не може да бъде открито\n"
+
+#: debug.c:2392
+#, c-format
+msgid "cannot set breakpoint at `%s':%d\n"
+msgstr "неуспешно задаване на точка за прекъсване във файл „%s“, ред %d\n"
+
+#: debug.c:2404
+#, c-format
+msgid "cannot set breakpoint in function `%s'\n"
+msgstr "неуспешно задаване на точка за прекъсване във функцията „%s“\n"
+
+#: debug.c:2420
+#, c-format
+msgid "breakpoint %d set at file `%s', line %d is unconditional\n"
+msgstr "точката за прекъсване %d във файл „%s“, ред %d не е условна\n"
+
+#: debug.c:2525 debug.c:2547
+#, c-format
+msgid "Deleted breakpoint %d"
+msgstr "Изтрита точка за прекъсване %d"
+
+#: debug.c:2531
+#, c-format
+msgid "No breakpoint(s) at entry to function `%s'\n"
+msgstr "Няма точка на прекъсване при влизане във функцията „%s“\n"
+
+#: debug.c:2558
+#, c-format
+msgid "No breakpoint at file `%s', line #%d\n"
+msgstr "Няма точка за прекъсване във файл „%s“, ред №%d\n"
+
+#: debug.c:2613 debug.c:2654 debug.c:2674 debug.c:2717
+msgid "invalid breakpoint number"
+msgstr "неправилен номер на точка за прекъсване"
+
+#: debug.c:2629
+msgid "Delete all breakpoints? (y or n) "
+msgstr "Да се изтрият ли всички точки на прекъсване? („y“ — да или „n“ — не) "
+
+#: debug.c:2630 debug.c:2940 debug.c:2993
+msgid "y"
+msgstr "y"
+
+#: debug.c:2679
+#, c-format
+msgid "Will ignore next %ld crossing(s) of breakpoint %d.\n"
+msgstr "Следващите %ld достигания на точката за прекъсване №%d ще бъдат пропуснати.\n"
+
+#: debug.c:2683
+#, c-format
+msgid "Will stop next time breakpoint %d is reached.\n"
+msgstr "Спиране при следващото достигане на точката за прекъсване №%d.\n"
+
+#: debug.c:2800
+#, c-format
+msgid "Can only debug programs provided with the `-f' option.\n"
+msgstr "Само програми подадени с опцията „-f“ може да бъдат трасирани.\n"
+
+#: debug.c:2925
+#, c-format
+msgid "Failed to restart debugger"
+msgstr "Неуспешно рестартиране на дебъгера"
+
+#: debug.c:2939
+msgid "Program already running. Restart from beginning (y/n)? "
+msgstr "Програмата вече се изпълнява. Да се стартира ли от началото (y/n)? "
+
+#: debug.c:2943
+#, c-format
+msgid "Program not restarted\n"
+msgstr "Програмата не е рестартирана\n"
+
+#: debug.c:2953
+#, c-format
+msgid "error: cannot restart, operation not allowed\n"
+msgstr "грешка: рестартирането е невъзможно, действието не е позволено\n"
+
+#: debug.c:2959
+#, c-format
+msgid "error (%s): cannot restart, ignoring rest of the commands\n"
+msgstr "грешка (%s): рестартирането е невъзможно, останалите действия се прескачат\n"
+
+#: debug.c:2967
+#, c-format
+msgid "Starting program: \n"
+msgstr "Стартиране на програма: \n"
+
+#: debug.c:2977
+#, c-format
+msgid "Program exited abnormally with exit value: %d\n"
+msgstr "Програмата завърши с проблем  — изходен код: %d\n"
+
+#: debug.c:2978
+#, c-format
+msgid "Program exited normally with exit value: %d\n"
+msgstr "Програмата завърши успешно  — изходен код: %d\n"
+
+#: debug.c:2992
+msgid "The program is running. Exit anyway (y/n)? "
+msgstr "Програмата все още се изпълнява. Да се излезе ли от нея (y/n)? "
+
+#: debug.c:3027
+#, c-format
+msgid "Not stopped at any breakpoint; argument ignored.\n"
+msgstr "При никоя точка на прекъсване не се спира, аргументът се прескача.\n"
+
+#: debug.c:3032
+#, c-format
+msgid "invalid breakpoint number %d."
+msgstr "неправилен №%d на точка за прекъсване."
+
+#: debug.c:3037
+#, c-format
+msgid "Will ignore next %ld crossings of breakpoint %d.\n"
+msgstr "Следващите %ld достигания на точката за прекъсване №%d ще бъдат пропуснати.\n"
+
+#: debug.c:3224
+#, c-format
+msgid "'finish' not meaningful in the outermost frame main()\n"
+msgstr "Командата „finish“ е безсмислена на нивото на основната рамка на „main()“\n"
+
+#: debug.c:3229
+#, c-format
+msgid "Run till return from "
+msgstr "Изпълнение до излизане от "
+
+#: debug.c:3272
+#, c-format
+msgid "'return' not meaningful in the outermost frame main()\n"
+msgstr "Командата „return“ е безсмислена на нивото на основната рамка на „main()“\n"
+
+#: debug.c:3386
+#, c-format
+msgid "cannot find specified location in function `%s'\n"
+msgstr "указаното местоположение не може да бъде открито във функцията „%s“\n"
+
+#: debug.c:3394
+#, c-format
+msgid "invalid source line %d in file `%s'"
+msgstr "неправилен номер на ред %d във файл „%s“"
+
+#: debug.c:3409
+#, c-format
+msgid "cannot find specified location %d in file `%s'\n"
+msgstr "указаното местоположение %d във файл „%s“ не може да бъде открито\n"
+
+#: debug.c:3441
+#, c-format
+msgid "element not in array\n"
+msgstr "елементът не е в масива\n"
+
+#: debug.c:3441
+#, c-format
+msgid "untyped variable\n"
+msgstr "променлива без тип\n"
+
+#: debug.c:3483
+#, c-format
+msgid "Stopping in %s ...\n"
+msgstr "Спиране в %s…\n"
+
+#: debug.c:3560
+#, c-format
+msgid "'finish' not meaningful with non-local jump '%s'\n"
+msgstr "„finish“ не работи с нелокални извиквания „%s“\n"
+
+#: debug.c:3567
+#, c-format
+msgid "'until' not meaningful with non-local jump '%s'\n"
+msgstr "„until“ не работи с нелокални извиквания „%s“\n"
+
+#. TRANSLATORS: don't translate the 'q' inside the brackets.
+#: debug.c:4324
+msgid "\t------[Enter] to continue or [q] + [Enter] to quit------"
+msgstr "    ——————[Enter] за да продължите или [q] + [Enter] за изход——————"
+
+#: debug.c:5141
+#, c-format
+msgid "[\"%.*s\"] not in array `%s'"
+msgstr "[\"%.*s\"] не е в масив „%s“"
+
+#: debug.c:5347
+#, c-format
+msgid "sending output to stdout\n"
+msgstr "добавяне на изхода към стандартния\n"
+
+#: debug.c:5387
+msgid "invalid number"
+msgstr "грешно число"
+
+#: debug.c:5521
+#, c-format
+msgid "`%s' not allowed in current context; statement ignored"
+msgstr "Командата „%s“ не е позволена в текущия контекст и се прескача"
+
+#: debug.c:5529
+msgid "`return' not allowed in current context; statement ignored"
+msgstr "Командата „return“ не е позволена в текущия контекст и се прескача"
+
+#: debug.c:5753
+#, c-format
+msgid "No symbol `%s' in current context"
+msgstr "Няма символ „%s“ в текущия контекст"
+
+#: eval.c:401
+#, c-format
+msgid "unknown nodetype %d"
+msgstr "непознат вид възел %d"
+
+#: eval.c:412 eval.c:428
+#, c-format
+msgid "unknown opcode %d"
+msgstr "непознат код на операция %d"
+
+#: eval.c:425
+#, c-format
+msgid "opcode %s not an operator or keyword"
+msgstr "кодът на операция „%s“ не е нито команда, нито ключова дума"
+
+#: eval.c:483
+msgid "buffer overflow in genflags2str"
+msgstr "препълване на буфера в „genflags2str“"
+
+#: eval.c:685
+#, c-format
+msgid ""
+"\n"
+"\t# Function Call Stack:\n"
+"\n"
+msgstr ""
+"\n"
+"    # Стек с извикванията на функции:\n"
+"\n"
+
+#: eval.c:711
+msgid "`IGNORECASE' is a gawk extension"
+msgstr "„IGNORECASE“ е разширение на gawk"
+
+#: eval.c:732
+msgid "`BINMODE' is a gawk extension"
+msgstr "„BINMODE“ е разширение на gawk"
+
+#: eval.c:789
+#, c-format
+msgid "BINMODE value `%s' is invalid, treated as 3"
+msgstr "неправилна стойност за „BINMODE“: „%s“ — обработва се като 3"
+
+#: eval.c:912
+#, c-format
+msgid "bad `%sFMT' specification `%s'"
+msgstr "неправилен указател на „%sFMT“ — „%s“"
+
+#: eval.c:982
+msgid "turning off `--lint' due to assignment to `LINT'"
+msgstr "опцията „--lint“ се изключва, защото на променливата „LINT“ е присвоена стойност"
+
+#: eval.c:1176
+#, c-format
+msgid "reference to uninitialized argument `%s'"
+msgstr "указател към неинициализиран аргумент „%s“"
+
+#: eval.c:1177
+#, c-format
+msgid "reference to uninitialized variable `%s'"
+msgstr "указател към неинициализирана променлива „%s“"
+
+#: eval.c:1195
+msgid "attempt to field reference from non-numeric value"
+msgstr "опит за указател към поле от нечислова стойност"
+
+#: eval.c:1197
+msgid "attempt to field reference from null string"
+msgstr "опит за указател към поле от нулев низ"
+
+#: eval.c:1205
+#, c-format
+msgid "attempt to access field %ld"
+msgstr "опит за достъп до поле %ld"
+
+#: eval.c:1214
+#, c-format
+msgid "reference to uninitialized field `$%ld'"
+msgstr "указател към неинициализирано поле „%ld“"
+
+#: eval.c:1278
+#, c-format
+msgid "function `%s' called with more arguments than declared"
+msgstr "функцията „%s“ е извикана с повече аргументи от декларираното"
+
+#: eval.c:1475
+#, c-format
+msgid "unwind_stack: unexpected type `%s'"
+msgstr "unwind_stack: неочакван вид „%s“"
+
+#: eval.c:1568
+msgid "division by zero attempted in `/='"
+msgstr "опит за делене на нула в „/=“"
+
+#: eval.c:1575
+#, c-format
+msgid "division by zero attempted in `%%='"
+msgstr "опит за делене на нула в „%%=“"
+
+#: ext.c:51
+msgid "extensions are not allowed in sandbox mode"
+msgstr "в безопасен режим разширенията са изключени"
+
+#: ext.c:54
+msgid "-l / @load are gawk extensions"
+msgstr "„-l“/„@load“ са разширения на gawk"
+
+#: ext.c:57
+msgid "load_ext: received NULL lib_name"
+msgstr "load_ext: получено е име на библиотека NULL"
+
+#: ext.c:60
+#, c-format
+msgid "load_ext: cannot open library `%s': %s"
+msgstr "load_ext: директорията „%s“ не може да се отвори: %s"
+
+#: ext.c:66
+#, c-format
+msgid "load_ext: library `%s': does not define `plugin_is_GPL_compatible': %s"
+msgstr "load_ext: библиотеката „%s“: не дефинира „plugin_is_GPL_compatible“: %s"
+
+#: ext.c:72
+#, c-format
+msgid "load_ext: library `%s': cannot call function `%s': %s"
+msgstr "load_ext: библиотеката „%s“: функцията „%s“ не може да бъде извикана: %s"
+
+#: ext.c:76
+#, c-format
+msgid "load_ext: library `%s' initialization routine `%s' failed"
+msgstr "load_ext: неуспешно изпълнение на инициализиращата функция „%2$s“ на библиотеката „%1$s“"
+
+#: ext.c:92
+msgid "make_builtin: missing function name"
+msgstr "make_builtin: липсва име на функция"
+
+#: ext.c:100 ext.c:111
+#, c-format
+msgid "make_builtin: cannot use gawk built-in `%s' as function name"
+msgstr "make_builtin: името на вградената функция „%s“ не може да се използва като име на друга функция"
+
+#: ext.c:109
+#, c-format
+msgid "make_builtin: cannot use gawk built-in `%s' as namespace name"
+msgstr "make_builtin: името на вградената функция „%s“ не може да се използва като име на пространство от имена"
+
+#: ext.c:126
+#, c-format
+msgid "make_builtin: cannot redefine function `%s'"
+msgstr "make_builtin: функцията „%s“ не може да се предефинира"
+
+#: ext.c:130
+#, c-format
+msgid "make_builtin: function `%s' already defined"
+msgstr "make_builtin: функцията „%s“ вече е дефинирана"
+
+#: ext.c:134
+#, c-format
+msgid "make_builtin: function name `%s' previously defined"
+msgstr "make_builtin: името на функция „%s“ вече е дефинирано"
+
+#: ext.c:138
+#, c-format
+msgid "make_builtin: negative argument count for function `%s'"
+msgstr "make_builtin: отрицателен брой аргументи за функцията „%s“, което е неправилно"
+
+#: ext.c:214
+#, c-format
+msgid "function `%s': argument #%d: attempt to use scalar as an array"
+msgstr "функция „%s“: аргумент №%d: опит за ползване на скалар като масив"
+
+#: ext.c:218
+#, c-format
+msgid "function `%s': argument #%d: attempt to use array as a scalar"
+msgstr "функция „%s“: аргумент №%d: опит за ползване на масив като скалар"
+
+#: ext.c:232
+msgid "dynamic loading of libraries is not supported"
+msgstr "динамичното зареждане на библиотеки не се поддържа"
+
+#: extension/filefuncs.c:442
+#, c-format
+msgid "stat: unable to read symbolic link `%s'"
+msgstr "stat: неуспешно прочитане на символна връзка „%s“"
+
+#: extension/filefuncs.c:475
+msgid "stat: first argument is not a string"
+msgstr "stat: първият аргумент трябва да е низ"
+
+#: extension/filefuncs.c:480
+msgid "stat: second argument is not an array"
+msgstr "stat: вторият аргумент трябва да е масив"
+
+#: extension/filefuncs.c:524
+msgid "stat: bad parameters"
+msgstr "stat: неправилни аргументи"
+
+#: extension/filefuncs.c:589
+#, c-format
+msgid "fts init: could not create variable %s"
+msgstr "fts init: променливата „%s“ не може да се създаде"
+
+#: extension/filefuncs.c:610
+msgid "fts is not supported on this system"
+msgstr "fts не се поддържа на тази система"
+
+#: extension/filefuncs.c:629
+msgid "fill_stat_element: could not create array, out of memory"
+msgstr "fill_stat_element: няма достатъчно памет за създаването на масив"
+
+#: extension/filefuncs.c:638
+msgid "fill_stat_element: could not set element"
+msgstr "fill_stat_element: елементът не може да се зададе"
+
+#: extension/filefuncs.c:653
+msgid "fill_path_element: could not set element"
+msgstr "fill_path_element: елементът не може да се зададе"
+
+#: extension/filefuncs.c:669
+msgid "fill_error_element: could not set element"
+msgstr "fill_error_element: елементът не може да се зададе"
+
+#: extension/filefuncs.c:721 extension/filefuncs.c:768
+msgid "fts-process: could not create array"
+msgstr "fts-process: масивът не може да се създаде"
+
+#: extension/filefuncs.c:731 extension/filefuncs.c:778
+#: extension/filefuncs.c:796
+msgid "fts-process: could not set element"
+msgstr "fts-process: елементът не може да се зададе"
+
+#: extension/filefuncs.c:845
+msgid "fts: called with incorrect number of arguments, expecting 3"
+msgstr "fts: неправилен брой аргументи — трябва да е 3"
+
+#: extension/filefuncs.c:848
+msgid "fts: first argument is not an array"
+msgstr "fts: първият аргумент трябва да е масив"
+
+#: extension/filefuncs.c:854
+msgid "fts: second argument is not a number"
+msgstr "fts: вторият аргумент трябва да е число"
+
+#: extension/filefuncs.c:860
+msgid "fts: third argument is not an array"
+msgstr "fts: третият аргумент трябва да е масив"
+
+#: extension/filefuncs.c:867
+msgid "fts: could not flatten array\n"
+msgstr "fts: масивът не може да се сплеска\n"
+
+#: extension/filefuncs.c:885
+msgid "fts: ignoring sneaky FTS_NOSTAT flag. nyah, nyah, nyah."
+msgstr "fts: неочакваният флаг „FTS_NOSTAT“ се прескача."
+
+#: extension/fnmatch.c:120
+msgid "fnmatch: could not get first argument"
+msgstr "fnmatch: първият аргумент не може да бъде получен"
+
+#: extension/fnmatch.c:125
+msgid "fnmatch: could not get second argument"
+msgstr "fnmatch: вторият аргумент не може да бъде получен"
+
+#: extension/fnmatch.c:130
+msgid "fnmatch: could not get third argument"
+msgstr "fnmatch: третият аргумент не може да бъде получен"
+
+#: extension/fnmatch.c:143
+msgid "fnmatch is not implemented on this system\n"
+msgstr "fnmatch липсва на тази система\n"
+
+#: extension/fnmatch.c:175
+msgid "fnmatch init: could not add FNM_NOMATCH variable"
+msgstr "fnmatch init: променливата „FNM_NOMATCH“ не може да се добави"
+
+#: extension/fnmatch.c:185
+#, c-format
+msgid "fnmatch init: could not set array element %s"
+msgstr "fnmatch init: eлементът от масив „%s“ не може да се зададе"
+
+#: extension/fnmatch.c:195
+msgid "fnmatch init: could not install FNM array"
+msgstr "fnmatch init: масивът FNM не може да се инсталира"
+
+#: extension/fork.c:92
+msgid "fork: PROCINFO is not an array!"
+msgstr "fork: PROCINFO трябва да е масив"
+
+#: extension/inplace.c:131
+msgid "inplace::begin: in-place editing already active"
+msgstr "inplace::begin: вече има редактиране на място"
+
+#: extension/inplace.c:134
+#, c-format
+msgid "inplace::begin: expects 2 arguments but called with %d"
+msgstr "inplace::begin: подадени са %d аргументи, а трябва за да 2"
+
+#: extension/inplace.c:137
+msgid "inplace::begin: cannot retrieve 1st argument as a string filename"
+msgstr "inplace::begin: първият аргумент трябва да е низ — име на файл"
+
+#: extension/inplace.c:145
+#, c-format
+msgid "inplace::begin: disabling in-place editing for invalid FILENAME `%s'"
+msgstr "inplace::begin: редактирането на място се изключва при неправилно ИМЕ_НА_ФАЙЛ: „%s“"
+
+#: extension/inplace.c:152
+#, c-format
+msgid "inplace::begin: Cannot stat `%s' (%s)"
+msgstr "inplace::begin: не може да се получи информация за „%s“ чрез „stat“: %s"
+
+#: extension/inplace.c:159
+#, c-format
+msgid "inplace::begin: `%s' is not a regular file"
+msgstr "inplace::begin: „%s“ не е обикновен файл"
+
+#: extension/inplace.c:170
+#, c-format
+msgid "inplace::begin: mkstemp(`%s') failed (%s)"
+msgstr "inplace::begin: неуспешно изпълнение на mkstemp(„%s“): %s"
+
+#: extension/inplace.c:182
+#, c-format
+msgid "inplace::begin: chmod failed (%s)"
+msgstr "inplace::begin: неуспешно изпълнение на chmod: %s"
+
+#: extension/inplace.c:189
+#, c-format
+msgid "inplace::begin: dup(stdout) failed (%s)"
+msgstr "inplace::begin: неуспешно изпълнение на dup(stdout): %s"
+
+#: extension/inplace.c:192
+#, c-format
+msgid "inplace::begin: dup2(%d, stdout) failed (%s)"
+msgstr "inplace::begin: неуспешно изпълнение на dup2(%d, stdout): %s"
+
+#: extension/inplace.c:195
+#, c-format
+msgid "inplace::begin: close(%d) failed (%s)"
+msgstr "inplace::begin: неуспешно изпълнение на close(%d): %s"
+
+#: extension/inplace.c:211
+#, c-format
+msgid "inplace::end: expects 2 arguments but called with %d"
+msgstr "inplace::end: приема точно 2 аргумента, а не %d"
+
+#: extension/inplace.c:214
+msgid "inplace::end: cannot retrieve 1st argument as a string filename"
+msgstr "inplace::end: първият аргумент трябва да е низ — име на файл"
+
+#: extension/inplace.c:221
+msgid "inplace::end: in-place editing not active"
+msgstr "inplace::end: редактирането на място не е включено"
+
+#: extension/inplace.c:227
+#, c-format
+msgid "inplace::end: dup2(%d, stdout) failed (%s)"
+msgstr "inplace::end: неуспешно изпълнение на dup2(%d, stdout): %s"
+
+#: extension/inplace.c:230
+#, c-format
+msgid "inplace::end: close(%d) failed (%s)"
+msgstr "inplace::end: неуспешно изпълнение на close(%d): %s"
+
+#: extension/inplace.c:234
+#, c-format
+msgid "inplace::end: fsetpos(stdout) failed (%s)"
+msgstr "inplace::end: неуспешно изпълнение на fsetpos(stdout): %s"
+
+#: extension/inplace.c:247
+#, c-format
+msgid "inplace::end: link(`%s', `%s') failed (%s)"
+msgstr "inplace::end: неуспешно изпълнение на link(„%s“, „%s“): %s"
+
+#: extension/inplace.c:257
+#, c-format
+msgid "inplace::end: rename(`%s', `%s') failed (%s)"
+msgstr "inplace::end: неуспешно изпълнение на rename(„%s“, „%s“): %s"
+
+#: extension/ordchr.c:72
+msgid "ord: first argument is not a string"
+msgstr "ord: първият аргумент трябва да е низ"
+
+#: extension/ordchr.c:99
+msgid "chr: first argument is not a number"
+msgstr "chr: първият аргумент трябва да е число"
+
+#: extension/readdir.c:273
+#, c-format
+msgid "dir_take_control_of: opendir/fdopendir failed: %s"
+msgstr "dir_take_control_of: неуспешно изпълнение на „opendir/fdopendir“: %s"
+
+#: extension/readfile.c:131
+msgid "readfile: called with wrong kind of argument"
+msgstr "readfile: неправилен вид аргумент"
+
+#: extension/revoutput.c:127
+msgid "revoutput: could not initialize REVOUT variable"
+msgstr "revoutput: променливата „REVOUT“ не може да бъде инициализирана"
+
+#: extension/rwarray.c:119
+msgid "do_writea: first argument is not a string"
+msgstr "do_writea: първият аргумент трябва да е низ"
+
+#: extension/rwarray.c:125
+msgid "do_writea: second argument is not an array"
+msgstr "do_writea: вторият аргумент трябва да е масив"
+
+#: extension/rwarray.c:172 extension/rwarray0.c:167
+msgid "write_array: could not flatten array"
+msgstr "write_array: масивът не може да се сплеска"
+
+#: extension/rwarray.c:188 extension/rwarray0.c:181
+msgid "write_array: could not release flattened array"
+msgstr "write_array: сплесканият масив не може да се освободи"
+
+#: extension/rwarray.c:255
+#, c-format
+msgid "array value has unknown type %d"
+msgstr "стойността на масива е от непознат вид %d"
+
+#: extension/rwarray.c:292
+msgid "do_reada: first argument is not a string"
+msgstr "do_reada: първият аргумент трябва да е низ"
+
+#: extension/rwarray.c:298
+msgid "do_reada: second argument is not an array"
+msgstr "do_reada: вторият аргумент трябва да е масив"
+
+#: extension/rwarray.c:342 extension/rwarray0.c:317
+msgid "do_reada: clear_array failed"
+msgstr "do_reada: неуспешно изпълнение на „clear_array“"
+
+#: extension/rwarray.c:379 extension/rwarray0.c:353
+msgid "read_array: set_array_element failed"
+msgstr "read_array: неуспешно изпълнение на „set_array_element“"
+
+#: extension/rwarray.c:489
+#, c-format
+msgid "treating recovered value with unknown type code %d as a string"
+msgstr "възстановената стойност с неизвестен код за вид %d се интерпретира като низ"
+
+#: extension/rwarray0.c:114
+msgid "do_writea: argument 0 is not a string"
+msgstr "do_writea: нулевият аргумент трябва да е низ"
+
+#: extension/rwarray0.c:120
+msgid "do_writea: argument 1 is not an array"
+msgstr "do_writea: първият аргумент трябва да е масив"
+
+#: extension/rwarray0.c:267
+msgid "do_reada: argument 0 is not a string"
+msgstr "do_reada: нулевият аргумент трябва да е низ"
+
+#: extension/rwarray0.c:273
+msgid "do_reada: argument 1 is not an array"
+msgstr "do_reada: първият аргумент трябва да е масив"
+
+#: extension/time.c:141
+msgid "gettimeofday: not supported on this platform"
+msgstr "gettimeofday: не се поддържа на тази система"
+
+#: extension/time.c:162
+msgid "sleep: missing required numeric argument"
+msgstr "sleep: числовият аргумент е задължителен"
+
+#: extension/time.c:168
+msgid "sleep: argument is negative"
+msgstr "sleep: аргументът трябва да е неотрицателен"
+
+#: extension/time.c:202
+msgid "sleep: not supported on this platform"
+msgstr "sleep: не се поддържа на тази система"
+
+#: field.c:281
+msgid "input record too large"
+msgstr "входният запис е твърде дълъг"
+
+#: field.c:397
+msgid "NF set to negative value"
+msgstr "„NF“ е зададена да е отрицателна"
+
+#: field.c:402
+msgid "decrementing NF is not portable to many awk versions"
+msgstr "намаляването на „NF“ не се поддържа навсякъде"
+
+#: field.c:846
+msgid "accessing fields from an END rule may not be portable"
+msgstr "достъпът до полета от крайното правило „END“ не се поддържа навсякъде"
+
+#: field.c:964 field.c:971
+msgid "split: fourth argument is a gawk extension"
+msgstr "split: четвъртият аргумент е разширение на gawk"
+
+#: field.c:968
+msgid "split: fourth argument is not an array"
+msgstr "split: четвъртият аргумент трябва да е масив"
+
+#: field.c:978
+msgid "split: second argument is not an array"
+msgstr "split: вторият аргумент трябва да е масив"
+
+#: field.c:982
+msgid "split: cannot use the same array for second and fourth args"
+msgstr "split: вторият и четвъртият аргумент трябва да не са същия масив"
+
+#: field.c:987
+msgid "split: cannot use a subarray of second arg for fourth arg"
+msgstr "split: четвъртият аргумент трябва да не е подмасив на втория"
+
+#: field.c:990
+msgid "split: cannot use a subarray of fourth arg for second arg"
+msgstr "split: вторият аргумент трябва да не е подмасив на четвъртия"
+
+#: field.c:1024
+msgid "split: null string for third arg is a non-standard extension"
+msgstr "split: нулев низ за трети аргумент не се поддържа навсякъде"
+
+#: field.c:1061
+msgid "patsplit: fourth argument is not an array"
+msgstr "patsplit: четвъртият аргумент трябва да е масив"
+
+#: field.c:1066
+msgid "patsplit: second argument is not an array"
+msgstr "patsplit: вторият аргумент трябва да е масив"
+
+#: field.c:1075
+msgid "patsplit: third argument must be non-null"
+msgstr "patsplit: третият аргумент трябва да не е null"
+
+#: field.c:1079
+msgid "patsplit: cannot use the same array for second and fourth args"
+msgstr "patsplit: вторият и четвъртият аргумент трябва да не са същия масив"
+
+#: field.c:1084
+msgid "patsplit: cannot use a subarray of second arg for fourth arg"
+msgstr "split: четвъртият аргумент трябва да не е подмасив на втория"
+
+#: field.c:1087
+msgid "patsplit: cannot use a subarray of fourth arg for second arg"
+msgstr "split: вторият аргумент трябва да не е подмасив на четвъртия"
+
+#: field.c:1137
+msgid "`FIELDWIDTHS' is a gawk extension"
+msgstr "„FIELDWIDTHS“ е разширение на gawk"
+
+#: field.c:1206
+msgid "`*' must be the last designator in FIELDWIDTHS"
+msgstr "„*“ трябва да е последният обозначител във „FIELDWIDTHS“"
+
+#: field.c:1227
+#, c-format
+msgid "invalid FIELDWIDTHS value, for field %d, near `%s'"
+msgstr "неправилна стойност на „FIELDWIDTHS“ — за поле №%d, до „%s“"
+
+#: field.c:1300
+msgid "null string for `FS' is a gawk extension"
+msgstr "стойност нулев низ за „FS“ е разширение на gawk"
+
+#: field.c:1304
+msgid "old awk does not support regexps as value of `FS'"
+msgstr "старите версии на awk не поддържат регулярни изрази за стойност на „FS“"
+
+#: field.c:1431
+msgid "`FPAT' is a gawk extension"
+msgstr "„FPAT“ е разширение на gawk"
+
+#: gawkapi.c:161
+msgid "awk_value_to_node: received null retval"
+msgstr "awk_value_to_node: получената върната стойност е null"
+
+#: gawkapi.c:178 gawkapi.c:189
+msgid "awk_value_to_node: not in MPFR mode"
+msgstr "awk_value_to_node: извън режим на многообразна точност с плаваща запетая (MPFR)"
+
+#: gawkapi.c:183 gawkapi.c:194
+msgid "awk_value_to_node: MPFR not supported"
+msgstr "awk_value_to_node: не се поддържа многообразна точност с плаваща запетая (MPFR)"
+
+#: gawkapi.c:198
+#, c-format
+msgid "awk_value_to_node: invalid number type `%d'"
+msgstr "awk_value_to_node: неправилен вид число “%d“"
+
+#: gawkapi.c:385
+msgid "add_ext_func: received NULL name_space parameter"
+msgstr "add_ext_func: параметърът name_space не трябва да е нулев"
+
+#: gawkapi.c:523
+#, c-format
+msgid "node_to_awk_value: detected invalid numeric flags combination `%s'; please file a bug report."
+msgstr "node_to_awk_value: засечена е неправилна комбинация от числови флагове „%s“. Молим, подайте доклад за грешка."
+
+#: gawkapi.c:551
+msgid "node_to_awk_value: received null node"
+msgstr "node_to_awk_value: получен е нулев възел"
+
+#: gawkapi.c:554
+msgid "node_to_awk_value: received null val"
+msgstr "node_to_awk_value: получена е нулева стойност"
+
+#: gawkapi.c:610 gawkapi.c:644 gawkapi.c:671 gawkapi.c:704
+#, c-format
+msgid "node_to_awk_value detected invalid flags combination `%s'; please file a bug report."
+msgstr "node_to_awk_value: засечена е неправилна комбинация от флагове „%s“. Молим, подайте доклад за грешка."
+
+#: gawkapi.c:1082
+msgid "remove_element: received null array"
+msgstr "remove_element: получен е нулев низ"
+
+#: gawkapi.c:1085
+msgid "remove_element: received null subscript"
+msgstr "remove_element: получен е нулев индекс"
+
+#: gawkapi.c:1217
+#, c-format
+msgid "api_flatten_array_typed: could not convert index %d to %s"
+msgstr "api_flatten_array_typed: индексът не може да се преобразува от %d към „%s“"
+
+#: gawkapi.c:1222
+#, c-format
+msgid "api_flatten_array_typed: could not convert value %d to %s"
+msgstr "api_flatten_array_typed: индексът не може да се преобразува от %d към „%s“"
+
+#: gawkapi.c:1318 gawkapi.c:1334
+msgid "api_get_mpfr: MPFR not supported"
+msgstr "api_get_mpfr: не се поддържа режим на многообразна точност с плаваща запетая (MPFR)"
+
+#: gawkapi.c:1365
+msgid "cannot find end of BEGINFILE rule"
+msgstr "краят на правилото „BEGINFILE“ не може да се открие"
+
+#: gawkapi.c:1419
+#, c-format
+msgid "cannot open unrecognized file type `%s' for `%s'"
+msgstr "непознатият вид файл „%s“ не може да се отвори за „%s“"
+
+#: io.c:426
+#, c-format
+msgid "command line argument `%s' is a directory: skipped"
+msgstr "аргументът на командния ред „%s“ е директория и се прескача"
+
+#: io.c:429 io.c:546
+#, c-format
+msgid "cannot open file `%s' for reading: %s"
+msgstr "файлът „%s“ не може да се отвори за четене: „%s“"
+
+#: io.c:675
+#, c-format
+msgid "close of fd %d (`%s') failed: %s"
+msgstr "неуспешно затваряне на файлов дескриптор %d („%s“): „%s“"
+
+#: io.c:753
+msgid "redirection not allowed in sandbox mode"
+msgstr "в безопасен режим пренасочването е изключено"
+
+#: io.c:787
+#, c-format
+msgid "expression in `%s' redirection is a number"
+msgstr "изразът в пренасочването „%s“ дава число"
+
+#: io.c:791
+#, c-format
+msgid "expression for `%s' redirection has null string value"
+msgstr "изразът в пренасочването „%s“ дава нулев низ"
+
+#: io.c:796
+#, c-format
+msgid "filename `%.*s' for `%s' redirection may be result of logical expression"
+msgstr "името на файл „%.*s“ в пренасочването „%s“ може да е резултат от логически израз"
+
+#: io.c:844
+#, c-format
+msgid "unnecessary mixing of `>' and `>>' for file `%.*s'"
+msgstr "ненужно смесване на „>“ и „>>“ за файла „%.*s“"
+
+#: io.c:896 io.c:921
+#, c-format
+msgid "get_file cannot create pipe `%s' with fd %d"
+msgstr "get_file: програмният канал „%s“ не може да се създаде с файлов дескриптор %d"
+
+#: io.c:911
+#, c-format
+msgid "cannot open pipe `%s' for output: %s"
+msgstr "програмният канал „%s“ не може да се отвори за изход: %s"
+
+#: io.c:926
+#, c-format
+msgid "cannot open pipe `%s' for input: %s"
+msgstr "програмният канал „%s“ не може да се отвори за вход: %s"
+
+#: io.c:950
+#, c-format
+msgid "get_file socket creation not supported on this platform for `%s' with fd %d"
+msgstr "get_file: тази платформа не поддържа създаването на гнезда за „%s“ с файлов дескриптор %d"
+
+#: io.c:961
+#, c-format
+msgid "cannot open two way pipe `%s' for input/output: %s"
+msgstr "не може да се отвори двупосочен програмен канал „%s“ за вход/изход: %s"
+
+#: io.c:1048
+#, c-format
+msgid "cannot redirect from `%s': %s"
+msgstr "неуспешно пренасочване от „%s“: %s"
+
+#: io.c:1051
+#, c-format
+msgid "cannot redirect to `%s': %s"
+msgstr "неуспешно пренасочване към „%s“: %s"
+
+#: io.c:1153
+msgid "reached system limit for open files: starting to multiplex file descriptors"
+msgstr "достигнато е системното ограничение за отворени файлове: започване на мултиплексиране на файловите дескриптори"
+
+#: io.c:1169
+#, c-format
+msgid "close of `%s' failed: %s."
+msgstr "неуспешно затваряне на „%s“: %s"
+
+#: io.c:1177
+msgid "too many pipes or input files open"
+msgstr "отворени са прекалено много входни файлове или програмни канали"
+
+#: io.c:1203
+msgid "close: second argument must be `to' or `from'"
+msgstr "close: вторият аргумент трябва да е „to“ (към) или „from“ (от)"
+
+#: io.c:1221
+#, c-format
+msgid "close: `%.*s' is not an open file, pipe or co-process"
+msgstr "close: „%.*s“ не е отворен файл, програмен канал или копроцес"
+
+#: io.c:1226
+msgid "close of redirection that was never opened"
+msgstr "close: това пренасочване не е било отворено"
+
+#: io.c:1325
+#, c-format
+msgid "close: redirection `%s' not opened with `|&', second argument ignored"
+msgstr "close: пренасочването „%s“ не е отворено с „|&“, вторият аргумент се прескача"
+
+#: io.c:1342
+#, c-format
+msgid "failure status (%d) on pipe close of `%s': %s"
+msgstr "код за грешка (%d) при затварянето на програмния канал „%s“: %s"
+
+#: io.c:1345
+#, c-format
+msgid "failure status (%d) on file close of `%s': %s"
+msgstr "код за грешка (%d) при затварянето на файла „%s“: %s"
+
+#: io.c:1365
+#, c-format
+msgid "no explicit close of socket `%s' provided"
+msgstr "гнездото „%s“ не е изрично затворено"
+
+#: io.c:1368
+#, c-format
+msgid "no explicit close of co-process `%s' provided"
+msgstr "копроцесът „%s“ не е изрично затворен"
+
+#: io.c:1371
+#, c-format
+msgid "no explicit close of pipe `%s' provided"
+msgstr "програмният канал „%s“ не е изрично затворен"
+
+#: io.c:1374
+#, c-format
+msgid "no explicit close of file `%s' provided"
+msgstr "файлът „%s“ не е изрично затворен"
+
+#: io.c:1411
+#, c-format
+msgid "fflush: cannot flush standard output: %s"
+msgstr "fflush: буферът на стандартния вход не може да се изчисти: %s"
+
+#: io.c:1412
+#, c-format
+msgid "fflush: cannot flush standard error: %s"
+msgstr "fflush: буферът на стандартната грешка не може да се изчисти: %s"
+
+#: io.c:1417 io.c:1508 main.c:662 main.c:709
+#, c-format
+msgid "error writing standard output: %s"
+msgstr "грешка при запис към стандартния изход: %s"
+
+#: io.c:1418 io.c:1521 main.c:664
+#, c-format
+msgid "error writing standard error: %s"
+msgstr "грешка при запис към стандартната грешка: %s"
+
+#: io.c:1457
+#, c-format
+msgid "pipe flush of `%s' failed: %s."
+msgstr "неуспешно изчистване на буфера на програмния канал „%s“: %s."
+
+#: io.c:1460
+#, c-format
+msgid "co-process flush of pipe to `%s' failed: %s."
+msgstr "неуспешно изчистване на буфера на програмния канал „%s“ на копроцеса: %s."
+
+#: io.c:1463
+#, c-format
+msgid "file flush of `%s' failed: %s."
+msgstr "неуспешно изчистване на буфера на файла „%s“: %s."
+
+#: io.c:1610
+#, c-format
+msgid "local port %s invalid in `/inet': %s"
+msgstr "локалният порт %s не е валиден в „/inet“: %s"
+
+#: io.c:1613
+#, c-format
+msgid "local port %s invalid in `/inet'"
+msgstr "локалният порт %s не е валиден в „/inet“"
+
+#: io.c:1636
+#, c-format
+msgid "remote host and port information (%s, %s) invalid: %s"
+msgstr "отдалеченият хост и порт (%s, %s) са неправилни: %s"
+
+#: io.c:1639
+#, c-format
+msgid "remote host and port information (%s, %s) invalid"
+msgstr "отдалеченият хост и порт (%s, %s) са неправилни"
+
+#: io.c:1881
+msgid "TCP/IP communications are not supported"
+msgstr "не се поддържа връзка по TCP/IP"
+
+#: io.c:2009 io.c:2052
+#, c-format
+msgid "could not open `%s', mode `%s'"
+msgstr "„%s“ не може да се отвори в режим „%s“"
+
+#: io.c:2017 io.c:2069
+#, c-format
+msgid "close of master pty failed: %s"
+msgstr "неуспешно затваряне на основния псевдотерминал: „%s“"
+
+#: io.c:2019 io.c:2071 io.c:2418 io.c:2662
+#, c-format
+msgid "close of stdout in child failed: %s"
+msgstr "неуспешно затваряне на стандартния изход в дъщерен процес: „%s“"
+
+#: io.c:2022 io.c:2074
+#, c-format
+msgid "moving slave pty to stdout in child failed (dup: %s)"
+msgstr "неуспешно преместване в дъщерния процес на подчинения терминал да е стандартния изход (dup: %s)"
+
+#: io.c:2024 io.c:2076 io.c:2423
+#, c-format
+msgid "close of stdin in child failed: %s"
+msgstr "неуспешно затваряне на стандартния вход в дъщерен процес: „%s“"
+
+#: io.c:2027 io.c:2079
+#, c-format
+msgid "moving slave pty to stdin in child failed (dup: %s)"
+msgstr "неуспешно преместване в дъщерния процес на подчинения терминал да е стандартния вход (dup: %s)"
+
+#: io.c:2029 io.c:2081 io.c:2103
+#, c-format
+msgid "close of slave pty failed: %s"
+msgstr "неуспешно затваряне на вторичния псевдотерминал: „%s“"
+
+#: io.c:2265
+msgid "could not create child process or open pty"
+msgstr "неуспешно създаване на дъщерен процес или отваряне на псевдотерминал"
+
+#: io.c:2353 io.c:2421 io.c:2633 io.c:2665
+#, c-format
+msgid "moving pipe to stdout in child failed (dup: %s)"
+msgstr "неуспешно преместване в дъщерния процес на програмния канал да е стандартния изход (dup: %s)"
+
+#: io.c:2360 io.c:2426
+#, c-format
+msgid "moving pipe to stdin in child failed (dup: %s)"
+msgstr "неуспешно преместване в дъщерния процес на програмния канал да е стандартния вход (dup: %s)"
+
+#: io.c:2386 io.c:2655
+msgid "restoring stdout in parent process failed"
+msgstr "неуспешно възстановяване на стандартния изход в родителския процес"
+
+#: io.c:2394
+msgid "restoring stdin in parent process failed"
+msgstr "неуспешно възстановяване на стандартния вход в родителския процес"
+
+#: io.c:2429 io.c:2667 io.c:2682
+#, c-format
+msgid "close of pipe failed: %s"
+msgstr "неуспешно затваряне на програмен канал: %s"
+
+#: io.c:2488
+msgid "`|&' not supported"
+msgstr "„|&“ не се поддържа"
+
+#: io.c:2618
+#, c-format
+msgid "cannot open pipe `%s': %s"
+msgstr "програмният канал „%s“ не може да се отвори: %s"
+
+#: io.c:2676
+#, c-format
+msgid "cannot create child process for `%s' (fork: %s)"
+msgstr "неуспешно създаване на дъщерен процес за „%s“ (fork: %s)"
+
+#: io.c:2814
+msgid "getline: attempt to read from closed read end of two-way pipe"
+msgstr "getline: опит за четене от затворения край за четене от двупосочен програмен канал"
+
+#: io.c:3138
+msgid "register_input_parser: received NULL pointer"
+msgstr "register_input_parser: получен е нулев указател"
+
+#: io.c:3166
+#, c-format
+msgid "input parser `%s' conflicts with previously installed input parser `%s'"
+msgstr "входният анализатор „%s“ е в конфликт с предишно инсталирания „%s“"
+
+#: io.c:3173
+#, c-format
+msgid "input parser `%s' failed to open `%s'"
+msgstr "входният анализатор „%s“ не може да отвори „%s“"
+
+#: io.c:3193
+msgid "register_output_wrapper: received NULL pointer"
+msgstr "register_output_wrapper: получен е нулев указател"
+
+#: io.c:3221
+#, c-format
+msgid "output wrapper `%s' conflicts with previously installed output wrapper `%s'"
+msgstr "функционалността за обработка на изхода „%s“ е в конфликт с предишно инсталираната „%s“"
+
+#: io.c:3228
+#, c-format
+msgid "output wrapper `%s' failed to open `%s'"
+msgstr "функционалността за обработка на изхода „%s“ не може да отвори „%s“"
+
+#: io.c:3249
+msgid "register_output_processor: received NULL pointer"
+msgstr "register_output_processor: получен е нулев указател"
+
+#: io.c:3278
+#, c-format
+msgid "two-way processor `%s' conflicts with previously installed two-way processor `%s'"
+msgstr "двупосочния анализатор „%s“ е в конфликт с предишно инсталирания „%s“"
+
+#: io.c:3287
+#, c-format
+msgid "two way processor `%s' failed to open `%s'"
+msgstr "двупосочния анализатор „%s“ не успя да отвори „%s“"
+
+#: io.c:3411
+#, c-format
+msgid "data file `%s' is empty"
+msgstr "празен файл с данни „%s“"
+
+#: io.c:3453 io.c:3461
+msgid "could not allocate more input memory"
+msgstr "повече памет не може да се задели"
+
+#: io.c:4079
+msgid "multicharacter value of `RS' is a gawk extension"
+msgstr "стойност от повече от един знак за „RS“ е разширение на gawk"
+
+#: io.c:4233
+msgid "IPv6 communication is not supported"
+msgstr "не се поддържат връзки по IPv6"
+
+#: main.c:336
+msgid "environment variable `POSIXLY_CORRECT' set: turning on `--posix'"
+msgstr "променливата на средата „POSIXLY_CORRECT“ е зададена: включва се опцията „--posix“"
+
+#: main.c:343
+msgid "`--posix' overrides `--traditional'"
+msgstr "опцията „--posix“ е с превес над „--traditional“"
+
+#: main.c:354
+msgid "`--posix'/`--traditional' overrides `--non-decimal-data'"
+msgstr "опциите „--posix“/„--traditional“ са с превес над „--non-decimal-data“"
+
+#: main.c:359
+msgid "`--posix' overrides `--characters-as-bytes'"
+msgstr "опцията „--posix“ е с превес над „--characters-as-bytes“"
+
+#: main.c:368
+#, c-format
+msgid "running %s setuid root may be a security problem"
+msgstr "изпълнението на „%s“ със зададен флаг за изпълнение като „root“ е проблем за сигурността"
+
+#: main.c:421
+#, c-format
+msgid "cannot set binary mode on stdin: %s"
+msgstr "неуспешно задаване на двоичен режим за стандартния вход: „%s“"
+
+#: main.c:424
+#, c-format
+msgid "cannot set binary mode on stdout: %s"
+msgstr "неуспешно задаване на двоичен режим за стандартния изход: „%s“"
+
+#: main.c:426
+#, c-format
+msgid "cannot set binary mode on stderr: %s"
+msgstr "неуспешно задаване на двоичен режим за стандартната грешка: „%s“"
+
+#: main.c:488
+msgid "no program text at all!"
+msgstr "липсва код на програмата!"
+
+#: main.c:582
+#, c-format
+msgid "Usage: %s [POSIX or GNU style options] -f progfile [--] file ...\n"
+msgstr "Употреба: %s [ОПЦИЯ_ПО_POSIX_И_GNU…] -f ПРОГРАМЕН_ФАЙЛ [--] ФАЙЛ…\n"
+
+#: main.c:584
+#, c-format
+msgid "Usage: %s [POSIX or GNU style options] [--] %cprogram%c file ...\n"
+msgstr "Употреба: %s [ОПЦИЯ_ПО_POSIX_И_GNU…]  [--] %cПРОГРАМЕН_ФАЙЛ%c ФАЙЛ…\n"
+
+#: main.c:589
+msgid "POSIX options:\t\tGNU long options: (standard)\n"
+msgstr "Опции по POSIX:        Дълги опции по GNU: (стандартни)\n"
+
+#: main.c:590
+msgid "\t-f progfile\t\t--file=progfile\n"
+msgstr "    -f ПРОГРАМЕН_ФАЙЛ           --file=ПРОГРАМЕН_ФАЙЛ\n"
+
+#: main.c:591
+msgid "\t-F fs\t\t\t--field-separator=fs\n"
+msgstr "    -F РАЗДEЛИТЕЛ               --field-separator=РАЗДЕЛИТЕЛ\n"
+
+#: main.c:592
+msgid "\t-v var=val\t\t--assign=var=val\n"
+msgstr "    -v ПРОМЕНЛИВА=СТОЙНОСТ            --assign=ПРОМЕНЛИВА=СТОЙНОСТ\n"
+
+#: main.c:593
+msgid "Short options:\t\tGNU long options: (extensions)\n"
+msgstr "Къси опции:            Дълги опции по GNU: (разширени)\n"
+
+#: main.c:594
+msgid "\t-b\t\t\t--characters-as-bytes\n"
+msgstr "    -b                          --characters-as-bytes\n"
+
+#: main.c:595
+msgid "\t-c\t\t\t--traditional\n"
+msgstr "    -c                          --traditional\n"
+
+#: main.c:596
+msgid "\t-C\t\t\t--copyright\n"
+msgstr "    -C                          --copyright\n"
+
+#: main.c:597
+msgid "\t-d[file]\t\t--dump-variables[=file]\n"
+msgstr "    -d[ФАЙЛ]                    --dump-variables[=ФАЙЛ]\n"
+
+#: main.c:598
+msgid "\t-D[file]\t\t--debug[=file]\n"
+msgstr "    -D[ФАЙЛ]                    --debug[=ФАЙЛ]\n"
+
+#: main.c:599
+msgid "\t-e 'program-text'\t--source='program-text'\n"
+msgstr "    -e 'ПРОГРАМА'               --source='ПРОГРАМА'\n"
+
+#: main.c:600
+msgid "\t-E file\t\t\t--exec=file\n"
+msgstr "    -E ФАЙЛ                     --exec=ФАЙЛ\n"
+
+#: main.c:601
+msgid "\t-g\t\t\t--gen-pot\n"
+msgstr "    -g                          --gen-pot\n"
+
+#: main.c:602
+msgid "\t-h\t\t\t--help\n"
+msgstr "    -h                          --help\n"
+
+#: main.c:603
+msgid "\t-i includefile\t\t--include=includefile\n"
+msgstr "    -i ФАЙЛ_ЗА_ВМЪКВАНЕ         --include=ФАЙЛ_ЗА_ВМЪКВАНЕ\n"
+
+#: main.c:604
+msgid "\t-l library\t\t--load=library\n"
+msgstr "    -l БИБЛИОТЕКА               --load=БИБЛИОТЕКА\n"
+
+#. TRANSLATORS: the "fatal", "invalid" and "no-ext" here are literal
+#. values, they should not be translated. Thanks.
+#.
+#: main.c:609
+msgid "\t-L[fatal|invalid|no-ext]\t--lint[=fatal|invalid|no-ext]\n"
+msgstr "    -L[fatal|invalid|no-ext]    --lint[=fatal|invalid|no-ext]\n"
+
+#: main.c:610
+msgid "\t-M\t\t\t--bignum\n"
+msgstr "    -M                          --bignum\n"
+
+#: main.c:611
+msgid "\t-N\t\t\t--use-lc-numeric\n"
+msgstr "    -N                          --use-lc-numeric\n"
+
+#: main.c:612
+msgid "\t-n\t\t\t--non-decimal-data\n"
+msgstr "    -n                          --non-decimal-data\n"
+
+#: main.c:613
+msgid "\t-o[file]\t\t--pretty-print[=file]\n"
+msgstr "    -oФАЙЛ                      --pretty-print[=ФАЙЛ]\n"
+
+#: main.c:614
+msgid "\t-O\t\t\t--optimize\n"
+msgstr "    -O                          --optimize\n"
+
+#: main.c:615
+msgid "\t-p[file]\t\t--profile[=file]\n"
+msgstr "    -p[ФАЙЛ]                    --profile[=ФАЙЛ]\n"
+
+#: main.c:616
+msgid "\t-P\t\t\t--posix\n"
+msgstr "    -P                          --posix\n"
+
+#: main.c:617
+msgid "\t-r\t\t\t--re-interval\n"
+msgstr "    -r                          --re-interval\n"
+
+#: main.c:618
+msgid "\t-s\t\t\t--no-optimize\n"
+msgstr "    -s                          --no-optimize\n"
+
+#: main.c:619
+msgid "\t-S\t\t\t--sandbox\n"
+msgstr "    -S                          --sandbox\n"
+
+#: main.c:620
+msgid "\t-t\t\t\t--lint-old\n"
+msgstr "    -t                          --lint-old\n"
+
+#: main.c:621
+msgid "\t-V\t\t\t--version\n"
+msgstr "    -V                          --version\n"
+
+#: main.c:623
+msgid "\t-W nostalgia\t\t--nostalgia\n"
+msgstr "    -W nostalgia                --nostalgia\n"
+
+#: main.c:626
+msgid "\t-Y\t\t\t--parsedebug\n"
+msgstr "    -Y                          --parsedebug\n"
+
+#: main.c:629
+msgid "\t-Z locale-name\t\t--locale=locale-name\n"
+msgstr "    -Z ИМЕ_НА_ЛОКАЛ             --locale=ИМЕ_НА_ЛОКАЛ\n"
+
+#. TRANSLATORS: --help output (end)
+#. no-wrap
+#: main.c:635
+msgid ""
+"\n"
+"To report bugs, see node `Bugs' in `gawk.info'\n"
+"which is section `Reporting Problems and Bugs' in the\n"
+"printed version.  This same information may be found at\n"
+"https://www.gnu.org/software/gawk/manual/html_node/Bugs.html.\n"
+"PLEASE do NOT try to report bugs by posting in comp.lang.awk,\n"
+"or by using a web forum such as Stack Overflow.\n"
+"\n"
+msgstr ""
+"\n"
+"За докладването на грешки погледнете частта „Bugs“ (Грешки)\n"
+"в „gawk.info“, което съответства на раздела „Reporting\n"
+"Problems and Bugs“ (Докладване на проблеми и грешки) в\n"
+"отпечатания вариант.  Същата информация е налична на адрес\n"
+"https://www.gnu.org/software/gawk/manual/html_node/Bugs.html.\n"
+"МОЛИМ, не докладвайте грешки през „comp.lang.awk“ или\n"
+"уеб-форуми като Stack Overflow.\n"
+"\n"
+
+#: main.c:643
+msgid ""
+"gawk is a pattern scanning and processing language.\n"
+"By default it reads standard input and writes standard output.\n"
+"\n"
+msgstr ""
+"gawk е език да търсене и обработка по шаблони.\n"
+"По подразбиране се чете от стандартния вход и се извежда на стандартния изход.\n"
+"\n"
+
+#: main.c:647
+#, c-format
+msgid ""
+"Examples:\n"
+"\t%s '{ sum += $1 }; END { print sum }' file\n"
+"\t%s -F: '{ print $1 }' /etc/passwd\n"
+msgstr ""
+"Примери:\n"
+"    %s '{ sum += $1 }; END { print sum }' ФАЙЛ\n"
+"    %s -F: '{ print $1 }' /etc/passwd\n"
+
+#: main.c:679
+#, c-format
+msgid ""
+"Copyright (C) 1989, 1991-%d Free Software Foundation.\n"
+"\n"
+"This program is free software; you can redistribute it and/or modify\n"
+"it under the terms of the GNU General Public License as published by\n"
+"the Free Software Foundation; either version 3 of the License, or\n"
+"(at your option) any later version.\n"
+"\n"
+msgstr ""
+"Авторски права © 1989, 1991-%d Free Software Foundation, Inc.\n"
+"\n"
+"Тази програма е свободен софтуер. Можете да я разпространявате и/или\n"
+"променяте по условията на Общия публичен лиценз на GNU (GNU GPL),\n"
+"както е публикуван от Фондацията за свободен софтуер — версия 3 на\n"
+"лиценза или (по ваше решение) по-късна версия.\n"
+"\n"
+
+#: main.c:687
+msgid ""
+"This program is distributed in the hope that it will be useful,\n"
+"but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+"GNU General Public License for more details.\n"
+"\n"
+msgstr ""
+"Тази програма се разпространява с надеждата, че ще бъде полезна,\n"
+"но БЕЗ НИКАКВИ ГАРАНЦИИ, дори и косвените за ПРОДАЖБА или\n"
+"СЪОТВЕТСТВИЕ С КАКВАТО И ДА Е УПОТРЕБА. За подробности погледнете\n"
+"Общия публичен лиценз на GNU.\n"
+"\n"
+
+#: main.c:693
+msgid ""
+"You should have received a copy of the GNU General Public License\n"
+"along with this program. If not, see http://www.gnu.org/licenses/.\n"
+msgstr ""
+"Трябва да сте получили копие от Общия публичен лиценз на GNU (GNU GPL)\n"
+"заедно с тази програма. Ако не сте, вижте see http://www.gnu.org/licenses/.\n"
+
+#: main.c:734
+msgid "-Ft does not set FS to tab in POSIX awk"
+msgstr "„-Ft“ не задава FS да е табулация в режим POSIX на awk"
+
+#: main.c:1149
+#, c-format
+msgid ""
+"%s: `%s' argument to `-v' not in `var=value' form\n"
+"\n"
+msgstr ""
+"%s: аргументът „%s“ към „-v“ трябва да е във формат „променлива=стойност“\n"
+"\n"
+
+#: main.c:1175
+#, c-format
+msgid "`%s' is not a legal variable name"
+msgstr "„%s“: грешно име на променлива"
+
+#: main.c:1178
+#, c-format
+msgid "`%s' is not a variable name, looking for file `%s=%s'"
+msgstr "„%s“ не е име на променлива, търси се файлът „%s=%s“"
+
+#: main.c:1192
+#, c-format
+msgid "cannot use gawk builtin `%s' as variable name"
+msgstr "вградената в gawk функция „%s“ не може да се ползва за име на променлива"
+
+#: main.c:1197
+#, c-format
+msgid "cannot use function `%s' as variable name"
+msgstr "функцията „%s“ не може да се ползва за име на променлива"
+
+#: main.c:1275
+msgid "floating point exception"
+msgstr "изключение от плаваща запетая"
+
+#: main.c:1285
+msgid "fatal error: internal error"
+msgstr "фатална грешка: вътрешна грешка"
+
+#: main.c:1305
+msgid "fatal error: internal error: segfault"
+msgstr "фатална грешка: вътрешна грешка — излизане от сегмента"
+
+#: main.c:1318
+msgid "fatal error: internal error: stack overflow"
+msgstr "фатална грешка: вътрешна грешка — препълване на стека"
+
+#: main.c:1378
+#, c-format
+msgid "no pre-opened fd %d"
+msgstr "липсва предварително отворен файлов дескриптор %d"
+
+#: main.c:1385
+#, c-format
+msgid "could not pre-open /dev/null for fd %d"
+msgstr "„/dev/null“ не може да се отвори предварително като файлов дескриптор %d"
+
+#: main.c:1599
+msgid "empty argument to `-e/--source' ignored"
+msgstr "празният аргумент към опцията „-e/--source“ се прескача"
+
+#: main.c:1660 main.c:1665
+msgid "`--profile' overrides `--pretty-print'"
+msgstr "опцията „--profile“ има превес над „--pretty-print“"
+
+#: main.c:1677
+msgid "-M ignored: MPFR/GMP support not compiled in"
+msgstr "„-M“ се прескача: в компилата няма поддръжка на MPFR/GMP"
+
+#: main.c:1702
+#, c-format
+msgid "%s: option `-W %s' unrecognized, ignored\n"
+msgstr "%s: непозната опция „-W %s“, тя се прескача\n"
+
+#: main.c:1755
+#, c-format
+msgid "%s: option requires an argument -- %c\n"
+msgstr "%s: опцията изисква аргумент — %c\n"
+
+#: mpfr.c:551
+#, c-format
+msgid "PREC value `%.*s' is invalid"
+msgstr "неправилна стойност „%.*s“ за точността"
+
+#: mpfr.c:610
+#, c-format
+msgid "RNDMODE value `%.*s' is invalid"
+msgstr "неправилна стойност „%.*s“ на режима за изпълнение"
+
+#: mpfr.c:674
+msgid "atan2: received non-numeric first argument"
+msgstr "atan2: първият аргумент трябва да е число"
+
+#: mpfr.c:676
+msgid "atan2: received non-numeric second argument"
+msgstr "atan2: вторият аргумент трябва да е число"
+
+#: mpfr.c:774
+msgid "int: received non-numeric argument"
+msgstr "int: първият аргумент трябва да е число"
+
+#: mpfr.c:804
+msgid "compl: received non-numeric argument"
+msgstr "compl: аргументите трябва да са числа"
+
+#: mpfr.c:816
+msgid "compl(%Rg): negative value is not allowed"
+msgstr "compl(%Rg): не приема отрицателни стойности"
+
+#: mpfr.c:821
+msgid "comp(%Rg): fractional value will be truncated"
+msgstr "comp(%Rg): дробната част ще бъде отрязана"
+
+#: mpfr.c:832
+#, c-format
+msgid "compl(%Zd): negative values are not allowed"
+msgstr "compl(%Zd): не приема отрицателни стойности"
+
+#: mpfr.c:850
+#, c-format
+msgid "%s: received non-numeric argument #%d"
+msgstr "%s: аргумент №%d трябва да е число"
+
+#: mpfr.c:860
+msgid "%s: argument #%d has invalid value %Rg, using 0"
+msgstr "%1$s: неправилна стойност %3$Rg за аргумент №%2$d, ще се ползва 0"
+
+#: mpfr.c:871
+msgid "%s: argument #%d negative value %Rg is not allowed"
+msgstr "%s: аргумент №%d не приема отрицателни стойности като %Rg"
+
+#: mpfr.c:878
+msgid "%s: argument #%d fractional value %Rg will be truncated"
+msgstr "%s: аргумент №%d ще използва цялата част от числото с плаваща запетая %Rg"
+
+#: mpfr.c:892
+#, c-format
+msgid "%s: argument #%d negative value %Zd is not allowed"
+msgstr "%s: аргумент №%d не приема отрицателни стойности като %Zd"
+
+#: mpfr.c:982
+msgid "and: called with less than two arguments"
+msgstr "and: изисква поне два аргумента"
+
+#: mpfr.c:1014
+msgid "or: called with less than two arguments"
+msgstr "or: изисква поне два аргумента"
+
+#: mpfr.c:1045
+msgid "xor: called with less than two arguments"
+msgstr "xor: изисква поне два аргумента"
+
+#: mpfr.c:1169
+msgid "srand: received non-numeric argument"
+msgstr "srand: приема само числови аргументи"
+
+#: mpfr.c:1211
+msgid "intdiv: received non-numeric first argument"
+msgstr "intdiv: първият аргумент трябва да е число"
+
+#: mpfr.c:1213
+msgid "intdiv: received non-numeric second argument"
+msgstr "intdiv: вторият аргумент трябва да е число"
+
+#: msg.c:75
+#, c-format
+msgid "cmd. line:"
+msgstr "команден ред:"
+
+#: node.c:481
+msgid "could not make typed regex"
+msgstr "не може да се създаде типизиран регулярен израз"
+
+#: node.c:555
+#, c-format
+msgid "old awk does not support the `\\%c' escape sequence"
+msgstr "старите версии на awk не поддържат екранирането „\\%c“"
+
+#: node.c:606
+msgid "POSIX does not allow `\\x' escapes"
+msgstr "POSIX не позволява екраниране „\\x“"
+
+#: node.c:612
+msgid "no hex digits in `\\x' escape sequence"
+msgstr "в екранираната последователност „\\x“ липсват шестнайсетични цифри"
+
+#: node.c:633
+#, c-format
+msgid "hex escape \\x%.*s of %d characters probably not interpreted the way you expect"
+msgstr "шестнайсетичното екраниране „\\x%.*s“ на %d знаци, най-вероятно ще се интерпретира по начин различен от това, което очаквате"
+
+#: node.c:648
+#, c-format
+msgid "escape sequence `\\%c' treated as plain `%c'"
+msgstr "екранираната последователност „\\%c“ ще се обработи просто като „%c“"
+
+#: node.c:784
+msgid "Invalid multibyte data detected. There may be a mismatch between your data and your locale."
+msgstr "Получена е сгрешена многобайтова последователност.  Проверете дали локалът съответства на данните"
+
+#: posix/gawkmisc.c:177
+#, c-format
+msgid "%s %s `%s': could not get fd flags: (fcntl F_GETFD: %s)"
+msgstr "%s %s „%s“: флаговете на файловия дескриптор не може да се получат: (fcntl F_GETFD: %s)"
+
+#: posix/gawkmisc.c:189
+#, c-format
+msgid "%s %s `%s': could not set close-on-exec: (fcntl F_SETFD: %s)"
+msgstr "%s %s „%s“: неуспешно задаване на „close-on-exec“: (fcntl F_SETFD: %s)"
+
+#: profile.c:73
+msgid "Program indentation level too deep. Consider refactoring your code"
+msgstr "Прекалено дълбока вложеност на програмата.  Променете кода"
+
+#: profile.c:112
+msgid "sending profile to standard error"
+msgstr "извеждане на профила на изпълнение към стандартната грешка"
+
+#: profile.c:275
+#, c-format
+msgid ""
+"\t# %s rule(s)\n"
+"\n"
+msgstr ""
+"    # %s правила̀\n"
+"\n"
+
+#: profile.c:283
+#, c-format
+msgid ""
+"\t# Rule(s)\n"
+"\n"
+msgstr ""
+"    # Правила̀\n"
+"\n"
+
+#: profile.c:371
+#, c-format
+msgid "internal error: %s with null vname"
+msgstr "вътрешна грешка: %s с име (vname) - нулев байт"
+
+#: profile.c:662
+msgid "internal error: builtin with null fname"
+msgstr "вътрешна грешка: вградена команда с име (fname) - нулев байт"
+
+#: profile.c:1317
+#, c-format
+msgid ""
+"%s# Loaded extensions (-l and/or @load)\n"
+"\n"
+msgstr ""
+"%s# Заредени разширения (чрез „-l“ и/или „@load“)\n"
+"\n"
+
+#: profile.c:1348
+#, c-format
+msgid ""
+"\n"
+"# Included files (-i and/or @include)\n"
+"\n"
+msgstr ""
+"\n"
+"# Вмъкнати файлове (чрез „-i“ и/или „@include“)\n"
+"\n"
+
+#: profile.c:1412
+#, c-format
+msgid "\t# gawk profile, created %s\n"
+msgstr "    # профил изпълнение на gawk, създаден на %s\n"
+
+#: profile.c:1980
+#, c-format
+msgid ""
+"\n"
+"\t# Functions, listed alphabetically\n"
+msgstr ""
+"\n"
+"    # Функции в лексикографски ред\n"
+
+#: profile.c:2041
+#, c-format
+msgid "redir2str: unknown redirection type %d"
+msgstr "redir2str: непознат вид пренасочване %d"
+
+#: re.c:58 re.c:163
+msgid "behavior of matching a regexp containing NUL characters is not defined by POSIX"
+msgstr "поведението на регулярен израз съдържащ нулев байт е недефинирано по POSIX"
+
+#: re.c:127
+msgid "invalid NUL byte in dynamic regexp"
+msgstr "неправилен нулев байт в динамичен регулярен израз"
+
+#: re.c:174
+#, c-format
+msgid "regexp escape sequence `\\%c' treated as plain `%c'"
+msgstr "екраниращата последователност в регулярния израз „\\%c“ се обработва като „%c“"
+
+#: re.c:193
+#, c-format
+msgid "regexp escape sequence `\\%c' is not a known regexp operator"
+msgstr "екраниращата последователност в регулярния израз „\\\\%c“ не е познат оператор"
+
+#: re.c:663
+#, c-format
+msgid "regexp component `%.*s' should probably be `[%.*s]'"
+msgstr "компонентът „%.*s“ вероятно трябва да е „[%.*s]“"
+
+#: support/dfa.c:950
+msgid "unbalanced ["
+msgstr "„[“ без еш"
+
+#: support/dfa.c:1071
+msgid "invalid character class"
+msgstr "неправилен клас знаци"
+
+#: support/dfa.c:1197
+msgid "character class syntax is [[:space:]], not [:space:]"
+msgstr "клас знаци се указва чрез „[[:ИМЕ:]]“, а не „[:ИМЕ:]“"
+
+#: support/dfa.c:1264
+msgid "unfinished \\ escape"
+msgstr "незавършена екранираща последователност чрез „\\“"
+
+#: support/dfa.c:1425
+msgid "invalid content of \\{\\}"
+msgstr "неправилно съдържание в „\\{\\}“"
+
+#: support/dfa.c:1428
+msgid "regular expression too big"
+msgstr "прекалено голям регулярен израз"
+
+#: support/dfa.c:1899
+msgid "unbalanced ("
+msgstr "„(“ без еш"
+
+#: support/dfa.c:2016
+msgid "no syntax specified"
+msgstr "не е зададен синтаксис"
+
+#: support/dfa.c:2027
+msgid "unbalanced )"
+msgstr "„)“ без еш"
+
+#: support/getopt.c:605 support/getopt.c:634
+#, c-format
+msgid "%s: option '%s' is ambiguous; possibilities:"
+msgstr "%s: опцията „%s“ не еднозначна, възможни значения:"
+
+#: support/getopt.c:680 support/getopt.c:684
+#, c-format
+msgid "%s: option '--%s' doesn't allow an argument\n"
+msgstr "%s: опцията „--%s“ не приема аргумент\n"
+
+#: support/getopt.c:693 support/getopt.c:698
+#, c-format
+msgid "%s: option '%c%s' doesn't allow an argument\n"
+msgstr "%s: опцията „%c%s“ не приема аргумент\n"
+
+#: support/getopt.c:741 support/getopt.c:760
+#, c-format
+msgid "%s: option '--%s' requires an argument\n"
+msgstr "%s: опцията „--%s“ изисква аргумент\n"
+
+#: support/getopt.c:798 support/getopt.c:801
+#, c-format
+msgid "%s: unrecognized option '--%s'\n"
+msgstr "%s: непозната опция „--%s“\n"
+
+#: support/getopt.c:809 support/getopt.c:812
+#, c-format
+msgid "%s: unrecognized option '%c%s'\n"
+msgstr "%s: непозната опция „%c%s“\n"
+
+#: support/getopt.c:861 support/getopt.c:864
+#, c-format
+msgid "%s: invalid option -- '%c'\n"
+msgstr "%s: неправилна опция — „%c“\n"
+
+#: support/getopt.c:917 support/getopt.c:934 support/getopt.c:1144
+#: support/getopt.c:1162
+#, c-format
+msgid "%s: option requires an argument -- '%c'\n"
+msgstr "%s: опцията изисква аргумент — „%c“\n"
+
+#: support/getopt.c:990 support/getopt.c:1006
+#, c-format
+msgid "%s: option '-W %s' is ambiguous\n"
+msgstr "%s: опцията „-W %s“ не е еднозначна\n"
+
+#: support/getopt.c:1030 support/getopt.c:1048
+#, c-format
+msgid "%s: option '-W %s' doesn't allow an argument\n"
+msgstr "%s: опцията „-W %s“ не приема аргумент\n"
+
+#: support/getopt.c:1069 support/getopt.c:1087
+#, c-format
+msgid "%s: option '-W %s' requires an argument\n"
+msgstr "%s: опцията „-W %s“ изисква аргумент\n"
+
+#: support/regcomp.c:135
+msgid "Success"
+msgstr "Успех"
+
+#: support/regcomp.c:138
+msgid "No match"
+msgstr "Няма съвпадения"
+
+#: support/regcomp.c:141
+msgid "Invalid regular expression"
+msgstr "Неправилен регулярен израз"
+
+#: support/regcomp.c:144
+msgid "Invalid collation character"
+msgstr "Неправилен знак за подредба"
+
+#: support/regcomp.c:147
+msgid "Invalid character class name"
+msgstr "Неправилно име на клас знаци"
+
+#: support/regcomp.c:150
+msgid "Trailing backslash"
+msgstr "Самотна „\\“ накрая"
+
+#: support/regcomp.c:153
+msgid "Invalid back reference"
+msgstr "Неправилна препратка към съвпадение"
+
+#: support/regcomp.c:156
+msgid "Unmatched [, [^, [:, [., or [="
+msgstr "„[“, „[^“, „[:“, „[.“ или „[=“ без еш"
+
+#: support/regcomp.c:159
+msgid "Unmatched ( or \\("
+msgstr "„(“ или „\\(“ без еш"
+
+#: support/regcomp.c:162
+msgid "Unmatched \\{"
+msgstr "„\\{“ без еш"
+
+#: support/regcomp.c:165
+msgid "Invalid content of \\{\\}"
+msgstr "Неправилно съдържание в „\\{\\}“"
+
+#: support/regcomp.c:168
+msgid "Invalid range end"
+msgstr "Неправилен край на диапазон"
+
+#: support/regcomp.c:171
+msgid "Memory exhausted"
+msgstr "Паметта свърши"
+
+#: support/regcomp.c:174
+msgid "Invalid preceding regular expression"
+msgstr "Предхождащият регулярен израз е неправилен"
+
+#: support/regcomp.c:177
+msgid "Premature end of regular expression"
+msgstr "Ранен край на регулярен израз"
+
+#: support/regcomp.c:180
+msgid "Regular expression too big"
+msgstr "Регулярният израз е прекалено голям"
+
+#: support/regcomp.c:183
+msgid "Unmatched ) or \\)"
+msgstr "„)“ или „\\)“ без еш"
+
+#: support/regcomp.c:676
+msgid "No previous regular expression"
+msgstr "Няма предхождащ регулярен израз"
+
+#: symbol.c:691
+#, c-format
+msgid "function `%s': cannot use function `%s' as a parameter name"
+msgstr "функция „%s“: функцията „%s“ не може да се ползва като име на параметър"
+
+#: symbol.c:821
+msgid "cannot pop main context"
+msgstr "основният контекст не може да бъде изваден"
