@@ -1,3 +1,10 @@
+2021-02-13         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* io.c (nextfile): Use the value of ARGC directly in the for
+	loop, in case it gets changed by code or by a command line
+	assignment. Thanks to the discussion in comp.lang.awk for
+	the report.
+
 2021-01-28         Arnold D. Robbins     <arnold@skeeve.com>
 
 	Fix a Day One Bug!

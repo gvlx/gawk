@@ -447,7 +447,6 @@ nextfile(IOBUF **curfile, bool skipping)
 	int fd = INVALID_HANDLE;
 	int errcode = 0;
 	IOBUF *iop = *curfile;
-	long argc;
 
 	if (skipping) {			/* for 'nextfile' call */
 		errcode = 0;
@@ -469,9 +468,7 @@ nextfile(IOBUF **curfile, bool skipping)
 			return 0;
 	}
 
-	argc = get_number_si(ARGC_node->var_value);
-
-	for (; i < argc; i++) {
+	for (; i < get_number_si(ARGC_node->var_value);  i++) {
 		tmp = make_number((AWKNUM) i);
 		(void) force_string(tmp);
 		arg = in_array(ARGV_node, tmp);

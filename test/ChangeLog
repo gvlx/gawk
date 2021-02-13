@@ -1,3 +1,8 @@
+2021-02-13         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.am (EXTRA_DIST): argcasfile, new test.
+	* argcasfile.awk, argcasfile.in, argcasfile.ok: New files.
+
 2021-01-09         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* Makefile.am (EXTRA_DIST): octdec, new test.
