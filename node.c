@@ -1082,3 +1082,25 @@ more_blocks(int id)
 }
 
 #endif
+
+/* make_bool_node --- make a boolean-valued node */
+
+extern NODE *
+make_bool_node(bool value)
+{
+	NODE *val;
+	const char *sval;
+	AWKNUM nval;
+
+	sval = (value ? "TRUE" : "FALSE");
+	nval = (value ? 1.0 : 0.0);
+
+	val = make_number(nval);
+	val->stptr = estrdup(sval, strlen(sval));
+	val->stlen = strlen(sval);
+	val->flags &= ~NUMBER;
+	val->flags |= NUMCUR|STRCUR|BOOL;
+	val->stfmt = STFMT_UNUSED;
+
+	return val;
+}

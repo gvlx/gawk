@@ -455,6 +455,7 @@ flags2str(int flagval)
 		{ XARRAY, "XARRAY" },
 		{ NUMCONSTSTR, "NUMCONSTSTR" },
 		{ REGEX, "REGEX" },
+		{ BOOL, "BOOL" },
 		{ 0,	NULL },
 	};
 

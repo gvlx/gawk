@@ -366,7 +366,8 @@ typedef enum {
 	AWK_STRNUM,
 	AWK_ARRAY,
 	AWK_SCALAR,		/* opaque access to a variable */
-	AWK_VALUE_COOKIE	/* for updating a previously created value */
+	AWK_VALUE_COOKIE,	/* for updating a previously created value */
+	AWK_BOOL
 } awk_valtype_t;
 
 /*
@@ -381,6 +382,7 @@ typedef struct awk_value {
 		awk_array_t	a;
 		awk_scalar_t	scl;
 		awk_value_cookie_t vc;
+		awk_bool_t      b;
 	} u;
 #define str_value	u.s
 #define strnum_value	str_value
@@ -391,6 +393,7 @@ typedef struct awk_value {
 #define array_cookie	u.a
 #define scalar_cookie	u.scl
 #define value_cookie	u.vc
+#define bool_value	u.b
 } awk_value_t;
 
 /*
@@ -567,26 +570,28 @@ typedef struct gawk_api {
 
 	                        +-------------------------------------------------------+
 	                        |                   Type of Actual Value:               |
-	                        +--------+--------+--------+--------+-------+-----------+
-	                        | String | Strnum | Number | Regex  | Array | Undefined |
-	+-----------+-----------+--------+--------+--------+--------+-------+-----------+
-	|           | String    | String | String | String | String | false | false     |
-	|           +-----------+--------+--------+--------+--------+-------+-----------+
-	|           | Strnum    | false  | Strnum | Strnum | false  | false | false     |
-	|           +-----------+--------+--------+--------+--------+-------+-----------+
-	|           | Number    | Number | Number | Number | false  | false | false     |
-	|           +-----------+--------+--------+--------+--------+-------+-----------+
-	|           | Regex     | false  | false  | false  | Regex  | false | false     |
-	|           +-----------+--------+--------+--------+--------+-------+-----------+
-	|   Type    | Array     | false  | false  | false  | false  | Array | false     |
-	| Requested +-----------+--------+--------+--------+--------+-------+-----------+
-	|           | Scalar    | Scalar | Scalar | Scalar | Scalar | false | false     |
-	|           +-----------+--------+--------+--------+--------+-------+-----------+
-	|           | Undefined | String | Strnum | Number | Regex  | Array | Undefined |
-	|           +-----------+--------+--------+--------+--------+-------+-----------+
-	|           | Value     | false  | false  | false  | false  | false | false     |
-	|           | Cookie    |        |        |        |        |       |           |
-	+-----------+-----------+--------+--------+--------+--------+-------+-----------+
+	                        +--------+--------+--------+--------+--------+-------+-----------+
+	                        | String | Strnum | Number | Regex  | Bool   | Array | Undefined |
+	+-----------+-----------+--------+--------+--------+--------+--------+-------+-----------+
+	|           | String    | String | String | String | String | String | false | false     |
+	|           +-----------+--------+--------+--------+--------+--------+-------+-----------+
+	|           | Strnum    | false  | Strnum | Strnum | false  | false  | false | false     |
+	|           +-----------+--------+--------+--------+--------+--------+-------+-----------+
+	|           | Number    | Number | Number | Number | false  | Number | false | false     |
+	|           +-----------+--------+--------+--------+--------+--------+-------+-----------+
+	|           | Regex     | false  | false  | false  | Regex  | false  | false | false     |
+	|           +-----------+--------+--------+--------+--------+--------+-------+-----------+
+	|           | Bool      | false  | false  | false  | false  | Bool   | false | false     |
+	|           +-----------+--------+--------+--------+--------+--------+-------+-----------+
+	|   Type    | Array     | false  | false  | false  | false  | false  | Array | false     |
+	| Requested +-----------+--------+--------+--------+--------+--------+-------+-----------+
+	|           | Scalar    | Scalar | Scalar | Scalar | Scalar | Scalar | false | false     |
+	|           +-----------+--------+--------+--------+--------+--------+-------+-----------+
+	|           | Undefined | String | Strnum | Number | Regex  | Bool   | Array | Undefined |
+	|           +-----------+--------+--------+--------+--------+--------+-------+-----------+
+	|           | Value     | false  | false  | false  | false  | false  | false | false     |
+	|           | Cookie    |        |        |        |        |        |       |           |
+	+-----------+-----------+--------+--------+--------+--------+--------+-------+-----------+
 	*/
 
 	/* Functions to handle parameters passed to the extension. */

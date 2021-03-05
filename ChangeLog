@@ -1,3 +1,19 @@
+2021-03-05         Arnold D. Robbins     <arnold@skeeve.com>
+
+	Start on a bool type for gawk.
+
+	* awk.h (BOOL): New flag value.
+	(make_bool_node): Add declaration of new function.
+	(bool_val): Check for BOOL along with NUMBER.
+	* builtin.c (do_typeof): Add support for BOOL.
+	* eval.c (flags2str): Ditto.
+	* gawkapi.h (awk_val_type): Add AWK_BOOL.
+	(awk_value_t): Add awk_bool_t element to the union and macro for it.
+	(struct gawk_api): Update the table of request/return values.
+	* main.c (load_procinfo_bools): New function.
+	(load_procinfo): Call it.
+	* node.c (make_bool_node): New function.
+
 2021-02-13         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* io.c (nextfile): Use the value of ARGC directly in the for

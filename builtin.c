@@ -4112,7 +4112,10 @@ do_typeof(int nargs)
 		}
 		break;
 	case Node_val:
-		switch (fixtype(arg)->flags & (STRING|NUMBER|USER_INPUT|REGEX)) {
+		switch (fixtype(arg)->flags & (STRING|NUMBER|USER_INPUT|REGEX|BOOL)) {
+		case BOOL:
+			res = "bool";
+			break;
 		case NUMBER:
 			res = "number";
 			break;

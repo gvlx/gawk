@@ -463,6 +463,7 @@ typedef struct exp_node {
 		XARRAY		= 0x10000,
 		NUMCONSTSTR	= 0x20000,	/* have string value for numeric constant */
 		REGEX           = 0x40000,	/* this is a typed regex */
+		BOOL            = 0x80000,	/* this is a boolean value */
 	} flags;
 	long valref;
 } NODE;
@@ -1714,6 +1715,7 @@ extern NODE *r_force_number(NODE *n);
 extern NODE *r_format_val(const char *format, int index, NODE *s);
 extern NODE *r_dupnode(NODE *n);
 extern NODE *make_str_node(const char *s, size_t len, int flags);
+extern NODE *make_bool_node(bool value);
 extern NODE *make_typed_regex(const char *re, size_t len);
 extern void *more_blocks(int id);
 extern int parse_escape(const char **string_ptr);
@@ -1995,7 +1997,7 @@ static inline bool
 boolval(NODE *t)
 {
 	(void) fixtype(t);
-	if ((t->flags & NUMBER) != 0)
+	if ((t->flags & (BOOL|NUMBER)) != 0)
 		return ! is_zero(t);
 	return (t->stlen > 0);
 }
