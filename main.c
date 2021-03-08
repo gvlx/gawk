@@ -982,23 +982,6 @@ load_procinfo_argv()
 	assoc_set(PROCINFO_node, sub, argv_array);
 }
 
-/* load_procinfo_bools --- populate PROCINFO["true"] and PROCINFO["false"] */
-
-static void
-load_procinfo_bools()
-{
-	NODE *sub;
-	NODE *val;
-
-	val = make_bool_node(false);
-	sub = make_string("false", 5);
-	assoc_set(PROCINFO_node, sub, val);
-
-	val = make_bool_node(true);
-	sub = make_string("true", 4);
-	assoc_set(PROCINFO_node, sub, val);
-}
-
 /* load_procinfo --- populate the PROCINFO array */
 
 static NODE *
@@ -1085,7 +1068,6 @@ load_procinfo()
 	}
 #endif
 	load_procinfo_argv();
-	load_procinfo_bools();
 	return PROCINFO_node;
 }
 

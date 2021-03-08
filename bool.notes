@@ -33,8 +33,13 @@ numbers, and false before true.
 6. These string function generate a runtime fatal error
 if given an argument / target of boolean type:
 
-	substr	match	index	gensub	gsub
-	sub	length	split	patsplit
+	gsub sub
+
+These functions merely treat the value as a string
+but issue a lint warning.
+
+	substr	match	index	gensub
+	length	split	patsplit
 	tolower	toupper
 
 7. Updates to API needed for an additional type, and the table

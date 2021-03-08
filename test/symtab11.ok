@@ -37,6 +37,7 @@ BEGIN -- Functab is next
 [asorti] = asorti
 [atan2] = atan2
 [bindtextdomain] = bindtextdomain
+[bool] = bool
 [close] = close
 [compl] = compl
 [cos] = cos

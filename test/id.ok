@@ -34,6 +34,7 @@ asort -> builtin
 asorti -> builtin
 atan2 -> builtin
 bindtextdomain -> builtin
+bool -> builtin
 close -> builtin
 compl -> builtin
 cos -> builtin

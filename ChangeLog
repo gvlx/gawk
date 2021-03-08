@@ -1,3 +1,15 @@
+2021-03-08         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* awk.h (warn_bool, do_bool): Add function declarations.
+	* awkgram.y (tokentab): Add entry for "bool" builtin.
+	* builtin.c (warn_bool): New function.
+	(do_index, do_substr, do_toupper, do_tolower, do_match,
+	do_length): Call it.
+	(do_sub): If first arg to sub/gsub is bool, fatal error.
+	(do_bool): New function.
+	* field.c (do_split, do_patsplit): Call warn_bool.
+	* main.c (load_procinfo_bools): Removed function and call.
+
 2021-03-05         Arnold D. Robbins     <arnold@skeeve.com>
 
 	Start on a bool type for gawk.

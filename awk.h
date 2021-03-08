@@ -1455,6 +1455,7 @@ extern bool is_identchar(int c);
 extern NODE *make_regnode(NODETYPE type, NODE *exp);
 extern bool validate_qualified_name(char *token);
 /* builtin.c */
+extern void warn_bool(const char *func, int argnum, NODE *n);
 extern double double_to_int(double d);
 extern NODE *do_exp(int nargs);
 extern NODE *do_fflush(int nargs);
@@ -1504,6 +1505,7 @@ extern int strncasecmpmbs(const unsigned char *,
 			  const unsigned char *, size_t);
 extern int sanitize_exit_status(int status);
 extern void check_symtab_functab(NODE *dest, const char *fname, const char *msg);
+extern NODE *do_bool(int nargs);
 /* debug.c */
 extern void init_debug(void);
 extern int debug_prog(INSTRUCTION *pc);

@@ -4779,6 +4779,7 @@ static const struct token tokentab[] = {
 {"asorti",	Op_builtin,	 LEX_BUILTIN,	GAWKX|A(1)|A(2)|A(3),	do_asorti,	0},
 {"atan2",	Op_builtin,	 LEX_BUILTIN,	NOT_OLD|A(2),	do_atan2,	MPF(atan2)},
 {"bindtextdomain",	Op_builtin,	 LEX_BUILTIN,	GAWKX|A(1)|A(2),	do_bindtextdomain,	0},
+{"bool",	Op_builtin,    LEX_BUILTIN,	GAWKX|A(1),	do_bool,	0},
 {"break",	Op_K_break,	 LEX_BREAK,	0,		0,	0},
 {"case",	Op_K_case,	 LEX_CASE,	GAWKX,		0,	0},
 {"close",	Op_builtin,	 LEX_BUILTIN,	NOT_OLD|A(1)|A(2),	do_close,	0},
