@@ -1,29 +1,30 @@
-Fri Mar  5 13:42:44 IST 2021
+Thu Mar 18 21:05:29 IST 2021
 ============================
 
 Design Notes for a Boolean Type in Gawk
 
-1. At first glance, two new variables named TRUE and FALSE would make sense
-to be predefined values of boolean type.  However, since it's likely that
-many awk programs already use them, instead we'll add two new entries
-to PROCINFO: variables PROCINFO["true"] and PROCINFO["false"] of type bool.
+1. A new function  bool(val)  converts val to bool, returning Boolean TRUE
+or FALSE.  This is the generator for boolean values and is enough to have
+instead of predefining new variables TRUE and FALSE.
 
-Assigning from them copies the bool type, thus they are "factories" of bool
-variables.
+2. Assigning from a boolean value copies the bool type.
 
-2. They have numeric values 1 and 0 respectively, and string values
-"TRUE" and "FALSE".  Thus they differ from other variables where a
+3. Boolean variables have numeric values 1 and 0 respectively, and string
+values "TRUE" and "FALSE".  Thus they differ from other variables where a
 "false" value must be zero and null.
 
-This implies all of the following:
+Given:
 
-	print(PROCINFO["true"]) --> "TRUE"
-	print(PROCINFO["false"]) --> "FALSE"
+	true = bool(1)
+	false = bool(0)
+
+this implies all of the following:
+
+	print(true) --> "TRUE"
+	print(false) --> "FALSE"
 	Same for %s in printf
 	Same for bool_var ""
 	printf %d gives 0/1
-
-3. Function  bool(val)  converts val to bool, returning Boolean TRUE or FALSE.
 
 4. typeof() returns "bool".
 
