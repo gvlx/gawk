@@ -1,3 +1,7 @@
+2021-03-18         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* config.rpath, config.sub: Updated from GNULIB.
+
 2021-01-28         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* config.guess, config.sub: Updated from GNULIB.
