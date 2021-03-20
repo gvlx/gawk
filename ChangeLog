@@ -1,3 +1,7 @@
+2021-03-20         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* array.c (do_sort_up_value_type): Add logic for handling bools.
+
 2021-03-08         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* awk.h (warn_bool, do_bool): Add function declarations.
