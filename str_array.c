@@ -94,6 +94,7 @@ static void grow_table(NODE *symbol);
 
 static unsigned long gst_hash_string(const char *str, size_t len, unsigned long hsize, size_t *code);
 static unsigned long scramble(unsigned long x);
+static unsigned long fnv1a_hash_string(const char *str, size_t len, unsigned long hsize, size_t *code);
 static unsigned long awk_hash(const char *s, size_t len, unsigned long hsize, size_t *code);
 
 unsigned long (*hash)(const char *s, size_t len, unsigned long hsize, size_t *code) = awk_hash;
@@ -111,8 +112,13 @@ str_array_init(NODE *symbol ATTRIBUTE_UNUSED, NODE *subs ATTRIBUTE_UNUSED)
 		/* check relevant environment variables */
 		if ((newval = getenv_long("STR_CHAIN_MAX")) > 0)
 			STR_CHAIN_MAX = newval;
-		if ((val = getenv("AWK_HASH")) != NULL && strcmp(val, "gst") == 0)
-			hash = gst_hash_string;
+
+		if ((val = getenv("AWK_HASH")) != NULL) {
+			if (strcmp(val, "gst") == 0)
+				hash = gst_hash_string;
+			else if (strcmp(val, "fnv1a") == 0)
+				hash = fnv1a_hash_string;
+		}
 	} else
 		null_array(symbol);
 
@@ -770,6 +776,34 @@ scramble(unsigned long x)
 	}
 
 	return x;
+}
+
+/* fnv1a_hash_string --- fnv1a hash function */
+
+/*
+ * FNV-1a hash function
+ * http://www.isthe.com/chongo/tech/comp/fnv/index.html
+ */
+
+static unsigned long
+fnv1a_hash_string(const char *str, size_t len, unsigned long hsize, size_t *code)
+{
+	/* FNV-1a */
+	register unsigned ret = 2166136261U;
+
+	while (len > 0) {
+		ret ^= (unsigned char) (*str++);
+		ret *= 16777619U;
+		len-- ;
+	}
+
+	if (code != NULL)
+		*code = ret;
+
+	if (ret >= hsize)
+		ret %= hsize;
+
+	return ret;
 }
 
 /* env_remove --- for ENVIRON, remove value from real environment */

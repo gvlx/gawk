@@ -1,3 +1,9 @@
+2021-03-21         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* str_array.c (fnv1a_hash_string): New function.
+	(str_array_init): Use fnv1a_hash_string if AWK_HASH env var
+	set to "fnv1a".
+
 2021-03-20         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* array.c (do_sort_up_value_type): Add logic for handling bools.

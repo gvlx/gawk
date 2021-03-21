@@ -12,6 +12,9 @@ operators. Comparison order for sorting has not changed.  This only
 makes a difference when comparing Infinity and NaN values with
 regular numbers; it should not be noticeable most of the time.
 
+2. If the AWK_HASH environment variable is set to "fnv1a" gawk will
+use the FNV1-A hash function for associative arrays.
+
 Changes from 5.1.0 to 5.1.1
 ---------------------------
 

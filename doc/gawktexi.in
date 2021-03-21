@@ -4708,7 +4708,10 @@ blocksize, which is usually the filesystem's I/O blocksize.)
 If this variable exists with a value of @samp{gst}, @command{gawk}
 switches to using the hash function from GNU Smalltalk for
 managing arrays.
-This function may be marginally faster than the standard function.
+With a value of @samp{fnv1a}, @command{gawk} uses the
+@uref{http://www.isthe.com/chongo/tech/comp/fnv/index.html,
+FNV1-A hash function}.
+These functions may be marginally faster than the standard function.
 
 @item AWKREADFUNC
 If this variable exists, @command{gawk} switches to reading source
