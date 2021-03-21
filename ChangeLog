@@ -1,3 +1,9 @@
+2021-03-21         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* str_array.c (fnv1a_hash_string): New function.
+	(str_array_init): Use fnv1a_hash_string if AWK_HASH env var
+	set to "fnv1a".
+
 2021-02-13         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* io.c (nextfile): Use the value of ARGC directly in the for
