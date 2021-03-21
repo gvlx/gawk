@@ -5201,7 +5201,11 @@ del filesystem).
 @item AWK_HASH
 Se questa variabile @`e impostata con un valore di @samp{gst}, @command{gawk}
 usa la funzione hash di GNU Smalltalk per gestire i vettori.
-Questa funzione pu@`o essere leggermente pi@`u veloce della funzione standard.
+Se invece ha per valore @samp{fnv1a}, @command{gawk} usa la funzione hash
+@uref{http://www.isthe.com/chongo/tech/comp/fnv/index.html,
+FNV1-A}.
+Queste funzioni possono essere leggermente pi@`u veloci della funzione standard.
+
 @item AWKREADFUNC
 Se questa variabile esiste, @command{gawk} legge i file sorgenti una riga per
 volta, anzich@'e a blocchi.  Questa variabile @`e presente
