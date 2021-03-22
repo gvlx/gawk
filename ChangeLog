@@ -1,3 +1,10 @@
+2021-03-22         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawkapi.h (make_bool): New inline function.
+	Update table of request/return types.
+	* gawkapi.c (awk_value_to_node): Add support for AWK_BOOL.
+	(node_to_awk_value): Start on same. Not yet complete.
+
 2021-03-21         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* str_array.c (fnv1a_hash_string): New function.

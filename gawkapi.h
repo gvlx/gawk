@@ -568,8 +568,8 @@ typedef struct gawk_api {
 	Table entry is type returned:
 
 
-	                        +-------------------------------------------------------+
-	                        |                   Type of Actual Value:               |
+	                        +----------------------------------------------------------------+
+	                        |                        Type of Actual Value:                   |
 	                        +--------+--------+--------+--------+--------+-------+-----------+
 	                        | String | Strnum | Number | Regex  | Bool   | Array | Undefined |
 	+-----------+-----------+--------+--------+--------+--------+--------+-------+-----------+
@@ -581,10 +581,10 @@ typedef struct gawk_api {
 	|           +-----------+--------+--------+--------+--------+--------+-------+-----------+
 	|           | Regex     | false  | false  | false  | Regex  | false  | false | false     |
 	|           +-----------+--------+--------+--------+--------+--------+-------+-----------+
-	|           | Bool      | false  | false  | false  | false  | Bool   | false | false     |
-	|           +-----------+--------+--------+--------+--------+--------+-------+-----------+
-	|   Type    | Array     | false  | false  | false  | false  | false  | Array | false     |
+	|   Type    | Bool      | false  | false  | false  | false  | Bool   | false | false     |
 	| Requested +-----------+--------+--------+--------+--------+--------+-------+-----------+
+	|           | Array     | false  | false  | false  | false  | false  | Array | false     |
+	|           +-----------+--------+--------+--------+--------+--------+-------+-----------+
 	|           | Scalar    | Scalar | Scalar | Scalar | Scalar | Scalar | false | false     |
 	|           +-----------+--------+--------+--------+--------+--------+-------+-----------+
 	|           | Undefined | String | Strnum | Number | Regex  | Bool   | Array | Undefined |
@@ -1071,6 +1071,16 @@ make_number_mpfr(void *mpfr_ptr, awk_value_t *result)
 	result->val_type = AWK_NUMBER;
 	result->num_type = AWK_NUMBER_TYPE_MPFR;
 	result->num_ptr = mpfr_ptr;
+	return result;
+}
+
+/* make_bool --- make a bool value in result */
+
+static inline awk_value_t *
+make_bool(awk_bool_t boolval, awk_value_t *result)
+{
+	result->val_type = AWK_BOOL;
+	result->bool_value = boolval;
 	return result;
 }
 

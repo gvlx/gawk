@@ -88,6 +88,13 @@ valrep2str(const awk_value_t *value)
 				size,
 				value->str_value.str);
 		break;
+	case AWK_BOOL:
+		if (value->str_value.len + 8 < size)
+			size = value->str_value.len;
+		sprintf(buf, "<bool>: %.*s",
+				size,
+				value->str_value.str);
+		break;
 	case AWK_NUMBER:
 		sprintf(buf, "%g", value->num_value);
 		break;
