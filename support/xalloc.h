@@ -20,6 +20,8 @@
 
 # include <stddef.h>
 
+#include "intprops.h"
+
 
 # ifdef __cplusplus
 extern "C" {
@@ -56,6 +58,8 @@ void *xzalloc (size_t s) ATTRIBUTE_MALLOC;
 void *xcalloc (size_t n, size_t s) ATTRIBUTE_MALLOC;
 void *xrealloc (void *p, size_t s);
 void *x2realloc (void *p, size_t *pn);
+void *xpalloc (void *pa, idx_t *nitems, idx_t nitems_incr_min,
+               ptrdiff_t nitems_max, idx_t item_size);
 void *xmemdup (void const *p, size_t s) ATTRIBUTE_MALLOC;
 char *xstrdup (char const *str) ATTRIBUTE_MALLOC;
 
@@ -223,10 +227,9 @@ xnrealloc (void *p, size_t n, size_t s)
 
 /* If P is null, allocate a block of at least *PN such objects;
    otherwise, reallocate P so that it contains more than *PN objects
-   each of S bytes.  *PN must be nonzero unless P is null, and S must
-   be nonzero.  Set *PN to the new number of objects, and return the
-   pointer to the new block.  *PN is never set to zero, and the
-   returned pointer is never null.
+   each of S bytes.  S must be nonzero.  Set *PN to the new number of
+   objects, and return the pointer to the new block.  *PN is never set
+   to zero, and the returned pointer is never null.
 
    Repeated reallocations are guaranteed to make progress, either by
    allocating an initial block with a nonzero size, or by allocating a
@@ -370,6 +373,68 @@ xmemdup (T const *p, size_t s)
 }
 
 # endif
+
+/* Grow PA, which points to an array of *NITEMS items, and return the
+   location of the reallocated array, updating *NITEMS to reflect its
+   new size.  The new array will contain at least NITEMS_INCR_MIN more
+   items, but will not contain more than NITEMS_MAX items total.
+   ITEM_SIZE is the size of each item, in bytes.
+
+   ITEM_SIZE and NITEMS_INCR_MIN must be positive.  *NITEMS must be
+   nonnegative.  If NITEMS_MAX is -1, it is treated as if it were
+   infinity.
+
+   If PA is null, then allocate a new array instead of reallocating
+   the old one.
+
+   Thus, to grow an array A without saving its old contents, do
+   { free (A); A = xpalloc (NULL, &AITEMS, ...); }.  */
+
+#define MIN(x, y) ((x) < (y) ? (x) : (y))
+
+void *
+xpalloc (void *pa, idx_t *nitems, idx_t nitems_incr_min,
+         ptrdiff_t nitems_max, idx_t item_size)
+{
+  idx_t n0 = *nitems;
+
+  /* The approximate size to use for initial small allocation
+     requests.  This is the largest "small" request for the GNU C
+     library malloc.  */
+  enum { DEFAULT_MXFAST = 64 * sizeof (size_t) / 4 };
+
+  /* If the array is tiny, grow it to about (but no greater than)
+     DEFAULT_MXFAST bytes.  Otherwise, grow it by about 50%.
+     Adjust the growth according to three constraints: NITEMS_INCR_MIN,
+     NITEMS_MAX, and what the C language can represent safely.  */
+
+  idx_t n, nbytes;
+  if (INT_ADD_WRAPV (n0, n0 >> 1, &n))
+    n = IDX_MAX;
+  if (0 <= nitems_max && nitems_max < n)
+    n = nitems_max;
+
+  idx_t adjusted_nbytes
+    = ((INT_MULTIPLY_WRAPV (n, item_size, &nbytes) || SIZE_MAX < nbytes)
+       ? MIN (IDX_MAX, SIZE_MAX)
+       : nbytes < DEFAULT_MXFAST ? DEFAULT_MXFAST : 0);
+  if (adjusted_nbytes)
+    {
+      n = adjusted_nbytes / item_size;
+      nbytes = adjusted_nbytes - adjusted_nbytes % item_size;
+    }
+
+  if (! pa)
+    *nitems = 0;
+  if (n - n0 < nitems_incr_min
+      && (INT_ADD_WRAPV (n0, nitems_incr_min, &n)
+          || (0 <= nitems_max && nitems_max < n)
+          || INT_MULTIPLY_WRAPV (n, item_size, &nbytes)))
+    xalloc_die ();
+  pa = xrealloc (pa, nbytes);
+  *nitems = n;
+  return pa;
+}
 
 
 #endif /* !XALLOC_H_ */
