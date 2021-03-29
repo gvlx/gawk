@@ -1,3 +1,12 @@
+2021-03-29         Arnold D. Robbins     <arnold@skeeve.com>
+
+	Resettle after churn in GNULIB.
+
+	* dfa.c, intprops.h: Updated from GNULIB.
+	* xalloc.h (xpalloc): New function, was in dfa.c.
+	(MIN): New macro.
+	* idx.h: New file, imported from GNULIB (sigh).
+
 2021-02-08         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* cdefs.h, dfa.c, dfa.h, flexmember.h, intprops.h, libc-config.h,

@@ -3,7 +3,7 @@
  */
 
 /*
- * Copyright (C) 2012, 2013, 2014, 2015, 2017, 2018
+ * Copyright (C) 2012, 2013, 2014, 2015, 2017, 2018, 2021
  * the Free Software Foundation, Inc.
  *
  * This file is part of GAWK, the GNU implementation of the
@@ -314,7 +314,7 @@ var_test(int nargs, awk_value_t *result, struct awk_ext_func *unused)
 		goto out;
 	}
 
-	/* look up PROCINFO - should succeed fail */
+	/* look up PROCINFO - should succeed */
 	if (sym_lookup("PROCINFO", AWK_ARRAY, & value))
 		printf("var_test: sym_lookup of PROCINFO passed - got a value!\n");
 	else
