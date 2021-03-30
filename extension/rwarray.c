@@ -8,7 +8,7 @@
  */
 
 /*
- * Copyright (C) 2009-2014, 2017, 2018, 2020 the Free Software Foundation, Inc.
+ * Copyright (C) 2009-2014, 2017, 2018, 2020, 2021 the Free Software Foundation, Inc.
  *
  * This file is part of GAWK, the GNU implementation of the
  * AWK Programming Language.
@@ -36,6 +36,7 @@
 #include <assert.h>
 #include <errno.h>
 #include <fcntl.h>
+#include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
@@ -249,6 +250,9 @@ write_value(FILE *fp, awk_value_t *val)
 		case AWK_UNDEFINED:
 			code = htonl(5);
 			break;
+		case AWK_BOOL:
+			code = htonl(6);
+			break;
 		default:
 			/* XXX can this happen? */
 			code = htonl(0);
@@ -258,13 +262,25 @@ write_value(FILE *fp, awk_value_t *val)
 		if (fwrite(& code, 1, sizeof(code), fp) != sizeof(code))
 			return awk_false;
 
-		len = htonl(val->str_value.len);
-		if (fwrite(& len, 1, sizeof(len), fp) != sizeof(len))
-			return awk_false;
+		if (code == ntohl(6)) {
+			len = (val->bool_value == awk_true ? 4 : 5);
+			len = htonl(len);
+			const char *s = (val->bool_value == awk_true ? "TRUE" : "FALSE");
 
-		if (fwrite(val->str_value.str, 1, val->str_value.len, fp)
-				!= (ssize_t) val->str_value.len)
-			return awk_false;
+			if (fwrite(& len, 1, sizeof(len), fp) != sizeof(len))
+				return awk_false;
+
+			if (fwrite(s, 1, strlen(s), fp) != (ssize_t) strlen(s))
+				return awk_false;
+		} else {
+			len = htonl(val->str_value.len);
+			if (fwrite(& len, 1, sizeof(len), fp) != sizeof(len))
+				return awk_false;
+
+			if (fwrite(val->str_value.str, 1, val->str_value.len, fp)
+					!= (ssize_t) val->str_value.len)
+				return awk_false;
+		}
 	}
 
 	return awk_true;
@@ -484,6 +500,9 @@ read_value(FILE *fp, awk_value_t *value)
 		case 5:
 			value->val_type = AWK_UNDEFINED;
 			break;
+		case 6:
+			value->val_type = AWK_BOOL;
+			break;
 		default:
 			/* this cannot happen! */
 			warning(ext_id, _("treating recovered value with unknown type code %d as a string"), code);
@@ -498,6 +517,13 @@ read_value(FILE *fp, awk_value_t *value)
 			return awk_false;
 		}
 		value->str_value.str[len] = '\0';
+		value->str_value.len = len;
+		if (code == 6) {
+			/* bool type */
+			bool val = (strcmp(value->str_value.str, "TRUE") == 0);
+			gawk_free(value->str_value.str);
+			value->bool_value = val ? awk_true : awk_false;
+		}
 	}
 
 	return awk_true;

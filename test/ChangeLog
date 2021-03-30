@@ -2,6 +2,7 @@
 
 	* Makefile.am (EXTRA_DIST): asortbool, new test.
 	* asortbool.awk, asortbool.ok: New files.
+	* rwarray.awk: Add test of saving/restoring bool values.
 
 2021-03-08         Arnold D. Robbins     <arnold@skeeve.com>
 
