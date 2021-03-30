@@ -1,3 +1,9 @@
+2021-03-30         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawk_api.h (gawk_api_minor_version): Increase to 2.
+	* gawk_api.c (+assign_bool): New function.
+	(node_to_awk_value): Finish updating for bool types and values.
+
 2021-03-22         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawkapi.h (make_bool): New inline function.
