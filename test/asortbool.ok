@@ -1,0 +1,6 @@
+1, bool: FALSE
+2, bool: TRUE
+3, number: -45
+4, number: 45
+5, string: foo
+6, array: 47

@@ -1,3 +1,8 @@
+2021-03-30         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.am (EXTRA_DIST): asortbool, new test.
+	* asortbool.awk, asortbool.ok: New files.
+
 2021-03-08         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* dumpvars.ok, functab5.ok, id.ok, intest.awk, symtab11.ok,

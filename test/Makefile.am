@@ -133,6 +133,8 @@ EXTRA_DIST = \
 	assignnumfield.ok \
 	assignnumfield2.awk \
 	assignnumfield2.ok \
+	asortbool.awk \
+	asortbool.ok \
 	awkpath.ok \
 	back89.awk \
 	back89.in \
@@ -1430,7 +1432,7 @@ UNIX_TESTS = \
 
 GAWK_EXT_TESTS = \
 	aadelete1 aadelete2 aarray1 aasort aasorti argtest arraysort arraysort2 \
-	arraytype \
+	arraytype asortbool \
 	backw badargs beginfile1 beginfile2 binmode1 \
 	charasbytes colonwarn clos1way clos1way2 clos1way3 clos1way4 clos1way5 \
 	clos1way6 crlf \
