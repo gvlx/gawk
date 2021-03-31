@@ -5752,6 +5752,46 @@ regexp that precedes them.  For example, @code{/+/} matches a literal
 plus sign.  However, many other versions of @command{awk} treat such a
 usage as a syntax error.
 
+@sidebar What About The Empty Regexp?
+@cindex empty regexps
+@cindex regexps, empty
+We describe here an advanced regexp usage. Feel free to skip it
+upon first reading.
+
+You can supply an empty regexp constant (@samp{//}) in all places
+where a regexp is expected. Is this useful?  What does it match?
+
+It is useful. It matches the (invisible) empty string at the start
+and end of a string of characters, as well as the empty string
+between characters. This is best illustrated with the @code{gsub()}
+function, which makes global substitutions in a string
+(@pxref{String Functions}).  Normal usage of @code{gsub()} is like
+so:
+
+@example
+$ @kbd{awk '}
+> @kbd{BEGIN @{}
+> @kbd{    x = "ABC_CBA"}
+> @kbd{    gsub(/B/, "bb", x)}
+> @kbd{    print x}
+> @kbd{@}'}
+@print{} AbbC_CbbA
+@end example
+
+We can use @code{gsub()} to see where the empty strings
+are that match the empty regexp:
+
+@example
+$ @kbd{awk '}
+> @kbd{BEGIN @{}
+> @kbd{    x = "ABC"}
+> @kbd{    gsub(//, "x", x)}
+> @kbd{    print x}
+> @kbd{@}'}
+@print{} xAxBxCx
+@end example
+@end sidebar
+
 @node Interval Expressions
 @subsection Some Notes On Interval Expressions
 

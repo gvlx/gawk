@@ -1,3 +1,10 @@
+2021-03-31         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.in (Regexp Operator Details): Added a sidebar on
+	matching the empty regexp. Thanks to Arkadiusz Drabczyk
+	<arkadiusz@drabczyk.org> for pointing out the lack of
+	documentation.
+
 2021-03-21         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawktexi.in (Other Environment Variables): Document "fnv1a"
