@@ -1040,7 +1040,7 @@ Copyright dell'edizione italiana @copyright{} 2016 -- Free Software Foundation, 
 * Controllo dei breakpoint::            Controllo dei punti d'interruzione.
 * Controllo esecuzione debugger::       Controllo di esecuzione.
 * Vedere e modificare dati::            Vedere e modificare dati.
-* Stack di esecuzione::                 Lavorare con lo @dfn{stack}.
+* Stack di esecuzione::                 Lavorare con lo @dfn{Stack}.
 * Informazioni sul debugger::           Ottenere informazioni sullo stato
                                         del programma e del debugger.
 * Comandi vari del debugger::           Comandi vari del debugger.
@@ -3698,7 +3698,7 @@ anno).
 
 Come gi@`a visto sopra, l'output di @w{@samp{ls -l}} elenca la lista
 dei file contenuti in una directory, compresa la lunghezza di ogni
-file la data in cui il file @`e stato modificato per l'ultima volta.
+file e la data in cui il file @`e stato modificato per l'ultima volta.
 Il primo campo contiene le autorizzazioni di lettura-scrittura,
 il secondo campo contiene il numero di @dfn{link} di quel file
 e il terzo campo identifica il proprietario del file.
@@ -3707,7 +3707,7 @@ Il quinto campo contiene la dimensione del file, in byte.
 Il sesto, settimo e ottavo campo contengono il mese, il giorno e
 l'ora, rispettivamente, in cui il file @`e stato modificato l'ultima
 volta.
-Finalmente il nono campo contiene il valore @value{FN}.
+Infine, il nono campo contiene il valore @value{FN}.
 
 @c @cindex automatic initialization
 @cindex inizializzazione @subentry automatica
@@ -3946,7 +3946,7 @@ e buttati via.  Poich@'e i programmi @command{awk} sono interpretati, si pu@`o
 evitare la (normalmente laboriosa) parte di compilazione nel ciclo tipico
 dello sviluppo software, ossia edita-compila-prova-correggi.
 
-@cindex BWK @command{awk} @seeentry{Brian Kernighan @subentry @command{awk} di}
+@cindex BWK @command{awk} @seeentry{Brian Kernighan, @command{awk} di}
 @cindex Brian Kernighan @subentry @command{awk} di
 In @command{awk} sono stati scritti programmi complessi, compreso un assembler
 completo, pluri-piattaforma per
@@ -4438,7 +4438,7 @@ informazioni.
 @cindex codice-byte interno @subentry tracciatura del
 Stampa i nomi del codice-byte generato internamente, nell'ordine
 in cui sono incontrati durante l'esecuzione del programma.
-Questa trace @`e stampata sullo standard error.
+Questa tracciatura @`e stampata sullo standard error.
 Ogni ``codice operativo'' @`e preceduto da un segno @code{+}
 nell'output.
 
@@ -6327,6 +6327,47 @@ nella @dfn{regexp}.  Per esempio, @code{/+/} individua un semplice segno
 pi@`u.  Tuttavia, molte altre versioni di @command{awk} trattano una
 tale notazione come un errore di sintassi.
 
+@sidebar E se la @dfn{regexp} è vuota?
+@cindex vuote @subentry @dfn{regexps}
+@cindex @dfn{regexp} @subentry vuote
+Viene qui descritto un uso avanzato delle @dfn{regexp}.
+Pu@`o essere saltato in una prima lettura.
+
+Si può specificare una costante @dfn{regexp} vuota (@samp{//}) in ogni
+posto in cui ci si aspetta di trova una @dfn{regexp}.
+Può servire a qualcosa farlo?  A cosa corrisponde?
+
+Ha senso farlo.  Corrisponde alla stringa vuota (invisibile),
+all'inizio e alla fine di una stringa di caratteri, come pure
+alla stringa vuota tra un carattere e l'altro.  Lo si vede bene
+con la funzione @code{gsub()}, che si usa per fare delle sostituzioni
+globali (@pxref{Funzioni per stringhe}).  L'uso normale di @code{gsub()}
+è del tipo:
+
+@example
+$ @kbd{awk '}
+> @kbd{BEGIN @{}
+> @kbd{    x = "ABC_CBA"}
+> @kbd{    gsub(/B/, "bb", x)}
+> @kbd{    print x}
+> @kbd{@}'}
+@print{} AbbC_CbbA
+@end example
+
+Possiamo usare @code{gsub()} per verificare dove sono situate le stringhe
+vuote che corrispondono alla @dfn{regexp} vuote:
+
+@example
+$ @kbd{awk '}
+> @kbd{BEGIN @{}
+> @kbd{    x = "ABC"}
+> @kbd{    gsub(//, "x", x)}
+> @kbd{    print x}
+> @kbd{@}'}
+@print{} xAxBxCx
+@end example
+@end sidebar
+
 @node Espressioni di intervallo
 @subsection Alcune note sulle espressioni di intervallo
 
@@ -7393,10 +7434,10 @@ in cui possono essere presenti dei caratteri di ritorno a capo.
 @`E meglio perci@`o evitare metacaratteri di ancoraggio nel valore di @code{RS}.
 
 La suddivisione in campi usando espressioni regolari funziona in maniera
-differente di quando la si usa con le funzioni @code{sub()}, @code{gsub()}, e
+differente rispetto a quando la si usa con le funzioni @code{sub()}, @code{gsub()}, e
 @code{gensub()} (@pxref{Funzioni per stringhe}). Tali funzioni consentono
 che un'espressione regolare sia soddisfatta da una stringa nulla;
-La suddivisione in campi non lo consente.  Quindi, per esempio,
+la suddivisione in campi non lo consente.  Quindi, per esempio,
 @samp{RS = "()"} @emph{non} divide un record in campi di un carattere
 ciascuno.
 @end sidebar
@@ -8040,7 +8081,7 @@ $ @kbd{echo 'xxAA  xxBxx  C' |}
 
 Inoltre,
 la suddivisione in campi usando espressioni regolari funziona in maniera
-differente di quando la si usa con le funzioni @code{sub()}, @code{gsub()}, e
+differente rispetto a quando la si usa con le funzioni @code{sub()}, @code{gsub()}, e
 @code{gensub()} (@pxref{Funzioni per stringhe}). Tali funzioni consentono
 che un'espressione regolare sia soddisfatta da una stringa nulla;
 La suddivisione in campi non lo consente.  Quindi, per esempio,
@@ -15159,11 +15200,11 @@ I codici delle regole @code{BEGINFILE} sono eseguiti subito prima che
 @`e impostata al nome del file corrente e @code{FNR} @`e impostata a zero.
 
 Prima della @value{PVERSION} 5.1.1 di @command{gawk}, per un difetto di
-implementazione, @code{$0} e i campi del record mantenevano, nelle regole
+implementazione, @code{$0} e i campi del record mantenevano nelle regole
 @code{BEGINFILE} il valore che avevano in precedenza.
 A partire dalla @value{PVERSION} 5.1.1, sia @code{$0} che i campi del
 record sono impostati alla stringa nulla, poich@'e nessun record @`e
-ancora stato letto dal file in procinto di essere elaborato.
+ancora stato letto dal file che sta per essere di essere elaborato.
 
 La regola @code{BEGINFILE} d@`a la possibilit@`a di eseguire due compiti
 che sarebbe difficile o impossibile effettuare altrimenti:
@@ -15226,7 +15267,7 @@ modalit@`a compatibile (@pxref{Opzioni}), non sono regole speciali.
 @node Vuoto
 @subsection Il criterio di ricerca vuoto
 
-@cindex vuoto @subentry criterio di ricerca
+@cindex vuoti @subentry criteri di ricerca
 @cindex criteri di ricerca @subentry vuoti
 Un criterio di ricerca vuoto (cio@`e omesso) corrisponde a
 @emph{ogni} record in input.  Per esempio, il programma:
@@ -26354,7 +26395,7 @@ un semplice spazio (@code{@w{" "}}) come valore per @code{FS} @`e
 sbagliato: @command{awk} separerebbe i campi con serie di spazi,
 TAB, e/o ritorni a capo, mentre devono essere separati solo da uno spazio.
 Per far questo, salviamo il carattere di spazio originale nella variabile
-@code{fs} per un uso futuro; dopo aver impostato @code{FS} a @code{@w"[ ]"} non
+@code{fs} per un uso futuro; dopo aver impostato @code{FS} a @code{@w{"[ ]"}} non
 @`e possibile usarlo direttamente per vedere se il carattere delimitatore di
 campo @`e nella stringa.
 
@@ -26634,11 +26675,11 @@ da implementare con @command{gawk}; basta usare la variabile predefinita
 #    -e    l'argomento @`e un'espressione regolare
 #    -i    ignora maiuscolo/minuscolo
 #    -l    stampa solo nomi file
-#    -n    aggiungi numeri linea in output
+#    -n    aggiungi numeri riga in output
 #    -q    quieto - usa solo il codice di ritorno
 #    -s    silenzioso - non stampa messaggi di errore
-#    -v    inverte test, successo se espression non trovata
-#    -x    l'intera linea deve corrispondere
+#    -v    inverte test, successo se espressione non viene trovata
+#    -x    l'intera riga deve corrispondere
 #
 # Richiede la funzione getopt()
 # Usa IGNORECASE, BEGINFILE ed ENDFILE
@@ -26673,7 +26714,7 @@ BEGIN @{
 @noindent
 Si noti il commento relativo alla chiamata del programma:
 Poich@'e parecchie opzioni possono essere specificate anche per
-@command{gawk}, occorre immettere @option{--} per far s@`@{dotless{i}} che
+@command{gawk}, occorre immettere @option{--} per far s@`{@dotless{i}} che
 @command{gawk} non prosegua nell'analisi delle opzioni.
 
 Nel seguito c'@`e il codice che gestisce il comportamento specifico di
@@ -26736,12 +26777,12 @@ BEGINFILE @{
 
 La regola @code{ENDFILE} viene eseguita alla fine dell'elaborazione
 di ogni file.  Genera dell'output solo quando l'utente richiede un
-contatore del numero di righe che sono state trovate corrispondere.
+contatore del numero di righe corrispondenti che sono state trovate.
 
 La variabile @code{non_stampare} @`e vera qualora si chieda di
 impostare solo il codice di ritorno.
 La variabile @code{conta_e_basta} @`e vera qualora si chieda solo
-il numero delle righe che sono state trovare corrispondere.
+il numero delle righe corrispondenti che sono state trovate.
 @command{egrep} quindi stampa il contatore delle corrispondenze
 trovate solo se sia la stampa che il conteggio righe sono richieste.
 Il formato dell'output dev'essere adattato, a seconda del numero di
@@ -26897,14 +26938,14 @@ Usa la funzione di libreria @code{getopt()}
 (@pxref{Funzione getopt}),
 le funzioni di libreria del database che descrive gli utenti
 (@pxref{Funzioni Passwd}),
-Usa le funzioni di libreria che riguardano il database degli utenti
+le funzioni di libreria che riguardano il database degli utenti
 (@pxref{Funzioni Passwd})
 e le funzioni di libreria che riguardano il database dei gruppi
 (@pxref{Funzioni Group}).
 
 Il programma @`e abbastanza semplice.  Tutto il lavoro @`e svolto nella regola
 @code{BEGIN}.
-Inizia com dei commenti di spiegazioni, una lista di opzioni e infine
+Inizia con dei commenti di spiegazione, una lista di opzioni e infine
 una funzione @code{sintassi()} function:
 
 @cindex @code{id.awk} (programma)
@@ -26981,7 +27022,7 @@ BEGIN @{
 @end example
 
 Il passo successivo @`e quello di controllare che non siano state
-specificate opzioni mutualmente esclusive.
+specificate opzioni mutuamente esclusive.
 Le opzioni @option{-G} e @option{-r} sono di questo tipo.
 Inoltre, non @`e possibile specificare pi@`u di un nome utente
 sulla riga di comando:
@@ -27000,7 +27041,7 @@ dal vettore @code{PROCINFO} dell'utente corrente, oppure
 dal database degli utenti e delle password, per un
 utente il cui nome sia stato specificato nella riga di
 comando.
-In quest'ultimo caos, viene impostato il flag @code{real_ids_only},
+In quest'ultimo caso, viene impostato il flag @code{real_ids_only},
 poich@'e non @`e possibile stampare informazioni riguardo agli
 ID di utente e di gruppo effettivi:
 
@@ -27117,9 +27158,9 @@ Una logica simile viene seguita per l'opzione @option{-u}
 @end example
 
 A questo punto non abbiamo ancora finito, e quindi stampiamo
-l'output normale, di default, a riguardo dell'utente corrente
-o dell'utente che era stato specificato sulla riga di comando.
-Iniziamo a stmpare l'user ID reale:
+l'output normale, di default, relative all'utente corrente
+o all'utente che era stato specificato sulla riga di comando.
+Iniziamo a stampare l'user ID reale:
 
 @example
 @c file eg/prog/id.awk
@@ -27298,7 +27339,7 @@ ogni file dovrebbe essere lungo (al massimo) @var{N} byte.
 Se si specifica la lettera @samp{k}, il numero @var{N} viene
 moltiplicato per 1.024, ossia diviene il numero di kilobyte.
 Se si specifica la lettera @samp{m}, il numero @var{N} viene
-moltiplicato per 1.048.576 (@math{1.024 @value{PER} 1.024})
+moltiplicato per 1.048.576 (@math{1.024 @value{VOLTE} 1.024})
 ossia diviene il numero di megabyte.
 (Quest'opzione @`e mutuamente esclusiva con l'opzione @option{-l}).
 
@@ -27447,7 +27488,7 @@ passare da @samp{abz} ad @samp{aca}.
 
 @item
 Si deve poter determinare se abbiamo utilizzato tutti i prefissi,
-in modo che, nel caso ci siano ulteriori dati (da suddividere) si
+in modo che, nel caso ci siano ulteriori dati (da suddividere), si
 possa stampare un messaggio di errore e terminare il programma.
 Il trucco @`e di gestire una tale situazione @emph{dopo} aver usato
 l'ultimo suffisso disponibile, e non quando viene generato l'ultimo
@@ -28116,7 +28157,7 @@ non dei byte.  Per questo motivo, in @command{gawk}, le funzioni
 @code{length()}, @code{substr()}, @code{split()}, @code{match()} e
 le altre funzioni di manipolazione di stringhe
 (@pxref{Funzioni per stringhe}) funzionano tutte elaborando dei caratteri,
-come definiti dall'insieme di caratteri locale [a una determinata lingua]
+come definiti dall'insieme di caratteri localizzati [a una determinata lingua]
 e non elaborando dei byte.  (Incidentalmente, non tutte le implementazioni
 di @command{awk} si comportano cos@`{@dotless{i}}).
 
@@ -28136,7 +28177,7 @@ possono anche essere dei codici scritti nei linguaggi C o C++.
 Per quanto riguarda
 @file{wc.awk}, @`e sufficiente sapere che l'estensione viene caricata
 con la direttiva @code{@@load}, e la funzione ulteriore che dovr@`a essere
-usata si chiama @code{mbs_length()}.  Questa funzione restiuisce il numero
+usata si chiama @code{mbs_length()}.  Questa funzione restituisce il numero
 di byte in una stringa, non il numero di caratteri.
 
 L'estensione @code{"mbs"} fa parte del progetto @code{gawkextlib}.
@@ -29411,7 +29452,7 @@ La riga @`e poi stampata nel file di output:
         gsub("@@`o","ò",riga)
         gsub("@@`u","ù",riga)
         # riga contiene ancora caratteri @@?
-        if (index(riga, "@@") == 0) {
+        if (index(riga, "@@") == 0) @{
             print riga > file_corrente
             continue
         @}
@@ -32015,12 +32056,12 @@ formato con cui sono stati inseriti.
 @node Filosofia delle estensioni
 @section Funzionalit@`a incluse @dfn{versus} estensioni
 
-Come descritto in questo e nei successivi @value{CHAPTERS},
+Come descritto sin qui e nei successivi @value{CHAPTERS},
 @command{gawk} ha numerose estensioni ulteriori,
 rispetto a quelle presenti nel comando @command{awk} standard.
 Queste sono state sviluppate col passare del tempo.
-Pi@`u recentemente, l'attenzione si @`e spostata sull'utilizzo
-del meccanismo delle estensioni (@pxref{Estensioni dinamiche}),
+Pi@`u recentemente, l'attenzione si @`e spostata sull'uso
+del meccanismo delle estensioni (@pxref{Estensioni dinamiche})
 per aggiungere ulteriori funzionalit@`a.
 @ifnotinfo
 Questa @value{SECTION}
@@ -32038,7 +32079,7 @@ Ci sono parecchi obiettivi:
 @enumerate 1
 @item
 Conservare il comando @command{awk}; non dovrebbe divenire irriconoscibile
-anche se i programmi scritti per esso verranno eseguito solo usando
+anche se i programmi scritti per esso verranno eseguito usando solo
 @command{gawk}.
 
 @item
@@ -32052,14 +32093,14 @@ o in un'estensione caricabile scritta in C o C++
 (opzione @option{-l}, direttiva @code{@@load}).
 
 @item
-Estendere il nucleo dell'interpretatore solo se qualche funzionalit@`a @`e:
+Estendere il nucleo dell'interpretatore solo se qualche funzionalit@`a:
 
 @c sublist
 @enumerate A
 @item
-Veramente desiderabile.
+@`E veramente desiderabile.
 @item
-Non si pu@`o fare tramite dei file di libreria o estensioni caricabili.
+Non si pu@`o ottenere tramite dei file di libreria o estensioni caricabili.
 @item
 Pu@`o essere aggiunta al nucleo senza troppe difficolt@`a.
 @end enumerate
@@ -33691,7 +33732,7 @@ argomenti.
 * Controllo dei breakpoint::       Controllo dei punti d'interruzione.
 * Controllo esecuzione debugger::  Controllo di esecuzione.
 * Vedere e modificare dati::       Vedere e modificare dati.
-* Stack di esecuzione::            Lavorare con lo @dfn{stack}.
+* Stack di esecuzione::            Lavorare con lo @dfn{Stack}.
 * Informazioni sul debugger::      Ottenere informazioni sullo stato del
                                    programma e del debugger.
 * Comandi vari del debugger::      Comandi vari del debugger.
@@ -34128,8 +34169,8 @@ argomenti) dalla lista dei punti d'osservazione.
 
 @end table
 
-@node @dfn{Stack} di esecuzione
-@subsection Lavorare con lo @dfn{stack}
+@node Stack di esecuzione
+@subsection Lavorare con lo @dfn{Stack}
 
 Ogni volta che si esegue un programma che contiene chiamate di funzione,
 @command{gawk} mantiene una pila contenente la lista delle chiamate di funzione
@@ -35633,7 +35674,8 @@ ottenere ulteriori informazioni, e non basarsi solo su quanto qui detto.
 * Ottenere la precisione::        Ottenere pi@`u precisione richiede qualche
                                   sforzo.
 * Tentare di arrotondare::        Aggiungere cifre di precisione e arrotondare.
-* Valori strani::                 Un cenno riguardo ai valori infiniti e a NaN [``non @`e un numero''].
+* Impostare la precisione::       Impostare la precisione.
+* Impostare modo di arrotondare:: Impostare la modalit@`a di arrotondamento.
 @end menu
 
 @node Inesattezza nei calcoli
@@ -35654,6 +35696,7 @@ il numero di cifre decimali esatte nel risultato finale.
 * Rappresentazioni inesatte::   I numeri non sono rappresentati esattamente.
 * Confronti tra valori in VM::  Come confrontare valori in virgola mobile.
 * Gli errori si sommano::       Gli errori diventano sempre maggiori.
+* Valori strani::               Valori in virgola mobile non spiegati a scuola.
 @end menu
 
 @node Rappresentazioni inesatte
@@ -37718,8 +37761,8 @@ restituiti sono di tipo @code{mpfr_ptr} e @code{mpz_ptr} rispettivamente,
 e si dovrebbero assegnare in maniera appropriata questi codici di ritorno
 prima di assegnare i risultati a variabili del tipo corretto.
 
-La memoria allocata da queste funzioni dovrebbe essere liberata a fine
-utilizzo, richiamando @code{gawk_free()}.
+La memoria allocata da queste funzioni dovrebbe essere liberata dopo il
+loro uso, richiamando @code{gawk_free()}.
 
 @node Funzioni di costruzione
 @subsection Funzioni per creare valori
@@ -43454,7 +43497,7 @@ La funzione @code{getline} ridiretta @`e stata resa possibile all'interno di
 
 @item
 Il comando @code{where} @`e stato aggiunto al debugger
-(@pxref{@dfn{Stack} di esecuzione}).
+(@pxref{Stack di esecuzione}).
 
 @item
 Il supporto per Ultrix @`e stato rimosso.
