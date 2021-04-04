@@ -835,6 +835,9 @@ particular records in a file and perform operations upon them.
 * Tee Program::                         The @command{tee} utility.
 * Uniq Program::                        The @command{uniq} utility.
 * Wc Program::                          The @command{wc} utility.
+* Bytes vs. Characters::                Modern character sets.
+* Using extensions::                    A brief intro to extensions.
+* @command{wc} program::                Code for @file{wc.awk}.
 * Miscellaneous Programs::              Some interesting @command{awk}
                                         programs.
 * Dupword Program::                     Finding duplicated words in a
@@ -868,7 +871,8 @@ particular records in a file and perform operations upon them.
 * TCP/IP Networking::                   Using @command{gawk} for network
                                         programming.
 * Profiling::                           Profiling your @command{awk} programs.
-* Extension Philosophy::                What should be built-in and what should not.
+* Extension Philosophy::                What should be built-in and what
+                                        should not.
 * Advanced Features Summary::           Summary of advanced features.
 * I18N and L10N::                       Internationalization and Localization.
 * Explaining gettext::                  How GNU @command{gettext} works.
@@ -937,8 +941,8 @@ particular records in a file and perform operations upon them.
 * Extension API Functions Introduction:: Introduction to the API functions.
 * General Data Types::                  The data types.
 * Memory Allocation Functions::         Functions for allocating memory.
-* API Ownership of MPFR and GMP Values:: Managing MPFR and GMP Values.
 * Constructor Functions::               Functions for creating values.
+* API Ownership of MPFR and GMP Values:: Managing MPFR and GMP Values.
 * Registration Functions::              Functions to register things with
                                         @command{gawk}.
 * Extension Functions::                 Registering extension functions.
@@ -27013,7 +27017,7 @@ and bytes in one or more input files.
 @menu
 * Bytes vs. Characters::        Modern character sets.
 * Using extensions::            A brief intro to extensions.
-* @command{wc} program::                  Code for @file{wc.awk}.
+* @command{wc} program::        Code for @file{wc.awk}.
 @end menu
 
 @node Bytes vs. Characters
