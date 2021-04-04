@@ -749,6 +749,8 @@ particular records in a file and perform operations upon them.
 * Arrays Summary::                      Summary of arrays.
 * Built-in::                            Summarizes the built-in functions.
 * Calling Built-in::                    How to call built-in functions.
+* Boolean Functions::                   A function that returns Boolean
+                                        values.
 * Numeric Functions::                   Functions that work with numbers,
                                         including @code{int()}, @code{sin()}
                                         and @code{rand()}.
@@ -856,6 +858,7 @@ particular records in a file and perform operations upon them.
 * Programs Summary::                    Summary of programs.
 * Programs Exercises::                  Exercises.
 * Nondecimal Data::                     Allowing nondecimal input data.
+* Boolean Typed Values::                Values with @code{bool} type.
 * Array Sorting::                       Facilities for controlling array
                                         traversal and sorting arrays.
 * Controlling Array Traversal::         How to use PROCINFO["sorted_in"].
@@ -17448,6 +17451,7 @@ but are summarized here for your convenience.
 
 @menu
 * Calling Built-in::            How to call built-in functions.
+* Boolean Functions::           A function that returns Boolean values.
 * Numeric Functions::           Functions that work with numbers, including
                                 @code{int()}, @code{sin()} and @code{rand()}.
 * String Functions::            Functions for string manipulation, such as
@@ -17516,6 +17520,22 @@ six, and then 12, and @code{atan2()} is called with the two arguments six
 and 12.  But if the order of evaluation is right to left, @code{i}
 first becomes 10, then 11, and @code{atan2()} is called with the
 two arguments 11 and 10.
+
+
+@node Boolean Functions
+@subsection Generating Boolean Values
+@cindex boolean function
+
+This functions is specific to @command{gawk}. It is not
+available in compatibility mode (@pxref{Options}):
+
+@c @asis for docbook
+@table @asis
+@item @code{bool(@var{expression})}
+@cindexgawkfunc{bool}
+
+blah blah
+@end table
 
 @node Numeric Functions
 @subsection Numeric Functions
@@ -20688,7 +20708,7 @@ being aware of them.
 @cindex pointers to functions
 @cindex differences in @command{awk} and @command{gawk} @subentry indirect function calls
 
-This section describes an advanced, @command{gawk}-specific extension.
+This @value{SECTION} describes an advanced, @command{gawk}-specific extension.
 
 Often, you may wish to defer the choice of function to call until runtime.
 For example, you may have different kinds of records, each of which
@@ -28267,6 +28287,7 @@ discusses the ability to dynamically add new built-in functions to
 
 @menu
 * Nondecimal Data::             Allowing nondecimal input data.
+* Boolean Typed Values::        Values with @code{bool} type.
 * Array Sorting::               Facilities for controlling array traversal and
                                 sorting arrays.
 * Two-way I/O::                 Two-way communications with another process.
@@ -28332,6 +28353,42 @@ leads to less surprising results.
 
 This option may disappear in a future version of @command{gawk}.
 @end quotation
+
+@node Boolean Typed Values
+@section Boolean Typed Values
+
+This @value{SECTION} describes an advanced, @command{gawk}-specific extension.
+
+Scalar values in @command{awk} are either numbers or strings.
+@command{gawk} also supports values of type @code{regexp} (FIXME pxref).
+
+As seen in FIXME @@ref@{@} here, Boolean values in @command{awk} don't have a separate
+type: a value counts as ``true'' if it is nonzero or non-null, and as
+``false'' otherwise.
+
+When interchanging data with languages that do have a real Boolean type,
+using a standard format such as JSON or XML, the lack of a true Boolean
+type in @command{awk} is problematic.  (FIXME: xref to gawkextlib json
+extension)
+
+It's easy to import Boolean data into @command{awk}, but then the fact
+that it was originally Boolean is lost.  Exporting data is even harder;
+there's no way to indicate that a value is really Boolean.
+
+To solve this problem, @command{gawk} provides a function named @code{bool()}.
+It takes one argument, which is any @command{awk} expression, and it
+returns a value of Boolean type.
+
+The returned values are different than
+normal @command{awk} values. When treated as numbers, they are either
+one or zero, depending upon the truth value of the expression passed
+in the call. When treated as strings, they are either @code{"TRUE"}
+or @code{"FALSE"}, again depending upon the truth value of the expression passed
+in the call. The value for ``false'' is thus unusual; it is zero numerically,
+but not empty when treated as a string.
+
+The @code{typeof()} function (FIXME pxref here) returns @code{"bool"}
+for these values.
 
 @node Array Sorting
 @section Controlling Array Traversal and Array Sorting
