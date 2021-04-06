@@ -974,6 +974,9 @@ Copyright dell'edizione italiana @copyright{} 2016 -- Free Software Foundation, 
 * Programma tee::                       Il programma di utilit@`a @command{tee}.
 * Programma uniq::                      Il programma di utilit@`a @command{uniq}.
 * Programma wc::                        Il programma di utilit@`a @command{wc}.
+* Byte vs. Caratteri::                  Moderni insiemi di caratteri.
+* Usare le estensioni::                 Una breve introduzione alle estensioni.
+* Programmma @command{wc}::             Codice per @file{wc.awk}.
 * Programmi vari::                      Alcuni interessanti programmi in
                                         @command{awk}
 * Programma dupword::                   Trovare parole duplicate in un
@@ -1092,8 +1095,8 @@ Copyright dell'edizione italiana @copyright{} 2016 -- Free Software Foundation, 
 * Intro funzioni estensione API:: Introduzione alle funzioni dell'API.
 * Tipi di dati generali::               I tipi di dati.
 * Funzioni di allocazione memoria::     Funzioni per allocare memoria.
-* API e gestione valori MPFR e GMP::    Gestione valori MPFR e GMP.
 * Funzioni di costruzione::             Funzioni per creare valori.
+* API e gestione valori MPFR e GMP::    Gestione valori MPFR e GMP.
 * Funzioni di registrazione::           Funzioni per registrare cose con
                                         @command{gawk}.
 * Funzioni di estensione::              Registrare funzioni di estensione.
