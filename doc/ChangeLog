@@ -1,6 +1,7 @@
 2021-04-06         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawktexi.in: Finish documenting bool features.
+	* gawk.1: Add minimal documentation on bool.
 
 2021-04-04         Arnold D. Robbins     <arnold@skeeve.com>
 

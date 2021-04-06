@@ -13,7 +13,7 @@
 .		if \w'\(rq' .ds rq "\(rq
 .	\}
 .\}
-.TH GAWK 1 "Aug 31 2020" "Free Software Foundation" "Utility Commands"
+.TH GAWK 1 "Apr 6 2021" "Free Software Foundation" "Utility Commands"
 .SH NAME
 gawk \- pattern scanning and processing language
 .SH SYNOPSIS
@@ -3480,6 +3480,16 @@ in \*(EP.
 You must also supply a text domain.  Use
 .B TEXTDOMAIN
 if you want to use the current domain.
+.SS Boolean Valued Functions
+You can create special Boolean-typed values; see the manual for how
+they work and why they exist.
+.TP
+.BI bool( expression\^ )
+Based on the boolean value of
+.I expression
+return either a true value or a false value.
+True values have numeric value one and string value \fB"TRUE"\fR.
+False values have numeric value zero and string value \fB"False"\fR.
 .SH USER-DEFINED FUNCTIONS
 Functions in \*(AK are defined as follows:
 .PP
@@ -3700,7 +3710,7 @@ accommodate applications that depended upon the old behavior.
 (This feature was agreed upon by both the Bell Laboratories developers
 and the \*(GN developers.)
 .PP
-When processing arguments,
+When procesiing arguments,
 .I gawk
 uses the special option \*(lq\-\^\-\*(rq to signal the end of
 arguments.
@@ -4265,7 +4275,7 @@ We thank him.
 .SH COPYING PERMISSIONS
 Copyright \(co 1989, 1991, 1992, 1993, 1994, 1995, 1996,
 1997, 1998, 1999, 2001, 2002, 2003, 2004, 2005, 2007, 2009,
-2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020,
+2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
 Free Software Foundation, Inc.
 .PP
 Permission is granted to make and distribute verbatim copies of
