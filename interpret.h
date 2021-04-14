@@ -414,10 +414,6 @@ uninitialized_scalar:
 					lintwarn(_("assignment used in conditional context"));
 					break;
 
-				case LINT_no_effect:
-					lintwarn(_("statement has no effect"));
-					break;
-
 				default:
 					cant_happen();
 				}

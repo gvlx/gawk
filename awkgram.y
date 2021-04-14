@@ -5343,6 +5343,16 @@ isnoeffect(OPCODE type)
 	case Op_not:
 	case Op_in_array:
 		return true;
+	// Additional opcodes that can be part of an expression
+	// that has no effect:
+	case Op_and:
+	case Op_or:
+	case Op_push:
+	case Op_push_i:
+	case Op_push_array:
+	case Op_pop:
+	case Op_lint_plus:
+		return true;
 	default:
 		break;	/* keeps gcc -Wall happy */
 	}
@@ -6156,6 +6166,7 @@ add_lint(INSTRUCTION *list, LINTTYPE linttype)
 {
 #ifndef NO_LINT
 	INSTRUCTION *ip;
+	bool no_effect = true;
 
 	switch (linttype) {
 	case LINT_assign_in_cond:
@@ -6176,26 +6187,33 @@ add_lint(INSTRUCTION *list, LINTTYPE linttype)
 		if (list->lasti->opcode == Op_pop && list->nexti != list->lasti) {
 			int line = 0;
 
-			// Get down to the last instruction (FIXME: why?)
+			// Get down to the last instruction ...
 			for (ip = list->nexti; ip->nexti != list->lasti; ip = ip->nexti) {
-				// along the way track line numbers, we will use the line
+				// ... along the way track line numbers, we will use the line
 				// closest to the opcode if that opcode doesn't have one
 				if (ip->source_line != 0)
 					line = ip->source_line;
+
+				// And check each opcode for no effect
+				no_effect = no_effect && isnoeffect(ip->opcode);
 			}
 
-			if (do_lint) {		/* compile-time warning */
-				if (isnoeffect(ip->opcode)) {
+			// check the last one also
+			no_effect = no_effect && isnoeffect(ip->opcode);
+
+			// Only if all the traversed opcodes have no effect do we
+			// produce a warning. This avoids warnings for things like
+			// a == b && b = c.
+			if (do_lint) {		/* parse-time warning */
+				if (no_effect) {
 					if (ip->source_line != 0)
 						line = ip->source_line;
-					lintwarn_ln(line, ("statement may have no effect"));
+					lintwarn_ln(line, _("statement has no effect"));
 				}
 			}
 
-			if (ip->opcode == Op_push || ip->opcode == Op_push_i) {		/* run-time warning */
-				list_append(list, instruction(Op_lint));
-				list->lasti->lint_type = linttype;
-			}
+			// We no longer place a run-time warning also. One warning
+			// at parse time is enough.
 		}
 		break;
 
