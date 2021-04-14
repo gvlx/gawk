@@ -1,3 +1,18 @@
+2021-04-14         Arnold D. Robbins     <arnold@skeeve.com>
+
+	Fix up lint warnings for "no effect" to avoid false warnings.
+	Straighten out the messages, and remove the run-time warning,
+	since a parse-time warning is already issued. Thanks to
+	Arkadiusz Drabczyk <arkadiusz@drabczyk.org> for the initial
+	bug report.
+
+	* awkgram.y (isnoeffect): Add more opcodes that are "no effect".
+	(add_lint): For LINT_no_effect, check that all the opcodes in the
+	list are "no effect". Only if so, issue the warning. Remove the
+	addition of the run-time warning.
+	* interpret.h (r_interpret): Remove LINT_no_effect from Op_lint
+	case.
+
 2021-03-21         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* str_array.c (fnv1a_hash_string): New function.
