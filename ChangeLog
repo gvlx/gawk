@@ -1,3 +1,7 @@
+2021-04-14         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* array.c (do_sort_up_value_type): Fix order with bools.
+
 2021-03-30         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawk_api.h (gawk_api_minor_version): Increase to 2.

@@ -1214,16 +1214,16 @@ do_sort_up_value_type(const void *p1, const void *p2)
 		return cmp_numbers(n1, n2);
 	}
 
-	/* 3b. Numbers next */
-	if ((n1->flags & NUMBER) != 0 && (n2->flags & NUMBER) != 0) {
-		return cmp_numbers(n1, n2);
-	}
-
-	/* 3c. Bools before everything else */
+	/* 3b. Bools before everything else */
 	if ((n1->flags & BOOL) != 0 && (n2->flags & BOOL) == 0) {
 		return -1;
 	} else if ((n1->flags & BOOL) == 0 && (n2->flags & BOOL) != 0) {
 		return 1;
+	}
+
+	/* 3c. Numbers next */
+	if ((n1->flags & NUMBER) != 0 && (n2->flags & NUMBER) != 0) {
+		return cmp_numbers(n1, n2);
 	}
 
 	/* 3d. All numbers are less than all strings. This is aribitrary. */

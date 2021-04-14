@@ -2,7 +2,7 @@
 .\"
 .\" Copyright (C) 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004,
 .\" 2005, 2007, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018,
-.\" 2019, 2020
+.\" 2019, 2020, 2021
 .\" Free Software Foundation, Inc.
 .\" 
 .\" Permission is granted to make and distribute verbatim copies of
@@ -100,7 +100,7 @@ Variables	5\*(CX
 \*(CD
 .SL
 .nf
-\*(FRCopyright \(co 1996\(en2005, 2007, 2009\(en2020
+\*(FRCopyright \(co 1996\(en2005, 2007, 2009\(en2021
 Free Software Foundation, Inc.
 .nf
 .BT
@@ -1916,6 +1916,20 @@ See the manual for details.\*(CB
 .EB "\s+2\f(HBDYNAMIC EXTENSIONS (\*(GK\f(HB)\*(FR\s0"
 .BT
 
+.\" --- Generator Functions
+.ES
+.fi
+.in +.2i
+.ti -.2i
+\*(CD\*(FCbool(\*(FIexpression\*(FC)\*(FR
+.br
+Return a Boolean-typed value based on the Boolean value
+of \*(FIexpression\fP. True values have a numeric value of one
+and a string value of \*(FC"TRUE"\fP. False values have a numeric value of zero
+and a string value of \*(FC"FALSE"\fP.\*(CB
+.in -.2i
+.EB "\s+2\f(HBGENERATOR FUNCTIONS (\*(GK\f(HB)\*(FR\s0"
+.sp .5
 .\" --- Type Functions
 .ES
 .fi
@@ -1959,11 +1973,6 @@ Return the translation of \*(FIstring\*(FR in text domain
 \*(FIdomain\*(FR for locale category \*(FIcategory\*(FR.
 The default value for \*(FIdomain\*(FR is the current value of \*(FCTEXTDOMAIN\*(FR.
 The default value for \*(FIcategory\*(FR is \*(FC"LC_MESSAGES"\*(FR.
-.sp .5
-If you supply a value for \*(FIcategory\*(FR, it must be a string equal to
-one of the known locale categories.
-You must also supply a text domain.  Use \*(FCTEXTDOMAIN\*(FR
-to use the current domain.
 .ti -.2i
 \*(FCdcngettext(\*(FIstring1\*(FC, \*(FIstring2\*(FC, \*(FInumber\*(FR [\*(FC, \*(FIdom \*(FR[\*(FC, \*(FIcat\*(FR]]\*(FC)\*(FR
 .br
@@ -1971,12 +1980,7 @@ Return the plural form used for \*(FInumber\*(FR of the translation of
 \*(FIstring1\*(FR and \*(FIstring2\*(FR in text domain
 \*(FIdom\*(FR for locale category \*(FIcat\*(FR.
 The default value for \*(FIdom\*(FR is the current value of \*(FCTEXTDOMAIN\*(FR.
-The default for \*(FIcat\*(FR is \*(FC"LC_MESSAGES"\*(FR.
-.sp .5
-If you supply a value for \*(FIcat\*(FR, it must be a string equal to
-one of the known locale categories.
-You must also supply a text domain.  Use \*(FCTEXTDOMAIN\*(FR
-to use the current domain.\*(CB
+The default for \*(FIcat\*(FR is \*(FC"LC_MESSAGES"\*(FR.\*(CB
 .in -.2i
 .EB "\s+2\f(HBINTERNATIONALIZATION (\*(GK\f(HB)\*(FR\s0"
 .sp .5
@@ -2012,7 +2016,7 @@ maintains it.\*(CX
 .ES
 .fi
 \*(CDCopyright \(co 1996\(en2005,
-2007, 2009\(en2020 Free Software Foundation, Inc.
+2007, 2009\(en2021 Free Software Foundation, Inc.
 .sp .5   
 Permission is granted to make and distribute verbatim copies of this
 reference card provided the copyright notice and this permission notice

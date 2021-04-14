@@ -1,3 +1,9 @@
+2021-04-14         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.in (Controlling Scanning): Document bools for
+	"@val_type_asc".
+	* awkcard.in: Add doc on bool() function.
+
 2021-04-06         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawktexi.in: Finish documenting bool features.
