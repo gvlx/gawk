@@ -1203,6 +1203,7 @@ arg_assign(char *arg, bool initing)
 
 	cp2 = cp + strlen(cp) - 1;	// end char
 	if (! do_traditional
+	    && strlen(cp) >= 3		// '@/' doesn't do it.
 	    && cp[0] == '@' && cp[1] == '/' && *cp2 == '/') {
 		// typed regex
 		size_t len = strlen(cp) - 3;

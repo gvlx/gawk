@@ -1,3 +1,9 @@
+2021-04-16         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* main (arg_assign): For -v '@/...' make sure that there are
+	at least three characters there. Thanks to Ed Morton
+	<mortoneccc@comcast.net> for the report.
+
 2021-04-14         Arnold D. Robbins     <arnold@skeeve.com>
 
 	Fix up lint warnings for "no effect" to avoid false warnings.
