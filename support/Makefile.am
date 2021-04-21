@@ -36,7 +36,9 @@ EXTRA_DIST = \
 	regcomp.c \
 	regex_internal.c \
 	regex_internal.h \
-	regexec.c
+	regexec.c \
+	malloc/dynarray.h \
+	malloc/dynarray-skeleton.c
 
 # what to make and install
 noinst_LIBRARIES = libsupport.a
@@ -56,7 +58,8 @@ libsupport_a_SOURCES = \
 	regex.c \
 	regex.h \
 	verify.h \
-	xalloc.h
+	xalloc.h \
+	malloc/dynarray_resize.c
 
 # For some make's, e.g. OpenBSD, that don't define this
 RM = rm -f

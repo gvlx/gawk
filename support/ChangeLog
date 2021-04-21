@@ -1,3 +1,13 @@
+2021-04-21         Arnold D. Robbins     <arnold@skeeve.com>
+
+	Don't depend upon GLIBC private interfaces. Thanks to
+	Dmitry V. Levin <ldv@altlinux.org> for the report.
+
+	* Makefile.am (EXTRA_DIST): Add files in malloc directory.
+	(libsupport_a_SOURCES): Add malloc/dynarray_resize.c.
+	* dynarray.h: Copied from GNULIB.
+	* malloc/dynarray_resize.c: New file, from GNULIB.
+
 2021-03-29         Arnold D. Robbins     <arnold@skeeve.com>
 
 	Resettle after churn in GNULIB.
