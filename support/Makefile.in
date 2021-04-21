@@ -142,7 +142,7 @@ libsupport_a_AR = $(AR) $(ARFLAGS)
 libsupport_a_LIBADD =
 am_libsupport_a_OBJECTS = dfa.$(OBJEXT) getopt.$(OBJEXT) \
 	getopt1.$(OBJEXT) localeinfo.$(OBJEXT) random.$(OBJEXT) \
-	regex.$(OBJEXT)
+	regex.$(OBJEXT) dynarray_resize.$(OBJEXT)
 libsupport_a_OBJECTS = $(am_libsupport_a_OBJECTS)
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
@@ -159,10 +159,15 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/build-aux/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ./$(DEPDIR)/dfa.Po ./$(DEPDIR)/getopt.Po \
+am__depfiles_remade = ./$(DEPDIR)/dfa.Po \
+	./$(DEPDIR)/dynarray_resize.Po ./$(DEPDIR)/getopt.Po \
 	./$(DEPDIR)/getopt1.Po ./$(DEPDIR)/localeinfo.Po \
 	./$(DEPDIR)/random.Po ./$(DEPDIR)/regex.Po
 am__mv = mv -f
+AM_V_lt = $(am__v_lt_@AM_V@)
+am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
+am__v_lt_0 = --silent
+am__v_lt_1 = 
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 AM_V_CC = $(am__v_CC_@AM_V@)
@@ -349,7 +354,9 @@ EXTRA_DIST = \
 	regcomp.c \
 	regex_internal.c \
 	regex_internal.h \
-	regexec.c
+	regexec.c \
+	malloc/dynarray.h \
+	malloc/dynarray-skeleton.c
 
 
 # what to make and install
@@ -370,7 +377,8 @@ libsupport_a_SOURCES = \
 	regex.c \
 	regex.h \
 	verify.h \
-	xalloc.h
+	xalloc.h \
+	malloc/dynarray_resize.c
 
 
 # For some make's, e.g. OpenBSD, that don't define this
@@ -424,6 +432,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/dfa.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/dynarray_resize.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/getopt.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/getopt1.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/localeinfo.Po@am__quote@ # am--include-marker
@@ -449,6 +458,20 @@ am--depfiles: $(am__depfiles_remade)
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
+
+dynarray_resize.o: malloc/dynarray_resize.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT dynarray_resize.o -MD -MP -MF $(DEPDIR)/dynarray_resize.Tpo -c -o dynarray_resize.o `test -f 'malloc/dynarray_resize.c' || echo '$(srcdir)/'`malloc/dynarray_resize.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/dynarray_resize.Tpo $(DEPDIR)/dynarray_resize.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='malloc/dynarray_resize.c' object='dynarray_resize.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o dynarray_resize.o `test -f 'malloc/dynarray_resize.c' || echo '$(srcdir)/'`malloc/dynarray_resize.c
+
+dynarray_resize.obj: malloc/dynarray_resize.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT dynarray_resize.obj -MD -MP -MF $(DEPDIR)/dynarray_resize.Tpo -c -o dynarray_resize.obj `if test -f 'malloc/dynarray_resize.c'; then $(CYGPATH_W) 'malloc/dynarray_resize.c'; else $(CYGPATH_W) '$(srcdir)/malloc/dynarray_resize.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/dynarray_resize.Tpo $(DEPDIR)/dynarray_resize.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='malloc/dynarray_resize.c' object='dynarray_resize.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o dynarray_resize.obj `if test -f 'malloc/dynarray_resize.c'; then $(CYGPATH_W) 'malloc/dynarray_resize.c'; else $(CYGPATH_W) '$(srcdir)/malloc/dynarray_resize.c'; fi`
 
 ID: $(am__tagged_files)
 	$(am__define_uniq_tagged_files); mkid -fID $$unique
@@ -575,6 +598,7 @@ clean-am: clean-generic clean-noinstLIBRARIES mostlyclean-am
 
 distclean: distclean-am
 		-rm -f ./$(DEPDIR)/dfa.Po
+	-rm -f ./$(DEPDIR)/dynarray_resize.Po
 	-rm -f ./$(DEPDIR)/getopt.Po
 	-rm -f ./$(DEPDIR)/getopt1.Po
 	-rm -f ./$(DEPDIR)/localeinfo.Po
@@ -626,6 +650,7 @@ installcheck-am:
 
 maintainer-clean: maintainer-clean-am
 		-rm -f ./$(DEPDIR)/dfa.Po
+	-rm -f ./$(DEPDIR)/dynarray_resize.Po
 	-rm -f ./$(DEPDIR)/getopt.Po
 	-rm -f ./$(DEPDIR)/getopt1.Po
 	-rm -f ./$(DEPDIR)/localeinfo.Po
