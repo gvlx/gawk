@@ -1,3 +1,10 @@
+2021-04-22         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* dynarray.h: Don't redefine libc interfaces to gnulib
+	interfaces. Needed on at least one Ubuntu 18.04 system, don't
+	know why, when on other such systems things work. GLIBC
+	is a swamp. Sigh.
+
 2021-04-21         Arnold D. Robbins     <arnold@skeeve.com>
 
 	Don't depend upon GLIBC private interfaces. Thanks to
