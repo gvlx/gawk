@@ -2,7 +2,7 @@
 
 # This script is only useful for the maintainer ...
 #
-# It updates all the build-aux files from current GNULIB.
+# It updates all the support/* files from current GNULIB.
 # We don't bother to print any messages about what we copied,
 # as Git will tell us what, if anything, changed.
 
@@ -13,7 +13,9 @@ GL=/usr/local/src/Gnu/gnulib/lib
 FILE_LIST="cdefs.h
 dfa.c
 dfa.h
+dynarray.h
 flexmember.h
+idx.h
 intprops.h
 libc-config.h
 localeinfo.c
@@ -26,7 +28,8 @@ regex_internal.c
 regex_internal.h
 verify.h
 malloc/dynarray.h
-malloc/dynarray-skeleton.c"
+malloc/dynarray-skeleton.c
+malloc/dynarray_resize.c"
 
 for i in $FILE_LIST
 do
