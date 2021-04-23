@@ -248,12 +248,14 @@ static DYNARRAY_ELEMENT *
 
 /* The implementation is imported from glibc.  */
 
+#ifndef GAWK
 /* Avoid possible conflicts with symbols exported by the GNU libc.  */
 #define __libc_dynarray_at_failure gl_dynarray_at_failure
 #define __libc_dynarray_emplace_enlarge gl_dynarray_emplace_enlarge
 #define __libc_dynarray_finalize gl_dynarray_finalize
 #define __libc_dynarray_resize_clear gl_dynarray_resize_clear
 #define __libc_dynarray_resize gl_dynarray_resize
+#endif
 
 #if defined DYNARRAY_STRUCT || defined DYNARRAY_ELEMENT || defined DYNARRAY_PREFIX
 
