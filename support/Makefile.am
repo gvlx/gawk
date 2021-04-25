@@ -59,7 +59,9 @@ libsupport_a_SOURCES = \
 	regex.h \
 	verify.h \
 	xalloc.h \
-	malloc/dynarray_resize.c
+	malloc/dynarray_resize.c \
+	malloc/dynarray_emplace_enlarge.c  \
+	malloc/dynarray_finalize.c
 
 # For some make's, e.g. OpenBSD, that don't define this
 RM = rm -f

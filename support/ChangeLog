@@ -1,3 +1,13 @@
+2021-04-25         Arnold D. Robbins     <arnold@skeeve.com>
+
+	More of the same:
+
+	* Makefile.am (EXTRA_DIST): Add more files in malloc directory.
+	(libsupport_a_SOURCES): Add malloc/dynarray_finalize.c and
+	malloc/dynarray_emplace_enlarge.c.
+	* malloc/dynarray_finalize.c, malloc/dynarray_emplace_enlarge.c:
+	New files, from GNULIB.
+
 2021-04-22         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* dynarray.h: Don't redefine libc interfaces to gnulib
