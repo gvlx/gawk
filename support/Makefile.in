@@ -142,7 +142,8 @@ libsupport_a_AR = $(AR) $(ARFLAGS)
 libsupport_a_LIBADD =
 am_libsupport_a_OBJECTS = dfa.$(OBJEXT) getopt.$(OBJEXT) \
 	getopt1.$(OBJEXT) localeinfo.$(OBJEXT) random.$(OBJEXT) \
-	regex.$(OBJEXT) dynarray_resize.$(OBJEXT)
+	regex.$(OBJEXT) dynarray_resize.$(OBJEXT) \
+	dynarray_emplace_enlarge.$(OBJEXT) dynarray_finalize.$(OBJEXT)
 libsupport_a_OBJECTS = $(am_libsupport_a_OBJECTS)
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
@@ -160,6 +161,8 @@ DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/build-aux/depcomp
 am__maybe_remake_depfiles = depfiles
 am__depfiles_remade = ./$(DEPDIR)/dfa.Po \
+	./$(DEPDIR)/dynarray_emplace_enlarge.Po \
+	./$(DEPDIR)/dynarray_finalize.Po \
 	./$(DEPDIR)/dynarray_resize.Po ./$(DEPDIR)/getopt.Po \
 	./$(DEPDIR)/getopt1.Po ./$(DEPDIR)/localeinfo.Po \
 	./$(DEPDIR)/random.Po ./$(DEPDIR)/regex.Po
@@ -378,7 +381,9 @@ libsupport_a_SOURCES = \
 	regex.h \
 	verify.h \
 	xalloc.h \
-	malloc/dynarray_resize.c
+	malloc/dynarray_resize.c \
+	malloc/dynarray_emplace_enlarge.c  \
+	malloc/dynarray_finalize.c
 
 
 # For some make's, e.g. OpenBSD, that don't define this
@@ -432,6 +437,8 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/dfa.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/dynarray_emplace_enlarge.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/dynarray_finalize.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/dynarray_resize.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/getopt.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/getopt1.Po@am__quote@ # am--include-marker
@@ -472,6 +479,34 @@ dynarray_resize.obj: malloc/dynarray_resize.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='malloc/dynarray_resize.c' object='dynarray_resize.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o dynarray_resize.obj `if test -f 'malloc/dynarray_resize.c'; then $(CYGPATH_W) 'malloc/dynarray_resize.c'; else $(CYGPATH_W) '$(srcdir)/malloc/dynarray_resize.c'; fi`
+
+dynarray_emplace_enlarge.o: malloc/dynarray_emplace_enlarge.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT dynarray_emplace_enlarge.o -MD -MP -MF $(DEPDIR)/dynarray_emplace_enlarge.Tpo -c -o dynarray_emplace_enlarge.o `test -f 'malloc/dynarray_emplace_enlarge.c' || echo '$(srcdir)/'`malloc/dynarray_emplace_enlarge.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/dynarray_emplace_enlarge.Tpo $(DEPDIR)/dynarray_emplace_enlarge.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='malloc/dynarray_emplace_enlarge.c' object='dynarray_emplace_enlarge.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o dynarray_emplace_enlarge.o `test -f 'malloc/dynarray_emplace_enlarge.c' || echo '$(srcdir)/'`malloc/dynarray_emplace_enlarge.c
+
+dynarray_emplace_enlarge.obj: malloc/dynarray_emplace_enlarge.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT dynarray_emplace_enlarge.obj -MD -MP -MF $(DEPDIR)/dynarray_emplace_enlarge.Tpo -c -o dynarray_emplace_enlarge.obj `if test -f 'malloc/dynarray_emplace_enlarge.c'; then $(CYGPATH_W) 'malloc/dynarray_emplace_enlarge.c'; else $(CYGPATH_W) '$(srcdir)/malloc/dynarray_emplace_enlarge.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/dynarray_emplace_enlarge.Tpo $(DEPDIR)/dynarray_emplace_enlarge.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='malloc/dynarray_emplace_enlarge.c' object='dynarray_emplace_enlarge.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o dynarray_emplace_enlarge.obj `if test -f 'malloc/dynarray_emplace_enlarge.c'; then $(CYGPATH_W) 'malloc/dynarray_emplace_enlarge.c'; else $(CYGPATH_W) '$(srcdir)/malloc/dynarray_emplace_enlarge.c'; fi`
+
+dynarray_finalize.o: malloc/dynarray_finalize.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT dynarray_finalize.o -MD -MP -MF $(DEPDIR)/dynarray_finalize.Tpo -c -o dynarray_finalize.o `test -f 'malloc/dynarray_finalize.c' || echo '$(srcdir)/'`malloc/dynarray_finalize.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/dynarray_finalize.Tpo $(DEPDIR)/dynarray_finalize.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='malloc/dynarray_finalize.c' object='dynarray_finalize.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o dynarray_finalize.o `test -f 'malloc/dynarray_finalize.c' || echo '$(srcdir)/'`malloc/dynarray_finalize.c
+
+dynarray_finalize.obj: malloc/dynarray_finalize.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT dynarray_finalize.obj -MD -MP -MF $(DEPDIR)/dynarray_finalize.Tpo -c -o dynarray_finalize.obj `if test -f 'malloc/dynarray_finalize.c'; then $(CYGPATH_W) 'malloc/dynarray_finalize.c'; else $(CYGPATH_W) '$(srcdir)/malloc/dynarray_finalize.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/dynarray_finalize.Tpo $(DEPDIR)/dynarray_finalize.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='malloc/dynarray_finalize.c' object='dynarray_finalize.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o dynarray_finalize.obj `if test -f 'malloc/dynarray_finalize.c'; then $(CYGPATH_W) 'malloc/dynarray_finalize.c'; else $(CYGPATH_W) '$(srcdir)/malloc/dynarray_finalize.c'; fi`
 
 ID: $(am__tagged_files)
 	$(am__define_uniq_tagged_files); mkid -fID $$unique
@@ -598,6 +633,8 @@ clean-am: clean-generic clean-noinstLIBRARIES mostlyclean-am
 
 distclean: distclean-am
 		-rm -f ./$(DEPDIR)/dfa.Po
+	-rm -f ./$(DEPDIR)/dynarray_emplace_enlarge.Po
+	-rm -f ./$(DEPDIR)/dynarray_finalize.Po
 	-rm -f ./$(DEPDIR)/dynarray_resize.Po
 	-rm -f ./$(DEPDIR)/getopt.Po
 	-rm -f ./$(DEPDIR)/getopt1.Po
@@ -650,6 +687,8 @@ installcheck-am:
 
 maintainer-clean: maintainer-clean-am
 		-rm -f ./$(DEPDIR)/dfa.Po
+	-rm -f ./$(DEPDIR)/dynarray_emplace_enlarge.Po
+	-rm -f ./$(DEPDIR)/dynarray_finalize.Po
 	-rm -f ./$(DEPDIR)/dynarray_resize.Po
 	-rm -f ./$(DEPDIR)/getopt.Po
 	-rm -f ./$(DEPDIR)/getopt1.Po
