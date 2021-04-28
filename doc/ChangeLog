@@ -1,3 +1,10 @@
+2021-04-28         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.in: Revise doc for bools; they're now just numbers
+	with an extra flag.
+	* gawk.1: Ditto.
+	* awkcard.in: Ditto.
+
 2021-04-14         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawktexi.in (Controlling Scanning): Document bools for

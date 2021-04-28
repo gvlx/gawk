@@ -55,11 +55,11 @@ BEGIN {
 		printf("dict[\"%s\"] should be strnum, is %s\n",
 			strnum_sub, typeof(dict[strnum_sub]));
 
-	if (typeof(dict[bool_sub]) != "bool")
-		printf("dict[\"%s\"] should be bool, is %s\n",
+	if (typeof(dict[bool_sub]) != "number|bool")
+		printf("dict[\"%s\"] should be number|bool, is %s\n",
 			bool_sub, typeof(dict[bool_sub]));
 
-	if ((dict[bool_sub] "") != "TRUE")
-		printf("dict[\"%s\"] should be TRUE, is %s\n",
+	if ((dict[bool_sub] "") != "1")
+		printf("dict[\"%s\"] should be 1, is %s\n",
 			bool_sub, dict[bool_sub]);
 }

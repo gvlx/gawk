@@ -381,8 +381,6 @@ do_index(int nargs)
 
 	s1 = force_string(s1);
 	s2 = force_string(s2);
-	warn_bool("index", 1, s1);
-	warn_bool("index", 2, s2);
 
 	p1 = s1->stptr;
 	p2 = s2->stptr;
@@ -554,7 +552,6 @@ do_length(int nargs)
 	if (do_lint && (fixtype(tmp)->flags & STRING) == 0)
 		lintwarn(_("%s: received non-string argument"), "length");
 	tmp = force_string(tmp);
-	warn_bool("length", 1, tmp);
 
 	if (gawk_mb_cur_max > 1) {
 		tmp = force_wstring(tmp);
@@ -1782,16 +1779,6 @@ do_sqrt(int nargs)
 	return make_number((AWKNUM) sqrt(arg));
 }
 
-/* warn_bool --- warn that bool parameter is used as a string */
-
-void
-warn_bool(const char *func, int argnum, NODE *n)
-{
-	if (do_lint && (n->flags & BOOL) != 0)
-		lintwarn(_("%s: argument %d of type bool used as a string"),
-			func, argnum);
-}
-
 /* do_substr --- do the substr function */
 
 NODE *
@@ -1815,7 +1802,6 @@ do_substr(int nargs)
 	DEREF(t1);
 
 	t1 = POP_STRING();
-	warn_bool("substr", 1, t1);
 
 	if (nargs == 3) {
 		if (! (d_length >= 1)) {
@@ -2421,7 +2407,6 @@ do_tolower(int nargs)
 	NODE *t1, *t2;
 
 	t1 = POP_SCALAR();
-	warn_bool("tolower", 1, t1);
 	if (do_lint && (fixtype(t1)->flags & STRING) == 0)
 		lintwarn(_("%s: received non-string argument"), "tolower");
 	t1 = force_string(t1);
@@ -2453,7 +2438,6 @@ do_toupper(int nargs)
 	NODE *t1, *t2;
 
 	t1 = POP_SCALAR();
-	warn_bool("toupper", 1, t1);
 	if (do_lint && (fixtype(t1)->flags & STRING) == 0)
 		lintwarn(_("%s: received non-string argument"), "toupper");
 	t1 = force_string(t1);
@@ -2678,7 +2662,6 @@ do_match(int nargs)
 	tre = POP();
 	rp = re_update(tre);
 	t1 = POP_STRING();
-	warn_bool("mastch", 1, t1);
 
 	rstart = research(rp, t1->stptr, 0, t1->stlen, RE_NEED_START);
 	if (rstart >= 0) {	/* match succeded */
@@ -2899,7 +2882,6 @@ do_sub(int nargs, unsigned int flags)
 		rp = re_update(tmp);
 
 		target = POP_STRING();	/* original string */
-		warn_bool("gensub", 3, target);
 
 		glob_flag = POP_SCALAR();	/* value of global flag */
 		if (   (glob_flag->flags & STRING) != 0
@@ -4135,8 +4117,8 @@ do_typeof(int nargs)
 		break;
 	case Node_val:
 		switch (fixtype(arg)->flags & (STRING|NUMBER|USER_INPUT|REGEX|BOOL)) {
-		case BOOL:
-			res = "bool";
+		case NUMBER|BOOL:
+			res = "number|bool";
 			break;
 		case NUMBER:
 			res = "number";

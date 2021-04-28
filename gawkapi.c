@@ -600,7 +600,7 @@ node_to_awk_value(NODE *node, awk_value_t *val, awk_valtype_t wanted)
 
 		case AWK_STRNUM:
 			switch (fixtype(node)->flags & (STRING|NUMBER|USER_INPUT|REGEX|BOOL)) {
-			case BOOL:
+			case NUMBER|BOOL:
 				val->val_type = AWK_BOOL;
 				break;
 			case STRING:
@@ -640,7 +640,7 @@ node_to_awk_value(NODE *node, awk_value_t *val, awk_valtype_t wanted)
 			case STRING:
 				val->val_type = AWK_STRING;
 				break;
-			case BOOL:
+			case NUMBER|BOOL:
 				val->val_type = AWK_BOOL;
 				break;
 			case NUMBER:
@@ -668,7 +668,7 @@ node_to_awk_value(NODE *node, awk_value_t *val, awk_valtype_t wanted)
 
 		case AWK_SCALAR:
 			switch (fixtype(node)->flags & (STRING|NUMBER|USER_INPUT|REGEX|BOOL)) {
-			case BOOL:
+			case NUMBER|BOOL:
 				val->val_type = AWK_BOOL;
 				break;
 			case STRING:
@@ -699,7 +699,7 @@ node_to_awk_value(NODE *node, awk_value_t *val, awk_valtype_t wanted)
 		case AWK_UNDEFINED:
 			/* return true and actual type for request of undefined */
 			switch (fixtype(node)->flags & (STRING|NUMBER|USER_INPUT|REGEX|BOOL)) {
-			case BOOL:
+			case NUMBER|BOOL:
 				assign_bool(node, val);
 				ret = awk_true;
 				break;

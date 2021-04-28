@@ -1924,9 +1924,8 @@ See the manual for details.\*(CB
 \*(CD\*(FCbool(\*(FIexpression\*(FC)\*(FR
 .br
 Return a Boolean-typed value based on the Boolean value
-of \*(FIexpression\fP. True values have a numeric value of one
-and a string value of \*(FC"TRUE"\fP. False values have a numeric value of zero
-and a string value of \*(FC"FALSE"\fP.\*(CB
+of \*(FIexpression\fP. True values have a numeric value of one.
+False values have a numeric value of zero.\*(CB
 .in -.2i
 .EB "\s+2\f(HBGENERATOR FUNCTIONS (\*(GK\f(HB)\*(FR\s0"
 .sp .5

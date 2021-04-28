@@ -1092,13 +1092,12 @@ make_bool_node(bool value)
 	const char *sval;
 	AWKNUM nval;
 
-	sval = (value ? "TRUE" : "FALSE");
+	sval = (value ? "1" : "0");
 	nval = (value ? 1.0 : 0.0);
 
 	val = make_number(nval);
 	val->stptr = estrdup(sval, strlen(sval));
 	val->stlen = strlen(sval);
-	val->flags &= ~NUMBER;
 	val->flags |= NUMCUR|STRCUR|BOOL;
 	val->stfmt = STFMT_UNUSED;
 

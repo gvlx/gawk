@@ -1,3 +1,16 @@
+2021-04-28         Arnold D. Robbins     <arnold@skeeve.com>
+
+	Make bools plain numbers that have bool flag instead of
+	being weird string values.
+
+	* array.c (do_sort_up_value_type): Remove special ordering
+	for booleans.
+	* awk.h (warn_bool): Remove declaration.
+	* builtin.c (warn_bool): Remove function and all calls.
+	* gawkapi.c (node_to_awk_value): Update switches to look for
+	NUMBER|BOOL.
+	* node.c (make_bool_node): Revise string values and flag bits.
+
 2021-04-16         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* main (arg_assign): For -v '@/...' make sure that there are

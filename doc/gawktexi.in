@@ -16656,8 +16656,7 @@ Any index with a non-numeric value will end up positioned as if it were zero.
 Order by element values in ascending order (rather than by indices).
 Ordering is by the type assigned to the element
 (@pxref{Typing and Comparison}).
-All Boolean values come before all numeric values (@pxref{Boolean Typed Values}),
-and all numeric values come before all string values,
+All numeric values come before all string values,
 which in turn come before all subarrays.
 (Subarrays have not been described yet;
 @pxref{Arrays of Arrays}.)
@@ -17535,9 +17534,9 @@ available in compatibility mode (@pxref{Options}):
 @item @code{bool(@var{expression})}
 @cindexgawkfunc{bool}
 Return a Boolean-typed value based on the regular Boolean value
-of @var{expression}.  Boolean ``true'' values have numeric value one
-and string value @code{"TRUE"}. Boolean ``false'' values have numeric
-zero and string value @code{"FALSE"}.  This is discussed in more
+of @var{expression}.  Boolean ``true'' values have numeric value one.
+Boolean ``false'' values have numeric
+zero.  This is discussed in more
 detail in @ref{Boolean Typed Values}.
 @end table
 
@@ -19828,14 +19827,14 @@ Return one of the following strings, depending upon the type of @var{x}:
 @item "array"
 @var{x} is an array.
 
-@item "bool"
-@var{x} is a Boolean typed value (@pxref{Boolean Typed Values}).
-
 @item "regexp"
 @var{x} is a strongly typed regexp (@pxref{Strong Regexp Constants}).
 
 @item "number"
 @var{x} is a number.
+
+@item "number|bool"
+@var{x} is a Boolean typed value (@pxref{Boolean Typed Values}).
 
 @item "string"
 @var{x} is a string.
@@ -28294,7 +28293,7 @@ discusses the ability to dynamically add new built-in functions to
 
 @menu
 * Nondecimal Data::             Allowing nondecimal input data.
-* Boolean Typed Values::        Values with @code{bool} type.
+* Boolean Typed Values::        Values with @code{number|bool} type.
 * Array Sorting::               Facilities for controlling array traversal and
                                 sorting arrays.
 * Two-way I/O::                 Two-way communications with another process.
@@ -28386,16 +28385,18 @@ To solve this problem, @command{gawk} provides a function named @code{bool()}.
 It takes one argument, which is any @command{awk} expression, and it
 returns a value of Boolean type.
 
-The returned values are different than normal @command{awk} values. When
-treated as numbers, they are either one or zero, depending upon the truth
-value of the original expression passed in the call to @code{bool()}. When
-treated as strings, they are either @code{"TRUE"} or @code{"FALSE"},
-again depending upon the truth value of the expression passed in the
-call to @code{bool()}. The value for ``false'' is thus unusual; it is
-zero numerically, but not empty when treated as a string.
+@c HERE
+The returned values are normal @command{awk} numeric values, with
+values of either one or zero,
+depending upon the truth
+value of the original expression passed in the call to @code{bool()}.
 
 The @code{typeof()} function (@pxref{Type Functions}) returns
-@code{"bool"} for these values.
+@code{"number|bool"} for these values.
+
+Thus Boolean-typed values @emph{are} numbers as far as @command{gawk}
+is concerned, except that extension code can treat them as Booleans
+if desired.
 
 While it would have been possible to add two new built-in variables
 of Boolean type named @code{TRUE} and @code{FALSE}, doing so would
@@ -44147,8 +44148,8 @@ internationalized program to work in a particular language.
 
 @item Logical Expression
 An expression using the operators for logic, AND, OR, and NOT, written
-@samp{&&}, @samp{||}, and @samp{!} in @command{awk}. Often called Boolean
-expressions, after the mathematician who pioneered this kind of
+@samp{&&}, @samp{||}, and @samp{!} in @command{awk}. Often called @dfn{Boolean
+expressions}, after the mathematician who pioneered this kind of
 mathematical logic.
 
 @item Lvalue

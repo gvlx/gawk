@@ -1019,7 +1019,6 @@ do_split(int nargs)
 	assoc_clear(arr);
 
 	src = TOP_STRING();
-	warn_bool("split", 1, src);
 	if (src->stlen == 0) {
 		/*
 		 * Skip the work if first arg is the null string.
@@ -1097,7 +1096,6 @@ do_patsplit(int nargs)
 			_("%s: cannot use %s as second argument"));
 
 	src = TOP_STRING();
-	warn_bool("patsplit", 1, src);
 
 	if ((sep->flags & REGEX) != 0)
 		sep = sep->typed_re;
