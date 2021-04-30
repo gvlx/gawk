@@ -1,3 +1,10 @@
+2021-04-30         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* awk.h (boolval): Remove check for BOOL flag. It was incorrect.
+	Thanks to Andrew Schorr for the catch.
+	For Node_val, update the comment to describe the BOOL flag, and
+	move BOOL up to be alongside the flags for Node_val.
+
 2021-04-28         Arnold D. Robbins     <arnold@skeeve.com>
 
 	Make bools plain numbers that have bool flag instead of
