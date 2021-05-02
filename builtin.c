@@ -4329,10 +4329,10 @@ check_symtab_functab(NODE *dest, const char *fname, const char *msg)
 		fatal(msg, fname, "FUNCTAB");
 }
 
-/* do_bool --- create boolean values */
+/* do_mkbool --- create boolean values */
 
 NODE *
-do_bool(int nargs)
+do_mkbool(int nargs)
 {
 	NODE *tmp;
 	bool result;

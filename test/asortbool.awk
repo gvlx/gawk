@@ -3,8 +3,8 @@ BEGIN {
 	a[2] = -45
 	a[3] = 45
 	a[4][1] = 47
-	a[5] = bool(1)
-	a[6] = bool(0)
+	a[5] = mkbool(1)
+	a[6] = mkbool(0)
 
 	asort(a, b, "@val_type_asc")
 

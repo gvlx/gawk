@@ -1,3 +1,8 @@
+2021-05-02         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* asortbool.awk, functab5.ok, id.ok, rwarrray.awk,
+	symtab11.ok: Revise after code changes.
+
 2021-04-28         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* asortbool.ok: Revise after code changes.

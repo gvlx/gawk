@@ -1,3 +1,9 @@
+2021-05-02         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* awk.h (do_bool): Renamed do_mkbool.
+	* awkgram.y (tokentab): Rename bool to mkbool.
+	* builtin.c (do_bool): Renamed do_mkbool.
+
 2021-04-30         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* awk.h (boolval): Remove check for BOOL flag. It was incorrect.

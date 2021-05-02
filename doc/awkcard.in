@@ -1921,7 +1921,7 @@ See the manual for details.\*(CB
 .fi
 .in +.2i
 .ti -.2i
-\*(CD\*(FCbool(\*(FIexpression\*(FC)\*(FR
+\*(CD\*(FCmkbool(\*(FIexpression\*(FC)\*(FR
 .br
 Return a Boolean-typed value based on the Boolean value
 of \*(FIexpression\fP. True values have a numeric value of one.
