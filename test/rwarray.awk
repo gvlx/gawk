@@ -12,7 +12,7 @@ BEGIN {
 	dict[strnum_sub] = f[1]
 
 	bool_sub = "bool-sub"
-	dict[bool_sub] = bool(1)
+	dict[bool_sub] = mkbool(1)
 
 	n = asorti(dict, dictindices)
 	for (i = 1; i <= n; i++)

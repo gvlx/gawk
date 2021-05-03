@@ -18390,8 +18390,8 @@ available in compatibility mode (@pxref{Options}):
 
 @c @asis for docbook
 @table @asis
-@item @code{bool(@var{expression})}
-@cindexgawkfunc{bool}
+@item @code{bmkool(@var{expression})}
+@cindexgawkfunc{mkbool}
 Return a Boolean-typed value based on the regular Boolean value
 of @var{expression}.  Boolean ``true'' values have numeric value one.
 Boolean ``false'' values have numeric
@@ -29499,11 +29499,10 @@ It's easy to import Boolean data into @command{awk}, but then the fact
 that it was originally Boolean is lost.  Exporting data is even harder;
 there's no way to indicate that a value is really Boolean.
 
-To solve this problem, @command{gawk} provides a function named @code{bool()}.
+To solve this problem, @command{gawk} provides a function named @code{mkbool()}.
 It takes one argument, which is any @command{awk} expression, and it
 returns a value of Boolean type.
 
-@c HERE
 The returned values are normal @command{awk} numeric values, with
 values of either one or zero,
 depending upon the truth
@@ -29520,7 +29519,7 @@ While it would have been possible to add two new built-in variables
 of Boolean type named @code{TRUE} and @code{FALSE}, doing so would
 undoubtedly have broken many existing @command{awk} programs.  Instead,
 having a ``generator'' function that creates Boolean values gives
-flexibility, without breaking any existing code.
+flexibility, without breaking as much existing code.
 
 @node Array Sorting
 @section Controlling Array Traversal and Array Sorting

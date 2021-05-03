@@ -37,7 +37,6 @@ BEGIN -- Functab is next
 [asorti] = asorti
 [atan2] = atan2
 [bindtextdomain] = bindtextdomain
-[bool] = bool
 [close] = close
 [compl] = compl
 [cos] = cos
@@ -54,6 +53,7 @@ BEGIN -- Functab is next
 [log] = log
 [lshift] = lshift
 [match] = match
+[mkbool] = mkbool
 [mktime] = mktime
 [or] = or
 [patsplit] = patsplit
