@@ -15,6 +15,12 @@ regular numbers; it should not be noticeable most of the time.
 2. If the AWK_HASH environment variable is set to "fnv1a" gawk will
 use the FNV1-A hash function for associative arrays.
 
+3. There is now a new function, mkbool(), that creates Boolean-typed
+values.  These values *are* numbers, but they are also tagged as
+Boolean. This is mainly for use with data exchange to/from languages
+or environments that support real Boolean values. See the manual
+for details.
+
 Changes from 5.1.0 to 5.1.1
 ---------------------------
 
