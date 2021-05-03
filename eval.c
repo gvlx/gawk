@@ -442,6 +442,7 @@ flags2str(int flagval)
 		{ NUMCUR, "NUMCUR" },
 		{ NUMBER, "NUMBER" },
 		{ USER_INPUT, "USER_INPUT" },
+		{ BOOL, "BOOL" },
 		{ INTLSTR, "INTLSTR" },
 		{ NUMINT, "NUMINT" },
 		{ INTIND, "INTIND" },
@@ -455,7 +456,6 @@ flags2str(int flagval)
 		{ XARRAY, "XARRAY" },
 		{ NUMCONSTSTR, "NUMCONSTSTR" },
 		{ REGEX, "REGEX" },
-		{ BOOL, "BOOL" },
 		{ 0,	NULL },
 	};
 
