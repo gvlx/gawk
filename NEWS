@@ -55,7 +55,13 @@ Changes from 5.1.0 to 5.1.1
 
 11. Handling of Infinity and NaN values has been improved.
 
-xx. There have been numerous minor code cleanups and bug fixes. See the
+12. There has been a general tightening up of the use of const and
+    of types.
+
+13. The "no effect" lint warnings have been fixed up and now behave
+    more sanely.
+
+14. There have been numerous minor code cleanups and bug fixes. See the
     ChangeLog for details.
 
 Changes from 5.0.1 to 5.1.0

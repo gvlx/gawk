@@ -368,7 +368,7 @@
 	* str_array.c (str_lookup): If a pure number, copy to a string. Fixes
 	the printfchar test for MPFR.
 
-	Fix typeregex2 and typedregex3 tests for MPFR:
+	Fix typedregex2 and typedregex3 tests for MPFR:
 
 	* mpfr.c (mpg_zero): No longer static inline.
 	(force_mpnum): Handle the case of a strongly typed regex.
@@ -466,7 +466,7 @@
 
 	And so that `make check' passes with GAWKDEBUG defined:
 
-	* msg.c (err): Remvoe abort() call if fatal. Didn't really do
+	* msg.c (err): Remove abort() call if fatal. Didn't really do
 	anything special for us.
 
 2020-06-10         Arnold D. Robbins     <arnold@skeeve.com>
@@ -660,7 +660,7 @@
 2020-01-26         John E. Malmberg      <wb8tyw@qsl.net>
 
 	* custom.h: Additional OpenVMS typedefs needed.
-	* getext.h: Fix macro for implementations without gettext
+	* gettext.h: Fix macro for implementations without gettext
 	to not force the result to be a const char *.
 
 2020-01-26         Andrew J. Schorr      <aschorr@telemetry-investments.com>
@@ -681,7 +681,7 @@
 	enabled. Thanks to John Namam <Gawer@703n.com> for the report.
 	(asort_actual): Disallow SYMTAB and FUNCTAB as first arguments.
 	* TODO: Note that we should should eventually allow SYMTAB/FUNCTAB
-	passed to asort/asaorti if a destination array is provided. (The
+	passed to asort/asorti if a destination array is provided. (The
 	current code breaks right now.)
 
 2020-01-19         Arnold D. Robbins     <arnold@skeeve.com>
@@ -1028,7 +1028,7 @@
 
 2019-02-21         Andrew J. Schorr      <aschorr@telemetry-investments.com>
 
-	* interpert.h (Op_store_field): Move call to force_string to
+	* interpret.h (Op_store_field): Move call to force_string to
 	here from unfield.  Speeds up work with fields that are numeric
 	only. Thanks to Tom Gray <tom_gray@keysight.com> for the report.
 
