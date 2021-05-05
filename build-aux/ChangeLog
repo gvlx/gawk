@@ -1,3 +1,7 @@
+2021-05-05         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* texinfo.tex: New file. Automake wants it.
+
 2021-03-18         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* config.rpath, config.sub: Updated from GNULIB.
