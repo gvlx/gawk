@@ -1,5 +1,9 @@
 2021-05-05         Arnold D. Robbins     <arnold@skeeve.com>
 
+	* CMakeLists.txt: Removed.
+
+2021-05-05         Arnold D. Robbins     <arnold@skeeve.com>
+
 	* gawktexi.in: Typo fix.
 
 2021-05-02         Arnold D. Robbins     <arnold@skeeve.com>

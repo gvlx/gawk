@@ -1,5 +1,9 @@
 2021-05-05         Arnold D. Robbins     <arnold@skeeve.com>
 
+	* CMakeLists.txt: Removed.
+
+2021-05-05         Arnold D. Robbins     <arnold@skeeve.com>
+
 	* Makefile.am (EXTRA_DIST): Move some files to ...
 	(libsupport_a_SOURCES): ... here. Add some more files.
 

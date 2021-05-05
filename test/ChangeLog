@@ -1,5 +1,9 @@
 2021-05-05         Arnold D. Robbins     <arnold@skeeve.com>
 
+	* CMakeLists.txt: Removed.
+
+2021-05-05         Arnold D. Robbins     <arnold@skeeve.com>
+
 	* Makefile.am (iolint): Fix for out-of-tree builds.
 	(testext): Ditto
 	* iolint.ok: Updated.
