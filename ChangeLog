@@ -1,3 +1,10 @@
+2021-05-05         Arnold D. Robbins     <arnold@skeeve.com>
+
+	Move to Automake 1.16.3.
+
+	* configure.ac (AM_INIT_AUTOMAKE): Add subdir-objects option.
+	* NEWS: Updated.
+
 2021-04-16         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* main (arg_assign): For -v '@/...' make sure that there are
