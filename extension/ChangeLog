@@ -1,5 +1,9 @@
 2021-05-05         Arnold D. Robbins     <arnold@skeeve.com>
 
+	* CMakeLists.txt: Removed.
+
+2021-05-05         Arnold D. Robbins     <arnold@skeeve.com>
+
 	Get `make distcheck' working again:
 
 	* Makefile.am (EXTRA_DIST): Remove files that are now in build-aux.

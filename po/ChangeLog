@@ -1,3 +1,7 @@
+2021-05-05         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* CMakeLists.txt: Removed.
+
 2021-02-13         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* bg.po: New translation! (Bulgarian)

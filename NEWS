@@ -15,6 +15,9 @@ regular numbers; it should not be noticeable most of the time.
 2. If the AWK_HASH environment variable is set to "fnv1a" gawk will
 use the FNV1-A hash function for associative arrays.
 
+3. The CMake infrastructure has been removed. In the five years it was in
+the tree, nobody used it, and it was not updated.
+
 Changes from 5.1.0 to 5.1.1
 ---------------------------
 
