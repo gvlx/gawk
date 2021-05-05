@@ -2924,10 +2924,6 @@ do_sub(int nargs, unsigned int flags)
 		}
 	}
 
-	if ((target->flags & BOOL) != 0)
-		fatal(_("%s: target cannot be of type bool"),
-			(flags & GSUB) != 0 ? "gsub" : "sub");
-
 	global = (how_many == -1);
 
 	rep_node = POP_STRING();	/* replacement text */

@@ -12850,7 +12850,7 @@ File: gawk.info,  Node: Boolean Functions,  Next: Numeric Functions,  Prev: Call
 This function is specific to 'gawk'.  It is not available in
 compatibility mode (*note Options::):
 
-'bmkool(EXPRESSION)'
+'mkbool(EXPRESSION)'
      Return a Boolean-typed value based on the regular Boolean value of
      EXPRESSION.  Boolean "true" values have numeric value one.  Boolean
      "false" values have numeric zero.  This is discussed in more detail

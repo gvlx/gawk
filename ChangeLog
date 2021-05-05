@@ -9,6 +9,11 @@
 
 	* Makefile.am (EXTRA_DIST): Remove files that are now in build-aux.
 
+	Unrelated:
+
+	* builtin.c (do_sub): Remove check for BOOL as target. It's not
+	correct anymore.
+
 2021-05-03         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* eval.c (flags2str): Move BOOL entry into the right place in the
@@ -69,7 +74,7 @@
 2021-03-30         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawk_api.h (gawk_api_minor_version): Increase to 2.
-	* gawk_api.c (+assign_bool): New function.
+	* gawk_api.c (assign_bool): New function.
 	(node_to_awk_value): Finish updating for bool types and values.
 
 2021-03-22         Arnold D. Robbins     <arnold@skeeve.com>

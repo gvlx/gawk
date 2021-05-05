@@ -18390,7 +18390,7 @@ available in compatibility mode (@pxref{Options}):
 
 @c @asis for docbook
 @table @asis
-@item @code{bmkool(@var{expression})}
+@item @code{mkbool(@var{expression})}
 @cindexgawkfunc{mkbool}
 Return a Boolean-typed value based on the regular Boolean value
 of @var{expression}.  Boolean ``true'' values have numeric value one.
