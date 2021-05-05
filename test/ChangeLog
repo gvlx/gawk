@@ -1,3 +1,9 @@
+2021-05-05         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.am (iolint): Fix for out-of-tree builds.
+	(testext): Ditto
+	* iolint.ok: Updated.
+
 2021-05-02         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* asortbool.awk, functab5.ok, id.ok, rwarrray.awk,
