@@ -5,6 +5,10 @@
 	* configure.ac (AM_INIT_AUTOMAKE): Add subdir-objects option.
 	* NEWS: Updated.
 
+	Get `make distcheck' working again:
+
+	* Makefile.am (EXTRA_DIST): Remove files that are now in build-aux.
+
 2021-04-16         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* main (arg_assign): For -v '@/...' make sure that there are

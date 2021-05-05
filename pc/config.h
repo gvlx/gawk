@@ -29,9 +29,9 @@
 /* Define to 1 if you have the `btowc' function. */
 #define HAVE_BTOWC 1
 
-/* Define to 1 if you have the Mac OS X function CFLocaleCopyCurrent in the
-   CoreFoundation framework. */
-#undef HAVE_CFLOCALECOPYCURRENT
+/* Define to 1 if you have the Mac OS X function
+   CFLocaleCopyPreferredLanguages in the CoreFoundation framework. */
+#undef HAVE_CFLOCALECOPYPREFERREDLANGUAGES
 
 /* Define to 1 if you have the Mac OS X function CFPreferencesCopyAppValue in
    the CoreFoundation framework. */
@@ -190,6 +190,9 @@
 
 /* Define to 1 if you have fully functional mpfr and gmp libraries. */
 /* #undef HAVE_MPFR */
+
+/* Define to 1 if you have the `mtrace' function. */
+#undef HAVE_MTRACE
 
 /* Define to 1 if you have the <netdb.h> header file. */
 #undef HAVE_NETDB_H

@@ -2732,8 +2732,8 @@ testext::
 	@$(AWK) ' /^(@load|BEGIN)/,/^}/' "$(top_srcdir)"/extension/testext.c > testext.awk
 	@$(AWK) -f ./testext.awk >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-if echo "$$GAWK_TEST_ARGS" | egrep -q -e '-M|--bignum'; \
-	then cmp "."/$@-mpfr.ok _$@ && rm -f _$@ testext.awk testexttmp.txt ; \
-	else cmp "."/$@.ok _$@ && rm -f _$@ testext.awk testexttmp.txt ; fi
+	then cmp "$(srcdir)"/$@-mpfr.ok _$@ && rm -f _$@ testext.awk testexttmp.txt ; \
+	else cmp "$(srcdir)"/$@.ok _$@ && rm -f _$@ testext.awk testexttmp.txt ; fi
 
 getfile:
 	@echo $@
@@ -2925,7 +2925,7 @@ iolint:
 	@echo $@
 	@echo hello > 'echo hello'
 	@touch 'exec cat' ; chmod 755 'exec cat'
-	@$(AWK) -f "$(srcdir)"/$@.awk >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
+	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 	@-$(RM) -f cat 'echo hello' 'exec cat' f1 f2 md5sum
 
