@@ -29,9 +29,9 @@
 /* Define to 1 if you have the `btowc' function. */
 #define HAVE_BTOWC 1
 
-/* Define to 1 if you have the Mac OS X function CFLocaleCopyCurrent in the
-   CoreFoundation framework. */
-#undef HAVE_CFLOCALECOPYCURRENT
+/* Define to 1 if you have the Mac OS X function
+   CFLocaleCopyPreferredLanguages in the CoreFoundation framework. */
+#undef HAVE_CFLOCALECOPYPREFERREDLANGUAGES
 
 /* Define to 1 if you have the Mac OS X function CFPreferencesCopyAppValue in
    the CoreFoundation framework. */
@@ -190,6 +190,9 @@
 
 /* Define to 1 if you have fully functional mpfr and gmp libraries. */
 /* #undef HAVE_MPFR */
+
+/* Define to 1 if you have the `mtrace' function. */
+#undef HAVE_MTRACE
 
 /* Define to 1 if you have the <netdb.h> header file. */
 #undef HAVE_NETDB_H
@@ -461,7 +464,7 @@
 #define PACKAGE_NAME "GNU Awk"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "GNU Awk 5.1.0"
+#define PACKAGE_STRING "GNU Awk 5.1.0a"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "gawk"
@@ -470,7 +473,7 @@
 #define PACKAGE_URL "http://www.gnu.org/software/gawk/"
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "5.1.0"
+#define PACKAGE_VERSION "5.1.0a"
 
 /* Define to 1 if *printf supports %a format */
 #define PRINTF_HAS_A_FORMAT 1
@@ -531,7 +534,7 @@
 
 
 /* Version number of package */
-#define VERSION "5.1.0"
+#define VERSION "5.1.0a"
 
 /* Enable large inode numbers on Mac OS X 10.5.  */
 #ifndef _DARWIN_USE_64_BIT_INODE

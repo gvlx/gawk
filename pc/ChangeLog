@@ -1,3 +1,8 @@
+2021-05-05         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.tst: Rebuilt.
+	* config.h: Rebuilt.
+
 2021-02-13         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* Makefile.tst: Rebuilt.

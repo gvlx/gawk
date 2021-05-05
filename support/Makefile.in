@@ -350,27 +350,29 @@ AM_LDFLAGS = @LDFLAGS@
 EXTRA_DIST = \
 	Makefile.am \
 	Makefile.in \
-	cdefs.h \
-	libc-config.h \
 	regcomp.c \
 	regex_internal.c \
 	regex_internal.h \
 	regexec.c \
-	malloc/dynarray.h \
 	malloc/dynarray-skeleton.c
 
 
 # what to make and install
 noinst_LIBRARIES = libsupport.a
 libsupport_a_SOURCES = \
+	attribute.h \
+	cdefs.h \
 	dfa.c \
 	dfa.h \
+	dynarray.h \
 	flexmember.h \
 	getopt.c \
 	getopt.h \
-	getopt_int.h \
 	getopt1.c \
+	getopt_int.h \
+	idx.h \
 	intprops.h \
+	libc-config.h \
 	localeinfo.c \
 	localeinfo.h \
 	random.c \
@@ -379,6 +381,7 @@ libsupport_a_SOURCES = \
 	regex.h \
 	verify.h \
 	xalloc.h \
+	malloc/dynarray.h \
 	malloc/dynarray_resize.c \
 	malloc/dynarray_emplace_enlarge.c  \
 	malloc/dynarray_finalize.c
