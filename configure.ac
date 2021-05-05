@@ -44,7 +44,7 @@ AC_PREREQ([2.69])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_AUX_DIR([build-aux])
 
-AM_INIT_AUTOMAKE([1.16 dist-xz dist-lzip])
+AM_INIT_AUTOMAKE([1.16 dist-xz dist-lzip subdir-objects])
 
 AC_ARG_ENABLE([lint],
 	[AS_HELP_STRING([--disable-lint],[do not compile in gawk lint checking])],
