@@ -1,3 +1,8 @@
+2021-05-07         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* cdefs.h, libc-config.h, malloc/dynarray-skeleton.c,
+	regex_internal.h: Update from GNULIB.
+
 2021-05-05         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* CMakeLists.txt: Removed.
