@@ -1,3 +1,7 @@
+2021-05-07         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* config.guess, config.sub: Updated from GNULIB.
+
 2021-05-05         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* texinfo.tex: New file. Automake wants it.
