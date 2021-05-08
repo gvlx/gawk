@@ -2480,7 +2480,7 @@ iolint:
 	@touch 'exec cat' ; chmod 755 'exec cat'
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
-	@-$(RM) -f cat 'echo hello' 'exec cat' f1 f2 md5sum
+	@-$(RM) -f cat 'echo hello' 'exec cat' f1 f2 cksum
 
 argcasfile:
 	@echo $@

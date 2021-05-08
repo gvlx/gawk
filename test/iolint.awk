@@ -38,10 +38,10 @@ BEGIN {
 	fflush()
 
 	# `%.*s' used for output file and output pipe"
-	print "junk" > "md5sum"
-	print "hello" | "md5sum"
-	print close("md5sum")
-	print close("md5sum")
+	print "junk" > "cksum"	# cksum is more portable than md5sum
+	print "hello" | "cksum"
+	print close("cksum")
+	print close("cksum")
 	fflush()
 
 	# `%.*s' used for input pipe and output file
