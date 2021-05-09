@@ -1,5 +1,11 @@
 2021-05-09  Eli Zaretskii  <eliz@gnu.org>
 
+	* Makefile.tst (testext): Use $(CMP), not a literal "cmp", so that
+	end-of-line differences could be ignored on MS-DOS/Windows.
+	(argcasfile): Use ' /no/such/file', with a leading space, to avoid
+	MinGW thinking it's a file name, and converting it to C:\foo\bar.
+	test/argcasfile.ok adjusted accordingly.
+
 	* Makefile (VPATH): Adapt to addition of support/malloc
 	directory.
 	(DYNOBJS): New list with dependencies of new files in

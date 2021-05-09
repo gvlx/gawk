@@ -1037,8 +1037,8 @@ testext::
 	@$(AWK) ' /^(@load|BEGIN)/,/^}/' "$(top_srcdir)"/extension/testext.c > testext.awk
 	@$(AWK) -f ./testext.awk >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-if echo "$$GAWK_TEST_ARGS" | egrep -q -e '-M|--bignum'; \
-	then cmp "$(srcdir)"/$@-mpfr.ok _$@ && rm -f _$@ testext.awk testexttmp.txt ; \
-	else cmp "$(srcdir)"/$@.ok _$@ && rm -f _$@ testext.awk testexttmp.txt ; fi
+	then $(CMP) "$(srcdir)"/$@-mpfr.ok _$@ && rm -f _$@ testext.awk testexttmp.txt ; \
+	else $(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@ testext.awk testexttmp.txt ; fi
 
 getfile:
 	@echo $@
@@ -1244,7 +1244,7 @@ iolint:
 
 argcasfile:
 	@echo $@
-	@$(AWK) -f "$(srcdir)"/$@.awk ARGC=1 /no/such/file < "$(srcdir)/$@.in" >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
+	@$(AWK) -f "$(srcdir)"/$@.awk ARGC=1 ' /no/such/file' < "$(srcdir)/$@.in" >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 Gt-dummy:
 # file Maketests, generated from Makefile.am by the Gentests program
