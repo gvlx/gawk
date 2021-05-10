@@ -1,3 +1,10 @@
+2021-05-10         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* GenMakefileTst.awk: Use ~ to match @echo line instead of ==,
+	gets things more right. Thanks to Manuel Collado for the
+	suggestion.
+	* Makefile.tst: Regenerated.
+
 2021-05-09  Eli Zaretskii  <eliz@gnu.org>
 
 	* Makefile.tst (testext): Use $(CMP), not a literal "cmp", so that

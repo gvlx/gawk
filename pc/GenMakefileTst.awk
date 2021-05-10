@@ -109,7 +109,7 @@ function print_recipe(		i, start)
 		return
 
 	# First line if it's @echo $@
-	if (recipe_lines[2] == "\t@echo $@") {
+	if (recipe_lines[2] ~ /\t@echo $@/) {
 		start = 3
 		print recipe_lines[2]
 	} else
