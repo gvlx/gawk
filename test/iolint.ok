@@ -23,11 +23,11 @@ gawk: iolint.awk:42: warning: `cksum' used for output file and output pipe
 gawk: iolint.awk:49: warning: `echo hello' used for input pipe and output file
 0
 0
-gawk: iolint.awk:60: warning: `exec cat' used for output file and output pipe
+gawk: iolint.awk:73: warning: `cat' used for output file and output pipe
+0
 hello
 0
-0
-gawk: iolint.awk:69: warning: `echo hello' used for input pipe and output pipe
+gawk: iolint.awk:82: warning: `echo hello' used for input pipe and output pipe
 hello
 0
 0

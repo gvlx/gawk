@@ -55,13 +55,11 @@ BEGIN {
 	# `%.*s' used for output file and two-way pipe
 	# `%.*s' used for output pipe and two-way pipe
 	# Not doing |& due to race condition and signals. sigh
-	exec_cat = "exec cat"
-	print "/bin/cat \"$@\"" > exec_cat
-	print "hello" | exec_cat
-	# print "hello" |& exec_cat
-	print close(exec_cat)
-	print close(exec_cat)
-	# print close(exec_cat)
+	cat = "cat"
+	print "hello" | "cat"
+	print "/bin/cat \"$@\"" > "cat"
+	print close("cat")
+	print close("cat")
 	fflush()
 
 	# `%.*s' used for input pipe and output pipe

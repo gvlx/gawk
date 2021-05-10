@@ -7,6 +7,10 @@
 	- Don't use egrep -q, not portable to Solaris 10.
 	- Use $(CMP) instead of cmp.
 
+	* iolint.awk: Change order so can use plain 'cat' instead of
+	'exec cat'. Makes it available for MinGW.
+	* Makefile.am (iolint): Update shell recipe.
+
 2021-05-09  Eli Zaretskii  <eliz@gnu.org>
 
 	* Makefile.am (EXPECTED_FAIL_MINGW): Update for the new tests.
