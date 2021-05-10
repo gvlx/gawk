@@ -1,3 +1,29 @@
+2021-05-10         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* argcasfile.ok: Add the leading space in the argument; see
+	pc/ChangeLog for explanation why.
+
+	General:
+	- Don't use egrep -q, not portable to Solaris 10.
+	- Use $(CMP) instead of cmp.
+
+	* iolint.awk: Change order so can use plain 'cat' instead of
+	'exec cat'. Makes it available for MinGW.
+	* iolint.ok: Update after code changes.
+	* Makefile.am (iolint): Update shell recipe.
+
+2021-05-09  Eli Zaretskii  <eliz@gnu.org>
+
+	* Makefile.am (EXPECTED_FAIL_MINGW): Update for the new tests.
+
+	* argcasfile.ok: Adjust for the leading space in the argument; see
+	pc/ChangeLog for explanation why.
+
+2021-05-08         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* iolint.awk: Use cksum instead of md5sum, for better portability.
+	* iolint.ok: Adjusted.
+
 2021-05-05         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* CMakeLists.txt: Removed.
