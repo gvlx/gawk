@@ -1,3 +1,7 @@
+2021-05-10         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* update-support.sh: Update list of files to copy over.
+
 2021-05-07         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* update-support.sh: Change to work from top level directory.

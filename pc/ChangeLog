@@ -4,6 +4,8 @@
 	gets things more right. Thanks to Manuel Collado for the
 	suggestion.
 	* Makefile.tst: Regenerated.
+	* Makefile (DYNOBJS): Add dynarray_at_failure$O and
+	dynarray_resize_clear$O.
 
 2021-05-09  Eli Zaretskii  <eliz@gnu.org>
 

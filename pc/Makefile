@@ -241,7 +241,9 @@ ALLOBJS = $(AWKOBJS) awkgram$O getid$O $(OBJ)
 
 # LIBOBJS
 #       GNU and other stuff that gawk uses as library routines.
-DYNOBJS= dynarray_resize$O dynarray_emplace_enlarge$O dynarray_finalize$O
+DYNOBJS= dynarray_resize$O dynarray_emplace_enlarge$O dynarray_finalize$O \
+         dynarray_at_failure$O dynarray_resize_clear$O
+
 LIBOBJS= getopt$O getopt1$O dfa$O random$O localeinfo$O regex$O $(DYNOBJS)
 
 GAWKOBJS = $(ALLOBJS) $(LIBOBJS)
