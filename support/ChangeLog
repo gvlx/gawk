@@ -1,3 +1,9 @@
+2021-05-10         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* support/dynarray_at_failure.c, support/dynarray_resize_clear.c:
+	New files.
+	* Makefile.am (libsupport_a_SOURCES): Add them.
+
 2021-05-07         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* cdefs.h, libc-config.h, malloc/dynarray-skeleton.c,

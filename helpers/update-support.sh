@@ -29,9 +29,12 @@ regex_internal.h
 verify.h
 malloc/dynarray-skeleton.c
 malloc/dynarray.h
+malloc/dynarray_at_failure.c
 malloc/dynarray_emplace_enlarge.c
+malloc/dynarray_emplace_enlarge.c 
 malloc/dynarray_finalize.c
-malloc/dynarray_resize.c"
+malloc/dynarray_resize.c
+malloc/dynarray_resize_clear.c"
 
 for i in $FILE_LIST
 do
