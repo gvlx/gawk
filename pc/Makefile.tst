@@ -331,9 +331,10 @@ EXPECTED_FAIL_DJGPP = \
 # List of tests that fail on MinGW
 EXPECTED_FAIL_MINGW = \
 	backbigs1 backsmalls1 clos1way6 devfd devfd1 devfd2 \
-	errno exitval2 fork fork2 fts getfile getlnhd ignrcas3 inetdayt \
-	inetecht mbfw1 mbprintf1 mbprintf4 mbstr1 mbstr2 pid pipeio2 \
-	pty1 pty2 readdir rstest4 rstest5 status-close timeout
+	errno exitval2 fmttest fork fork2 fts functab5 \
+	getfile getlnhd hsprint ignrcas3 inetdayt inetecht inf-nan-torture \
+	mbfw1 mbprintf1 mbprintf4 mbstr1 mbstr2 \
+	pid pipeio2 pty1 pty2 readdir rstest4 rstest5 status-close timeout
 
 
 # List of tests that fail on z/OS
@@ -544,8 +545,8 @@ compare::
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 inftest::
-	@echo $@
 	@echo Expect $@ to fail with DJGPP.
+	@echo $@
 	@echo This test is very machine specific...
 	@$(AWK) -f "$(srcdir)"/inftest.awk | sed "s/inf/Inf/g" >_$@ || echo EXIT CODE: $$? >> _$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
@@ -578,8 +579,8 @@ strftime::
 	@-$(CMP) strftime.ok _$@ && rm -f _$@ strftime.ok || exit 0
 
 devfd::
-	@echo $@
 	@echo Expect $@ to fail with MinGW.
+	@echo $@
 	@$(AWK) 1 /dev/fd/4 /dev/fd/5 4<"$(srcdir)"/devfd.in4 5<"$(srcdir)"/devfd.in5 >_$@ 2>&1 || echo EXIT CODE: $$? >> _$@ || echo EXIT CODE: $$? >> _$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
@@ -600,8 +601,8 @@ tweakfld::
 # AIX /bin/sh exec's the last command in a list, therefore issue a ":"
 # command so that pid.sh is fork'ed as a child before being exec'ed.
 pid::
-	@echo $@
 	@echo Expect $@ to fail with DJGPP and MinGW.
+	@echo $@
 	@AWKPATH="$(srcdir)" AWK=$(AWKPROG) $(SHELL) "$(srcdir)"/pid.sh $$$$ > _`basename $@` ; :
 	@-$(CMP) "$(srcdir)"/pid.ok _`basename $@` && rm -f _`basename $@`
 
@@ -645,8 +646,8 @@ pipeio1::
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 pipeio2::
-	@echo $@
 	@echo Expect $@ to fail with MinGW.
+	@echo $@
 	@$(AWK) -v SRCDIR="$(srcdir)" -f "$(srcdir)"/pipeio2.awk >_$@ || echo EXIT CODE: $$? >> _$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
@@ -756,15 +757,15 @@ binmode1::
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 devfd1::
-	@echo $@
 	@echo Expect $@ to fail with MinGW.
+	@echo $@
 	@$(AWK) -f "$(srcdir)"/$@.awk 4< "$(srcdir)"/devfd.in1 5< "$(srcdir)"/devfd.in2 >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 # The program text is the '1' which will print each record. How compact can you get?
 devfd2::
-	@echo $@
 	@echo Expect $@ to fail with MinGW.
+	@echo $@
 	@$(AWK) 1 /dev/fd/4 /dev/fd/5 4< "$(srcdir)"/devfd.in1 5< "$(srcdir)"/devfd.in2 >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
@@ -891,8 +892,8 @@ mpfrmemok1:
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 jarebug::
-	@echo $@
 	@echo Expect $@ to fail with DJGPP.
+	@echo $@
 	@"$(srcdir)"/$@.sh "$(AWKPROG)" "$(srcdir)"/$@.awk "$(srcdir)"/$@.in "_$@" || echo EXIT CODE: $$? >> _$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
@@ -1036,19 +1037,19 @@ testext::
 	@echo $@
 	@$(AWK) ' /^(@load|BEGIN)/,/^}/' "$(top_srcdir)"/extension/testext.c > testext.awk
 	@$(AWK) -f ./testext.awk >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
-	@-if echo "$$GAWK_TEST_ARGS" | egrep -q -e '-M|--bignum'; \
-	then cmp "$(srcdir)"/$@-mpfr.ok _$@ && rm -f _$@ testext.awk testexttmp.txt ; \
-	else cmp "$(srcdir)"/$@.ok _$@ && rm -f _$@ testext.awk testexttmp.txt ; fi
+	@-if echo "$$GAWK_TEST_ARGS" | egrep -e '-M|--bignum' > /dev/null; \
+	then $(CMP) "$(srcdir)"/$@-mpfr.ok _$@ && rm -f _$@ testext.awk testexttmp.txt ; \
+	else $(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@ testext.awk testexttmp.txt ; fi
 
 getfile:
-	@echo $@
 	@echo Expect $@ to fail with MinGW.
+	@echo $@
 	@AWKPATH="$(srcdir)" $(AWK) -v TESTEXT_QUIET=1 -ltestext -f $@.awk < $(srcdir)/$@.awk >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 readdir:
-	@echo $@
 	@echo Expect $@ to fail with MinGW.
+	@echo $@
 	@if [ "`uname`" = Linux ] && [ "`stat -f . 2>/dev/null | awk 'NR == 2 { print $$NF }'`" = nfs ];  then \
 	echo This test may fail on GNU/Linux systems when run on NFS or JFS filesystems.; \
 	echo If it does, try rerunning on an ext'[234]' filesystem. ; \
@@ -1073,8 +1074,8 @@ readdir_retest:
 	@-$(CMP) $@.ok _$@ && rm -f $@.ok _$@
 
 fts:
-	@echo $@
 	@echo Expect $@ to fail with MinGW.
+	@echo $@
 	@case `uname` in \
 	IRIX) \
 	echo This test may fail on IRIX systems when run on an NFS filesystem.; \
@@ -1095,8 +1096,8 @@ charasbytes:
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 symtab6:
-	@echo $@
 	@echo Expect $@ to fail with DJGPP.
+	@echo $@
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk > _$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
@@ -1152,8 +1153,8 @@ watchpoint1:
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 pty1:
-	@echo $@
 	@echo Expect $@ to fail with DJGPP and MinGW.
+	@echo $@
 	@-case `uname` in \
 	*[Oo][Ss]/390*) : ;; \
 	*) AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@ ; \
@@ -1161,8 +1162,8 @@ pty1:
 	esac
 
 pty2:
-	@echo $@
 	@echo Expect $@ to fail with DJGPP and MinGW.
+	@echo $@
 	@-case `uname` in \
 	*[Oo][Ss]/390*) : ;; \
 	*) AWKPATH="$(srcdir)" $(AWK) -f $@.awk | od -c | $(AWK) '{ $$1 = $$1 ; print }' >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@ ; \
@@ -1170,8 +1171,8 @@ pty2:
 	esac
 
 ignrcas3::
-	@echo $@
 	@echo Expect $@ to fail with DJGPP and MinGW.
+	@echo $@
 	@-if locale -a | grep ell_GRC.1253 > /dev/null ; then \
 	[ -z "$$GAWKLOCALE" ] && GAWKLOCALE=ell_GRC.1253 ; export GAWKLOCALE; \
 	AWKPATH="$(srcdir)" $(AWK) -f $@.awk >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@ ; \
@@ -1181,9 +1182,9 @@ ignrcas3::
 arrdbg:
 	@echo $@
 	@$(AWK) -v "okfile=./$@.ok" -v "mpfr_okfile=./$@-mpfr.ok" -f "$(srcdir)"/$@.awk | grep array_f >_$@ || echo EXIT CODE: $$? >> _$@
-	@-if echo "$$GAWK_TEST_ARGS" | egrep -q -e '-M|--bignum'; \
-	then cmp "."/$@-mpfr.ok _$@ && rm -f _$@ $@.ok $@-mpfr.ok ; \
-	else cmp "."/$@.ok _$@ && rm -f _$@ $@.ok $@-mpfr.ok ; fi
+	@-if echo "$$GAWK_TEST_ARGS" | egrep -e '-M|--bignum' > /dev/null; \
+	then $(CMP) "."/$@-mpfr.ok _$@ && rm -f _$@ $@.ok $@-mpfr.ok ; \
+	else $(CMP) "."/$@.ok _$@ && rm -f _$@ $@.ok $@-mpfr.ok ; fi
 
 sourcesplit:
 	@echo $@
@@ -1202,8 +1203,8 @@ nsbad_cmd:
 
 # Use [:] in the regexp to keep MSYS from converting the /'s to \'s.
 nonfatal1:
-	@echo $@
 	@echo Expect $@ to fail with DJGPP.
+	@echo $@
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk 2>&1 | $(AWK) '{print gensub(/invalid[:].*$$/, "invalid", 1, $$0)}' >_$@ || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
@@ -1237,14 +1238,13 @@ typedregex4:
 iolint:
 	@echo $@
 	@echo hello > 'echo hello'
-	@touch 'exec cat' ; chmod 755 'exec cat'
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
-	@-$(RM) -f cat 'echo hello' 'exec cat' f1 f2 md5sum
+	@-$(RM) -f cat 'echo hello' f1 f2 cksum
 
 argcasfile:
 	@echo $@
-	@$(AWK) -f "$(srcdir)"/$@.awk ARGC=1 /no/such/file < "$(srcdir)/$@.in" >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
+	@$(AWK) -f "$(srcdir)"/$@.awk ARGC=1 ' /no/such/file' < "$(srcdir)/$@.in" >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 Gt-dummy:
 # file Maketests, generated from Makefile.am by the Gentests program
@@ -1541,8 +1541,8 @@ exit2:
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 exitval2:
-	@echo $@
 	@echo Expect $@ to fail with MinGW.
+	@echo $@
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
@@ -1748,6 +1748,7 @@ hex2:
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 hsprint:
+	@echo Expect $@ to fail with MinGW.
 	@echo $@
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(TESTOUTCMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
@@ -2118,8 +2119,8 @@ rand:
 	else $(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@ ; fi
 
 randtest:
-	@echo $@
 	@echo Expect $@ to fail with DJGPP.
+	@echo $@
 	@-$(LOCALES) AWK="$(AWKPROG)" "$(srcdir)"/$@.sh  > _$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
@@ -2241,14 +2242,14 @@ rstest3:
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 rstest4:
-	@echo $@
 	@echo Expect $@ to fail with MinGW.
+	@echo $@
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 rstest5:
-	@echo $@
 	@echo Expect $@ to fail with MinGW.
+	@echo $@
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
@@ -2324,8 +2325,8 @@ splitwht:
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 status-close:
-	@echo $@
 	@echo Expect $@ to fail with MinGW.
+	@echo $@
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
@@ -2350,8 +2351,8 @@ strnum2:
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 strtod:
-	@echo $@
 	@echo Expect $@ to fail with DJGPP.
+	@echo $@
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  < "$(srcdir)"/$@.in >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
@@ -2524,8 +2525,8 @@ fflush:
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 getlnhd:
-	@echo $@
 	@echo Expect $@ to fail with DJGPP and MinGW.
+	@echo $@
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
@@ -2587,39 +2588,39 @@ arraytype:
 	else $(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@ ; fi
 
 backw:
-	@echo $@
 	@echo Expect $@ to fail with DJGPP.
+	@echo $@
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  < "$(srcdir)"/$@.in >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 clos1way:
-	@echo $@
 	@echo Expect $@ to fail with DJGPP.
+	@echo $@
 	@[ -z "$$GAWKLOCALE" ] && GAWKLOCALE=C; export GAWKLOCALE; \
 	AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 clos1way2:
-	@echo $@
 	@echo Expect $@ to fail with DJGPP.
+	@echo $@
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  < "$(srcdir)"/$@.in >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 clos1way3:
-	@echo $@
 	@echo Expect $@ to fail with DJGPP.
+	@echo $@
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 clos1way4:
-	@echo $@
 	@echo Expect $@ to fail with DJGPP.
+	@echo $@
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 clos1way5:
-	@echo $@
 	@echo Expect $@ to fail with DJGPP.
+	@echo $@
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
@@ -2821,14 +2822,14 @@ gnuops2:
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 gnuops3:
-	@echo $@
 	@echo Expect $@ to fail with DJGPP.
+	@echo $@
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 gnureops:
-	@echo $@
 	@echo Expect $@ to fail with DJGPP.
+	@echo $@
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
@@ -2848,8 +2849,8 @@ icasers:
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 id:
-	@echo $@
 	@echo Expect $@ to fail with DJGPP.
+	@echo $@
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
@@ -2900,6 +2901,7 @@ indirectcall2:
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 inf-nan-torture:
+	@echo Expect $@ to fail with MinGW.
 	@echo $@
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  < "$(srcdir)"/$@.in >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
@@ -3030,8 +3032,8 @@ nonfatal2:
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 nonfatal3:
-	@echo $@
 	@echo Expect $@ to fail with DJGPP.
+	@echo $@
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
@@ -3162,8 +3164,8 @@ regnul2:
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 regx8bit:
-	@echo $@
 	@echo Expect $@ to fail with DJGPP.
+	@echo $@
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
@@ -3420,6 +3422,7 @@ backsmalls2:
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 fmttest:
+	@echo Expect $@ to fail with MinGW.
 	@echo $@ $(ZOS_FAIL)
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(TESTOUTCMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
@@ -3509,14 +3512,14 @@ fnmatch:
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 fork:
-	@echo $@
 	@echo Expect $@ to fail with MinGW.
+	@echo $@
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 fork2:
-	@echo $@
 	@echo Expect $@ to fail with MinGW.
+	@echo $@
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
@@ -3526,6 +3529,7 @@ functab4:
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 functab5:
+	@echo Expect $@ to fail with MinGW.
 	@echo $@
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
@@ -3606,8 +3610,8 @@ mpfrrndeval:
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 mpfrsqrt:
-	@echo $@
 	@echo Expect $@ to fail with DJGPP.
+	@echo $@
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  -M >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 

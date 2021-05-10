@@ -1,3 +1,27 @@
+2021-05-10         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* GenMakefileTst.awk: Use ~ to match @echo line instead of ==,
+	gets things more right. Thanks to Manuel Collado for the
+	suggestion.
+	* Makefile.tst: Regenerated.
+	* Makefile (DYNOBJS): Add dynarray_at_failure$O and
+	dynarray_resize_clear$O.
+
+2021-05-09  Eli Zaretskii  <eliz@gnu.org>
+
+	* Makefile.tst (testext): Use $(CMP), not a literal "cmp", so that
+	end-of-line differences could be ignored on MS-DOS/Windows.
+	(argcasfile): Use ' /no/such/file', with a leading space, to avoid
+	MinGW thinking it's a file name, and converting it to C:\foo\bar.
+	test/argcasfile.ok adjusted accordingly.
+
+	* Makefile (VPATH): Adapt to addition of support/malloc
+	directory.
+	(DYNOBJS): New list with dependencies of new files in
+	support/malloc.
+	(LIBOBJS): Add DYNOBJS.
+	(regex$O): Depend on some files in support/malloc.
+
 2021-05-05         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* Makefile.tst: Rebuilt.
