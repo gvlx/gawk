@@ -9,6 +9,7 @@
 
 	* iolint.awk: Change order so can use plain 'cat' instead of
 	'exec cat'. Makes it available for MinGW.
+	* iolint.ok: Update after code changes.
 	* Makefile.am (iolint): Update shell recipe.
 
 2021-05-09  Eli Zaretskii  <eliz@gnu.org>
