@@ -1,3 +1,8 @@
+2021-05-12         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* GenMakefileTst.awk: Fix the test for the @echo line.
+	* Makefile.tst: Regenerated.
+
 2021-05-10         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* GenMakefileTst.awk: Use ~ to match @echo line instead of ==,
