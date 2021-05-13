@@ -1580,13 +1580,12 @@ EXPECTED_FAIL_ZOS = \
 	aasort aasorti arraysort asort asorti backbigs1 backsmalls1 \
 	backsmalls2 beginfile1 beginfile2 charasbytes clos1way6 concat4 \
 	dfamb1 double1 double2 errno fmttest forcenum getlndir gsubtst5 \
-	ignrcas2 lc_num1 localenl localenl mbfw1 mbprintf1 mbprintf2 \
-	mbprintf3 mbprintf4 mbprintf5 mbstr1 mbstr2 mtchi18n nlstringtest \
-	nofile nonfatal2 numrange printhuge profile5 profile5 rebt8b2 \
-	posix_compare \
-	regrange reint2 rri1 sigpipe1 sort1 sortfor sortu space sprintfc \
-	subamp subi18n symtab1 symtab11 symtab8 timeout wideidx wideidx2 \
-	widesub widesub2 widesub3 widesub4
+	ignrcas2 inf-nan-torture iolint lc_num1 localenl mbfw1 mbprintf1 \
+	mbprintf2 mbprintf3 mbprintf4 mbprintf5 mbstr1 mbstr2 mtchi18n \
+	nlstringtest nofile nonfatal2 numrange posix_compare printhuge \
+	profile5 rebt8b2 regrange reint2 rri1 sigpipe1 sort1 sortfor \
+	sortu space sprintfc subamp subi18n symtab1 symtab11 symtab8 \
+	timeout wideidx wideidx2 widesub widesub2 widesub3 widesub4
 
 ZOS_FAIL = @ZOS_FAIL@
 
@@ -2497,8 +2496,7 @@ Maketests: $(srcdir)/Makefile.am $(srcdir)/Gentests
 clean-local:
 	rm -fr _* core core.* fmtspcl.ok junk strftime.ok test1 test2 \
 	seq *~ readfile.ok fork.tmp.* testext.awk fts.ok readdir.ok \
-	readdir_test.ok readdir_retest.ok \
-	profile1.ok
+	readdir_test.ok readdir_retest.ok profile1.ok X_*
 
 # An attempt to print something that can be grepped for in build logs
 pass-fail:
