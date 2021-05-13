@@ -1,3 +1,9 @@
+2021-05-13         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* custom.h: For z/OS, define _REGEX_INCLUDE_LIMITS_H.
+	* profile.c (pprint): Add a diagnostic print for an
+	unexprected node type.
+
 2021-05-05         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* CMakeLists.txt: Removed.

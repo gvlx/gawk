@@ -92,6 +92,12 @@ typedef unsigned long long uint_fast64_t;
 #define _XOPEN_SOURCE_EXTENDED 1
 #endif
 
+#ifdef __MVS__
+#ifndef _REGEX_INCLUDE_LIMITS_H
+#define _REGEX_INCLUDE_LIMITS_H 1
+#endif
+#endif
+
 /* Junk for dfa.[ch] */
 /* The __pure__ attribute was added in gcc 2.96.  */
 #if __GNUC__ > 2 || (__GNUC__ == 2 && __GNUC_MINOR__ >= 96)
