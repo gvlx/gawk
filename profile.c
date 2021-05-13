@@ -373,6 +373,7 @@ pprint(INSTRUCTION *startp, INSTRUCTION *endp, int flags)
 				break;
 
 			default:
+				fprintf(stderr, "Got unexpected type %s\n", nodetype2str(m->type));
 				cant_happen();
 			}
 

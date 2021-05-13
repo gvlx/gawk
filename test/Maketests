@@ -1633,7 +1633,7 @@ indirectcall2:
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 inf-nan-torture:
-	@echo $@
+	@echo $@ $(ZOS_FAIL)
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  < "$(srcdir)"/$@.in >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
