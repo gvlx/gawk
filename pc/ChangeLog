@@ -1,3 +1,8 @@
+2021-05-15  Eli Zaretskii  <eliz@gnu.org>
+
+	* Makefile (DEFPATH): New variable, like in Makefile.am.
+	(CFLAGS): Include -DDEFPATH=$(DEFPATH).
+
 2021-05-13         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* Makefile.tst: Regenerated.
