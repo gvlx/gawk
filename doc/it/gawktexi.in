@@ -22602,7 +22602,7 @@ usando la chiamata indiretta di funzioni:
 
 @example
 @c file eg/prog/indirectcall.awk
-# chiamataindiretta.awk --- esempio di chiamata indiretta di funzioni
+# indirectcall.awk --- esempio di chiamata indiretta di funzioni
 @c endfile
 @ignore
 @c file eg/prog/indirectcall.awk
@@ -25186,11 +25186,7 @@ main(int argc, char **argv)
 @c endfile
 @ignore
 @c file eg/lib/pwcat.c
-#ifdef ZOS_USS
-        printf("%s:%ld:%ld:%s:%s\n",
-            p->pw_name, (long) p->pw_uid,
-            (long) p->pw_gid, p->pw_dir, p->pw_shell);
-#else
+#ifdef HAVE_STRUCT_PASSWD_PW_PASSWD
 @c endfile
 @end ignore
 @c file eg/lib/pwcat.c
@@ -25200,6 +25196,10 @@ main(int argc, char **argv)
 @c endfile
 @ignore
 @c file eg/lib/pwcat.c
+#else
+        printf("%s:*:%ld:%ld:%s:%s\n",
+            p->pw_name, (long) p->pw_uid,
+            (long) p->pw_gid, p->pw_dir, p->pw_shell);
 #endif
 @c endfile
 @end ignore
@@ -27394,6 +27394,7 @@ in modo che sia stampata in maniera elegante nella pagina:
 @c endfile
 @end ignore
 @c file eg/prog/split.awk
+
 function sintassi(              comune)
 @{
     common = "[-a lunghezza-suffisso] [file [nome-output-file]]"
@@ -29348,6 +29349,7 @@ a significare che tutto @`e andato bene:
 # Arnold Robbins, arnold@@skeeve.com, Public Domain
 # May 1993
 # Revised September 2000
+# Antonio Colombo, October 2020, test for Italian accented letters
 @c endfile
 @end ignore
 @c file eg/prog/extract.awk
@@ -29822,7 +29824,6 @@ Il programma @`e il seguente:
 # Arnold Robbins, arnold@@skeeve.com, Public Domain
 # July 1993
 # December 2010, minor edits
-# Antonio Colombo, October 2020, test for Italian accented letters
 @c endfile
 @end ignore
 @c file eg/prog/igawk.sh

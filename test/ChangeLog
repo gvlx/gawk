@@ -1,3 +1,11 @@
+2021-05-15  Eli Zaretskii  <eliz@gnu.org>
+
+	* iolint.ok: Reorder results to follow the order of iolint.awk.
+
+	* iolint.awk: Use "BINMODE = 2", otherwise the result of cksum on
+	non-Posix platforms will not match.  Reorder the tests to make the
+	binary mode used only in the last one.
+
 2021-05-13         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* Makefile.am (EXPECTED_FAIL_ZOS): Updated and sorted / uniqued.
