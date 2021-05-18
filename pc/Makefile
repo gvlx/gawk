@@ -85,6 +85,7 @@ MAK = $(MAKE) $(MAKEFILE)
 prefix = c:/gnu
 pkgdatadir = $(prefix)/lib/awk
 pkgextensiondir = $(prefix)/lib/gawk
+DEFPATH = "\".;$(pkgdatadir);c:/lib/awk;c:/gnu/lib/awk\""
 DEFLIBPATH = "\"$(pkgextensiondir)\""
 LOCALEDIR="\"$(prefix)/share/locale\""
 SHLIBEXT = "\"dll\""
@@ -228,7 +229,7 @@ BIND = EMPTY
 PBIND = EMPTY
 EMPTY=
 
-CFLAGS = $(CF) -DGAWK -I. -I./support -DHAVE_CONFIG_H -DDEFLIBPATH=$(DEFLIBPATH) -DSHLIBEXT=$(SHLIBEXT) -DLOCALEDIR=$(LOCALEDIR)
+CFLAGS = $(CF) -DGAWK -I. -I./support -DHAVE_CONFIG_H -DDEFPATH=$(DEFPATH) -DDEFLIBPATH=$(DEFLIBPATH) -DSHLIBEXT=$(SHLIBEXT) -DLOCALEDIR=$(LOCALEDIR)
 
 # object files
 AWKOBJS1  = array$O builtin$O eval$O field$O floatcomp$O gawkmisc$O io$O main$O

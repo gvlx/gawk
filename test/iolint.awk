@@ -37,13 +37,6 @@ BEGIN {
 	print close("f2")	# -1 expected here
 	fflush()
 
-	# `%.*s' used for output file and output pipe"
-	print "junk" > "cksum"	# cksum is more portable than md5sum
-	print "hello" | "cksum"
-	print close("cksum")
-	print close("cksum")
-	fflush()
-
 	# `%.*s' used for input pipe and output file
 	"echo hello" | getline junk
 	print "hello" > "echo hello"
@@ -67,5 +60,13 @@ BEGIN {
 	print "hello" | "echo hello"
 	print close("echo hello")
 	print close("echo hello")
+	fflush()
+
+	# `%.*s' used for output file and output pipe"
+	BINMODE = 2
+	print "junk" > "cksum"	# cksum is more portable than md5sum
+	print "hello" | "cksum"
+	print close("cksum")
+	print close("cksum")
 	fflush()
 }
