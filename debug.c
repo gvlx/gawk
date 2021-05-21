@@ -198,12 +198,12 @@ extern char **d_argv;	/* copy of argv array */
 static bool need_restart = false;
 enum { BREAK=1, WATCH, DISPLAY, HISTORY, OPTION };
 static const char *const env_variable[] = {
-"",
-"DGAWK_BREAK",
-"DGAWK_WATCH",
-"DGAWK_DISPLAY",
-"DGAWK_HISTORY",
-"DGAWK_OPTION",
+	"",
+	"DGAWK_BREAK",
+	"DGAWK_WATCH",
+	"DGAWK_DISPLAY",
+	"DGAWK_HISTORY",
+	"DGAWK_OPTION",
 };
 static void serialize_list(int type);
 static void unserialize_list(int type);
@@ -359,6 +359,15 @@ if (--val) \
 			return false; \
 		} \
 	} while (false)
+
+// On z/OS, one needs to use %#p to get the leading 0x in the output.
+// Having that makes it consistent with Linux and makes the use of
+// helper scripts easier.
+#ifdef USE_EBCDIC
+#define PTRFMT	"%#p"
+#else
+#define PTRFMT	"%p"
+#endif
 
 
 /* g_readline --  read a line of text; the interface is like 'readline' but
@@ -3761,7 +3770,7 @@ print_instruction(INSTRUCTION *pc, Func_print print_func, FILE *fp, int in_dump)
 	if (noffset == 0) {
 		static char buf[50];
 		/* offset for 2nd to last lines in a multi-line output */
-		noffset = sprintf(buf, "[      :%p] %-20.20s: ", (void *) pc,
+		noffset = sprintf(buf, "[      :" PTRFMT "] %-20.20s: ", (void *) pc,
 				opcode2str(pc->opcode));
 	}
 
@@ -3787,9 +3796,9 @@ print_instruction(INSTRUCTION *pc, Func_print print_func, FILE *fp, int in_dump)
 		print_func(fp, "\n");
 
 	if (pc->source_line <= 0)
-		print_func(fp, "[      :%p] %-20.20s: ", pc, opcode2str(pc->opcode));
+		print_func(fp, "[      :" PTRFMT "] %-20.20s: ", pc, opcode2str(pc->opcode));
 	else
-		print_func(fp, "[%6d:%p] %-20.20s: ",
+		print_func(fp, "[%6d:" PTRFMT "] %-20.20s: ",
 		                pc->source_line, pc, opcode2str(pc->opcode));
 
 	if (prog_running && ! in_dump) {
@@ -3800,35 +3809,35 @@ print_instruction(INSTRUCTION *pc, Func_print print_func, FILE *fp, int in_dump)
 
 	switch (pc->opcode) {
 	case Op_K_if:
-		print_func(fp, "[branch_if = %p] [branch_else = %p] [branch_else->lasti = %p]\n",
+		print_func(fp, "[branch_if = " PTRFMT "] [branch_else = " PTRFMT "] [branch_else->lasti = " PTRFMT "]\n",
 				pc->branch_if, pc->branch_else, pc->branch_else->lasti);
 		break;
 
 	case Op_K_else:
-		print_func(fp, "[branch_end = %p]\n", pc->branch_end);
+		print_func(fp, "[branch_end = " PTRFMT "]\n", pc->branch_end);
 		break;
 
 	case Op_K_while:
-		print_func(fp, "[while_body = %p] [target_break = %p]\n", (pc+1)->while_body, pc->target_break);
+		print_func(fp, "[while_body = " PTRFMT "] [target_break = " PTRFMT "]\n", (pc+1)->while_body, pc->target_break);
 		break;
 
 	case Op_K_do:
-		print_func(fp, "[doloop_cond = %p] [target_break = %p]", (pc+1)->doloop_cond, pc->target_break);
+		print_func(fp, "[doloop_cond = " PTRFMT "] [target_break = " PTRFMT "]", (pc+1)->doloop_cond, pc->target_break);
 		if (pc->comment)
-			print_func(fp, " [comment = %p]", pc->comment);
+			print_func(fp, " [comment = " PTRFMT "]", pc->comment);
 		print_func(fp, "\n");
 		if (pc->comment)
 			print_instruction(pc->comment, print_func, fp, in_dump);
 		break;
 
 	case Op_K_for:
-		print_func(fp, "[forloop_cond = %p] ", (pc+1)->forloop_cond);
+		print_func(fp, "[forloop_cond = " PTRFMT "] ", (pc+1)->forloop_cond);
 		/* fall through */
 	case Op_K_arrayfor:
-		print_func(fp, "[forloop_body = %p] ", (pc+1)->forloop_body);
-		print_func(fp, "[target_break = %p] [target_continue = %p]", pc->target_break, pc->target_continue);
+		print_func(fp, "[forloop_body = " PTRFMT "] ", (pc+1)->forloop_body);
+		print_func(fp, "[target_break = " PTRFMT "] [target_continue = " PTRFMT "]", pc->target_break, pc->target_continue);
 		if (pc->comment != NULL) {
-			print_func(fp, " [comment = %p]\n", (pc)->comment);
+			print_func(fp, " [comment = " PTRFMT "]\n", (pc)->comment);
 			print_instruction(pc->comment, print_func, fp, in_dump);
 		} else
 			print_func(fp, "\n");
@@ -3837,15 +3846,15 @@ print_instruction(INSTRUCTION *pc, Func_print print_func, FILE *fp, int in_dump)
 	case Op_K_switch:
 	{
 		bool need_newline = false;
-		print_func(fp, "[switch_start = %p] [switch_end = %p]\n", (pc+1)->switch_start, (pc+1)->switch_end);
+		print_func(fp, "[switch_start = " PTRFMT "] [switch_end = " PTRFMT "]\n", (pc+1)->switch_start, (pc+1)->switch_end);
 		if (pc->comment || (pc+1)->switch_end->comment)
 			print_func(fp, "%*s", noffset, "");
 		if (pc->comment) {
-			print_func(fp, "[start_comment = %p]", pc->comment);
+			print_func(fp, "[start_comment = " PTRFMT "]", pc->comment);
 			need_newline = true;
 		}
 		if ((pc+1)->switch_end->comment) {
-			print_func(fp, "[end_comment = %p]", (pc + 1)->switch_end->comment);
+			print_func(fp, "[end_comment = " PTRFMT "]", (pc + 1)->switch_end->comment);
 			need_newline = true;
 		}
 		if (need_newline)
@@ -3858,9 +3867,9 @@ print_instruction(INSTRUCTION *pc, Func_print print_func, FILE *fp, int in_dump)
 		break;
 
 	case Op_K_default:
-		print_func(fp, "[stmt_start = %p] [stmt_end = %p]", pc->stmt_start, pc->stmt_end);
+		print_func(fp, "[stmt_start = " PTRFMT "] [stmt_end = " PTRFMT "]", pc->stmt_start, pc->stmt_end);
 		if (pc->comment) {
-			print_func(fp, " [comment = %p]\n", pc->comment);
+			print_func(fp, " [comment = " PTRFMT "]\n", pc->comment);
 			print_instruction(pc->comment, print_func, fp, in_dump);
 		} else
 			print_func(fp, "\n");
@@ -3883,7 +3892,7 @@ print_instruction(INSTRUCTION *pc, Func_print print_func, FILE *fp, int in_dump)
 		break;
 
 	case Op_field_spec_lhs:
-		print_func(fp, "[target_assign = %p] [do_reference = %s]\n",
+		print_func(fp, "[target_assign = " PTRFMT "] [do_reference = %s]\n",
 				pc->target_assign, pc->do_reference ? "true" : "false");
 		break;
 
@@ -3891,7 +3900,7 @@ print_instruction(INSTRUCTION *pc, Func_print print_func, FILE *fp, int in_dump)
 		print_func(fp, "[param_cnt = %d] [source_file = %s]", pcount,
 				pc->source_file ? pc->source_file : "cmd. line");
 		if (pc[3].nexti != NULL) {
-			print_func(fp, "[ns_list = %p]\n", pc[3].nexti);
+			print_func(fp, "[ns_list = " PTRFMT "]\n", pc[3].nexti);
 			print_ns_list(pc[3].nexti, print_func, fp, in_dump);
 		} else
 			print_func(fp, "\n");
@@ -3905,7 +3914,7 @@ print_instruction(INSTRUCTION *pc, Func_print print_func, FILE *fp, int in_dump)
 
 	case Op_K_getline:
 		print_func(fp, "[into_var = %s]\n", pc->into_var ? "true" : "false");
-		print_func(fp, "%*s[target_beginfile = %p] [target_endfile = %p]\n",
+		print_func(fp, "%*s[target_beginfile = " PTRFMT "] [target_endfile = " PTRFMT "]\n",
 		                noffset, "",
 		                (pc + 1)->target_beginfile, (pc + 1)->target_endfile);
 		break;
@@ -3927,19 +3936,19 @@ print_instruction(INSTRUCTION *pc, Func_print print_func, FILE *fp, int in_dump)
 		break;
 
 	case Op_K_nextfile:
-		print_func(fp, "[target_newfile = %p] [target_endfile = %p]\n",
+		print_func(fp, "[target_newfile = " PTRFMT "] [target_endfile = " PTRFMT "]\n",
 		                pc->target_newfile, pc->target_endfile);
 		break;
 
 	case Op_newfile:
-		print_func(fp, "[target_jmp = %p] [target_endfile = %p]\n",
+		print_func(fp, "[target_jmp = " PTRFMT "] [target_endfile = " PTRFMT "]\n",
 		                pc->target_jmp, pc->target_endfile);
-		print_func(fp, "%*s[target_get_record = %p]\n",
+		print_func(fp, "%*s[target_get_record = " PTRFMT "]\n",
 		                noffset, "", (pc + 1)->target_get_record);
 		break;
 
 	case Op_get_record:
-		print_func(fp, "[target_newfile = %p]\n", pc->target_newfile);
+		print_func(fp, "[target_newfile = " PTRFMT "]\n", pc->target_newfile);
 		break;
 
 	case Op_jmp:
@@ -3951,19 +3960,19 @@ print_instruction(INSTRUCTION *pc, Func_print print_func, FILE *fp, int in_dump)
 	case Op_arrayfor_init:
 	case Op_K_break:
 	case Op_K_continue:
-		print_func(fp, "[target_jmp = %p]\n", pc->target_jmp);
+		print_func(fp, "[target_jmp = " PTRFMT "]\n", pc->target_jmp);
 		break;
 
 	case Op_K_exit:
-		print_func(fp, "[target_end = %p] [target_atexit = %p]\n",
+		print_func(fp, "[target_end = " PTRFMT "] [target_atexit = " PTRFMT "]\n",
 						pc->target_end, pc->target_atexit);
 		break;
 
 	case Op_K_case:
-		print_func(fp, "[target_jmp = %p] [match_exp = %s]",
+		print_func(fp, "[target_jmp = " PTRFMT "] [match_exp = %s]",
 						pc->target_jmp,	(pc + 1)->match_exp ? "true" : "false");
 		if (pc->comment) {
-			print_func(fp, " [comment = %p]\n", pc->comment);
+			print_func(fp, " [comment = " PTRFMT "]\n", pc->comment);
 			print_instruction(pc->comment, print_func, fp, in_dump);
 		} else
 			print_func(fp, "\n");
@@ -3972,26 +3981,26 @@ print_instruction(INSTRUCTION *pc, Func_print print_func, FILE *fp, int in_dump)
 	case Op_K_namespace:
 		print_func(fp, "[namespace = %s]", pc->ns_name);
 		if (pc->nexti)
-			print_func(fp, "[nexti = %p]", pc->nexti);
+			print_func(fp, "[nexti = " PTRFMT "]", pc->nexti);
 		if (pc->comment)
-			print_func(fp, "[comment = %p]", pc->comment);
+			print_func(fp, "[comment = " PTRFMT "]", pc->comment);
 		print_func(fp, "\n");
 		break;
 
 	case Op_arrayfor_incr:
-		print_func(fp, "[array_var = %s] [target_jmp = %p]\n",
+		print_func(fp, "[array_var = %s] [target_jmp = " PTRFMT "]\n",
 		                pc->array_var->type == Node_param_list ?
 		                   func->fparms[pc->array_var->param_cnt].param : pc->array_var->vname,
 		                pc->target_jmp);
 		break;
 
 	case Op_line_range:
-		print_func(fp, "[triggered = %ld] [target_jmp = %p]\n",
+		print_func(fp, "[triggered = %ld] [target_jmp = " PTRFMT "]\n",
 		                pc->triggered, pc->target_jmp);
 		break;
 
 	case Op_cond_pair:
-		print_func(fp, "[line_range = %p] [target_jmp = %p]\n",
+		print_func(fp, "[line_range = " PTRFMT "] [target_jmp = " PTRFMT "]\n",
 		                pc->line_range, pc->target_jmp);
 		break;
 
@@ -4058,7 +4067,7 @@ print_instruction(INSTRUCTION *pc, Func_print print_func, FILE *fp, int in_dump)
 		                ruletab[pc->in_rule],
 		                pc->source_file ? pc->source_file : "cmd. line");
 		if (pc[3].nexti != NULL) {
-			print_func(fp, "[ns_list = %p]\n", pc[3].nexti);
+			print_func(fp, "[ns_list = " PTRFMT "]\n", pc[3].nexti);
 			print_ns_list(pc[3].nexti, print_func, fp, in_dump);
 		} else
 			print_func(fp, "\n");
@@ -4100,7 +4109,7 @@ print_instruction(INSTRUCTION *pc, Func_print print_func, FILE *fp, int in_dump)
 			pc->memory->comment_type == EOL_COMMENT ?
 						"EOL" : "BLOCK");
 		if (pc->comment) {
-			print_func(fp, " [comment = %p]\n", pc->comment);
+			print_func(fp, " [comment = " PTRFMT "]\n", pc->comment);
 			print_instruction(pc->comment, print_func, fp, in_dump);
 		} else
 			print_func(fp, "\n");
