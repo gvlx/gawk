@@ -1,3 +1,7 @@
+2021-05-21         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* debug.c: For z/OS, use %#p to print pointers, %p everything else.
+
 2021-05-13         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* custom.h: For z/OS, define _REGEX_INCLUDE_LIMITS_H.
