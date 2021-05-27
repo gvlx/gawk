@@ -40187,6 +40187,32 @@ The index for this manual was completely reworked.
 
 @item
 Support was added for MSYS2.
+
+@item
+@code{asorti()} and @code{asorti()} were changed to
+allow @code{FUNCTAB} and @code{SYMTAB} as the first argument if a
+second destination array is supplied (@pxref{String Functions}).
+
+@item
+The @option{-I}/@option{--trace} options were added to
+print a trace of the byte codes as they execute (@pxref{Options}).
+
+@item
+@code{$0} and the fields are now cleared before starting a
+@code{BEGINFILE} rule (@pxref{BEGINFILE/ENDFILE}).
+
+@item
+Several example programs in the manual were updated to their modern
+POSIX equivalents.
+
+@item
+The ``no effect'' lint warnings were fixed up and now behave more sanely
+(@pxref{Options}).
+
+@item
+Handling of Infinity and NaN values were improved.
+@xref{Math Definitions}, and also see
+@ref{POSIX Floating Point Problems}.
 @end itemize
 
 @c XXX ADD MORE STUFF HERE

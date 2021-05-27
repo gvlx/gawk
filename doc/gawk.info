@@ -30098,6 +30098,25 @@ unfortunately.  It added the following features:
 
    * Support was added for MSYS2.
 
+   * 'asorti()' and 'asorti()' were changed to allow 'FUNCTAB' and
+     'SYMTAB' as the first argument if a second destination array is
+     supplied (*note String Functions::).
+
+   * The '-I'/'--trace' options were added to print a trace of the byte
+     codes as they execute (*note Options::).
+
+   * '$0' and the fields are now cleared before starting a 'BEGINFILE'
+     rule (*note BEGINFILE/ENDFILE::).
+
+   * Several example programs in the manual were updated to their modern
+     POSIX equivalents.
+
+   * The "no effect" lint warnings were fixed up and now behave more
+     sanely (*note Options::).
+
+   * Handling of Infinity and NaN values were improved.  *Note Math
+     Definitions::, and also see *note POSIX Floating Point Problems::.
+
 
 File: gawk.info,  Node: Common Extensions,  Next: Ranges and Locales,  Prev: Feature History,  Up: Language History
 
@@ -38726,74 +38745,74 @@ Node: POSIX1188852
 Node: BTL1190233
 Node: POSIX/GNU1190962
 Node: Feature History1196740
-Node: Common Extensions1213059
-Node: Ranges and Locales1214342
-Ref: Ranges and Locales-Footnote-11218958
-Ref: Ranges and Locales-Footnote-21218985
-Ref: Ranges and Locales-Footnote-31219220
-Node: Contributors1219443
-Node: History summary1225440
-Node: Installation1226820
-Node: Gawk Distribution1227764
-Node: Getting1228248
-Node: Extracting1229211
-Node: Distribution contents1230849
-Node: Unix Installation1237329
-Node: Quick Installation1238011
-Node: Shell Startup Files1240425
-Node: Additional Configuration Options1241514
-Node: Configuration Philosophy1243829
-Node: Non-Unix Installation1246198
-Node: PC Installation1246658
-Node: PC Binary Installation1247496
-Node: PC Compiling1247931
-Node: PC Using1249048
-Node: Cygwin1252601
-Node: MSYS1253825
-Node: VMS Installation1254427
-Node: VMS Compilation1255218
-Ref: VMS Compilation-Footnote-11256447
-Node: VMS Dynamic Extensions1256505
-Node: VMS Installation Details1258190
-Node: VMS Running1260443
-Node: VMS GNV1264722
-Node: VMS Old Gawk1265457
-Node: Bugs1265928
-Node: Bug address1266591
-Node: Usenet1269573
-Node: Maintainers1270577
-Node: Other Versions1271762
-Node: Installation summary1279627
-Node: Notes1280836
-Node: Compatibility Mode1281630
-Node: Additions1282412
-Node: Accessing The Source1283337
-Node: Adding Code1284774
-Node: New Ports1290993
-Node: Derived Files1295368
-Ref: Derived Files-Footnote-11301028
-Ref: Derived Files-Footnote-21301063
-Ref: Derived Files-Footnote-31301661
-Node: Future Extensions1301775
-Node: Implementation Limitations1302433
-Node: Extension Design1303643
-Node: Old Extension Problems1304787
-Ref: Old Extension Problems-Footnote-11306305
-Node: Extension New Mechanism Goals1306362
-Ref: Extension New Mechanism Goals-Footnote-11309726
-Node: Extension Other Design Decisions1309915
-Node: Extension Future Growth1312028
-Node: Notes summary1312634
-Node: Basic Concepts1313792
-Node: Basic High Level1314473
-Ref: figure-general-flow1314755
-Ref: figure-process-flow1315440
-Ref: Basic High Level-Footnote-11318741
-Node: Basic Data Typing1318926
-Node: Glossary1322254
-Node: Copying1354141
-Node: GNU Free Documentation License1391684
-Node: Index1416804
+Node: Common Extensions1213808
+Node: Ranges and Locales1215091
+Ref: Ranges and Locales-Footnote-11219707
+Ref: Ranges and Locales-Footnote-21219734
+Ref: Ranges and Locales-Footnote-31219969
+Node: Contributors1220192
+Node: History summary1226189
+Node: Installation1227569
+Node: Gawk Distribution1228513
+Node: Getting1228997
+Node: Extracting1229960
+Node: Distribution contents1231598
+Node: Unix Installation1238078
+Node: Quick Installation1238760
+Node: Shell Startup Files1241174
+Node: Additional Configuration Options1242263
+Node: Configuration Philosophy1244578
+Node: Non-Unix Installation1246947
+Node: PC Installation1247407
+Node: PC Binary Installation1248245
+Node: PC Compiling1248680
+Node: PC Using1249797
+Node: Cygwin1253350
+Node: MSYS1254574
+Node: VMS Installation1255176
+Node: VMS Compilation1255967
+Ref: VMS Compilation-Footnote-11257196
+Node: VMS Dynamic Extensions1257254
+Node: VMS Installation Details1258939
+Node: VMS Running1261192
+Node: VMS GNV1265471
+Node: VMS Old Gawk1266206
+Node: Bugs1266677
+Node: Bug address1267340
+Node: Usenet1270322
+Node: Maintainers1271326
+Node: Other Versions1272511
+Node: Installation summary1280376
+Node: Notes1281585
+Node: Compatibility Mode1282379
+Node: Additions1283161
+Node: Accessing The Source1284086
+Node: Adding Code1285523
+Node: New Ports1291742
+Node: Derived Files1296117
+Ref: Derived Files-Footnote-11301777
+Ref: Derived Files-Footnote-21301812
+Ref: Derived Files-Footnote-31302410
+Node: Future Extensions1302524
+Node: Implementation Limitations1303182
+Node: Extension Design1304392
+Node: Old Extension Problems1305536
+Ref: Old Extension Problems-Footnote-11307054
+Node: Extension New Mechanism Goals1307111
+Ref: Extension New Mechanism Goals-Footnote-11310475
+Node: Extension Other Design Decisions1310664
+Node: Extension Future Growth1312777
+Node: Notes summary1313383
+Node: Basic Concepts1314541
+Node: Basic High Level1315222
+Ref: figure-general-flow1315504
+Ref: figure-process-flow1316189
+Ref: Basic High Level-Footnote-11319490
+Node: Basic Data Typing1319675
+Node: Glossary1323003
+Node: Copying1354890
+Node: GNU Free Documentation License1392433
+Node: Index1417553
 
 End Tag Table
 
