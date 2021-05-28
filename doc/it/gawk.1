@@ -14,6 +14,7 @@
 .\"Aggiornam. a gawk-5.1.0 di A.G. Colombo - revis. M. Curreli - Aprile 2020
 .\"Aggiornam. a gawk-5.1.0 di A.G. Colombo - Giugno 2020
 .\"Aggiornam. a gawk-5.1.0 di A.G. Colombo - Luglio 2020
+.\"Aggiornam. a gawk-5.1.1 di A.G. Colombo - Maggio 2021
 
 .ds PX \s-1POSIX\s+1
 .ds UX \s-1UNIX\s+1
@@ -30,7 +31,7 @@
 .		if \w'\(rq' .ds rq "\(rq
 .	\}
 .\}
-.TH GAWK 1 "Aug 31 2020" "Free Software Foundation" "Utility Commands"
+.TH GAWK 1 "May 02 2021" "Free Software Foundation" "Utility Commands"
 .SH NOME
 gawk \- linguaggio per il riconoscimento e il trattamento di espressioni
 regolari
@@ -3496,6 +3497,17 @@ in \*(EP.
 Occorre anche fornire un dominio di testo.  Si usi
 .B TEXTDOMAIN
 se ci si vuole servire del dominio corrente.
+.SS Funzioni con valori booleani
+È possibile creare valori speciali di tipo booleani;
+vedere il manuale per sapere come funzionano e
+perché sono stati resi disponibili.
+.TP
+.BI mkbool( espressione\^ )
+A seconda del valore booleano di
+.I espressione
+restituisce un valore di true [vero] o false [falso].
+True ha come valore numerico uno.
+False ha come valore numerico zero.
 .SH FUNZIONI DEFINITE DALL'UTENTE
 Le funzioni in \*(AK sono definite in questo modo:
 .PP
@@ -4289,7 +4301,7 @@ Lo ringraziamo.
 .SH COPYING PERMISSIONS
 Copyright \(co 1989, 1991, 1992, 1993, 1994, 1995, 1996,
 1997, 1998, 1999, 2001, 2002, 2003, 2004, 2005, 2007, 2009,
-2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020,
+2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
 Free Software Foundation, Inc.
 .PP
 Permission is granted to make and distribute verbatim copies of
