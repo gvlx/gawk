@@ -96,10 +96,10 @@
 @set CHAPTER nodo principale
 @set CHAPTERS nodi principali
 @set APPENDIX nodo principale
-@set SECTION nodo secondario
-@set SECTIONS nodi secondari
-@set SUBSECTION nodo
-@set SUBSECTIONS nodi
+@set SECTION nodo
+@set SECTIONS nodi
+@set SUBSECTION sottonodo
+@set SUBSECTIONS sottonodi
 @set DARKCORNER (a.b.)
 @set COMMONEXT (e.c.)
 @set PAGE videata
@@ -883,6 +883,8 @@ Copyright dell'edizione italiana @copyright{} 2016 -- Free Software Foundation, 
 * Vettori di vettori::                  Vettori multidimensionali veri.
 * Sommario dei vettori::                Sommario dei vettori.
 * Funzioni predefinite::                Riepilogo delle funzioni predefinite.
+* Funzioni booleane::                   Una funzione che restituisce valori
+                                        booleani.
 * Chiamare funzioni predefinite::       Come chiamare funzioni predefinite.
 * Funzioni numeriche::                  Funzioni che trattano numeri, comprese
                                         @code{int()}, @code{sin()}
@@ -1003,6 +1005,7 @@ Copyright dell'edizione italiana @copyright{} 2016 -- Free Software Foundation, 
 * Esercizi sui programmi::              Esercizi.
 * Dati non decimali::                   Consentire dati di input in base
                                         diversa da 10.
+* Valori di tipo booleano::             Valori di tipo @code{number|bool}.
 * Ordinamento di vettori::              Modi per controllare la visita di un
                                         vettore e il suo ordinamento.
 * Controllare visita vettori::          Come usare PROCINFO["sorted_in"].
@@ -1075,7 +1078,7 @@ Copyright dell'edizione italiana @copyright{} 2016 -- Free Software Foundation, 
                                         esattamente.
 * Confronti tra valori in VM::          Come confrontare valori in virgola mobile.
 * Gli errori si sommano::               Gli errori diventano sempre maggiori.
-* Valori strani::                       Un cenno riguardo ai valori infiniti e a NaN [``non @`e un numero''].
+* Valori strani::                       Un cenno riguardo ai valori infiniti e a NaN [Non un Numero].
 * Ottenere la precisione::              Ottenere la precisione voluta.
 * Tentare di arrotondare::              Tentare di aggiungere bit di precisione e
                                         arrotondare.
@@ -1790,7 +1793,21 @@ Si trovano tutti nell'indice analitico, alla voce ``riquadro.''
 @end ifclear
 
 La maggior parte delle volte, gli esempi usano programmi @command{awk} completi.
-Alcune delle @value{SECTIONS} pi@`u avanzate mostrano solo la parte del programma
+@ifnotinfo
+Alcune delle
+@end ifnotinfo
+@ifinfo
+Alcuni dei
+@end ifinfo
+@value{SECTIONS}
+pi@`u
+@ifnotinfo
+avanzate
+@end ifnotinfo
+@ifinfo
+avanzati
+@end ifinfo
+mostrano solo la parte del programma
 @command{awk} che illustra il concetto che si sta descrivendo.
 
 Sebbene questo @value{DOCUMENT} sia destinato soprattutto alle persone che non
@@ -2721,7 +2738,7 @@ un file separato che contenga il programma @command{awk}.  Uno @dfn{script}
 di shell @`e pi@`u affidabile, perch@'e non ci sono altri file che possono
 venirsi a trovare fuori posto.
 
-Pi@`u avanti in questo capitolo,
+Pi@`u avanti in questo @value{CHAPTER},
 @iftex
 nella
 @end iftex
@@ -3018,7 +3035,13 @@ $ @kbd{awk '@{ print "Ciao" @} # un'idea brillante'}
 Mettere una barra inversa prima dell'apice singolo in @samp{un'idea} non
 risolverebbe, poich@'e le barre inverse non sono speciali all'interno di apici
 singoli.
-La prossima @value{SUBSECTION} descrive le regole di protezione della shell.
+@ifnotinfo
+La prossima
+@end ifnotinfo
+@ifinfo
+Il prossimo
+@end ifinfo
+@value{SUBSECTION} descrive le regole di protezione della shell.
 @end quotation
 
 @node Protezione
@@ -3730,8 +3753,14 @@ regola @code{END} viene eseguita e viene stampato il valore di @code{somma}.
 In questo esempio, il valore di @code{somma} @`e 80600.
 
 Queste tecniche pi@`u avanzate di @command{awk} sono trattate in
+@ifnotinfo
+successive
+@end ifnotinfo
+@ifinfo
+successivi
+@end ifinfo
 @value{SECTIONS}
-successive (@pxref{Panoramica sulle azioni}).  Prima di poter passare a una
+(@pxref{Panoramica sulle azioni}).  Prima di poter passare a una
 programmazione pi@`u avanzata con @command{awk}, @`e necessario sapere come
 @command{awk} interpreta i file in input e visualizza quelli in output.
 Modificando campi e usando l'istruzione @code{print} @`e possibile produrre
@@ -6135,7 +6164,7 @@ confronti.  Per esempio, @samp{\$}
 individua il carattere @samp{$}.
 
 @cindex espressioni regolari @subentry @`ancore nelle
-@cindex Texinfo @subentry inizi di capitolo nei file
+@cindex Texinfo @subentry inizi di @value{CHAPTER} nei file
 @cindex @code{^} (circonflesso) @subentry operatore @dfn{regexp}
 @cindex circonflesso (@code{^}) @subentry operatore @dfn{regexp}
 @item @code{^}
@@ -6330,22 +6359,22 @@ nella @dfn{regexp}.  Per esempio, @code{/+/} individua un semplice segno
 pi@`u.  Tuttavia, molte altre versioni di @command{awk} trattano una
 tale notazione come un errore di sintassi.
 
-@sidebar E se la @dfn{regexp} è vuota?
+@sidebar E se la @dfn{regexp} @`e vuota?
 @cindex vuote @subentry @dfn{regexps}
 @cindex @dfn{regexp} @subentry vuote
 Viene qui descritto un uso avanzato delle @dfn{regexp}.
 Pu@`o essere saltato in una prima lettura.
 
-Si può specificare una costante @dfn{regexp} vuota (@samp{//}) in ogni
+Si pu@`o specificare una costante @dfn{regexp} vuota (@samp{//}) in ogni
 posto in cui ci si aspetta di trova una @dfn{regexp}.
-Può servire a qualcosa farlo?  A cosa corrisponde?
+Pu@`o servire a qualcosa farlo?  A cosa corrisponde?
 
 Ha senso farlo.  Corrisponde alla stringa vuota (invisibile),
 all'inizio e alla fine di una stringa di caratteri, come pure
 alla stringa vuota tra un carattere e l'altro.  Lo si vede bene
 con la funzione @code{gsub()}, che si usa per fare delle sostituzioni
 globali (@pxref{Funzioni per stringhe}).  L'uso normale di @code{gsub()}
-è del tipo:
+@`e del tipo:
 
 @example
 $ @kbd{awk '}
@@ -7975,7 +8004,13 @@ regole.
 
 @cindex espressioni regolari @subentry come separatore di campo
 @cindex separatore di campo @subentry espressioni regolari come
-La precedente @value{SUBSECTION}
+@ifnotinfo
+La precedente
+@end ifnotinfo
+@ifinfo
+Il precedente
+@end ifinfo
+@value{SUBSECTION}
 ha illustrato l'uso di caratteri singoli o di stringhe semplici come
 valore di @code{FS}.
 Pi@`u in generale, il valore di @code{FS} pu@`o essere una stringa contenente
@@ -10522,9 +10557,16 @@ printf "%4.3e\n", 1950
 stampa @samp{1.950e+03}, con un totale di quattro cifre significative, tre
 delle quali
 seguono il punto che separa la parte intera da quella decimale
-[in Italia si usa la virgola al posto del punto]
+[in Italia si usa la virgola al posto del punto e viceversa]
 (L'espressione @samp{4.3} rappresenta due modificatori,
-introdotti nella prossima @value{SUBSECTION}).
+introdotti
+@ifnotinfo
+nella prossima
+@end ifnotinfo
+@ifinfo
+nel prossimo
+@end ifinfo
+@value{SUBSECTION}).
 @samp{%E} usa @samp{E} invece di @samp{e} nell'output.
 
 @item @code{%f}
@@ -10539,7 +10581,14 @@ printf "%4.3f", 1950
 stampa @samp{1950.000}, con un minimo di quattro cifre significative, tre
 delle quali vengono dopo il punto decimale.
 (L'espressione @samp{4.3} rappresenta due modificatori,
-introdotti nella prossima @value{SUBSECTION}).
+introdotti
+@ifnotinfo
+nella prossima
+@end ifnotinfo
+@ifinfo
+nel prossimo
+@end ifinfo
+@value{SUBSECTION}).
 
 In sistemi che implementano il formato in virgola mobile, come specificato
 dallo standard IEEE 754, il valore infinito negativo @`e rappresentato come
@@ -10605,7 +10654,7 @@ stampare valori non validi, o comportarsi in modo completamente differente.
 @quotation NOTA
 Lo standard IEEE 754 per l'aritmetica in virgola mobile consente di
 avere valori speciali per rappresentare ``infinito'' (sia positivo che
-negativo) e valori che sono ``non numerici'' (NaN - [Not a Number]).
+negativo) e valori che sono ``non numerici'' (NaN - [Non un Numero]).
 
 L'input e l'output di tali valori avviene sotto forma di stringhe di
 testo.  Ci@`o pone dei problemi nel linguaggio @command{awk}, che
@@ -11840,7 +11889,14 @@ combinazioni tra questi usando diversi operatori.
 @section Costanti, variabili e conversioni
 
 Le espressioni sono costruite a partire da valori e dalle operazioni eseguite
-su di essi. Questa @value{SECTION} descrive gli oggetti elementari
+su di essi.
+@ifnotinfo
+Questa
+@end ifnotinfo
+@ifinfo
+Questo
+@end ifinfo
+@value{SECTION} descrive gli oggetti elementari
 che forniscono i valori usati nelle espressioni.
 
 @menu
@@ -12525,7 +12581,14 @@ Sono ricordate qui solo per completezza.
 
 Le conversioni di numeri in stringhe e di stringhe in numeri sono generalmente
 semplici.  Ci possono essere delle sottigliezze che bisogna tenere presenti;
-questa @value{SECTION} tratta di quest'importante sfaccettatura di @command{awk}.
+@value{SECTION}
+@ifnotinfo
+questa
+@end ifnotinfo
+@ifinfo
+questo
+@end ifinfo
+tratta di quest'importante sfaccettatura di @command{awk}.
 
 @menu
 * Stringhe e numeri::         Come @command{awk} converte tra
@@ -13406,8 +13469,15 @@ Si dovrebbero evitare cose come queste nei programmi.
 
 In certi contesti, i valori delle espressioni servono anche come
 ``valori di verit@`a''; cio@`e, determinano quale sar@`a la direzione che il
-programma prender@`a durante la sua esecuzione. Questa
-@value{SECTION} descrive come @command{awk} definisce ``vero'' e ``falso''
+programma prender@`a durante la sua esecuzione.
+@ifnotinfo
+Questa
+@end ifnotinfo
+@ifinfo
+Questo
+@end ifinfo
+@value{SECTION}
+descrive come @command{awk} definisce ``vero'' e ``falso''
 e come questi valori sono confrontati.
 
 @menu
@@ -16280,7 +16350,14 @@ maniera desiderata.  Altre variabili sono impostate automaticamente da
 informazioni sul modo di procedere interno di @command{awk}.
 
 @cindex @command{gawk} @subentry variabili predefinite e
-Questa @value{SECTION} documenta tutte le variabili predefinite di
+@ifnotinfo
+Questa
+@end ifnotinfo
+@ifinfo
+Questo
+@end ifinfo
+@value{SECTION}
+documenta tutte le variabili predefinite di
 @command{gawk}; molte di queste variabili sono anche documentate nei
 @value{CHAPTER} che descrivono le loro aree di influenza.
 
@@ -16771,7 +16848,14 @@ Il numero di campi nel corrente record in input.
 quando un nuovo campo viene creato,
 o quando si modifica @code{$0} (@pxref{Campi}).
 
-A differenza di molte altre variabili descritte in questa @value{SUBSECTION},
+A differenza di molte altre variabili descritte in
+@ifnotinfo
+questa
+@end ifnotinfo
+@ifinfo
+questo
+@end ifinfo
+@value{SUBSECTION},
 l'assegnamento di un valore a @code{NF} pu@`o potenzialmente influenzare
 il funzionamento interno di @command{awk}.  In particolare, assegnamenti
 a @code{NF} si possono usare per aggiungere o togliere campi dal
@@ -17461,7 +17545,14 @@ di @command{gawk} di consentire veri vettori di vettori.
 @node Fondamenti sui vettori
 @section Informazioni di base sui vettori
 
-Questa @value{SECTION} espone le nozioni fondamentali: elaborare gli elementi
+@ifnotinfo
+Questa
+@end ifnotinfo
+@ifinfo
+Questo
+@end ifinfo
+@value{SECTION}
+espone le nozioni fondamentali: elaborare gli elementi
 di un vettore uno alla volta, e visitare sequenzialmente tutti gli elementi
 di un vettore.
 
@@ -18972,13 +19063,29 @@ programma quale funzione chiamare.
 @section Funzioni predefinite
 
 Le funzioni @dfn{predefinite} sono sempre disponibili per essere chiamate
-da un programma @command{awk}.  Questa @value{SECTION} definisce tutte le
+da un programma @command{awk}.
+@ifnotinfo
+Questa
+@end ifnotinfo
+@ifinfo
+Questo
+@end ifinfo
+@value{SECTION}
+definisce tutte le
 funzioni predefinite di @command{awk}; di alcune di queste si fa menzione
-in altre @value{SECTIONS},
+@ifnotinfo
+in altre
+@end ifnotinfo
+@ifinfo
+in altri
+@end ifinfo
+@value{SECTIONS},
 ma sono comunque riassunte anche qui per comodit@`a.
 
 @menu
 * Chiamare funzioni predefinite::  Come chiamare funzioni predefinite.
+* Funzioni booleane::              Una funzione che restituisce valori
+                                   booleani.
 * Funzioni numeriche::             Funzioni che trattano numeri, comprese
                                    @code{int()}, @code{sin()} e @code{rand()}.
 * Funzioni per stringhe::          Funzioni di manipolazione di stringhe,
@@ -19058,6 +19165,26 @@ con i due argomenti 6 e 12.  Ma se l'ordine di valutazione @`e da destra a
 sinistra, @code{i} assume dapprima il valore 10, e poi il valore 11, e la
 funzione @code{atan2()} @`e chiamata con i due argomenti 11 e 10.
 
+@node Funzioni booleane
+@subsection Generare valori booleani
+@cindex booleane @subentry funzioni
+@cindex funzioni @subentry booleane
+
+Questa funzione @`e specifica di @command{gawk}. Non @`e disponibile
+modalit@`a compatibile (@pxref{Opzioni}):
+
+@c @asis for docbook
+@table @asis
+@item @code{mkbool(@var{espressione})}
+@cindexgawkfunc{mkbool}
+Restituisce un valore di tipo booleano, a partire dal valore booleano
+calcolato di @var{espressione}.
+Il valore booleano ``true'' [vero] ha il valore numerico uno.
+Il valore booleano ``false'' [false] ha il valore numerico zero.
+Questo @`e trattato in maggior dettaglio in
+@ref{Valori di tipo booleano}.
+@end table
+
 @node Funzioni numeriche
 @subsection Funzioni numeriche
 @cindex funzioni @subentry numeriche
@@ -19128,7 +19255,7 @@ modalit@`a compatibile (@pxref{Opzioni}).
 @cindexawkfunc{log}
 @cindex logaritmo
 Restituisce il logaritmo naturale di @var{x}, se @var{x} @`e positivo;
-altrimenti, restituisce NaN (``not a number'',[``non @`e un numero''])
+altrimenti, restituisce NaN (``not a number'',[Non un Numero])
 sui sistemi che implementano lo standard IEEE 754.
 Inoltre, @command{gawk} stampa un messaggio di avvertimento qualora @code{x}
 sia negativo.
@@ -19253,7 +19380,15 @@ a seconda delle implementazioni @command{awk}.
 @subsection Funzioni di manipolazione di stringhe
 @cindex funzioni @subentry di manipolazione di stringhe
 
-Le funzioni in questa @value{SECTION} leggono o modificano il testo di
+Le funzioni in
+@ifnotinfo
+questa
+@end ifnotinfo
+@ifinfo
+questo
+@end ifinfo
+@value{SECTION}
+leggono o modificano il testo di
 una o pi@`u stringhe.
 
 @command{gawk} implementa la localizzazione
@@ -21574,6 +21709,9 @@ Restituisce una delle stringhe seguenti, a seconda del tipo di @var{x}:
 @item "number"
 @var{x} @`e un numero.
 
+@item "number|bool"
+@var{x} @`e un valore di tipo booleano (@pxref{Valori di tipo booleano}).
+
 @item "string"
 @var{x} @`e una stringa.
 
@@ -21855,8 +21993,15 @@ Tutte le funzioni predefinite restituiscono un valore al loro chiamante.
 Anche le funzioni definite dall'utente possono farlo, usando
 l'istruzione @code{return},
 che @`e descritta in dettaglio nella @ref{Istruzione return}.
-Molti dei successivi esempi in questa @value{SECTION} usano
-l'istruzione @code{return}.
+Molti dei successivi esempi in
+@ifnotinfo
+questa
+@end ifnotinfo
+@ifinfo
+questo
+@end ifinfo
+@value{SECTION}
+usano l'istruzione @code{return}.
 
 @cindex estensioni comuni @subentry parola chiave @code{func}
 @c @cindex @command{awk} language, POSIX version
@@ -22531,7 +22676,13 @@ esserne a conoscenza.
 @cindex puntatori a funzioni
 @cindex differenze tra @command{awk} e @command{gawk} @subentry chiamata indiretta di funzione
 
-Questa sezione descrive un'estensione avanzata, specifica di @command{gawk}.
+@ifnotinfo
+Questa
+@end ifnotinfo
+@ifinfo
+Questo
+@end ifinfo
+@value{SECTION} descrive un'estensione avanzata, specifica di @command{gawk}.
 
 Spesso pu@`o essere utile ritardare la scelta della funzione da chiamare
 fino al momento in cui il programma viene eseguito.
@@ -23264,7 +23415,15 @@ potrebbero aver usato gli elementi di vettore
 @code{@w{_pw_awklib}} e
 @code{@w{_pw_contatore}}.
 
-Le convenzioni illustrate in questa @value{SECTION} sono esattamente
+Le convenzioni illustrate in
+@ifnotinfo
+questa
+@end ifnotinfo
+@ifinfo
+questo
+@end ifinfo
+@value{SECTION}
+sono esattamente
 quello che indica il termine: convenzioni. Non si @`e obbligati a scrivere
 i propri programmi in questo modo: @`e solo auspicabile che lo si faccia.
 
@@ -23277,7 +23436,14 @@ in @ref{Spazi-dei-nomi}.
 @node Funzioni di tipo generale
 @section Programmazione di tipo generale
 
-Questa @value{SECTION} illustra diverse funzioni che sono di uso generale nella
+@ifnotinfo
+Questa
+@end ifnotinfo
+@ifinfo
+Questo
+@end ifinfo
+@value{SECTION}
+illustra diverse funzioni che sono di uso generale nella
 programmazione.
 
 @menu
@@ -24144,8 +24310,14 @@ function shell_quote(s,             # parametro
 @cindex gestione di file
 @cindex libreria di funzioni @command{awk} @subentry gestire file di dati
 @cindex funzioni @subentry libreria di @subentry gestire file di dati
-Questa @value{SECTION} presenta funzioni utili per gestire
-@value{DF} da riga di comando.
+@ifnotinfo
+Questa
+@end ifnotinfo
+@ifinfo
+Questo
+@end ifinfo
+@value{SECTION}
+presenta funzioni utili per gestire @value{DF} da riga di comando.
 
 @menu
 * Funzione filetrans::          Una funzione per gestire il passaggio da un
@@ -26215,7 +26387,14 @@ cut.awk -- -c1-8 i_miei_file > risultati
 @cindex programmi POSIX @subentry implementazione in @command{awk}
 @cindex POSIX @subentry programmi @subentry implementazione in @command{awk}
 
-Questa @value{SECTION} presenta un certo numero di programmi di utilit@`a
+@ifnotinfo
+Questa
+@end ifnotinfo
+@ifinfo
+Questo
+@end ifinfo
+@value{SECTION}
+presenta un certo numero di programmi di utilit@`a
 POSIX implementati in @command{awk}.  Riscrivere questi programmi in
 @command{awk} @`e spesso divertente,
 perch@'e gli algoritmi possono essere espressi molto chiaramente, e il codice
@@ -28386,7 +28565,14 @@ END @{
 @node Programmi vari
 @section Un paniere di programmi @command{awk}
 
-Questa @value{SECTION} @`e un ``paniere'' che contiene vari programmi.
+@ifnotinfo
+Questa
+@end ifnotinfo
+@ifinfo
+Questo
+@end ifinfo
+@value{SECTION}
+@`e un ``paniere'' che contiene vari programmi.
 Si spera che siano interessanti e divertenti.
 
 @menu
@@ -28609,7 +28795,14 @@ BEGIN @{
 @c endfile
 @end example
 
-La successiva @value{SECTION} di codice scompone l'ora specificata in ore e
+@ifnotinfo
+La successiva
+@end ifnotinfo
+@ifinfo
+Il successivo
+@end ifinfo
+@value{SECTION}
+di codice scompone l'ora specificata in ore e
 minuti, la converte (se @`e il caso) al formato 24-ore, e poi calcola il
 relativo numero di secondi dalla mezzanotte.  Poi trasforma l'ora corrente in
 un contatore dei secondi dalla
@@ -29229,7 +29422,7 @@ la riga), quando la regola @`e verificata [ossia se il record non
 @cindex estrarre programma da file sorgente Texinfo
 @cindex file @subentry Texinfo @subentry estrarre programma da
 @ifnotinfo
-Sia questo capitolo che il precedente
+Sia questo @value{CHAPTER} che il precedente
 (@ref{Funzioni di libreria})
 presentano un numero elevato di programmi @command{awk}.
 @end ifnotinfo
@@ -29657,7 +29850,14 @@ In
 @end ifnottex
 @ref{Includere file}, abbiamo visto come @command{gawk} preveda la
 possibilit@`a di includere file.  Tuttavia, questa @`e un'estensione @command{gawk}.
-Questa @value{SECTION} evidenzia l'utilit@`a di rendere l'inclusione di
+@ifnotinfo
+Questa
+@end ifnotinfo
+@ifinfo
+Questo
+@end ifinfo
+@value{SECTION}
+evidenzia l'utilit@`a di rendere l'inclusione di
 file disponibile per @command{awk} standard, e mostra come farlo utilizzando
 una combinazione di programmazione di shell e di @command{awk}.
 
@@ -30703,6 +30903,7 @@ tratta della capacit@`a di aggiungere dinamicamente nuove funzioni predefinite a
 
 @menu
 * Dati non decimali::           Consentire dati di input non decimali.
+* Valori di tipo booleano::     Valori di tipo @code{number|bool} type.
 * Ordinamento di vettori::      Modi per controllare la visita di un vettore
                                 e il suo ordinamento.
 * I/O bidirezionale::           Comunicazione bidirezionale con un altro
@@ -30772,6 +30973,55 @@ porta a risultati meno inattesi.
 
 Quest'opzione potrebbe sparire dalle versioni future di @command{gawk}.
 @end quotation
+
+@node Valori di tipo booleano
+@section Valori di tipo booleano
+
+I valori scalari in @command{awk} sono numeri o stringhe di caratteri.
+@command{gawk} supporta anche valori di tipo @dfn{regexp}
+(@pxref{Costanti @dfn{regexp} forti}).
+
+Come descritto in @ref{Valori di verit@`a}, ai valori booleani in
+@command{awk} non viene assegnato un tipo loro proprio:
+un valore @`e ``true'' [vero] se @`e diverso da zero e dalla stringa nulla
+e ``false'' [falso] in tutti gli altri casi.
+
+Se se devono scambiare dati con linguaggi che possiedono un tipo di
+variabile booleana vera e propria, usando un formato standard come
+JSON o XML, la mancanza di un vero tipo di variabile booleana
+in @command{awk} pu@`o essere un problema.
+(Vedere, p.es., l'estensione @code{json} fornita da
+@uref{https://sourceforge.net/projects/gawkextlib, il progetto @code{gawkextlib}}.)
+
+@`E facile importare dati di tipo booleano in @command{awk}, ma una volta
+importati l'informazione che si trattava di dati di tipo booleano viene
+persa.  Esportare dati di questo tipo @`e ancora pi@`u difficile;
+non c'@`e modo per indicare che un valore @`e veramente booleano.
+
+Per risolvere questo problema, @command{gawk} mette a disposizione na
+funzione di nome @code{mkbool()}.
+La funzione ha un argomento, che pu@`o essere una qualsiasi espressione
+@command{awk} e restituisce un valore di tipo booleano.
+
+I valori cos@`{@dotless{i}} restituiti sono normali valori numerici di @command{awk},
+che possono assumere i valori uno o zero, a seconda del valore di
+verit@`a dell'espressione originale fornita nella chiamata a
+@code{mkbool()}.
+
+La funzione @code{typeof()} (@pxref{Funzioni per i tipi}) restituisce
+la stringa @code{"number|bool"} per queste variabili.
+
+Tuttavia i valori di tipo booleano @emph{sono} numeri, per @command{gawk}
+tranne che per il fatto che il codice delle estensioni a @command{gawk}
+li pu@`o trattare, volendo, come valori di tipo booleano.
+
+Anche se sarebbe stato possibile aggiungere due nuove variabili
+predefinite di tipo booleano, chiamandole @code{TRUE} [vero] e
+@code{FALSE} [falso], il farlo avrebbe certamente generato errori
+in molti programmi @command{awk} esistenti.
+Invece, l'introduzione di una funzione ``generatrice'' che crea valori
+di tipo booleano, fornisce flessibilit@`a, senza generare troppi
+errori nel codice esistente.
 
 @node Ordinamento di vettori
 @section Controllare la visita di un vettore e il suo ordinamento
@@ -33202,7 +33452,14 @@ per eseguire il debug dei propri programmi.
 @node Debugging
 @section Introduzione al debugger di @command{gawk}
 
-Questa @value{SECTION}, dopo un'introduzione sul debug in generale, inizia
+@ifnotinfo
+Questa
+@end ifnotinfo
+@ifinfo
+Questo
+@end ifinfo
+@value{SECTION},
+dopo un'introduzione sul debug in generale, inizia
 la trattazione del debug in @command{gawk}.
 
 @menu
@@ -34795,7 +35052,7 @@ Questo @value{CHAPTER} descrive una funzionalit@`a disponibile solo in
 @command{gawk}.
 
 @quotation ATTENZIONE
-La funzionalit@`a descritta in questo capitolo @`e nuova.  @`E certamente
+La funzionalit@`a descritta in questo @value{CHAPTER} @`e nuova.  @`E certamente
 possibile, e perfino probabile, che ci siano degli angoli bui
 (se non dei bug), ancora presenti nell'implementazione.
 Chi ne trovasse, @`e pregato di notificarlo (@xref{Bug}).
@@ -35335,7 +35592,7 @@ sono esattamente in accordo.
 @quotation NOTA
 La maggior parte degli utenti di @command{gawk} pu@`o saltare senza patemi
 d'animo
-questo capitolo. Tuttavia, se si vogliono eseguire calcoli scientifici con
+questo @value{CHAPTER}. Tuttavia, se si vogliono eseguire calcoli scientifici con
 @command{gawk}, questo @`e il luogo adatto per imparare a farlo.
 @end quotation
 
@@ -35653,7 +35910,14 @@ per maggiori informazioni.
 @author Teen Talk Barbie, luglio 1992
 @end quotation
 
-Questa @value{SECTION} fornisce un quadro dettagliato dei problemi che
+@ifnotinfo
+Questa
+@end ifnotinfo
+@ifinfo
+Questo
+@end ifinfo
+@value{SECTION}
+fornisce un quadro dettagliato dei problemi che
 si presentano quando si eseguono molti calcoli in virgola
 mobile.@footnote{C'@`e un saggio molto bello
 @uref{http://www.validlab.com/goldberg/paper.pdf, sul calcolo in
@@ -35833,7 +36097,7 @@ $ @kbd{gawk 'BEGIN @{}
 Sia l'hardware che implementa lo standard per i numeri in virgola
 mobili IEEE 754, che la libreria matematica MPFR, prevedono due
 tipi di valori di cui probabilmente non vi hanno parlato a scuola.
-Il primo @`e il valore @dfn{infinity} (``infinito''), un valore speciale
+Il primo @`e il valore @dfn{infinity} [infinito], un valore speciale
 che pu@`o avere un segno sia negativo che positivo, e che @`e pi@`u
 piccolo di ogni altro valore (infinito negativo), o maggiore di ogni
 altro valore (infinito positivo).  Quando vengono generati tali valori
@@ -35847,14 +36111,14 @@ Per il resto, altre operazioni (addizione, sottrazione, etc.)
 che hanno come operando un infinito e un altro numero producono
 risultati matematicamente ragionevoli.
 
-Il secondo tipo di valore @`e ``not a number'' [``non @`e un numero'']
+Il secondo tipo di valore @`e ``not a number'' [Non un Numero]
 scritto in forma abbreviata come NaN.@footnote{Grazie a Michael Brennan
 per questa descrizione, che abbiamo parafrasato, e per gli esempi.}
 
 Questo @`e un valore speciale che risulta da un calcolo che non ha come
 risposta un numero reale.  In tal caso, i programmi possono o ricevere
-un’eccezione di virgola mobile, o restituire NaN come risultato.
-Lo standard IEEE 754 consiglia che i sistemi restituiscano NaN.
+un’eccezione di virgola mobile, o restituire NaN [Non un Numero] come risultato.
+Lo standard IEEE 754 consiglia che i sistemi restituiscano NaN [Non un Numero].
 Alcuni esempi:
 
 @table @code
@@ -35877,11 +36141,11 @@ per cui il risultato @`e @code{NaN}.
 I valori Nan sono strani.  In particolare, non possono essere confrontati
 con altri numeri in virgola mobile; ogni confronto di questo tipo, eccetto
 quello ``non uguale a'', restituisce il valore ``falso''.
-I valori NaN sono talmente differenti da altri valori che perfino il
+I valori NaN [Non un Numero] sono talmente differenti da altri valori che perfino il
 confronto di due valori NaN identici fra loro con @code{!=} restituisce
 il valore ``vero''!
 
-I valori NaN possono anche avere un segno (positivo o negativo),
+I valori NaN [Non un Numero] possono anche avere un segno (positivo o negativo),
 anche se dipende dall'implementazione quale segno viene restituito
 da qualsiasi operazione il cui risultato sia un valore NaN.
 Per esempio, su alcuni sistemi la funzione @code{sqrt(-1)}
@@ -35900,7 +36164,7 @@ nella directory @file{awklib/eg/test-programs} disponibile
 nella distribuzione di @command{gawk}.
 Tali programmi permettono un confronto tra i linguaggi di
 programmazione, riguardo al modo con cui vengono trattati
-i valori di infinito e quelli NaN.
+i valori di Infinity [Infinito] e quelli NaN [Non un Numero].
 
 @ignore
 @c file eg/test-programs/gen-float-table.awk
@@ -36695,7 +36959,7 @@ esadecimale (p.es., @code{0xDEADBEEF}). (Da notare: valore dei dati letti,
 
 @item
 Supporto per i valori in virgola mobile speciali IEEE 754 ``not a number''
-(NaN), pi@`u infinito (``inf'') e meno infinito (``@minus{}inf'').
+(NaN) [Non un Numero], pi@`u infinito (``inf'') e meno infinito (``@minus{}inf'').
 In particolare, il formato per questi valori @`e quello specificato dallo
 standard C ISO 1999, che non distingue maiuscole/minuscole e pu@`o consentire
 caratteri aggiuntivi dipendenti dall'implementazione dopo il @samp{nan}, e
@@ -36733,7 +36997,8 @@ Sebbene il manutentore di @command{gawk} continui a credere che introdurre
 queste funzionalit@`a sia sconsigliabile, ci@`o nonostante, sui sistemi che
 supportano i valori in virgola mobile IEEE, sembra giusto fornire
 @emph{qualche}
-possibilit@`a di usare i valori NaN e infinito.  La soluzione implementata
+possibilit@`a di usare i valori NaN [Non un Numero] e Infinity [Infinito].
+La soluzione implementata
 in @command{gawk} @`e questa:
 
 @itemize @value{BULLET}
@@ -36782,7 +37047,8 @@ speciali. Cos@`{@dotless{i}}, @samp{+nan} e @samp{+NaN} sono la stessa cosa.
 
 @cindex POSIX @subentry modalit@`a
 Oltre a gestire l'input, @command{gawk} deve anche stampare valori
-``corretti'' in output, quando un valore sia NaN o infinito.
+``corretti'' in output, quando un valore sia NaN [Non un Numero]
+o Infinity [Infinito].
 A partire dalla @value{PVERSION} 4.2.2, per tali valori
 @command{gawk} stampa una delle quattro stringhe sopra descritte:
 @samp{+inf}, @samp{-inf}, @samp{+nan}, or @samp{-nan}.
@@ -37425,8 +37691,8 @@ multibyte corrente.
 @itemx @ @ @ @ AWK_STRNUM,
 @itemx @ @ @ @ AWK_ARRAY,
 @itemx @ @ @ @ AWK_SCALAR,@ @ @ @ @ @ @ @ @ /* accesso opaco a una variabile */
-@itemx @ @ @ @ AWK_VALUE_COOKIE@ @ @ @ /* per aggiornare un valore
-@itemx @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ gi@`a creato */
+@itemx @ @ @ @ AWK_VALUE_COOKIE@ @ @ @ /* per aggiornare valore gi@`a creato */
+@itemx @ @ @ @ AWK_BOOL
 @itemx @} awk_valtype_t;
 L'elenco @code{enum} indica di che tipo @`e un certo valore.
 @`E usato nella seguente struttura @code{struct}.
@@ -37439,6 +37705,7 @@ L'elenco @code{enum} indica di che tipo @`e un certo valore.
 @itemx @ @ @ @ @ @ @ @ awk_array_t@ @ @ @ @ @ @ @ a;
 @itemx @ @ @ @ @ @ @ @ awk_scalar_t@ @ @ @ @ @ @ scl;
 @itemx @ @ @ @ @ @ @ @ awk_value_cookie_t@ vc;
+@itemx @ @ @ @ @ @ @ @ awk_bool_t@ @ @ @ @ @ @ @ @ b;
 @itemx @ @ @ @ @} u;
 @itemx @} awk_value_t;
 Un ``valore di @command{awk}''.
@@ -37454,7 +37721,8 @@ e ogni campo @`e del tipo appropriato.
 @itemx #define array_cookie@ @ @ u.a
 @itemx #define scalar_cookie@ @ u.scl
 @itemx #define value_cookie@ @ @ u.vc
-L'uso di queste macro rende pi@`u facile da seguire l'accesso ai campi di
+@itemx #define bool_value@ @ @ @ @ u.b
+L'uso di queste macro rende pi@`u agevole eseguire l'accesso ai campi di
 @code{awk_value_t}.
 
 @item enum AWK_NUMBER_TYPE @{
@@ -37816,14 +38084,14 @@ Questa funzione crea semplicemente un valore numerico nella variabile
 @code{awk_value_t}, puntata da @code{risultato}.
 
 @item static inline awk_value_t *
-@itemx make_number_mpz(void *mpz, awk_value_t *result);
-Questa funzione crea un valore di numero GMP in @code{result}.
+@itemx make_number_mpz(void *mpz, awk_value_t *risultato);
+Questa funzione crea un valore di numero GMP in @code{risultato}.
 @code{mpz} deve provenire da una chiamata a @code{get_mpz_ptr()}
 (e quindi essere veramente del corrispondente tipo @code{mpz_ptr}).
 
 @item static inline awk_value_t *
-@itemx make_number_mpfr(void *mpfr, awk_value_t *result);
-Questa funzione crea un valore di numero MPFR in @code{result}.
+@itemx make_number_mpfr(void *mpfr, awk_value_t *risultato);
+Questa funzione crea un valore di numero MPFR in @code{risultato}.
 @code{mpz} deve provenire da una chiamata a @code{get_mpfr_ptr()}.
 
 @item static inline awk_value_t *
@@ -37851,6 +38119,11 @@ Questa funzione crea un valore di @dfn{regexp} fortemente tipizzata.
 Si aspetta che @code{stringa} sia un valore di tipo @samp{char *} che punta a
 dati ottenuti in precedenza tramite una chiamata a
 @code{gawk_malloc()}, @code{gawk_calloc()} o @code{gawk_realloc()}.
+
+@item static inline awk_value_t *
+@itemx make_bool(awk_bool_t boolval, awk_value_t *risultato);
+Questa funzione crea un valore booleano nella variabile @code{awk_value_t}
+puntata da @code{risultato}.
 
 @end table
 
@@ -37902,7 +38175,14 @@ return result;
 @cindex registrazione di estensione
 @cindex estensioni @subentry registrazione di
 
-Questa @value{SECTION} descrive le funzioni dell'API per
+@ifnotinfo
+Questa
+@end ifnotinfo
+@ifinfo
+Questo
+@end ifinfo
+@value{SECTION}
+descrive le funzioni dell'API per
 registrare parti di un'estensione con @command{gawk}.
 
 @menu
@@ -38723,7 +39003,8 @@ comportamento @`e riassunto nella
   <colspec colname="c6"/>
   <colspec colname="c7"/>
   <colspec colname="c8"/>
-  <spanspec spanname="hspan" namest="c3" nameend="c8" align="center"/>
+  <colspec colname="c9"/>
+  <spanspec spanname="hspan" namest="c3" nameend="c9" align="center"/>
   <thead>
     <row><entry></entry><entry spanname="hspan"><para>Tipo di valore reale</para></entry></row>
     <row>
@@ -38733,6 +39014,7 @@ comportamento @`e riassunto nella
       <entry><para>Strnum</para></entry>
       <entry><para>Numero</para></entry>
       <entry><para>Regexp</para></entry>
+      <entry><para>Bool</para></entry>
       <entry><para>Vettore</para></entry>
       <entry><para>Indefinito</para></entry>
     </row>
@@ -38741,6 +39023,7 @@ comportamento @`e riassunto nella
     <row>
       <entry></entry>
       <entry><para><emphasis role="bold">Stringa</emphasis></para></entry>
+      <entry><para>Stringa</para></entry>
       <entry><para>Stringa</para></entry>
       <entry><para>Stringa</para></entry>
       <entry><para>Stringa</para></entry>
@@ -38757,6 +39040,7 @@ comportamento @`e riassunto nella
       <entry><para>false</para></entry>
       <entry><para>false</para></entry>
       <entry><para>false</para></entry>
+      <entry><para>false</para></entry>
     </row>
     <row>
       <entry></entry>
@@ -38765,12 +39049,14 @@ comportamento @`e riassunto nella
       <entry><para>Numero</para></entry>
       <entry><para>Numero</para></entry>
       <entry><para>false</para></entry>
+      <entry><para>Numero</para></entry>
       <entry><para>false</para></entry>
       <entry><para>false</para></entry>
     </row>
     <row>
       <entry><para><emphasis role="bold">Tipo</emphasis></para></entry>
       <entry><para><emphasis role="bold">Regexp</emphasis></para></entry>
+      <entry><para>false</para></entry>
       <entry><para>false</para></entry>
       <entry><para>false</para></entry>
       <entry><para>Regexp</para></entry>
@@ -38780,7 +39066,19 @@ comportamento @`e riassunto nella
     </row>
     <row>
       <entry><para><emphasis role="bold">Richiesto</emphasis></para></entry>
+      <entry><para><emphasis role="bold">Booleano</emphasis></para></entry>
+      <entry><para>false</para></entry>
+      <entry><para>false</para></entry>
+      <entry><para>false</para></entry>
+      <entry><para>false</para></entry>
+      <entry><para>Booleano</para></entry>
+      <entry><para>false</para></entry>
+      <entry><para>false</para></entry>
+    </row>
+    <row>
+      <entry><para></para></entry>
       <entry><para><emphasis role="bold">Vettore</emphasis></para></entry>
+      <entry><para>false</para></entry>
       <entry><para>false</para></entry>
       <entry><para>false</para></entry>
       <entry><para>false</para></entry>
@@ -38795,6 +39093,7 @@ comportamento @`e riassunto nella
       <entry><para>Scalare</para></entry>
       <entry><para>Scalare</para></entry>
       <entry><para>Scalare</para></entry>
+      <entry><para>Scalare</para></entry>
       <entry><para>false</para></entry>
       <entry><para>false</para></entry>
     </row>
@@ -38805,12 +39104,14 @@ comportamento @`e riassunto nella
       <entry><para>Strnum</para></entry>
       <entry><para>Numero</para></entry>
       <entry><para>Regexp</para></entry>
+      <entry><para>Booleano</para></entry>
       <entry><para>Vettore</para></entry>
       <entry><para>Indefinito</para></entry>
     </row>
     <row>
       <entry></entry>
       <entry><para><emphasis role="bold">@dfn{Value cookie}</emphasis></para></entry>
+      <entry><para>false</para></entry>
       <entry><para>false</para></entry>
       <entry><para>false</para></entry>
       <entry><para>false</para></entry>
@@ -38834,31 +39135,33 @@ comportamento @`e riassunto nella
 @end tex
 @c @multitable @columnfractions .166 .166 .198 .15 .15 .166
 @ifclear SMALLPRINT
-@multitable {Richiesto} {Indefinito} {Numero} {Numero} {Scalar} {Regexp} {Vettore} {Indefinito}
-@headitem @tab @tab Stringa @tab Strnum @tab Numero @tab Regexp @tab Vettore @tab Indefinito
-@item @tab @b{Stringa} @tab Stringa @tab Stringa @tab Stringa @tab Stringa @tab false @tab false
-@item @tab @b{Strnum} @tab false @tab Strnum @tab Strnum @tab false @tab false @tab false
-@item @tab @b{Numero} @tab Numero @tab Numero @tab Numero @tab false @tab false @tab false
-@item @b{Tipo} @tab @b{Regexp} @tab false @tab false @tab false @tab Regexp @tab false @tab false
-@item @b{Richiesto} @tab @b{Vettore} @tab false @tab false @tab false @tab false @tab Vettore @tab false
-@item @tab @b{Scalar} @tab Scalar @tab Scalar @tab Scalar @tab Scalar @tab false @tab false
-@item @tab @b{Indefinito} @tab Stringa @tab Strnum @tab Numero @tab Regexp @tab Vettore @tab Indefinito
-@item @tab @b{Value cookie} @tab false @tab false @tab false @tab false @tab false @tab false
+@multitable {Richiesto} {Indefinito} {Numero} {Numero} {Scalare} {Regexp} {Numero} {Vettore} {Indefinito}
+@headitem @tab @tab Stringa @tab Strnum @tab Numero @tab Regexp @tab Booleano @tab Vettore @tab Indefinito
+@item @tab @b{Stringa} @tab Stringa @tab Stringa @tab Stringa @tab Stringa @tab Stringa @tab false @tab false
+@item @tab @b{Strnum} @tab false @tab Strnum @tab Strnum @tab false @tab false @tab false @tab false
+@item @tab @b{Numero} @tab Numero @tab Numero @tab Numero @tab false @tab Numero @tab false @tab false
+@item @b{Tipo} @tab @b{Regexp} @tab false @tab false @tab false @tab Regexp @tab Booleano @tab false @tab false
+@item @b{Richiesto} @tab @b{Booleano} @tab false @tab false @tab false @tab false @tab Booleano @tab false @tab false
+@item @tab @b{Vettore} @tab false @tab false @tab false @tab false @tab false @tab Vettore @tab false
+@item @tab @b{Scalare} @tab Scalare @tab Scalare @tab Scalare @tab Scalare @tab Scalare @tab false @tab false
+@item @tab @b{Indefinito} @tab Stringa @tab Strnum @tab Numero @tab Regexp @tab Booleano @tab Vettore @tab Indefinito
+@item @tab @b{@dfn{Value cookie}} @tab false @tab false @tab false @tab false @tab false @tab false
 @end multitable
 @end ifclear
 
 @ifset SMALLPRINT
 @smallformat
-@multitable {Richiesto} {Value cookie} {Num.} {Num.} {Scal.} {Regexp} {Vett.} {Indef.}
-@headitem @tab @tab String @tab Strn. @tab Num. @tab Regexp @tab Vett. @tab Indef.
-@item @tab @b{Stringa} @tab String @tab String @tab String @tab String @tab false @tab false
-@item @tab @b{Strnum} @tab false @tab Strn. @tab Strn. @tab false @tab false @tab false
-@item @tab @b{Numero} @tab Num. @tab Num. @tab Num. @tab false @tab false @tab false
-@item @b{Tipo} @tab @b{Regexp} @tab false @tab false @tab false @tab Regexp @tab false @tab false
-@item @b{Richiesto} @tab @b{Vettore} @tab false @tab false @tab false @tab false @tab Vett. @tab false
-@item @tab @b{Scalar} @tab Scal. @tab Scal. @tab Scal. @tab Scal. @tab false @tab false
-@item @tab @b{Indefinito} @tab String @tab Strn. @tab Num. @tab Regexp @tab Vett. @tab Indef.
-@item @tab @b{Value cookie} @tab false @tab false @tab false @tab false @tab false @tab false
+@multitable {Rich.} {Indef.} {Num.} {Num.} {Scal.} {Regex.} {Num.} {Vett.} {Indef.}
+@headitem @tab @tab Str. @tab Strn. @tab Num. @tab Regex. @tab Bool. @tab Vett. @tab Indef.
+@item @tab @b{Str.} @tab Str. @tab Str. @tab Str. @tab Str. @tab Str. @tab false @tab false
+@item @tab @b{Strn.} @tab false @tab Strn. @tab Strn. @tab false @tab false @tab false @tab false
+@item @tab @b{Num.} @tab Num. @tab Num. @tab Num. @tab false @tab Num. @tab false @tab false
+@item @b{Tipo} @tab @b{Regex.} @tab false @tab false @tab false @tab Regex. @tab Bool. @tab false @tab false
+@item @b{Rich.} @tab @b{Bool.} @tab false @tab false @tab false @tab false @tab Bool. @tab false @tab false
+@item @tab @b{Vett.} @tab false @tab false @tab false @tab false @tab false @tab Vett. @tab false
+@item @tab @b{Scal.} @tab Scal. @tab Scal. @tab Scal. @tab Scal. @tab Scal. @tab false @tab false
+@item @tab @b{Indef.} @tab Str. @tab Strn. @tab Num. @tab Regex. @tab Bool. @tab Vett. @tab Indef.
+@item @tab @b{@dfn{Val. coo.}} @tab false @tab false @tab false @tab false @tab false @tab false
 @end multitable
 @end smallformat
 @end ifset
@@ -38866,28 +39169,30 @@ comportamento @`e riassunto nella
 @end ifnotplaintext
 @ifplaintext
 @verbatim
-                        +-------------------------------------------------------+
-                        |                   Tipo di valore reale:               |
-                        +--------+--------+--------+--------+-------+-----------+
-                        | Stringa| Strnum | Numero | Regexp |Vettore| Indefinito|
-+-----------+-----------+--------+--------+--------+--------+-------+-----------+
-|           | Stringa   | Stringa| Stringa| Stringa| Stringa| false | false     |
-|           +-----------+--------+--------+--------+--------+-------+-----------+
-|           | Strnum    | false  | Strnum | Strnum | false  | false | false     |
-|           +-----------+--------+--------+--------+--------+-------+-----------+
-|           | Numero    | Numero | Numero | Numero | false  | false | false     |
-|           +-----------+--------+--------+--------+--------+-------+-----------+
-|           | Regexp    | false  | false  | false  | Regexp | false | false     |
-|   Tipo    +-----------+--------+--------+--------+--------+-------+-----------+
-|Richiesto: | Vettore   | false  | false  | false  | false  |Vettore| false     |
-|           +-----------+--------+--------+--------+--------+-------+-----------+
-|           | Scalare   | Scalare| Scalare| Scalare| Scalare| false | false     |
-|           +-----------+--------+--------+--------+--------+-------+-----------+
-|           | Indefinito| Stringa| Strnum | Numero | Regexp |Vettore| Indefinito|
-|           +-----------+--------+--------+--------+--------+-------+-----------+
-|           | Value-    | false  | false  | false  | false  | false | false     |
-|           | Cookie    |        |        |        |        |       |           |
-+-----------+-----------+--------+--------+--------+--------+-------+-----------+
+                        +----------------------------------------------------------------+
+                        |                     Tipo di valore reale:                      |
+                        +--------+--------+--------+--------+--------+-------+-----------+
+                        | Stringa| Strnum | Numero | Regexp |Booleano|Vettore| Indefinito|
++-----------+-----------+--------+--------+--------+--------+--------+-------+-----------+
+|           | Stringa   | Stringa| Stringa| Stringa| Stringa| false  | false | false     |
+|           +-----------+--------+--------+--------+--------+--------+-------+-----------+
+|           | Strnum    | false  | Strnum | Strnum | false  | false  | false | false     |
+|           +-----------+--------+--------+--------+--------+--------+-------+-----------+
+|           | Numero    | Numero | Numero | Numero | false  | false  | false | false     |
+|           +-----------+--------+--------+--------+--------+--------+-------+-----------+
+|           | Regexp    | false  | false  | false  | Regexp | false  | false | false     |
+|           +-----------+--------+--------+--------+--------+--------+-------+-----------+
+|   Tipo    | Booleano  | false  | false  | false  | false  |Booleano| false | false     |
+| Richiesto +-----------+--------+--------+--------+--------+--------+-------+-----------+
+|           | Vettore   | false  | false  | false  | false  |Vettore |Vettore| false     |
+|           +-----------+--------+--------+--------+--------+--------+-------+-----------+
+|           | Scalare   | Scalare| Scalare| Scalare| Scalare| false  | false | false     |
+|           +-----------+--------+--------+--------+--------+--------+-------+-----------+
+|           | Indefinito| Stringa| Strnum | Numero | Regexp |Vettore |Vettore| Indefinito|
+|           +-----------+--------+--------+--------+--------+--------+-------+-----------+
+|           | Value-    | false  | false  | false  | false  | false  | false | false     |
+|           | Cookie    |        |        |        |        |        |       |           |
++-----------+-----------+--------+--------+--------+--------+--------+-------+-----------+
 @end verbatim
 @end ifplaintext
 @end float
@@ -38900,7 +39205,7 @@ passati all'estensione. Esse sono:
 
 @table @code
 @item awk_bool_t get_argument(size_t count,
-@itemx @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ awk_valtype_t wanted,
+@itemx @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ awk_valtype_t desiderato,
 @itemx @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ awk_value_t *risultato);
 Riempie la struttura @code{awk_value_t} puntata da @code{risultato}
 con l'argomento numero @code{count}.  Restituisce @dfn{true} se il tipo
@@ -38949,7 +39254,7 @@ Le funzioni sono le seguenti:
 
 @table @code
 @item awk_bool_t sym_lookup(const char *nome,
-@itemx @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ awk_valtype_t wanted,
+@itemx @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ awk_valtype_t desiderato,
 @itemx @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ awk_value_t *risultato);
 Riempie la struttura @code{awk_value_t} puntata da @code{risultato}
 con il valore della variabile il cui nome @`e nella stringa @code{nome},
@@ -38963,7 +39268,7 @@ della variabile
 
 @item awk_bool_t sym_lookup_ns(const char *nome,
 @itemx @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ const char *name_space,
-@itemx @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ awk_valtype_t wanted,
+@itemx @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ awk_valtype_t desiderato,
 @itemx @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ awk_value_t *risultato);
 Simile a @code{sym_lookup()}, ma il parametro @code{name_space} consente di
 specificare a quale spazio-di-nomi appartiene @code{nome}.
@@ -39010,7 +39315,7 @@ Le funzioni seguenti servono per gestire gli @dfn{scalar cookie}:
 
 @table @code
 @item awk_bool_t sym_lookup_scalar(awk_scalar_t cookie,
-@itemx @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ awk_valtype_t wanted,
+@itemx @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ awk_valtype_t desiderato,
 @itemx @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ awk_value_t *risultato);
 Ottiene il valore corrente di uno @dfn{scalar cookie}.
 Una volta ottenuto lo @dfn{scalar cookie} usando @code{sym_lookup()}, si
@@ -39097,7 +39402,14 @@ inizializza_estensione()
 @}
 @end example
 
-Dopo aver fatto questo, si usino le routine descritte in questa @value{SECTION}
+Dopo aver fatto questo, si usino le routine descritte in
+@ifnotinfo
+questa
+@end ifnotinfo
+@ifinfo
+questo
+@end ifinfo
+@value{SECTION}
 per ottenere e modificare
 il valore usando il @dfn{value cookie}.  Quindi, @code{do_magic()} diviene ora
 qualcosa del tipo:
@@ -39131,7 +39443,15 @@ restituiti dalle funzioni dell'API.
 @node Valori nascosti
 @subsubsection Creare e usare valori nascosti
 
-Le routine in questa @value{SECTION} permettono di creare e rilasciare
+Le routine in
+@ifnotinfo
+questa
+@end ifnotinfo
+@ifinfo
+questo
+@end ifinfo
+@value{SECTION}
+permettono di creare e rilasciare
 valori nascosti.  Come gli @dfn{scalar cookie}, in teoria i valori nascosti
 non sono necessari.  Si possono creare numeri e stringhe usando
 le funzioni descritte
@@ -39364,7 +39684,7 @@ Restituisce @dfn{false} se si verifica un errore.
 
 @item awk_bool_t get_array_element(awk_array_t a_cookie,
 @itemx @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ const awk_value_t *const index,
-@itemx @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ awk_valtype_t wanted,
+@itemx @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ awk_valtype_t desiderato,
 @itemx @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ awk_value_t *risultato);
 Per il vettore rappresentato da @code{a_cookie}, restituisce in @code{*risultato}
 il valore dell'elemento il cui indice @`e @code{index}.
@@ -41017,11 +41337,18 @@ $ @kbd{AWKLIBPATH=$PWD gawk -f testff.awk}
 @section Le estensioni di esempio incluse nella distribuzione @command{gawk}
 @cindex estensioni @subentry distribuite con @command{gawk}
 
-Questa @value{SECTION} fornisce una breve panoramica degli esempi di
+@ifnotinfo
+Questa
+@end ifnotinfo
+@ifinfo
+Questo
+@end ifinfo
+@value{SECTION}
+fornisce una breve panoramica degli esempi di
 estensione inclusi nella distribuzione di @command{gawk}.  Alcune di esse
 sono destinate per l'uso in produzione (p.es., le estensioni
-@code{filefuncs}, @code{readdir}, e
-@code{inplace}).  Altre sono state scritte principalmente per mostrare come
+@code{filefuncs}, @code{readdir}, e @code{inplace}).
+Altre sono state scritte principalmente per mostrare come
 si usa l'estensione API.
 
 @menu
@@ -42205,7 +42532,15 @@ documentazione online}.
 
 Il liguaggio @command{awk} si @`e evoluto considerevolmente tra Unix versione
 7 (1978) e la nuova implementazione disponibile a partire da Unix System V
-Release 3.1 (1987).  Questa @value{SECTION} riassume le differenze e indica
+Release 3.1 (1987).
+@ifnotinfo
+Questa
+@end ifnotinfo
+@ifinfo
+Questo
+@end ifinfo
+@value{SECTION}
+riassume le differenze e indica
 dove @`e possibile trovare ulteriori dettagli:
 
 @itemize @value{BULLET}
@@ -43654,6 +43989,36 @@ L'indice analitico di questo manuale @`e stato completamente rimaneggiato.
 
 @item
 @`E stato aggiunto il supporto per MSYS2.
+
+@item
+@code{asort()} ed @code{asorti()} sono stati modificati
+per consentire come primo argomento @code{FUNCTAB} e @code{SYMTAB},
+quando venga specificato un vettore di destinazione come secondo parametro
+(@pxref{Funzioni per stringhe}).
+
+@item
+Le opzioni @option{-I}/@option{--trace} sono state aggiunte per
+stampare una traccia dei @dfn{byte code} mentre vengono eseguiti
+(@pxref{Opzioni}).
+
+@item
+@code{$0} e i campi sono ora azzerati prima di eseguire una
+regola @code{BEGINFILE} rule (@pxref{BEGINFILE/ENDFILE}).
+
+@item
+Parecchi fra i programmi di esempio sono stati aggiornati per
+riflettere i loro equivalenti POSIX pi@`u recenti.
+
+@item
+Gli avvisi ``no effect'' di @command{lint} sono stati modificati
+e ora sono pi@`u ragionevoli.
+(@pxref{Opzioni}).
+
+@item
+La gestione dei valori Infinity [Infinito] e NaN [Non un Numero]
+@`e stata migliorata.
+@xref{Definizioni matematiche} e vedere anche
+@ref{Problemi virgola mobile POSIX}.
 @end itemize
 
 @c XXX ADD MORE STUFF HERE
@@ -43830,7 +44195,14 @@ In ogni caso @command{gawk} aderisce allo standard POSIX.
 @author Anonimo
 @end quotation
 
-Questa @value{SECTION} elenca le persone che hanno maggiormente contribuito
+@ifnotinfo
+Questa
+@end ifnotinfo
+@ifinfo
+Questo
+@end ifinfo
+@value{SECTION}
+elenca le persone che hanno maggiormente contribuito
 allo sviluppo di @command{gawk} e/o alla stesura di questo @value{DOCUMENT},
 in ordine approssimativamente cronologico:
 
@@ -44203,7 +44575,14 @@ della versione specifica di una particolare piattaforma.
 @cindex codice sorgente @subentry @command{gawk}
 @cindex sorgente @subentry codice @subentry @command{gawk}
 
-Questa @value{SECTION} spiega come ottenere la distribuzione
+@ifnotinfo
+Questa
+@end ifnotinfo
+@ifinfo
+Questo
+@end ifinfo
+@value{SECTION}
+spiega come ottenere la distribuzione
 di @command{gawk}, come scompattarla, e cosa @`e contenuto nei vari file
 e nelle sottodirectory risultanti.
 
@@ -44370,7 +44749,7 @@ programmazione nel campo dell'intelligenza artificiale (AI).
 
 @item doc/bc_notes
 Una breve descrizione della struttura interna a livello di byte di
-@command{gawk} [``byte code''].
+@command{gawk} [``@dfn{byte code}''].
 
 @item doc/README.card
 @itemx doc/ad.block
@@ -44779,7 +45158,14 @@ delle opzioni disponibili in @command{configure}.
 
 @cindex @command{gawk} @subentry configurazione di
 @cindex configurazione di @command{gawk}
-Questa @value{SECTION} interessa solo a chi abbia un minimo di familiarit@`a con
+@ifnotinfo
+Questa
+@end ifnotinfo
+@ifinfo
+Questo
+@end ifinfo
+@value{SECTION}
+interessa solo a chi abbia un minimo di familiarit@`a con
 il linguaggio C e con i sistemi operativi di tipo Unix.
 
 Il codice sorgente di @command{gawk}, in generale, cerca di aderire, nei limiti
@@ -44826,7 +45212,14 @@ al file @file{configure.ac} e/o a @file{custom.h}.
 @node Installazione non-Unix
 @appendixsec Installazione su altri Sistemi Operativi
 
-Questa @value{SECTION} descrive come installare @command{gawk} su
+@ifnotinfo
+Questa
+@end ifnotinfo
+@ifinfo
+Questo
+@end ifinfo
+@value{SECTION}
+descrive come installare @command{gawk} su
 vari sistemi non-Unix.
 
 @menu
@@ -44841,10 +45234,25 @@ vari sistemi non-Unix.
 @cindex PC @subentry @command{gawk} su sistemi operativi
 @cindex sistemi operativi @subentry per PC @subentry @command{gawk} su
 @cindex installare @command{gawk} @subentry su sistemi operativi per PC
-Questa @value{SECTION} tratta dell'installazione e uso di @command{gawk}
+@ifnotinfo
+Questa
+@end ifnotinfo
+@ifinfo
+Questo
+@end ifinfo
+@value{SECTION}
+tratta dell'installazione e uso di @command{gawk}
 su macchine con architettura Intel che eseguono qualsiasi versione di
 MS-Windows.
-In questa @value{SECTION}, il termine ``Windows32''
+In
+@ifnotinfo
+questa
+@end ifnotinfo
+@ifinfo
+questo
+@end ifinfo
+@value{SECTION},
+il termine ``Windows32''
 si riferisce a una qualsiasi versione di Microsoft Windows
 95/98/ME/NT/2000/XP/Vista/7/8/10.
 
@@ -45082,7 +45490,14 @@ In ambiente MSYS2, la compilazione usando i comandi classici
 @cindex @command{gawk} @subentry versione VMS di
 @cindex installare @command{gawk} @subentry su VMS
 @cindex VMS @subentry installare @command{gawk} su
-Questa @value{SUBSECTION} descrive come compilare e installare @command{gawk}
+@ifnotinfo
+Questa
+@end ifnotinfo
+@ifinfo
+Questo
+@end ifinfo
+@value{SUBSECTION}
+descrive come compilare e installare @command{gawk}
 sotto VMS.  Il termine classico ``VMS'' @`e usato qui anche per designare
 OpenVMS.
 
@@ -45708,7 +46123,14 @@ Date: Wed, 4 Sep 1996 08:11:48 -0700 (PDT)
 
 Ci sono alcune altre implementazioni di @command{awk} disponibili
 gratuitamente.
-Questa @value{SECTION} descrive in breve dove @`e possibile trovarle:
+@ifnotinfo
+Questa
+@end ifnotinfo
+@ifinfo
+Questo
+@end ifinfo
+@value{SECTION}
+descrive in breve dove @`e possibile trovarle:
 
 @table @asis
 @cindex Kernighan, Brian
@@ -45996,7 +46418,14 @@ correntemente supportati sono MS-Windows, usando
 MSYS, MSYS2, DJGPP, MinGW e Cygwin,
 @c OS/2,
 e sia Vax/VMS che OpenVMS.  Le istruzioni per ognuno di questi sistemi sono
-incluse in questa @value{APPENDIX}.
+incluse in
+@ifnotinfo
+questa
+@end ifnotinfo
+@ifinfo
+questo
+@end ifinfo
+@value{APPENDIX}.
 
 @item
 Le segnalazioni di errori (bug) dovrebbero essere spedite tramite email a
@@ -46738,7 +47167,14 @@ sistemi operativi possono avere limiti differenti.
 @node Progetto delle estensioni
 @appendixsec Note di progetto dell'estensione API
 
-Questa @value{SECTION} documenta l'architettura dell'estensione API,
+@ifnotinfo
+Questa
+@end ifnotinfo
+@ifinfo
+Questo
+@end ifinfo
+@value{SECTION}
+documenta l'architettura dell'estensione API,
 inclusa una trattazione sommaria della progettazione e dei problemi che
 andavano risolti.
 
@@ -47710,9 +48146,9 @@ il record in input con un'espressione regolare.
 
 @item Espressione logica
 Un'espressione che usa gli operatori logici AND, OR e NOT,
-scritti come @samp{&&}, @samp{||}, e @samp{!} in @command{awk}.
-Spesso chiamate espressioni booleane, dal nome del matematico che per primo
-ha sistematizzato questo tipo di logica matematica.
+scritti come @samp{&&}, @samp{||} e @samp{!} in @command{awk}.
+Spesso chiamate  @dfn{espressioni booleane}, dal nome del matematico che
+per primo ha sistematizzato questo tipo di logica matematica.
 
 @item Espressione regolare
 un'espressione regolare (abbreviabile come ``@dfn{regexp}'') @`e un modello che
