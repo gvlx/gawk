@@ -858,7 +858,7 @@ particular records in a file and perform operations upon them.
 * Programs Summary::                    Summary of programs.
 * Programs Exercises::                  Exercises.
 * Nondecimal Data::                     Allowing nondecimal input data.
-* Boolean Typed Values::                Values with @code{bool} type.
+* Boolean Typed Values::                Values with @code{number|bool} type.
 * Array Sorting::                       Facilities for controlling array
                                         traversal and sorting arrays.
 * Controlling Array Traversal::         How to use PROCINFO["sorted_in"].
@@ -28388,7 +28388,7 @@ returns a value of Boolean type.
 The returned values are normal @command{awk} numeric values, with
 values of either one or zero,
 depending upon the truth
-value of the original expression passed in the call to @code{bool()}.
+value of the original expression passed in the call to @code{mkbool()}.
 
 The @code{typeof()} function (@pxref{Type Functions}) returns
 @code{"number|bool"} for these values.

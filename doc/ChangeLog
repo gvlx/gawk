@@ -1,7 +1,10 @@
 2021-05-30         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawktexi.in (Feature History): Fix a typo and clarify wording.
-	Thanks to Antonio Columbo for the report.
+	Additionally, fix some other small mistakes.
+	* gawk.1: Also, fix a small typo.
+
+	Thanks to Antonio Columbo for the reports.
 
 2021-05-27         Arnold D. Robbins     <arnold@skeeve.com>
 
