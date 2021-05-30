@@ -41346,7 +41346,7 @@ The index for this manual was completely reworked.
 Support was added for MSYS2.
 
 @item
-@code{asorti()} and @code{asorti()} were changed to
+@code{asort()} and @code{asorti()} were changed to
 allow @code{FUNCTAB} and @code{SYMTAB} as the first argument if a
 second destination array is supplied (@pxref{String Functions}).
 
@@ -41363,8 +41363,8 @@ Several example programs in the manual were updated to their modern
 POSIX equivalents.
 
 @item
-The ``no effect'' lint warnings were fixed up and now behave more sanely
-(@pxref{Options}).
+The ``no effect'' lint warnings from @option{--lint} were fixed up
+and now behave more sanely (@pxref{Options}).
 
 @item
 Handling of Infinity and NaN values were improved.
