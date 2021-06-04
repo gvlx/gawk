@@ -1,3 +1,11 @@
+2021-06-04         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* builtin.c (format_tree): In MPFR prints, cast values to
+	int for proper int vs. unsigned comparison. Fixes things
+	for HP-UX. Thanks to Daniel Richard G. for the report.
+
+2021-06-04         Arnold D. Robbins     <arnold@skeeve.com>
+
 2021-05-21         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* debug.c: For z/OS, use %#p to print pointers, %p everything else.
