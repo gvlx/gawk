@@ -30998,7 +30998,7 @@ importati l'informazione che si trattava di dati di tipo booleano viene
 persa.  Esportare dati di questo tipo @`e ancora pi@`u difficile;
 non c'@`e modo per indicare che un valore @`e veramente booleano.
 
-Per risolvere questo problema, @command{gawk} mette a disposizione na
+Per risolvere questo problema, @command{gawk} mette a disposizione una
 funzione di nome @code{mkbool()}.
 La funzione ha un argomento, che pu@`o essere una qualsiasi espressione
 @command{awk} e restituisce un valore di tipo booleano.
@@ -44010,7 +44010,8 @@ Parecchi fra i programmi di esempio sono stati aggiornati per
 riflettere i loro equivalenti POSIX pi@`u recenti.
 
 @item
-Gli avvisi ``no effect'' di @command{lint} sono stati modificati
+Gli avvisi ``no effect'' da lint, emessi se si specifica
+l'opzione @option{--lint}, sono stati modificati
 e ora sono pi@`u ragionevoli.
 (@pxref{Opzioni}).
 
