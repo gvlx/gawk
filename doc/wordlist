@@ -20,6 +20,7 @@ AWKBUFSIZE
 AWKLIBPATH
 AWKPATH
 AWKREADFUNC
+AbbC
 AdditionalResources
 Affero
 Aharon
@@ -65,6 +66,7 @@ Byname
 Byuid
 CAKuGj
 CASEFOLD
+CBA
 CC
 CDE
 CEST
@@ -80,6 +82,7 @@ CRTL
 CSV
 CSVMODE
 CTYPE
+CbbA
 Cc
 Chana
 ChangeLog
@@ -645,6 +648,7 @@ basedefs
 baselineskip
 bax
 baz
+bb
 bc
 bcd
 becky
@@ -1782,6 +1786,7 @@ writea
 www
 wy
 xA
+xAxBxCx
 xDEADBEEF
 xDeadBeef
 xFOO
