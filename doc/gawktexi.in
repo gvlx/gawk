@@ -29713,6 +29713,19 @@ they should be added to the core interpreter only as a last resort.
 @node Internationalization
 @chapter Internationalization with @command{gawk}
 
+@cindex Robbins, Malka
+@cindex Moon, Sailor
+@cindex Sailor Moon @seeentry{Moon, Sailor}
+@quotation
+@i{Moon@dots{} Gorgeous@dots{} MEDITATION!}
+@author Pretty Guardian Sailor Moon Eternal, The Movie
+@end quotation
+
+@quotation
+@i{It probably sounded better in Japanese.}
+@author Malka Robbins
+@end quotation
+
 Once upon a time, computer makers
 wrote software that worked only in English.
 Eventually, hardware and software vendors noticed that if their
@@ -39700,8 +39713,9 @@ for internationalization
 
 @item
 The @code{extension()} function and the ability to add
-new built-in functions dynamically
-(@pxref{Dynamic Extensions}).
+new built-in functions dynamically. This has seen removed.
+It was replaced by the new extension mechanism.
+@xref{Dynamic Extensions}.
 
 @item
 The @code{mktime()} function for creating timestamps
@@ -39801,7 +39815,7 @@ the fields, instead of matching the field separator
 (@pxref{Splitting By Content}).
 
 @item
-If @code{PROCINFO["sorted_in"]} exists, @samp{for(iggy in foo)} loops sort the
+If @code{PROCINFO["sorted_in"]} exists, @samp{for (iggy in foo)} loops sort the
 indices before looping over them.  The value of this element
 provides control over how the indices are sorted before the loop
 traversal starts
