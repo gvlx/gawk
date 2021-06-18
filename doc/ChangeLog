@@ -1,3 +1,8 @@
+2021-06-18         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.in (Internationalization): Fix indexing. Thanks to
+	Antonio Columbo for pointing it out.
+
 2021-06-17         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawktexi.in (Internationalization): Add some appropriate quotes.

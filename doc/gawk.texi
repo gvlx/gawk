@@ -30831,7 +30831,7 @@ they should be added to the core interpreter only as a last resort.
 @node Internationalization
 @chapter Internationalization with @command{gawk}
 
-@cindex Robbins, Malka
+@cindex Robbins @subentry Malka
 @cindex Moon, Sailor
 @cindex Sailor Moon @seeentry{Moon, Sailor}
 @quotation

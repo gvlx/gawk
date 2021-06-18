@@ -37612,12 +37612,12 @@ Index
 * Robbins, Arnold <2>:                   Passwd Functions.    (line  90)
 * Robbins, Miriam <2>:                   Passwd Functions.    (line  90)
 * Robbins, Arnold <3>:                   Alarm Program.       (line   6)
+* Robbins, Malka:                        Internationalization.
+                                                              (line   6)
 * Robbins, Arnold <4>:                   General Data Types.  (line   6)
 * Robbins, Arnold <5>:                   Contributors.        (line 154)
 * Robbins, Arnold <6>:                   Maintainers.         (line  14)
 * Robbins, Arnold <7>:                   Future Extensions.   (line   6)
-* Robbins, Malka:                        Internationalization.
-                                                              (line   6)
 * Rommel, Kai Uwe:                       Contributors.        (line  43)
 * round to nearest integer:              Numeric Functions.   (line  24)
 * round() user-defined function:         Round Function.      (line  16)
