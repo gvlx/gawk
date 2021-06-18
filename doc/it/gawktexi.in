@@ -2518,7 +2518,7 @@ sulla sua documentazione senza il suo aiuto.
 Brian @`e un fuoriclasse sia come programmatore che come autore di manuali
 tecnici.  @`E mio dovere ringraziarlo (una volta di pi@`u) per la sua costante
 amicizia e per essere stato per me un modello da seguire ormai per oltre
-30 anni!  Averlo come revisiore @`e per me un privilegio eccitante, ma @`e
+30 anni!  Averlo come revisore @`e per me un privilegio eccitante, ma @`e
 stata anche un'esperienza che mi ha fatto sentire molto piccolo@enddots{}
 
 @cindex Robbins @subentry Miriam
@@ -32425,6 +32425,19 @@ dell'interpretatore solo come ultima risorsa.
 @node Internazionalizzazione
 @chapter Internazionalizzazione con @command{gawk}
 
+@cindex Robbins @subentry Malka
+@cindex Moon, Sailor
+@cindex Sailor Moon @seeentry{Moon, Sailor}
+@quotation
+@i{Moon@dots{} Meraviglioso@dots{} MEDITAZIONE!}
+@author Pretty Guardian Sailor Moon Eternal, Il Film
+@end quotation
+
+@quotation
+@i{Probabilmente suonava meglio in Giapponese.}
+@author Malka Robbins
+@end quotation
+
 Tanto tempo fa i produttori di computer
 scrivevano software che comunicava solo in inglese.
 Col passare del tempo, i venditori di hardware e di software si sono
@@ -43450,7 +43463,8 @@ per l'internationalizzazione
 
 @item
 La funzione @code{extension()} e la possibilit@`a di aggiungere
-nuove funzioni predefinite dinamicamente
+nuove funzioni predefinite dinamicamente.  Questa funzione @`e stata rimossa.
+È rimpiazzata dal nuovo meccanismo delle estensioni dinamiche
 @iftex
 (@pxrefil{Estensioni dinamiche}).
 @end iftex
@@ -43562,7 +43576,7 @@ i campi, invece che individuare il separatore tra i campi
 
 @item
 Se esiste l'elemento di vettore @code{PROCINFO["sorted_in"]}, il ciclo
-@samp{for(indice in pippo)} ordina
+@samp{for (indice in pippo)} ordina
 gli indici, prima di iniziare il ciclo. Il valore di questo elemento
 permette di controllare l'ordinamento degli indici prima di iniziare il
 ciclo che li visita tutti
