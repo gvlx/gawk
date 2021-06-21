@@ -1191,7 +1191,7 @@ Copyright dell'edizione italiana @copyright{} 2016 -- Free Software Foundation, 
 * Ulteriori opzioni di configurazione:: Altre opzioni utilizzabili in fase
                                         di compilazione.
 * Filosofia della configurazione::      Come si suppone che funzioni.
-* Installazione non-Unix::              Installazioni su altri Sistemi
+* Installazione non-Unix::              Installazioni su altri Sistemi Operativi.
                                         Operativi.
 * Installazione su PC::                 Installare e compilare
                                         @command{gawk} su Microsoft Windows.
@@ -1218,7 +1218,8 @@ Copyright dell'edizione italiana @copyright{} 2016 -- Free Software Foundation, 
 * Bug::                                 Notificare problemi e bug.
 * Indirizzo Bug::                       Dove notificare problemi.
 * Usenet::                              Dove non notificare problemi.
-* Manutentori::                         Manutentori di version non-*nix.
+* Bug di prestazione::                  Che fare in caso di problemi di prestazione.
+* Manutentori::                         Manutentori di versioni non-Unix.
 * Altre versioni::                      Altre implementazioni di
                                         @command{awk} liberamente
                                         disponibili.
@@ -1377,7 +1378,7 @@ scoprire prima i problemi che possono presentarsi. Spesso, l'efficienza di
 questa versione iniziale interpretata @`e sufficiente e il prototipo
 AWK diventa il prodotto finale.
 
-Il nuovo comando @command{pgawk} (profiling @command{gawk}) produce
+Il nuovo comando @command{pgawk} (@dfn{profiling} @command{gawk}) produce
 conteggi sull'esecuzione delle istruzioni del programma.
 Recentemente ho fatto un tentativo con un algoritmo che, a fronte di
 @ifnotdocbook
@@ -8887,7 +8888,7 @@ $ @kbd{gawk -v fpat=2 -f test-csv.awk sample.csv}
 
 @cindex Collado, Manuel
 @cindex @code{CSVMODE}, libreria per @command{gawk}
-@cindex libreria @code{CSVMODE} per @command{gawk}
+@cindex libreria @subentry @code{CSVMODE} per @command{gawk}
 @cindex dati CSV (valori separati da virgole) @subentry analizzare con libreria @code{CSVMODE}
 @cindex CSV (valori separati da virgole) come dati @subentry analizzare con libreria @code{CSVMODE}
 @cindex valori separati da virgole (CSV) come dati @subentry analizzare con libreria @code{CSVMODE}
@@ -32496,7 +32497,7 @@ relative al modo di leggere e di stampare dati di tipo numerico o valutario.
 
 @cindex internazionalizzazione @subentry di programmi @command{awk}
 @cindex @command{gettext} @subentry libreria
-@cindex libreria @command{gettext}
+@cindex libreria @subentry @command{gettext}
 @command{gawk} usa il comando GNU @command{gettext} per rendere disponibili
 le proprie funzionalit@`a di internazionalizzazione.
 L'attenzione del comando GNU @command{gettext} @`e rivolta principalmente
@@ -32639,7 +32640,7 @@ printf("%s", _("Don't Panic!\n"));
 
 @cindex internazionalizzazione @subentry localizzazione @subentry categorie di localizzazione
 @cindex @command{gettext} @subentry libreria @subentry categorie di localizzazione
-@cindex libreria @command{gettext} @subentry categorie di localizzazione
+@cindex libreria @subentry @command{gettext} @subentry categorie di localizzazione
 @cindex categoria di localizzazione
 @cindex localizzazione @subentry categorie di
 @noindent
@@ -44957,6 +44958,10 @@ dover configurare @command{gawk} per quel dato sistema.
 @node Installazione veloce
 @appendixsubsec Compilare @command{gawk} per sistemi di tipo Unix
 
+@menu
+* Compilare con MPFR::                Compilare con MPFR.
+@end menu
+
 Questi normali passi di installazione dovrebbero essere sufficienti in
 tutti i moderni sistemi in commercio derivati da Unix, ossia
 GNU/Linux, sistemi basati su BSD, e l'ambiente Cygwin sotto MS-Windows.
@@ -45038,6 +45043,31 @@ usare il comando @command{sudo} per ottenerle.  Il comando da immettere
 diventa in questo caso @samp{sudo make install}. @`E probabile che sia
 necessario fornire una password, ed essere stati messi nella lista degli
 utenti che possono utilizzare il comando @command{sudo}.
+
+@node Compilare con MPFR
+@appendixsubsubsec Compilare con MPFR
+
+@cindex MPFR @subentry compilare @command{gawk} con libreria
+@cindex compilare @command{gawk} @subentry con libreria MPFR
+@cindex libreria @subentry MPFR @subentry compilare con
+L'uso della libreria MPFR
+[@dfn{Multiple Precision Floating-Point Reliable library}]
+in @command{gawk} @`e una funzionalit@`a opzionale:
+se le librerie MPFR e GMP sono gi@`a installate nel sistema
+quando si configura e compila @command{gawk},
+@command{gawk} sar@`a in grado di usarle in maniera automatica.
+
+Tali librerie si possono installare, a partire dal codice
+sorgente, scaricandole dal sito GNU di distribuzione, che @`e
+@code{ftp.gnu.org}.
+
+La maggioranza dei sistemi operativi recenti mette a disposizione
+dei pacchetti di installazione che consentono di evitare di installare
+le librerie a partire dal codice sorgente.
+Tali pacchetti scaricano e installano i file binari e quelli di
+intestazione di MPFR e GMP.  Resta a carico di chi compila l'ottenere
+questi pacchetti con modalit@`a che dipendono dai metodi di aggiornamento
+di ogni particolare sistema.
 
 @node File da usare a inizio sessione
 @appendixsubsec File di inizializzazione della shell
@@ -45928,7 +45958,8 @@ si sforzi di risolverlo.
 @menu
 * Indirizzo Bug::               Dove inviare le segnalazioni.
 * Usenet::                      Dove non inviare le segnalazioni.
-* Manutentori::                 Manutentori di version non-*nix.
+* Bug di prestazione::          Che fare in caso di problemi di prestazione.
+* Manutentori::                 Manutentori di versioni non-Unix.
 @end menu
 
 @node Indirizzo Bug
@@ -46054,8 +46085,105 @@ and run to another section of the playground.  Then, if you like mixing
 metaphors, you can throw rocks from there."
 @end ignore
 
+@node Bug di prestazione
+@appendixsubsec Che fare in caso di problemi di prestazione
+
+@cindex prestazione @subentry controllare problemi di
+@cindex segnalare bug @subentry solo dopo controlli
+@cindex compilare @command{gawk} per la profilazione
+@cindex profilare programmi @command{awk}
+@cindex profilazione @subentry in @command{gawk}
+Se si ritiene che @command{gawk} sia troppo lento nell'eseguire un
+particolare compito, si dovrebbe effettuare qualche indagine prima
+di segnalare un bug.  Questi sono i passi da seguire:
+
+@enumerate 1
+@item
+Eseguire @command{gawk} specificando l'opzione @option{--profile}
+(@pxref{Opzioni}) per vedere cosa fa il programma in questione.
+Pu@`o darsi che sia stato scritto in maniera inefficiente.
+Per esempio, il programma potrebbe fare, per ogni record di un file,
+ci@`o che potrebbe essere fatto una volta sola per ogni file.
+(Per questo, si pu@`o usare una regola @code{BEGINFILE};
+@pxref{BEGINFILE/ENDFILE}.)
+Oppure si pu@`o fare qualcosa per ogni file che pu@`o essere
+fatto una volta solo per ogni esecuzione del programma.
+(Per questo si pu@`o usare una regola @code{BEGIN}; @pxref{BEGIN/END}.)
+
+@item
+Se la profilazione a livello di @command{awk} non @`e sufficiente
+a risolvere il problema, sar@`a necessario compilare lo stesso
+@command{gawk} per effettuare una profilazione a livello del
+linguaggio C.
+
+Per fare ci@`o, occorre partire dall'ultima versione rilasciata
+di @command{gawk}.  Dopo aver scompattato il codice sorgente
+in una nuova directory, lo si configuri per fare questo:
+
+@example
+$ @kbd{tar -xpzvf gawk-X.Y.Z.tar.gz}
+@print{} @dots{}                                @ii{Output omesso}
+$ @kbd{cd gawk-X.Y.Z}
+$ @kbd{./configure}
+@print{} @dots{}                                @ii{Output omesso}
+@end example
+
+@item
+Dopo questo, vanno modificati i file @file{Makefile} e
+@file{support/Makefile}.
+Ogni ricorrenza di @option{-O2} o @option{-O} va cambiata
+in @option{-pg}.
+Ci@`o fa s@`{@dotless{i}} che @command{gawk} sar@`a poi compilato per la
+profilazione.
+
+@item
+Compilare il programma eseguendo il comando @command{make}:
+
+@example
+@group
+$ @kbd{make}
+@print{} @dots{}                                @ii{Output omesso}
+@end group
+@end example
+
+@item
+Eseguire, usando @command{gawk} cos@`{@dotless{i}} compilato un @emph{vero}
+programma, usando @emph{veri} dati.  Usare un programma scritto solo per
+verificare il funzionamento di una particolare funzionalit@`a di
+@command{gawk} non serve a nulla; i veri programmi @command{awk} generalmente
+usano la maggior parte del tempo di esecuzione per fare I/O, non per fare
+calcoli.  Per dimostrare che qualcosa @`e lento, si @emph{deve} farlo usando
+dati reali e un programma reale.
+
+Il file di dati da usare dev'essere abbastanza grosso da permettere alla
+profilazione statistica di misurare dove @command{gawk} impiega il
+tempo di esecuzione.
+
+@item
+Alla fine del test, dovreste trovare nella directory corrente un file
+di nome @file{gmon.out}. A quel punto va eseguito il comando
+@samp{gprof gawk gmon.out > gprof.out}.
+
+@item
+Inviare una segnalazione di bug spiegando cosa si pensa funzioni
+lentamente. Includere nella stessa il file @file{gprof.out}.
+
+Sarebbe preferibile poter disporre anche del programma e dei
+dati, oppure dell'indicazione di come reperire i dati se il
+relativo file @`e molto grande.
+
+@item
+Se non sono stati resi disponibile il programma e i dati, occorre essere
+preparati ad applicare delle @dfn{patch}, e a rifare la profilazione,
+per verificare se le @dfn{patch} hanno risolto il problema.
+
+@end enumerate
+
+Se non si @`e in grado di, o non si vuole, eseguire i passi sopra elencati,
+ci si deve rassegnare a vivere con il @command{gawk} disponibile.
+
 @node Manutentori
-@appendixsubsec Notificare problemi per versioni non-Unix
+@appendixsubsec Manutentori di versioni non-Unix
 
 Se si riscontrano bug in una delle versioni non-Unix di @command{gawk}, una
 copia del messaggio inviato alla mailing list dei bug andrebbe spedita alla
