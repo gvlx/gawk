@@ -1031,6 +1031,7 @@ particular records in a file and perform operations upon them.
 * Unix Installation::                   Installing @command{gawk} under
                                         various versions of Unix.
 * Quick Installation::                  Compiling @command{gawk} under Unix.
+* Compiling with MPFR::                 Building with MPFR.
 * Shell Startup Files::                 Shell convenience functions.
 * Additional Configuration Options::    Other compile-time options.
 * Configuration Philosophy::            How it's all supposed to work.
@@ -1060,6 +1061,7 @@ particular records in a file and perform operations upon them.
 * Bugs::                                Reporting Problems and Bugs.
 * Bug address::                         Where to send reports to.
 * Usenet::                              Where not to send reports to.
+* Performance bugs::                    What to do if you think there is a performance issue.
 * Maintainers::                         Maintainers of non-*nix ports.
 * Other Versions::                      Other freely available @command{awk}
                                         implementations.
@@ -42186,6 +42188,10 @@ to configure @command{gawk} for your system yourself.
 @node Quick Installation
 @appendixsubsec Compiling @command{gawk} for Unix-Like Systems
 
+@menu
+* Compiling with MPFR::              Building with MPFR.
+@end menu
+
 The normal installation steps should work on all modern commercial
 Unix-derived systems, GNU/Linux, BSD-based systems, and the Cygwin
 environment for MS-Windows.
@@ -42258,6 +42264,24 @@ command to do so.  The command then becomes @samp{sudo make install}. It
 is likely that you will be asked for your password, and you will have
 to have been set up previously as a user who is allowed to run the
 @command{sudo} command.
+
+
+@node Compiling with MPFR
+@appendixsubsubsec Building With MPFR
+
+@cindex MPFR library, building with
+Use of the MPFR library with @command{gawk}
+is an optional feature: if you have the MPFR and GMP libraries already installed
+when you configure and build @command{gawk},
+@command{gawk} automatically will be able to use them.
+
+You can install these libraries from source code by fetching them
+from the GNU distribution site at @code{ftp.gnu.org}.
+
+Most modern systems provide package managers which save you the trouble
+of building from source. They fetch and install the library header files
+and binaries for you.  You will need to research how to do this for
+your particular system.
 
 @node Shell Startup Files
 @appendixsubsec Shell Startup Files
@@ -43055,6 +43079,7 @@ but we might well want to fix it.
 @menu
 * Bug address::                 Where to send reports to.
 * Usenet::                      Where not to send reports to.
+* Performance bugs::            What to do if you think there is a performance issue.
 * Maintainers::                 Maintainers of non-*nix ports.
 @end menu
 
@@ -43163,6 +43188,88 @@ My memory was imperfect.  Back in June 2009, I wrote:
 and run to another section of the playground.  Then, if you like mixing
 metaphors, you can throw rocks from there."
 @end ignore
+
+@node Performance bugs
+@appendixsubsec What To Do If You Think There Is A Performance Issue
+
+@cindex performance, checking issues
+@cindex profiling, compiling @command{gawk} for
+If you think that @command{gawk} is too slow at doing a particular task,
+you should investigate before sending in a bug report. Here are the steps
+to follow:
+
+@enumerate 1
+@item
+Run @command{gawk} with the @option{--profile} option (@pxref{Options})
+to see what your
+program is doing. It may be that you have written it in an inefficient manner.
+For example, you may be doing something for every record that could be done
+just once, for every file.
+(Use a @code{BEGINFILE} rule; @pxref{BEGINFILE/ENDFILE}.)
+Or you may be doing something for every file that only needs to be done
+once per run of the program.
+(Use a @code{BEGIN} rule; @pxref{BEGIN/END}.)
+
+@item
+If profiling at the @command{awk} level doesn't help, then you will
+need to compile @command{gawk} itself for profiling at the C language level.
+
+To do that, start with the latest released version of
+@command{gawk}. Unpack the source code in a new directory, and configure
+it:
+
+@example
+$ @kbd{tar -xpzvf gawk-X.Y.Z.tar.gz}
+@print{} @dots{}                                @ii{Output ommited}
+$ @kbd{cd gawk-X.Y.Z}
+$ @kbd{./configure}
+@print{} @dots{}                                @ii{Output ommited}
+@end example
+
+@item
+Edit the files @file{Makefile} and @file{support/Makefile}.
+Change every instance of @option{-O2} or @option{-O} to @option{-pg}.
+This causes @command{gawk} to be compiled for profiling.
+
+@item
+Compile the program by running the @command{make} command:
+
+@example
+@group
+$ @kbd{make}
+@print{} @dots{}                                @ii{Output ommited}
+@end group
+@end example
+
+@item
+Run the freshly compiled @command{gawk} on a @emph{real} program,
+using @emph{real} data.  Using an artificial program to try to time one
+particular feature of @command{gawk} is useless; real @command{awk} programs
+generally spend most of their time doing I/O, not computing.  If you want to prove
+that something is slow, it @emph{must} be done using a real program and real data.
+
+Use a data file that is large enough for the statistical profiling to measure
+where @command{gawk} spends its time. It should be at least 100 megabytes in size.
+
+@item
+When done, you should have a file in the current directory named @file{gmon.out}.
+Run the command @samp{gprof gawk gmon.out > gprof.out}.
+
+@item
+Submit a bug report explaining what you think is slow. Include the @file{gprof.out}
+file with it.
+
+Preferably, you should also submit the program and the data, or else indicate where to
+get the data if the file is large.
+
+@item
+If you have not submitted your program and data, be prepared to apply patches and
+rerun the profiling in order to see if the patches were effective.
+
+@end enumerate
+
+If you are incapable or unwilling to do the steps listed above, then you will
+just have to live with @command{gawk} as it is.
 
 @node Maintainers
 @appendixsubsec Reporting Problems with Non-Unix Ports
