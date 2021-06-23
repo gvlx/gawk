@@ -8,7 +8,7 @@
 # Rewritten September 2020
 
 
-function usage(		common)
+function usage(     common)
 {
     common = "[-a suffix-len] [file [outname]]"
     printf("usage: split [-l count]  %s\n", common) > "/dev/stderr"
