@@ -805,6 +805,8 @@ particular records in a file and perform operations upon them.
                                         once.
 * Shell Quoting::                       A function to quote strings for the
                                         shell.
+* Isnumeric Function::                  A function to test whether a value
+                                        is numeric.
 * Data File Management::                Functions for managing command-line
                                         data files.
 * Filetrans Function::                  A function for handling data file
@@ -21405,6 +21407,7 @@ programming use.
 * Getlocaltime Function::       A function to get formatted times.
 * Readfile Function::           A function to read an entire file at once.
 * Shell Quoting::               A function to quote strings for the shell.
+* Isnumeric Function::          A function to test whether a value is numeric.
 @end menu
 
 @node Strtonum Function
@@ -22192,6 +22195,40 @@ function shell_quote(s,             # parameter
 
     return ret
 @}
+@c endfile
+@end example
+
+@node Isnumeric Function
+@subsection Checking Whether A Value Is Numeric
+
+A frequent programming question is how to ascertain whether a value is numeric.
+This can be solved by using this example function @code{isnumeric()}, which
+employs the trick of converting a string value to user input by using the
+@code{split()} function:
+
+@cindex @code{isnumeric()} user-defined function
+@cindex user-defined @subentry function @subentry @code{isnumeric()}
+@example
+@c file eg/lib/isnumeric.awk
+# isnumeric --- check whether a value is numeric
+
+function isnumeric(x,  f)
+@{
+    switch (typeof(x)) @{
+    case "strnum":
+    case "number":
+        return 1
+    case "string":
+        return (split(x, f, " ") == 1) && (typeof(f[1]) == "strnum")
+    default:
+        return 0
+    @}
+@}
+
+Please note that leading or trailing white space is disregarded in deciding
+whether a value is numeric or not, so if it matters to you, you may want
+to add an additional check for that.
+
 @c endfile
 @end example
 
@@ -23036,8 +23073,8 @@ $ @kbd{awk -f getopt.awk -v _getopt_test=1 -- -a \}
 @print{} c = <otherd>, Optarg = <>
 @print{} c = <otherc>, Optarg = <>
 @print{} non-option arguments:
-@print{} 	ARGV[8] = <arg1>
-@print{} 	ARGV[9] = <arg2>
+@print{}        ARGV[8] = <arg1>
+@print{}        ARGV[9] = <arg2>
 @end example
 
 In all the runs, the first @option{--} terminates the arguments to
@@ -25234,7 +25271,7 @@ look nice on the page:
 @end ignore
 @c file eg/prog/split.awk
 
-function usage(		common)
+function usage(     common)
 @{
     common = "[-a suffix-len] [file [outname]]"
     printf("usage: split [-l count]  %s\n", common) > "/dev/stderr"
@@ -29111,7 +29148,7 @@ main(void)
         printf("%d\n", x + y); 
     return 0; 
 @} 
-$ @kbd{cc -O add.c -o add}	@ii{Compile the program}
+$ @kbd{cc -O add.c -o add}      @ii{Compile the program}
 @end example
 
 You could then write an exceedingly simple @command{gawk} program
