@@ -941,6 +941,8 @@ Copyright dell'edizione italiana @copyright{} 2016 -- Free Software Foundation, 
                                         vettore in una stringa.
 * Funzione getlocaltime::               Una funzione per ottenere data e
                                         ora nel formato desiderato.
+* Funzione isnumeric::                  Una funzione per controllare se un
+					valore @`e numerico.
 * Funzione readfile::                   Una funzione per leggere un file
                                         intero in un colpo solo.
 * Apici alla shell::                    Una funzione per passare stringhe
@@ -23465,6 +23467,8 @@ programmazione.
                                 un colpo solo.
 * Apici alla shell::            Una funzione per passare stringhe
                                 con apici alla shell.
+* Funzione isnumeric::          Una funzione per controllare se un valore
+				@`e numerico.
 @end menu
 
 @node Funzione strtonum
@@ -24303,6 +24307,42 @@ function shell_quote(s,             # parametro
 @}
 @c endfile
 @end example
+
+@node Funzione isnumeric
+@subsection Controllare se un valore @`e numerico
+
+Una domanda spesso posta in programmazioni @`e come accertarsi se un dato
+valore @`e di tipo numerico.  Il problema pu@`o essere risolto usando la
+funzione di esempio @code{isnumeric()}, che utilizza l'artificio di
+trasformare l'input ricevuto dell'utente nel valore di una stringa,
+utilizzando la funzione @code{split()}:
+
+@cindex @code{isnumeric()} @subentry funzione definita dall'utente
+@cindex funzione definita dall'utente @subentry @subentry @code{isnumeric()}
+@example
+@c file eg/lib/isnumeric.awk
+# isnumeric --- controlla se un valore @`e numerico
+
+function isnumeric(x,  f)
+@{
+    switch (typeof(x)) @{
+    case "strnum":
+    case "number":
+        return 1
+    case "string":
+        return (split(x, f, " ") == 1) && (typeof(f[1]) == "strnum")
+    default:
+        return 0
+    @}
+@}
+
+@c endfile
+@end example
+
+Si noti che gli eventuali spazi bianchi prima o dopo la stringa sono
+ignorati nel decidere se un valore sia numerico oppure no; se la cosa
+@`e importante in una data situazione, occorre aggiungere un apposito
+controllo ulteriore.
 
 @node Gestione File Dati
 @section Gestione di @value{DF}
@@ -25225,8 +25265,8 @@ $ @kbd{awk -f getopt.awk -v _getopt_test=1 -- -a \}
 @print{} c = <otherd>, Optarg = <>
 @print{} c = <otherc>, Optarg = <>
 @print{} argomenti che non sono opzioni:
-@print{} 	ARGV[8] = <arg1>
-@print{} 	ARGV[9] = <arg2>
+@print{}        ARGV[8] = <arg1>
+@print{}        ARGV[9] = <arg2>
 @end example
 
 In tutte le esecuzioni, il primo @option{--} fa terminare gli argomenti dati
@@ -27575,9 +27615,9 @@ in modo che sia stampata in maniera elegante nella pagina:
 @end ignore
 @c file eg/prog/split.awk
 
-function sintassi(              comune)
+function sintassi(     comune)
 @{
-    common = "[-a lunghezza-suffisso] [file [nome-output-file]]"
+    comune = "[-a lunghezza-suffisso] [file [nome-output-file]]"
     printf("Uso: split [-l contatore] %s\n", comune) > "/dev/stderr"
     printf("     split [-b N[k|m]]    %s\n", comune) > "/dev/stderr"
     exit 1
@@ -31778,7 +31818,7 @@ main(void)
         printf("%d\n", x + y);
     return 0;
 @}
-$ @kbd{cc -O add.c -o add}	@ii{Compilazione del programma}
+$ @kbd{cc -O add.c -o add}      @ii{Compilazione del programma}
 @end example
 
 Si potrebbe poi scrivere un programma @command{gawk} fin troppo semplice,
@@ -43465,7 +43505,7 @@ per l'internationalizzazione
 @item
 La funzione @code{extension()} e la possibilit@`a di aggiungere
 nuove funzioni predefinite dinamicamente.  Questa funzione @`e stata rimossa.
-È rimpiazzata dal nuovo meccanismo delle estensioni dinamiche
+@`E rimpiazzata dal nuovo meccanismo delle estensioni dinamiche
 @iftex
 (@pxrefil{Estensioni dinamiche}).
 @end iftex
