@@ -12,8 +12,3 @@ function isnumeric(x,  f)
         return 0
     }
 }
-
-Please note that leading or trailing white space is disregarded in deciding
-whether a value is numeric or not, so if it matters to you, you may want
-to add an additional check for that.
-
