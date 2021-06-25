@@ -24335,7 +24335,6 @@ function isnumeric(x,  f)
         return 0
     @}
 @}
-
 @c endfile
 @end example
 
@@ -24343,6 +24342,14 @@ Si noti che gli eventuali spazi bianchi prima o dopo la stringa sono
 ignorati nel decidere se un valore sia numerico oppure no; se la cosa
 @`e importante in una data situazione, occorre aggiungere un apposito
 controllo ulteriore.
+
+Tradizionalmente, per controllare se un valore @`e numerico, si raccomandava
+di usare il test @samp{x+0 == x}.  La funzione @code{isnumeric} @`e migliore
+sotto due aspetti: non attribuisce un valore numerico a variabili a cui
+non sia stato ancora assegnato un valore; e riconosce valori di stringa
+con contenuto numerico.
+Tuttavia, per farlo, utilizza la funzione @code{typeof()}
+(@pxref{Funzioni per i tipi}), che @`e disponibile solo in @command{gawk}.
 
 @node Gestione File Dati
 @section Gestione di @value{DF}
