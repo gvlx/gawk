@@ -1,3 +1,12 @@
+2021-06-25         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.in (Isnumeric Function): Some final (we hope) tweaks.
+
+2021-06-24         Andrew J. Schorr      <aschorr@telemetry-investments.com>
+
+	* gawktexi.in (Isnumeric Function): Fix location of endfile
+	tag, and add a comment about how this differs from x+0 == x.
+
 2021-06-23         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawktexi.in (Isnumeric Function): Add an additional paragraph
