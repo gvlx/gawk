@@ -22201,9 +22201,11 @@ whether a value is numeric or not, so if it matters to you, you may want
 to add an additional check for that.
 
 Traditionally, it has been recommended to check for numeric values using the
-test @code{x+0 == x}. This function is superior in two ways: it will not
+test @samp{x+0 == x}. This function is superior in two ways: it will not
 report that unassigned variables contain numeric values; and it recognizes
 string values with numeric contents.
+On the other hand, it uses the @code{typeof()} function
+(@pxref{Type Functions}), which is specific to @command{gawk}.
 
 @node Data File Management
 @section @value{DDF} Management
