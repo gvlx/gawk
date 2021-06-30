@@ -1,3 +1,7 @@
+2021-06-30         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* texinfo.tex: Updated from GNULIB.
+
 2021-06-25         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawktexi.in (Isnumeric Function): Some final (we hope) tweaks.
