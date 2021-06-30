@@ -1,3 +1,8 @@
+2021-06-30         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* dfa.c, dynarray.h, libc-config.h, regexec.c,
+	verify.h: Update from GNULIB. Sigh.
+
 2021-05-10         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* support/dynarray_at_failure.c, support/dynarray_resize_clear.c:
