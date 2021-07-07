@@ -54,7 +54,7 @@
 @c applies to and all the info about who's publishing this edition
 
 @c These apply across the board.
-@set UPDATE-MONTH January, 2021
+@set UPDATE-MONTH July, 2021
 @set VERSION 5.1
 @set PATCHLEVEL 0
 
@@ -1056,9 +1056,11 @@ particular records in a file and perform operations upon them.
 * VMS Old Gawk::                        An old version comes with some VMS
                                         systems.
 * Bugs::                                Reporting Problems and Bugs.
+* Bug definition::                      Defining what is and is not a bug.
 * Bug address::                         Where to send reports to.
 * Usenet::                              Where not to send reports to.
 * Performance bugs::                    What to do if you think there is a performance issue.
+* Asking for help::                     Dealing with non-bug questions.
 * Maintainers::                         Maintainers of non-*nix ports.
 * Other Versions::                      Other freely available @command{awk}
                                         implementations.
@@ -17835,6 +17837,9 @@ You may use them as the first argument, but only if providing a second
 array to use for the actual sorting.
 @end quotation
 
+You are allowed to use the same array for both the @var{source} and @var{dest}
+arguments, but doing so only makes sense if you're also supplying the third argument.
+
 @item @code{gensub(@var{regexp}, @var{replacement}, @var{how}} [@code{, @var{target}}]@code{) #}
 @cindexgawkfunc{gensub}
 @cindex search and replace in strings
@@ -28843,6 +28848,12 @@ For example, when @code{asort()} copies the first array to the second one,
 there is only one copy of the original array elements' data, even though
 both arrays use the values.
 @end quotation
+
+You may use the same array for both the first and second arguments to
+@code{asort()} and @code{asorti()}.  Doing so only makes sense if you
+are also supplying the third argument, since @command{awk} doesn't
+provide a way to pass that third argument without also passing the first
+and second ones.
 
 @c Document It And Call It A Feature. Sigh.
 @cindex @command{gawk} @subentry @code{IGNORECASE} variable in
@@ -41963,38 +41974,157 @@ report it to the developers; we cannot promise to do anything,
 but we might well want to fix it.
 
 @menu
+* Bug definition::              Defining what is and is not a bug.
 * Bug address::                 Where to send reports to.
 * Usenet::                      Where not to send reports to.
 * Performance bugs::            What to do if you think there is a performance issue.
+* Asking for help::             Dealing with non-bug questions.
 * Maintainers::                 Maintainers of non-*nix ports.
 @end menu
+
+@node Bug definition
+@appendixsubsec Defining What Is and What Is Not A Bug
+
+Before talking about reporting bugs, let's define what is a bug,
+and what is not.
+
+A bug is:
+
+@itemize @bullet
+@item
+When @command{gawk} behaves differently from what's described
+in the POSIX standard, and that difference is not mentioned
+in this @value{DOCUMENT} as being done on purpose.
+
+@item
+When @command{gawk} behaves differently from what's described
+in this @value{DOCUMENT}.
+
+@item
+When @command{gawk} behaves differently from other @command{awk}
+implementations in particular circumstances, and that behavior cannot
+be attributed to an additional feature in @command{gawk}.
+
+@item
+Something that is obviously wrong, such as a core dump.
+
+@item
+When this @value{DOCUMENT} is unclear or ambiguous about a particular
+feature's behavior.
+@end itemize
+
+The following things are @emph{not} bugs, and should not be reported
+to the bug mailing list.  You can ask about them on the ``help'' mailing
+list (@pxref{Asking for help}), but don't be surprised if you get an
+answer of the form ``that's how @command{gawk} behaves and it isn't
+going to change.''
+
+@itemize @bullet
+@item
+Missing features, for any definition of @dfn{feature}. For example,
+additional built-in arithmetic functions, or additional ways to split
+fields or records, or anything else.
+
+The number of features that @command{gawk} does @emph{not} have is
+by definition infinite.  It cannot be all things to all people.
+
+@item
+Behaviors that are defined by the POSIX standard and/or for historical
+compatibility with Unix @command{awk}.  Even if you happen to dislike
+those behaviors, they're not going to change: changing them would
+break millions of existing @command{awk} programs.
+
+@item
+Behaviors that differ from how it's done in other languages. @command{awk}
+and @command{gawk} stand on their own and do not have to follow the crowd.
+This is particularly true when the requested behavior change would break
+backwards compatibility.
+
+@item
+Documentation issues of the form ``the manual doesn't tell me how to
+do XYZ.''  The manual is not a cookbook to solve every little problem
+you may have.
+
+@item
+General questions and discussion about @command{awk} programming or
+why @command{gawk} behaves the way it does. For that use the ``help''
+mailing list: see @ref{Asking for help}.
+@end itemize
+
+For more information, see @uref{http://www.skeeve.com/fork-my-code.html,
+@cite{Fork My Code, Please!---An Open Letter To Those of You Who Are Unhappy}},
+by Arnold Robbins and Chet Ramey.
 
 @node Bug address
 @appendixsubsec Submitting Bug Reports
 
 Before reporting a bug, make sure you have really found a genuine bug.
-First, verify that you have the latest version of @command{gawk}.
+
+Here are the steps for submitting a bug report. Following them will
+make both your life and the lives of the maintainers much easier.
+
+@enumerate 1
+@item
+Make sure that what you want to report is appropriate.
+@xref{Bug definition}.  If it's not, you are wasting your
+time and ours.
+
+@item
+Verify that you have the latest version of @command{gawk}.
 Many bugs (usually subtle ones) are fixed at each release, and if yours
 is out of date, the problem may already have been solved.
 
-Second, please see if setting the environment variable @env{LC_ALL}
+@item
+Please see if setting the environment variable @env{LC_ALL}
 to @code{LC_ALL=C} causes things to behave as you expect. If so, it's
 a locale issue, and may or may not really be a bug.
 
-Third, carefully reread the documentation and see if it says you can do
+@item
+Carefully reread the documentation and see if it says you can do
 what you're trying to do.  If it's not clear whether you should be able
 to do something or not, report that too; it's a bug in the documentation!
 
-Finally, before reporting a bug or trying to fix it yourself, try to isolate it
+@item
+Before reporting a bug or trying to fix it yourself, try to isolate it
 to the smallest possible @command{awk} program and input @value{DF} that
-reproduce the problem.  Then send us the program and @value{DF},
-some idea of what kind of Unix system you're using,
-the compiler you used to compile @command{gawk}, and the exact results
+reproduce the problem.  Then send us:
+
+@itemize @bullet
+@item
+The program and @value{DF}.
+
+@item
+Some idea of what kind of Unix system you're using.
+
+@item
+The compiler you used to compile @command{gawk}.
+
+@item
+The exact results
 @command{gawk} gave you.  Also say what you expected to occur; this helps
 us decide whether the problem is really in the documentation.
 
-Make sure to include the version number of @command{gawk} you are using.
+@item
+The version number of @command{gawk} you are using.
 You can get this information with the command @samp{gawk --version}.
+@end itemize
+
+@item
+Do @emph{not} send screenshots. Instead, use copy/paste to send text, or
+send files.
+
+@item
+Do send files as attachments, instead of inline. This avoids corruption
+by mailer programs out in the wilds of the Internet.
+
+@item
+Please be sure to send all mail in @emph{plain text},
+not (or not exclusively) in HTML.
+
+@item
+@emph{All email must be in English. This is the only language
+understood in common by all the maintainers.}
+@end enumerate
 
 @cindex @code{bug-gawk@@gnu.org} bug reporting address
 @cindex email address for bug reports, @code{bug-gawk@@gnu.org}
@@ -42007,10 +42137,6 @@ thus they will receive your bug report.
 Although you can send mail to the maintainers directly,
 the bug reporting address is preferred because the
 email list is archived at the GNU Project.
-@emph{All email must be in English. This is the only language
-understood in common by all the maintainers.}
-In addition, please be sure to send all mail in @emph{plain text},
-not (or not exclusively) in HTML.
 
 @quotation NOTE
 Many distributions of GNU/Linux and the various BSD-based operating systems
@@ -42024,10 +42150,6 @@ chance that the @command{gawk}  maintainers won't even see the bug report!  Seco
 mail to the GNU list is archived, and having everything at the GNU Project
 keeps things self-contained and not dependent on other organizations.
 @end quotation
-
-Non-bug suggestions are always welcome as well.  If you have questions
-about things that are unclear in the documentation or are just obscure
-features, ask on the bug list; we will try to help you out if we can.
 
 Please note: We ask that you follow the
 @uref{https://gnu.org/philosophy/kind-communication.html,
@@ -42106,10 +42228,10 @@ it:
 
 @example
 $ @kbd{tar -xpzvf gawk-X.Y.Z.tar.gz}
-@print{} @dots{}                                @ii{Output ommited}
+@print{} @dots{}                                @ii{Output omitted}
 $ @kbd{cd gawk-X.Y.Z}
 $ @kbd{./configure}
-@print{} @dots{}                                @ii{Output ommited}
+@print{} @dots{}                                @ii{Output omitted}
 @end example
 
 @item
@@ -42123,7 +42245,7 @@ Compile the program by running the @command{make} command:
 @example
 @group
 $ @kbd{make}
-@print{} @dots{}                                @ii{Output ommited}
+@print{} @dots{}                                @ii{Output omitted}
 @end group
 @end example
 
@@ -42136,6 +42258,10 @@ that something is slow, it @emph{must} be done using a real program and real dat
 
 Use a data file that is large enough for the statistical profiling to measure
 where @command{gawk} spends its time. It should be at least 100 megabytes in size.
+
+@example
+$ @kbd{./gawk -f realprogram.awk realdata > /dev/null}
+@end example
 
 @item
 When done, you should have a file in the current directory named @file{gmon.out}.
@@ -42156,6 +42282,65 @@ rerun the profiling in order to see if the patches were effective.
 
 If you are incapable or unwilling to do the steps listed above, then you will
 just have to live with @command{gawk} as it is.
+
+@node Asking for help
+@appendixsubsec Where To Send Non-bug Questions
+
+If you have questions related to @command{awk} programming, or why @command{gawk}
+behaves a certain way, or any other @command{awk}- or @command{gawk}-related issue,
+please @emph{do not} send it to the bug reporting address.
+
+As of July, 2021, there is a separate mailing list for this purpose:
+@EMAIL{help-gawk@@gnu.org, help-gawk at gnu.org}.
+Anything that is not a bug report should be sent to that list.
+
+@quotation NOTE
+If you disregard these directions and send non-bug mails to the bug list,
+you will be told to use the help list.
+After two such requests you will be silently @emph{blacklisted} from the bug list.
+@end quotation
+
+Please note: As with the bug list, we ask that you follow the
+@uref{https://gnu.org/philosophy/kind-communication.html,
+GNU Kind Communication Guidelines} in your correspondence on the
+list (as well as off of it).
+
+If you wish to the subscribe to the list, in order to help out
+others, or to learn from others, here are instructions, courtesy
+of Bob Proulx:
+
+
+@table @emph
+@item Subscribe by email
+
+Send an email message to
+@EMAIL{help-gawk-request@@gnu.org, help-gawk-request AT gnu.org}
+with ``subscribe'' in
+the body of the message.  The subject does not matter and is not used.
+
+@item Subscribe by web form
+
+To use the web interface visit
+@uref{https://lists.gnu.org/mailman/listinfo/help-gawk,
+the list information page}.
+Use the
+subscribe form to fill out your email address and submit using the
+@code{Subscribe} button.
+
+@item Reply to the confirmation message
+
+In both cases then reply to the confirmation message that is sent to
+your address in reply.
+@end table
+
+Bob mentions that you may also use email for subscribing and
+unsubscribing. For example:
+
+@example
+$ @kbd{echo help | mailx -s request help-gawk-request@@gnu.org}
+$ @kbd{echo subscribe | mailx -s request help-gawk-request@@gnu.org}
+$ @kbd{echo unsubscribe | mailx -s request help-gawk-request@@gnu.org}
+@end example
 
 @node Maintainers
 @appendixsubsec Reporting Problems with Non-Unix Ports
@@ -42307,8 +42492,7 @@ and links them with a library of functions that provide the core
 @command{awk} functionality.
 It also has a number of extensions.
 
-The @command{awk} translator is released under the GPL, and the library
-is under the LGPL.
+Both the @command{awk} translator and the library are released under the GPL.
 
 To get @command{awka}, go to @url{https://sourceforge.net/projects/awka}.
 @c You can reach Andrew Sumner at @email{andrew@@zbcom.net}.
@@ -42485,10 +42669,14 @@ and both Vax/VMS and OpenVMS.
 Instructions for each system are included in this @value{APPENDIX}.
 
 @item
-Bug reports should be sent via email to @email{bug-gawk@@gnu.org}.
+Bug reports should be sent via email to @EMAIL{bug-gawk@@gnu.org, bug-gawk AT gnu.org}.
 Bug reports should be in English and should include the version of @command{gawk},
 how it was compiled, and a short program and @value{DF} that demonstrate
 the problem.
+
+@item
+Non-bug emails should be sent to @EMAIL{help-gawk@@gnu.org, help-gawk AT gnu.org}.
+Repeatedly sending non-bug emails to the bug list will get you blacklisted from it.
 
 @item
 There are a number of other freely available @command{awk}
@@ -42803,7 +42991,7 @@ your code in the public domain and submit a signed statement to that
 effect, or assign the copyright in your code to the FSF.
 Both of these actions are easy to do and @emph{many} people have done so
 already. If you have questions, please contact me, or
-@email{gnu@@gnu.org}.
+@EMAIL{gnu@@gnu.org, gnu AT gnu.org}.
 
 @item
 When doing a port, bear in mind that your code must coexist peacefully

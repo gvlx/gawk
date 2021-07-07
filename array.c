@@ -802,6 +802,7 @@ asort_actual(int nargs, sort_context_t ctxt)
 	unsigned long num_elems, i;
 	const char *sort_str;
 	char save;
+	const char *name = (ctxt == ASORT ? "asort" : "asorti");	// D.R.Y.
 
 	if (nargs == 3)  /* 3rd optional arg */
 		s = POP_STRING();
@@ -822,36 +823,38 @@ asort_actual(int nargs, sort_context_t ctxt)
 	if (nargs >= 2) {  /* 2nd optional arg */
 		dest = POP_PARAM();
 		if (dest->type != Node_var_array) {
-			fatal(_("%s: second argument is not an array"),
-				ctxt == ASORT ? "asort" : "asorti");
+			fatal(_("%s: second argument is not an array"), name);
 		}
-		check_symtab_functab(dest,
-				ctxt == ASORT ? "asort" : "asorti",
+		check_symtab_functab(dest, name,
 				_("%s: cannot use %s as second argument"));
 	}
 
 	array = POP_PARAM();
 	if (array->type != Node_var_array) {
-		fatal(_("%s: first argument is not an array"),
-			ctxt == ASORT ? "asort" : "asorti");
+		fatal(_("%s: first argument is not an array"), name);
 	}
 	else if (array == symbol_table && dest == NULL)
-		fatal(_("%s: first argument cannot be SYMTAB without a second argument"),
-			ctxt == ASORT ? "asort" : "asorti");
+		fatal(_("%s: first argument cannot be SYMTAB without a second argument"), name);
 	else if (array == func_table && dest == NULL)
-		fatal(_("%s: first argument cannot be FUNCTAB without a second argument"),
-			ctxt == ASORT ? "asort" : "asorti");
+		fatal(_("%s: first argument cannot be FUNCTAB without a second argument"), name);
 
 	if (dest != NULL) {
+		static bool warned = false;
+
+		if (nargs == 2 && array == dest && ! warned) {
+			warned = true;
+			lintwarn(_("asort/asorti: using the same array as source and destination without "
+				   "a third argument is silly."));
+		}
 		for (r = dest->parent_array; r != NULL; r = r->parent_array) {
 			if (r == array)
 				fatal(_("%s: cannot use a subarray of first argument for second argument"),
-					ctxt == ASORT ? "asort" : "asorti");
+					name);
 		}
 		for (r = array->parent_array; r != NULL; r = r->parent_array) {
 			if (r == dest)
 				fatal(_("%s: cannot use a subarray of second argument for first argument"),
-					ctxt == ASORT ? "asort" : "asorti");
+					name);
 		}
 	}
 

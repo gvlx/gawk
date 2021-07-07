@@ -1,3 +1,9 @@
+2021-07-07         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* array.c (asort_actual): Add a lint warning for passing the
+	same array as the first two arguments without a third.
+	Thanks to Peng Yu <pengyu.ut@gmail.com> for the report.
+
 2021-06-30         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* custom.h: Add a bunch of defines to work around the continous,

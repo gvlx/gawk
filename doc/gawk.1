@@ -13,7 +13,7 @@
 .		if \w'\(rq' .ds rq "\(rq
 .	\}
 .\}
-.TH GAWK 1 "May 30 2021" "Free Software Foundation" "Utility Commands"
+.TH GAWK 1 "Jul 05 2021" "Free Software Foundation" "Utility Commands"
 .SH NAME
 gawk \- pattern scanning and processing language
 .SH SYNOPSIS
@@ -2940,6 +2940,9 @@ any of the strings valid for
 It can also be the name of a user-defined
 comparison function as described in
 \fBPROCINFO["sorted_in"]\fR.
+.IR s " and " d
+are allowed to be the same array; this only makes sense when
+supplying the third argument as well.
 .TP "\w'\fBsprintf(\^\fIfmt\fB\^, \fIexpr-list\^\fB)\fR'u+1n"
 \fBasorti(\fIs \fR[\fB, \fId\fR [\fB, \fIhow\fR] ]\fB)\fR
 Return the number of elements in the source
@@ -2959,6 +2962,10 @@ The purpose of the optional string
 is the same as described
 previously for
 .BR asort() .
+Here too,
+.IR s " and " d
+are allowed to be the same array; this only makes sense when
+supplying the third argument as well.
 .TP
 \fBgensub(\fIr\fB, \fIs\fB, \fIh \fR[\fB, \fIt\fR]\fB)\fR
 Search the target string
