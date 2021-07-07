@@ -59,7 +59,7 @@
 @c applies to and all the info about who's publishing this edition
 
 @c These apply across the board.
-@set UPDATE-MONTH January, 2021
+@set UPDATE-MONTH July, 2021
 @set VERSION 5.1
 @set PATCHLEVEL 0
 
@@ -18668,6 +18668,9 @@ You may use them as the first argument, but only if providing a second
 array to use for the actual sorting.
 @end quotation
 
+You are allowed to use the same array for both the @var{source} and @var{dest}
+arguments, but doing so only makes sense if you're also supplying the third argument.
+
 @item @code{gensub(@var{regexp}, @var{replacement}, @var{how}} [@code{, @var{target}}]@code{) #}
 @cindexgawkfunc{gensub}
 @cindex search and replace in strings
@@ -29888,6 +29891,12 @@ For example, when @code{asort()} copies the first array to the second one,
 there is only one copy of the original array elements' data, even though
 both arrays use the values.
 @end quotation
+
+You may use the same array for both the first and second arguments to
+@code{asort()} and @code{asorti()}.  Doing so only makes sense if you
+are also supplying the third argument, since @command{awk} doesn't
+provide a way to pass that third argument without also passing the first
+and second ones.
 
 @c Document It And Call It A Feature. Sigh.
 @cindex @command{gawk} @subentry @code{IGNORECASE} variable in
