@@ -56,7 +56,7 @@
 @c applies to and all the info about who's publishing this edition
 
 @c These apply across the board.
-@set UPDATE-MONTH Gennaio 2021
+@set UPDATE-MONTH Luglio 2021
 @set VERSION 5.1
 @set PATCHLEVEL 0
 
@@ -1218,9 +1218,11 @@ Copyright dell'edizione italiana @copyright{} 2016 -- Free Software Foundation, 
 * Vecchio Gawk su VMS::                 Una versione non aggiornata arriva
                                         con alcune versioni di VMS.
 * Bug::                                 Notificare problemi e bug.
-* Indirizzo Bug::                       Dove notificare problemi.
+* Definizione di bug::                  Definire cos'@`e e cosa non @`e un bug.
+* Indirizzo bug::                       Dove notificare problemi.
 * Usenet::                              Dove non notificare problemi.
 * Bug di prestazione::                  Che fare in caso di problemi di prestazione.
+* Richieste di aiuto::                  Gestire domande non relative ai bug.
 * Manutentori::                         Manutentori di versioni non-Unix.
 * Altre versioni::                      Altre implementazioni di
                                         @command{awk} liberamente
@@ -19519,6 +19521,10 @@ se si specifica un secondo vettore da usare per contenere il risultato
 dell'ordinamento.
 @end quotation
 
+@`E consentito specificare come argomento lo stesso vettore sia come
+@var{sorgente} che come @var{destinazione}, ma ha senso farlo solo
+se si specifica anche il terzo argomento.
+
 @item @code{gensub(@var{regexp}, @var{rimpiazzo}, @var{come}} [@code{, @var{obiettivo}}]@code{) #}
 @cindexgawkfunc{gensub}
 @cindex cercare e rimpiazzare in stringhe
@@ -31487,6 +31493,12 @@ secondo, in memoria c'@`e ancora una sola copia dei dati degli elementi
 del vettore originale, ed entrambi i vettori accedono all'unica copia di
 valori che esiste in memoria.
 @end quotation
+
+@`E consentito usare lo stesso vettore sia come primo che come secondo
+argomento di @code{asort()} e @code{asorti()}.  Il farlo ha senso solo
+se si specifica anche il terzo argomento, poich@'e @command{awk} non
+consente di specificare un terzo argomento senza aver specificato sia
+il primo che il secondo.
 
 @c Document It And Call It A Feature. Sigh.
 @cindex @command{gawk} @subentry variabile @subentry @code{IGNORECASE} in
@@ -45527,7 +45539,8 @@ esempio l'impostazione di @code{RS} pu@`o essere spostata in una regola
 @cindex compilare @command{gawk} @subentry per Cygwin
 @cindex Cygwin @subentry compilare @command{gawk} per
 
-@command{gawk} pu@`o essere compilato e usato ``cos@`{@dotless{i}} com'@`e'' sotto MS-Windows se
+@command{gawk} pu@`o essere compilato e usato
+``cos@`{@dotless{i}} com'@`e'' sotto MS-Windows se
 si opera all'interno dell'ambiente @uref{http://www.cygwin.com, Cygwin}.
 Questo ambiente consente un'eccellente simulazione di GNU/Linux, con l'uso di
 Bash, GCC, GNU Make, e altri programmi GNU.  La compilazione e l'installazione
@@ -46003,45 +46016,170 @@ non c'@`e un impegno preciso a intervenire, ma c'@`e una buona possibilit@`a che
 si sforzi di risolverlo.
 
 @menu
-* Indirizzo Bug::               Dove inviare le segnalazioni.
+* Definizione di bug::              Definire cos'@`e e cosa non @`e un bug.
+* Indirizzo bug::               Dove notificare problemi.
 * Usenet::                      Dove non inviare le segnalazioni.
 * Bug di prestazione::          Che fare in caso di problemi di prestazione.
+* Richieste di aiuto::          Gestire domande non relative ai bug.
 * Manutentori::                 Manutentori di versioni non-Unix.
 @end menu
 
-@node Indirizzo Bug
-@appendixsubsec Segnalare Bug
+@node Definizione di bug
+@appendixsubsec Definire cos'@`e e cosa non @`e un bug.
+
+Prima di spiegare come segnalare bug, definiamo cosa @`e un bug e
+cosa non lo @`e.
+
+Un bug @`e:
+
+@itemize @bullet
+@item
+Quando @command{gawk} si comporta diversamente da come previsto dallo
+standard POSIX standard, e la differenza non @`e descritta in questo
+@value{DOCUMENT} con il motivo per cui lo fa.
+
+@item
+Quando @command{gawk} si comporta diversamente da come descritto
+in questo @value{DOCUMENT}.
+
+@item
+Quando @command{gawk} si comporta diversamente da altre implementazioni di
+@command{awk} in qualche caso particolare, e tale comportamento non dipende
+da qualche ulteriore funzionalit@`a disponibile solo in @command{gawk}.
+
+@item
+Qualcosa di evidentemente sbagliato, come un @dfn{dump}, [ossia una
+fine programma inattesa con segnalazione di errore].
+
+@item
+Quando questo @value{DOCUMENT} @`e poco chiaro o ambiguo riguardo
+al modo di operare di una particolare funzionalit@`a.
+@end itemize
+
+La lista che segue elenca casi che @emph{non sono} bug e che non dovrebbero
+essere segnalati ala mailing list dei bug.  Domande al riguardo possono
+essere rivolte alla mailing list di ``help''
+(@pxref{Richieste di aiuto}), ma non dovreste meravigliarvi di ricevere
+una risposta del tipo ``@command{gawk} funziona cos@`{@dotless{i}}, e continuer@`a
+a funzionare cos@`{@dotless{i}}.''
+
+@itemize @bullet
+@item
+Funzionalit@`a mancanti, quale che sia la definizione di @dfn{feature}.
+Per esempio, ulteriori funzioni aritmetiche predefinite, o modi
+ulteriori di dividere campi o record, o qualsiasi altra cosa.
+
+Il numero di funzioni che @command{gawk} @emph{non ha} @`e, per definizione,
+infinito.  Non @`e possibile accontentare tutti.
+
+@item
+Comportamenti definiti dallo standard POSIX e/o dettati da compatibilit@`a
+storiche con il comando Unix @command{awk}.  Anche se tali comportamenti
+possono risultare sgraditi, non saranno cambiati: se li si cambiasse
+milioni di programmi @command{awk} esistenti smetterebbero di funzionare.
+
+@item
+Comportamenti differenti da quel che succede usando altri linguaggi.
+@command{awk} e @command{gawk} hanno un modo di operare loro proprio,
+e non sono obbligati a seguire quello altrui.
+Ci@`o @`e particolarmente vero quando la modifica di comportamento
+richiesta farebbe perdere la compatibilit@`a all'indietro.
+
+@item
+Problemi di documentazioni nella forma ``il manuale non spiega come
+fare XYZ.''  Il manuale non @`e un libro con tutte le ricette per risolvere
+ogni piccolo problema che ci si trovi ad affrontare.
+
+@item
+Domande di tipo generale riguardo alla programmazione @command{awk}
+o sul motivo per cui @command{gawk} si comporta in un certo modo.
+Per tali domande si usi la mailing list ``help'':
+vedere @ref{Richieste di aiuto}.
+@end itemize
+
+Per ulteriori informazioni, vedere (in inglese)
+@uref{http://www.skeeve.com/fork-my-code.html,
+@cite{Fork My Code, Please!---An Open Letter To Those of You Who Are Unhappy}},
+di Arnold Robbins e Chet Ramey.
+
+@node Indirizzo bug
+@appendixsubsec Segnalare bug
 
 Prima di segnalare un bug, occorre assicurarsi che sia davvero un bug.
-Per prima cosa, si deve verificare se si sta usando l'ultima versione di
-@command{gawk}.
+
+Questi @`e la procedura da seguire per sottomettere una segnalazione
+di bug.  Rispettandola si semplificher@`a la vostra vita e quella dei
+manutentori di @command{gawk}.
+
+@enumerate 1
+@item
+Assicuratevi che quel che volete segnalare sia appropriato.
+@xref{Definizione di bug}.  Se non lo @`e, state perdendo tempo e lo
+fate perdere a noi.
+
+@item
+Verificate di stare usando l'ultima versione di @command{gawk}.
 Molti bug (di solito difficili da scoprire) sono corretti in ogni nuova
 versione, e se la versione in uso @`e piuttosto datata, il problema pu@`o
 essere stato risolto nel frattempo.
 
-In secondo luogo, si dovrebbe controllare se, con l'impostare la variabile
+@item
+Per piacere, controllate se, l'impostazione della variabile
 @env{LC_ALL} come @code{LC_ALL=C} produce il funzionamento atteso da parte
 del programma.  Se @`e questo il caso, il problema dipende dalla
 localizzazione, e pu@`o non essere veramente un bug.
 
-In terzo luogo, va riletta attentamente la documentazione,
+@item
+Rileggete attentamente la documentazione,
 per controllare se dice che @`e possibile
 fare quel che si sta tentando di fare.  Se non @`e chiaro se sia possibile
 fare quella particolare cosa o no, occorre segnalarlo; in questo caso si tratta
 di un bug nella documentazione!
 
-Infine, prima
-di segnalare un bug o di tentare di risolverlo personalmente, si tenti
-di isolarlo preparando un programma @command{awk} il pi@`u piccolo possibile, con
-un @value{DF} in input che possa riprodurre il problema.  Dopo averlo fatto, si
-spedisca il programma e il @value{DF}, insieme a informazioni sul tipo di
-sistema Unix in uso, il compilatore usato per compilare @command{gawk}, e i
-risultati esatti che @command{gawk} ha prodotto.  Inoltre andrebbe specificato
-cosa ci si aspettava che il programma facesse; questo @`e di aiuto per decidere
-se il problema @`e un problema di documentazione.
+@item
+Prima di segnalare un bug o di tentare di risolverlo personalmente, si tenti
+di isolarlo preparando un programma @command{awk} il pi@`u piccolo possibile,
+con un @value{DF} in input che possa riprodurre il problema.
 
-@`E importante includere il numero di versione di @command{gawk} in uso.
+Dopo averlo fatto, si spedisca:
+
+@itemize @bullet
+@item
+il programma e il @value{DF}.
+
+@item
+Qualche informazioni sul tipo di sistema Unix in uso.
+
+@item
+Il compilatore usato per compilare @command{gawk},
+
+@item
+I risultati esatti che @command{gawk} ha prodotto.  Inoltre andrebbe
+specificato cosa ci si aspettava che il programma facesse; questo @`e
+di aiuto per decidere se il problema @`e un problema di documentazione.
+
+@item
+Il numero di versione di @command{gawk} in uso.
 Questa informazione si pu@`o ottenere con il comando @samp{gawk --version}.
+@end itemize
+
+@item
+@emph{Non} inviare immagini di videate.  In alternativa, usate COPIA/INCOLLA
+per inviare testo, o per spedire file.
+
+@item
+Spedite file come allegati, invece che nel corpo del messaggio.
+Ci@`o evita la possibile corruzione del file da programmi di gestione
+della posta attraverso cui il messaggio transita in Internet.
+
+@item
+Accertatevi di spedire tutta la posta in formato @emph{testo},
+e non (o non soltanto) in formato HTML.
+
+@item
+@emph{Tutto il messaggio dev'essere in inglese.  Questa @`e la sola
+lingua che tutti i manutentori comprendono.}
+@end enumerate
 
 @cindex @code{bug-gawk@@gnu.org} indirizzo per la segnalazione dei bug
 @cindex email @subentry indirizzo per segnalare bug @subentry @code{bug-gawk@@gnu.org}
@@ -46049,7 +46187,7 @@ Questa informazione si pu@`o ottenere con il comando @samp{gawk --version}.
 @cindex bug @subentry segnalare @subentry indirizzo email, @code{bug-gawk@@gnu.org}
 @cindex segnalare bug @subentry indirizzo email @subentry @code{bug-gawk@@gnu.org}
 Una volta pronta la descrizione precisa del problema, si spedisca un messaggio
-di posta elettronica a @EMAIL{bug-gawk@@gnu.org,bug-gawk at gnu dot org}.
+di posta elettronica a @EMAIL{bug-gawk@@gnu.org,bug-gawk (chiocciola) gnu (punto) org}.
 
 I manutentori di @command{gawk} sono i destinatari, e riceveranno la
 segnalazione di errore.  Sebbene sia possibile spedire messaggi direttamente ai
@@ -46063,7 +46201,7 @@ conoscono.} Inoltre, occorre accertarsi di spedire tutti i messaggi in formato
 Molte distribuzioni di GNU/Linux e i vari sistemi operativi basati su
 BSD hanno un loro proprio canale per segnalare i bug.  Se si segnala un
 bug usando il canale della distribuzione, una copia del messaggio andrebbe
-inviata anche a @EMAIL{bug-gawk@@gnu.org,bug-gawk at gnu dot org}.
+inviata anche a @EMAIL{bug-gawk@@gnu.org,bug-gawk (chiocciola) gnu (punto) org}.
 
 Questo per due ragioni.  La prima @`e che, sebbene alcune distribuzioni inoltrino
 i messaggi sui problemi ``verso l'alto'' alla mailing list GNU, molte non lo
@@ -46073,11 +46211,6 @@ posta diretta alla mailing list GNU @`e archiviata, e il poter disporre di ogni
 cosa all'interno del progetto GNU consente di avere a disposizione tutte le
 informazioni rilevanti senza dover dipendere da altre organizzazioni.
 @end quotation
-
-Suggerimenti non correlati a bug sono pure sempre benvenuti.  Se si hanno
-domande riguardo a qualcosa di non chiaro nella documentazione o a proposito
-di funzionalit@`a oscure, si scriva alla mailing list dei bug; si prover@`a
-a essere di aiuto nei limiti del possibile.
 
 Si tenga presente: Si chiede di seguire le
 @uref{https://gnu.org/philosophy/kind-communication.html,
@@ -46204,7 +46337,11 @@ dati reali e un programma reale.
 
 Il file di dati da usare dev'essere abbastanza grosso da permettere alla
 profilazione statistica di misurare dove @command{gawk} impiega il
-tempo di esecuzione.
+tempo di esecuzione.  La sua dimensione dovrebbe essere almeno 100 megabyte.
+
+@example
+$ @kbd{./gawk -f programma-reale.awk dati-reali > /dev/null}
+@end example
 
 @item
 Alla fine del test, dovreste trovare nella directory corrente un file
@@ -46228,6 +46365,71 @@ per verificare se le @dfn{patch} hanno risolto il problema.
 
 Se non si @`e in grado di, o non si vuole, eseguire i passi sopra elencati,
 ci si deve rassegnare a vivere con il @command{gawk} disponibile.
+
+@node Richieste di aiuto
+@appendixsubsec Dove spedire richieste non relative a bug
+
+Se avete domande relative alla programmazione @command{awk}, o sul perch@'e
+@command{gawk} si comporta in un certo modo, o per qualsiasi altra domanda
+relativa ad @command{awk} o a @command{gawk},
+siete pregati di @emph{non} inviarle all'indirizzo che si usa per
+segnalare bug.
+
+A far data dal 21 luglio 2021, esiste una mailing list a parte
+creata proprio per tali casi:
+@EMAIL{help-gawk@@gnu.org, help-gawk (chiocciola) gnu.org}.
+Tutto ci@`o che non @`e una segnalazione di bug andrebbe spedito
+a tale lista.
+
+@quotation NOTA
+Se non si rispettano queste regole, e si spediscono domande non realtive
+a bug alla mailing list dei bug, si verr@`a soltanto invitati a usare la
+mailing list dedicata alle richieste di aiuto.
+Dopo la seconda richiesta di queto tipo, sarete esclusi senza preavviso
+(@emph{blacklisted}) dalla lista di segnalazione dei bug.
+@end quotation
+
+Per piacere, tenete presente: Come per la mailing list dedicata
+alla segnalazione di bug, siete invitati a seguire le
+@uref{https://gnu.org/philosophy/kind-communication.html,
+-- Linee guida GNU per una comunicazione gentile}
+nella vostra corrispondenza (e anche in generale).
+
+Se volete far parte della lista di help, per essere di
+aiuto ad altri, o per imparare da altri, ecco le
+istruzioni per registrarsi, fornite da Bob Proulx:
+
+@table @emph
+@item Sottoscrizione via email
+
+Spedire un messaggio email a
+@EMAIL{help-gawk-request@@gnu.org, help-gawk-request (chiocciola) gnu.org}
+com ``subscribe'' nel corpo del messaggio.
+L'argomento del messaggio non importa e non @`e usato.
+
+@item Sottoscrizione tramite formulario web
+
+Per usare l'interfacci web, visitare
+@uref{https://lists.gnu.org/mailman/listinfo/help-gawk,
+la pagina con le informazioni sulla lista}.
+Usare il formulario per la sottoscrizione, inserire il vostro
+indirizzo email e spedite usando il pulsante @code{Subscribe}.
+
+@item Rispondere al messaggio di conferma
+
+In entrambi i casi occorre rispondere al messaggio di conferma
+che viene spedito al vostro indirizzo email.
+@end table
+
+Bob fa anche presente che @`e possibile usare l'email sia
+per la sottoscrizione alla lista che per uscire dalla lista.
+Per esempio:
+
+@example
+$ @kbd{echo help | mailx -s request help-gawk-request@@gnu.org}
+$ @kbd{echo subscribe | mailx -s request help-gawk-request@@gnu.org}
+$ @kbd{echo unsubscribe | mailx -s request help-gawk-request@@gnu.org}
+@end example
 
 @node Manutentori
 @appendixsubsec Manutentori di versioni non-Unix
@@ -46255,24 +46457,24 @@ Le persone che si occupano delle varie versioni di @command{gawk} sono:
 @ifclear SMALLPRINT
 @multitable {MS-Windows con MinGW} {123456789012345678901234567890123456789001234567890}
 @end ifclear
-@item Unix e sistemi POSIX @tab Arnold Robbins, @EMAIL{arnold@@skeeve.com,arnold at skeeve dot com}
+@item Unix e sistemi POSIX @tab Arnold Robbins, @EMAIL{arnold@@skeeve.com,arnold (chiocciola) skeeve (punto) com}
 
-@item MS-DOS with DJGPP @tab Juan Manuel Guerrero, @EMAIL{juan.guerrero@@gmx.de, juan dot guerrero at gmx dot de}
+@item MS-DOS with DJGPP @tab Juan Manuel Guerrero, @EMAIL{juan.guerrero@@gmx.de, juan (punto) guerrero (chiocciola) gmx (punto) de}
 
-@item MS-Windows con MinGW @tab Eli Zaretskii, @EMAIL{eliz@@gnu.org,eliz at gnu dot org}
+@item MS-Windows con MinGW @tab Eli Zaretskii, @EMAIL{eliz@@gnu.org,eliz (chiocciola) gnu (punto) org}
 
 @c Leave this in the document on purpose.
 @c OS/2 is not mentioned anywhere else though.
-@item OS/2 @tab Andreas Buening, @EMAIL{andreas.buening@@nexgo.de,andreas dot buening at nexgo dot de}
+@item OS/2 @tab Andreas Buening, @EMAIL{andreas.buening@@nexgo.de,andreas (punto) buening (chiocciola) nexgo (punto) de}
 
-@item VMS @tab John Malmberg, @EMAIL{wb8tyw@@qsl.net,wb8tyw at qsl.net}
+@item VMS @tab John Malmberg, @EMAIL{wb8tyw@@qsl.net,wb8tyw (chiocciola) qsl.net}
 
-@item z/OS (OS/390) @tab Daniel Richard G.@: @EMAIL{skunk@@iSKUNK.ORG,skunk at iSKUNK.ORG}
+@item z/OS (OS/390) @tab Daniel Richard G.@: @EMAIL{skunk@@iSKUNK.ORG,skunk (chiocciola) iSKUNK.ORG}
 @end multitable
 
 Se il problema riscontrato @`e riproducibile anche sotto Unix,
 si dovrebbe spedire una copia del messaggio anche alla mailing list
-@EMAIL{bug-gawk@@gnu.org,bug-gawk at gnu dot org}.
+@EMAIL{bug-gawk@@gnu.org,bug-gawk (chiocciola) gnu (punto) org}.
 
 La versione generata usando gli strumenti DJGPP non @`e pi@`u supportata;
 il codice relativo rester@`a nella distribuzione ancora per qualche tempo,
@@ -46408,8 +46610,8 @@ e prepara il codice eseguibile usando una libreria di funzioni che
 implementano le funzionalit@`a di base di @command{awk}.
 Comprende anche un certo numero di estensioni.
 
-Il traduttore di @command{awk} @`e rilasciato sotto la licenza GPL, e la
-relativa libreria sotto la licenza LGPL.
+Sia il traduttore di @command{awk} che la relativa libreria sono
+rilasciate sotto la licenza GPL.
 
 Per ottenere @command{awka}, si visiti
 il sito @url{https://sourceforge.net/projects/awka}.
@@ -46619,10 +46821,17 @@ questo
 
 @item
 Le segnalazioni di errori (bug) dovrebbero essere spedite tramite email a
-@email{bug-gawk@@gnu.org}.  Le segnalazioni di errore dovrebbero essere scritte
+@EMAIL{bug-gawk@@gnu.org, bug-gawk (chiocciola) gnu.org}.
+Le segnalazioni di errore dovrebbero essere scritte
 in inglese e dovrebbero specificare la versione di @command{gawk} in uso, come
 @`e stata compilata, un breve programma e un @value{DF} che permettono di
 riprodurre il problema.
+
+@item
+Messaggi che non riguardano bug vanno spediti a
+@EMAIL{help-gawk@@gnu.org, help-gawk (chiocciola) gnu.org}.
+Chi spedisce pi@`u messaggi che non riguardano bug alla mailing list
+dei bug verr@`a escluso dalla stessa (@dfn{blacklisted}).
 
 @item
 Ci sono alcune altre implementazioni di @command{awk} disponibili
@@ -46780,7 +46989,7 @@ attribuendo il copyright delle modifiche all'FSF.
 Entrambe queste azioni sono semplici da fare, e @emph{molte} persone gi@`a
 l'hanno fatto.  Se ci sono domande da fare, mettersi in contatto con me
 (@pxref{Bug}),
-oppure @EMAIL{assign@@gnu.org,assign chiocciola gnu punto org}.
+oppure @EMAIL{assign@@gnu.org,assign (chiocciola) gnu (punto) org}.
 
 @item
 Utilizzare l'ultima versione.
@@ -46966,7 +47175,8 @@ di pubblico dominio, tramite la firma di un documento apposito, oppure
 attribuendo il copyright delle modifiche all'FSF.
 Entrambe queste azioni sono semplici da fare, e @emph{molte} persone gi@`a
 l'hanno fatto.  Se ci sono domande da fare, scrivere a me
-oppure all'indirizzo @email{gnu@@gnu.org}.
+oppure all'indirizzo
+@EMAIL{gnu@@gnu.org, gnu (chiocciola) gnu.org}.
 
 @item
 Nel realizzare un @dfn{port}, tener presente che il codice

@@ -15,6 +15,7 @@
 .\"Aggiornam. a gawk-5.1.0 di A.G. Colombo - Giugno 2020
 .\"Aggiornam. a gawk-5.1.0 di A.G. Colombo - Luglio 2020
 .\"Aggiornam. a gawk-5.1.1 di A.G. Colombo - Maggio 2021
+.\"Aggiornam. a gawk-5.1.1 di A.G. Colombo - Luglio 2021
 
 .ds PX \s-1POSIX\s+1
 .ds UX \s-1UNIX\s+1
@@ -31,7 +32,7 @@
 .		if \w'\(rq' .ds rq "\(rq
 .	\}
 .\}
-.TH GAWK 1 "May 30 2021" "Free Software Foundation" "Utility Commands"
+.TH GAWK 1 "Jul 05 2021" "Free Software Foundation" "Utility Commands"
 .SH NOME
 gawk \- linguaggio per il riconoscimento e il trattamento di espressioni
 regolari
@@ -2956,6 +2957,9 @@ quelli delle stringhe ammissibili per
 Si può anche specificare il nome di una funzione di confronto
 definita dall'utente, come viene spiegato in
 \fBPROCINFO["sorted_in"]\fR.
+.IR s " e " d
+possono specificare lo stesso vettore; la cosa ha senso nel
+caso si specifichi anche il terzo argomento.
 .TP "\w'\fBsprintf(\^\fIfmt\fB\^, \fIlista-espressioni\^\fB)\fR'u+1n"
 \fBasorti(\fIs \fR[\fB, \fId\fR [\fB, \fIcome\fR] ]\fB)\fR
 Restituisce il numero di elementi del
@@ -2974,6 +2978,10 @@ Lo scopo della stringa facoltativa
 .I come
 è lo stesso descritto in precedenza per
 .BR asort() .
+Anche qui
+.IR s " e " d
+possono specificare lo stesso vettore; la cosa ha senso nel
+caso si specifichi anche il terzo argomento.
 .TP
 \fBgensub(\fIr\fB, \fIs\fB, \fIh \fR[\fB, \fIt\fR]\fB)\fR
 Cerca nella stringa obiettivo
