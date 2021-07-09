@@ -1,3 +1,13 @@
+2021-07-09         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.in: Make @EMAIL usage consistent everywhere.
+	Thanks to Antonio Columbo for pointing it out.
+
+2021-07-07         Andrew J. Schorr      <aschorr@telemetry-investments.com>
+
+	* gawktexi.in (Isnumeric Function): Improve description of how
+	isnumeric differs from the traditional x+0 == x test.
+
 2021-07-05         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawk.1: Document that asort() and asorti() allow the same array to

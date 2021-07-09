@@ -22239,7 +22239,8 @@ to add an additional check for that.
 Traditionally, it has been recommended to check for numeric values using the
 test @samp{x+0 == x}. This function is superior in two ways: it will not
 report that unassigned variables contain numeric values; and it recognizes
-string values with numeric contents.
+string values with numeric contents where @code{CONVFMT} does not yield
+the original string.
 On the other hand, it uses the @code{typeof()} function
 (@pxref{Type Functions}), which is specific to @command{gawk}.
 
@@ -42130,7 +42131,7 @@ understood in common by all the maintainers.}
 @cindex email address for bug reports, @code{bug-gawk@@gnu.org}
 @cindex bug reports, email address, @code{bug-gawk@@gnu.org}
 Once you have a precise problem description, send email to
-@EMAIL{bug-gawk@@gnu.org,bug-gawk at gnu dot org}.
+@EMAIL{bug-gawk@@gnu.org,bug dash gawk at gnu dot org}.
 
 The @command{gawk} maintainers subscribe to this address, and
 thus they will receive your bug report.
@@ -42142,7 +42143,7 @@ email list is archived at the GNU Project.
 Many distributions of GNU/Linux and the various BSD-based operating systems
 have their own bug reporting systems.  If you report a bug using your distribution's
 bug reporting system, you should also send a copy to
-@EMAIL{bug-gawk@@gnu.org,bug-gawk at gnu dot org}.
+@EMAIL{bug-gawk@@gnu.org,bug dash gawk at gnu dot org}.
 
 This is for two reasons.  First, although some distributions forward
 bug reports ``upstream'' to the GNU mailing list, many don't, so there is a good
@@ -42291,7 +42292,7 @@ behaves a certain way, or any other @command{awk}- or @command{gawk}-related iss
 please @emph{do not} send it to the bug reporting address.
 
 As of July, 2021, there is a separate mailing list for this purpose:
-@EMAIL{help-gawk@@gnu.org, help-gawk at gnu.org}.
+@EMAIL{help-gawk@@gnu.org, help dash gawk at gnu dot org}.
 Anything that is not a bug report should be sent to that list.
 
 @quotation NOTE
@@ -42305,6 +42306,7 @@ Please note: As with the bug list, we ask that you follow the
 GNU Kind Communication Guidelines} in your correspondence on the
 list (as well as off of it).
 
+@cindex Proulx, Bob
 If you wish to the subscribe to the list, in order to help out
 others, or to learn from others, here are instructions, courtesy
 of Bob Proulx:
@@ -42314,7 +42316,7 @@ of Bob Proulx:
 @item Subscribe by email
 
 Send an email message to
-@EMAIL{help-gawk-request@@gnu.org, help-gawk-request AT gnu.org}
+@EMAIL{help-gawk-request@@gnu.org, help dash gawk dash request at gnu dot org}
 with ``subscribe'' in
 the body of the message.  The subject does not matter and is not used.
 
@@ -42372,13 +42374,13 @@ The people maintaining the various @command{gawk} ports are:
 @c OS/2 is not mentioned anywhere else though.
 @item OS/2 @tab Andreas Buening, @EMAIL{andreas.buening@@nexgo.de,andreas dot buening at nexgo dot de}
 
-@item VMS @tab John Malmberg, @EMAIL{wb8tyw@@qsl.net,wb8tyw at qsl.net}
+@item VMS @tab John Malmberg, @EMAIL{wb8tyw@@qsl.net,wb8tyw at qsl dot net}
 
-@item z/OS (OS/390) @tab Daniel Richard G.@: @EMAIL{skunk@@iSKUNK.ORG,skunk at iSKUNK.ORG}
+@item z/OS (OS/390) @tab Daniel Richard G.@: @EMAIL{skunk@@iSKUNK.ORG,skunk at iSKUNK dot ORG}
 @end multitable
 
 If your bug is also reproducible under Unix, send a copy of your
-report to the @EMAIL{bug-gawk@@gnu.org,bug-gawk at gnu dot org} email list as well.
+report to the @EMAIL{bug-gawk@@gnu.org,bug dash gawk at gnu dot org} email list as well.
 
 @node Other Versions
 @appendixsec Other Freely Available @command{awk} Implementations
@@ -42669,13 +42671,13 @@ and both Vax/VMS and OpenVMS.
 Instructions for each system are included in this @value{APPENDIX}.
 
 @item
-Bug reports should be sent via email to @EMAIL{bug-gawk@@gnu.org, bug-gawk AT gnu.org}.
+Bug reports should be sent via email to @EMAIL{bug-gawk@@gnu.org, bug dash gawk at gnu dot org}.
 Bug reports should be in English and should include the version of @command{gawk},
 how it was compiled, and a short program and @value{DF} that demonstrate
 the problem.
 
 @item
-Non-bug emails should be sent to @EMAIL{help-gawk@@gnu.org, help-gawk AT gnu.org}.
+Non-bug emails should be sent to @EMAIL{help-gawk@@gnu.org, help dash gawk at gnu dot org}.
 Repeatedly sending non-bug emails to the bug list will get you blacklisted from it.
 
 @item
@@ -42991,7 +42993,7 @@ your code in the public domain and submit a signed statement to that
 effect, or assign the copyright in your code to the FSF.
 Both of these actions are easy to do and @emph{many} people have done so
 already. If you have questions, please contact me, or
-@EMAIL{gnu@@gnu.org, gnu AT gnu.org}.
+@EMAIL{gnu@@gnu.org, gnu at gnu dot org}.
 
 @item
 When doing a port, bear in mind that your code must coexist peacefully

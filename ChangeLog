@@ -1056,7 +1056,6 @@
 	* gawkapi.h: Update copyright year, fix some spelling errors.
 
 2019-07-08         Andrew J. Schorr      <aschorr@telemetry-investments.com>
-2019-07-08         Andrew J. Schorr      <aschorr@telemetry-investments.com>
 
 	* gawkapi.h (gawk_api_major_version): Bump from 2 to 3 because the
 	namespace changes altered the function signatures in gawk_api_t.
