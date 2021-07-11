@@ -24353,7 +24353,8 @@ Tradizionalmente, per controllare se un valore @`e numerico, si raccomandava
 di usare il test @samp{x+0 == x}.  La funzione @code{isnumeric} @`e migliore
 sotto due aspetti: non attribuisce un valore numerico a variabili a cui
 non sia stato ancora assegnato un valore; e riconosce valori di stringa
-con contenuto numerico.
+con contenuto numerico quando @code{CONVFMT} non genera una stringa
+uguale a quella originale.
 Tuttavia, per farlo, utilizza la funzione @code{typeof()}
 (@pxref{Funzioni per i tipi}), che @`e disponibile solo in @command{gawk}.
 
@@ -46187,7 +46188,8 @@ lingua che tutti i manutentori comprendono.}
 @cindex bug @subentry segnalare @subentry indirizzo email, @code{bug-gawk@@gnu.org}
 @cindex segnalare bug @subentry indirizzo email @subentry @code{bug-gawk@@gnu.org}
 Una volta pronta la descrizione precisa del problema, si spedisca un messaggio
-di posta elettronica a @EMAIL{bug-gawk@@gnu.org,bug-gawk (chiocciola) gnu (punto) org}.
+di posta elettronica a
+@EMAIL{bug-gawk@@gnu.org,bug (trattino) gawk (chiocciola) gnu (punto) org}.
 
 I manutentori di @command{gawk} sono i destinatari, e riceveranno la
 segnalazione di errore.  Sebbene sia possibile spedire messaggi direttamente ai
@@ -46201,7 +46203,8 @@ conoscono.} Inoltre, occorre accertarsi di spedire tutti i messaggi in formato
 Molte distribuzioni di GNU/Linux e i vari sistemi operativi basati su
 BSD hanno un loro proprio canale per segnalare i bug.  Se si segnala un
 bug usando il canale della distribuzione, una copia del messaggio andrebbe
-inviata anche a @EMAIL{bug-gawk@@gnu.org,bug-gawk (chiocciola) gnu (punto) org}.
+inviata anche a
+@EMAIL{bug-gawk@@gnu.org,bug (trattino) gawk (chiocciola) gnu (punto) org}.
 
 Questo per due ragioni.  La prima @`e che, sebbene alcune distribuzioni inoltrino
 i messaggi sui problemi ``verso l'alto'' alla mailing list GNU, molte non lo
@@ -46377,7 +46380,7 @@ segnalare bug.
 
 A far data dal 21 luglio 2021, esiste una mailing list a parte
 creata proprio per tali casi:
-@EMAIL{help-gawk@@gnu.org, help-gawk (chiocciola) gnu.org}.
+@EMAIL{help-gawk@@gnu.org, help (trattino) gawk (chiocciola) gnu (punto) org}.
 Tutto ci@`o che non @`e una segnalazione di bug andrebbe spedito
 a tale lista.
 
@@ -46395,6 +46398,7 @@ alla segnalazione di bug, siete invitati a seguire le
 -- Linee guida GNU per una comunicazione gentile}
 nella vostra corrispondenza (e anche in generale).
 
+@cindex Proulx, Bob
 Se volete far parte della lista di help, per essere di
 aiuto ad altri, o per imparare da altri, ecco le
 istruzioni per registrarsi, fornite da Bob Proulx:
@@ -46403,8 +46407,8 @@ istruzioni per registrarsi, fornite da Bob Proulx:
 @item Sottoscrizione via email
 
 Spedire un messaggio email a
-@EMAIL{help-gawk-request@@gnu.org, help-gawk-request (chiocciola) gnu.org}
-com ``subscribe'' nel corpo del messaggio.
+@EMAIL{help-gawk-request@@gnu.org, help (trattino) gawk (trattino) request (chiocciola) gnu (punto) org}
+con ``subscribe'' nel corpo del messaggio.
 L'argomento del messaggio non importa e non @`e usato.
 
 @item Sottoscrizione tramite formulario web
@@ -46467,14 +46471,14 @@ Le persone che si occupano delle varie versioni di @command{gawk} sono:
 @c OS/2 is not mentioned anywhere else though.
 @item OS/2 @tab Andreas Buening, @EMAIL{andreas.buening@@nexgo.de,andreas (punto) buening (chiocciola) nexgo (punto) de}
 
-@item VMS @tab John Malmberg, @EMAIL{wb8tyw@@qsl.net,wb8tyw (chiocciola) qsl.net}
+@item VMS @tab John Malmberg, @EMAIL{wb8tyw@@qsl.net,wb8tyw (chiocciola) qsl (punto) net}
 
-@item z/OS (OS/390) @tab Daniel Richard G.@: @EMAIL{skunk@@iSKUNK.ORG,skunk (chiocciola) iSKUNK.ORG}
+@item z/OS (OS/390) @tab Daniel Richard G.@: @EMAIL{skunk@@iSKUNK.ORG,skunk (chiocciola) iSKUNK (punto) ORG}
 @end multitable
 
 Se il problema riscontrato @`e riproducibile anche sotto Unix,
 si dovrebbe spedire una copia del messaggio anche alla mailing list
-@EMAIL{bug-gawk@@gnu.org,bug-gawk (chiocciola) gnu (punto) org}.
+@EMAIL{bug-gawk@@gnu.org,bug (trattino) gawk (chiocciola) gnu (punto) org}.
 
 La versione generata usando gli strumenti DJGPP non @`e pi@`u supportata;
 il codice relativo rester@`a nella distribuzione ancora per qualche tempo,
@@ -46821,7 +46825,7 @@ questo
 
 @item
 Le segnalazioni di errori (bug) dovrebbero essere spedite tramite email a
-@EMAIL{bug-gawk@@gnu.org, bug-gawk (chiocciola) gnu.org}.
+@EMAIL{bug-gawk@@gnu.org, bug (trattino) gawk (chiocciola) gnu (punto) org}.
 Le segnalazioni di errore dovrebbero essere scritte
 in inglese e dovrebbero specificare la versione di @command{gawk} in uso, come
 @`e stata compilata, un breve programma e un @value{DF} che permettono di
@@ -46829,7 +46833,7 @@ riprodurre il problema.
 
 @item
 Messaggi che non riguardano bug vanno spediti a
-@EMAIL{help-gawk@@gnu.org, help-gawk (chiocciola) gnu.org}.
+@EMAIL{help-gawk@@gnu.org, help (trattino) gawk (chiocciola) gnu (punto) org}.
 Chi spedisce pi@`u messaggi che non riguardano bug alla mailing list
 dei bug verr@`a escluso dalla stessa (@dfn{blacklisted}).
 
@@ -47176,7 +47180,7 @@ attribuendo il copyright delle modifiche all'FSF.
 Entrambe queste azioni sono semplici da fare, e @emph{molte} persone gi@`a
 l'hanno fatto.  Se ci sono domande da fare, scrivere a me
 oppure all'indirizzo
-@EMAIL{gnu@@gnu.org, gnu (chiocciola) gnu.org}.
+@EMAIL{gnu@@gnu.org, gnu (chiocciola) gnu (punto) org}.
 
 @item
 Nel realizzare un @dfn{port}, tener presente che il codice
