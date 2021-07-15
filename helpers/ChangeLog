@@ -1,3 +1,7 @@
+2021-07-15         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* testdfa.c (main): Bug fix and new -b option.
+
 2021-05-12         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* update-support.sh: Fix list of files to copy over.
