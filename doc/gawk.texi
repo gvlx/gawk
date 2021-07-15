@@ -1058,8 +1058,6 @@ particular records in a file and perform operations upon them.
                                         VMS.
 * VMS Running::                         How to run @command{gawk} under VMS.
 * VMS GNV::                             The VMS GNV Project.
-* VMS Old Gawk::                        An old version comes with some VMS
-                                        systems.
 * Bugs::                                Reporting Problems and Bugs.
 * Bug definition::                      Defining what is and is not a bug.
 * Bug address::                         Where to send reports to.
@@ -42748,7 +42746,7 @@ recipe works ``out of the box.''
 
 @cindex @command{gawk} @subentry VMS version of
 @cindex installing @command{gawk} @subentry VMS
-This @value{SUBSECTION} describes how to compile and install @command{gawk} under VMS.
+This @value{SUBSECTION} describes how to compile and install @command{gawk} under OpenVMS.
 The older designation ``VMS'' is used throughout to refer to OpenVMS.
 
 @menu
@@ -42758,7 +42756,6 @@ The older designation ``VMS'' is used throughout to refer to OpenVMS.
 * VMS Installation Details::    How to install @command{gawk} under VMS.
 * VMS Running::                 How to run @command{gawk} under VMS.
 * VMS GNV::                     The VMS GNV Project.
-* VMS Old Gawk::                An old version comes with some VMS systems.
 @end menu
 
 @node VMS Compilation
@@ -42900,7 +42897,7 @@ $ @kbd{set command gnv$gnu:[vms_bin]gawk_verb.cld}
 @end example
 
 Or the system manager can use @file{GNV$GNU:[vms_bin]gawk_verb.cld} to
-add the @command{gawk} and @command{awk} to the system-wide @samp{DCLTABLES}.
+add the @command{gawk} and @command{awk} commands to the system-wide @samp{DCLTABLES}.
 
 The DCL syntax is documented in the @file{gawk.hlp} file.
 
@@ -42994,8 +42991,6 @@ VMS reports time values in GMT unless one of the @code{SYS$TIMEZONE_RULE}
 or @code{TZ} logical names is set.  Older versions of VMS, such as VAX/VMS
 7.3, do not set these logical names.
 
-@c @cindex directory search
-@c @cindex path, search
 @cindex search paths
 @cindex search paths @subentry for source files
 The default search path, when looking for @command{awk} program files specified
@@ -43050,7 +43045,6 @@ $ define/user sys$input sys$command:
 $ sort sys$input: sys$output:
 @end example
 
-
 @node VMS GNV
 @appendixsubsubsec The VMS GNV Project
 
@@ -43065,56 +43059,6 @@ is suitable for use with GNV.
 
 The file @file{vms/gawk_build_steps.txt} in the distribution documents
 the procedure for building a VMS PCSI kit that is compatible with GNV.
-
-@ignore
-@c The VMS POSIX product, also known as POSIX for OpenVMS, is long defunct
-@c and building gawk for it has not been tested in many years, but these
-@c old instructions might still work if anyone is still using it.
-
-@node VMS POSIX
-@appendixsubsubsec Building and Using @command{gawk} on VMS POSIX
-
-Ignore the instructions above, although @file{vms/gawk.hlp} should still
-be made available in a help library.  The source tree should be unpacked
-into a container file subsystem rather than into the ordinary VMS filesystem.
-Make sure that the two scripts, @file{configure} and
-@file{vms/posix-cc.sh}, are executable; use @samp{chmod +x} on them if
-necessary.  Then execute the following two commands:
-
-@example
-psx> @kbd{CC=vms/posix-cc.sh configure}
-psx> @kbd{make CC=c89 gawk}
-@end example
-
-@noindent
-The first command constructs files @file{config.h} and @file{Makefile} out
-of templates, using a script to make the C compiler fit @command{configure}'s
-expectations.  The second command compiles and links @command{gawk} using
-the C compiler directly; ignore any warnings from @command{make} about being
-unable to redefine @code{CC}.  @command{configure} takes a very long
-time to execute, but at least it provides incremental feedback as it runs.
-
-This has been tested with VAX/VMS V6.2, VMS POSIX V2.0, and DEC C V5.2.
-
-Once built, @command{gawk} works like any other shell utility.  Unlike
-the normal VMS port of @command{gawk}, no special command-line manipulation is
-needed in the VMS POSIX environment.
-@end ignore
-
-@node VMS Old Gawk
-@appendixsubsubsec Some VMS Systems Have An Old Version of @command{gawk}
-
-@c Thanks to "gerard labadie" <gerard.labadie@gmail.com>
-
-Some versions of VMS have an old version of @command{gawk}.  To access it,
-define a symbol, as follows:
-
-@example
-$ @kbd{gawk :== $sys$common:[syshlp.examples.tcpip.snmp]gawk.exe}
-@end example
-
-This is apparently @value{PVERSION} 2.15.6, which is extremely old. We
-recommend compiling and using the current version.
 
 @node Bugs
 @appendixsec Reporting Problems and Bugs
