@@ -25,6 +25,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
  */
 
+#include <config.h>
+
 #include <stdio.h>
 #include <ctype.h>
 #include <errno.h>
@@ -44,7 +46,7 @@
 
 #undef _Noreturn
 #define _Noreturn
-#define _GL_ATTRIBUTE_PURE
+/*#define _GL_ATTRIBUTE_PURE */
 #include "dfa.h"
 #include "localeinfo.h"
 
@@ -88,6 +90,7 @@ int main(int argc, char **argv)
 	char save;
 	size_t count = 0;
 	char *place;
+	bool not_bol = false;
 	struct localeinfo localeinfo;
 
 	if (argc < 2)
@@ -100,8 +103,11 @@ int main(int argc, char **argv)
 	syn = RE_SYNTAX_GNU_AWK;
 
 	/* parse options, update syntax, ignorecase */
-	while ((c = getopt(argc, argv, "pit")) != -1) {
+	while ((c = getopt(argc, argv, "bpit")) != -1) {
 		switch (c) {
+		case 'b':
+			not_bol = true;
+			break;
 		case 'i':
 			ignorecase = true;
 			break;
@@ -173,6 +179,7 @@ int main(int argc, char **argv)
 
 	/* gack. this must be done *after* re_compile_pattern */
 	pat.newline_anchor = false; /* don't get \n in middle of string */
+	pat.not_bol = not_bol;
 
 	dfareg = dfaalloc();
 	init_localeinfo(&localeinfo);
@@ -185,9 +192,10 @@ int main(int argc, char **argv)
 
 
 	data = databuf(STDIN_FILENO);
+	len = strlen(data);
 
 	/* run the regex matcher */
-	ret = re_search(& pat, data, len, 0, len, NULL);
+	ret = re_search(& pat, data, len, 0, len, &regs);
 	printf("re_search returned position %d (%s)\n", ret, (ret >= 0) ? "true" : "false");
 
 	/* run the dfa matcher */
