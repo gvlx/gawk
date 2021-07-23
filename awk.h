@@ -750,6 +750,16 @@ enum redirval {
 
 struct break_point;
 
+#if __DECC && __VAX
+typedef unsigned long exec_count_t;	// for exec_count
+#define EXEC_COUNT_FMT	"%lu"
+#define EXEC_COUNT_PROFILE_FMT	"%6lu"
+#else
+typedef unsigned long long exec_count_t;	// for exec_count
+#define EXEC_COUNT_FMT	"%llu"
+#define EXEC_COUNT_PROFILE_FMT	"%6llu"
+#endif
+
 typedef struct exp_instruction {
 	struct exp_instruction *nexti;
 	union {
@@ -760,7 +770,7 @@ typedef struct exp_instruction {
 					awk_value_t *result,
 					struct awk_ext_func *finfo);
 		long dl;
-		unsigned long long ldl;	// for exec_count
+		exec_count_t ldl;	// for exec_count
 		char *name;
 	} d;
 

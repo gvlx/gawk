@@ -1,3 +1,11 @@
+2021-07-23         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* awk.h (exec_count_t): Add typedef for Vax VMS C and everyone else.
+	(EXEC_COUNT_FMT, EXEC_COUNT_PROFILE_FMT): Corresponding format
+	strings for printf.
+	* debug.c (print_instruction): Use EXEC_COUNT_FMT.
+	* profile.c (indent): Ditto and use EXEC_COUNT_PROFILE_FMT.
+
 2021-07-07         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* array.c (asort_actual): Add a lint warning for passing the
