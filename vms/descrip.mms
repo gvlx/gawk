@@ -38,10 +38,11 @@
 #
 
 # location of various source files, relative to the 'main' directory
-SUPPORT = [.support]
-VMSDIR	= [.vms]
-DOCDIR	= [.doc]
-MISSNGD	= [.missing_d]
+MALLOC = sys$disk:[.support.malloc]
+SUPPORT = sys$disk:[.support]
+VMSDIR	= sys$disk:[.vms]
+DOCDIR	= sys$disk:[.doc]
+MISSNGD	= sys$disk:[.missing_d]
 MAKEFILE = $(VMSDIR)Descrip.MMS
 
 # debugging &c		!'ccflags' is an escape to allow external compile flags
@@ -53,6 +54,11 @@ CDEFS	= "GAWK","HAVE_CONFIG_H"
 
 .ifdef GNUC
 # assumes VAX
+# GCC has not been tested for decades.
+# GCC/VAX since OpenVMS 5.5 can use the AACRTL060 redistributable
+# kit instead of vaxcrtl.olb for much better results.
+# This will likely need a lot of changes if GCC is re-implemented
+# for OpenVMS.
 CC	= gcc
 CFLAGS	= /Incl=([],$(VMSDIR))/Obj=[]/Def=($(CDEFS)) $(CCFLAGS)
 LIBS	= gnu_cc:[000000]gcclib.olb/Library,sys$library:vaxcrtl.olb/Library
@@ -64,6 +70,10 @@ LIBS	= gnu_cc:[000000]gcclib.olb/Library,sys$library:vaxcrtl.olb/Library
 .else	!!GNUC
 .ifdef VAXC
 # always VAX; versions of VAX C older than V3.2 won't work
+# VAXC SUPPORT will likely be removed in a future release
+# VAXC should not be used past OpenVMS/VAX 5.4
+# Before VAX 5.4 consider using GCC/VAX
+# Obviously this has also not been tested for decades
 CC	= cc
 CFLAGS	= /Incl=[]/Obj=[]/Opt=noInline/Def=($(CDEFS)) $(CCFLAGS)
 LIBS	= sys$share:vaxcrtl.exe/Shareable
@@ -76,7 +86,7 @@ CFLOAT	= /float=ieee/ieee_mode=denorm_results
 .endif
 CNAME	= /NAME=(AS_IS,SHORT)
 CC	= cc/DECC/Prefix=All/NESTED_INCLUDE=NONE$(CFLOAT)
-CINC1   = [],[.VMS],$(SUPPORT)
+CINC1   = sys$disk:[],sys$disk:[.VMS],$(SUPPORT)
 CFLAGS	= /Incl=($(CINC1))/Obj=[]/Def=($(CDEFS))$(CNAME) $(CCFLAGS)
 CEFLAGS = /Incl=($(CINC1),[.missing_d],[.extension])$(CNAME) $(CCFLAGS)
 LIBS	=	# DECC$SHR instead of VAXCRTL, no special link option needed
@@ -104,7 +114,7 @@ NOOP = continue
 # object files
 GAWKOBJ = eval.obj,profile.obj
 AWKOBJ1 = array.obj,awkgram.obj,builtin.obj,cint_array.obj,\
-	command.obj,debug.obj,dfa.obj,ext.obj,field.obj,\
+	command.obj,debug.obj,dfa.obj,dynarrray_resize.obj,ext.obj,field.obj,\
 	floatcomp.obj,gawkapi.obj,gawkmisc.obj,getopt.obj,getopt1.obj
 
 AWKOBJ2 = int_array.obj,io.obj,localeinfo.obj,main.obj,mpfr.obj,msg.obj,\
@@ -171,6 +181,11 @@ cint_array.obj	: cint_array.c
 command.obj	: command.c cmd.h
 debug.obj	: debug.c cmd.h
 dfa.obj		: $(SUPPORT)dfa.c $(SUPPORT)dfa.h
+
+dynarrray_resize.obj : $(MALLOC)dynarray_resize.c $(MALLOC)dynarray.h
+    $define/user malloc $(MALLOC)
+    $(CC)$(CEFLAGS)/define=(HAVE_CONFIG_H)/object=$(MMS$TARGET) $(MMS$SOURCE)
+
 ext.obj		: ext.c
 eval.obj	: eval.c
 field.obj	: field.c
@@ -189,9 +204,14 @@ node.obj	: node.c
 profile.obj	: profile.c
 random.obj	: $(SUPPORT)random.c $(SUPPORT)random.h
 re.obj		: re.c
+
 regex.obj	: $(SUPPORT)regex.c $(SUPPORT)regcomp.c \
 		  $(SUPPORT)regex_internal.c $(SUPPORT)regexec.c \
-		  $(SUPPORT)regex.h $(SUPPORT)regex_internal.h
+		  $(SUPPORT)regex.h $(SUPPORT)regex_internal.h \
+                  $(MALLOC)dynarray.h
+    $define/user malloc $(MALLOC)
+    $(CC)$(CEFLAGS)/define=(HAVE_CONFIG_H)/object=$(MMS$TARGET) $(MMS$SOURCE)
+
 str_array.obj	: str_array.c
 symbol.obj	: symbol.c
 version.obj	: version.c
