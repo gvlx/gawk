@@ -19,7 +19,8 @@ $ then
 $! assumes VAX
 $   CC = "gcc"
 $   if f$type(gcc).eqs."STRING" then  CC = gcc
-$   CFLAGS = "/Incl=([],[.vms],[.SUPPORT])/Obj=[]/Def=(''CDEFS')''CCFLAGS'"
+$   CFLAGS = "/Incl=([],[.vms],[.SUPPORT],[.SUPPORT.MALLOC])"
+$   CFLAGS = CFLAGS + "/Obj=[]/Def=(''CDEFS')''CCFLAGS'"
 $   LIBS = "gnu_cc:[000000]gcclib.olb/Library,sys$library:vaxcrtl.olb/Library"
 $   if p2.eqs."DO_GNUC_SETUP" then  set command gnu_cc:[000000]gcc
 $ else	!!GNUC
@@ -41,7 +42,7 @@ $ endif
 $   CC = "cc/DECC/Prefix=All"
 $   CNAME = "/NAME=(AS_IS,SHORT)
 $   CINC = "/NESTED_INCLUDE=NONE"
-$   CINC1 = "[],[.vms],[.support]"
+$   CINC1 = "[],[.vms],[.support],[.support.malloc]"
 $   CFLAGS = "/Incl=(''CINC1')/Obj=[]/Def=(''CDEFS')''CINC'''CCFLAGS'"
 $   CFLAGS = CNAME + CFLOAT + CFLAGS
 $   LIBS = ""	! DECC$SHR instead of VAXCRTL, no special link option needed
@@ -82,6 +83,8 @@ $ cc array.c
 $ cc awkgram.c
 $ cc builtin.c
 $ cc [.support]dfa.c
+$ define/user malloc sys$disk:[.support.malloc]
+$ cc [.support.malloc]dynarray_resize.c
 $ cc ext.c
 $ cc field.c
 $ cc floatcomp.c
@@ -95,6 +98,7 @@ $ cc msg.c
 $ cc node.c
 $ cc [.support]random.c
 $ cc re.c
+$ define/user malloc sys$disk:[.support.malloc]
 $ cc [.support]regex.c
 $ cc replace.c
 $ cc version.c
@@ -121,7 +125,8 @@ $!
 $ close/noLog Fopt
 $ create gawk.opt
 ! GAWK -- GNU awk
-array.obj,awkgram.obj,builtin.obj,dfa.obj,ext.obj,field.obj,floatcomp.obj
+array.obj,awkgram.obj,builtin.obj,dfa.obj,dynarray_resize.obj
+ext.obj,field.obj,floatcomp.obj
 gawkmisc.obj,getopt.obj,getopt1.obj,io.obj,localeinfo.obj
 main.obj,msg.obj,node.obj
 random.obj,re.obj,regex.obj,replace.obj,version.obj,eval.obj,profile.obj

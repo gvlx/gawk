@@ -1,3 +1,8 @@
+2021-07-26         John E. Malmberg      <wb8tyw@qsl.net>
+
+	* descrip.mms: Add dynarray_resize to build.
+	* vmsbuild.com: Add dynarray_resize to build.
+
 2021-01-08         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawkmisc.vms (quote): Make const char *.
