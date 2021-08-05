@@ -1509,6 +1509,8 @@ mpg_div(NODE *t1, NODE *t2)
 		mpfr_ptr p1, p2;
 		p1 = MP_FLOAT(t1);
 		p2 = MP_FLOAT(t2);
+		if (mpfr_zero_p(p2))
+			fatal(_("division by zero attempted"));
 		r = mpg_float();
 		tval = mpfr_div(r->mpg_numbr, p1, p2, ROUND_MODE);
 		IEEE_FMT(r->mpg_numbr, tval);
@@ -1542,6 +1544,8 @@ mpg_mod(NODE *t1, NODE *t2)
 		 */
 		NODE *dummy_quotient;
 
+		if (mpz_sgn(t2->mpg_i) == 0)
+			fatal(_("division by zero attempted"));
 		r = mpg_integer();
 		dummy_quotient = mpg_integer();
 		mpz_tdiv_qr(dummy_quotient->mpg_i, r->mpg_i, t1->mpg_i, t2->mpg_i);
@@ -1550,6 +1554,8 @@ mpg_mod(NODE *t1, NODE *t2)
 		mpfr_ptr p1, p2;
 		p1 = MP_FLOAT(t1);
 		p2 = MP_FLOAT(t2);
+		if (mpfr_zero_p(p2))
+			fatal(_("division by zero attempted in `%%'"));
 		r = mpg_float();
 		tval = mpfr_fmod(r->mpg_numbr, p1, p2, ROUND_MODE);
 		IEEE_FMT(r->mpg_numbr, tval);
