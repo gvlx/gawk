@@ -793,7 +793,7 @@ do_mpfr_atan2(int nargs)
 static inline NODE *
 do_mpfr_func(const char *name,
 		int (*mpfr_func)(mpfr_ptr, mpfr_srcptr, mpfr_rnd_t),
-		int nargs)
+		int nargs, bool warn_negative)
 {
 	NODE *t1, *res;
 	mpfr_ptr p1;
@@ -806,6 +806,10 @@ do_mpfr_func(const char *name,
 
 	force_number(t1);
 	p1 = MP_FLOAT(t1);
+	if (warn_negative && mpfr_sgn(p1) < 0) {
+		force_string(t1);
+		warning(_("%s: received negative argument %.*s"), name, (int) t1->stlen, t1->stptr);
+	}
 	res = mpg_float();
 	if ((argprec = mpfr_get_prec(p1)) > default_prec)
 		mpfr_set_prec(res->mpg_numbr, argprec);	/* needed at least for sqrt() */
@@ -815,9 +819,9 @@ do_mpfr_func(const char *name,
 	return res;
 }
 
-#define SPEC_MATH(X)				\
+#define SPEC_MATH(X, WN)				\
 NODE *result;					\
-result = do_mpfr_func(#X, mpfr_##X, nargs);	\
+result = do_mpfr_func(#X, mpfr_##X, nargs, WN);	\
 return result
 
 /* do_mpfr_sin --- do the sin function */
@@ -825,7 +829,7 @@ return result
 NODE *
 do_mpfr_sin(int nargs)
 {
-	SPEC_MATH(sin);
+	SPEC_MATH(sin, false);
 }
 
 /* do_mpfr_cos --- do the cos function */
@@ -833,7 +837,7 @@ do_mpfr_sin(int nargs)
 NODE *
 do_mpfr_cos(int nargs)
 {
-	SPEC_MATH(cos);
+	SPEC_MATH(cos, false);
 }
 
 /* do_mpfr_exp --- exponential function */
@@ -841,7 +845,7 @@ do_mpfr_cos(int nargs)
 NODE *
 do_mpfr_exp(int nargs)
 {
-	SPEC_MATH(exp);
+	SPEC_MATH(exp, false);
 }
 
 /* do_mpfr_log --- the log function */
@@ -849,7 +853,7 @@ do_mpfr_exp(int nargs)
 NODE *
 do_mpfr_log(int nargs)
 {
-	SPEC_MATH(log);
+	SPEC_MATH(log, true);
 }
 
 /* do_mpfr_sqrt --- do the sqrt function */
@@ -857,7 +861,7 @@ do_mpfr_log(int nargs)
 NODE *
 do_mpfr_sqrt(int nargs)
 {
-	SPEC_MATH(sqrt);
+	SPEC_MATH(sqrt, true);
 }
 
 /* do_mpfr_int --- convert double to int for awk */
@@ -1549,6 +1553,8 @@ mpg_div(NODE *t1, NODE *t2)
 		mpfr_ptr p1, p2;
 		p1 = MP_FLOAT(t1);
 		p2 = MP_FLOAT(t2);
+		if (mpfr_zero_p(p2))
+			fatal(_("division by zero attempted"));
 		r = mpg_float();
 		tval = mpfr_div(r->mpg_numbr, p1, p2, ROUND_MODE);
 		IEEE_FMT(r->mpg_numbr, tval);
@@ -1582,6 +1588,8 @@ mpg_mod(NODE *t1, NODE *t2)
 		 */
 		NODE *dummy_quotient;
 
+		if (mpz_sgn(t2->mpg_i) == 0)
+			fatal(_("division by zero attempted"));
 		r = mpg_integer();
 		dummy_quotient = mpg_integer();
 		mpz_tdiv_qr(dummy_quotient->mpg_i, r->mpg_i, t1->mpg_i, t2->mpg_i);
@@ -1590,6 +1598,8 @@ mpg_mod(NODE *t1, NODE *t2)
 		mpfr_ptr p1, p2;
 		p1 = MP_FLOAT(t1);
 		p2 = MP_FLOAT(t2);
+		if (mpfr_zero_p(p2))
+			fatal(_("division by zero attempted in `%%'"));
 		r = mpg_float();
 		tval = mpfr_fmod(r->mpg_numbr, p1, p2, ROUND_MODE);
 		IEEE_FMT(r->mpg_numbr, tval);

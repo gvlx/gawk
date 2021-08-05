@@ -73,7 +73,10 @@ Changes from 5.1.0 to 5.1.1
 14. The manual has been updated with much more information about what is
     and is not a bug, and the changes in the gawk mailing lists.
 
-15. There have been numerous minor code cleanups and bug fixes. See the
+15. Similar to item #4 above, division by zero is now fatal in MPFR
+    mode, as it is in regular mode.
+
+16. There have been numerous minor code cleanups and bug fixes. See the
     ChangeLog for details.
 
 Changes from 5.0.1 to 5.1.0

@@ -1,3 +1,17 @@
+2021-08-05         Andrew J. Schorr      <aschorr@telemetry-investments.com>
+
+	* mpfr.c (do_mpfr_func): New argument, warn_negative. If true,
+	print a warning message about a negative argument. Bring -M
+	code into line with regular code. Bug report from Neil Ormos
+	in the help-gawk list.
+
+	Unrelated:
+
+	* mpfr.c (do_mpfr_int_div, mpg_div, mpg_mod): If dividing by
+	zero, print a fatal error messages. Brings MPFR code into line
+	with the regular code. Thanks to Peng Yu for noticing the bug, in
+	the help-gawk list.
+
 2021-07-23         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* awk.h (exec_count_t): Add typedef for Vax VMS C and everyone else.
