@@ -1,3 +1,8 @@
+2021-08-15         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.am (AR): Set from @AR@ so that it can be set
+	at configure time.
+
 2021-06-30         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* dfa.c, dynarray.h, libc-config.h, regexec.c,

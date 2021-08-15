@@ -5677,6 +5677,9 @@ unknown)
 esac
 
 
+AR_FLAGS = cru		# set default
+
+
 # This is mainly for my use during testing and development.
 # Yes, it's a bit of a hack.
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for special development options" >&5
