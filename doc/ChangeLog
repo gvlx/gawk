@@ -1,3 +1,10 @@
+2021-08-26         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.in (Strong Regexp Constants): Document behavior
+	when used as third argument of sub() or gsub().
+	(String Functions): Document that gensub() always returns
+	a string.
+
 2021-07-15         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawktexi.in: Remove obsolete bits relating to VMS.
