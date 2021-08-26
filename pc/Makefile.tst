@@ -216,7 +216,7 @@ GAWK_EXT_TESTS = \
 	procinfs profile0 profile1 profile2 profile3 profile4 profile5 profile6 \
 	profile7 profile8 profile9 profile10 profile11 profile12 profile13 \
         profile14 profile15 pty1 pty2 \
-	rebuf regnul1 regnul2 regx8bit reginttrad reint reint2 rsgetline rsglstdin \
+	rebuf regexsub regnul1 regnul2 regx8bit reginttrad reint reint2 rsgetline rsglstdin \
 	rsstart1 rsstart2 rsstart3 rstest6 \
 	sandbox1 shadow shadowbuiltin sortfor sortfor2 sortu \
 	sourcesplit split_after_fpat \
@@ -3155,6 +3155,11 @@ profile14:
 profile15:
 	@echo $@
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  --pretty-print=_$@ >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
+	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
+
+regexsub:
+	@echo $@
+	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 regnul1:

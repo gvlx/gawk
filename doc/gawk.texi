@@ -11998,6 +11998,21 @@ When used in numeric conversions, strongly typed regexp variables convert
 to zero. When used in string conversions, they convert to the string
 value of the original regexp text.
 
+There is an additional, interesting corner case. When used as the third
+argument to @code{sub()} or @code{gsub()}, they retain their type.  Thus,
+if you have something like this:
+
+@example
+re = @/don't panic/
+sub(/don't/, "do", re)
+print typeof(re), re
+@end example
+
+@noindent
+then @code{re} retains its type, but now attempts to match the string
+@samp{do panic}.  This provides a (very indirect) way to create regexp-typed
+variables at runtime.
+
 @node Variables
 @subsection Variables
 
@@ -18710,6 +18725,9 @@ numeric values less than one as if they were one.  If no @var{target}
 is supplied, use @code{$0}.  Return the modified string as the result
 of the function. The original target string is @emph{not} changed.
 
+The returned value is @emph{always} a string, even if the original
+@var{target} was a number or a regexp value.
+
 @code{gensub()} is a general substitution function.  Its purpose is
 to provide more features than the standard @code{sub()} and @code{gsub()}
 functions.
@@ -18758,7 +18776,8 @@ substitution is performed.  If @var{how} is zero, @command{gawk} issues
 a warning message.
 
 If @var{regexp} does not match @var{target}, @code{gensub()}'s return value
-is the original unchanged value of @var{target}.
+is the original unchanged value of @var{target}.  Note that, as mentioned
+above, the returned value is a string, even if @var{target} was not.
 
 @item @code{gsub(@var{regexp}, @var{replacement}} [@code{, @var{target}}]@code{)}
 @cindexawkfunc{gsub}

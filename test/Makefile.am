@@ -1059,6 +1059,8 @@ EXTRA_DIST = \
 	regexpbrack2.ok \
 	regexprange.awk \
 	regexprange.ok \
+	regexsub.awk \
+	regexsub.ok \
 	reginttrad.awk \
 	reginttrad.ok \
 	regnul1.awk \
@@ -1458,7 +1460,7 @@ GAWK_EXT_TESTS = \
 	procinfs profile0 profile1 profile2 profile3 profile4 profile5 profile6 \
 	profile7 profile8 profile9 profile10 profile11 profile12 profile13 \
         profile14 profile15 pty1 pty2 \
-	rebuf regnul1 regnul2 regx8bit reginttrad reint reint2 rsgetline rsglstdin \
+	rebuf regexsub regnul1 regnul2 regx8bit reginttrad reint reint2 rsgetline rsglstdin \
 	rsstart1 rsstart2 rsstart3 rstest6 \
 	sandbox1 shadow shadowbuiltin sortfor sortfor2 sortu \
 	sourcesplit split_after_fpat \

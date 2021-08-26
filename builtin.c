@@ -2934,8 +2934,6 @@ do_sub(int nargs, unsigned int flags)
 			RESTART(rp, target->stptr) > target->stlen)
 		goto done;
 
-	target->flags |= STRING;
-
 	text = target->stptr;
 	textlen = target->stlen;
 
@@ -3183,6 +3181,10 @@ done:
 			DEREF(target);
 			assert(buf != NULL);
 			return make_str_node(buf, textlen, ALREADY_MALLOCED);
+		} else if ((target->flags & STRING) == 0) {
+			/* return a copy of original string */
+			DEREF(target);
+			return make_str_node(target->stptr, target->stlen, 0);
 		}
 
 		/* return the original string */
@@ -3193,8 +3195,34 @@ done:
 	if ((flags & LITERAL) != 0)
 		DEREF(target);
 	else if (matches > 0) {
-		unref(*lhs);
-		*lhs = make_str_node(buf, textlen, ALREADY_MALLOCED);
+		/*
+		 * 8/2021: There's a bit of a song and dance here.  If someone does
+		 *
+		 * 	x = @/abc/
+		 * 	sub(/b/, "x", x)
+		 *
+		 * What should the type of x be after the call? Does it get converted
+		 * to string? Or does it remain a regexp?  We've decided to let it
+		 * remain a regexp. In that case, we have to update the compiled
+		 * regular expression that it holds.
+		 */
+		bool is_regex = false;
+		NODE *target = *lhs;
+
+		if ((target->flags & REGEX) != 0) {
+			is_regex = true;
+
+			// free old regex registers
+			refree(target->typed_re->re_reg[0]);
+			if (target->typed_re->re_reg[1] != NULL)
+				refree(target->typed_re->re_reg[1]);
+			freenode(target->typed_re);
+		}
+		unref(*lhs);		// nuke original value
+		if (is_regex)
+			*lhs = make_typed_regex(buf, textlen);
+		else
+			*lhs = make_str_node(buf, textlen, ALREADY_MALLOCED);
 	}
 
 	return make_number((AWKNUM) matches);

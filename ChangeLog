@@ -1,3 +1,19 @@
+2021-08-15         Arnold D. Robbins     <arnold@skeeve.com>
+
+	Allow setting AR and ARFLAGS on the configure command line.
+	Thanks to Jacob Burkholder <jake.burkholder2@gmail.com> for
+	the report.
+
+	* configure.ac (AR_FLAGS): Provide default value.
+	(AR): Call AC_SUBST on it.
+
+2021-08-13         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* builtin.c (do_sub): Rationalize handling of strongly typed
+	regex as argument to sub/gsub, as well as rationalize the return
+	value from gensub to always be string. Thanks to John Naman
+	<jnaman2@gmail.com> for the bug report.
+
 2021-08-05         Andrew J. Schorr      <aschorr@telemetry-investments.com>
 
 	* mpfr.c (do_mpfr_func): New argument, warn_negative. If true,

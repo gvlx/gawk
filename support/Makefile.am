@@ -26,6 +26,8 @@
 AM_CFLAGS  = @CFLAGS@
 AM_LDFLAGS = @LDFLAGS@
 
+AR = @AR@
+
 # Stuff to include in the dist that doesn't need it's own
 # Makefile.am files
 EXTRA_DIST = \
