@@ -12427,6 +12427,23 @@ Quando sono usate per effettuare conversioni numeriche, le variabili
 Quando sono usate per effettuare conversioni a stringhe, vengono convertite
 al valore di stringa del testo della @dfn{regexp} originale.
 
+C'@`e un interessante, ulteriore, caso particolare.  Quando le variabili
+fortemente tipizzate sono usate come terzo argomento nelle chiamate a
+@code{sub()} o @code{gsub()}, continuano a restare dello stesso tipo.
+Quindi, in un caso come quello di quest'esempio:
+
+@example
+re = @/non allarmatevi!/
+sub(/non/, "", re)
+print typeof(re), re
+@end example
+
+@noindent
+la variabile @code{re} resta sempre dello stesso tipo [@dfn{regexp}],
+ma cercher@`a una corrispondenza alla stringa @samp{allarmatevi!}.
+Questa @`e una maniera (molto indiretta) di create variabili di
+tipo @dfn{regext} in fase di esecuzione del programma.
+
 @node Variabili
 @subsection Variabili
 
@@ -19539,6 +19556,9 @@ Se non si specifica il nome dell'@var{obiettivo}, si
 opera su @code{$0}.  La funzione restituisce come risultato la stringa
 modificata, e la stringa originale di partenza @emph{non} viene modificata.
 
+Il valore restituito @`e @emph{sempre} una stringa, anche se il
+valore dell'@var{obiettivo} era un numero o una @dfn{regexp}.
+
 @code{gensub()} @`e una funzione generale di sostituzione.  Mira a fornire
 pi@`u funzionalit@`a rispetto alle funzioni standard @code{sub()} e
 @code{gsub()}.
@@ -19591,6 +19611,8 @@ un messaggio di avvertimento.
 Se @var{regexp} non viene trovata in @var{obiettivo}, il valore
 restituito da @code{gensub()}
 @`e il valore originale e non modificato di @var{obiettivo}.
+Si noti che, come detto sopra, il valore restituito @`e una stringa,
+anche se l'@var{obiettivo} non lo era.
 
 @item @code{gsub(@var{regexp}, @var{rimpiazzo}} [@code{, @var{obiettivo}}]@code{)}
 @cindexawkfunc{gsub}
