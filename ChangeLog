@@ -1,3 +1,7 @@
+2021-08-18         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* main.c (main): Change have_srcfile from int to bool.
+
 2021-08-15         Arnold D. Robbins     <arnold@skeeve.com>
 
 	Allow setting AR and ARFLAGS on the configure command line.

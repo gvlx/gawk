@@ -220,7 +220,7 @@ main(int argc, char **argv)
 {
 	int i;
 	char *extra_stack;
-	int have_srcfile = 0;
+	bool have_srcfile = false;
 	SRCFILE *s;
 	char *cp;
 #if defined(LOCALEDEBUG)
@@ -443,7 +443,7 @@ main(int argc, char **argv)
 		if (s->stype == SRC_EXTLIB)
 			load_ext(s->fullpath);
 		else if (s->stype != SRC_INC)
-			have_srcfile++;
+			have_srcfile = true;
 	}
 
 	/* do version check after extensions are loaded to get extension info */
