@@ -1,3 +1,10 @@
+2021-08-29         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* cdefs.h, dfa.c, dfa.h, libc-config.h, malloc/dynarray_at_failure.c,
+	regex.c, regex.h, regex_internal.c, regexec.c, verify.h:
+	Sync with GNULIB, yet again lots of churn.
+	* xalloc.h (ximemdup0): Yet another stupid new function.
+
 2021-08-15         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* Makefile.am (AR): Set from @AR@ so that it can be set

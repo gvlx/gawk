@@ -26,6 +26,7 @@
 
 #include "flexmember.h"
 #include "idx.h"
+#include "verify.h"
 
 #include <assert.h>
 #include <ctype.h>
@@ -34,6 +35,13 @@
 #include <stdlib.h>
 #include <limits.h>
 #include <string.h>
+
+/* Pacify gcc -Wanalyzer-null-dereference in areas where GCC
+   understandably cannot deduce that the input comes from a
+   well-formed regular expression.  There's little point to the
+   runtime overhead of 'assert' instead of 'assume_nonnull' when the
+   MMU will check anyway.  */
+#define assume_nonnull(x) assume ((x) != NULL)
 
 static bool
 streq (char const *a, char const *b)
@@ -582,7 +590,7 @@ struct dfa
 
   /* dfaexec implementation.  */
   char *(*dfaexec) (struct dfa *, char const *, char *,
-                    bool, ptrdiff_t *, bool *);
+                    bool, idx_t *, bool *);
 
   /* Other cached information derived from the locale.  */
   struct localeinfo localeinfo;
@@ -3344,7 +3352,7 @@ skip_remains_mb (struct dfa *d, unsigned char const *p,
 
 static inline char *
 dfaexec_main (struct dfa *d, char const *begin, char *end, bool allow_nl,
-              ptrdiff_t *count, bool multibyte)
+              idx_t *count, bool multibyte)
 {
   if (MAX_TRCOUNT <= d->sindex)
     {
@@ -3527,14 +3535,14 @@ dfaexec_main (struct dfa *d, char const *begin, char *end, bool allow_nl,
 
 static char *
 dfaexec_mb (struct dfa *d, char const *begin, char *end,
-            bool allow_nl, ptrdiff_t *count, bool *backref)
+            bool allow_nl, idx_t *count, bool *backref)
 {
   return dfaexec_main (d, begin, end, allow_nl, count, true);
 }
 
 static char *
 dfaexec_sb (struct dfa *d, char const *begin, char *end,
-            bool allow_nl, ptrdiff_t *count, bool *backref)
+            bool allow_nl, idx_t *count, bool *backref)
 {
   return dfaexec_main (d, begin, end, allow_nl, count, false);
 }
@@ -3543,7 +3551,7 @@ dfaexec_sb (struct dfa *d, char const *begin, char *end,
    any regexp that uses a construct not supported by this code.  */
 static char *
 dfaexec_noop (struct dfa *d, char const *begin, char *end,
-              bool allow_nl, ptrdiff_t *count, bool *backref)
+              bool allow_nl, idx_t *count, bool *backref)
 {
   *backref = true;
   return (char *) begin;
@@ -3555,7 +3563,7 @@ dfaexec_noop (struct dfa *d, char const *begin, char *end,
 
 char *
 dfaexec (struct dfa *d, char const *begin, char *end,
-         bool allow_nl, ptrdiff_t *count, bool *backref)
+         bool allow_nl, idx_t *count, bool *backref)
 {
   return d->dfaexec (d, begin, end, allow_nl, count, backref);
 }
@@ -3913,10 +3921,8 @@ freelist (char **cpp)
 }
 
 static char **
-enlist (char **cpp, char *new, idx_t len)
+enlistnew (char **cpp, char *new)
 {
-  new = memcpy (ximalloc (len + 1), new, len);
-  new[len] = '\0';
   /* Is there already something in the list that's new (or longer)?  */
   idx_t i;
   for (i = 0; cpp[i] != NULL; i++)
@@ -3942,6 +3948,12 @@ enlist (char **cpp, char *new, idx_t len)
   cpp[i] = new;
   cpp[i + 1] = NULL;
   return cpp;
+}
+
+static char **
+enlist (char **cpp, char const *str, idx_t len)
+{
+  return enlistnew (cpp, ximemdup0 (str, len));
 }
 
 /* Given pointers to two strings, return a pointer to an allocated
@@ -3974,7 +3986,7 @@ static char **
 addlists (char **old, char **new)
 {
   for (; *new; new++)
-    old = enlist (old, *new, strlen (*new));
+    old = enlistnew (old, xstrdup (*new));
   return old;
 }
 
@@ -4090,6 +4102,7 @@ dfamust (struct dfa const *d)
 
         case STAR:
         case QMARK:
+          assume_nonnull (mp);
           resetmust (mp);
           break;
 
@@ -4097,7 +4110,9 @@ dfamust (struct dfa const *d)
           {
             char **new;
             must *rmp = mp;
+            assume_nonnull (rmp);
             must *lmp = mp = mp->prev;
+            assume_nonnull (lmp);
             idx_t j, ln, rn, n;
 
             /* Guaranteed to be.  Unlikely, but ...  */
@@ -4138,10 +4153,12 @@ dfamust (struct dfa const *d)
           break;
 
         case PLUS:
+          assume_nonnull (mp);
           mp->is[0] = '\0';
           break;
 
         case END:
+          assume_nonnull (mp);
           assert (!mp->prev);
           for (idx_t i = 0; mp->in[i] != NULL; i++)
             if (strlen (mp->in[i]) > strlen (result))
@@ -4159,7 +4176,9 @@ dfamust (struct dfa const *d)
         case CAT:
           {
             must *rmp = mp;
+            assume_nonnull (rmp);
             must *lmp = mp = mp->prev;
+            assume_nonnull (lmp);
 
             /* In.  Everything in left, plus everything in
                right, plus concatenation of
@@ -4169,11 +4188,10 @@ dfamust (struct dfa const *d)
               {
                 idx_t lrlen = strlen (lmp->right);
                 idx_t rllen = strlen (rmp->left);
-                char *tp = ximalloc (lrlen + rllen);
+                char *tp = ximalloc (lrlen + rllen + 1);
+                memcpy (tp + lrlen, rmp->left, rllen + 1);
                 memcpy (tp, lmp->right, lrlen);
-                memcpy (tp + lrlen, rmp->left, rllen);
-                lmp->in = enlist (lmp->in, tp, lrlen + rllen);
-                free (tp);
+                lmp->in = enlistnew (lmp->in, tp);
               }
             /* Left-hand */
             if (lmp->is[0] != '\0')

@@ -436,5 +436,16 @@ xpalloc (void *pa, idx_t *nitems, idx_t nitems_incr_min,
   return pa;
 }
 
+/* Clone an object P of size S, with error checking.  Append
+   a terminating NUL byte.  */
+
+char *
+ximemdup0 (void const *p, idx_t s)
+{
+  char *result = malloc(s + 1);
+  result[s] = 0;
+  return memcpy (result, p, s);
+}
+
 
 #endif /* !XALLOC_H_ */

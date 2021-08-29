@@ -191,7 +191,7 @@ static reg_errcode_t extend_buffers (re_match_context_t *mctx, int min_len);
 
 int
 regexec (const regex_t *__restrict preg, const char *__restrict string,
-	 size_t nmatch, regmatch_t pmatch[], int eflags)
+	 size_t nmatch, regmatch_t pmatch[_REGEX_NELTS (nmatch)], int eflags)
 {
   reg_errcode_t err;
   Idx start, length;
@@ -235,7 +235,7 @@ int
 attribute_compat_text_section
 __compat_regexec (const regex_t *__restrict preg,
 		  const char *__restrict string, size_t nmatch,
-		  regmatch_t pmatch[], int eflags)
+		  regmatch_t pmatch[_REGEX_NELTS (nmatch)], int eflags)
 {
   return regexec (preg, string, nmatch, pmatch,
 		  eflags & (REG_NOTBOL | REG_NOTEOL));

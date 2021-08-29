@@ -21,9 +21,11 @@
 #ifndef DFA_H_
 #define DFA_H_
 
+#include "idx.h"
 #include <regex.h>
 #include <stdbool.h>
 #include <stddef.h>
+#include <stdlib.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -46,7 +48,10 @@ struct dfa;
 
 /* Needed when Gnulib is not used.  */
 #ifndef _GL_ATTRIBUTE_MALLOC
-# define  _GL_ATTRIBUTE_MALLOC
+# define _GL_ATTRIBUTE_MALLOC
+# define _GL_ATTRIBUTE_DEALLOC_FREE
+# define _GL_ATTRIBUTE_DEALLOC(x,y)
+# define _GL_ATTRIBUTE_RETURNS_NONNULL
 #endif
 
 /* Entry points. */
@@ -55,7 +60,9 @@ struct dfa;
    It should be initialized via dfasyntax or dfacopysyntax before other use.
    The returned pointer should be passed directly to free() after
    calling dfafree() on it. */
-extern struct dfa *dfaalloc (void) _GL_ATTRIBUTE_MALLOC;
+extern struct dfa *dfaalloc (void)
+  _GL_ATTRIBUTE_MALLOC _GL_ATTRIBUTE_DEALLOC_FREE
+  _GL_ATTRIBUTE_RETURNS_NONNULL;
 
 /* DFA options that can be ORed together, for dfasyntax's 4th arg.  */
 enum
@@ -81,20 +88,23 @@ extern void dfasyntax (struct dfa *, struct localeinfo const *,
 extern void dfacopysyntax (struct dfa *, struct dfa const *);
 
 /* Parse the given string of given length into the given struct dfa.  */
-extern void dfaparse (char const *, ptrdiff_t, struct dfa *);
+extern void dfaparse (char const *, idx_t, struct dfa *);
 
-/* Allocate and return a struct dfamust from a struct dfa that was
-   initialized by dfaparse and not yet given to dfacomp.  */
-extern struct dfamust *dfamust (struct dfa const *);
+struct dfamust;
 
 /* Free the storage held by the components of a struct dfamust. */
 extern void dfamustfree (struct dfamust *);
+
+/* Allocate and return a struct dfamust from a struct dfa that was
+   initialized by dfaparse and not yet given to dfacomp.  */
+extern struct dfamust *dfamust (struct dfa const *)
+  _GL_ATTRIBUTE_DEALLOC (dfamustfree, 1);
 
 /* Compile the given string of the given length into the given struct dfa.
    The last argument says whether to build a searching or an exact matcher.
    A null first argument means the struct dfa has already been
    initialized by dfaparse; the second argument is ignored.  */
-extern void dfacomp (char const *, ptrdiff_t, struct dfa *, bool);
+extern void dfacomp (char const *, idx_t, struct dfa *, bool);
 
 /* Search through a buffer looking for a match to the given struct dfa.
    Find the first occurrence of a string matching the regexp in the
@@ -109,7 +119,7 @@ extern void dfacomp (char const *, ptrdiff_t, struct dfa *, bool);
    encountered a back-reference.  The caller can use this to decide
    whether to fall back on a backtracking matcher.  */
 extern char *dfaexec (struct dfa *d, char const *begin, char *end,
-                      bool allow_nl, ptrdiff_t *count, bool *backref);
+                      bool allow_nl, idx_t *count, bool *backref);
 
 /* Return a superset for D.  The superset matches everything that D
    matches, along with some other strings (though the latter should be
