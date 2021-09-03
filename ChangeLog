@@ -1,3 +1,7 @@
+2021-09-03         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* main.c (UPDATE_YEAR): Update to 2021.
+
 2021-08-18         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* main.c (main): Change have_srcfile from int to bool.
