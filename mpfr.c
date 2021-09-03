@@ -488,7 +488,7 @@ mpg_cmp_as_numbers(const NODE *t1, const NODE *t2, scalar_cmp_t comparison_type)
 
 	bool t1_nan = mpfr_nan_p(t1->mpg_numbr);
 	bool t2_nan = mpfr_nan_p(t2->mpg_numbr);
-	int ret;
+	bool ret = false;
 
 	// MPFR is different than native doubles...
 	if (t1_nan || t2_nan)
@@ -514,6 +514,9 @@ mpg_cmp_as_numbers(const NODE *t1, const NODE *t2, scalar_cmp_t comparison_type)
 		break;
 	case SCALAR_GE:
 		ret = (di >= 0);
+		break;
+	default:
+		cant_happen();
 		break;
 	}
 
