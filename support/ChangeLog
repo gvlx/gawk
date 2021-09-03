@@ -1,3 +1,7 @@
+2021-09-03         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* dfa.h: Sync with GNULIB.
+
 2021-08-29         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* cdefs.h, dfa.c, dfa.h, libc-config.h, malloc/dynarray_at_failure.c,
