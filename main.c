@@ -25,7 +25,7 @@
  */
 
 /* FIX THIS BEFORE EVERY RELEASE: */
-#define UPDATE_YEAR	2020
+#define UPDATE_YEAR	2021
 
 #include "awk.h"
 #include "getopt.h"

@@ -1,5 +1,9 @@
 2021-09-03         Arnold D. Robbins     <arnold@skeeve.com>
 
+	* main.c (UPDATE_YEAR): Update to 2021.
+
+2021-09-03         Arnold D. Robbins     <arnold@skeeve.com>
+
 	* mpfr.c (mpg_cmp_as_numbers): Avoid compiler warning about possibly
 	used before set.  Thanks to Michal Jaegermann for the report.
 
