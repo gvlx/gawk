@@ -197,6 +197,9 @@ EXTRA_DIST = \
 	colonwarn.awk \
 	colonwarn.in \
 	colonwarn.ok \
+	commas.awk \
+	commas.in \
+	commas.ok \
 	compare.awk \
 	compare.in \
 	compare.ok \
@@ -1331,6 +1334,8 @@ EXTRA_DIST = \
 	typeof5.awk \
 	typeof5.in \
 	typeof5.ok \
+	typeof6.awk \
+	typeof6.ok \
 	uninit2.awk \
 	uninit2.ok \
 	uninit3.awk \
@@ -1437,7 +1442,7 @@ GAWK_EXT_TESTS = \
 	arraytype asortbool \
 	backw badargs beginfile1 beginfile2 binmode1 \
 	charasbytes colonwarn clos1way clos1way2 clos1way3 clos1way4 clos1way5 \
-	clos1way6 crlf \
+	clos1way6 commas crlf \
 	dbugeval dbugeval2 dbugeval3 dbugtypedre1 dbugtypedre2 delsub \
 	devfd devfd1 devfd2 dfacheck1 dumpvars \
 	errno exit fieldwdth forcenum \
@@ -1470,7 +1475,7 @@ GAWK_EXT_TESTS = \
 	symtab8 symtab9 symtab10 symtab11 \
 	timeout typedregex1 typedregex2 typedregex3 typedregex4 \
 	typedregex5 typedregex6 \
-	typeof1 typeof2 typeof3 typeof4 typeof5 \
+	typeof1 typeof2 typeof3 typeof4 typeof5 typeof6 \
 	watchpoint1
 
 ARRAYDEBUG_TESTS = arrdbg
@@ -1548,12 +1553,12 @@ NEED_LOCALE_C = \
 	clos1way gsubtst6 range2
 
 NEED_LOCALE_EN = \
-	backbigs1 backsmalls1 backsmalls2 concat4 dfamb1 ignrcas2 lc_num1 \
+	backbigs1 backsmalls1 backsmalls2 commas concat4 dfamb1 ignrcas2 lc_num1 \
 	mbfw1 mbprintf1 mbprintf3 mbprintf4 mbstr1 mbstr2 posix_compare \
 	printhuge reint2 rri1 subamp subi18n wideidx wideidx2 \
 	widesub widesub2 widesub3 widesub4
 
-# Unused at the moment, since nlstringtest has additional stufff it does
+# Unused at the moment, since nlstringtest has additional stuff it does
 # NEED_LOCALE_FR =
 # Same for ignrcas3
 # NEED_LOCALE_GR =

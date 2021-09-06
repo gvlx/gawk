@@ -193,7 +193,7 @@ GAWK_EXT_TESTS = \
 	arraytype asortbool \
 	backw badargs beginfile1 beginfile2 binmode1 \
 	charasbytes colonwarn clos1way clos1way2 clos1way3 clos1way4 clos1way5 \
-	clos1way6 crlf \
+	clos1way6 commas crlf \
 	dbugeval dbugeval2 dbugeval3 dbugtypedre1 dbugtypedre2 delsub \
 	devfd devfd1 devfd2 dfacheck1 dumpvars \
 	errno exit fieldwdth forcenum \
@@ -226,7 +226,7 @@ GAWK_EXT_TESTS = \
 	symtab8 symtab9 symtab10 symtab11 \
 	timeout typedregex1 typedregex2 typedregex3 typedregex4 \
 	typedregex5 typedregex6 \
-	typeof1 typeof2 typeof3 typeof4 typeof5 \
+	typeof1 typeof2 typeof3 typeof4 typeof5 typeof6 \
 	watchpoint1
 
 ARRAYDEBUG_TESTS = arrdbg
@@ -305,7 +305,7 @@ NEED_LOCALE_C = \
 	clos1way gsubtst6 range2
 
 NEED_LOCALE_EN = \
-	backbigs1 backsmalls1 backsmalls2 concat4 dfamb1 ignrcas2 lc_num1 \
+	backbigs1 backsmalls1 backsmalls2 commas concat4 dfamb1 ignrcas2 lc_num1 \
 	mbfw1 mbprintf1 mbprintf3 mbprintf4 mbstr1 mbstr2 posix_compare \
 	printhuge reint2 rri1 subamp subi18n wideidx wideidx2 \
 	widesub widesub2 widesub3 widesub4
@@ -2634,6 +2634,12 @@ clos1way6:
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
+commas:
+	@echo $@
+	@[ -z "$$GAWKLOCALE" ] && GAWKLOCALE=ENU_USA.1252; export GAWKLOCALE; \
+	AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
+	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
+
 crlf:
 	@echo $@
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
@@ -3383,6 +3389,11 @@ typeof4:
 typeof5:
 	@echo $@
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  < "$(srcdir)"/$@.in >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
+	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
+
+typeof6:
+	@echo $@
+	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 double1:

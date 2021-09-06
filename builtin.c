@@ -79,6 +79,7 @@ extern NODE **fields_arr;
 extern bool output_is_tty;
 extern FILE *output_fp;
 
+static const char *add_thousands(const char *original, struct lconv *loc);
 
 #define POP_TWO_SCALARS(s1, s2) \
 s2 = POP_SCALAR(); \
@@ -1553,6 +1554,7 @@ mpf1:
 				setlocale(LC_NUMERIC, "");
 #endif
 
+			bool need_to_add_thousands = false;
 			switch (fmt_type) {
 #ifdef HAVE_MPFR
 			case MP_INT_WITH_PREC:
@@ -1560,12 +1562,14 @@ mpf1:
 				while ((nc = mpfr_snprintf(obufout, ofre, cpbuf,
 					     (int) fw, (int) prec, zi)) >= (int) ofre)
 					chksize(nc)
+				need_to_add_thousands = true;
 				break;
 			case MP_INT_WITHOUT_PREC:
 				sprintf(cp, "*Z%c", cs1);
 				while ((nc = mpfr_snprintf(obufout, ofre, cpbuf,
 					     (int) fw, zi)) >= (int) ofre)
 					chksize(nc)
+				need_to_add_thousands = true;
 				break;
 			case MP_FLOAT:
 				sprintf(cp, "*.*R*%c", cs1);
@@ -1596,8 +1600,16 @@ mpf1:
 			if (quote_flag && ! use_lc_numeric)
 				setlocale(LC_NUMERIC, "C");
 #endif
-
 			len = strlen(obufout);
+			if (quote_flag && need_to_add_thousands) {
+				const char *new_text = add_thousands(obufout, & loc);
+
+				len = strlen(new_text);
+				chksize(len)
+				strcpy(obufout, new_text);
+				free((void *) new_text);
+			}
+
 			ofre -= len;
 			obufout += len;
 			s0 = s1;
@@ -4367,3 +4379,106 @@ do_mkbool(int nargs)
 
 	return make_bool_node(result);
 }
+
+/* reverse --- reverse the contents of a string in place */
+
+static void
+reverse(char *str)
+{
+	int i, j;
+	char tmp;
+
+	for (i = 0, j = strlen(str) - 1; j > i; i++, j--) {
+		tmp = str[i];
+		str[i] = str[j];
+		str[j] = tmp;
+	}
+}
+
+/* add_thousands --- add the thousands separator. Needed for MPFR %d format */
+
+/*
+ * Copy the source string into the destination string, backwards,
+ * adding the thousands separator at the right points. Then reverse
+ * the string when done. This gives us much cleaner code than trying
+ * to work through the string backwards. (We tried it, it was yucky.)
+ */
+
+static const char *
+add_thousands(const char *original, struct lconv *loc)
+{
+	size_t orig_len = strlen(original);
+	size_t new_len = orig_len + (orig_len * strlen(loc->thousands_sep)) + 1; 	// worst case
+	char *newbuf;
+	char decimal_point = '\0';
+	const char *dec = NULL;
+	const char *src;
+	char *dest;
+
+	emalloc(newbuf, char *, new_len, "add_thousands");
+	memset(newbuf, '\0', new_len);
+
+	src = original + strlen(original) - 1;
+	dest = newbuf;
+
+	if (loc->decimal_point[0] != '\0') {
+		decimal_point = loc->decimal_point[0];
+		if ((dec = strchr(original, decimal_point)) != NULL) {
+			while (src >= dec)
+				*dest++ = *src--;
+		}
+	}
+
+
+	int ii = 0;
+	int jj = 0;
+	do {
+		*dest++ = *src--;
+		if (loc->grouping[ii] && ++jj == loc->grouping[ii]) {
+			if (src >= original) {	/* only add if more digits coming */
+				const char *ts = loc->thousands_sep;
+
+				while (*ts != '\0')
+					*dest++ = *ts++;
+			}
+			if (loc->grouping[ii+1] == 0)
+				jj = 0;		/* keep using current val in loc.grouping[ii] */
+			else if (loc->grouping[ii+1] == CHAR_MAX) {
+				// copy in the rest and be done
+				while (src >= original)
+					*dest++ = *src--;
+				break;
+			} else {
+				ii++;
+				jj = 0;
+			}
+		}
+	} while (src >= original);
+
+	*dest++ = '\0';
+	reverse(newbuf);
+
+	return newbuf;
+}
+
+#if 0
+// test program
+
+int main(int argc, char **argv)
+{
+	struct lconv *l;
+
+	setlocale(LC_ALL, "");
+	l = localeconv();
+
+	const char *new = add_thousands("12345678901234567890.54321", l);
+	printf("%s\n", new);
+	free((void*) new);
+
+	new = add_thousands("12345678901234567890", l);
+	printf("%s\n", new);
+	free((void*) new);
+
+	return 0;
+}
+#endif

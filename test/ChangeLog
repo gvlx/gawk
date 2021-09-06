@@ -1,3 +1,10 @@
+2021-09-06         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.am (EXTRA_DIST): typeof6, new test.
+	* typeof6.awk, typeof6.ok: New files.
+	* Makefile.am (EXTRA_DIST): commas, new test.
+	* commas.awk, commas.ok: New files.
+
 2021-08-13         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* Makefile.am (EXTRA_DIST): regexsub, new test.
