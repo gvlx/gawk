@@ -1,3 +1,13 @@
+2021-09-06         Arnold D. Robbins     <arnold@skeeve.com>
+
+	Have the ' flag work for %d in MPFR mode also. Thanks to
+	Dan Nielsen <catskill549@yahoo.com> for the report.
+
+	* builtin.c (add_thousands):  New function.
+	(reverse): New helper function.
+	(format_tree): Use add_thousands if MPFR and an integer
+	format.
+
 2021-09-03         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* main.c (UPDATE_YEAR): Update to 2021.
