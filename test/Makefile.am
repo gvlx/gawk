@@ -1329,6 +1329,8 @@ EXTRA_DIST = \
 	typeof5.awk \
 	typeof5.in \
 	typeof5.ok \
+	typeof6.awk \
+	typeof6.ok \
 	uninit2.awk \
 	uninit2.ok \
 	uninit3.awk \
@@ -1468,7 +1470,7 @@ GAWK_EXT_TESTS = \
 	symtab8 symtab9 symtab10 symtab11 \
 	timeout typedregex1 typedregex2 typedregex3 typedregex4 \
 	typedregex5 typedregex6 \
-	typeof1 typeof2 typeof3 typeof4 typeof5 \
+	typeof1 typeof2 typeof3 typeof4 typeof5 typeof6 \
 	watchpoint1
 
 ARRAYDEBUG_TESTS = arrdbg

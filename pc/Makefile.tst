@@ -226,7 +226,7 @@ GAWK_EXT_TESTS = \
 	symtab8 symtab9 symtab10 symtab11 \
 	timeout typedregex1 typedregex2 typedregex3 typedregex4 \
 	typedregex5 typedregex6 \
-	typeof1 typeof2 typeof3 typeof4 typeof5 \
+	typeof1 typeof2 typeof3 typeof4 typeof5 typeof6 \
 	watchpoint1
 
 ARRAYDEBUG_TESTS = arrdbg
@@ -3378,6 +3378,11 @@ typeof4:
 typeof5:
 	@echo $@
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  < "$(srcdir)"/$@.in >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
+	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
+
+typeof6:
+	@echo $@
+	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 double1:
