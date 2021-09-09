@@ -39,7 +39,7 @@ then
 	export INSTALL
 fi
 
-AC_PREREQ([2.69])
+AC_PREREQ([2.71])
 
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_AUX_DIR([build-aux])
@@ -97,7 +97,8 @@ dnl checks for programs
 AC_PROG_EGREP
 AC_PROG_YACC
 AC_PROG_LN_S
-AC_PROG_CC_C99
+AC_PROG_CC
+AC_C_VARARRAY
 AC_PROG_CPP
 AC_PROG_RANLIB
 
@@ -173,10 +174,11 @@ AC_CHECK_HEADERS(arpa/inet.h fcntl.h locale.h libintl.h mcheck.h \
 	netdb.h netinet/in.h stddef.h string.h \
 	sys/ioctl.h sys/param.h sys/select.h sys/socket.h sys/time.h unistd.h \
 	termios.h stropts.h wchar.h wctype.h)
-AC_HEADER_STDC
+
 AC_HEADER_STDBOOL
 AC_HEADER_SYS_WAIT
-AC_HEADER_TIME
+AC_CHECK_HEADERS_ONCE([sys/time.h])
+
 
 if test "$ac_cv_header_string_h" = yes
 then

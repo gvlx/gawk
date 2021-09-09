@@ -1,3 +1,11 @@
+2021-09-09         Arnold D. Robbins     <arnold@skeeve.com>
+
+	Move to Autoconf 2.71 (finally!)
+
+	* configure.ac: Updated.
+	* aclocal.m4, configh.in configure: Regenerated.
+	* NEWS: Updated.
+
 2021-09-06         Arnold D. Robbins     <arnold@skeeve.com>
 
 	Have the ' flag work for %d in MPFR mode also. Thanks to

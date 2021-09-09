@@ -1,3 +1,9 @@
+2021-09-09         Arnold D. Robbins     <arnold@skeeve.com>
+
+	Move to Autoconf 2.71 (finally!)
+
+	* aclocal.m4, configh.in configure: Regenerated.
+
 2021-05-05         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* CMakeLists.txt: Removed.

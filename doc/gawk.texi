@@ -6101,16 +6101,36 @@ regexp constants are valid and work the way you want them to, using
 any version of @command{awk}.@footnote{Use two backslashes if you're
 using a string constant with a regexp operator or function.}
 
-Finally, when @samp{@{} and @samp{@}} appear in regexp constants
+When @samp{@{} and @samp{@}} appear in regexp constants
 in a way that cannot be interpreted as an interval expression
 (such as @code{/q@{a@}/}), then they stand for themselves.
 
 As mentioned, interval expressions were not traditionally available
 in @command{awk}. In March of 2019, BWK @command{awk} (finally) acquired them.
-
 Nonetheless, because they were not available for
 so many decades, @command{gawk} continues to not supply them
 when in compatibility mode (@pxref{Options}).
+
+POSIX says that interval expressions containing repetition counts greater
+than 255 produce unspecified results.
+
+@cindex Eggert, Paul
+In the manual for GNU @command{grep}, Paul Eggert notes the following:
+
+@quotation
+Interval expressions may be implemented internally via repetition.
+For example, @samp{^(a|bc)@{2,4@}$} might be implemented as
+@samp{^(a|bc)(a|bc)((a|bc)(a|bc)?)?$}.  A large repetition count may
+exhaust memory or greatly slow matching.  Even small counts can cause
+problems if cascaded; for example, @samp{grep -E
+".*@{10,@}@{10,@}@{10,@}@{10,@}@{10,@}"} is likely to overflow a
+stack.  Fortunately, regular expressions like these are typically
+artificial, and cascaded repetitions do not conform to POSIX so cannot
+be used in portable programs anyway.
+@end quotation
+
+@noindent
+This same caveat applies to @command{gawk}.
 
 @node Bracket Expressions
 @section Using Bracket Expressions
