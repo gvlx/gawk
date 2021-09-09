@@ -311,7 +311,7 @@ NEED_LOCALE_EN = \
 	widesub widesub2 widesub3 widesub4
 
 
-# Unused at the moment, since nlstringtest has additional stufff it does
+# Unused at the moment, since nlstringtest has additional stuff it does
 # NEED_LOCALE_FR =
 # Same for ignrcas3
 # NEED_LOCALE_GR =
