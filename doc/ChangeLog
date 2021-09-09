@@ -1,3 +1,8 @@
+2021-09-09         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.in (Interval Expressions): Add some notes borrowed from
+	Paul Eggert in the grep documentation.
+
 2021-08-26         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawktexi.in (Strong Regexp Constants): Document behavior
