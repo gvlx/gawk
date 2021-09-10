@@ -36,6 +36,7 @@ int yydebug = 2;
 
 static int yylex(void);
 static void yyerror(const char *mesg, ...);
+#define YYERROR_IS_DECLARED	1	/* for bison 3.8. sigh. */
 
 static int find_command(const char *token, size_t toklen);
 

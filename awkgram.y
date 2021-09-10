@@ -35,6 +35,7 @@
 #endif
 
 static void yyerror(const char *m, ...) ATTRIBUTE_PRINTF_1;
+#define  YYERROR_IS_DECLARED	1	/* for bison 3.8. sigh. */
 static void error_ln(int line, const char *m, ...) ATTRIBUTE_PRINTF_2;
 static void lintwarn_ln(int line, const char *m, ...) ATTRIBUTE_PRINTF_2;
 static void warning_ln(int line, const char *m, ...) ATTRIBUTE_PRINTF_2;

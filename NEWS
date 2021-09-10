@@ -27,7 +27,7 @@ for details.
 Changes from 5.1.0 to 5.1.1
 ---------------------------
 
-1. Infrastructure upgrades: Bison 3.7.1, Gettext 0.20.2, Automake 1.16.4,
+1. Infrastructure upgrades: Bison 3.8, Gettext 0.20.2, Automake 1.16.4,
    and (will wonders never cease) Autoconf 2.71.
 
 2. asort and asorti now allow FUNCTAB and SYMTAB as the first argument if a
