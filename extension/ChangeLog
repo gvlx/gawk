@@ -3,6 +3,11 @@
 	* configure.ac: Updated for Autoconf 2.71. Removes various warnings.
 	* configh.in, configure: Regenerated.
 
+	Unrelated:
+
+	* aclocal.m4: Regenerated: Automake 1.16.4.
+	* NEWS: Updated.
+
 2021-09-09         Arnold D. Robbins     <arnold@skeeve.com>
 
 	Move to Autoconf 2.71 (finally!)
