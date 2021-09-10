@@ -1,3 +1,10 @@
+2021-09-10         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.am (EXTRA_DIST): functab6, new test.
+	* functab6.awk, functab6.ok: New files.
+	* symtab10.ok: Modified after code change.
+	* symtab10.in: Removed.
+
 2021-09-06         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* Makefile.am (EXTRA_DIST): typeof6, new test.
