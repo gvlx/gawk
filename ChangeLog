@@ -9,6 +9,12 @@
 	* aclocal.m4: Regenerated: Automake 1.16.4.
 	* NEWS: Updated.
 
+	Unrelated:
+
+	* awkgram.y (YYERROR_IS_DECLARED): Added for Bison 3.8.
+	* command.y (YYERROR_IS_DECLARED): Ditto.
+	* NEWS: Updated.
+
 2021-09-09         Arnold D. Robbins     <arnold@skeeve.com>
 
 	Move to Autoconf 2.71 (finally!)
