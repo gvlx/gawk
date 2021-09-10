@@ -13,7 +13,7 @@ dnl found, and sets @LIBMPFR@ to the necessary libraries.
 AC_DEFUN([GNUPG_CHECK_MPFR],
 [
   AC_ARG_WITH([mpfr],
-     AC_HELP_STRING([--with-mpfr=DIR],
+     AS_HELP_STRING([--with-mpfr=DIR],
 	[look for the mpfr and gmp libraries in DIR]),
      [_do_mpfr=$withval],[_do_mpfr=yes])
 
@@ -27,7 +27,7 @@ AC_DEFUN([GNUPG_CHECK_MPFR],
         _combo="-lmpfr -lgmp"
         LIBS="$LIBS $_combo"
 
-        AC_MSG_CHECKING([whether mpfr via \"$_combo\" is present and usable])
+        AC_MSG_CHECKING([whether mpfr via "$_combo" is present and usable])
 
         AC_LINK_IFELSE([
 	AC_LANG_PROGRAM([

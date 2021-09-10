@@ -4,6 +4,11 @@
 	FUNCTAB and SYMTAB to create new elements.  Thanks to
 	Jason C. Kwan <jasonckwan@yahoo.com> for the bug report.
 
+	Unrelated:
+
+	* aclocal.m4: Regenerated: Automake 1.16.4.
+	* NEWS: Updated.
+
 2021-09-09         Arnold D. Robbins     <arnold@skeeve.com>
 
 	Move to Autoconf 2.71 (finally!)
