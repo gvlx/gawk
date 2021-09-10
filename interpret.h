@@ -67,6 +67,7 @@ r_interpret(INSTRUCTION *code)
 	Regexp *rp;
 	NODE *set_array = NULL;	/* array with a post-assignment routine */
 	NODE *set_idx = NULL;	/* the index of the array element */
+	bool subscript_in_array;
 
 
 /* array subscript */
@@ -265,13 +266,26 @@ uninitialized_scalar:
 			t2 = mk_sub(pc->sub_count);
 			t1 = POP_ARRAY(false);
 
-			if (do_lint && in_array(t1, t2) == NULL) {
+			subscript_in_array = (in_array(t1, t2) != NULL);
+
+			if (! subscript_in_array) {
 				t2 = force_string(t2);
-				lintwarn(_("reference to uninitialized element `%s[\"%.*s\"]'"),
-					array_vname(t1), (int) t2->stlen, t2->stptr);
-				if (t2->stlen == 0)
-					lintwarn(_("subscript of array `%s' is null string"), array_vname(t1));
+
+				if (t1 == func_table) {
+					fatal(_("reference to uninitialized element `%s[\"%.*s\"] is not allowed'"),
+						"FUNCTAB", (int) t2->stlen, t2->stptr);
+				} else if (t1 == symbol_table) {
+					fatal(_("reference to uninitialized element `%s[\"%.*s\"] is not allowed'"),
+						"SYMTAB", (int) t2->stlen, t2->stptr);
+				} else if (do_lint) {
+					lintwarn(_("reference to uninitialized element `%s[\"%.*s\"]'"),
+						array_vname(t1), (int) t2->stlen, t2->stptr);
+					if (t2->stlen == 0)
+						lintwarn(_("subscript of array `%s' is null string"), array_vname(t1));
+				}
 			}
+
+			// continue the regular processing
 
 			/* for FUNCTAB, get the name as the element value */
 			if (t1 == func_table) {

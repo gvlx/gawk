@@ -422,6 +422,8 @@ EXTRA_DIST = \
 	functab4.ok \
 	functab5.awk \
 	functab5.ok \
+	functab6.awk \
+	functab6.ok \
 	funlen.awk \
 	funlen.in \
 	funlen.ok \
@@ -1282,7 +1284,6 @@ EXTRA_DIST = \
 	symtab9.awk \
 	symtab9.ok \
 	symtab10.awk \
-	symtab10.in \
 	symtab10.ok \
 	symtab11.awk \
 	symtab11.ok \
@@ -1447,7 +1448,7 @@ GAWK_EXT_TESTS = \
 	devfd devfd1 devfd2 dfacheck1 dumpvars \
 	errno exit fieldwdth forcenum \
 	fpat1 fpat2 fpat3 fpat4 fpat5 fpat6 fpat7 fpat8 fpat9 fpatnull \
-	fsfwfs funlen functab1 functab2 functab3 \
+	fsfwfs funlen functab1 functab2 functab3 functab6 \
 	fwtest fwtest2 fwtest3 fwtest4 fwtest5 fwtest6 fwtest7 fwtest8 \
 	genpot gensub gensub2 gensub3 getlndir gnuops2 gnuops3 gnureops gsubind \
 	icasefs icasers id igncdym igncfs ignrcas2 ignrcas4 ignrcase incdupe \
@@ -1503,7 +1504,7 @@ SHLIB_TESTS = \
 	testext time
 
 # List of the tests which should be run with --debug option:
-NEED_DEBUG = dbugtypedre1 dbugtypedre2 dbugeval2 dbugeval3 symtab10
+NEED_DEBUG = dbugtypedre1 dbugtypedre2 dbugeval2 dbugeval3
 
 # List of the tests which should be run with --lint option:
 NEED_LINT = \

@@ -1,3 +1,9 @@
+2021-09-10         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* interpret.h: For Op_subscript, don't allow references into
+	FUNCTAB and SYMTAB to create new elements.  Thanks to
+	Jason C. Kwan <jasonckwan@yahoo.com> for the bug report.
+
 2021-09-09         Arnold D. Robbins     <arnold@skeeve.com>
 
 	Move to Autoconf 2.71 (finally!)

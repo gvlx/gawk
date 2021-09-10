@@ -198,7 +198,7 @@ GAWK_EXT_TESTS = \
 	devfd devfd1 devfd2 dfacheck1 dumpvars \
 	errno exit fieldwdth forcenum \
 	fpat1 fpat2 fpat3 fpat4 fpat5 fpat6 fpat7 fpat8 fpat9 fpatnull \
-	fsfwfs funlen functab1 functab2 functab3 \
+	fsfwfs funlen functab1 functab2 functab3 functab6 \
 	fwtest fwtest2 fwtest3 fwtest4 fwtest5 fwtest6 fwtest7 fwtest8 \
 	genpot gensub gensub2 gensub3 getlndir gnuops2 gnuops3 gnureops gsubind \
 	icasefs icasers id igncdym igncfs ignrcas2 ignrcas4 ignrcase incdupe \
@@ -251,7 +251,7 @@ SHLIB_TESTS = \
 
 
 # List of the tests which should be run with --debug option:
-NEED_DEBUG = dbugtypedre1 dbugtypedre2 dbugeval2 dbugeval3 symtab10
+NEED_DEBUG = dbugtypedre1 dbugtypedre2 dbugeval2 dbugeval3
 
 # List of the tests which should be run with --lint option:
 NEED_LINT = \
@@ -2765,6 +2765,11 @@ functab3:
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
+functab6:
+	@echo $@
+	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
+	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
+
 fwtest:
 	@echo $@
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  < "$(srcdir)"/$@.in >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
@@ -3327,7 +3332,7 @@ symtab7:
 
 symtab10:
 	@echo $@
-	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  --debug < "$(srcdir)"/$@.in >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
+	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 symtab11:
