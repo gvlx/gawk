@@ -16841,13 +16841,6 @@ fi
 
 
 
-# Obsolete code to be removed.
-if test $ac_cv_header_sys_time_h = yes; then
-
-printf "%s\n" "#define TIME_WITH_SYS_TIME 1" >>confdefs.h
-
-fi
-# End of obsolete code.
 
 
 case `uname -m` in

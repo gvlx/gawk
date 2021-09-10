@@ -19,7 +19,7 @@ dnl problem is only discovered at run time.  Isn't that special?
 AC_DEFUN([GAWK_CHECK_READLINE],
 [
   AC_ARG_WITH([readline],
-     AC_HELP_STRING([--with-readline=DIR],
+     AS_HELP_STRING([--with-readline=DIR],
 	[look for the readline library in DIR]),
      [_do_readline=$withval],[_do_readline=yes])
 
@@ -34,11 +34,11 @@ AC_DEFUN([GAWK_CHECK_READLINE],
         _combo="-lreadline${_termcap:+ $_termcap}"
         LIBS="$LIBS $_combo"
 
-        AC_MSG_CHECKING([whether readline via \"$_combo\" is present and sane])
+        AC_MSG_CHECKING([whether readline via "$_combo" is present and sane])
 
-	AC_TRY_RUN(
+	AC_RUN_IFELSE(
 dnl source program:
-AC_LANG_SOURCE([[#include <stdio.h>
+[AC_LANG_SOURCE([[#include <stdio.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include <readline/readline.h>
@@ -58,17 +58,18 @@ int main(int argc, char **argv)
 	/* some printfs don't handle NULL for %s */
 	printf("got <%s>\n", line ? line : "(NULL)");
 	return 0;
-}]]),
+}]])],
 dnl action if true:
             [_found_readline=yes],
 dnl action if false:
             [_found_readline=no],
 dnl action if cross compiling:
-		AC_TRY_LINK([#include <stdio.h>
+		[AC_LINK_IFELSE(
+			[AC_LANG_PROGRAM([[#include <stdio.h>
 #include <readline/readline.h>
-#include <readline/history.h>],		dnl includes
+#include <readline/history.h>]],		dnl includes
 			dnl function body
-			[
+			[[
 	int fd;
 	char *line;
 
@@ -80,12 +81,12 @@ dnl action if cross compiling:
 
 	/* some printfs don't handle NULL for %s */
 	printf("got <%s>\n", line ? line : "(NULL)");
-],
+]])],
 dnl action if found:
 			[_found_readline=yes],
 dnl action if not found:
 			[_found_readline=no]
-		)
+		)]
 	)
 
         AC_MSG_RESULT([$_found_readline])
