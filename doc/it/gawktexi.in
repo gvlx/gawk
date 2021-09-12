@@ -6430,17 +6430,44 @@ qualsiasi versione di @command{awk}.@footnote{@`E meglio usare due barre inverse
 se si sta usando una costante stringa con un operatore @dfn{regexp} o una
 funzione.}
 
-Infine, quando @samp{@{} e @samp{@}} appaiono in costanti @dfn{regexp}
+Quando @samp{@{} e @samp{@}} appaiono in costanti @dfn{regexp}
 in un modo non interpretabile come espressione di intervallo
 (come in @code{/q@{a@}/}), allora sono prese letteralmente.
 
 Come detto sopra, le espressioni di intervallo non erano tradizionalmente
 disponibili in @command{awk}.  Con la versione di Marzo 2019 di
 BWK @command{awk} sono (finalmente) disponibili.
-
 Ciononostante, non essendo state disponibili per parecchi decenni,
 @command{gawk} continua a non renderle disponibili quando viene
 eseguito in modalit@`a compatibile (@pxref{Opzioni}).
+
+POSIX afferma che espressioni di intervallo che contengano
+contatori di ripetizione maggiori di 255 producono risultati
+indeterminati.
+
+@cindex Eggert, Paul
+Nel manuale del comando GNU @command{grep}, Paul Eggert nota
+quanto segue:
+
+@quotation
+Le espressioni di intervallo possono essere implementate internamente
+tramite ripetizioni.  Per esempio, @samp{^(a|bc)@{2,4@}$} potrebbe
+essere implementata come @samp{^(a|bc)(a|bc)((a|bc)(a|bc)?)?$}.
+Un contatore di ripetizioni elevato potrebbe esaurire la memoria del computer
+o rallentare grandemente la determinazione delle corrispondenze.
+Anche contatori bassi possono causare problemi se sono inseriti
+"a cascata"; per esempio,
+@samp{grep -E ".*@{10,@}@{10,@}@{10,@}@{10,@}@{10,@}"}
+con molta probabilit@`a basta a far "esplodere" la @dfn{stack}.
+Fortunatamente, espressioni regolari di questo tipo sono
+tipicamente artificiali, mentre ripetizioni "a cascata" non
+rispettano lo standard POSIX, e quindi non possono in ogni caso
+essere inserite in programmi portabili [tra differenti implementazioni
+di @command{grep}].
+@end quotation
+
+@noindent
+Lo stesso vale anche per @command{gawk}.
 
 @node Espressioni tra parentesi quadre
 @section Usare espressioni tra parentesi quadre
