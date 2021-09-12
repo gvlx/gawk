@@ -67,7 +67,6 @@ r_interpret(INSTRUCTION *code)
 	Regexp *rp;
 	NODE *set_array = NULL;	/* array with a post-assignment routine */
 	NODE *set_idx = NULL;	/* the index of the array element */
-	bool subscript_in_array;
 
 
 /* array subscript */
@@ -266,9 +265,7 @@ uninitialized_scalar:
 			t2 = mk_sub(pc->sub_count);
 			t1 = POP_ARRAY(false);
 
-			subscript_in_array = (in_array(t1, t2) != NULL);
-
-			if (! subscript_in_array) {
+			if (in_array(t1, t2) == NULL) {
 				t2 = force_string(t2);
 
 				if (t1 == func_table) {
