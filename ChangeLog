@@ -1,3 +1,12 @@
+2021-09-12         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* interpret.h: Remove subscript_in_array variable.
+
+	Unrelated:
+
+	* builtin.c (add_thousands): Fix insertion of thousands_sep
+	string. Do it in reverse order.
+
 2021-09-10         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* interpret.h: For Op_subscript, don't allow references into

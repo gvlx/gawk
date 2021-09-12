@@ -4437,9 +4437,10 @@ add_thousands(const char *original, struct lconv *loc)
 		if (loc->grouping[ii] && ++jj == loc->grouping[ii]) {
 			if (src >= original) {	/* only add if more digits coming */
 				const char *ts = loc->thousands_sep;
+				int k;
 
-				while (*ts != '\0')
-					*dest++ = *ts++;
+				for (k = strlen(ts) - 1; k >= 0; k--)
+					*dest++ = ts[k];
 			}
 			if (loc->grouping[ii+1] == 0)
 				jj = 0;		/* keep using current val in loc.grouping[ii] */
