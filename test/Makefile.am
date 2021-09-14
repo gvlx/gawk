@@ -1580,8 +1580,8 @@ EXPECTED_FAIL_DJGPP = \
 # List of tests that fail on MinGW
 EXPECTED_FAIL_MINGW = \
 	backbigs1 backsmalls1 clos1way6 devfd devfd1 devfd2 \
-	errno exitval2 fmttest fork fork2 fts functab5 \
-	getfile getlnhd hsprint ignrcas3 inetdayt inetecht inf-nan-torture \
+	errno exitval2 fork fork2 fts functab5 \
+	getfile getlnhd ignrcas3 inetdayt inetecht inf-nan-torture \
 	mbfw1 mbprintf1 mbprintf4 mbstr1 mbstr2 \
 	pid pipeio2 pty1 pty2 readdir rstest4 rstest5 status-close timeout
 

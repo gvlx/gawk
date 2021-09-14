@@ -1,3 +1,9 @@
+2021-09-14         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.am (EXPECTED_FAIL_MINGW): Remove fmttest and
+	hsprint. They seem to work now. Thanks to Scott Deifik
+	<scottd.mail@sbcglobal.net> for the report.
+
 2021-09-10         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* Makefile.am (EXTRA_DIST): functab6, new test.
