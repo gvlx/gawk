@@ -331,8 +331,8 @@ EXPECTED_FAIL_DJGPP = \
 # List of tests that fail on MinGW
 EXPECTED_FAIL_MINGW = \
 	backbigs1 backsmalls1 clos1way6 devfd devfd1 devfd2 \
-	errno exitval2 fmttest fork fork2 fts functab5 \
-	getfile getlnhd hsprint ignrcas3 inetdayt inetecht inf-nan-torture \
+	errno exitval2 fork fork2 fts functab5 \
+	getfile getlnhd ignrcas3 inetdayt inetecht inf-nan-torture \
 	mbfw1 mbprintf1 mbprintf4 mbstr1 mbstr2 \
 	pid pipeio2 pty1 pty2 readdir rstest4 rstest5 status-close timeout
 
@@ -1748,7 +1748,6 @@ hex2:
 
 hsprint:
 	@echo $@
-	@echo Expect $@ to fail with MinGW.
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(TESTOUTCMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
@@ -3448,7 +3447,6 @@ backsmalls2:
 
 fmttest:
 	@echo $@ $(ZOS_FAIL)
-	@echo Expect $@ to fail with MinGW.
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(TESTOUTCMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
