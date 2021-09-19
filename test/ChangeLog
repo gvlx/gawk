@@ -1,3 +1,8 @@
+2021-09-19         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.am (EXTRA_DIST): Remove commas.in from the list.
+	Thanks to `make distcheck' for the report.
+
 2021-09-14         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* Makefile.am (EXPECTED_FAIL_MINGW): Remove fmttest and
