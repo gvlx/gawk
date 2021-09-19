@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gawk 5.0.64\n"
 "Report-Msgid-Bugs-To: bug-gawk@gnu.org\n"
-"POT-Creation-Date: 2021-05-06 20:46+0300\n"
+"POT-Creation-Date: 2021-09-19 11:16+0300\n"
 "PO-Revision-Date: 2020-05-06 17:44-0400\n"
 "Last-Translator: Boyuan Yang <073plan@gmail.com>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
@@ -41,8 +41,8 @@ msgstr "试图把标量参数“%s”当数组使用"
 msgid "attempt to use scalar `%s' as an array"
 msgstr "试图把标量“%s”当数组使用"
 
-#: array.c:402 array.c:569 builtin.c:88 builtin.c:1665 builtin.c:1711
-#: builtin.c:1724 builtin.c:2219 builtin.c:2246 eval.c:1155 eval.c:1159
+#: array.c:402 array.c:569 builtin.c:89 builtin.c:1677 builtin.c:1723
+#: builtin.c:1736 builtin.c:2231 builtin.c:2258 eval.c:1155 eval.c:1159
 #: eval.c:1541
 #, c-format
 msgid "attempt to use array `%s' in a scalar context"
@@ -58,459 +58,465 @@ msgstr "delete：索引“%.*s”不在数组“%s”中"
 msgid "attempt to use scalar `%s[\"%.*s\"]' as an array"
 msgstr "试图把标量“%s[\"%.*s\"]”当数组使用"
 
-#: array.c:784 array.c:835
+#: array.c:784 array.c:834
 #, c-format
 msgid "%s: first argument is not an array"
 msgstr "%s：第一个参数不是数组"
 
-#: array.c:825
+#: array.c:826
 #, c-format
 msgid "%s: second argument is not an array"
 msgstr "%s：第二个参数不是数组"
 
-#: array.c:830 field.c:1004 field.c:1096
+#: array.c:829 field.c:1004 field.c:1096
 #, fuzzy, c-format
 #| msgid "%s: cannot use a subarray of first argument for second argument"
 msgid "%s: cannot use %s as second argument"
 msgstr "%s：无法将第一个参数的子数组作为第二个参数"
 
-#: array.c:839
+#: array.c:837
 #, fuzzy, c-format
 #| msgid "%s: first argument cannot be SYMTAB"
 msgid "%s: first argument cannot be SYMTAB without a second argument"
 msgstr "%s：第一个参数不能为 SYMTAB"
 
-#: array.c:842
+#: array.c:839
 #, fuzzy, c-format
 #| msgid "%s: first argument cannot be FUNCTAB"
 msgid "%s: first argument cannot be FUNCTAB without a second argument"
 msgstr "%s：第一个参数不能为 FUNCTAB"
 
-#: array.c:848
+#: array.c:846
+msgid ""
+"asort/asorti: using the same array as source and destination without a third "
+"argument is silly."
+msgstr ""
+
+#: array.c:851
 #, c-format
 msgid "%s: cannot use a subarray of first argument for second argument"
 msgstr "%s：无法将第一个参数的子数组作为第二个参数"
 
-#: array.c:853
+#: array.c:856
 #, c-format
 msgid "%s: cannot use a subarray of second argument for first argument"
 msgstr "%s：无法将第二个参数的子数组作为第一个参数"
 
-#: array.c:1367
+#: array.c:1370
 #, c-format
 msgid "`%s' is invalid as a function name"
 msgstr "“%s”用于函数名是无效的"
 
-#: array.c:1371
+#: array.c:1374
 #, c-format
 msgid "sort comparison function `%s' is not defined"
 msgstr "排序比较函数“%s”未定义"
 
-#: awkgram.y:275
+#: awkgram.y:276
 #, c-format
 msgid "%s blocks must have an action part"
 msgstr "%s 块必须有一个行为部分"
 
-#: awkgram.y:278
+#: awkgram.y:279
 msgid "each rule must have a pattern or an action part"
 msgstr "每个规则必须有一个模式或行为部分"
 
-#: awkgram.y:419 awkgram.y:431
+#: awkgram.y:420 awkgram.y:432
 msgid "old awk does not support multiple `BEGIN' or `END' rules"
 msgstr "老的 awk 不支持多个“BEGIN”或“END”规则"
 
-#: awkgram.y:484
+#: awkgram.y:485
 #, c-format
 msgid "`%s' is a built-in function, it cannot be redefined"
 msgstr "“%s”是内置函数，不能被重定义"
 
-#: awkgram.y:548
+#: awkgram.y:549
 msgid "regexp constant `//' looks like a C++ comment, but is not"
 msgstr "正则表达式常量“//”看起来像 C++ 注释，但其实不是"
 
-#: awkgram.y:552
+#: awkgram.y:553
 #, c-format
 msgid "regexp constant `/%s/' looks like a C comment, but is not"
 msgstr "正则表达式常量“/%s/”看起来像 C 注释，但其实不是"
 
-#: awkgram.y:679
+#: awkgram.y:680
 #, c-format
 msgid "duplicate case values in switch body: %s"
 msgstr "switch 中有重复的 case 值：%s"
 
-#: awkgram.y:700
+#: awkgram.y:701
 msgid "duplicate `default' detected in switch body"
 msgstr "switch 中有重复的“default”"
 
-#: awkgram.y:1036 awkgram.y:4469
+#: awkgram.y:1037 awkgram.y:4470
 msgid "`break' is not allowed outside a loop or switch"
 msgstr "“break”在循环或 switch外使用是不允许的"
 
-#: awkgram.y:1046 awkgram.y:4461
+#: awkgram.y:1047 awkgram.y:4462
 msgid "`continue' is not allowed outside a loop"
 msgstr "“continue”在循环外使用是不允许的"
 
-#: awkgram.y:1057
+#: awkgram.y:1058
 #, c-format
 msgid "`next' used in %s action"
 msgstr "“next”被用于 %s 操作"
 
-#: awkgram.y:1068
+#: awkgram.y:1069
 #, c-format
 msgid "`nextfile' used in %s action"
 msgstr "“nextfile”被用于 %s 操作"
 
-#: awkgram.y:1096
+#: awkgram.y:1097
 msgid "`return' used outside function context"
 msgstr "“return”在函数外使用"
 
-#: awkgram.y:1169
+#: awkgram.y:1170
 msgid "plain `print' in BEGIN or END rule should probably be `print \"\"'"
 msgstr "在 BEGIN 或 END 规则中，“print”也许应该写做“print \"\"”"
 
-#: awkgram.y:1239 awkgram.y:1288
+#: awkgram.y:1240 awkgram.y:1289
 msgid "`delete' is not allowed with SYMTAB"
 msgstr "“delete”不能与 SYMTAB 共用"
 
-#: awkgram.y:1241 awkgram.y:1290
+#: awkgram.y:1242 awkgram.y:1291
 msgid "`delete' is not allowed with FUNCTAB"
 msgstr "“delete”不能与 FUNCTAB 共用"
 
-#: awkgram.y:1275 awkgram.y:1279
+#: awkgram.y:1276 awkgram.y:1280
 msgid "`delete(array)' is a non-portable tawk extension"
 msgstr "“delete(array)”是不可移植的 tawk 扩展"
 
-#: awkgram.y:1415
+#: awkgram.y:1416
 msgid "multistage two-way pipelines don't work"
 msgstr "多阶双向管道无法工作"
 
-#: awkgram.y:1417
+#: awkgram.y:1418
 msgid "concatenation as I/O `>' redirection target is ambiguous"
 msgstr "输入输出重定向符“>”（合并内容）的目标有歧义"
 
-#: awkgram.y:1629
+#: awkgram.y:1630
 msgid "regular expression on right of assignment"
 msgstr "正则表达式在赋值算符的右边"
 
-#: awkgram.y:1644 awkgram.y:1657
+#: awkgram.y:1645 awkgram.y:1658
 msgid "regular expression on left of `~' or `!~' operator"
 msgstr "正则表达式在“~”或“!~”算符的左边"
 
-#: awkgram.y:1674 awkgram.y:1824
+#: awkgram.y:1675 awkgram.y:1825
 msgid "old awk does not support the keyword `in' except after `for'"
 msgstr "老 awk 只支持关键词“in”在“for”的后面"
 
-#: awkgram.y:1684
+#: awkgram.y:1685
 msgid "regular expression on right of comparison"
 msgstr "正则表达式在比较算符的右边"
 
-#: awkgram.y:1803
+#: awkgram.y:1804
 #, c-format
 msgid "non-redirected `getline' invalid inside `%s' rule"
 msgstr "非重定向的“getline” 在“%s”规则中无效"
 
-#: awkgram.y:1806
+#: awkgram.y:1807
 msgid "non-redirected `getline' undefined inside END action"
 msgstr "在 END 环境中，非重定向的“getline”未定义"
 
-#: awkgram.y:1826
+#: awkgram.y:1827
 msgid "old awk does not support multidimensional arrays"
 msgstr "老 awk 不支持多维数组"
 
-#: awkgram.y:1929
+#: awkgram.y:1930
 msgid "call of `length' without parentheses is not portable"
 msgstr "不带括号调用“length”是不可以移植的"
 
-#: awkgram.y:2003
+#: awkgram.y:2004
 msgid "indirect function calls are a gawk extension"
 msgstr "间接函数调用是一个 gawk 扩展"
 
-#: awkgram.y:2016
+#: awkgram.y:2017
 #, c-format
 msgid "cannot use special variable `%s' for indirect function call"
 msgstr "不能为间接函数调用使用特殊变量“%s”"
 
-#: awkgram.y:2049
+#: awkgram.y:2050
 #, c-format
 msgid "attempt to use non-function `%s' in function call"
 msgstr "试图把非函数“%s”当函数来调用"
 
-#: awkgram.y:2114
+#: awkgram.y:2115
 msgid "invalid subscript expression"
 msgstr "无效的下标表达式"
 
-#: awkgram.y:2487 awkgram.y:2507 gawkapi.c:265 gawkapi.c:282 msg.c:132
+#: awkgram.y:2488 awkgram.y:2508 gawkapi.c:265 gawkapi.c:282 msg.c:132
 msgid "warning: "
 msgstr "警告："
 
-#: awkgram.y:2505 gawkapi.c:237 gawkapi.c:280 msg.c:164
+#: awkgram.y:2506 gawkapi.c:237 gawkapi.c:280 msg.c:164
 msgid "fatal: "
 msgstr "致命错误："
 
-#: awkgram.y:2558
+#: awkgram.y:2559
 msgid "unexpected newline or end of string"
 msgstr "未预期的新行或字符串结束"
 
-#: awkgram.y:2579
+#: awkgram.y:2580
 msgid ""
 "source files / command-line arguments must contain complete functions or "
 "rules"
 msgstr "源文件 / 命令行中的参数必须包含完整的函数或规则"
 
-#: awkgram.y:2861 awkgram.y:2939 awkgram.y:3177 debug.c:536 debug.c:552
-#: debug.c:2831 debug.c:5197
+#: awkgram.y:2862 awkgram.y:2940 awkgram.y:3178 debug.c:545 debug.c:561
+#: debug.c:2840 debug.c:5206
 #, c-format
 msgid "cannot open source file `%s' for reading: %s"
 msgstr "无法打开源文件“%s”进行读取：%s"
 
-#: awkgram.y:2862 awkgram.y:2999
+#: awkgram.y:2863 awkgram.y:3000
 #, c-format
 msgid "cannot open shared library `%s' for reading: %s"
 msgstr "无法打开共享库“%s”进行读取：%s"
 
-#: awkgram.y:2864 awkgram.y:2940 awkgram.y:3000 builtin.c:149 debug.c:5348
+#: awkgram.y:2865 awkgram.y:2941 awkgram.y:3001 builtin.c:150 debug.c:5357
 msgid "reason unknown"
 msgstr "未知原因"
 
-#: awkgram.y:2873 awkgram.y:2897
+#: awkgram.y:2874 awkgram.y:2898
 #, c-format
 msgid "cannot include `%s' and use it as a program file"
 msgstr "无法包含“%s”并将其作为程序文件使用"
 
-#: awkgram.y:2886
+#: awkgram.y:2887
 #, c-format
 msgid "already included source file `%s'"
 msgstr "已经包含了源文件“%s”"
 
-#: awkgram.y:2887
+#: awkgram.y:2888
 #, c-format
 msgid "already loaded shared library `%s'"
 msgstr "已经加载了共享库“%s”"
 
-#: awkgram.y:2924
+#: awkgram.y:2925
 msgid "@include is a gawk extension"
 msgstr "@include 是 gawk 扩展"
 
-#: awkgram.y:2930
+#: awkgram.y:2931
 msgid "empty filename after @include"
 msgstr "@include 后的文件名为空"
 
-#: awkgram.y:2979
+#: awkgram.y:2980
 msgid "@load is a gawk extension"
 msgstr "@load 是 gawk 扩展"
 
-#: awkgram.y:2986
+#: awkgram.y:2987
 msgid "empty filename after @load"
 msgstr "@load 后的文件名为空"
 
-#: awkgram.y:3129
+#: awkgram.y:3130
 msgid "empty program text on command line"
 msgstr "命令行中程序体为空"
 
-#: awkgram.y:3245 debug.c:461 debug.c:619
+#: awkgram.y:3246 debug.c:470 debug.c:628
 #, c-format
 msgid "cannot read source file `%s': %s"
 msgstr "无法读取源文件“%s”：%s"
 
-#: awkgram.y:3256
+#: awkgram.y:3257
 #, c-format
 msgid "source file `%s' is empty"
 msgstr "源文件“%s”为空"
 
-#: awkgram.y:3316
+#: awkgram.y:3317
 #, c-format
 msgid "error: invalid character '\\%03o' in source code"
 msgstr "错误：源代码中有无效的字符“\\%03o”"
 
-#: awkgram.y:3543
+#: awkgram.y:3544
 msgid "source file does not end in newline"
 msgstr "源文件不以换行符结束"
 
-#: awkgram.y:3664
+#: awkgram.y:3665
 msgid "unterminated regexp ends with `\\' at end of file"
 msgstr "未终止的正则表达式在文件结束处以“\\”结束"
 
-#: awkgram.y:3691
+#: awkgram.y:3692
 #, c-format
 msgid "%s: %d: tawk regex modifier `/.../%c' doesn't work in gawk"
 msgstr "%s：%d：tawk 正则表达式修饰符“/.../%c”无法在 gawk 中工作"
 
-#: awkgram.y:3695
+#: awkgram.y:3696
 #, c-format
 msgid "tawk regex modifier `/.../%c' doesn't work in gawk"
 msgstr "tawk 正则表达式修饰符“/.../%c”无法在 gawk 中工作"
 
-#: awkgram.y:3708
+#: awkgram.y:3709
 msgid "unterminated regexp"
 msgstr "未终止的正则表达式"
 
-#: awkgram.y:3712
+#: awkgram.y:3713
 msgid "unterminated regexp at end of file"
 msgstr "未终止的正则表达式在文件结束处"
 
-#: awkgram.y:3801
+#: awkgram.y:3802
 msgid "use of `\\ #...' line continuation is not portable"
 msgstr "使用“\\ #...”来续行是不可移植的"
 
-#: awkgram.y:3823
+#: awkgram.y:3824
 msgid "backslash not last character on line"
 msgstr "反斜杠不是行的最后一个字符"
 
-#: awkgram.y:3870 awkgram.y:3872
+#: awkgram.y:3871 awkgram.y:3873
 msgid "multidimensional arrays are a gawk extension"
 msgstr "多维数组是一个 gawk 扩展"
 
-#: awkgram.y:3897 awkgram.y:3908
+#: awkgram.y:3898 awkgram.y:3909
 #, c-format
 msgid "POSIX does not allow operator `%s'"
 msgstr "POSIX 不允许操作符“%s”"
 
-#: awkgram.y:3899 awkgram.y:3910 awkgram.y:3945 awkgram.y:3953
+#: awkgram.y:3900 awkgram.y:3911 awkgram.y:3946 awkgram.y:3954
 #, c-format
 msgid "operator `%s' is not supported in old awk"
 msgstr "旧 awk 不支持操作符“%s”"
 
-#: awkgram.y:4050 awkgram.y:4072 command.y:1187
+#: awkgram.y:4051 awkgram.y:4073 command.y:1188
 msgid "unterminated string"
 msgstr "未结束的字符串"
 
-#: awkgram.y:4060 main.c:1223
+#: awkgram.y:4061 main.c:1223
 msgid "POSIX does not allow physical newlines in string values"
 msgstr "POSIX 不允许字符串的值中包含换行符"
 
-#: awkgram.y:4062 node.c:453
+#: awkgram.y:4063 node.c:453
 msgid "backslash string continuation is not portable"
 msgstr "使用“\\ #...”来续行会导致代码缺乏兼容性（可移植性）"
 
-#: awkgram.y:4300
+#: awkgram.y:4301
 #, c-format
 msgid "invalid char '%c' in expression"
 msgstr "表达式中的无效字符“%c”"
 
-#: awkgram.y:4395
+#: awkgram.y:4396
 #, c-format
 msgid "`%s' is a gawk extension"
 msgstr "“%s”是 gawk 扩展"
 
-#: awkgram.y:4400
+#: awkgram.y:4401
 #, c-format
 msgid "POSIX does not allow `%s'"
 msgstr "POSIX 不允许“%s”"
 
-#: awkgram.y:4408
+#: awkgram.y:4409
 #, c-format
 msgid "`%s' is not supported in old awk"
 msgstr "旧 awk 不支持“%s”"
 
-#: awkgram.y:4506
+#: awkgram.y:4507
 msgid "`goto' considered harmful!"
 msgstr "“goto”有害，请慎用！"
 
-#: awkgram.y:4575
+#: awkgram.y:4576
 #, c-format
 msgid "%d is invalid as number of arguments for %s"
 msgstr "%d 是 %s 的无效参数个数"
 
-#: awkgram.y:4610
+#: awkgram.y:4611
 #, c-format
 msgid "%s: string literal as last argument of substitute has no effect"
 msgstr "%s：字符串作为 substitute 的最后一个参数无任何效果"
 
-#: awkgram.y:4615
+#: awkgram.y:4616
 #, c-format
 msgid "%s third parameter is not a changeable object"
 msgstr "%s 第三个参数不是一个可变对象"
 
-#: awkgram.y:4719 awkgram.y:4722
+#: awkgram.y:4720 awkgram.y:4723
 msgid "match: third argument is a gawk extension"
 msgstr "match：第三个参数是 gawk 扩展"
 
-#: awkgram.y:4776 awkgram.y:4779
+#: awkgram.y:4777 awkgram.y:4780
 msgid "close: second argument is a gawk extension"
 msgstr "close：第二个参数是 gawk 扩展"
 
-#: awkgram.y:4791
+#: awkgram.y:4792
 msgid "use of dcgettext(_\"...\") is incorrect: remove leading underscore"
 msgstr "使用 dcgettext(_\"...\") 是错误的：去掉开始的下划线"
 
-#: awkgram.y:4806
+#: awkgram.y:4807
 msgid "use of dcngettext(_\"...\") is incorrect: remove leading underscore"
 msgstr "使用 dcngettext(_\"...\") 是错误的：去掉开始的下划线"
 
-#: awkgram.y:4825
+#: awkgram.y:4826
 msgid "index: regexp constant as second argument is not allowed"
 msgstr "index：不允许将正则表达式常量作为第二个参数"
 
-#: awkgram.y:4878
+#: awkgram.y:4879
 #, c-format
 msgid "function `%s': parameter `%s' shadows global variable"
 msgstr "函数“%s”：参数“%s”掩盖了公共变量"
 
-#: awkgram.y:4927 debug.c:4181 debug.c:4224 debug.c:5346 profile.c:110
+#: awkgram.y:4928 debug.c:4190 debug.c:4233 debug.c:5355 profile.c:110
 #, c-format
 msgid "could not open `%s' for writing: %s"
 msgstr "无法以写模式打开“%s”：%s"
 
-#: awkgram.y:4928
+#: awkgram.y:4929
 msgid "sending variable list to standard error"
 msgstr "发送变量列表到标准错误输出"
 
-#: awkgram.y:4936
+#: awkgram.y:4937
 #, c-format
 msgid "%s: close failed: %s"
 msgstr "%s：关闭失败：%s"
 
-#: awkgram.y:4961
+#: awkgram.y:4962
 msgid "shadow_funcs() called twice!"
 msgstr "shadow_funcs() 被调用两次！"
 
-#: awkgram.y:4969
+#: awkgram.y:4970
 #, fuzzy
 #| msgid "there were shadowed variables."
 msgid "there were shadowed variables"
 msgstr "有变量被掩盖。"
 
-#: awkgram.y:5046
+#: awkgram.y:5047
 #, c-format
 msgid "function name `%s' previously defined"
 msgstr "函数名“%s”前面已定义"
 
-#: awkgram.y:5097
+#: awkgram.y:5098
 #, c-format
 msgid "function `%s': cannot use function name as parameter name"
 msgstr "函数“%s”：无法使用函数名作为参数名"
 
-#: awkgram.y:5100
+#: awkgram.y:5101
 #, c-format
 msgid "function `%s': cannot use special variable `%s' as a function parameter"
 msgstr "函数“%s”：无法使用特殊变量“%s”作为函数参数"
 
-#: awkgram.y:5104
+#: awkgram.y:5105
 #, c-format
 msgid "function `%s': parameter `%s' cannot contain a namespace"
 msgstr "函数“%s”：参数“%s”中不允许包含命名空间（namespace）"
 
-#: awkgram.y:5111
+#: awkgram.y:5112
 #, c-format
 msgid "function `%s': parameter #%d, `%s', duplicates parameter #%d"
 msgstr "函数“%s”：第 %d 个参数, “%s”, 与第 %d 个参数重复"
 
-#: awkgram.y:5200
+#: awkgram.y:5201
 #, c-format
 msgid "function `%s' called but never defined"
 msgstr "调用了函数“%s”，但其未被定义"
 
-#: awkgram.y:5204
+#: awkgram.y:5205
 #, c-format
 msgid "function `%s' defined but never called directly"
 msgstr "定义了函数“%s”，但从未被调用"
 
-#: awkgram.y:5236
+#: awkgram.y:5237
 #, c-format
 msgid "regexp constant for parameter #%d yields boolean value"
 msgstr "第 %d 个参数的正则表达式常量产生布尔值"
 
-#: awkgram.y:5251
+#: awkgram.y:5252
 #, c-format
 msgid ""
 "function `%s' called with space between name and `(',\n"
@@ -519,449 +525,449 @@ msgstr ""
 "函数“%s”被调用时名字与“(”间有空格，\n"
 "或被用作变量或数组"
 
-#: awkgram.y:5470
+#: awkgram.y:5471 mpfr.c:1513 mpfr.c:1548
 msgid "division by zero attempted"
 msgstr "试图除0"
 
-#: awkgram.y:5479
+#: awkgram.y:5480 mpfr.c:1558
 #, c-format
 msgid "division by zero attempted in `%%'"
 msgstr "在“%%”中试图除 0"
 
-#: awkgram.y:5824
+#: awkgram.y:5825
 msgid ""
 "cannot assign a value to the result of a field post-increment expression"
 msgstr "无法将值赋给字段后增表达式"
 
-#: awkgram.y:5827
+#: awkgram.y:5828
 #, c-format
 msgid "invalid target of assignment (opcode %s)"
 msgstr "赋值的目标无效（操作码 %s）"
 
-#: awkgram.y:6211
+#: awkgram.y:6212
 msgid "statement has no effect"
 msgstr "表达式无任何作用"
 
-#: awkgram.y:6727
+#: awkgram.y:6728
 #, c-format
 msgid "identifier %s: qualified names not allowed in traditional / POSIX mode"
 msgstr "标识符 %s：传统 / POSIX 模式下不允许使用合规名称（qualified name）"
 
-#: awkgram.y:6732
+#: awkgram.y:6733
 #, c-format
 msgid "identifier %s: namespace separator is two colons, not one"
 msgstr "标识符 %s：命名空间的分隔符应为双冒号（::）"
 
-#: awkgram.y:6738
+#: awkgram.y:6739
 #, c-format
 msgid "qualified identifier `%s' is badly formed"
 msgstr "合规标识符“%s”格式错误"
 
-#: awkgram.y:6745
+#: awkgram.y:6746
 #, c-format
 msgid ""
 "identifier `%s': namespace separator can only appear once in a qualified name"
 msgstr "标识符“%s”：合规名称中的命名空间分隔符最多只能出现一次"
 
-#: awkgram.y:6794 awkgram.y:6845
+#: awkgram.y:6795 awkgram.y:6846
 #, c-format
 msgid "using reserved identifier `%s' as a namespace is not allowed"
 msgstr "不允许将反向标识符“%s”作为命名空间"
 
-#: awkgram.y:6801 awkgram.y:6811
+#: awkgram.y:6802 awkgram.y:6812
 #, c-format
 msgid ""
 "using reserved identifier `%s' as second component of a qualified name is "
 "not allowed"
 msgstr "不允许将反向标识符“%s”作为合规名称的第二个组成部分"
 
-#: awkgram.y:6829
+#: awkgram.y:6830
 msgid "@namespace is a gawk extension"
 msgstr "@namespace 是 gawk 保留字"
 
-#: awkgram.y:6836
+#: awkgram.y:6837
 #, c-format
 msgid "namespace name `%s' must meet identifier naming rules"
 msgstr "命名空间“%s”必须符合标识符的命名规则"
 
-#: builtin.c:143
+#: builtin.c:144
 #, c-format
 msgid "%s to \"%s\" failed: %s"
 msgstr "%s 到 \"%s\" 失败：%s"
 
-#: builtin.c:147
+#: builtin.c:148
 msgid "standard output"
 msgstr "标准输出"
 
-#: builtin.c:148
+#: builtin.c:149
 msgid "standard error"
 msgstr "标准错误输出"
 
-#: builtin.c:162 builtin.c:492 builtin.c:582 builtin.c:1774 builtin.c:2496
-#: builtin.c:2512 builtin.c:2626 builtin.c:3585 mpfr.c:761
+#: builtin.c:163 builtin.c:493 builtin.c:583 builtin.c:1786 builtin.c:2508
+#: builtin.c:2524 builtin.c:2638 builtin.c:3625 mpfr.c:761
 #, c-format
 msgid "%s: received non-numeric argument"
 msgstr "%s：收到非数字参数"
 
-#: builtin.c:168
+#: builtin.c:169
 #, c-format
 msgid "exp: argument %g is out of range"
 msgstr "exp：参数 %g 超出范围"
 
-#: builtin.c:245
+#: builtin.c:246
 #, c-format
 msgid "fflush: cannot flush: pipe `%.*s' opened for reading, not writing"
 msgstr "fflush：无法使用：管道“%.*s”以只读方式打开，不可写"
 
-#: builtin.c:248
+#: builtin.c:249
 #, c-format
 msgid "fflush: cannot flush: file `%.*s' opened for reading, not writing"
 msgstr "fflush：无法使用：文件“%.*s”以只读方式打开，不可写"
 
-#: builtin.c:259
+#: builtin.c:260
 #, c-format
 msgid "fflush: cannot flush file `%.*s': %s"
 msgstr "fflush：无法刷新缓存到文件“%.*s”：%s"
 
-#: builtin.c:264
+#: builtin.c:265
 #, c-format
 msgid "fflush: cannot flush: two-way pipe `%.*s' has closed write end"
 msgstr "fflush：无法刷新：双向管道“%.*s”的写入端已被关闭"
 
-#: builtin.c:270
+#: builtin.c:271
 #, c-format
 msgid "fflush: `%.*s' is not an open file, pipe or co-process"
 msgstr "fflush：“%.*s”不是一个已打开文件、管道或合作进程"
 
-#: builtin.c:377 builtin.c:2011
+#: builtin.c:378 builtin.c:2023
 #, c-format
 msgid "%s: received non-string first argument"
 msgstr "%s：第一个参数不是字符串"
 
-#: builtin.c:379
+#: builtin.c:380
 #, c-format
 msgid "%s: received non-string second argument"
 msgstr "%s：第二个参数不是字符串"
 
-#: builtin.c:531
+#: builtin.c:532
 msgid "length: received array argument"
 msgstr "length：收到数组参数"
 
-#: builtin.c:534
+#: builtin.c:535
 msgid "`length(array)' is a gawk extension"
 msgstr "“length(array)”是 gawk 扩展"
 
-#: builtin.c:553 builtin.c:2101 builtin.c:2159 builtin.c:2411 builtin.c:2442
+#: builtin.c:554 builtin.c:2113 builtin.c:2171 builtin.c:2423 builtin.c:2454
 #, c-format
 msgid "%s: received non-string argument"
 msgstr "%s：收到非字符串参数"
 
-#: builtin.c:585 builtin.c:1778
+#: builtin.c:586 builtin.c:1790
 #, c-format
 msgid "%s: received negative argument %g"
 msgstr "%s：收到负数参数 %g"
 
-#: builtin.c:790 builtin.c:795 builtin.c:949
+#: builtin.c:791 builtin.c:796 builtin.c:950
 msgid "fatal: must use `count$' on all formats or none"
 msgstr "致命错误：要么在所有格式上使用“count$”，要么完全不使用"
 
-#: builtin.c:868
+#: builtin.c:869
 #, c-format
 msgid "field width is ignored for `%%' specifier"
 msgstr "“%%”限定符的字段宽度被忽略"
 
-#: builtin.c:870
+#: builtin.c:871
 #, c-format
 msgid "precision is ignored for `%%' specifier"
 msgstr "“%%”描述符的精度被忽略"
 
-#: builtin.c:872
+#: builtin.c:873
 #, c-format
 msgid "field width and precision are ignored for `%%' specifier"
 msgstr "“%%”描述符的字段宽度和精度被忽略"
 
-#: builtin.c:923
+#: builtin.c:924
 msgid "fatal: `$' is not permitted in awk formats"
 msgstr "致命错误：awk 格式中不允许 “$”"
 
-#: builtin.c:932
+#: builtin.c:933
 #, fuzzy
 #| msgid "fatal: arg count with `$' must be > 0"
 msgid "fatal: argument index with `$' must be > 0"
 msgstr "致命错误：含有“$”的参数个数必须大于0"
 
-#: builtin.c:936
+#: builtin.c:937
 #, fuzzy, c-format
 #| msgid "fatal: arg count %ld greater than total number of supplied arguments"
 msgid ""
 "fatal: argument index %ld greater than total number of supplied arguments"
 msgstr "致命错误：参数个数 %ld 大于提供参数的总数"
 
-#: builtin.c:940
+#: builtin.c:941
 msgid "fatal: `$' not permitted after period in format"
 msgstr "致命错误：不允许在格式中的“.”后使用“$”"
 
-#: builtin.c:959
+#: builtin.c:960
 msgid "fatal: no `$' supplied for positional field width or precision"
 msgstr "致命错误：没有为格式宽度或精度提供“$”"
 
-#: builtin.c:1034
+#: builtin.c:1035
 #, fuzzy, c-format
 #| msgid "`l' is meaningless in awk formats; ignored"
 msgid "`%c' is meaningless in awk formats; ignored"
 msgstr "“l”在 awk 格式中无意义；忽略"
 
-#: builtin.c:1038
+#: builtin.c:1039
 #, fuzzy, c-format
 #| msgid "fatal: `l' is not permitted in POSIX awk formats"
 msgid "fatal: `%c' is not permitted in POSIX awk formats"
 msgstr "致命错误：不允许在 POSIX awk 格式中使用“l”"
 
-#: builtin.c:1069
+#: builtin.c:1070
 #, c-format
 msgid "[s]printf: value %g is too big for %%c format"
 msgstr "[s]printf：值 %g 对“%%c”格式来说超出范围"
 
-#: builtin.c:1082
+#: builtin.c:1083
 #, c-format
 msgid "[s]printf: value %g is not a valid wide character"
 msgstr "[s]printf：值 %g 不是有效的宽字符"
 
-#: builtin.c:1474
+#: builtin.c:1475
 #, c-format
 msgid "[s]printf: value %g is out of range for `%%%c' format"
 msgstr "[s]printf：值 %g 对“%%%c”格式来说超出范围"
 
-#: builtin.c:1482
+#: builtin.c:1483
 #, c-format
 msgid "[s]printf: value %s is out of range for `%%%c' format"
 msgstr "[s]printf：值 %s 对“%%%c”格式来说超出范围"
 
-#: builtin.c:1507
+#: builtin.c:1508
 #, c-format
 msgid "%%%c format is POSIX standard but not portable to other awks"
 msgstr "%%%c 格式符合 POSIX 规范，但可能无法与其他的 awk 兼容"
 
-#: builtin.c:1607
+#: builtin.c:1619
 #, c-format
 msgid "ignoring unknown format specifier character `%c': no argument converted"
 msgstr "忽略位置的格式化字符“%c”：无参数被转化"
 
-#: builtin.c:1612
+#: builtin.c:1624
 msgid "fatal: not enough arguments to satisfy format string"
 msgstr "致命错误：参数数量少于格式数量"
 
-#: builtin.c:1614
+#: builtin.c:1626
 msgid "^ ran out for this one"
 msgstr "^ 跑出范围"
 
-#: builtin.c:1621
+#: builtin.c:1633
 msgid "[s]printf: format specifier does not have control letter"
 msgstr "[s]printf：指定格式不含控制字符"
 
-#: builtin.c:1624
+#: builtin.c:1636
 msgid "too many arguments supplied for format string"
 msgstr "相对格式来说参数个数过多"
 
-#: builtin.c:1684
+#: builtin.c:1696
 msgid "sprintf: no arguments"
 msgstr "sprintf：没有参数"
 
-#: builtin.c:1707 builtin.c:1718
+#: builtin.c:1719 builtin.c:1730
 msgid "printf: no arguments"
 msgstr "printf：没有参数"
 
-#: builtin.c:1733
+#: builtin.c:1745
 msgid "printf: attempt to write to closed write end of two-way pipe"
 msgstr "printf：试图向写入端已被关闭的双向管道中写入数据"
 
-#: builtin.c:1809
+#: builtin.c:1821
 #, c-format
 msgid "substr: length %g is not >= 1"
 msgstr "substr：长度 %g 小于 1"
 
-#: builtin.c:1811
+#: builtin.c:1823
 #, c-format
 msgid "substr: length %g is not >= 0"
 msgstr "substr：长度 %g 小于 0"
 
-#: builtin.c:1825
+#: builtin.c:1837
 #, c-format
 msgid "substr: non-integer length %g will be truncated"
 msgstr "substr：非整数的长度 %g 会被截断"
 
-#: builtin.c:1830
+#: builtin.c:1842
 #, c-format
 msgid "substr: length %g too big for string indexing, truncating to %g"
 msgstr "substr：长度 %g 作为字符串索引过大，截断至 %g"
 
-#: builtin.c:1842
+#: builtin.c:1854
 #, c-format
 msgid "substr: start index %g is invalid, using 1"
 msgstr "substr：开始坐标 %g 无效，使用 1"
 
-#: builtin.c:1847
+#: builtin.c:1859
 #, c-format
 msgid "substr: non-integer start index %g will be truncated"
 msgstr "substr：非整数的开始索引 %g 会被截断"
 
-#: builtin.c:1870
+#: builtin.c:1882
 msgid "substr: source string is zero length"
 msgstr "substr：源字符串长度为0"
 
-#: builtin.c:1884
+#: builtin.c:1896
 #, c-format
 msgid "substr: start index %g is past end of string"
 msgstr "substr：开始坐标 %g 超出字符串尾部"
 
-#: builtin.c:1892
+#: builtin.c:1904
 #, c-format
 msgid ""
 "substr: length %g at start index %g exceeds length of first argument (%lu)"
 msgstr "substr：在开始坐标 %2$g 下长度 %1$g 超出第一个参数的长度 (%3$lu)"
 
-#: builtin.c:1965
+#: builtin.c:1977
 msgid "strftime: format value in PROCINFO[\"strftime\"] has numeric type"
 msgstr "strftime：PROCINFO[\"strftime\"] 中的格式值含有数值类型"
 
-#: builtin.c:1985 builtin.c:2477 builtin.c:3417 builtin.c:3456 builtin.c:4016
+#: builtin.c:1997 builtin.c:2489 builtin.c:3457 builtin.c:3496 builtin.c:4056
 #, c-format
 msgid "%s: received non-numeric second argument"
 msgstr "%s：第二个参数不是数字"
 
-#: builtin.c:1995
+#: builtin.c:2007
 msgid "strftime: second argument less than 0 or too big for time_t"
 msgstr "strftime：第二个参数小于0，或对于 time_t 来说太大"
 
-#: builtin.c:2002
+#: builtin.c:2014
 msgid "strftime: second argument out of range for time_t"
 msgstr "strftime：第二个参数对于 time_t 来说太大"
 
-#: builtin.c:2018
+#: builtin.c:2030
 msgid "strftime: received empty format string"
 msgstr "strftime：收到空格式字符串"
 
-#: builtin.c:2118
+#: builtin.c:2130
 msgid "mktime: at least one of the values is out of the default range"
 msgstr "mktime：至少有一个值超出默认范围"
 
-#: builtin.c:2154
+#: builtin.c:2166
 msgid "'system' function not allowed in sandbox mode"
 msgstr "沙箱模式中不允许使用\"system\"函数"
 
-#: builtin.c:2228 builtin.c:2303
+#: builtin.c:2240 builtin.c:2315
 msgid "print: attempt to write to closed write end of two-way pipe"
 msgstr "print：试图向写入端已被关闭的双向管道中写入数据"
 
-#: builtin.c:2326
+#: builtin.c:2338
 #, c-format
 msgid "reference to uninitialized field `$%d'"
 msgstr "引用未初始化的字段“$%d”"
 
-#: builtin.c:2475 builtin.c:3415 builtin.c:3454 builtin.c:4014
+#: builtin.c:2487 builtin.c:3455 builtin.c:3494 builtin.c:4054
 #, c-format
 msgid "%s: received non-numeric first argument"
 msgstr "%s：第一个参数不是数字"
 
-#: builtin.c:2657
+#: builtin.c:2669
 msgid "match: third argument is not an array"
 msgstr "match：第三个参数不是数组"
 
-#: builtin.c:2659
+#: builtin.c:2671
 #, fuzzy, c-format
 #| msgid "fnmatch: could not get third argument"
 msgid "%s: cannot use %s as third argument"
 msgstr "fnmatch：无法获取第三个参数"
 
-#: builtin.c:2902
+#: builtin.c:2914
 #, c-format
 msgid "gensub: third argument `%.*s' treated as 1"
 msgstr "gensub：第三个参数“%.*s”被当作 1"
 
-#: builtin.c:3225
+#: builtin.c:3265
 #, c-format
 msgid "%s: can be called indirectly only with two arguments"
 msgstr "%s：间接调用时只能传递两个参数"
 
-#: builtin.c:3348
+#: builtin.c:3388
 #, c-format
 msgid "indirect call to %s requires at least two arguments"
 msgstr "间接调用 %s 需要传递至少两个参数"
 
-#: builtin.c:3423
+#: builtin.c:3463
 #, c-format
 msgid "lshift(%f, %f): negative values are not allowed"
 msgstr "lshift(%f, %f)：不允许传入负值"
 
-#: builtin.c:3427
+#: builtin.c:3467
 #, c-format
 msgid "lshift(%f, %f): fractional values will be truncated"
 msgstr "lshift(%f, %f)：小数部分会被截断"
 
-#: builtin.c:3429
+#: builtin.c:3469
 #, c-format
 msgid "lshift(%f, %f): too large shift value will give strange results"
 msgstr "lshift(%f, %f)：过大的移位会得到奇怪的结果"
 
-#: builtin.c:3462
+#: builtin.c:3502
 #, c-format
 msgid "rshift(%f, %f): negative values are not allowed"
 msgstr "rshift(%f, %f)：不允许传入负值"
 
-#: builtin.c:3466
+#: builtin.c:3506
 #, c-format
 msgid "rshift(%f, %f): fractional values will be truncated"
 msgstr "rshift(%f, %f)：小数部分会被截断"
 
-#: builtin.c:3468
+#: builtin.c:3508
 #, c-format
 msgid "rshift(%f, %f): too large shift value will give strange results"
 msgstr "rshift(%f, %f)：过大的移位会得到奇怪的结果"
 
-#: builtin.c:3492 builtin.c:3523 builtin.c:3553
+#: builtin.c:3532 builtin.c:3563 builtin.c:3593
 #, c-format
 msgid "%s: called with less than two arguments"
 msgstr "%s：调用时传递的参数不足2个"
 
-#: builtin.c:3497 builtin.c:3528 builtin.c:3559
+#: builtin.c:3537 builtin.c:3568 builtin.c:3599
 #, c-format
 msgid "%s: argument %d is non-numeric"
 msgstr "%s：参数 %d 不是数值"
 
-#: builtin.c:3501 builtin.c:3532 builtin.c:3563
+#: builtin.c:3541 builtin.c:3572 builtin.c:3603
 #, fuzzy, c-format
 #| msgid "%s: argument #%d negative value %Rg is not allowed"
 msgid "%s: argument %d negative value %g is not allowed"
 msgstr "%s：第 %d 个参数 %Rg 不能为负值"
 
-#: builtin.c:3590
+#: builtin.c:3630
 #, c-format
 msgid "compl(%f): negative value is not allowed"
 msgstr "compl(%f)：不允许使用负值"
 
-#: builtin.c:3593
+#: builtin.c:3633
 #, c-format
 msgid "compl(%f): fractional value will be truncated"
 msgstr "compl(%f)：小数部分会被截断"
 
-#: builtin.c:3779
+#: builtin.c:3819
 #, c-format
 msgid "dcgettext: `%s' is not a valid locale category"
 msgstr "dcgettext：“%s”不是一个有效的区域目录"
 
-#: builtin.c:4006 mpfr.c:1257
+#: builtin.c:4046 mpfr.c:1261
 msgid "intdiv: third argument is not an array"
 msgstr "intdiv：第三个参数不是数组"
 
-#: builtin.c:4025 mpfr.c:1306
+#: builtin.c:4065 mpfr.c:1310
 msgid "intdiv: division by zero attempted"
 msgstr "intdiv：试图除0"
 
-#: builtin.c:4064
+#: builtin.c:4104
 msgid "typeof: second argument is not an array"
 msgstr "typeof：第二个参数不是数组"
 
-#: builtin.c:4136
+#: builtin.c:4176
 #, fuzzy, c-format
 #| msgid ""
 #| "typeof detected invalid flags combination `%s'; please file a bug report."
@@ -969,12 +975,12 @@ msgid ""
 "typeof detected invalid flags combination `%s'; please file a bug report"
 msgstr "typeof 函数发现一个无效的选项组合“%s”；请向开发者汇报此错误。"
 
-#: builtin.c:4156
+#: builtin.c:4196
 #, c-format
 msgid "typeof: invalid argument type `%s'"
 msgstr "typeof：参数类型“%s”无效"
 
-#: builtin.c:4160
+#: builtin.c:4200
 #, c-format
 msgid "typeof: unknown argument type `%s'"
 msgstr "typeof：参数类型“%s”未知"
@@ -984,111 +990,111 @@ msgstr "typeof：参数类型“%s”未知"
 msgid "cannot add a new file (%.*s) to ARGV in sandbox mode"
 msgstr "无法在沙盒模式下添加新文件（%.*s）至 ARGV"
 
-#: command.y:227
+#: command.y:228
 #, c-format
 msgid "Type (g)awk statement(s). End with the command `end'\n"
 msgstr "输入 (g)awk 语句，并以“end”命令结束\n"
 
-#: command.y:291
+#: command.y:292
 #, c-format
 msgid "invalid frame number: %d"
 msgstr "层数无效：%d"
 
-#: command.y:297
+#: command.y:298
 #, c-format
 msgid "info: invalid option - `%s'"
 msgstr "info：选项无效 - “%s”"
 
-#: command.y:323
+#: command.y:324
 #, fuzzy, c-format
 #| msgid "source \"%s\": already sourced."
 msgid "source: `%s': already sourced"
 msgstr "source \"%s\"：已经添加。"
 
-#: command.y:328
+#: command.y:329
 #, fuzzy, c-format
 #| msgid "save \"%s\": command not permitted."
 msgid "save: `%s': command not permitted"
 msgstr "save \"%s\"：不允许使用该命令。"
 
-#: command.y:341
+#: command.y:342
 #, fuzzy
 #| msgid "Can't use command `commands' for breakpoint/watchpoint commands"
 msgid "cannot use command `commands' for breakpoint/watchpoint commands"
 msgstr "无法对断点/监视点使用命令“commands”"
 
-#: command.y:343
+#: command.y:344
 msgid "no breakpoint/watchpoint has been set yet"
 msgstr "尚未设置断点/监视点"
 
-#: command.y:345
+#: command.y:346
 msgid "invalid breakpoint/watchpoint number"
 msgstr "断点/监视点编号无效"
 
-#: command.y:350
+#: command.y:351
 #, c-format
 msgid "Type commands for when %s %d is hit, one per line.\n"
 msgstr "当命中 %s %d 时，请输入命令，每行一句。\n"
 
-#: command.y:352
+#: command.y:353
 #, c-format
 msgid "End with the command `end'\n"
 msgstr "以命令“end”结束\n"
 
-#: command.y:359
+#: command.y:360
 msgid "`end' valid only in command `commands' or `eval'"
 msgstr "“end”仅在命令“commands”或“eval”中有效"
 
-#: command.y:369
+#: command.y:370
 msgid "`silent' valid only in command `commands'"
 msgstr "“silent”仅在命令“commands”中有效"
 
-#: command.y:375
+#: command.y:376
 #, c-format
 msgid "trace: invalid option - `%s'"
 msgstr "trace：选项无效 - “%s”"
 
-#: command.y:389
+#: command.y:390
 msgid "condition: invalid breakpoint/watchpoint number"
 msgstr "condition：断点/监视点编号无效"
 
-#: command.y:451
+#: command.y:452
 msgid "argument not a string"
 msgstr "参数不是字符串"
 
-#: command.y:461 command.y:466
+#: command.y:462 command.y:467
 #, c-format
 msgid "option: invalid parameter - `%s'"
 msgstr "option：参数无效 - “%s”"
 
-#: command.y:476
+#: command.y:477
 #, c-format
 msgid "no such function - `%s'"
 msgstr "函数不存在 - “%s”"
 
-#: command.y:533
+#: command.y:534
 #, c-format
 msgid "enable: invalid option - `%s'"
 msgstr "enable：选项无效 - “%s”"
 
-#: command.y:599
+#: command.y:600
 #, c-format
 msgid "invalid range specification: %d - %d"
 msgstr "指定的范围无效：%d - %d"
 
-#: command.y:661
+#: command.y:662
 msgid "non-numeric value for field number"
 msgstr "字段编号不是数值"
 
-#: command.y:682 command.y:689
+#: command.y:683 command.y:690
 msgid "non-numeric value found, numeric expected"
 msgstr "发现了非数字值，请提供数值"
 
-#: command.y:714 command.y:720
+#: command.y:715 command.y:721
 msgid "non-zero integer value"
 msgstr "非零整数值"
 
-#: command.y:819
+#: command.y:820
 #, fuzzy
 #| msgid ""
 #| "backtrace [N] - print trace of all or N innermost (outermost if N < 0) "
@@ -1097,7 +1103,7 @@ msgid ""
 "backtrace [N] - print trace of all or N innermost (outermost if N < 0) frames"
 msgstr "backtrace [N] - 显示所有或最近 N 层 (若 N < 0，则显示最远 N 层) 调用。"
 
-#: command.y:821
+#: command.y:822
 #, fuzzy
 #| msgid ""
 #| "break [[filename:]N|function] - set breakpoint at the specified location."
@@ -1105,13 +1111,13 @@ msgid ""
 "break [[filename:]N|function] - set breakpoint at the specified location"
 msgstr "break [[文件名:]N|函数] - 在指定处设置断点。"
 
-#: command.y:823
+#: command.y:824
 #, fuzzy
 #| msgid "clear [[filename:]N|function] - delete breakpoints previously set."
 msgid "clear [[filename:]N|function] - delete breakpoints previously set"
 msgstr "clear [[文件名:]N|函数] - 删除之前设置的断点。"
 
-#: command.y:825
+#: command.y:826
 #, fuzzy
 #| msgid ""
 #| "commands [num] - starts a list of commands to be executed at a "
@@ -1121,99 +1127,99 @@ msgid ""
 "breakpoint(watchpoint) hit"
 msgstr "commands [编号] - 在断点 (监视点) 处执行一系列命令。"
 
-#: command.y:827
+#: command.y:828
 #, fuzzy
 #| msgid ""
 #| "condition num [expr] - set or clear breakpoint or watchpoint condition."
 msgid "condition num [expr] - set or clear breakpoint or watchpoint condition"
 msgstr "condition 编号 [表达式] - 设置或清除断点/监视点条件。"
 
-#: command.y:829
+#: command.y:830
 #, fuzzy
 #| msgid "continue [COUNT] - continue program being debugged."
 msgid "continue [COUNT] - continue program being debugged"
 msgstr "continue [次数] - 继续运行所调试的程序。"
 
-#: command.y:831
+#: command.y:832
 #, fuzzy
 #| msgid "delete [breakpoints] [range] - delete specified breakpoints."
 msgid "delete [breakpoints] [range] - delete specified breakpoints"
 msgstr "delete [断点] [范围] - 删除指定断点。"
 
-#: command.y:833
+#: command.y:834
 #, fuzzy
 #| msgid "disable [breakpoints] [range] - disable specified breakpoints."
 msgid "disable [breakpoints] [range] - disable specified breakpoints"
 msgstr "disable [断点] [范围] - 禁用指定断点。"
 
-#: command.y:835
+#: command.y:836
 #, fuzzy
 #| msgid "display [var] - print value of variable each time the program stops."
 msgid "display [var] - print value of variable each time the program stops"
 msgstr "display [变量] - 每当程序停止时，显示指定变量的值。"
 
-#: command.y:837
+#: command.y:838
 #, fuzzy
 #| msgid "down [N] - move N frames down the stack."
 msgid "down [N] - move N frames down the stack"
 msgstr "down [N] - 在栈中向下移动 N 层。"
 
-#: command.y:839
+#: command.y:840
 #, fuzzy
 #| msgid "dump [filename] - dump instructions to file or stdout."
 msgid "dump [filename] - dump instructions to file or stdout"
 msgstr "dump [文件名] - 将指令转储到文件或标准输出。"
 
-#: command.y:841
+#: command.y:842
 #, fuzzy
 #| msgid ""
 #| "enable [once|del] [breakpoints] [range] - enable specified breakpoints."
 msgid "enable [once|del] [breakpoints] [range] - enable specified breakpoints"
 msgstr "enable [once|del] [断点] [范围] - 启用指定断点。"
 
-#: command.y:843
+#: command.y:844
 #, fuzzy
 #| msgid "end - end a list of commands or awk statements."
 msgid "end - end a list of commands or awk statements"
 msgstr "end - 结束一系列命令或 awk 语句。"
 
-#: command.y:845
+#: command.y:846
 #, fuzzy
 #| msgid "eval stmt|[p1, p2, ...] - evaluate awk statement(s)."
 msgid "eval stmt|[p1, p2, ...] - evaluate awk statement(s)"
 msgstr "eval 语句|[p1, p2, ...] - 对 awk 语句求值。"
 
-#: command.y:847
+#: command.y:848
 #, fuzzy
 #| msgid "exit - (same as quit) exit debugger."
 msgid "exit - (same as quit) exit debugger"
 msgstr "exit - （与 quit 相同）退出调试器。"
 
-#: command.y:849
+#: command.y:850
 #, fuzzy
 #| msgid "finish - execute until selected stack frame returns."
 msgid "finish - execute until selected stack frame returns"
 msgstr "finish - 执行到选定的栈层结束。"
 
-#: command.y:851
+#: command.y:852
 #, fuzzy
 #| msgid "frame [N] - select and print stack frame number N."
 msgid "frame [N] - select and print stack frame number N"
 msgstr "frame [N] - 选定并显示栈的第 N 层。"
 
-#: command.y:853
+#: command.y:854
 #, fuzzy
 #| msgid "help [command] - print list of commands or explanation of command."
 msgid "help [command] - print list of commands or explanation of command"
 msgstr "help [命令] - 显示命令列表，或有关命令的说明。"
 
-#: command.y:855
+#: command.y:856
 #, fuzzy
 #| msgid "ignore N COUNT - set ignore-count of breakpoint number N to COUNT."
 msgid "ignore N COUNT - set ignore-count of breakpoint number N to COUNT"
 msgstr "ignore N 次数 - 设置忽略断点 N 的次数。"
 
-#: command.y:857
+#: command.y:858
 #, fuzzy
 #| msgid ""
 #| "info topic - source|sources|variables|functions|break|frame|args|locals|"
@@ -1225,20 +1231,20 @@ msgstr ""
 "info 主题 - 查看 info 信息，主题可以为 source|sources|variables|functions|"
 "break|frame|args|locals|display|watch。"
 
-#: command.y:859
+#: command.y:860
 #, fuzzy
 #| msgid ""
 #| "list [-|+|[filename:]lineno|function|range] - list specified line(s)."
 msgid "list [-|+|[filename:]lineno|function|range] - list specified line(s)"
 msgstr "list [-|+|[文件名:]行号|函数|范围] - 列出指定行。"
 
-#: command.y:861
+#: command.y:862
 #, fuzzy
 #| msgid "next [COUNT] - step program, proceeding through subroutine calls."
 msgid "next [COUNT] - step program, proceeding through subroutine calls"
 msgstr "next [次数] - 单步运行程序，并且步过子调用。"
 
-#: command.y:863
+#: command.y:864
 #, fuzzy
 #| msgid ""
 #| "nexti [COUNT] - step one instruction, but proceed through subroutine "
@@ -1247,99 +1253,99 @@ msgid ""
 "nexti [COUNT] - step one instruction, but proceed through subroutine calls"
 msgstr "nexti [次数] - 单运行一步指令，但步过其子调用。"
 
-#: command.y:865
+#: command.y:866
 #, fuzzy
 #| msgid "option [name[=value]] - set or display debugger option(s)."
 msgid "option [name[=value]] - set or display debugger option(s)"
 msgstr "option [名称[=值]] - 设置或显示调试器选项。"
 
-#: command.y:867
+#: command.y:868
 #, fuzzy
 #| msgid "print var [var] - print value of a variable or array."
 msgid "print var [var] - print value of a variable or array"
 msgstr "print var [变量] - 显示变量或数组的值"
 
-#: command.y:869
+#: command.y:870
 #, fuzzy
 #| msgid "printf format, [arg], ... - formatted output."
 msgid "printf format, [arg], ... - formatted output"
 msgstr "printf 格式, [参数], ... - 格式化输出。"
 
-#: command.y:871
+#: command.y:872
 #, fuzzy
 #| msgid "quit - exit debugger."
 msgid "quit - exit debugger"
 msgstr "quit - 退出调试器。"
 
-#: command.y:873
+#: command.y:874
 #, fuzzy
 #| msgid "return [value] - make selected stack frame return to its caller."
 msgid "return [value] - make selected stack frame return to its caller"
 msgstr "return [值] - 使选定的栈层返回到上层调用。"
 
-#: command.y:875
+#: command.y:876
 #, fuzzy
 #| msgid "run - start or restart executing program."
 msgid "run - start or restart executing program"
 msgstr "run - 开始或重新开始程序。"
 
-#: command.y:878
+#: command.y:879
 #, fuzzy
 #| msgid "save filename - save commands from the session to file."
 msgid "save filename - save commands from the session to file"
 msgstr "save 文件名 - 保存会话中的命令到文件。"
 
-#: command.y:881
+#: command.y:882
 #, fuzzy
 #| msgid "set var = value - assign value to a scalar variable."
 msgid "set var = value - assign value to a scalar variable"
 msgstr "set 变量 = 值 - 给标量变量赋值。"
 
-#: command.y:883
+#: command.y:884
 #, fuzzy
 #| msgid ""
 #| "silent - suspends usual message when stopped at a breakpoint/watchpoint."
 msgid "silent - suspends usual message when stopped at a breakpoint/watchpoint"
 msgstr "silent - 在断点/监视点处中断时，隐藏常规消息。"
 
-#: command.y:885
+#: command.y:886
 #, fuzzy
 #| msgid "source file - execute commands from file."
 msgid "source file - execute commands from file"
 msgstr "source 文件 - 执行指定文件中的命令。"
 
-#: command.y:887
+#: command.y:888
 #, fuzzy
 #| msgid ""
 #| "step [COUNT] - step program until it reaches a different source line."
 msgid "step [COUNT] - step program until it reaches a different source line"
 msgstr "set [次数] - 单步执行程序，在源文件中的下一行处暂停。"
 
-#: command.y:889
+#: command.y:890
 #, fuzzy
 #| msgid "stepi [COUNT] - step one instruction exactly."
 msgid "stepi [COUNT] - step one instruction exactly"
 msgstr "stepi [次数] - 执行一步指令。"
 
-#: command.y:891
+#: command.y:892
 #, fuzzy
 #| msgid "tbreak [[filename:]N|function] - set a temporary breakpoint."
 msgid "tbreak [[filename:]N|function] - set a temporary breakpoint"
 msgstr "tbreak [[文件名:]N|函数] - 设置一个临时断点。"
 
-#: command.y:893
+#: command.y:894
 #, fuzzy
 #| msgid "trace on|off - print instruction before executing."
 msgid "trace on|off - print instruction before executing"
 msgstr "trace on|off - 执行前显示指令。"
 
-#: command.y:895
+#: command.y:896
 #, fuzzy
 #| msgid "undisplay [N] - remove variable(s) from automatic display list."
 msgid "undisplay [N] - remove variable(s) from automatic display list"
 msgstr "undisplay [N] - 从自动显示列表中移除指定变量。"
 
-#: command.y:897
+#: command.y:898
 #, fuzzy
 #| msgid ""
 #| "until [[filename:]N|function] - execute until program reaches a different "
@@ -1349,25 +1355,25 @@ msgid ""
 "line or line N within current frame"
 msgstr "until [[文件名:]N|函数] - 在当前层中执行，在下一行或第 N 行处暂停。"
 
-#: command.y:899
+#: command.y:900
 #, fuzzy
 #| msgid "unwatch [N] - remove variable(s) from watch list."
 msgid "unwatch [N] - remove variable(s) from watch list"
 msgstr "unwatch [N] - 从监视列表中移除变量。"
 
-#: command.y:901
+#: command.y:902
 #, fuzzy
 #| msgid "up [N] - move N frames up the stack."
 msgid "up [N] - move N frames up the stack"
 msgstr "up [N] - 在栈中向上移动 N 层。"
 
-#: command.y:903
+#: command.y:904
 #, fuzzy
 #| msgid "watch var - set a watchpoint for a variable."
 msgid "watch var - set a watchpoint for a variable"
 msgstr "watch 变量 - 为变量设置监视点。"
 
-#: command.y:905
+#: command.y:906
 #, fuzzy
 #| msgid ""
 #| "where [N] - (same as backtrace) print trace of all or N innermost "
@@ -1379,40 +1385,40 @@ msgstr ""
 "where [N] - (与backtrace相同) 显示所有或最近 N 层 (若 N < 0，则显示最远 N "
 "层) 调用。"
 
-#: command.y:1016 debug.c:414 gawkapi.c:251 msg.c:141
+#: command.y:1017 debug.c:423 gawkapi.c:251 msg.c:141
 #, c-format
 msgid "error: "
 msgstr "错误："
 
-#: command.y:1060
+#: command.y:1061
 #, c-format
 msgid "cannot read command: %s\n"
 msgstr "无法读取命令：%s\n"
 
-#: command.y:1074
+#: command.y:1075
 #, c-format
 msgid "cannot read command: %s"
 msgstr "无法读取命令：%s"
 
-#: command.y:1125
+#: command.y:1126
 msgid "invalid character in command"
 msgstr "命令中有无效的字符"
 
-#: command.y:1161
+#: command.y:1162
 #, c-format
 msgid "unknown command - `%.*s', try help"
 msgstr "未知命令 - \"%.*s\"，请查看帮助"
 
-#: command.y:1231
+#: command.y:1232
 #, c-format
 msgid "%s"
 msgstr "%s"
 
-#: command.y:1293
+#: command.y:1294
 msgid "invalid character"
 msgstr "字符无效"
 
-#: command.y:1497
+#: command.y:1498
 #, c-format
 msgid "undefined command: %s\n"
 msgstr "变量未定义：%s\n"
@@ -1465,59 +1471,59 @@ msgstr "(取消)设置或显示指令跟踪 (值=on|off)。"
 msgid "program not running"
 msgstr "程序未运行。"
 
-#: debug.c:466
+#: debug.c:475
 #, c-format
 msgid "source file `%s' is empty.\n"
 msgstr "源文件“%s”为空。\n"
 
-#: debug.c:493
+#: debug.c:502
 #, fuzzy
 #| msgid "no current source file."
 msgid "no current source file"
 msgstr "当前没有源文件。"
 
-#: debug.c:518
+#: debug.c:527
 #, c-format
 msgid "cannot find source file named `%s': %s"
 msgstr "无法找到名为“%s”的源文件：%s"
 
-#: debug.c:542
+#: debug.c:551
 #, fuzzy, c-format
 #| msgid "WARNING: source file `%s' modified since program compilation.\n"
 msgid "warning: source file `%s' modified since program compilation.\n"
 msgstr "警告：源文件“%s”在程序编译之后被修改。\n"
 
-#: debug.c:564
+#: debug.c:573
 #, c-format
 msgid "line number %d out of range; `%s' has %d lines"
 msgstr "行号 %d 超出范围；“%s” 只有 %d 行"
 
-#: debug.c:624
+#: debug.c:633
 #, c-format
 msgid "unexpected eof while reading file `%s', line %d"
 msgstr "未读取文件“%s”遇到 EOF，于第 %d 行"
 
-#: debug.c:633
+#: debug.c:642
 #, c-format
 msgid "source file `%s' modified since start of program execution"
 msgstr "源文件“%s”在程序执行之后被修改。"
 
-#: debug.c:745
+#: debug.c:754
 #, c-format
 msgid "Current source file: %s\n"
 msgstr "当前源文件： %s\n"
 
-#: debug.c:746
+#: debug.c:755
 #, c-format
 msgid "Number of lines: %d\n"
 msgstr "行编号：%d\n"
 
-#: debug.c:753
+#: debug.c:762
 #, c-format
 msgid "Source file (lines): %s (%d)\n"
 msgstr "源文件 (行)：%s (%d)\n"
 
-#: debug.c:767
+#: debug.c:776
 msgid ""
 "Number  Disp  Enabled  Location\n"
 "\n"
@@ -1525,55 +1531,55 @@ msgstr ""
 "编号        显示   启用         位置\n"
 "\n"
 
-#: debug.c:778
+#: debug.c:787
 #, fuzzy, c-format
 #| msgid "\tno of hits = %ld\n"
 msgid "\tnumber of hits = %ld\n"
 msgstr "\t命中次数 = %ld\n"
 
-#: debug.c:780
+#: debug.c:789
 #, c-format
 msgid "\tignore next %ld hit(s)\n"
 msgstr "\t忽略后续 %ld 次命中\n"
 
-#: debug.c:782 debug.c:922
+#: debug.c:791 debug.c:931
 #, c-format
 msgid "\tstop condition: %s\n"
 msgstr "\t停止条件：%s\n"
 
-#: debug.c:784 debug.c:924
+#: debug.c:793 debug.c:933
 msgid "\tcommands:\n"
 msgstr "\t命令：\n"
 
-#: debug.c:806
+#: debug.c:815
 #, c-format
 msgid "Current frame: "
 msgstr "当前层："
 
-#: debug.c:809
+#: debug.c:818
 #, c-format
 msgid "Called by frame: "
 msgstr "调用层："
 
-#: debug.c:813
+#: debug.c:822
 #, c-format
 msgid "Caller of frame: "
 msgstr "调用者："
 
-#: debug.c:831
+#: debug.c:840
 #, c-format
 msgid "None in main().\n"
 msgstr "不在 main() 中。\n"
 
-#: debug.c:861
+#: debug.c:870
 msgid "No arguments.\n"
 msgstr "没有参数。\n"
 
-#: debug.c:862
+#: debug.c:871
 msgid "No locals.\n"
 msgstr "没有本地变量。\n"
 
-#: debug.c:870
+#: debug.c:879
 msgid ""
 "All defined variables:\n"
 "\n"
@@ -1581,7 +1587,7 @@ msgstr ""
 "所有已定义的变量：\n"
 "\n"
 
-#: debug.c:880
+#: debug.c:889
 msgid ""
 "All defined functions:\n"
 "\n"
@@ -1589,7 +1595,7 @@ msgstr ""
 "所有已定义的函数：\n"
 "\n"
 
-#: debug.c:899
+#: debug.c:908
 msgid ""
 "Auto-display variables:\n"
 "\n"
@@ -1597,7 +1603,7 @@ msgstr ""
 "自动显示变量：\n"
 "\n"
 
-#: debug.c:902
+#: debug.c:911
 msgid ""
 "Watch variables:\n"
 "\n"
@@ -1605,368 +1611,368 @@ msgstr ""
 "监视变量：\n"
 "\n"
 
-#: debug.c:1042
+#: debug.c:1051
 #, c-format
 msgid "no symbol `%s' in current context\n"
 msgstr "当前上下文中找不到符号“%s”\n"
 
-#: debug.c:1054 debug.c:1442
+#: debug.c:1063 debug.c:1451
 #, c-format
 msgid "`%s' is not an array\n"
 msgstr "“%s”不是一个数组\n"
 
-#: debug.c:1068
+#: debug.c:1077
 #, c-format
 msgid "$%ld = uninitialized field\n"
 msgstr "$%ld = 未初始化的字段\n"
 
-#: debug.c:1089
+#: debug.c:1098
 #, c-format
 msgid "array `%s' is empty\n"
 msgstr "数组“%s”为空\n"
 
-#: debug.c:1132 debug.c:1184
+#: debug.c:1141 debug.c:1193
 #, fuzzy, c-format
 #| msgid "[\"%.*s\"] not in array `%s'\n"
 msgid "subscript \"%.*s\" is not in array `%s'\n"
 msgstr "[\"%.*s\"] 不在数组“%s”中\n"
 
-#: debug.c:1188
+#: debug.c:1197
 #, c-format
 msgid "`%s[\"%.*s\"]' is not an array\n"
 msgstr "“%s[\"%.*s\"]”不是数组\n"
 
-#: debug.c:1249 debug.c:5106
+#: debug.c:1258 debug.c:5115
 #, c-format
 msgid "`%s' is not a scalar variable"
 msgstr "“%s”不是标量"
 
-#: debug.c:1272 debug.c:5136
+#: debug.c:1281 debug.c:5145
 #, c-format
 msgid "attempt to use array `%s[\"%.*s\"]' in a scalar context"
 msgstr "试图在标量环境中使用数组“%s[\"%.*s\"]”"
 
-#: debug.c:1295 debug.c:5147
+#: debug.c:1304 debug.c:5156
 #, c-format
 msgid "attempt to use scalar `%s[\"%.*s\"]' as array"
 msgstr "试图把标量“%s[\"%.*s\"]”当数组使用"
 
-#: debug.c:1438
+#: debug.c:1447
 #, c-format
 msgid "`%s' is a function"
 msgstr "“%s”是一个函数"
 
-#: debug.c:1480
+#: debug.c:1489
 #, c-format
 msgid "watchpoint %d is unconditional\n"
 msgstr "断点 %d 为无条件断点\n"
 
-#: debug.c:1514
+#: debug.c:1523
 #, fuzzy, c-format
 #| msgid "No display item numbered %ld"
 msgid "no display item numbered %ld"
 msgstr "没有编号为 %ld 的显示项目"
 
-#: debug.c:1517
+#: debug.c:1526
 #, fuzzy, c-format
 #| msgid "No watch item numbered %ld"
 msgid "no watch item numbered %ld"
 msgstr "没有编号为 %ld 的监视项目"
 
-#: debug.c:1543
+#: debug.c:1552
 #, fuzzy, c-format
 #| msgid "%d: [\"%.*s\"] not in array `%s'\n"
 msgid "%d: subscript \"%.*s\" is not in array `%s'\n"
 msgstr "%d：[\"%.*s\"] 不在数组“%s”中\n"
 
-#: debug.c:1782
+#: debug.c:1791
 msgid "attempt to use scalar value as array"
 msgstr "试图把标量当数组使用"
 
-#: debug.c:1873
+#: debug.c:1882
 #, c-format
 msgid "Watchpoint %d deleted because parameter is out of scope.\n"
 msgstr "断点 %d 已被删除，因为参数超出范围。\n"
 
-#: debug.c:1884
+#: debug.c:1893
 #, c-format
 msgid "Display %d deleted because parameter is out of scope.\n"
 msgstr "显示 %d 已被删除，因为参数超出范围。\n"
 
-#: debug.c:1917
+#: debug.c:1926
 #, c-format
 msgid " in file `%s', line %d\n"
 msgstr "于文件“%s”，第 %d 行\n"
 
-#: debug.c:1938
+#: debug.c:1947
 #, c-format
 msgid " at `%s':%d"
 msgstr "于“%s”:%d"
 
-#: debug.c:1954 debug.c:2017
+#: debug.c:1963 debug.c:2026
 #, c-format
 msgid "#%ld\tin "
 msgstr "#%ld\t于 "
 
-#: debug.c:1991
+#: debug.c:2000
 #, c-format
 msgid "More stack frames follow ...\n"
 msgstr "更多栈层 ...\n"
 
-#: debug.c:2034
+#: debug.c:2043
 msgid "invalid frame number"
 msgstr "层数无效"
 
-#: debug.c:2217
+#: debug.c:2226
 #, c-format
 msgid "Note: breakpoint %d (enabled, ignore next %ld hits), also set at %s:%d"
 msgstr "注意：断点 %d (已启用，忽略后续 %ld 次命中)，也设置于 %s:%d"
 
-#: debug.c:2224
+#: debug.c:2233
 #, c-format
 msgid "Note: breakpoint %d (enabled), also set at %s:%d"
 msgstr "注意：断点 %d (已启用)，也设置于 %s:%d"
 
-#: debug.c:2231
+#: debug.c:2240
 #, c-format
 msgid "Note: breakpoint %d (disabled, ignore next %ld hits), also set at %s:%d"
 msgstr "注意：断点 %d (已禁用，忽略后续 %ld 次命中)，也在 %s:%d 处设置"
 
-#: debug.c:2238
+#: debug.c:2247
 #, c-format
 msgid "Note: breakpoint %d (disabled), also set at %s:%d"
 msgstr "注意：断点 %d (已禁用)，也设置于 %s:%d"
 
-#: debug.c:2255
+#: debug.c:2264
 #, c-format
 msgid "Breakpoint %d set at file `%s', line %d\n"
 msgstr "断点 %d 设置于文件“%s”，第 %d 行\n"
 
-#: debug.c:2357
+#: debug.c:2366
 #, c-format
 msgid "cannot set breakpoint in file `%s'\n"
 msgstr "无法在文件“%s”中设置断点\n"
 
-#: debug.c:2386
+#: debug.c:2395
 #, fuzzy, c-format
 #| msgid "line number %d in file `%s' out of range"
 msgid "line number %d in file `%s' is out of range"
 msgstr "文件“%2$s”中的行号 %1$d 超出范围"
 
-#: debug.c:2390
+#: debug.c:2399
 #, c-format
 msgid "internal error: cannot find rule\n"
 msgstr "内部错误：找不到规则\n"
 
-#: debug.c:2392
+#: debug.c:2401
 #, c-format
 msgid "cannot set breakpoint at `%s':%d\n"
 msgstr "无法设置断点于“%s”:%d\n"
 
-#: debug.c:2404
+#: debug.c:2413
 #, c-format
 msgid "cannot set breakpoint in function `%s'\n"
 msgstr "无法在函数“%s”中设置断点\n"
 
-#: debug.c:2422
+#: debug.c:2431
 #, c-format
 msgid "breakpoint %d set at file `%s', line %d is unconditional\n"
 msgstr "设置于文件“%2$s”，第 %1$d 行的断点 %3$d 为无条件断点\n"
 
-#: debug.c:2511 debug.c:3369
+#: debug.c:2520 debug.c:3378
 #, c-format
 msgid "line number %d in file `%s' out of range"
 msgstr "文件“%2$s”中的行号 %1$d 超出范围"
 
-#: debug.c:2527 debug.c:2549
+#: debug.c:2536 debug.c:2558
 #, c-format
 msgid "Deleted breakpoint %d"
 msgstr "已删除断点 %d"
 
-#: debug.c:2533
+#: debug.c:2542
 #, c-format
 msgid "No breakpoint(s) at entry to function `%s'\n"
 msgstr "函数“%s”入口处无断点\n"
 
-#: debug.c:2560
+#: debug.c:2569
 #, c-format
 msgid "No breakpoint at file `%s', line #%d\n"
 msgstr "文件“%s”第 #%d 行处无断点\n"
 
-#: debug.c:2615 debug.c:2656 debug.c:2676 debug.c:2719
+#: debug.c:2624 debug.c:2665 debug.c:2685 debug.c:2728
 msgid "invalid breakpoint number"
 msgstr "断点编号无效"
 
-#: debug.c:2631
+#: debug.c:2640
 msgid "Delete all breakpoints? (y or n) "
 msgstr "删除所有断点吗？(y or n) "
 
-#: debug.c:2632 debug.c:2942 debug.c:2995
+#: debug.c:2641 debug.c:2951 debug.c:3004
 msgid "y"
 msgstr "y"
 
-#: debug.c:2681
+#: debug.c:2690
 #, c-format
 msgid "Will ignore next %ld crossing(s) of breakpoint %d.\n"
 msgstr "将忽略后续 %ld 次命中断点 %d。\n"
 
-#: debug.c:2685
+#: debug.c:2694
 #, c-format
 msgid "Will stop next time breakpoint %d is reached.\n"
 msgstr "以后命中断点 %d 时将会停止。\n"
 
-#: debug.c:2802
+#: debug.c:2811
 #, c-format
 msgid "Can only debug programs provided with the `-f' option.\n"
 msgstr "只能调试使用了“-f”选项的程序。\n"
 
-#: debug.c:2927
+#: debug.c:2936
 #, c-format
 msgid "Failed to restart debugger"
 msgstr "重启调试器失败"
 
-#: debug.c:2941
+#: debug.c:2950
 msgid "Program already running. Restart from beginning (y/n)? "
 msgstr "程序已经在运行了。重新开始运行吗？(y/n) "
 
-#: debug.c:2945
+#: debug.c:2954
 #, c-format
 msgid "Program not restarted\n"
 msgstr "程序未重新运行\n"
 
-#: debug.c:2955
+#: debug.c:2964
 #, c-format
 msgid "error: cannot restart, operation not allowed\n"
 msgstr "错误：无法重新运行，不允许该操作\n"
 
-#: debug.c:2961
+#: debug.c:2970
 #, c-format
 msgid "error (%s): cannot restart, ignoring rest of the commands\n"
 msgstr "错误 (%s)：无法重新运行，忽略剩余命令\n"
 
-#: debug.c:2969
+#: debug.c:2978
 #, fuzzy, c-format
 #| msgid "Starting program: \n"
 msgid "Starting program:\n"
 msgstr "开始运行程序：\n"
 
-#: debug.c:2979
+#: debug.c:2988
 #, c-format
 msgid "Program exited abnormally with exit value: %d\n"
 msgstr "程序异常退出，状态码：%d\n"
 
-#: debug.c:2980
+#: debug.c:2989
 #, c-format
 msgid "Program exited normally with exit value: %d\n"
 msgstr "程序正常退出，状态码：%d\n"
 
-#: debug.c:2994
+#: debug.c:3003
 msgid "The program is running. Exit anyway (y/n)? "
 msgstr "程序已经在运行了。仍然要退出吗？(y/n) "
 
-#: debug.c:3029
+#: debug.c:3038
 #, c-format
 msgid "Not stopped at any breakpoint; argument ignored.\n"
 msgstr "未在断点处停止；已忽略参数。\n"
 
-#: debug.c:3034
+#: debug.c:3043
 #, fuzzy, c-format
 #| msgid "invalid breakpoint number %d."
 msgid "invalid breakpoint number %d"
 msgstr "断点编号 %d 无效。"
 
-#: debug.c:3039
+#: debug.c:3048
 #, c-format
 msgid "Will ignore next %ld crossings of breakpoint %d.\n"
 msgstr "将忽略后续 %ld 次命中断点 %d。\n"
 
-#: debug.c:3226
+#: debug.c:3235
 #, c-format
 msgid "'finish' not meaningful in the outermost frame main()\n"
 msgstr "“finish”对于最外层的 main() 来说无意义\n"
 
-#: debug.c:3231
+#: debug.c:3240
 #, fuzzy, c-format
 #| msgid "Run till return from "
 msgid "Run until return from "
 msgstr "运行直到返回自 "
 
-#: debug.c:3274
+#: debug.c:3283
 #, c-format
 msgid "'return' not meaningful in the outermost frame main()\n"
 msgstr "“return”对于最外层的 main() 来说无意义\n"
 
-#: debug.c:3388
+#: debug.c:3397
 #, fuzzy, c-format
 #| msgid "Can't find specified location in function `%s'\n"
 msgid "cannot find specified location in function `%s'\n"
 msgstr "找不到函数“%s”中的指定位置\n"
 
-#: debug.c:3396
+#: debug.c:3405
 #, c-format
 msgid "invalid source line %d in file `%s'"
 msgstr "源代码行号“%d”对于文件“%s”来说无效"
 
-#: debug.c:3411
+#: debug.c:3420
 #, fuzzy, c-format
 #| msgid "Can't find specified location %d in file `%s'\n"
 msgid "cannot find specified location %d in file `%s'\n"
 msgstr "找不到文件“%2$s”中的指定位置 %1$d\n"
 
-#: debug.c:3443
+#: debug.c:3452
 #, c-format
 msgid "element not in array\n"
 msgstr "元素不在数组中\n"
 
-#: debug.c:3443
+#: debug.c:3452
 #, c-format
 msgid "untyped variable\n"
 msgstr "无类型变量\n"
 
-#: debug.c:3485
+#: debug.c:3494
 #, c-format
 msgid "Stopping in %s ...\n"
 msgstr "停止于 %s ...\n"
 
-#: debug.c:3562
+#: debug.c:3571
 #, c-format
 msgid "'finish' not meaningful with non-local jump '%s'\n"
 msgstr "“finish”对于非本地跳转“%s”来说无效\n"
 
-#: debug.c:3569
+#: debug.c:3578
 #, c-format
 msgid "'until' not meaningful with non-local jump '%s'\n"
 msgstr "“until”对于非本地跳转“%s”来说无效\n"
 
 #. TRANSLATORS: don't translate the 'q' inside the brackets.
-#: debug.c:4326
+#: debug.c:4335
 msgid "\t------[Enter] to continue or [q] + [Enter] to quit------"
 msgstr "\t------ 按 [Enter] 继续，按 [q] + [Enter] 退出 ------"
 
-#: debug.c:5143
+#: debug.c:5152
 #, c-format
 msgid "[\"%.*s\"] not in array `%s'"
 msgstr "[\"%.*s\"] 不在数组“%s”中"
 
-#: debug.c:5349
+#: debug.c:5358
 #, c-format
 msgid "sending output to stdout\n"
 msgstr "输出到标准输出\n"
 
-#: debug.c:5389
+#: debug.c:5398
 msgid "invalid number"
 msgstr "编号无效"
 
-#: debug.c:5523
+#: debug.c:5532
 #, c-format
 msgid "`%s' not allowed in current context; statement ignored"
 msgstr "当前上下文中不允许“%s”；语句已忽略"
 
-#: debug.c:5531
+#: debug.c:5540
 msgid "`return' not allowed in current context; statement ignored"
 msgstr "当前上下文中不允许“%s”；语句已忽略"
 
-#: debug.c:5755
+#: debug.c:5764
 #, fuzzy, c-format
 #| msgid "no symbol `%s' in current context\n"
 msgid "no symbol `%s' in current context"
@@ -3407,70 +3413,76 @@ msgstr "atan2：第一个参数不是数字"
 msgid "atan2: received non-numeric second argument"
 msgstr "atan2：第二个参数不是数字"
 
-#: mpfr.c:828
+#: mpfr.c:767
+#, fuzzy, c-format
+#| msgid "%s: received negative argument %g"
+msgid "%s: received negative argument %.*s"
+msgstr "%s：收到负数参数 %g"
+
+#: mpfr.c:832
 msgid "int: received non-numeric argument"
 msgstr "int：收到非数字参数"
 
-#: mpfr.c:858
+#: mpfr.c:862
 msgid "compl: received non-numeric argument"
 msgstr "compl：收到非数字参数"
 
-#: mpfr.c:870
+#: mpfr.c:874
 msgid "compl(%Rg): negative value is not allowed"
 msgstr "compl(%Rg)：不允许使用负值"
 
-#: mpfr.c:875
+#: mpfr.c:879
 msgid "comp(%Rg): fractional value will be truncated"
 msgstr "compl(%Rg)：小数部分会被截断"
 
-#: mpfr.c:886
+#: mpfr.c:890
 #, c-format
 msgid "compl(%Zd): negative values are not allowed"
 msgstr "compl(%Zd)：不允许使用负值"
 
-#: mpfr.c:904
+#: mpfr.c:908
 #, c-format
 msgid "%s: received non-numeric argument #%d"
 msgstr "%s：第 %d 个参数不是数值"
 
-#: mpfr.c:914
+#: mpfr.c:918
 msgid "%s: argument #%d has invalid value %Rg, using 0"
 msgstr "%s：第 %d 个参数的值 %Rg 无效，改为 0"
 
-#: mpfr.c:925
+#: mpfr.c:929
 msgid "%s: argument #%d negative value %Rg is not allowed"
 msgstr "%s：第 %d 个参数 %Rg 不能为负值"
 
-#: mpfr.c:932
+#: mpfr.c:936
 msgid "%s: argument #%d fractional value %Rg will be truncated"
 msgstr "%s：第 %d 个参数 %Rg 的小数部分会被截断"
 
-#: mpfr.c:946
+#: mpfr.c:950
 #, c-format
 msgid "%s: argument #%d negative value %Zd is not allowed"
 msgstr "%s：第 %d 个参数 %Zd 不能为负值"
 
-#: mpfr.c:1036
+#: mpfr.c:1040
 msgid "and: called with less than two arguments"
 msgstr "and：调用时传递的参数不足2个"
 
-#: mpfr.c:1068
+#: mpfr.c:1072
 msgid "or: called with less than two arguments"
 msgstr "or：调用时传递的参数不足2个"
 
-#: mpfr.c:1099
+#: mpfr.c:1103
 msgid "xor: called with less than two arguments"
 msgstr "xor：调用时传递的参数不足2个"
 
-#: mpfr.c:1223
+#: mpfr.c:1227
 msgid "srand: received non-numeric argument"
 msgstr "srand：收到非数字参数"
 
-#: mpfr.c:1265
+#: mpfr.c:1269
 msgid "intdiv: received non-numeric first argument"
 msgstr "intdiv：第一个参数不是数字"
 
-#: mpfr.c:1267
+#: mpfr.c:1271
 msgid "intdiv: received non-numeric second argument"
 msgstr "intdiv：第二个参数不是数字"
 
@@ -3559,11 +3571,11 @@ msgstr ""
 msgid "internal error: %s with null vname"
 msgstr "内部错误：%s 带有空的 vname"
 
-#: profile.c:662
+#: profile.c:663
 msgid "internal error: builtin with null fname"
 msgstr "内部错误：内置操作的 fname 为空"
 
-#: profile.c:1317
+#: profile.c:1318
 #, c-format
 msgid ""
 "%s# Loaded extensions (-l and/or @load)\n"
@@ -3572,7 +3584,7 @@ msgstr ""
 "%s# 已加载扩展 (-l 和/或 @load)\n"
 "\n"
 
-#: profile.c:1348
+#: profile.c:1349
 #, c-format
 msgid ""
 "\n"
@@ -3583,12 +3595,12 @@ msgstr ""
 "# 已加载扩展 (-l 和/或 @load)\n"
 "\n"
 
-#: profile.c:1412
+#: profile.c:1413
 #, c-format
 msgid "\t# gawk profile, created %s\n"
 msgstr "\t# gawk 配置, 创建 %s\n"
 
-#: profile.c:1980
+#: profile.c:1981
 #, c-format
 msgid ""
 "\n"
@@ -3597,7 +3609,7 @@ msgstr ""
 "\n"
 "\t# 函数列表，字典序\n"
 
-#: profile.c:2041
+#: profile.c:2042
 #, c-format
 msgid "redir2str: unknown redirection type %d"
 msgstr "redir2str：未知重定向类型 %d"
@@ -3627,39 +3639,39 @@ msgstr "正则表达式中的转义序列“\\%c”不是有效的操作符"
 msgid "regexp component `%.*s' should probably be `[%.*s]'"
 msgstr "正则表达式成分“%.*s”可能应为“[%.*s]”"
 
-#: support/dfa.c:888
+#: support/dfa.c:896
 msgid "unbalanced ["
 msgstr "[ 不配对"
 
-#: support/dfa.c:1009
+#: support/dfa.c:1017
 msgid "invalid character class"
 msgstr "无效的字符类型名"
 
-#: support/dfa.c:1135
+#: support/dfa.c:1143
 msgid "character class syntax is [[:space:]], not [:space:]"
 msgstr "字符类型的语法为 [[:space:]]，而不是 [:space:]"
 
-#: support/dfa.c:1202
+#: support/dfa.c:1210
 msgid "unfinished \\ escape"
 msgstr "不完整的 \\ 转义"
 
-#: support/dfa.c:1363
+#: support/dfa.c:1371
 msgid "invalid content of \\{\\}"
 msgstr "\\{\\} 中内容无效"
 
-#: support/dfa.c:1366
+#: support/dfa.c:1374
 msgid "regular expression too big"
 msgstr "正则表达式过大"
 
-#: support/dfa.c:1850
+#: support/dfa.c:1858
 msgid "unbalanced ("
 msgstr "( 不配对"
 
-#: support/dfa.c:1967
+#: support/dfa.c:1975
 msgid "no syntax specified"
 msgstr "未指定语法"
 
-#: support/dfa.c:1978
+#: support/dfa.c:1986
 msgid "unbalanced )"
 msgstr ") 不配对"
 
