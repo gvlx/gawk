@@ -198,7 +198,6 @@ EXTRA_DIST = \
 	colonwarn.in \
 	colonwarn.ok \
 	commas.awk \
-	commas.in \
 	commas.ok \
 	compare.awk \
 	compare.in \
