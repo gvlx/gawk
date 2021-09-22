@@ -54,9 +54,9 @@
 @c applies to and all the info about who's publishing this edition
 
 @c These apply across the board.
-@set UPDATE-MONTH July, 2021
+@set UPDATE-MONTH September, 2021
 @set VERSION 5.1
-@set PATCHLEVEL 0
+@set PATCHLEVEL 1
 
 @set GAWKINETTITLE TCP/IP Internetworking with @command{gawk}
 @ifset FOR_PRINT
@@ -805,8 +805,8 @@ particular records in a file and perform operations upon them.
                                         once.
 * Shell Quoting::                       A function to quote strings for the
                                         shell.
-* Isnumeric Function::                  A function to test whether a value
-                                        is numeric.
+* Isnumeric Function::                  A function to test whether a value is
+                                        numeric.
 * Data File Management::                Functions for managing command-line
                                         data files.
 * Filetrans Function::                  A function for handling data file
@@ -1032,6 +1032,8 @@ particular records in a file and perform operations upon them.
 * Shell Startup Files::                 Shell convenience functions.
 * Additional Configuration Options::    Other compile-time options.
 * Configuration Philosophy::            How it's all supposed to work.
+* Compiling from Git::                  Compiling from Git.
+* Building the Documentation::          Building the Documentation.
 * Non-Unix Installation::               Installation on Other Operating
                                         Systems.
 * PC Installation::                     Installing and Compiling
@@ -1057,7 +1059,8 @@ particular records in a file and perform operations upon them.
 * Bug definition::                      Defining what is and is not a bug.
 * Bug address::                         Where to send reports to.
 * Usenet::                              Where not to send reports to.
-* Performance bugs::                    What to do if you think there is a performance issue.
+* Performance bugs::                    What to do if you think there is a
+                                        performance issue.
 * Asking for help::                     Dealing with non-bug questions.
 * Maintainers::                         Maintainers of non-*nix ports.
 * Other Versions::                      Other freely available @command{awk}
@@ -41118,13 +41121,15 @@ to configure @command{gawk} for your system yourself.
 * Shell Startup Files::              Shell convenience functions.
 * Additional Configuration Options:: Other compile-time options.
 * Configuration Philosophy::         How it's all supposed to work.
+* Compiling from Git::               Compiling from Git.
+* Building the Documentation::       Building the Documentation.
 @end menu
 
 @node Quick Installation
 @appendixsubsec Compiling @command{gawk} for Unix-Like Systems
 
 @menu
-* Compiling with MPFR::              Building with MPFR.
+* Compiling with MPFR::         Building with MPFR.
 @end menu
 
 The normal installation steps should work on all modern commercial
@@ -41382,6 +41387,43 @@ new version of @command{configure} that works on your system
 for information on how to report problems in configuring @command{gawk}).
 The same mechanism may be used to send in updates to @file{configure.ac}
 and/or @file{custom.h}.
+
+@node Compiling from Git
+@appendixsubsec Compiling from Git
+
+Building @command{gawk} directly from the development source control
+repository is possible, but not recommended for everyday users, as the
+code may not be as stable as released versions are.  If you really do
+want to do that, here are the steps:
+
+@example
+git clone https://git.savannah.gnu.org/r/gawk.git
+cd gawk
+./bootstrap.sh && ./configure && make && make check
+@end example
+
+@node Building the Documentation
+@appendixsubsec Building the Documentation
+
+The Info documentation is included in the distribution tar files and in
+Git; you should not need to rebuild it. However, if it needs to be done,
+simply running @command{make} will do it, assuming that you have a recent
+enough version of @command{makeinfo} installed.
+
+If you wish to build the PDF version of the manual, you will need to
+have @TeX{} installed, and possibly additional packages that provide the
+necessary fonts and tools, such as @command{ps2pdf}.  You will also need
+GNU Troff (@command{groff}) installed in order to format the reference
+card and the manual page.  Managing this process is beyond the scope of
+this @value{DOCUMENT}.
+
+Assuming you have all you need, then the following commands produce the
+PDF versions of the documentation:
+
+@example
+cd doc
+make pdf
+@end example
 
 @node Non-Unix Installation
 @appendixsec Installation on Other Operating Systems
@@ -41961,7 +42003,8 @@ but we might well want to fix it.
 * Bug definition::              Defining what is and is not a bug.
 * Bug address::                 Where to send reports to.
 * Usenet::                      Where not to send reports to.
-* Performance bugs::            What to do if you think there is a performance issue.
+* Performance bugs::            What to do if you think there is a performance
+                                issue.
 * Asking for help::             Dealing with non-bug questions.
 * Maintainers::                 Maintainers of non-*nix ports.
 @end menu

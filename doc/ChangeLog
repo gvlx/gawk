@@ -1,3 +1,10 @@
+2021-09-22         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.in (Compiling from Git): New node.
+	(Building the Documentation): New node.
+	Set the update month and update the patch level.
+	* awkcard.in: Update tar ball version.
+
 2021-09-09         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawktexi.in (Interval Expressions): Add some notes borrowed from
