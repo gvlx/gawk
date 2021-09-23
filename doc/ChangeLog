@@ -1,3 +1,9 @@
+2021-09-23         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.in (Strong Regexp Constants): Document that they
+	can be assigned with -v. Thanks to J Naman <jnaman2@gmail.com>
+	for the report.
+
 2021-09-22         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawktexi.in (Compiling from Git): New node.
