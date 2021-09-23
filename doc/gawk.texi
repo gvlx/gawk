@@ -12005,6 +12005,17 @@ can be used with @samp{~} and @samp{!~}, passed to one of the built-in functions
 listed above, or passed as a parameter to a user-defined function.
 @end itemize
 
+You may use the @option{-v} option (@pxref{Options}) to assign a
+strongly-typed regexp constant to a variable on the command line, like so:
+
+@example
+gawk -v pattern='@@/something(interesting)+/' @dots{}
+@end example
+
+@noindent
+You may also make such assignments as regular command-line arguments
+(@pxref{Other Arguments}).
+
 You may use the @code{typeof()} built-in function
 (@pxref{Type Functions})
 to determine if a variable or function parameter is
