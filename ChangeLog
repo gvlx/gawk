@@ -1,3 +1,7 @@
+2021-09-23         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawkapi.h: Some clean-up of comments in the header file.
+
 2021-09-12         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* interpret.h: Remove subscript_in_array variable.
