@@ -1189,10 +1189,13 @@ Copyright dell'edizione italiana @copyright{} 2016 -- Free Software Foundation, 
 * Installazione Unix::                  Installare @command{gawk} su
                                         varie versioni di Unix.
 * Installazione veloce::                Compilare @command{gawk} sotto Unix.
+* Compilare con MPFR::                  Compilare con MPFR.
 * File da usare a inizio sessione::     Funzioni di personalizzazione shell.
 * Ulteriori opzioni di configurazione:: Altre opzioni utilizzabili in fase
                                         di compilazione.
 * Filosofia della configurazione::      Come si suppone che funzioni.
+* Compilare da git::                    Compilare da git.
+* Generare la documentazione::          Generare la documentazione.
 * Installazione non-Unix::              Installazioni su altri Sistemi Operativi.
                                         Operativi.
 * Installazione su PC::                 Installare e compilare
@@ -1219,7 +1222,8 @@ Copyright dell'edizione italiana @copyright{} 2016 -- Free Software Foundation, 
 * Definizione di bug::                  Definire cos'@`e e cosa non @`e un bug.
 * Indirizzo bug::                       Dove notificare problemi.
 * Usenet::                              Dove non notificare problemi.
-* Bug di prestazione::                  Che fare in caso di problemi di prestazione.
+* Bug di prestazione::                  Che fare se pensate che ci sia un
+                                        problema di prestazioni.
 * Richieste di aiuto::                  Gestire domande non relative ai bug.
 * Manutentori::                         Manutentori di versioni non-Unix.
 * Altre versioni::                      Altre implementazioni di
@@ -8657,7 +8661,7 @@ quattro, e @code{$4} ha come valore @code{"ddd"}.
 
 @end table
 
-L'assegnazione di un valore a @code{FS} fa s@`{@dotless{i}} che @command{gawk} usi @code{FS}
+L'assegnamento di un valore a @code{FS} fa s@`{@dotless{i}} che @command{gawk} usi @code{FS}
 per separare nuovamente i campi.  Si pu@`o usare @samp{FS = FS} per ottenere
 questo effetto, senza dover conoscere il valore corrente di @code{FS}.
 Per vedere quale tipo di separazione sia in atto,
@@ -10336,7 +10340,7 @@ ci aggiunge una stringa detta @dfn{separatore record in output} (o
 Per cambiare il tipo di separazione in output di campi e record, si impostano
 valori differenti alle variabili @code{OFS} e @code{ORS}.  Il posto pi@`u
 indicato per farlo @`e nella regola @code{BEGIN}
-(@pxref{BEGIN/END}), in modo che l'assegnazione abbia effetto prima
+(@pxref{BEGIN/END}), in modo che l'assegnamento abbia effetto prima
 dell'elaborazione di ogni record in input.  Questi valori si possono
 anche impostare dalla riga di comando, prima della lista dei file in input,
 oppure usando l'opzione della riga di comando @option{-v}
@@ -12435,6 +12439,19 @@ pu@`o essere usata con gli operatori @samp{~} e @samp{!~}, passata a una
 delle funzioni predefinite sopra elencate o passata come parametro
 a una funzione definita dall'utente.
 @end itemize
+
+Si pu@`o usare l'opzione @option{-v} (@pxref{Opzioni}) per assegnare
+sulla riga di comando una costante @dfn{regexp} fortemente tipizzata
+a una variabile, cos@`{@dotless{i}}:
+
+@example
+gawk -v cerca='@@/qualcosa(interessante)+/' @dots{}
+@end example
+
+@noindent
+Si possono anche fare tali assegnamenti con regolari argomenti
+sulla riga di comando
+(@pxref{Altri argomenti}).
 
 Si pu@`o usare la funzione predefinita @code{typeof()}
 (@pxref{Funzioni per i tipi})
@@ -33245,7 +33262,7 @@ Tuttavia, @`e in realt@`a quasi portabile, e richiede modifiche minime:
 @cindex @code{TEXTDOMAIN} (variabile) @subentry portabilit@`a e
 @cindex variabile @subentry @code{TEXTDOMAIN} @subentry portabilit@`a e
 @item
-Le assegnazioni di valori a @code{TEXTDOMAIN} non avranno effetto alcuno,
+Gli assegnamenti di valori a @code{TEXTDOMAIN} non avranno effetto alcuno,
 perch@'e @code{TEXTDOMAIN} non @`e una variabile speciale in altre
 implementazioni di @command{awk}.
 
@@ -33699,7 +33716,7 @@ cambiato il @emph{valore di un dato}.  Questo @`e utile, poich@'e a volte succed
 che una variabile riceva un valore errato, ed @`e difficile rintracciare il punto
 dove ci@`o accade solo leggendo il codice sorgente.
 Usando un punto d'osservazione, si pu@`o fermare il programma in qualunque punto
-vi sia un'assegnazione di variabile, e di solito si individua il codice che
+vi sia un'assegnamento di variabile, e di solito si individua il codice che
 genera l'errore abbastanza velocemente.
 @end table
 
@@ -45060,6 +45077,8 @@ dover configurare @command{gawk} per quel dato sistema.
 * Ulteriori opzioni di configurazione:: Altre opzioni utilizzabili in fase di
                                         compilazione.
 * Filosofia della configurazione::    Come si suppone che tutto funzioni.
+* Compilare da git::                  Compilare da git.
+* Generare la documentazione::        Generare la documentazione.
 @end menu
 
 @node Installazione veloce
@@ -45360,6 +45379,49 @@ Autoconf.  @`E possibile modificare questo file e generare una nuova versione di
 informazioni su come segnalare problemi nella configurazione di
 @command{gawk}).  Lo stesso meccanismo si pu@`o usare per inviare aggiornamenti
 al file @file{configure.ac} e/o a @file{custom.h}.
+
+@node Compilare da git
+@appendixsubsec Compilare da @command{git}
+
+La compilazione di @command{gawk} utilizzando direttamente il sito in
+cui viene mantenuto (utilizzando @command{git}) il codice sorgente @`e
+possibile, ma non @`e raccomandato per ogni tipo di utente, poich@'e
+il codice pu@`o non essere altrettanto stabile quanto le versioni
+rilasciate.  Se veramente si vuole farlo, questi sono i passi da
+seguire:
+
+@example
+git clone https://git.savannah.gnu.org/r/gawk.git
+cd gawk
+./bootstrap.sh && ./configure && make && make check
+@end example
+
+@node Generare la documentazione
+@appendixsubsec Generare la documentazione
+
+La documentazione nel formato @command{info} @`e inclusa nei file
+@command{tar} della documentazione e in @command{git}.  Non dovrebbe
+essere necessario generarla nuovamente.
+In ogni caso, se servisse, @`e possibile farlo utilizzando semplicemente
+@command{make}, ammesso che si abbia a disposizione una versione
+di @command{makeinfo} abbastanza recente.
+
+Volendo generare la versione PDF del manuale, occorre avere a disposizione
+@TeX{}, ed eventualmente ulteriori pacchetti che contengono i caratteri
+e gli strumenti software necessari, come @command{ps2pdf}.
+@`E anche necessario avere a disposizione GNU Troff (@command{groff})
+per formattare la scheda di riferimento e la pagina di manuale
+[consultabile con @command{man}].  Come installare tutti questi
+pacchetti software non @`e compreso in ci@`o che viene trattato
+in questo @value{DOCUMENT}.
+
+Supponendo che si abbia a disposizione il necssario, i comandi
+seguenti producono le versioni PDF della documentazione:
+
+@example
+cd doc
+make pdf
+@end example
 
 @node Installazione non-Unix
 @appendixsec Installazione su altri Sistemi Operativi
@@ -49010,7 +49072,7 @@ e @ref{Ridirezione}).
 
 @item @dfn{Rvalue}
 [right-value, ossia valore a destra] Un valore che pu@`o apparire alla destra
-di un operatore di assegnazione.
+di un operatore di assegnamento.
 In @command{awk}, essenzialmente ogni espressione ha un valore.
 Ognuno di questi valori @`e un @dfn{rvalue}.
 
