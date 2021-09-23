@@ -149,6 +149,7 @@ typedef struct awk_input {
 	int fd;			/* file descriptor */
 #define INVALID_HANDLE (-1)
 	void *opaque;           /* private data for input parsers */
+
 	/*
 	 * The get_record function is called to read the next record of data.
 	 *
@@ -187,8 +188,8 @@ typedef struct awk_input {
 			const awk_fieldwidth_info_t **field_width);
 
 	/*
-	 * No argument prototype on read_func to allow for older systems
-	 * whose headers are not up to date.
+	 * This replaces the POSIX read() system call. Use it if you want to
+	 * manage reading raw bytes yourself, and let gawk parse the record.
 	 */
 	ssize_t (*read_func)(int, void *, size_t);
 
