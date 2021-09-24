@@ -30681,16 +30681,21 @@ Various '.c', '.y', and '.h' files
 
 'ChangeLog'
      A detailed list of source code changes as bugs are fixed or
-     improvements made.
+     improvements made.  There are similar files in all of the
+     subdirectories.
 
 'ChangeLog.0'
-     An older list of source code changes.
+'ChangeLog.1'
+     Older lists of source code changes.  There are similar files in all
+     of the subdirectories.
 
 'NEWS'
      A list of changes to 'gawk' since the last release or patch.
 
 'NEWS.0'
-     An older list of changes to 'gawk'.
+'NEWS.1'
+     Older lists of changes to 'gawk'.  There are similar files in all
+     of the subdirectories.
 
 'COPYING'
      The GNU General Public License.
@@ -30750,6 +30755,16 @@ Various '.c', '.y', and '.h' files
 
 'doc/gawkinet.info'
      The generated Info file for 'TCP/IP Internetworking with 'gawk''.
+
+'doc/gawkworkflow.texi'
+     The Texinfo source file for *note (General Introduction,
+     gawkworkflow, Participating in 'gawk' Development)Top::.  It should
+     be processed with TeX (via 'texi2dvi' or 'texi2pdf') to produce a
+     printed document and with 'makeinfo' to produce an Info or HTML
+     file.
+
+'doc/gawkorkflow.info'
+     The generated Info file for 'Participating in 'gawk' Development'.
 
 'doc/igawk.1'
      The 'troff' source for a manual page describing the 'igawk' program
@@ -31085,23 +31100,36 @@ File: gawk.info,  Node: Building the Documentation,  Prev: Compiling from Git,  
 B.2.6 Building the Documentation
 --------------------------------
 
-The Info documentation is included in the distribution tar files and in
-Git; you should not need to rebuild it.  However, if it needs to be
-done, simply running 'make' will do it, assuming that you have a recent
-enough version of 'makeinfo' installed.
+The generated Info documentation is included in the distribution 'tar'
+files and in the Git source code repository; you should not need to
+rebuild it.  However, if it needs to be done, simply running 'make' will
+do it, assuming that you have a recent enough version of 'makeinfo'
+installed.
 
-   If you wish to build the PDF version of the manual, you will need to
+   If you wish to build the PDF version of the manuals, you will need to
 have TeX installed, and possibly additional packages that provide the
-necessary fonts and tools, such as 'ps2pdf'.  You will also need GNU
-Troff ('groff') installed in order to format the reference card and the
-manual page.  Managing this process is beyond the scope of this Info
-file.
+necessary fonts and tools, such as 'dvi2pdf' and 'ps2pdf'.  You will
+also need GNU Troff ('groff') installed in order to format the reference
+card and the manual page (*note Distribution contents::).  Managing this
+process is beyond the scope of this Info file.
 
    Assuming you have all you need, then the following commands produce
 the PDF versions of the documentation:
 
      cd doc
      make pdf
+
+This creates PDF versions of all three Texinfo documents included in the
+distribution, as well as of the manual page and the reference card.
+
+   Similarly, if you have a recent enough version of 'makeinfo', you can
+make the HTML version of the manuals with:
+
+     cd doc
+     make html
+
+This creates HTML versions of all three Texinfo documents included in
+the distribution.
 
 
 File: gawk.info,  Node: Non-Unix Installation,  Next: Bugs,  Prev: Unix Installation,  Up: Installation
@@ -35525,7 +35553,7 @@ Index
 * arrays, sorting, IGNORECASE variable and: Array Sorting Functions.
                                                               (line  88)
 * artificial intelligence, gawk and:     Distribution contents.
-                                                              (line  58)
+                                                              (line  63)
 * ASCII:                                 Escape Sequences.    (line  31)
 * ASCII <1>:                             Bracket Expressions. (line  79)
 * ASCII <2>:                             Scalar Constants.    (line  20)
@@ -36392,6 +36420,12 @@ Index
 * do-while statement:                    Do Statement.        (line   6)
 * documentation, online:                 Manual History.      (line  11)
 * documentation, of awk programs:        Library Names.       (line   6)
+* documentation, building, Info files:   Building the Documentation.
+                                                              (line   6)
+* documentation, building, PDF:          Building the Documentation.
+                                                              (line  12)
+* documentation, building, HTML:         Building the Documentation.
+                                                              (line  28)
 * documents, searching:                  Dupword Program.     (line   6)
 * dollar sign ($), regexp operator:      Regexp Operator Details.
                                                               (line  31)
@@ -38317,7 +38351,7 @@ Index
                                                               (line   6)
 * Texinfo <3>:                           Extract Program.     (line  12)
 * Texinfo <4>:                           Distribution contents.
-                                                              (line  83)
+                                                              (line  88)
 * Texinfo <5>:                           Adding Code.         (line 100)
 * text, printing:                        Print.               (line  22)
 * text, printing, unduplicated lines of: Uniq Program.        (line   6)
@@ -39127,67 +39161,67 @@ Node: Gawk Distribution1232946
 Node: Getting1233430
 Node: Extracting1234393
 Node: Distribution contents1236031
-Node: Unix Installation1242511
-Node: Quick Installation1243315
-Node: Compiling with MPFR1245791
-Node: Shell Startup Files1246483
-Node: Additional Configuration Options1247572
-Node: Configuration Philosophy1249887
-Node: Compiling from Git1252283
-Node: Building the Documentation1252838
-Node: Non-Unix Installation1253760
-Node: PC Installation1254220
-Node: PC Binary Installation1255058
-Node: PC Compiling1255493
-Node: PC Using1256610
-Node: Cygwin1260163
-Node: MSYS1261387
-Node: VMS Installation1261989
-Node: VMS Compilation1262708
-Ref: VMS Compilation-Footnote-11263937
-Node: VMS Dynamic Extensions1263995
-Node: VMS Installation Details1265680
-Node: VMS Running1267942
-Node: VMS GNV1272221
-Node: Bugs1272935
-Node: Bug definition1273847
-Node: Bug address1276351
-Node: Usenet1279739
-Node: Performance bugs1280748
-Node: Asking for help1283669
-Node: Maintainers1285631
-Node: Other Versions1286825
-Node: Installation summary1294677
-Node: Notes1296041
-Node: Compatibility Mode1296835
-Node: Additions1297617
-Node: Accessing The Source1298542
-Node: Adding Code1299979
-Node: New Ports1306198
-Node: Derived Files1310573
-Ref: Derived Files-Footnote-11316233
-Ref: Derived Files-Footnote-21316268
-Ref: Derived Files-Footnote-31316866
-Node: Future Extensions1316980
-Node: Implementation Limitations1317638
-Node: Extension Design1318848
-Node: Old Extension Problems1319992
-Ref: Old Extension Problems-Footnote-11321510
-Node: Extension New Mechanism Goals1321567
-Ref: Extension New Mechanism Goals-Footnote-11324931
-Node: Extension Other Design Decisions1325120
-Node: Extension Future Growth1327233
-Node: Notes summary1327839
-Node: Basic Concepts1328997
-Node: Basic High Level1329678
-Ref: figure-general-flow1329960
-Ref: figure-process-flow1330645
-Ref: Basic High Level-Footnote-11333946
-Node: Basic Data Typing1334131
-Node: Glossary1337459
-Node: Copying1369346
-Node: GNU Free Documentation License1406889
-Node: Index1432009
+Node: Unix Installation1243117
+Node: Quick Installation1243921
+Node: Compiling with MPFR1246397
+Node: Shell Startup Files1247089
+Node: Additional Configuration Options1248178
+Node: Configuration Philosophy1250493
+Node: Compiling from Git1252889
+Node: Building the Documentation1253444
+Node: Non-Unix Installation1254828
+Node: PC Installation1255288
+Node: PC Binary Installation1256126
+Node: PC Compiling1256561
+Node: PC Using1257678
+Node: Cygwin1261231
+Node: MSYS1262455
+Node: VMS Installation1263057
+Node: VMS Compilation1263776
+Ref: VMS Compilation-Footnote-11265005
+Node: VMS Dynamic Extensions1265063
+Node: VMS Installation Details1266748
+Node: VMS Running1269010
+Node: VMS GNV1273289
+Node: Bugs1274003
+Node: Bug definition1274915
+Node: Bug address1277419
+Node: Usenet1280807
+Node: Performance bugs1281816
+Node: Asking for help1284737
+Node: Maintainers1286699
+Node: Other Versions1287893
+Node: Installation summary1295745
+Node: Notes1297109
+Node: Compatibility Mode1297903
+Node: Additions1298685
+Node: Accessing The Source1299610
+Node: Adding Code1301047
+Node: New Ports1307266
+Node: Derived Files1311641
+Ref: Derived Files-Footnote-11317301
+Ref: Derived Files-Footnote-21317336
+Ref: Derived Files-Footnote-31317934
+Node: Future Extensions1318048
+Node: Implementation Limitations1318706
+Node: Extension Design1319916
+Node: Old Extension Problems1321060
+Ref: Old Extension Problems-Footnote-11322578
+Node: Extension New Mechanism Goals1322635
+Ref: Extension New Mechanism Goals-Footnote-11325999
+Node: Extension Other Design Decisions1326188
+Node: Extension Future Growth1328301
+Node: Notes summary1328907
+Node: Basic Concepts1330065
+Node: Basic High Level1330746
+Ref: figure-general-flow1331028
+Ref: figure-process-flow1331713
+Ref: Basic High Level-Footnote-11335014
+Node: Basic Data Typing1335199
+Node: Glossary1338527
+Node: Copying1370414
+Node: GNU Free Documentation License1407957
+Node: Index1433077
 
 End Tag Table
 

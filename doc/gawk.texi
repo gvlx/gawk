@@ -64,6 +64,7 @@
 @set PATCHLEVEL 1
 
 @set GAWKINETTITLE TCP/IP Internetworking with @command{gawk}
+@set GAWKWORKFLOWTITLE Participating in @command{gawk} Development
 @ifset FOR_PRINT
 @set TITLE Effective awk Programming
 @end ifset
@@ -42028,7 +42029,7 @@ Git repository; for more information see @ref{Accessing The Source}.
 
 @node Extracting
 @appendixsubsec Extracting the Distribution
-@command{gawk} is distributed as several @code{tar} files compressed with
+@command{gawk} is distributed as several @command{tar} files compressed with
 different compression programs: @command{gzip}, @command{bzip2},
 and @command{xz}. For simplicity, the rest of these instructions assume
 you are using the one compressed with the GNU Gzip program (@command{gzip}).
@@ -42036,7 +42037,7 @@ you are using the one compressed with the GNU Gzip program (@command{gzip}).
 Once you have the distribution (e.g.,
 @file{gawk-@value{VERSION}.@value{PATCHLEVEL}.tar.gz}),
 use @code{gzip} to expand the
-file and then use @code{tar} to extract it.  You can use the following
+file and then use @command{tar} to extract it.  You can use the following
 pipeline to produce the @command{gawk} distribution:
 
 @example
@@ -42109,15 +42110,20 @@ A file providing an overview of the configuration and installation process.
 
 @item ChangeLog
 A detailed list of source code changes as bugs are fixed or improvements made.
+There are similar files in all of the subdirectories.
 
 @item ChangeLog.0
-An older list of source code changes.
+@itemx ChangeLog.1
+Older lists of source code changes.
+There are similar files in all of the subdirectories.
 
 @item NEWS
 A list of changes to @command{gawk} since the last release or patch.
 
 @item NEWS.0
-An older list of changes to @command{gawk}.
+@itemx NEWS.1
+Older lists of changes to @command{gawk}.
+There are similar files in all of the subdirectories.
 
 @item COPYING
 The GNU General Public License.
@@ -42187,6 +42193,23 @@ with @command{makeinfo} to produce an Info or HTML file.
 @item doc/gawkinet.info
 The generated Info file for
 @cite{@value{GAWKINETTITLE}}.
+
+@item doc/gawkworkflow.texi
+The Texinfo source file for
+@ifinfo
+@inforef{Top, , General Introduction, gawkworkflow, @value{GAWKWORKFLOWTITLE}}.
+@end ifinfo
+@ifnotinfo
+@cite{@value{GAWKWORKFLOWTITLE}}.
+@end ifnotinfo
+It should be processed with @TeX{}
+(via @command{texi2dvi} or @command{texi2pdf})
+to produce a printed document and
+with @command{makeinfo} to produce an Info or HTML file.
+
+@item doc/gawkorkflow.info
+The generated Info file for
+@cite{@value{GAWKWORKFLOWTITLE}}.
 
 @item doc/igawk.1
 The @command{troff} source for a manual page describing the @command{igawk}
@@ -42573,17 +42596,21 @@ cd gawk
 @node Building the Documentation
 @appendixsubsec Building the Documentation
 
-The Info documentation is included in the distribution tar files and in
-Git; you should not need to rebuild it. However, if it needs to be done,
-simply running @command{make} will do it, assuming that you have a recent
-enough version of @command{makeinfo} installed.
+@cindex documentation @subentry building @subentry Info files
+The generated Info documentation is included in the distribution
+@command{tar} files and in the Git source code repository; you should
+not need to rebuild it. However, if it needs to be done, simply running
+@command{make} will do it, assuming that you have a recent enough version
+of @command{makeinfo} installed.
 
-If you wish to build the PDF version of the manual, you will need to
-have @TeX{} installed, and possibly additional packages that provide the
-necessary fonts and tools, such as @command{ps2pdf}.  You will also need
-GNU Troff (@command{groff}) installed in order to format the reference
-card and the manual page.  Managing this process is beyond the scope of
-this @value{DOCUMENT}.
+@cindex documentation @subentry building @subentry PDF
+If you wish to build the PDF version of the manuals, you will need
+to have @TeX{} installed, and possibly additional packages that
+provide the necessary fonts and tools, such as @command{dvi2pdf}
+and @command{ps2pdf}.  You will also need GNU Troff (@command{groff})
+installed in order to format the reference card and the manual page
+(@pxref{Distribution contents}).  Managing this process is beyond the
+scope of this @value{DOCUMENT}.
 
 Assuming you have all you need, then the following commands produce the
 PDF versions of the documentation:
@@ -42592,6 +42619,23 @@ PDF versions of the documentation:
 cd doc
 make pdf
 @end example
+
+@noindent
+This creates PDF versions of all three Texinfo documents included
+in the distribution, as well as of the manual page and the reference card.
+
+@cindex documentation @subentry building @subentry HTML
+Similarly, if you have a recent enough version of @command{makeinfo},
+you can make the HTML version of the manuals with:
+
+@example
+cd doc
+make html
+@end example
+
+@noindent
+This creates HTML versions of all three Texinfo documents included
+in the distribution.
 
 @node Non-Unix Installation
 @appendixsec Installation on Other Operating Systems
