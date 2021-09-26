@@ -1,3 +1,8 @@
+2021-09-26         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* builtin.c (do_mktime): Update that ISO 8601 does not allow
+	hours > 23. Thanks to Nethox <nethox+awk@gmail.com> for the info.
+
 2021-09-23         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawkapi.h: Some clean-up of comments in the header file.

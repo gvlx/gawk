@@ -2121,10 +2121,12 @@ do_mktime(int nargs)
 			& hour, & minute, & second,
 		        & dst);
 
+	// 9/2021: I've been told that according to the ISO 8601-1:2019 spec,
+	// hour cannot be 24. So the check for hour > 23 is valid.
 	if (   do_lint /* Ready? Set! Go: */
 	    && (   (second < 0 || second > 60)
 		|| (minute < 0 || minute > 59)
-		|| (hour < 0 || hour > 23) /* FIXME ISO 8601 allows 24 ? */
+		|| (hour < 0 || hour > 23)
 		|| (day < 1 || day > 31)
 		|| (month < 1 || month > 12) ))
 			lintwarn(_("mktime: at least one of the values is out of the default range"));
