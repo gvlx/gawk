@@ -58,12 +58,13 @@
 @c These apply across the board.
 @set UPDATE-MONTH Luglio 2021
 @set VERSION 5.1
-@set PATCHLEVEL 0
+@set PATCHLEVEL 1
 
 @c added Italian hyphenation stuff
 @hyphenation{ven-go-no o-met-te-re o-met-ten-do}
 
 @set GAWKINETTITLE TCP/IP Internetworking with @command{gawk}
+@set GAWKWORKFLOWTITLE Participating in @command{gawk} Development
 @ifset FOR_PRINT
 @set TITLE Programmare efficacemente in awk
 @end ifset
@@ -44770,7 +44771,7 @@ dal deposito Git ufficiale; per maggiori informazioni, si veda
 
 @node Scompattazione
 @appendixsubsec Scompattare la distribuzione
-@command{gawk} @`e distribuito sotto forma di parecchi file @code{tar}
+@command{gawk} @`e distribuito sotto forma di parecchi file @command{tar}
 compressi con differenti programmi di compressione: @command{gzip},
 @command{bzip2}
 e @command{xz}. Per amor di semplicit@`a, il resto di queste istruzioni
@@ -44779,7 +44780,7 @@ presuppone che si stia usando quella compressa col programma GNU Gzip
 
 Una volta che si ha a disposizione la distribuzione (p.es.,
 @file{gawk-@value{VERSION}.@value{PATCHLEVEL}.tar.gz}),
-va usato @code{gzip} per scompattare il file e quindi @code{tar} per estrarne i
+va usato @command{gzip} per scompattare il file e quindi @command{tar} per estrarne i
 file.  Si pu@`o usare la seguente @dfn{pipe} per produrre la distribuzione
 @command{gawk}:
 
@@ -44860,16 +44861,21 @@ Un file che fornisce una panoramica sul processo di configurazione e installazio
 @item ChangeLog
 Una lista dettagliata delle modifiche apportate al codice sorgente,
 ai problemi risolti e ai miglioramenti introdotti.
+Un file con questo nome file @`e presente anche in ogni sottodirectory.
 
 @item ChangeLog.0
-Una lista meno recente di modifiche al codice sorgente.
+@itemx ChangeLog.1
+Liste meno recenti di modifiche al codice sorgente.
+Dei file con questi nomi sono presenti anche in ogni sottodirectory.
 
 @item NEWS
-Una lista di modifiche a @command{gawk} a partire dall'ultimo rilascio
-o @dfn{patch}.
+Una lista di modifiche a @command{gawk} a partire dall'ultimo rilascio o @dfn{patch}.
+Possono esserci file con questo nome anche in qualche sottodirectory.
 
 @item NEWS.0
-Una lista meno recente di modifiche a @command{gawk}.
+@itemx NEWS.1
+Liste meno recente di modifiche a @command{gawk}.
+Possono esserci file con questo nome anche in qualche sottodirectory.
 
 @item COPYING
 La @dfn{GNU General Public License}.
@@ -44946,6 +44952,23 @@ con @command{makeinfo} per produrre un file Info o HTML.
 @item doc/gawkinet.info
 Il file Info generato per
 @cite{@value{GAWKINETTITLE}}.
+
+@item doc/gawkworkflow.texi
+Il file sorgente Texinfo per
+@ifinfo
+@inforef{Top, , Introduzione generale, gawkworkflow, @value{GAWKWORKFLOWTITLE}}.
+@end ifinfo
+@ifnotinfo
+@cite{@value{GAWKWORKFLOWTITLE}}.
+@end ifnotinfo
+Dovrebbe venire elaborato con @TeX{}
+(tramite @command{texi2dvi} o @command{texi2pdf})
+per produrre un documento stampato o
+con @command{makeinfo} per produrre un file Info o HTML.
+
+@item doc/gawkorkflow.info
+Il file Info generato per
+@cite{@value{GAWKWORKFLOWTITLE}}.
 
 @item doc/igawk.1
 Il sorgente @command{troff} per una pagina di manuale relativa al
@@ -45399,29 +45422,50 @@ cd gawk
 @node Generare la documentazione
 @appendixsubsec Generare la documentazione
 
-La documentazione nel formato @command{info} @`e inclusa nei file
-@command{tar} della documentazione e in @command{git}.  Non dovrebbe
-essere necessario generarla nuovamente.
+@cindex documentazione @subentry generare @subentry file Info
+La documentazione nel formato Info @`e inclusa nei file
+@command{tar} della documentazione e nel @dfn{repository}
+Git.  Non dovrebbe essere necessario generarla nuovamente.
 In ogni caso, se servisse, @`e possibile farlo utilizzando semplicemente
-@command{make}, ammesso che si abbia a disposizione una versione
+il comando @command{make}, ammesso che si abbia a disposizione una versione
 di @command{makeinfo} abbastanza recente.
 
+@cindex documentazione @subentry generare @subentry file PDF
 Volendo generare la versione PDF del manuale, occorre avere a disposizione
 @TeX{}, ed eventualmente ulteriori pacchetti che contengono i caratteri
 e gli strumenti software necessari, come @command{ps2pdf}.
 @`E anche necessario avere a disposizione GNU Troff (@command{groff})
 per formattare la scheda di riferimento e la pagina di manuale
-[consultabile con @command{man}].  Come installare tutti questi
-pacchetti software non @`e compreso in ci@`o che viene trattato
-in questo @value{DOCUMENT}.
+[consultabile con @command{man}] (@pxref{Contenuti della distribuzione}).
+Come installare tutti questi pacchetti software non fa parte di
+ci@`o che viene trattato in questo @value{DOCUMENT}.
 
-Supponendo che si abbia a disposizione il necssario, i comandi
+Supponendo che si abbia a disposizione il necessario, i comandi
 seguenti producono le versioni PDF della documentazione:
 
 @example
 cd doc
 make pdf
 @end example
+
+@noindent
+Questo comando genera le versioni PDF di tutti e tre i documenti Texinfo
+inclusi nella distribuzione, come pure la pagina di manuale e la scheda
+di riferimento.
+
+@cindex documentazione @subentry generare @subentry file HTML
+Analogamente, se la versione disponibile di @command{makeinfo}
+@`e abbastanza recente, si pu@`o generare la versione HTML dei
+manuali con:
+
+@example
+cd doc
+make html
+@end example
+
+@noindent
+Questo comando genera le versioni HTML di tutti e tre i documenti Texinfo
+inclusi nella distribuzione.
 
 @node Installazione non-Unix
 @appendixsec Installazione su altri Sistemi Operativi
