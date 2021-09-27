@@ -3865,7 +3865,7 @@ The following list describes options mandated by the POSIX standard:
 @itemx --field-separator @var{fs}
 @cindex @option{-F} option
 @cindex @option{--field-separator} option
-@cindex @code{FS} variable @subentry @code{--field-separator} option and
+@cindex @code{FS} variable @subentry @option{--field-separator} option and
 Set the @code{FS} variable to @var{fs}
 (@pxref{Field Separators}).
 
@@ -4200,7 +4200,7 @@ if @command{gawk} is not compiled to use the GNU MPFR and MP libraries
 @cindex @option{--non-decimal-data} option
 @cindex hexadecimal values, enabling interpretation of
 @cindex octal values, enabling interpretation of
-@cindex troubleshooting @subentry @code{--non-decimal-data} option
+@cindex troubleshooting @subentry @option{--non-decimal-data} option
 Enable automatic interpretation of octal and hexadecimal
 values in input data
 (@pxref{Nondecimal Data}).
@@ -4305,8 +4305,8 @@ data (@pxref{Locales}).
 
 @c @cindex automatic warnings
 @c @cindex warnings, automatic
-@cindex @option{--traditional} option @subentry @code{--posix} option and
-@cindex @option{--posix} option @subentry @code{--traditional} option and
+@cindex @option{--traditional} option @subentry @option{--posix} option and
+@cindex @option{--posix} option @subentry @option{--traditional} option and
 If you supply both @option{--traditional} and @option{--posix} on the
 command line, @option{--posix} takes precedence. @command{gawk}
 issues a warning if both options are supplied.
@@ -6669,13 +6669,13 @@ in @ref{Regexp Operators}.
 @end ifnotdocbook
 @end ifnottex
 
-@item @code{--posix}
+@item @option{--posix}
 Match only POSIX regexps; the GNU operators are not special
 (e.g., @samp{\w} matches a literal @samp{w}).  Interval expressions
 are allowed.
 
 @cindex Brian Kernighan's @command{awk}
-@item @code{--traditional}
+@item @option{--traditional}
 Match traditional Unix @command{awk} regexps. The GNU operators
 are not special, and interval expressions are not available.
 Because BWK @command{awk} supports them,
@@ -6683,7 +6683,7 @@ the POSIX character classes (@samp{[[:alnum:]]}, etc.) are available.
 Characters described by octal and hexadecimal escape sequences are
 treated literally, even if they represent regexp metacharacters.
 
-@item @code{--re-interval}
+@item @option{--re-interval}
 Allow interval expressions in regexps, if @option{--traditional}
 has been provided.
 Otherwise, interval expressions are available by default.
@@ -14143,8 +14143,8 @@ Field reference.
 
 @cindex @code{+} (plus sign) @subentry @code{++} operator
 @cindex plus sign (@code{+}) @subentry @code{++} operator
-@cindex @code{-} (hyphen) @subentry @code{--} operator
-@cindex hyphen (@code{-}) @subentry @code{--} operator
+@cindex @code{-} (hyphen) @subentry @option{--} operator
+@cindex hyphen (@code{-}) @subentry @option{--} operator
 @item @code{++ --}
 Increment, decrement.
 
@@ -20728,7 +20728,7 @@ that illustrates the use of these functions:
 
 @cindex @code{bits2str()} user-defined function
 @cindex user-defined @subentry function @subentry @code{bits2str()}
-@cindex @code{testbits.awk} program
+@cindex @file{testbits.awk} program
 @example
 @group
 @c file eg/lib/bits2str.awk
@@ -23655,7 +23655,7 @@ mechanism for dealing with files that can't be opened.  However, the
 code here provides a portable solution.} You can do this by prepending
 the following program to your @command{awk} program:
 
-@cindex @code{readable.awk} program
+@cindex @file{readable.awk} program
 @example
 @c file eg/lib/readable.awk
 # readable.awk --- library file to skip over unreadable files
@@ -23713,7 +23713,7 @@ in @ref{Filetrans Function}, the following library file calls a function named
 @code{zerofile()} that the user must provide.  The arguments passed are
 the @value{FN} and the position in @code{ARGV} where it was found:
 
-@cindex @code{zerofile.awk} program
+@cindex @file{zerofile.awk} program
 @example
 @c file eg/lib/zerofile.awk
 # zerofile.awk --- library file to process empty input files
@@ -23773,7 +23773,7 @@ Some users have suggested an additional command-line option for @command{gawk}
 to disable command-line assignments.  However, some simple programming with
 a library file does the trick:
 
-@cindex @code{noassign.awk} program
+@cindex @file{noassign.awk} program
 @example
 @c file eg/lib/noassign.awk
 # noassign.awk --- library file to avoid the need for a
@@ -25411,7 +25411,7 @@ functions needed, and a @code{usage()} function that prints out a usage
 message and exits.  @code{usage()} is called if invalid arguments are
 supplied:
 
-@cindex @code{cut.awk} program
+@cindex @file{cut.awk} program
 @example
 @c file eg/prog/cut.awk
 # cut.awk --- implement cut in awk
@@ -25766,7 +25766,7 @@ that processes the command-line arguments with @code{getopt()}.  The @option{-i}
 @code{IGNORECASE} predefined variable
 (@pxref{Built-in Variables}):
 
-@cindex @code{egrep.awk} program
+@cindex @file{egrep.awk} program
 @example
 @c file eg/prog/egrep.awk
 # egrep.awk --- simulate egrep in awk
@@ -26033,7 +26033,7 @@ The program is moderately straightforward.  All the work is done in the
 It starts with explanatory comments, a list of options,
 and then a @code{usage()} function:
 
-@cindex @code{id.awk} program
+@cindex @file{id.awk} program
 @example
 @c file eg/prog/id.awk
 # id.awk --- implement id in awk
@@ -26434,7 +26434,7 @@ a @code{usage()} function describing the options. The variable
 @code{common} keeps the function's lines short so that they
 look nice on the page:
 
-@cindex @code{split.awk} program
+@cindex @file{split.awk} program
 @example
 @c file eg/prog/split.awk
 # split.awk --- do split in awk
@@ -26752,7 +26752,7 @@ If the first argument is @option{-a}, then the flag variable
 Finally, @command{awk} is forced to read the standard input by setting
 @code{ARGV[1]} to @code{"-"} and @code{ARGC} to two:
 
-@cindex @code{tee.awk} program
+@cindex @file{tee.awk} program
 @example
 @c file eg/prog/tee.awk
 # tee.awk --- tee in awk
@@ -26901,7 +26901,7 @@ and the @code{join()} library function
 The program begins with a @code{usage()} function and then a brief outline of
 the options and their meanings in comments:
 
-@cindex @code{uniq.awk} program
+@cindex @file{uniq.awk} program
 @example
 @c file eg/prog/uniq.awk
 @group
@@ -27249,7 +27249,7 @@ The @code{BEGIN} rule does the argument processing.  The variable
 @code{print_total} is true if more than one file is named on the
 command line:
 
-@cindex @code{wc.awk} program
+@cindex @file{wc.awk} program
 @example
 @c file eg/prog/wc.awk
 # wc.awk --- count lines, words, characters, bytes
@@ -27446,7 +27446,7 @@ If there are no fields left after removing all the punctuation, the
 current record is skipped.  Otherwise, the program loops through each
 word, comparing it to the previous one:
 
-@cindex @code{dupword.awk} program
+@cindex @file{dupword.awk} program
 @example
 @c file eg/prog/dupword.awk
 # dupword.awk --- find duplicate words in text
@@ -27538,7 +27538,7 @@ Just for a change, this program uses a @code{switch} statement
 @code{if}-@code{else} statements instead.
 Here is the program:
 
-@cindex @code{alarm.awk} program
+@cindex @file{alarm.awk} program
 @example
 @c file eg/prog/alarm.awk
 # alarm.awk --- set an alarm
@@ -27734,7 +27734,7 @@ as the target.  The main program sets two global variables, @code{FROM} and
 
 Finally, the processing rule simply calls @code{translate()} for each record:
 
-@cindex @code{translate.awk} program
+@cindex @file{translate.awk} program
 @example
 @c file eg/prog/translate.awk
 # translate.awk --- do tr-like stuff
@@ -27887,7 +27887,7 @@ that there are two blank lines at the top and two blank lines at the bottom.
 The @code{END} rule arranges to flush the final page of labels; there may
 not have been an even multiple of 20 labels in the data:
 
-@cindex @code{labels.awk} program
+@cindex @file{labels.awk} program
 @example
 @c file eg/prog/labels.awk
 # labels.awk --- print mailing labels
@@ -28018,7 +28018,7 @@ to remove punctuation characters.  Finally, we solve the third problem
 by using the system @command{sort} utility to process the output of the
 @command{awk} script.  Here is the new version of the program:
 
-@cindex @code{wordfreq.awk} program
+@cindex @file{wordfreq.awk} program
 @example
 @c file eg/prog/wordfreq.awk
 # wordfreq.awk --- print list of word frequencies
@@ -28110,7 +28110,7 @@ Each element of @code{lines} is a unique command, and the indices of
 The @code{END} rule simply prints out the lines, in order:
 
 @cindex Rakitzis, Byron
-@cindex @code{histsort.awk} program
+@cindex @file{histsort.awk} program
 @example
 @c file eg/prog/histsort.awk
 # histsort.awk --- compact a shell history file
@@ -28280,7 +28280,7 @@ The first rule handles calling @code{system()}, checking that a command is
 given (@code{NF} is at least three) and also checking that the command
 exits with a zero exit status, signifying OK:
 
-@cindex @code{extract.awk} program
+@cindex @file{extract.awk} program
 @example
 @c file eg/prog/extract.awk
 # extract.awk --- extract files and run programs from Texinfo files
@@ -29022,7 +29022,7 @@ The following program uses arrays of arrays to bring together
 words with the same signature and array sorting to print the words
 in sorted order:
 
-@cindex @code{anagram.awk} program
+@cindex @file{anagram.awk} program
 @example
 @c file eg/prog/anagram.awk
 # anagram.awk --- An implementation of the anagram-finding algorithm
@@ -29306,7 +29306,7 @@ information is printed.  Modify the @command{awk} version
 same way.
 
 @item
-The @code{split.awk} program (@pxref{Split Program}) assumes
+The @file{split.awk} program (@pxref{Split Program}) assumes
 that letters are contiguous in the character set,
 which isn't true for EBCDIC systems.
 Fix this problem.
@@ -29567,9 +29567,9 @@ Because it is common to have decimal data with leading zeros, and because
 using this facility could lead to surprising results, the default is to leave it
 disabled.  If you want it, you must explicitly request it.
 
-@cindex programming conventions @subentry @code{--non-decimal-data} option
+@cindex programming conventions @subentry @option{--non-decimal-data} option
 @cindex @option{--non-decimal-data} option @subentry @code{strtonum()} function and
-@cindex @code{strtonum()} function (@command{gawk}) @subentry @code{--non-decimal-data} option and
+@cindex @code{strtonum()} function (@command{gawk}) @subentry @option{--non-decimal-data} option and
 @quotation CAUTION
 @emph{Use of this option is not recommended.}
 It can break old programs very badly.
@@ -31440,7 +31440,7 @@ the initial @file{.pot} file:
 gawk --gen-pot -f guide.awk > guide.pot
 @end example
 
-@cindex @code{xgettext} utility
+@cindex @command{xgettext} utility
 When run with @option{--gen-pot}, @command{gawk} does not execute your
 program.  Instead, it parses it as usual and prints all marked strings
 to standard output in the format of a GNU @command{gettext} Portable Object
@@ -37200,7 +37200,7 @@ variables (such as @code{ARGC} or @code{NF}).
 @item awk_bool_t sym_update_ns(const char *name_space, const char *name, awk_value_t *value);
 This is like @code{sym_update()}, but the @code{name_space} parameter allows you
 to specify which namespace @code{name} is part of.  @code{name_space} cannot be
-@code{NULL}. If it is @code{""} or @code{"awk}, then @code{name} is searched
+@code{NULL}. If it is @code{""} or @code{"awk"}, then @code{name} is searched
 for in the default @code{awk} namespace.
 @end table
 
@@ -39874,7 +39874,7 @@ Next, go to @url{https://sourceforge.net/projects/gawkextlib/files} to
 download @code{gawkextlib} and any extensions that you would like to build.
 The @file{README} file at that site explains how to build the code.  If you
 installed @command{gawk} in a non-standard location, you will need to
-specify @code{./configure --with-gawk=@var{/path/to/gawk}} to find it.
+specify @samp{./configure --with-gawk=@var{/path/to/gawk}} to find it.
 You may need to use the @command{sudo} utility
 to install both @command{gawk} and @code{gawkextlib}, depending upon
 how your system works.
@@ -42036,7 +42036,7 @@ you are using the one compressed with the GNU Gzip program (@command{gzip}).
 
 Once you have the distribution (e.g.,
 @file{gawk-@value{VERSION}.@value{PATCHLEVEL}.tar.gz}),
-use @code{gzip} to expand the
+use @command{gzip} to expand the
 file and then use @command{tar} to extract it.  You can use the following
 pipeline to produce the @command{gawk} distribution:
 
@@ -42119,11 +42119,12 @@ There are similar files in all of the subdirectories.
 
 @item NEWS
 A list of changes to @command{gawk} since the last release or patch.
+There may be similar files in other subdirectories.
 
 @item NEWS.0
 @itemx NEWS.1
 Older lists of changes to @command{gawk}.
-There are similar files in all of the subdirectories.
+There may be similar files in other subdirectories.
 
 @item COPYING
 The GNU General Public License.
@@ -42469,7 +42470,7 @@ command line when compiling @command{gawk} from scratch, including:
 @table @code
 
 @cindex @option{--disable-extensions} configuration option
-@cindex configuration option @subentry @code{--disable-extensions}
+@cindex configuration option @subentry @option{--disable-extensions}
 @item --disable-extensions
 Disable the extension mechanism within @command{gawk}. With this
 option, it is not possible to use dynamic extensions.  This also
@@ -42481,7 +42482,7 @@ The default action is to dynamically check if the extensions
 can be configured and compiled.
 
 @cindex @option{--disable-lint} configuration option
-@cindex configuration option @subentry @code{--disable-lint}
+@cindex configuration option @subentry @option{--disable-lint}
 @item --disable-lint
 Disable all lint checking within @command{gawk}.  The
 @option{--lint} and @option{--lint-old} options
@@ -42504,21 +42505,21 @@ to fail.  This option may be removed at a later date.
 @end quotation
 
 @cindex @option{--disable-mpfr} configuration option
-@cindex configuration option @subentry @code{--disable-mpfr}
+@cindex configuration option @subentry @option{--disable-mpfr}
 @item --disable-mpfr
 Skip checking for the MPFR and GMP libraries. This is useful
 mainly for the developers, to make sure nothing breaks if
 MPFR support is not available.
 
 @cindex @option{--disable-nls} configuration option
-@cindex configuration option @subentry @code{--disable-nls}
+@cindex configuration option @subentry @option{--disable-nls}
 @item --disable-nls
 Disable all message-translation facilities.
 This is usually not desirable, but it may bring you some slight performance
 improvement.
 
 @cindex @option{--enable-versioned-extension-dir} configuration option
-@cindex configuration option @subentry @code{--enable-versioned-extension-dir}
+@cindex configuration option @subentry @option{--enable-versioned-extension-dir}
 @item --enable-versioned-extension-dir
 Use a versioned directory for extensions.  The directory name will
 include the major and minor API versions in it. This makes it possible
@@ -43365,9 +43366,9 @@ not (or not exclusively) in HTML.
 understood in common by all the maintainers.}
 @end enumerate
 
-@cindex @code{bug-gawk@@gnu.org} bug reporting address
-@cindex email address for bug reports, @code{bug-gawk@@gnu.org}
-@cindex bug reports, email address, @code{bug-gawk@@gnu.org}
+@cindex @email{bug-gawk@@gnu.org} bug reporting address
+@cindex email address for bug reports, @email{bug-gawk@@gnu.org}
+@cindex bug reports, email address, @email{bug-gawk@@gnu.org}
 Once you have a precise problem description, send email to
 @EMAIL{bug-gawk@@gnu.org,bug dash gawk at gnu dot org}.
 
@@ -44188,7 +44189,7 @@ submit your changes.
 information.)
 
 Using this format makes it easy for me to apply your changes to the
-master version of the @command{gawk} source code (using @code{patch}).
+master version of the @command{gawk} source code (using @command{patch}).
 If I have to apply the changes manually, using a text editor, I may
 not do so, particularly if there are lots of changes.
 
