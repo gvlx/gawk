@@ -1,3 +1,8 @@
+2021-09-27         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.in: Small cleanups from Antonio Columbo.  General
+	review of usage of @code.
+
 2021-09-24         Arnold D. Robbins     <arnold@skeeve.com>
 	
 	* gawktexi.in (Building the Documentation): Improve the text,
