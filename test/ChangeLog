@@ -1,3 +1,7 @@
+2021-09-27         Andrew J. Schorr      <aschorr@telemetry-investments.com>
+
+	* ordchr.awk, ordchr.awk: Add test for ord signedness.
+
 2021-09-19         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* Makefile.am (EXTRA_DIST): Remove commas.in from the list.
