@@ -3570,8 +3570,8 @@ awk '@{ if (length($0) > max) max = length($0) @}
 Il codice associato a @code{END} viene eseguito dopo che tutto
 l'input @`e stato letto; @`e l'altra faccia della medaglia di @code{BEGIN}.
 
-@cindex programma @subentry @command{expand}
 @cindex @command{expand} (programma)
+@cindex programma @subentry @command{expand}
 @item
 Stampare la lunghezza della riga pi@`u lunga in @file{data}:
 
@@ -4167,7 +4167,7 @@ L'elenco seguente descrive le opzioni richieste dallo standard POSIX:
 @cindex opzione @subentry @option{-F}
 @cindex @option{--field-separator} (opzione)
 @cindex opzione @subentry @option{--field-separator}
-@cindex @code{FS} (variabile) @subentry l'opzione @code{--field-separator} e
+@cindex @code{FS} (variabile) @subentry l'opzione @option{--field-separator} e
 Imposta la variabile @code{FS} a @var{fs}
 (@pxref{Separatori di campo}).
 
@@ -4561,7 +4561,7 @@ MPFR e MP
 @cindex valori @subentry esadecimali @subentry abilitare l'interpretazione di
 @cindex ottali @subentry numeri @subentry abilitare l'interpretazione di
 @cindex valori @subentry ottali @subentry abilitare l'interpretazione di
-@cindex risoluzione di problemi @subentry opzione @code{--non-decimal-data}
+@cindex risoluzione di problemi @subentry opzione @option{--non-decimal-data}
 Abilita l'interpretazione automatica di valori ottali ed esadecimali
 nei dati di input
 (@pxref{Dati non decimali}).
@@ -4683,10 +4683,10 @@ i dati di input
 
 @c @cindex automatic warnings
 @c @cindex warnings, automatic
-@cindex @option{--traditional} (opzione) @subentry e opzione @code{--posix}
-@cindex opzione @subentry @option{--traditional} @subentry e opzione @code{--posix}
-@cindex @option{--posix} (opzione) @subentry e opzione @code{--traditional}
-@cindex opzione @subentry @option{--posix} @subentry e opzione @code{--traditional}
+@cindex @option{--traditional} (opzione) @subentry e opzione @option{--posix}
+@cindex opzione @subentry @option{--traditional} @subentry e opzione @option{--posix}
+@cindex @option{--posix} (opzione) @subentry e opzione @option{--traditional}
+@cindex opzione @subentry @option{--posix} @subentry e opzione @option{--traditional}
 Se si forniscono entrambe le opzioni @option{--traditional} e @option{--posix}
 sulla riga di comando, @option{--posix} ha la precedenza.  Se vengono fornite
 entrambe le opzioni @command{gawk} emette un avviso.
@@ -7000,13 +7000,13 @@ in @ref{Operatori di espressioni regolari}.
 @end ifnotdocbook
 @end ifnottex
 
-@item @code{--posix}
+@item @option{--posix}
 Sono ammesse solo le @dfn{regexp} POSIX; gli operatori GNU non sono
 speciali (p.es., @samp{\w} individua una semplice lettera @samp{w}).
 Le espressioni di intervallo sono ammesse.
 
 @cindex Brian Kernighan @subentry @command{awk} di
-@item @code{--traditional}
+@item @option{--traditional}
 Le @dfn{regexp} Unix tradizionali di @command{awk} sono ammesse.  Gli
 operatori GNU non sono speciali, e le espressioni
 di intervallo non sono ammesse.
@@ -7015,7 +7015,7 @@ poich@'e BWK @command{awk} le prevede.
 I caratteri descritti usando sequenze di protezione ottali ed esadecimali sono
 trattati letteralmente, anche se rappresentano metacaratteri di @dfn{regexp}.
 
-@item @code{--re-interval}
+@item @option{--re-interval}
 Sono consentite espressioni di intervallo in @dfn{regexp},
 se @option{--traditional} @`e stata specificata.
 Altrimenti, le espressioni di intervallo sono disponibili per default.
@@ -21323,7 +21323,7 @@ In aggiunta a ci@`o, le notazioni alternative sono riconosciute, ma al
 loro posto sono usate quelle normali.
 
 @cindex @code{date} (programma di utilit@`a POSIX)
-@cindex programma di utilit@`a POSIX @subentry @code{date}
+@cindex programma di utilit@`a POSIX @subentry @command{date}
 @cindex POSIX @command{awk} @subentry @code{date} (programma di utilit@`a)
 Il seguente esempio @`e un'implementazione @command{awk} del
 programma di utilit@`a POSIX @command{date}.
@@ -21590,8 +21590,8 @@ che illustra l'uso di queste funzioni:
 
 @cindex @code{bits2str()} @subentry funzione definita dall'utente
 @cindex funzione definita dall'utente @subentry @code{bits2str()}
-@cindex @code{testbits.awk} (programma)
-@cindex programma @subentry @code{testbits.awk}
+@cindex @file{testbits.awk} (programma)
+@cindex programma @subentry @file{testbits.awk}
 @example
 @group
 @c file eg/lib/bits2str.awk
@@ -24690,7 +24690,8 @@ Tuttavia, il codice qui proposto fornisce una soluzione portabile.}
 Si pu@`o far questo facendo precedere il proprio programma @command{awk} dal
 seguente programma:
 
-@cindex @code{readable.awk} (programma)
+@cindex @file{readable.awk} (programma)
+@cindex programma @subentry @file{readable.awk}
 @example
 @c file eg/lib/readable.awk
 # readable.awk --- file di libreria per saltare file non leggibili
@@ -24754,7 +24755,8 @@ Usando la variabile @code{ARGIND} di @command{gawk}
 di nome @code{zerofile()} che l'utente deve fornire.  Gli argomenti passati
 sono il @value{FN} e la posizione del file in @code{ARGV}:
 
-@cindex @code{zerofile.awk} (programma)
+@cindex @file{zerofile.awk} (programma)
+@cindex programma @subentry @file{zerofile.awk}
 @example
 @c file eg/lib/zerofile.awk
 # zerofile.awk --- file di libreria per elaborare file in input vuoti
@@ -24818,8 +24820,8 @@ Alcuni utenti hanno suggerito un'opzione aggiuntiva da riga di comando per
 Comunque, poche righe di codice di programmazione in un file di libreria
 hanno lo stesso effetto:
 
-@cindex @code{noassign.awk} (programma)
-@cindex programma @subentry @code{noassign.awk}
+@cindex @file{noassign.awk} (programma)
+@cindex programma @subentry @file{noassign.awk}
 @example
 @c file eg/lib/noassign.awk
 # noassign.awk --- file di libreria per evitare la necessit@`a
@@ -25418,7 +25420,8 @@ un file non accessibile dall'utente normale. La struttura del file
 @file{/etc/passwd} @`e rimasta la stessa, ma al posto del campo @dfn{password}
 c'@`e una @code{x}.}
 
-@cindex @command{pwcat} (programma)
+@cindex @command{pwcat} (programma C)
+@cindex programma C @subentry @command{pwcat}
 Sebbene un programma @command{awk} possa semplicemente leggere
 @file{/etc/passwd} direttamente, questo file pu@`o non contenere tutte le
 informazioni su tutti gli utenti del sistema.@footnote{Capita spesso che le
@@ -25816,6 +25819,7 @@ piccolo programma in C che genera la lista dei gruppi come suo output.
 
 @cindex @command{grcat} (programma C)
 @cindex programma C @subentry @command{grcat}
+@cindex @command{grcat} (programma C)
 @example
 @c file eg/lib/grcat.c
 /*
@@ -26603,8 +26607,8 @@ di libreria necessarie, e una funzione @code{sintassi()} che stampa un
 messaggio ed esce.  @code{sintassi()} @`e chiamato se si specificano degli
 argomenti non validi:
 
-@cindex @code{cut.awk} (programma)
-@cindex programma @subentry @code{cut.awk}
+@cindex @file{cut.awk} (programma)
+@cindex programma @subentry @file{cut.awk}
 @example
 @c file eg/prog/cut.awk
 # cut.awk --- implementa cut in awk
@@ -26956,8 +26960,8 @@ da implementare con @command{gawk}; basta usare la variabile predefinita
 @code{IGNORECASE}
 (@pxref{Variabili predefinite}):
 
-@cindex @code{egrep.awk} (programma)
-@cindex programma @subentry @code{egrep.awk}
+@cindex @file{egrep.awk} (programma)
+@cindex programma @subentry @file{egrep.awk}
 @example
 @c file eg/prog/egrep.awk
 # egrep.awk --- simula egrep in awk
@@ -27250,8 +27254,8 @@ Il programma @`e abbastanza semplice.  Tutto il lavoro @`e svolto nella regola
 Inizia con dei commenti di spiegazione, una lista di opzioni e infine
 una funzione @code{sintassi()} function:
 
-@cindex @code{id.awk} (programma)
-@cindex programma @subentry @code{id.awk}
+@cindex @file{id.awk} (programma)
+@cindex programma @subentry @file{id.awk}
 @example
 @c file eg/prog/id.awk
 # id.awk --- implement id in awk
@@ -27674,8 +27678,8 @@ funzione @code{sintassi()} che ne descrive le opzioni.  La variabile
 @code{comune} permettere di avere delle righe brevi nella funzione,
 in modo che sia stampata in maniera elegante nella pagina:
 
-@cindex @code{split.awk} (programma)
-@cindex programma @subentry @code{split.awk}
+@cindex @file{split.awk} (programma)
+@cindex programma @subentry @file{split.awk}
 @example
 @c file eg/prog/split.awk
 # split.awk --- comando split scritto in awk
@@ -28015,8 +28019,8 @@ esce.
 Infine, @command{awk} viene obbligato a leggere lo standard input
 impostando @code{ARGV[1]} al valore @code{"-"} e @code{ARGC} a due:
 
-@cindex @code{tee.awk} (programma)
-@cindex programma @subentry @code{tee.awk}
+@cindex @file{tee.awk} (programma)
+@cindex programma @subentry @file{tee.awk}
 @example
 @c file eg/prog/tee.awk
 # tee.awk --- tee in awk
@@ -28168,8 +28172,8 @@ e la funzione di libreria @code{join()}
 Il programma inizia con una funzione @code{sintassi()} e poi con una breve
 spiegazione delle opzioni e del loro significato, sotto forma di commenti:
 
-@cindex @code{uniq.awk} (programma)
-@cindex programma @subentry @code{uniq.awk}
+@cindex @file{uniq.awk} (programma)
+@cindex programma @subentry @file{uniq.awk}
 @example
 @c file eg/prog/uniq.awk
 @group
@@ -28541,8 +28545,8 @@ La regola @code{BEGIN} elabora gli argomenti.  La variabile
 @code{stampa_totale} @`e vera se pi@`u di un file @`e presente sulla
 riga di comando:
 
-@cindex @code{wc.awk} (programma)
-@cindex programma @subentry @code{wc.awk}
+@cindex @file{wc.awk} (programma)
+@cindex programma @subentry @file{wc.awk}
 @example
 @c file eg/prog/wc.awk
 # wc.awk --- conta righe, parole, caratteri, byte
@@ -28751,8 +28755,8 @@ Se, dopo aver rimosso tutta la punteggiatura, non rimane alcun campo, il
 record corrente @`e saltato.  In caso contrario, il programma esegue il ciclo
 per ogni parola, confrontandola con quella che la precede:
 
-@cindex @code{dupword.awk} (programma)
-@cindex programma @subentry @code{dupword.awk}
+@cindex @file{dupword.awk} (programma)
+@cindex programma @subentry @file{dupword.awk}
 @example
 @c file eg/prog/dupword.awk
 # dupword.awk --- trova parole duplicate in un testo
@@ -28851,8 +28855,8 @@ Per amor di variet@`a, questo programma usa un'istruzione @code{switch}
 con una serie di istruzioni @code{if}-@code{else}.
 Ecco il programma:
 
-@cindex @code{alarm.awk} (programma)
-@cindex programma @subentry @code{alarm.awk}
+@cindex @file{alarm.awk} (programma)
+@cindex programma @subentry @file{alarm.awk}
 @example
 @c file eg/prog/alarm.awk
 # alarm.awk --- impostare una sveglia
@@ -29066,8 +29070,8 @@ come stringa.  Il programma principale imposta due variabili globali, @code{DA} 
 Infine, la regola di elaborazione si limita a chiamare @code{traducilo()}
 per ogni record:
 
-@cindex @code{translate.awk} (programma)
-@cindex programma @subentry @code{translate.awk}
+@cindex @file{translate.awk} (programma)
+@cindex programma @subentry @file{translate.awk}
 @example
 @c file eg/prog/translate.awk
 # translate.awk --- fa cose simili al comando tr
@@ -29225,8 +29229,8 @@ La regola @code{END} si occupa di stampare l'ultima pagina di
 etichette; @`e improbabile che il numero di indirizzi da stampare sia un
 multiplo esatto di 20:
 
-@cindex @code{labels.awk} (programma)
-@cindex programma @subentry @code{labels.awk}
+@cindex @file{labels.awk} (programma)
+@cindex programma @subentry @file{labels.awk}
 @example
 @c file eg/prog/labels.awk
 # labels.awk --- stampare etichette per lettera
@@ -29370,8 +29374,8 @@ risolvere il terzo problema si pu@`o usare il programma di utilit@`a
 @command{sort} per elaborare l'output dello @dfn{script} @command{awk}.  Ecco la
 nuova versione del programma:
 
-@cindex @code{wordfreq.awk} (programma)
-@cindex programma @subentry @code{wordfreq.awk}
+@cindex @file{wordfreq.awk} (programma)
+@cindex programma @subentry @file{wordfreq.awk}
 @example
 @c file eg/prog/wordfreq.awk
 # wordfreq.awk --- stampa la lista con la frequenza delle parole
@@ -29468,8 +29472,8 @@ incontrate.
 La regola @code{END} stampa semplicemente le righe, in ordine:
 
 @cindex Rakitzis, Byron
-@cindex @code{histsort.awk} (programma)
-@cindex programma @subentry @code{histsort.awk}
+@cindex @file{histsort.awk} (programma)
+@cindex programma @subentry @file{histsort.awk}
 @example
 @c file eg/prog/histsort.awk
 # histsort.awk --- compatta un file della cronologia dei comandi della shell
@@ -29650,8 +29654,8 @@ stato fornito un comando (@code{NF} dev'essere almeno tre) e controllando
 anche che il comando termini con un codice di ritorno uguale a zero, che sta
 a significare che tutto @`e andato bene:
 
-@cindex @code{extract.awk} (programma)
-@cindex programma @subentry @code{extract.awk}
+@cindex @file{extract.awk} (programma)
+@cindex programma @subentry @file{extract.awk}
 @example
 @c file eg/prog/extract.awk
 # extract.awk --- estrae file ed esegue programmi dal file Texinfo
@@ -29873,8 +29877,8 @@ come un nome di @value{DF} da elaborare. Se non ne viene fornito alcuno, si
 usa lo standard input:
 
 @cindex Brennan, Michael
-@cindex @command{awksed.awk} (programma)
-@cindex programma @subentry @command{awksed.awk}
+@cindex @file{awksed.awk} (programma)
+@cindex programma @subentry @file{awksed.awk}
 @c @cindex simple stream editor
 @c @cindex stream editor, simple
 @example
@@ -30476,8 +30480,8 @@ Il programma seguente usa vettori di vettori per riunire
 parole con la stessa firma,  e l'ordinamento di vettori per stampare le
 parole trovate in ordine alfabetico:
 
-@cindex @code{anagram.awk} (programma)
-@cindex programma @subentry @code{anagram.awk}
+@cindex @file{anagram.awk} (programma)
+@cindex programma @subentry @file{anagram.awk}
 @example
 @c file eg/prog/anagram.awk
 # anagram.awk --- Un'implementazione dell'algoritmo per trovare anagrammi
@@ -30784,7 +30788,7 @@ informazioni stampare.  Modificare la versione @command{awk}
 stesso modo.
 
 @item
-Il programma @code{split.awk} (@pxref{Programma split}) presuppone che le
+Il programma @file{split.awk} (@pxref{Programma split}) presuppone che le
 lettere siano contigue nella codifica dei caratteri,
 il che non @`e vero per sistemi che usano la codifica EBCDIC.
 Risolvere questo problema.
@@ -31079,10 +31083,10 @@ e poich@'e l'uso di questa funzionalit@`a pu@`o portare a risultati inattesi, il
 comportamento di default @`e quello lasciarla disabilitata.  Se si vuole, la si
 deve richiedere esplicitamente.
 
-@cindex programmazione @subentry convenzioni di @subentry opzione @code{--non-decimal-data}
+@cindex programmazione @subentry convenzioni di @subentry opzione @option{--non-decimal-data}
 @cindex @option{--non-decimal-data} (opzione) @subentry funzione @code{strtonum()} e
 @cindex opzione @subentry @option{--non-decimal-data} @subentry funzione @code{strtonum()} e
-@cindex @code{strtonum()} (funzione @command{gawk}) @subentry opzione @code{--non-decimal-data} e
+@cindex @code{strtonum()} (funzione @command{gawk}) @subentry opzione @option{--non-decimal-data} e
 @quotation ATTENZIONE
 @emph{L'uso di questa opzione non @`e consigliata.}
 Pu@`o provocare errori molto seri eseguendo vecchi programmi.
@@ -33108,8 +33112,8 @@ si crea il file iniziale @file{.pot}:
 gawk --gen-pot -f guide.awk > guide.pot
 @end example
 
-@cindex @code{xgettext} (programma di utilit@`a)
-@cindex programma di utilit@`a @subentry @code{xgettext}
+@cindex @command{xgettext} (programma di utilit@`a)
+@cindex programma di utilit@`a @subentry @command{xgettext}
 Quando viene chiamato specificando @option{--gen-pot}, @command{gawk} non
 esegue il programma.  Il programma viene esaminato come al solito, e tutte
 le stringhe che sono state marcate per essere tradotte vengono scritte nello
@@ -39431,6 +39435,13 @@ gi@`a esistente @emph{non} @`e consentito, e questa routine non pu@`o neppure
 essere usata per aggiornare un vettore.
 Questa routine non pu@`o essere usata per modificare nessuna delle variabili
 predefinite (come @code{ARGC} o @code{NF}).
+
+@item awk_bool_t sym_update_ns(const char *name_space, const char *nome, awk_value_t *valore);
+Simile a @code{sym_update()}, ma il parametro @code{name_space} consente di
+specificare a quale spazio-di-nomi appartiene @code{nome}.
+@code{name_space} non pu@`o essere la stringa nulla (@code{NULL}).
+Se vale @code{""} o @code{"awk"}, allora @code{nome} @`e cercato nello
+spazio-di-nomi di default, ossia @code{awk}.
 @end table
 
 Un'estensione pu@`o andare a cercare il valore delle variabili speciali di
@@ -42380,7 +42391,7 @@ Poi, dal sito @url{https://sourceforge.net/projects/gawkextlib/files} si deve
 scaricare @code{gawkextlib} e le estensioni che si vogliono installare.
 Il file @file{README} del sito spiega come compilare il codice.  Se si @`e
 installato @command{gawk} in una posizione non-standard, occorre
-specificare @code{./configure --with-gawk=@var{/percorso/del/programma/gawk}}
+specificare @samp{./configure --with-gawk=@var{/percorso/del/programma/gawk}}
 per far s@`{@dotless{i}} che venga trovato.
 Pu@`o essere necessario usare il programma di utilit@`a @command{sudo}
 per installare sia @command{gawk} che @code{gawkextlib}, a seconda di come
@@ -44870,12 +44881,12 @@ Dei file con questi nomi sono presenti anche in ogni sottodirectory.
 
 @item NEWS
 Una lista di modifiche a @command{gawk} a partire dall'ultimo rilascio o @dfn{patch}.
-Possono esserci file con questo nome anche in qualche sottodirectory.
+Possono esserci file con questo nome anche in altre sottodirectory.
 
 @item NEWS.0
 @itemx NEWS.1
 Liste meno recente di modifiche a @command{gawk}.
-Possono esserci file con questo nome anche in qualche sottodirectory.
+Possono esserci file con questo nome anche in altre sottodirectory.
 
 @item COPYING
 La @dfn{GNU General Public License}.
@@ -45294,7 +45305,7 @@ L'azione di default @`e di controllare dinamicamente se le estensioni
 possono essere configurate e compilate.
 
 @cindex @option{--disable-lint} (opzione di configurazione)
-@cindex opzioni di configurazione @subentry @code{--disable-lint}
+@cindex opzioni di configurazione @subentry @option{--disable-lint}
 @item --disable-lint
 Disabilitare i controlli @dfn{lint} all'interno di @command{gawk}.  Le opzioni
 @option{--lint} e @option{--lint-old}
@@ -45319,7 +45330,7 @@ Quest'opzione potr@`a essere rimossa in futuro.
 @end quotation
 
 @cindex @option{--disable-mpfr} (opzione di configurazione)
-@cindex opzioni di configurazione @subentry @code{--disable-mpfr}
+@cindex opzioni di configurazione @subentry @option{--disable-mpfr}
 @item --disable-mpfr
 Non effettuare il controllo delle librerie MPFR e GMP.
 Ci@`o pu@`o essere utile principalmente per gli sviluppatori,
@@ -45327,14 +45338,14 @@ per assicurarsi che tutto funzioni regolarmente nel caso in cui
 il supporto MPFR non sia disponibile.
 
 @cindex @option{--disable-nls} (opzione di configurazione)
-@cindex opzioni di configurazione @subentry @code{--disable-nls}
+@cindex opzioni di configurazione @subentry @option{--disable-nls}
 @item --disable-nls
 Non attivare la traduzione automatica dei messaggi.
 Ci@`o normalmente non @`e consigliabile, ma pu@`o apportare qualche lieve
 miglioramento nei tempi di esecuzione di un programma.
 
 @cindex @option{--enable-versioned-extension-dir} (opzione di configurazione)
-@cindex opzioni di configurazione @subentry @code{--enable-versioned-extension-dir}
+@cindex opzioni di configurazione @subentry @option{--enable-versioned-extension-dir}
 @item --enable-versioned-extension-dir
 Usare una directory con l'indicazione della versione per le estensioni.
 Il nome della directory conterr@`a la versione principale e quella
@@ -46275,11 +46286,11 @@ e non (o non soltanto) in formato HTML.
 lingua che tutti i manutentori comprendono.}
 @end enumerate
 
-@cindex @code{bug-gawk@@gnu.org} indirizzo per la segnalazione dei bug
-@cindex email @subentry indirizzo per segnalare bug @subentry @code{bug-gawk@@gnu.org}
-@cindex indirizzo email per segnalare bug @subentry @code{bug-gawk@@gnu.org}
-@cindex bug @subentry segnalare @subentry indirizzo email, @code{bug-gawk@@gnu.org}
-@cindex segnalare bug @subentry indirizzo email @subentry @code{bug-gawk@@gnu.org}
+@cindex @email{bug-gawk@@gnu.org} indirizzo per la segnalazione dei bug
+@cindex email @subentry indirizzo per segnalare bug @subentry @email{bug-gawk@@gnu.org}
+@cindex indirizzo email per segnalare bug @subentry @email{bug-gawk@@gnu.org}
+@cindex bug @subentry segnalare @subentry indirizzo email, @email{bug-gawk@@gnu.org}
+@cindex segnalare bug @subentry indirizzo email @subentry @email{bug-gawk@@gnu.org}
 Una volta pronta la descrizione precisa del problema, si spedisca un messaggio
 di posta elettronica a
 @EMAIL{bug-gawk@@gnu.org,bug (trattino) gawk (chiocciola) gnu (punto) org}.
@@ -47228,7 +47239,7 @@ Per inviare le modifiche proposte spedire l'output prodotto da @command{diff}.
 
 L'uso di questo formato rende semplice per me l'applicazione delle modifiche
 alla versione principale del sorgente di @command{gawk} (usando il programma di
-utilit@`a @code{patch}).  Se invece tocca a me applicare le modifiche a mano,
+utilit@`a @command{patch}).  Se invece tocca a me applicare le modifiche a mano,
 con un editor di testo, potrei decidere di non farlo, specialmente
 se le modifiche sono molte.
 
