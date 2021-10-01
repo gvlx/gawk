@@ -1,3 +1,8 @@
+2021-10-01         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.in: Clarify typeof() usage with array elements
+	created by reference.
+
 2021-09-27         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawktexi.in: Small cleanups from Antonio Columbo.  General
