@@ -67,7 +67,7 @@ do_ord(int nargs, awk_value_t *result, struct awk_ext_func *unused)
 	assert(result != NULL);
 
 	if (get_argument(0, AWK_STRING, & str)) {
-		ret = str.str_value.str[0];
+		ret = (unsigned char) str.str_value.str[0];
 	} else if (do_lint)
 		lintwarn(ext_id, _("ord: first argument is not a string"));
 

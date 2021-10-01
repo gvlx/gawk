@@ -1,3 +1,12 @@
+2021-09-27         Andrew J. Schorr      <aschorr@telemetry-investments.com>
+
+	* ordchr.c (do_ord): Add white space around cast.
+
+2021-09-27         Andrew J. Schorr      <aschorr@telemetry-investments.com>
+
+	* ordchr.c (do_ord): Need to cast to unsigned char to avoid returning
+	negative values.
+
 2021-09-22         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* configure.ac: Update version to 5.1.1 in preparation for release.
