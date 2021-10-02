@@ -21857,6 +21857,32 @@ Tuttavia, se si chiama @code{isarray()} e @code{typeof()} queste
 funzioni non cambiano gli argomenti che vengono passati loro da
 non ancora tipizzati (untyped) a non ancora assegnati (unassigned).
 
+@cindex angolo buio @subentry elementi di un vettore creati per riferimento
+Per ``variabile'' intendiamo quelle descritte da un identificativo semplice.
+Degli elementi di un vettore che vengano creati semplicemente facendo un
+riferimento agli stessi sono differenti, e sono automaticamente forzati
+a essere delle variabili scalari.  Si consideri:
+
+@example
+$ @kbd{gawk 'BEGIN @{ print typeof(x) @}'}
+@print{} untyped
+$ @kbd{gawk 'BEGIN @{ print typeof(x["pippo"]) @}'}
+@print{} unassigned
+@end example
+
+@noindent
+@code{x[0]} viene creato prima di essere passato alla funzione @code{typeof()};
+@code{typeof()} non @`e in grado di determinare se esisteva o meno prima che la
+funzione fosse chiamata.
+@value{DARKCORNER}
+
+@c FIXME: For 5.2, this will change, update this bit of doc.
+Questa situazione può cambiare in una futura versione di @command{gawk},
+in cui potrebbe essere consentito a un tale elemento di vettore
+non assegnato di essere utilizzato per un vettore multidimensionale,
+e non rimanere una variabile scalare per sempre (o fino a che non
+venga cancellata).
+
 @node Funzioni di internazionalizzazione
 @subsection Funzioni per tradurre stringhe
 @cindex @command{gawk} @subentry funzioni di traduzione di stringhe
