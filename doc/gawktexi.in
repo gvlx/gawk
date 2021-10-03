@@ -13330,8 +13330,8 @@ Field reference.
 
 @cindex @code{+} (plus sign) @subentry @code{++} operator
 @cindex plus sign (@code{+}) @subentry @code{++} operator
-@cindex @code{-} (hyphen) @subentry @option{--} operator
-@cindex hyphen (@code{-}) @subentry @option{--} operator
+@cindex @code{-} (hyphen) @subentry @code{--} operator
+@cindex hyphen (@code{-}) @subentry @code{--} operator
 @item @code{++ --}
 Increment, decrement.
 
@@ -19977,15 +19977,15 @@ $ @kbd{gawk 'BEGIN @{ print typeof(x["foo"]) @}'}
 @end example
 
 @noindent
-@code{x[0]} comes into existence before it is passed to @code{typeof()};
+@code{x["foo"]} comes into existence before it is passed to @code{typeof()};
 @code{typeof()} cannot tell that it didn't exist prior to being called.
 @value{DARKCORNER}
 
-@c FIXME: For 5.2, this will change, update this bit of doc.
-This may change in a future release, whereby @command{gawk}
-would allow such an unassigned array element to be used for
-a multidimensional array, and not remain a scalar forever
-(or until deleted).
+@c FIXME: For 5.2, if this will change, update this bit of doc.
+@c This may change in a future release, whereby @command{gawk}
+@c would allow such an unassigned array element to be used for
+@c a multidimensional array, and not remain a scalar forever
+@c (or until deleted).
 
 @node I18N Functions
 @subsection String-Translation Functions
