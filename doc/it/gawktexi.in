@@ -21871,17 +21871,16 @@ $ @kbd{gawk 'BEGIN @{ print typeof(x["pippo"]) @}'}
 @end example
 
 @noindent
-@code{x[0]} viene creato prima di essere passato alla funzione @code{typeof()};
-@code{typeof()} non @`e in grado di determinare se esisteva o meno prima che la
-funzione fosse chiamata.
+@code{x["pippo"]} viene creato prima di essere passato alla funzione
+@code{typeof()}; @code{typeof()} non @`e in grado di determinare se
+esisteva o meno prima che la funzione fosse chiamata.
 @value{DARKCORNER}
 
-@c FIXME: For 5.2, this will change, update this bit of doc.
-Questa situazione può cambiare in una futura versione di @command{gawk},
-in cui potrebbe essere consentito a un tale elemento di vettore
-non assegnato di essere utilizzato per un vettore multidimensionale,
-e non rimanere una variabile scalare per sempre (o fino a che non
-venga cancellata).
+@c FIXME: For 5.2, if this will change, update this bit of doc.
+@c This may change in a future release, whereby @command{gawk}
+@c would allow such an unassigned array element to be used for
+@c a multidimensional array, and not remain a scalar forever
+@c (or until deleted).
 
 @node Funzioni di internazionalizzazione
 @subsection Funzioni per tradurre stringhe
