@@ -2,6 +2,7 @@
 
 	* gawktexi.in: Continue clarifying typeof() usage. And other fixes.
 	All thanks to Antonio Columbo.
+	(UPDATE-MONTH): Set to October. Also thanks to Antonio.
 
 2021-10-01         Arnold D. Robbins     <arnold@skeeve.com>
 
