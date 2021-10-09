@@ -3,8 +3,15 @@
 	* gawktexi.in: Clarify that initialization and increment parts of
 	a for loop can't use the C comma operator.  Thanks to J Naman
 	<jnaman2@gmail.com> for pointing out the doc was too subtle.
+
 	Unrelated: further expand the bug reporting text and discussion
 	about comp.lang.awk.
+
+	Unrelated: Fix some spelling errors. Also, convert some
+	Unicode characters back into plain ASCII.
+
+	* wordlist: Updated.
+	* wordlist3: Updated.
 
 2021-10-03         Arnold D. Robbins     <arnold@skeeve.com>
 

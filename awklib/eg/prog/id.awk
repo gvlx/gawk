@@ -24,9 +24,9 @@ function usage()
 {
     printf("Usage:\n" \
            "\tid [user]\n" \
-           "\tid −G [−n] [user]\n" \
-           "\tid −g [−nr] [user]\n" \
-           "\tid −u [−nr] [user]\n") > "/dev/stderr"
+           "\tid -G [-n] [user]\n" \
+           "\tid -g [-nr] [user]\n" \
+           "\tid -u [-nr] [user]\n") > "/dev/stderr"
 
     exit 1
 }
