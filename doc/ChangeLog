@@ -1,3 +1,11 @@
+2021-10-09         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.in: Clarify that initialization and increment parts of
+	a for loop can't use the C comma operator.  Thanks to J Naman
+	<jnaman2@gmail.com> for pointing out the doc was too subtle.
+	Unrelated: further expand the bug reporting text and discussion
+	about comp.lang.awk.
+
 2021-10-03         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawktexi.in: Continue clarifying typeof() usage. And other fixes.

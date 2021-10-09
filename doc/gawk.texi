@@ -15317,20 +15317,25 @@ awk '
 This prints the first three fields of each input record, with one
 input field per output line.
 
-It isn't possible to
-set more than one variable in the
-@var{initialization} part without using a multiple assignment statement
-such as @samp{x = y = 0}. This makes sense only if all the initial values
-are equal.  (But it is possible to initialize additional variables by writing
-their assignments as separate statements preceding the @code{for} loop.)
-
 @c @cindex comma operator, not supported
-The same is true of the @var{increment} part. Incrementing additional
-variables requires separate statements at the end of the loop.
-The C compound expression, using C's comma operator, is useful in
-this context, but it is not supported in @command{awk}.
+C and C++ programmers might expect to be able to use the comma
+operator to set more than one variable in the @var{initialization}
+part of the @code{for} loop, or to increment multiple variables in the
+@var{incrememnt} part of the loop, like so:
 
-Most often, @var{increment} is an increment expression, as in the previous
+@example
+for (i = 0, j = length(a); i < j; i++, j--) @dots{}   @ii{C/C++, not awk!}
+@end example
+
+@noindent
+You cannot do this; the comma operator is not supported in @command{awk}.
+There are workarounds, but they are nonobvious and can lead to
+code that is difficult to read and understand. It is best, therefore,
+to simply write additional initializations as separate statements
+preceding the @code{for} loop and to place additional increment statements
+at the end of the loop's body.
+
+Most often, @var{increment} is an increment expression, as in the earlier
 example.  But this is not required; it can be any expression
 whatsoever.  For example, the following statement prints all the powers of two
 between 1 and 100:
@@ -43280,7 +43285,7 @@ The following things are @emph{not} bugs, and should not be reported
 to the bug mailing list.  You can ask about them on the ``help'' mailing
 list (@pxref{Asking for help}), but don't be surprised if you get an
 answer of the form ``that's how @command{gawk} behaves and it isn't
-going to change.''
+going to change.'' Here's the list:
 
 @itemize @bullet
 @item
@@ -43290,6 +43295,8 @@ fields or records, or anything else.
 
 The number of features that @command{gawk} does @emph{not} have is
 by definition infinite.  It cannot be all things to all people.
+In short, just because @command{gawk} doesn't do what @emph{you}
+think it should, it's not necessarily a bug.
 
 @item
 Behaviors that are defined by the POSIX standard and/or for historical
@@ -43303,10 +43310,16 @@ and @command{gawk} stand on their own and do not have to follow the crowd.
 This is particularly true when the requested behavior change would break
 backwards compatibility.
 
+This applies also to differences in behavior between @command{gawk}
+and other language compilers and interpreters, such as wishes for more
+detailed descriptions of what the problem is when a syntax error is
+encountered.
+
 @item
 Documentation issues of the form ``the manual doesn't tell me how to
 do XYZ.''  The manual is not a cookbook to solve every little problem
-you may have.
+you may have.  Its purpose is to teach you how to solve your problems
+on your own.
 
 @item
 General questions and discussion about @command{awk} programming or
@@ -43335,7 +43348,7 @@ time and ours.
 @item
 Verify that you have the latest version of @command{gawk}.
 Many bugs (usually subtle ones) are fixed at each release, and if yours
-is out of date, the problem may already have been solved.
+is out-of-date, the problem may already have been solved.
 
 @item
 Please see if setting the environment variable @env{LC_ALL}
@@ -43440,6 +43453,10 @@ Usenet/Internet newsgroup @code{comp.lang.awk}.  Although some of the
 @command{gawk} developers occasionally read this news group, the primary
 @command{gawk} maintainer no longer does.  Thus it's virtually guaranteed
 that he will @emph{not} see your posting.
+
+If you really don't care about the previous paragraph and continue to
+post bug reports in @code{comp.lang.awk}, then understand that you're
+not reporting bugs, you're just whining.
 
 Similarly, posting bug reports or questions in web forums (such
 as @uref{https://stackoverflow.com/, Stack Overflow}) may get you
@@ -43565,14 +43582,13 @@ After two such requests you will be silently @emph{blacklisted} from the bug lis
 
 Please note: As with the bug list, we ask that you follow the
 @uref{https://gnu.org/philosophy/kind-communication.html,
-GNU Kind Communication Guidelines} in your correspondence on the
+GNU Kind Communication Guidelines} in your correspondence on the help
 list (as well as off of it).
 
 @cindex Proulx, Bob
 If you wish to the subscribe to the list, in order to help out
 others, or to learn from others, here are instructions, courtesy
 of Bob Proulx:
-
 
 @table @emph
 @item Subscribe by email
