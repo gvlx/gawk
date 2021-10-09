@@ -175,6 +175,7 @@ Formfeed
 FreeBSD
 Friedl
 GAWKINETTITLE
+GAWKWORKFLOWTITLE
 GCC
 GCC's
 GDB
@@ -239,6 +240,7 @@ Inplace
 InstallingGNVPackages
 Internetworking
 Isamu
+Isnumeric
 Itanium
 JCPU
 JF
@@ -397,6 +399,7 @@ Pre
 Preopened
 Prestandard
 Printf
+Proulx
 QSE
 QSINGLE
 QTawk
@@ -990,6 +993,7 @@ gawkmisc
 gawkpath
 gawkrc
 gawktexi
+gawkworkflow
 gcc
 gdb
 gdef
@@ -1022,6 +1026,7 @@ gierd
 github
 gmail
 gmo
+gmon
 gmp
 gmplib
 gmx
@@ -1030,6 +1035,7 @@ gnv
 goawk
 golang
 goldberg
+gprof
 gr
 grcat
 grent
@@ -1131,6 +1137,7 @@ io
 iobuf
 isarray
 isatty
+isnumeric
 iso
 ist
 itd
@@ -1193,6 +1200,7 @@ linkend
 linksize
 linkval
 lintwarn
+listinfo
 listsize
 literallayout
 localhost
@@ -1215,6 +1223,7 @@ lvalues
 lwall
 lwcm
 madronabluff
+mailx
 makeinfo
 malloc
 malloced
@@ -1427,6 +1436,7 @@ pengyu
 perl
 perscr
 perscrutabor
+pg
 pgawk
 pgr
 pgrpid
@@ -1463,6 +1473,7 @@ proc
 processarray
 prog
 progfile
+ps
 pseudorandom
 psl
 psx
@@ -1502,7 +1513,9 @@ reada
 readdir
 readfile
 readline
+realdata
 realloc
+realprogram
 recomputation
 redir
 reenable

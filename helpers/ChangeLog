@@ -1,3 +1,7 @@
+2021-10-09         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* find-utf.sh: New script.
+
 2021-07-15         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* testdfa.c (main): Bug fix and new -b option.

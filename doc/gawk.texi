@@ -15321,7 +15321,7 @@ input field per output line.
 C and C++ programmers might expect to be able to use the comma
 operator to set more than one variable in the @var{initialization}
 part of the @code{for} loop, or to increment multiple variables in the
-@var{incrememnt} part of the loop, like so:
+@var{increment} part of the loop, like so:
 
 @example
 for (i = 0, j = length(a); i < j; i++, j--) @dots{}   @ii{C/C++, not awk!}
@@ -26097,9 +26097,9 @@ function usage()
 @{
     printf("Usage:\n" \
            "\tid [user]\n" \
-           "\tid −G [−n] [user]\n" \
-           "\tid −g [−nr] [user]\n" \
-           "\tid −u [−nr] [user]\n") > "/dev/stderr"
+           "\tid -G [-n] [user]\n" \
+           "\tid -g [-nr] [user]\n" \
+           "\tid -u [-nr] [user]\n") > "/dev/stderr"
 
     exit 1
 @}
@@ -42236,7 +42236,7 @@ It should be processed with @TeX{}
 to produce a printed document and
 with @command{makeinfo} to produce an Info or HTML file.
 
-@item doc/gawkorkflow.info
+@item doc/gawkworkflow.info
 The generated Info file for
 @cite{@value{GAWKWORKFLOWTITLE}}.
 
@@ -42432,8 +42432,8 @@ to have been set up previously as a user who is allowed to run the
 @cindex MPFR library, building with
 Use of the MPFR library with @command{gawk}
 is an optional feature: if you have the MPFR and GMP libraries already installed
-when you configure and build @command{gawk},
-@command{gawk} automatically will be able to use them.
+when you configure and build @command{gawk},
+@command{gawk} automatically will be able to use them.
 
 You can install these libraries from source code by fetching them
 from the GNU distribution site at @code{ftp.gnu.org}.
