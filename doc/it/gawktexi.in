@@ -15846,22 +15846,26 @@ awk '
 Questo programma stampa i primi tre campi di ogni record in input,
 mettendo un unico campo in una riga in output.
 
-Non @`e possibile impostare
-pi@`u di una variabile nella parte di
-@var{inizializzazione} senza usare un'istruzione di assegnamento multiplo,
-come @samp{x = y = 0}. Ci@`o ha senso solo se tutti i valori iniziali
-sono uguali.  (Ma @`e possibile inizializzare ulteriori variabili scrivendo
-i relativi assegnamenti come istruzioni separate @emph{prima} del ciclo
-@code{for}.)
-
 @c @cindex comma operator, not supported
-Lo stesso vale per la parte @var{incremento}. Se serve incrementare ulteriori
-variabili, questo va fatto con istruzioni separate alla fine del ciclo.
-L'espressione composta del linguaggio C, che usa l'operatore virgola [,]
-del C, sarebbe
-utile in questo contesto, ma non @`e
-prevista in @command{awk}.
+Chi programma in C e C++ potrebbe aspettarsi di essere in grado di
+usare l'operatore "virgola" (",") per impostare pi@`u di una
+variabile nella parte di @var{inizializzazione} del ciclo @code{for},
+o per aumentare pi@`u di una variabile nella parte @var{incremento}
+del ciclo, cos@`{@dotless{i}}:
 
+@example
+for (i = 0, j = length(a); i < j; i++, j--) @dots{}   @ii{C/C++, non awk!}
+@end example
+
+@noindent
+Non @`e possibile farlo; l'operatore "," non @`e supportato in @command{awk}.
+Ci sono dei modi per ottenere un tale risultato, ma non sono semplici,
+e possono generare del codice difficile sia da leggere che da
+comprendere.  @`E quindi meglio scrivere le istruzioni di
+inizializzazione come istruzioni a parte, prima del ciclo
+@code{for}, e inserire ulteriori istruzioni di incremento variabili
+alla fine del codice all'interno del ciclo stesso.
+  
 Molto spesso, @var{incremento} @`e un'espressione di incremento, come
 nell'esempio precedente.  Ma questo non @`e obbligatorio; pu@`o trattarsi di
 un'espressione qualsiasi.  Per esempio,
@@ -27317,9 +27321,9 @@ function sintassi()
 @{
     printf("Uso:\n" \
            "\tid [user]\n" \
-           "\tid −G [−n] [user]\n" \
-           "\tid −g [−nr] [user]\n" \
-           "\tid −u [−nr] [user]\n") > "/dev/stderr"
+           "\tid -G [-n] [user]\n" \
+           "\tid -g [-nr] [user]\n" \
+           "\tid -u [-nr] [user]\n") > "/dev/stderr"
 
     exit 1
 @}
@@ -45002,7 +45006,7 @@ Dovrebbe venire elaborato con @TeX{}
 per produrre un documento stampato o
 con @command{makeinfo} per produrre un file Info o HTML.
 
-@item doc/gawkorkflow.info
+@item doc/gawkworkflow.info
 Il file Info generato per
 @cite{@value{GAWKWORKFLOWTITLE}}.
 
@@ -45240,7 +45244,7 @@ L'uso della libreria MPFR
 in @command{gawk} @`e una funzionalit@`a opzionale:
 se le librerie MPFR e GMP sono gi@`a installate nel sistema
 quando si configura e compila @command{gawk},
-@command{gawk} sar@`a in grado di usarle in maniera automatica.
+@command{gawk} sar@`a in grado di usarle in maniera automatica.
 
 Tali librerie si possono installare, a partire dal codice
 sorgente, scaricandole dal sito GNU di distribuzione, che @`e
@@ -45666,7 +45670,7 @@ un'appropriata opzione @samp{-v BINMODE=@var{N}} sulla riga di comando.
 @code{BINMODE} @`e impostato nel momento in cui un file o @dfn{pipe} @`e aperto
 e non pu@`o essere cambiato in corso di elaborazione.
 
-Su sistemi compatibili con POSIX, il valore di queta variabile non ha
+Su sistemi compatibili con POSIX, il valore di questa variabile non ha
 alcun effetto.  Pertanto, se si pensa che un dato programma sar@`a eseguito
 su parecchi sistemi differenti, e che sia necessario usare
 @code{BINMODE}, @`e possibile impostarlo semplicemente (nel programma
@@ -46191,7 +46195,7 @@ essere segnalati ala mailing list dei bug.  Domande al riguardo possono
 essere rivolte alla mailing list di ``help''
 (@pxref{Richieste di aiuto}), ma non dovreste meravigliarvi di ricevere
 una risposta del tipo ``@command{gawk} funziona cos@`{@dotless{i}}, e continuer@`a
-a funzionare cos@`{@dotless{i}}.''
+a funzionare cos@`{@dotless{i}}.'' Questa @`e la lista:
 
 @itemize @bullet
 @item
@@ -46201,6 +46205,8 @@ ulteriori di dividere campi o record, o qualsiasi altra cosa.
 
 Il numero di funzioni che @command{gawk} @emph{non ha} @`e, per definizione,
 infinito.  Non @`e possibile accontentare tutti.
+In altre parole, se @command{gawk} non fa quello che @emph{voi}
+vi aspettate che faccia, ci@`o non @`e necessariamente un bug.
 
 @item
 Comportamenti definiti dallo standard POSIX e/o dettati da compatibilit@`a
@@ -46215,10 +46221,17 @@ e non sono obbligati a seguire quello altrui.
 Ci@`o @`e particolarmente vero quando la modifica di comportamento
 richiesta farebbe perdere la compatibilit@`a all'indietro.
 
+Ci@`o vale anche per le differenze nel comportamento tra @command{gawk}
+e i compilatori e gli interpretatori di altri linguaggi, come, per
+esempio, descrizioni pi@`u dettagliate di quello che @`e il problema
+quando viene emesso un messaggio di errore di sintassi.
+
 @item
 Problemi di documentazioni nella forma ``il manuale non spiega come
 fare XYZ.''  Il manuale non @`e un libro con tutte le ricette per risolvere
-ogni piccolo problema che ci si trovi ad affrontare.
+ogni piccolo problema che ci si trovi ad affrontare.  Il suo
+obiettivo @`e quello di mettervi in grado di risolvere da soli
+i vostri problemi.
 
 @item
 Domande di tipo generale riguardo alla programmazione @command{awk}
@@ -46250,8 +46263,8 @@ fate perdere a noi.
 @item
 Verificate di stare usando l'ultima versione di @command{gawk}.
 Molti bug (di solito difficili da scoprire) sono corretti in ogni nuova
-versione, e se la versione in uso @`e piuttosto datata, il problema pu@`o
-essere stato risolto nel frattempo.
+versione, e se la versione che state usando non @`e aggiornata,
+il problema pu@`o essere stato risolto nel frattempo.
 
 @item
 Per piacere, controllate se, l'impostazione della variabile
@@ -46376,6 +46389,10 @@ Sebbene alcuni degli sviluppatori di @command{gawk} leggano talora i
 messaggi di questo gruppo di discussione, il manutentore principale di
 @command{gawk} non lo fa pi@`u.  Quindi @`e praticamente certo che un
 messaggio inviato l@`a @emph{non} sia da lui letto.
+
+Se si ignora quanto scritto nella frase precedente, e si continua a
+inviare bug a @code{comp.lang.awk}, dovreste tenere presente che non
+si stanno riportando dei bug, ma solo brontolando.
 
 Analogamente, segnalando bug o ponendo domande in @dfn{forum} online
 come @uref{https://stackoverflow.com/, Stack Overflow}) si pu@`o
@@ -46525,10 +46542,11 @@ Per piacere, tenete presente: Come per la mailing list dedicata
 alla segnalazione di bug, siete invitati a seguire le
 @uref{https://gnu.org/philosophy/kind-communication.html,
 -- Linee guida GNU per una comunicazione gentile}
-nella vostra corrispondenza (e anche in generale).
+nella vostra corrispondenza con la lista di aiuto
+(e anche in generale).
 
 @cindex Proulx, Bob
-Se volete far parte della lista di help, per essere di
+Se volete far parte della lista di aiuto, per essere di
 aiuto ad altri, o per imparare da altri, ecco le
 istruzioni per registrarsi, fornite da Bob Proulx:
 
