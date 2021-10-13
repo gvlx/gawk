@@ -4,6 +4,10 @@
 	be edited manually.
 	* Makefile.am: Update relevant targets.
 
+	Unrelated:
+
+	* Makefile.am: Uupdate copryight year, reformat some of the lists.
+
 2021-09-27         Andrew J. Schorr      <aschorr@telemetry-investments.com>
 
 	* ordchr.awk, ordchr.awk: Add test for ord signedness.
