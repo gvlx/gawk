@@ -1,3 +1,9 @@
+2021-10-13         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Gentest: Add check for ZOS_FAIL targets that have to
+	be edited manually.
+	* Makefile.am: Update relevant targets.
+
 2021-09-27         Andrew J. Schorr      <aschorr@telemetry-investments.com>
 
 	* ordchr.awk, ordchr.awk: Add test for ord signedness.
