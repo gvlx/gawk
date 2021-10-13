@@ -1587,9 +1587,9 @@ EXPECTED_FAIL_MINGW = \
 # List of tests that fail on z/OS
 EXPECTED_FAIL_ZOS = \
 	aasort aasorti arraysort asort asorti backbigs1 backsmalls1 \
-	backsmalls2 beginfile1 beginfile2 charasbytes clos1way6 concat4 \
+	backsmalls2 beginfile1 beginfile2 charasbytes commas clos1way6 concat4 \
 	dfamb1 double1 double2 errno fmttest forcenum getlndir gsubtst5 \
-	ignrcas2 inf-nan-torture iolint lc_num1 localenl mbfw1 mbprintf1 \
+	ignrcas2 inf-nan-torture iolint lc_num1 mbfw1 mbprintf1 \
 	mbprintf2 mbprintf3 mbprintf4 mbprintf5 mbstr1 mbstr2 mtchi18n \
 	nlstringtest nofile nonfatal2 numrange posix_compare printhuge \
 	profile5 rebt8b2 regrange reint2 rri1 sigpipe1 sort1 sortfor \
@@ -2085,8 +2085,8 @@ profile3:
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 profile5:
-	@echo $@
-	@AWKPATH="$(srcdir)" $(AWK) --pretty=_$@ -f $@.awk 2> _$@.err
+	@echo $@ $(ZOS_FAIL)
+	@-AWKPATH="$(srcdir)" $(AWK) --pretty=_$@ -f $@.awk 2> _$@.err
 	@cat _$@.err >> _$@ ; rm -f _$@.err
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
@@ -2456,7 +2456,7 @@ nonfatal1:
 
 # 4/2018: On first call to $(CMP), send to /dev/null even with -s for MinGW.
 nlstringtest::
-	@echo $@
+	@echo $@ $(ZOS_FAIL)
 	@[ -z "$$GAWKLOCALE" ] && GAWKLOCALE=fr_FR.UTF-8 ; export GAWKLOCALE ; \
 	AWKPATH="$(srcdir)" $(AWK) -f $@.awk "$(srcdir)" >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-if $(CMP) -s "$(srcdir)"/nlstringtest-nogettext.ok _$@ > /dev/null ; \
@@ -2484,7 +2484,7 @@ typedregex4:
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 iolint:
-	@echo $@
+	@echo $@ $(ZOS_FAIL)
 	@echo hello > 'echo hello'
 	@AWKPATH="$(srcdir)" $(AWK) -f $@.awk >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@

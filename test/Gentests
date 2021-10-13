@@ -137,7 +137,7 @@ BEGIN {
 	next
 }
 
-/^[[:alpha:]_][[:alnum:]_]*:/ {
+/^[[:alpha:]_][-[:alnum:]_]*:/ {
 	# remember all targets from Makefile.am
 	sub(/:.*/,"")
 	targets[$0]
@@ -300,6 +300,9 @@ END {
 		for (y in locale_tests[x])
 			if (!(y in targets))
 				printf("WARNING: Locale `%s' target `%s' is missing.\n", x, y) > "/dev/stderr"
+	if ("check_zos" in ENVIRON)
+		for (x in zos_fail)
+			printf "WARNING: check target `%s' for $(ZOS_FAIL).\n", x > "/dev/stderr"
 
 	for (x in files)
 		if (!(x in unused) && \
