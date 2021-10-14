@@ -1,60 +1,65 @@
-Tue Jul 23 05:56:35 IDT 2019
+Wed Oct 13 16:23:51 IDT 2021
 ============================
 
-A checklist for making releases
+A checklist for making releases.
 
-Latest config.guess and config.sub from Gnulib.
-The regtest test and other non-standard tests all pass
-Copyright dates in all files updated
-	main.c - copyright message too!
-ChangeLogs in place and updated
-README updated
-README_d/* edited
-VMS/* version stuff up to date
-	vms/vmsbuild.com
-	vms/descrip.mms
-NEWS is up to date
-Any new options have been added to usage function
-All paper work signed and sent in
-All files checked in
-Version information is correct in
-	doc/gawk.1
-	doc/awkcard.in
-	doc/gawktexi.in
-	doc/gawkinet.texi
-	extension/configure.ac
-doc/texinfo.tex is up to date
-doc/gawktexi.in is up to date
-doc/gawkinet.texi is up to date
-doc/gawk.1 is up to date
-doc/awkcard.in is up to date
-Italian translations are up to date:
-	doc/it/gawktexi.in
-	doc/it/gawk.1
-	po/it.po
-Run prepinfo on the manual.
-Spell check the manual.
-Update the wordlist for spell checking.
-test/Makefile.am: order and prettify lists of tests
-API Version numbers have been modified correctly in gawkapi.h.
+___ Latest config.guess and config.sub from Gnulib.
+___ The regtest test and other non-standard tests all pass
+___ Copyright dates in all files updated
+___ main.c - copyright message too!
+___ ChangeLogs in place and updated
+___ README updated
+___ README_d/* edited
+___ VMS/* version stuff up to date
+	___ vms/vmsbuild.com
+	___ vms/descrip.mms
+___ NEWS is up to date
+___ Any new options have been added to usage function
+___ All paper work signed and sent in
+___ All files checked in
+___ Version information is correct in
+	___ configure.ac
+	___ doc/gawk.1
+	___ doc/awkcard.in
+	___ doc/gawktexi.in
+	___ doc/gawkinet.texi
+	___ extension/configure.ac
+___ doc/texinfo.tex is up to date
+___ doc/gawktexi.in is up to date
+___ doc/gawkinet.texi is up to date
+___ doc/gawkworkflow.texi is up to date
+___ doc/gawk.1 is up to date
+___ doc/awkcard.in is up to date
+___ Italian translations are up to date:
+	___ doc/it/gawktexi.in
+	___ doc/it/gawk.1
+	___ po/it.po
+___ Run prepinfo on the manual.
+___ Spell check the documentation files.
+___ Update the wordlists for spell checking.
+___ test/Makefile.am: order and prettify lists of tests
+___ API Version numbers have been modified correctly in gawkapi.h.
 
-Testing on
-	make clean
-	make distclean
-	make maintainer-clean
-	make release
+___ Testing on:
+	___ make clean
+	___ make distclean
+	___ make maintainer-clean
+	___ make release
 
-	compile with tcc
-	compile with pcc
-	compile with clang
+	___ make valgrind
 
-	compile 32 bit tests - clang and gcc
+	___ compile with tcc
+	___ compile with pcc
+	___ compile with clang
+	___ compile with latest releaese gcc
 
-	configure --disable-lint
-	configure --disable-nls
+	___ compile 32 bit tests - clang and gcc
 
-	building in a different directory from the source
-	building doc in a different directory from the source
+	___ configure --disable-lint
+	___ configure --disable-nls
+
+	___ building in a different directory from the source
+	___ building doc in a different directory from the source
 
 The simplest way of making sure that no PO file is forgotten, is to 
 run the following command just before rolling a new release:

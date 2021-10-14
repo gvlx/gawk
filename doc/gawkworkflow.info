@@ -1,7 +1,7 @@
 This is gawkworkflow.info, produced by makeinfo version 6.7 from
 gawkworkflow.texi.
 
-Copyright (C) 2017, 2018, 2019 Free Software Foundation, Inc.
+Copyright (C) 2017, 2018, 2019, 2020 Free Software Foundation, Inc.
 
 
    This is Edition 0.73 of 'Participating in 'gawk' Development'.
@@ -35,7 +35,7 @@ General Introduction
 This file describes how to participate in software development for GNU
 Awk ('gawk') (http://www.gnu.org/software/gawk).
 
-   Copyright (C) 2017, 2018, 2019 Free Software Foundation, Inc.
+   Copyright (C) 2017, 2018, 2019, 2020 Free Software Foundation, Inc.
 
 
    This is Edition 0.73 of 'Participating in 'gawk' Development'.
@@ -1923,67 +1923,67 @@ Index
 
 
 Tag Table:
-Node: Top1115
-Node: Preface5199
-Node: This Manual6095
-Node: Conventions7584
-Node: Acknowledgments9053
-Node: Reviewers9490
-Node: Contributing9811
-Ref: Contributing-Footnote-113167
-Node: Using Git13199
-Node: Push Pull13955
-Node: Repo Copies15370
-Ref: savannah-repo16353
-Ref: your-repo17386
-Ref: Repo Copies-Footnote-119080
-Node: Local Branches19137
-Ref: your-repo-220910
-Ref: Local Branches-Footnote-121991
-Node: Branches are state22049
-Node: Repo State22772
-Node: Local State24892
-Node: Remotes25556
-Node: Configuring git26870
-Ref: Configuring git-Footnote-129223
-Node: Development without commit access29392
-Node: Cloning30394
-Node: Switching Branches32253
-Node: Starting A New Branch32871
-Ref: Starting A New Branch-Footnote-134759
-Ref: Starting A New Branch-Footnote-234817
-Node: Undoing a change34893
-Node: Updating35494
-Node: Rebasing35996
-Node: Merge Conflicts36608
-Node: Submitting Changes38108
-Ref: Submitting Changes-Footnote-140252
-Ref: Submitting Changes-Footnote-240289
-Ref: Submitting Changes-Footnote-340325
-Node: Removing Branches40371
-Node: Points to remember40907
-Node: Development with commit access42584
-Node: Initial setup43229
-Node: ssh clone44017
-Node: Developing patches44614
-Node: Developing new features45946
-Node: Developing fixes47846
-Node: General practices48929
-Node: Repo Maintenance53748
-Ref: Repo Maintenance-Footnote-156518
-Node: Development Stuff56651
-Node: Coding style57214
-Ref: Coding style-Footnote-157872
-Node: Doing paperwork57962
-Node: Tools58757
-Node: GNU Tools59339
-Node: Compilers61500
-Ref: Compilers-Footnote-164110
-Node: Debugging64148
-Node: Cheat Sheet64885
-Node: Resources68572
-Node: TODO69149
-Node: Index69369
+Node: Top1121
+Node: Preface5211
+Node: This Manual6107
+Node: Conventions7596
+Node: Acknowledgments9065
+Node: Reviewers9502
+Node: Contributing9823
+Ref: Contributing-Footnote-113179
+Node: Using Git13211
+Node: Push Pull13967
+Node: Repo Copies15382
+Ref: savannah-repo16365
+Ref: your-repo17398
+Ref: Repo Copies-Footnote-119092
+Node: Local Branches19149
+Ref: your-repo-220922
+Ref: Local Branches-Footnote-122003
+Node: Branches are state22061
+Node: Repo State22784
+Node: Local State24904
+Node: Remotes25568
+Node: Configuring git26882
+Ref: Configuring git-Footnote-129235
+Node: Development without commit access29404
+Node: Cloning30406
+Node: Switching Branches32265
+Node: Starting A New Branch32883
+Ref: Starting A New Branch-Footnote-134771
+Ref: Starting A New Branch-Footnote-234829
+Node: Undoing a change34905
+Node: Updating35506
+Node: Rebasing36008
+Node: Merge Conflicts36620
+Node: Submitting Changes38120
+Ref: Submitting Changes-Footnote-140264
+Ref: Submitting Changes-Footnote-240301
+Ref: Submitting Changes-Footnote-340337
+Node: Removing Branches40383
+Node: Points to remember40919
+Node: Development with commit access42596
+Node: Initial setup43241
+Node: ssh clone44029
+Node: Developing patches44626
+Node: Developing new features45958
+Node: Developing fixes47858
+Node: General practices48941
+Node: Repo Maintenance53760
+Ref: Repo Maintenance-Footnote-156530
+Node: Development Stuff56663
+Node: Coding style57226
+Ref: Coding style-Footnote-157884
+Node: Doing paperwork57974
+Node: Tools58769
+Node: GNU Tools59351
+Node: Compilers61512
+Ref: Compilers-Footnote-164122
+Node: Debugging64160
+Node: Cheat Sheet64897
+Node: Resources68584
+Node: TODO69161
+Node: Index69381
 
 End Tag Table
 

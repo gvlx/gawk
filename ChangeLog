@@ -1,3 +1,8 @@
+2021-10-13         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* README: Update version, copyright year.
+	* custom.h: Update copyright year.
+
 2021-09-26         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* builtin.c (do_mktime): Update that ISO 8601 does not allow
@@ -78,7 +83,7 @@
 	* builtin.c (do_sub): Rationalize handling of strongly typed
 	regex as argument to sub/gsub, as well as rationalize the return
 	value from gensub to always be string. Thanks to John Naman
-	<jnaman2@gmail.com> for the bug report.
+	<gawker@703n.com> for the bug report.
 
 2021-08-05         Andrew J. Schorr      <aschorr@telemetry-investments.com>
 
@@ -118,8 +123,6 @@
 	* builtin.c (format_tree): In MPFR prints, cast values to
 	int for proper int vs. unsigned comparison. Fixes things
 	for HP-UX. Thanks to Daniel Richard G. for the report.
-
-2021-06-04         Arnold D. Robbins     <arnold@skeeve.com>
 
 2021-05-21         Arnold D. Robbins     <arnold@skeeve.com>
 
@@ -186,7 +189,7 @@
 
 2021-04-16         Arnold D. Robbins     <arnold@skeeve.com>
 
-	* main (arg_assign): For -v '@/...' make sure that there are
+	* main.c (arg_assign): For -v '@/...' make sure that there are
 	at least three characters there. Thanks to Ed Morton
 	<mortoneccc@comcast.net> for the report.
 
@@ -913,7 +916,7 @@
 	* array.c (sort_up_value_type): Handle other types of nodes,
 	in case someone applies PROCINFO["sorted_in"] to SYMTAB or
 	FUNCTAB. This threw an assertion error if assertions were
-	enabled. Thanks to John Namam <Gawer@703n.com> for the report.
+	enabled. Thanks to John Namam <gawker@703n.com> for the report.
 	(asort_actual): Disallow SYMTAB and FUNCTAB as first arguments.
 	* TODO: Note that we should should eventually allow SYMTAB/FUNCTAB
 	passed to asort/asorti if a destination array is provided. (The

@@ -1,3 +1,7 @@
+2021-10-13         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* ordchr.c: Update copyright year.
+
 2021-09-27         Andrew J. Schorr      <aschorr@telemetry-investments.com>
 
 	* ordchr.c (do_ord): Add white space around cast.
@@ -19,7 +23,6 @@
 	Unrelated:
 
 	* aclocal.m4: Regenerated: Automake 1.16.4.
-	* NEWS: Updated.
 
 2021-09-09         Arnold D. Robbins     <arnold@skeeve.com>
 
@@ -81,7 +84,7 @@
 
 	Miscellanious fixes from Michael Builov <mbuilov@gmail.com>.
 
-	* fts.c (fts_open): Fix memory leak: fts_sort() allocates
+	* gawkfts.c (fts_open): Fix memory leak: fts_sort() allocates
 	sp->fts_array, but it's not freed if next fts_alloc() fails.
 	(fts_build): Need to free "head" list before returning NULL
 	on failure.

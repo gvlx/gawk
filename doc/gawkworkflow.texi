@@ -144,13 +144,13 @@ Fax: +1-617-542-2652
 Email: <email>gnu@@gnu.org</email>
 URL: <ulink url="http://www.gnu.org">http://www.gnu.org/</ulink></literallayout>
 
-<literallayout class="normal">Copyright &copy; 2017, 2018, 2019
+<literallayout class="normal">Copyright &copy; 2017, 2018, 2019, 2020
 Free Software Foundation, Inc.
 All Rights Reserved.</literallayout>
 @end docbook
 
 @ifnotdocbook
-Copyright @copyright{} 2017, 2018, 2019
+Copyright @copyright{} 2017, 2018, 2019, 2020
 Free Software Foundation, Inc.
 @end ifnotdocbook
 @sp 2
