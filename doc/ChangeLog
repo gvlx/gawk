@@ -312,7 +312,6 @@
 
 	* gawktexi.in (Nextfile Statement): Clarify what happens in
 	a BEGINFILE rule.
->>>>>>> master
 
 2020-10-31         Arnold D. Robbins     <arnold@skeeve.com>
 
