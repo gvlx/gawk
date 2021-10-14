@@ -1,4 +1,4 @@
-Wed Oct 13 15:49:30 IDT 2021
+Wed Oct 13 16:23:51 IDT 2021
 ============================
 
 A checklist for making releases.
@@ -46,9 +46,12 @@ ___ Testing on:
 	___ make maintainer-clean
 	___ make release
 
+	___ make valgrind
+
 	___ compile with tcc
 	___ compile with pcc
 	___ compile with clang
+	___ compile with latest releaese gcc
 
 	___ compile 32 bit tests - clang and gcc
 
