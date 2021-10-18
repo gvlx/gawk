@@ -9274,8 +9274,8 @@ check_qualified_special(char *token)
 	 * Now it's more complicated.  Here are the rules.
 	 *
 	 * 1. Namespace name cannot be a standard awk reserved word or function.
-	 * 2. Subordinate part of the name cannot be standard awk reserved word or function.
-	 * 3. If namespace part is explicitly "awk", return result of check_special().
+	 * 2. Subordinate part of the name cannot be a standard awk reserved word or function.
+	 * 3. If the namespace part is explicitly "awk", return the result of check_special().
 	 * 4. Else return -1 (gawk extensions allowed, we check standard awk in step 2).
 	 */
 
@@ -9307,12 +9307,12 @@ check_qualified_special(char *token)
 
 	// Now check the subordinate part
 	i = check_special(subname);
-	if (i >= 0 && (tokentab[i].flags & GAWKX) == 0 && strcmp(ns, "awk") != 0) {
+	if (i >= 0 && (tokentab[i].flags & GAWKX) == 0 && strcmp(ns, awk_namespace) != 0) {
 		error_ln(sourceline, _("using reserved identifier `%s' as second component of a qualified name is not allowed"), subname);
 		goto done;
 	}
 
-	if (strcmp(ns, "awk") == 0) {
+	if (strcmp(ns, awk_namespace) == 0) {
 		i = check_special(subname);
 		if (i >= 0) {
 			if ((tokentab[i].flags & GAWKX) != 0 && tokentab[i].class == LEX_BUILTIN)

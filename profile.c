@@ -647,7 +647,7 @@ cleanup:
 		{
 			const char *fname;
 			if (pc->opcode == Op_builtin) {
-				bool prepend_awk = (current_namespace != awk_namespace && strcmp(current_namespace, "awk") != 0);
+				bool prepend_awk = (current_namespace != awk_namespace && strcmp(current_namespace, awk_namespace) != 0);
 				fname = getfname(pc->builtin, prepend_awk);
 			} else
 				fname = (pc + 1)->func_name;
@@ -2098,7 +2098,7 @@ adjust_namespace(char *name, bool *malloced)
 	// unadorned name from symbol table, add awk:: if not in awk:: n.s.
 	if (strchr(name, ':') == NULL &&
 	    current_namespace != awk_namespace &&	// can be equal if namespace never changed
-	    strcmp(current_namespace, "awk") != 0 &&
+	    strcmp(current_namespace, awk_namespace) != 0 &&
 	    ! is_all_upper(name)) {
 		char *buf;
 		size_t len = 5 + strlen(name) + 1;
@@ -2113,7 +2113,8 @@ adjust_namespace(char *name, bool *malloced)
 	// qualifed name, remove <ns>:: if in that n.s.
 	size_t len = strlen(current_namespace);
 
-	if (strncmp(current_namespace, name, len) == 0) {
+	if (strncmp(current_namespace, name, len) == 0 &&
+	    name[len] == ':' && name[len+1] == ':') {
 		char *ret = name + len + 2;
 
 		return ret;
