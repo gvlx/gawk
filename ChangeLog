@@ -1,3 +1,19 @@
+2021-10-18         Arnold D. Robbins     <arnold@skeeve.com>
+
+	Factor duplicated code out into a separate function.
+	D.R.Y. principle.
+
+	* symbol.c (get_name_from_awk_ns): New function.
+	(lookup): Use it.
+	(install): Use it.
+
+	* awkgram.y (check_qualified_special): Use awk_namespace instead of a
+	string constant.
+	* profile.c (pprint): Ditto.
+	(adjust_namespace): Ditto. Also, fix the check for the qualified
+	name to look for the "::" in case one namespace is a prefix of
+	another.
+
 2021-10-13         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* README: Update version, copyright year.
