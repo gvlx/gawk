@@ -1,3 +1,8 @@
+2021-10-20         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.in (FS versus FPAT): New subsection.
+	(String Functions): Reference it.
+
 2021-10-13         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* awkcard.in, gawkinet.texi, gawkworkflow.texi: Update copyright year.

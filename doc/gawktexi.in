@@ -574,6 +574,7 @@ particular records in a file and perform operations upon them.
 * Fields with fixed data::              Field values with fixed-width data.
 * Splitting By Content::                Defining Fields By Content
 * More CSV::                            More on CSV files.
+* FS versus FPAT::                      A subtle difference.
 * Testing field creation::              Checking how @command{gawk} is
                                         splitting records.
 * Multiple Line::                       Reading multiline records.
@@ -7921,6 +7922,7 @@ four, and @code{$4} has the value @code{"ddd"}.
 
 @menu
 * More CSV::                    More on CSV files.
+* FS versus FPAT::              A subtle difference.
 @end menu
 
 @c O'Reilly doesn't like it as a note the first thing in the section.
@@ -8129,6 +8131,28 @@ In general, using @code{FPAT} to do your own CSV parsing is like having
 a bed with a blanket that's not quite big enough. There's always a corner
 that isn't covered. We recommend, instead, that you use Manuel Collado's
 @uref{http://mcollado.z15.es/xgawk/, @code{CSVMODE} library for @command{gawk}}.
+
+@node FS versus FPAT
+@subsection @code{FS} Versus @code{FPAT}: A Subtle Difference
+
+As we discussed earlier, @code{FS} describes the data between fields (``what fields are not'')
+and @code{FPAT} describes the fields themselves (``what fields are'').
+This leads to a subtle difference in how fields are found when using regexps as the value
+for @code{FS} or @code{FPAT}.
+
+In order to distinguish one field from another, there must be a non-empty separator between
+each field.  This makes intuitive sense---otherwise one could not distinguish fields from
+separators.
+
+Thus, regular expression matching as done when splitting fields with @code{FS} is not
+allowed to match the null string; it must always match at least one character, in order
+to be able to proceed through the entire record.
+
+On the other hand, regular expression matching with @code{FPAT} can match the null
+string, and the non-matching intervening characters function as the separators.
+
+This same difference is reflected in how matching is done with the @code{split()}
+and @code{patsplit()} functions (@pxref{String Functions}).
 
 @node Testing field creation
 @section Checking How @command{gawk} Is Splitting Records
@@ -18532,6 +18556,16 @@ in the string replaced with its corresponding uppercase character.
 Nonalphabetic characters are left unchanged.  For example,
 @code{toupper("MiXeD cAsE 123")} returns @code{"MIXED CASE 123"}.
 @end table
+
+At first glance, the @code{split()} and @code{patsplit()} functions appear to be
+mirror images of each other. But there are differences:
+
+@itemize @bullet
+@item @code{split()} treats its third argument like @code{FS}, with all the
+special rules involved for @code{FS}.
+
+@item Matching of null strings differs. This is discussed in @ref{FS versus FPAT}.
+@end itemize
 
 @sidebar Matching the Null String
 @cindex matching @subentry null strings
