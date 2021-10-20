@@ -1,3 +1,8 @@
+2021-10-20         Andrew J. Schorr      <aschorr@telemetry-investments.com>
+
+	* msg.c (err): Need to check that FNR_node->var_value is non-NULL
+	before testing with is_mpg_number.
+
 2021-10-18         Arnold D. Robbins     <arnold@skeeve.com>
 
 	Factor duplicated code out into a separate function.
