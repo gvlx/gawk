@@ -693,6 +693,7 @@ Copyright dell'edizione italiana @copyright{} 2016 -- Free Software Foundation, 
                                         fissa.
 * Separazione in base al contenuto::    Definire campi dal loro contenuto.
 * File CSV::                            Ancora sui file CSV.
+* FS rispetto a FPAT::                  Una differenza sottile.
 * Controllare la creazione di campi::   Controllare come @command{gawk} sta
                                         suddividendo i record.
 * Righe multiple::                      Record su righe multiple
@@ -8697,6 +8698,7 @@ per un esempio di tale funzione).
 
 @menu
 * File CSV::                    Ancora sui file CSV.
+* FS rispetto a FPAT::          Una differenza sottile.
 @end menu
 
 @c O'Reilly doesn't like it as a note the first thing in the section.
@@ -8931,6 +8933,31 @@ In generale, usare @code{FPAT} per effettuare l'analisi di dati in formato CSV
 @`e coperto.  Si raccomanda, in alternativa, di usare la libreria @code{CSVMODE} 
 messa a disposizione da Manuel Collado.  Vedere:
 @uref{http://mcollado.z15.es/xgawk/, @code{CSVMODE} libreria per @command{gawk}}.
+
+@node FS rispetto a FPAT
+@subsection @code{FS} rispetto a @code{FPAT}: Una differenza sottile
+
+Come gi@`a spiegato, @code{FS} descrive i data che si trovano tra un campo e
+l'altro (``ci@`o che non @`e un campo'') mentre @code{FPAT} descrive i campi stessi
+(``ci@`o che @`e un campo'').
+Ci@`o pu@`o portare a una sottile differenza nell'individuazione dei campi, se si usano
+@dfn{regexp} [espressioni regolari] come valori per @code{FS} o @code{FPAT}.
+
+Per distinguere un campo da un altro, ci dev'essere un separatore (diverso dalla stringa
+nulla) fra i campi stessi.  Ci@`o @`e evidentemente sensato---altrimenti non si potrebbero
+distinguere i campi dai separatori.
+
+Quindi, il valore di un'espressione regolare specificata come @code{FS} non pu@`o
+essere la stringa nulla; dev'essere lunga almeno un carattere, per poter
+esguire i controlli sull'intero record.
+
+D'altro canto, il valore di un'espressione regolare specificata come @code{FPAT}
+pu@`o essere la stringa nulla, e i caratteri che non corrispondono ad essa
+vengono utilizzati come separatori.
+
+Questa stessa differenza si riscontra nel modo con cui si individuano le
+stringhe utilizzando le funzioni @code{split()} e @code{patsplit()}
+(@pxref{Funzioni per stringhe}).
 
 @node Controllare la creazione di campi
 @section Controllare come @command{gawk} sta suddividendo i record
@@ -20295,6 +20322,18 @@ I caratteri non alfabetici non vengono modificati.  Per esempio,
 @code{tolower("MaIuScOlO MiNuScOlO 123")} restituisce
 @code{"MAIUSCOLO MINUSCOLO 123"}.
 @end table
+
+A prima vista, le funzioni @code{split()} e @code{patsplit()} sembrano
+essere immagini speculari l'una dell'altra.  Ma ci sono delle differenze:
+
+@itemize @bullet
+@item @code{split()} tratta il suo terzo argomento allo stesso modo della
+variabile @code{FS}, con tutte le regole speciali che riguardano
+@code{FS}.
+
+@item L'individuazioni di stringhe nulle @`e invece differente.
+Questo @`e spiegato in @ref{FS rispetto a FPAT}.
+@end itemize
 
 @sidebar Individuare la stringa nulla
 @cindex individuare @subentry la stringa nulla
