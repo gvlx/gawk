@@ -36,7 +36,7 @@ See the file INSTALL for installation instructions.
 
 If you don't have Bison, use the awkgram.c file here.  It was
 generated with Bison, and has no proprietary code in it.  (Note that
-modifying awkgram.y without Bison will be difficult, at best.  You might
+modifying awkgram.y without Bison is next to impossible.  You might
 want to get a copy of Bison from the FSF too.)
 
 The build mechanics depend upon Bison. Also, gawk doesn't work correctly
@@ -76,9 +76,11 @@ is about the worst place to post a gawk bug report. So too is use of
 a web forum such as Stack Overflow. Please, use the mechanisms outlined
 in the manual.
 
-Email should be sent to bug-gawk@gnu.org.  This is a separate mailing
+Bug reports should be sent to bug-gawk@gnu.org.  This is a separate mailing
 list at GNU Central.  The advantage to using this address is that bug
 reports are archived at GNU Central.
+
+General non-bug questions should be sent to help-gawk@gnu.org.
 
 Arnold Robbins
 
