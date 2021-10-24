@@ -1,3 +1,7 @@
+2021-10-24         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* README: Updated.
+
 2021-10-20         Andrew J. Schorr      <aschorr@telemetry-investments.com>
 
 	* msg.c (err): Need to check that FNR_node->var_value is non-NULL
