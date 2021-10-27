@@ -1,4 +1,4 @@
-Wed Oct 13 16:23:51 IDT 2021
+Wed Oct 27 07:59:43 IDT 2021
 ============================
 
 A checklist for making releases.
@@ -6,6 +6,7 @@ A checklist for making releases.
 ___ Latest config.guess and config.sub from Gnulib.
 ___ The regtest test and other non-standard tests all pass
 ___ Copyright dates in all files updated
+___ Diff against the previous release to double check copyright dates!
 ___ main.c - copyright message too!
 ___ ChangeLogs in place and updated
 ___ README updated
