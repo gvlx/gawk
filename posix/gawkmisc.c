@@ -1,6 +1,6 @@
 /* gawkmisc.c --- miscellaneous gawk routines that are OS specific.
 
-   Copyright (C) 1986, 1988, 1989, 1991 - 1998, 2001 - 2004, 2011
+   Copyright (C) 1986, 1988, 1989, 1991 - 1998, 2001 - 2004, 2011, 2021,
    the Free Software Foundation, Inc.
 
    This program is free software; you can redistribute it and/or modify

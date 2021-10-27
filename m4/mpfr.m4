@@ -1,5 +1,5 @@
 dnl Check for MPFR and dependencies
-dnl Copyright (C) 2004, 2005 Free Software Foundation, Inc.
+dnl Copyright (C) 2004, 2005, 2021 Free Software Foundation, Inc.
 dnl
 dnl This file is free software, distributed under the terms of the GNU
 dnl General Public License.  As a special exception to the GNU General
