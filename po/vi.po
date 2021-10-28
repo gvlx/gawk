@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gawk 4.2.0e\n"
 "Report-Msgid-Bugs-To: bug-gawk@gnu.org\n"
-"POT-Creation-Date: 2021-09-19 11:16+0300\n"
+"POT-Creation-Date: 2021-10-27 07:58+0300\n"
 "PO-Revision-Date: 2018-01-30 08:07+0700\n"
 "Last-Translator: Trần Ngọc Quân <vnwildman@gmail.com>\n"
 "Language-Team: Vietnamese <translation-team-vi@lists.sourceforge.net>\n"
@@ -41,7 +41,7 @@ msgid "attempt to use scalar `%s' as an array"
 msgstr "cố dùng “%s” vô hướng như là mảng"
 
 #: array.c:402 array.c:569 builtin.c:89 builtin.c:1677 builtin.c:1723
-#: builtin.c:1736 builtin.c:2231 builtin.c:2258 eval.c:1155 eval.c:1159
+#: builtin.c:1736 builtin.c:2233 builtin.c:2260 eval.c:1155 eval.c:1159
 #: eval.c:1541
 #, c-format
 msgid "attempt to use array `%s' in a scalar context"
@@ -260,11 +260,11 @@ msgstr "cố gắng dùng không-phải-hàm “%s” trong cú gọi hàm"
 msgid "invalid subscript expression"
 msgstr "biểu thức in thấp không hợp lệ"
 
-#: awkgram.y:2488 awkgram.y:2508 gawkapi.c:265 gawkapi.c:282 msg.c:132
+#: awkgram.y:2488 awkgram.y:2508 gawkapi.c:265 gawkapi.c:282 msg.c:133
 msgid "warning: "
 msgstr "cảnh báo: "
 
-#: awkgram.y:2506 gawkapi.c:237 gawkapi.c:280 msg.c:164
+#: awkgram.y:2506 gawkapi.c:237 gawkapi.c:280 msg.c:165
 msgid "fatal: "
 msgstr "lỗi nghiêm trọng: "
 
@@ -630,8 +630,8 @@ msgstr "đầu ra tiêu chuẩn"
 msgid "standard error"
 msgstr "lỗi tiêu chuẩn"
 
-#: builtin.c:163 builtin.c:493 builtin.c:583 builtin.c:1786 builtin.c:2508
-#: builtin.c:2524 builtin.c:2638 builtin.c:3625 mpfr.c:761
+#: builtin.c:163 builtin.c:493 builtin.c:583 builtin.c:1786 builtin.c:2510
+#: builtin.c:2526 builtin.c:2640 builtin.c:3627 mpfr.c:761
 #, c-format
 msgid "%s: received non-numeric argument"
 msgstr "%s: đã nhận đối số không phải thuộc số"
@@ -691,7 +691,7 @@ msgstr "length: (chiều dài) đã nhận mảng đối số"
 msgid "`length(array)' is a gawk extension"
 msgstr "“length(array)” (độ dài mảng) là một phần mở rộng gawk"
 
-#: builtin.c:554 builtin.c:2113 builtin.c:2171 builtin.c:2423 builtin.c:2454
+#: builtin.c:554 builtin.c:2113 builtin.c:2173 builtin.c:2425 builtin.c:2456
 #, fuzzy, c-format
 msgid "%s: received non-string argument"
 msgstr "system: (hệ thống) đã nhận đối số khác chuỗi"
@@ -873,7 +873,7 @@ msgid "strftime: format value in PROCINFO[\"strftime\"] has numeric type"
 msgstr ""
 "strftime: giá trị định dạng trong PROCINFO[\"strftime\"] phải thuộc kiểu số"
 
-#: builtin.c:1997 builtin.c:2489 builtin.c:3457 builtin.c:3496 builtin.c:4056
+#: builtin.c:1997 builtin.c:2491 builtin.c:3459 builtin.c:3498 builtin.c:4058
 #, fuzzy, c-format
 msgid "%s: received non-numeric second argument"
 msgstr "or: (hoặc) đã nhận đối số thứ hai khác thuộc số"
@@ -890,129 +890,129 @@ msgstr "strftime: tham số thứ hai nằm ngoài phạm vi cho phép của ki�
 msgid "strftime: received empty format string"
 msgstr "strftime: đã nhận chuỗi định dạng rỗng"
 
-#: builtin.c:2130
+#: builtin.c:2132
 msgid "mktime: at least one of the values is out of the default range"
 msgstr "mktime: ít nhất một của những giá trị nằm ở ngoại phạm vi mặc định"
 
-#: builtin.c:2166
+#: builtin.c:2168
 msgid "'system' function not allowed in sandbox mode"
 msgstr "hàm “system” không cho phép ở chế độ khuôn đúc"
 
-#: builtin.c:2240 builtin.c:2315
+#: builtin.c:2242 builtin.c:2317
 msgid "print: attempt to write to closed write end of two-way pipe"
 msgstr "print: cố ghi vào một đường ống hai chiều mà chiều ghi đã đóng"
 
-#: builtin.c:2338
+#: builtin.c:2340
 #, c-format
 msgid "reference to uninitialized field `$%d'"
 msgstr "gặp tham chiếu đến trường chưa được khởi tạo “$%d”"
 
-#: builtin.c:2487 builtin.c:3455 builtin.c:3494 builtin.c:4054
+#: builtin.c:2489 builtin.c:3457 builtin.c:3496 builtin.c:4056
 #, fuzzy, c-format
 msgid "%s: received non-numeric first argument"
 msgstr "or: (hoặc) đã nhận đối số đầu không phải thuộc số"
 
-#: builtin.c:2669
+#: builtin.c:2671
 msgid "match: third argument is not an array"
 msgstr "match: (khớp) đối số thứ ba không phải là mảng"
 
-#: builtin.c:2671
+#: builtin.c:2673
 #, fuzzy, c-format
 #| msgid "fnmatch: could not get third argument"
 msgid "%s: cannot use %s as third argument"
 msgstr "fnmatch: không thể lấy tham số thứ ba"
 
-#: builtin.c:2914
+#: builtin.c:2916
 #, c-format
 msgid "gensub: third argument `%.*s' treated as 1"
 msgstr "gensub: đối số thứ ba “%.*s” được xử lý như 1"
 
-#: builtin.c:3265
+#: builtin.c:3267
 #, c-format
 msgid "%s: can be called indirectly only with two arguments"
 msgstr "%s: được gọi một cách gián tiếp với ít hơn hai đối số"
 
-#: builtin.c:3388
+#: builtin.c:3390
 #, c-format
 msgid "indirect call to %s requires at least two arguments"
 msgstr "cú gọi gián tiếp đến %s cần ít nhất hai đối số"
 
-#: builtin.c:3463
+#: builtin.c:3465
 #, c-format
 msgid "lshift(%f, %f): negative values are not allowed"
 msgstr "lshift(%f, %f): giá trị âm l không được phép"
 
-#: builtin.c:3467
+#: builtin.c:3469
 #, c-format
 msgid "lshift(%f, %f): fractional values will be truncated"
 msgstr "lshift(%f, %f): giá trị thuộc phân số sẽ bị cắt ngắn"
 
-#: builtin.c:3469
+#: builtin.c:3471
 #, c-format
 msgid "lshift(%f, %f): too large shift value will give strange results"
 msgstr ""
 "lshift(%f, %f): giá trị dịch quá lớn sẽ gây ra kết quả không như mong muốn"
 
-#: builtin.c:3502
+#: builtin.c:3504
 #, c-format
 msgid "rshift(%f, %f): negative values are not allowed"
 msgstr "rshift(%f, %f): giá trị âm là không được phép"
 
-#: builtin.c:3506
+#: builtin.c:3508
 #, c-format
 msgid "rshift(%f, %f): fractional values will be truncated"
 msgstr "rshift(%f, %f): giá trị thuộc kiểu phân số sẽ bị xén ngắn"
 
-#: builtin.c:3508
+#: builtin.c:3510
 #, c-format
 msgid "rshift(%f, %f): too large shift value will give strange results"
 msgstr ""
 "rshift(%f, %f): giá trị dịch quá lớn sẽ gây ra kết quả không như mong muốn"
 
-#: builtin.c:3532 builtin.c:3563 builtin.c:3593
+#: builtin.c:3534 builtin.c:3565 builtin.c:3595
 #, fuzzy, c-format
 msgid "%s: called with less than two arguments"
 msgstr "or: (hoặc) được gọi với ít hơn hai đối số"
 
-#: builtin.c:3537 builtin.c:3568 builtin.c:3599
+#: builtin.c:3539 builtin.c:3570 builtin.c:3601
 #, fuzzy, c-format
 msgid "%s: argument %d is non-numeric"
 msgstr "or: (hoặc) đối số %d không thuộc kiểu số"
 
-#: builtin.c:3541 builtin.c:3572 builtin.c:3603
+#: builtin.c:3543 builtin.c:3574 builtin.c:3605
 #, fuzzy, c-format
 msgid "%s: argument %d negative value %g is not allowed"
 msgstr "%s: đối số #%d giá trị âm %Rg là không được phép"
 
-#: builtin.c:3630
+#: builtin.c:3632
 #, c-format
 msgid "compl(%f): negative value is not allowed"
 msgstr "compl(%f): giá trị âm là không được phép"
 
-#: builtin.c:3633
+#: builtin.c:3635
 #, c-format
 msgid "compl(%f): fractional value will be truncated"
 msgstr "compl(%f): giá trị thuộc phân số sẽ bị cắt ngắn"
 
-#: builtin.c:3819
+#: builtin.c:3821
 #, c-format
 msgid "dcgettext: `%s' is not a valid locale category"
 msgstr "dcgettext: “%s” không phải là một phân loại miền địa phương hợp lệ"
 
-#: builtin.c:4046 mpfr.c:1261
+#: builtin.c:4048 mpfr.c:1261
 msgid "intdiv: third argument is not an array"
 msgstr "intdiv: đối số thứ ba không phải là mảng"
 
-#: builtin.c:4065 mpfr.c:1310
+#: builtin.c:4067 mpfr.c:1310
 msgid "intdiv: division by zero attempted"
 msgstr "intdiv: gặp phép chia cho số không"
 
-#: builtin.c:4104
+#: builtin.c:4106
 #, fuzzy
 msgid "typeof: second argument is not an array"
 msgstr "split: (chia tách) đối số thứ hai không phải là mảng"
 
-#: builtin.c:4176
+#: builtin.c:4178
 #, fuzzy, c-format
 #| msgid ""
 #| "typeof detected invalid flags combination `%s'; please file a bug report."
@@ -1021,12 +1021,12 @@ msgid ""
 msgstr ""
 "typeof dò tìm thấy tổ hợp các cờ không hợp lệ “%s”; vui lòng báo cáo lỗi này."
 
-#: builtin.c:4196
+#: builtin.c:4198
 #, c-format
 msgid "typeof: invalid argument type `%s'"
 msgstr "typeof: tùy chọn không hợp lệ “%s”"
 
-#: builtin.c:4200
+#: builtin.c:4202
 #, c-format
 msgid "typeof: unknown argument type `%s'"
 msgstr "typeof: không biết kiểu tham số “%s”"
@@ -1446,7 +1446,7 @@ msgstr ""
 "where [N] - (giống như backtrace) in vết của tất cả hay N khung trong cùng "
 "nhất (ngoài cùng nhất nếu N < 0)."
 
-#: command.y:1017 debug.c:423 gawkapi.c:251 msg.c:141
+#: command.y:1017 debug.c:423 gawkapi.c:251 msg.c:142
 #, c-format
 msgid "error: "
 msgstr "lỗi: "
@@ -2447,7 +2447,7 @@ msgstr "do_reada: đối số 0 không phải là một chuỗi\n"
 msgid "chr: first argument is not a number"
 msgstr "asort: đối số thứ nhất không phải là một mảng"
 
-#: extension/readdir.c:276
+#: extension/readdir.c:277
 #, c-format
 msgid "dir_take_control_of: opendir/fdopendir failed: %s"
 msgstr "dir_take_control_of: opendir/fdopendir gặp lỗi: %s"
@@ -3624,7 +3624,7 @@ msgstr "intdiv: đã nhận đối số đầu không phải thuộc số"
 msgid "intdiv: received non-numeric second argument"
 msgstr "intdiv: đã nhận đối số thứ hai không thuộc số"
 
-#: msg.c:75
+#: msg.c:76
 #, c-format
 msgid "cmd. line:"
 msgstr "dòng lệnh:"
@@ -3948,12 +3948,12 @@ msgstr "Chưa khớp “)” hoặc “\\)”"
 msgid "No previous regular expression"
 msgstr "Không có biểu thức chính quy nằm trước"
 
-#: symbol.c:703
+#: symbol.c:698
 #, fuzzy, c-format
 msgid "function `%s': cannot use function `%s' as a parameter name"
 msgstr "hàm “%s”: không thể dùng hàm “%s” như là tên tham số"
 
-#: symbol.c:833
+#: symbol.c:828
 #, fuzzy
 msgid "cannot pop main context"
 msgstr "không thể pop (lấy ra) ngữ cảnh chính"

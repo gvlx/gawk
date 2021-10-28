@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gawk 5.0.64\n"
 "Report-Msgid-Bugs-To: bug-gawk@gnu.org\n"
-"POT-Creation-Date: 2021-09-19 11:16+0300\n"
+"POT-Creation-Date: 2021-10-27 07:58+0300\n"
 "PO-Revision-Date: 2020-03-20 12:56+0100\n"
 "Last-Translator: Benno Schulenberg <vertaling@coevern.nl>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
@@ -41,7 +41,7 @@ msgid "attempt to use scalar `%s' as an array"
 msgstr "scalair '%s' wordt gebruikt als array"
 
 #: array.c:402 array.c:569 builtin.c:89 builtin.c:1677 builtin.c:1723
-#: builtin.c:1736 builtin.c:2231 builtin.c:2258 eval.c:1155 eval.c:1159
+#: builtin.c:1736 builtin.c:2233 builtin.c:2260 eval.c:1155 eval.c:1159
 #: eval.c:1541
 #, c-format
 msgid "attempt to use array `%s' in a scalar context"
@@ -252,11 +252,11 @@ msgstr "niet-functie '%s' wordt gebruikt in functie-aanroep"
 msgid "invalid subscript expression"
 msgstr "ongeldige index-expressie"
 
-#: awkgram.y:2488 awkgram.y:2508 gawkapi.c:265 gawkapi.c:282 msg.c:132
+#: awkgram.y:2488 awkgram.y:2508 gawkapi.c:265 gawkapi.c:282 msg.c:133
 msgid "warning: "
 msgstr "waarschuwing: "
 
-#: awkgram.y:2506 gawkapi.c:237 gawkapi.c:280 msg.c:164
+#: awkgram.y:2506 gawkapi.c:237 gawkapi.c:280 msg.c:165
 msgid "fatal: "
 msgstr "fataal: "
 
@@ -615,8 +615,8 @@ msgstr "standaarduitvoer"
 msgid "standard error"
 msgstr "standaardfoutuitvoer"
 
-#: builtin.c:163 builtin.c:493 builtin.c:583 builtin.c:1786 builtin.c:2508
-#: builtin.c:2524 builtin.c:2638 builtin.c:3625 mpfr.c:761
+#: builtin.c:163 builtin.c:493 builtin.c:583 builtin.c:1786 builtin.c:2510
+#: builtin.c:2526 builtin.c:2640 builtin.c:3627 mpfr.c:761
 #, c-format
 msgid "%s: received non-numeric argument"
 msgstr "%s: niet-numeriek argument ontvangen"
@@ -675,7 +675,7 @@ msgstr "length: argument is een array"
 msgid "`length(array)' is a gawk extension"
 msgstr "'length(array)' is een gawk-uitbreiding"
 
-#: builtin.c:554 builtin.c:2113 builtin.c:2171 builtin.c:2423 builtin.c:2454
+#: builtin.c:554 builtin.c:2113 builtin.c:2173 builtin.c:2425 builtin.c:2456
 #, c-format
 msgid "%s: received non-string argument"
 msgstr "%s: argument is geen string"
@@ -849,7 +849,7 @@ msgstr ""
 msgid "strftime: format value in PROCINFO[\"strftime\"] has numeric type"
 msgstr "strftime: opmaakwaarde in PROCINFO[\"strftime\"] is numeriek"
 
-#: builtin.c:1997 builtin.c:2489 builtin.c:3457 builtin.c:3496 builtin.c:4056
+#: builtin.c:1997 builtin.c:2491 builtin.c:3459 builtin.c:3498 builtin.c:4058
 #, c-format
 msgid "%s: received non-numeric second argument"
 msgstr "%s: tweede argument is geen getal"
@@ -866,139 +866,139 @@ msgstr "strftime: tweede argument ligt buiten toegestaan bereik voor 'time_t'"
 msgid "strftime: received empty format string"
 msgstr "strftime: opmaakstring is leeg"
 
-#: builtin.c:2130
+#: builtin.c:2132
 msgid "mktime: at least one of the values is out of the default range"
 msgstr "mktime: minstens één van waarden valt buiten het standaardbereik"
 
-#: builtin.c:2166
+#: builtin.c:2168
 msgid "'system' function not allowed in sandbox mode"
 msgstr "'system'-functie is niet toegestaan in sandbox-modus"
 
-#: builtin.c:2240 builtin.c:2315
+#: builtin.c:2242 builtin.c:2317
 msgid "print: attempt to write to closed write end of two-way pipe"
 msgstr "print: poging tot schrijven naar gesloten schrijfkant van tweewegpijp"
 
-#: builtin.c:2338
+#: builtin.c:2340
 #, c-format
 msgid "reference to uninitialized field `$%d'"
 msgstr "verwijzing naar ongeïnitialiseerd veld '$%d'"
 
-#: builtin.c:2487 builtin.c:3455 builtin.c:3494 builtin.c:4054
+#: builtin.c:2489 builtin.c:3457 builtin.c:3496 builtin.c:4056
 #, c-format
 msgid "%s: received non-numeric first argument"
 msgstr "%s: eerste argument is geen getal"
 
-#: builtin.c:2669
+#: builtin.c:2671
 msgid "match: third argument is not an array"
 msgstr "match: derde argument is geen array"
 
-#: builtin.c:2671
+#: builtin.c:2673
 #, fuzzy, c-format
 #| msgid "fnmatch: could not get third argument"
 msgid "%s: cannot use %s as third argument"
 msgstr "fnmatch: kan derde argument niet verkrijgen"
 
-#: builtin.c:2914
+#: builtin.c:2916
 #, c-format
 msgid "gensub: third argument `%.*s' treated as 1"
 msgstr "gensub: derde argument is '%.*s'; wordt beschouwd als 1"
 
 # FIXME: ambiguous
-#: builtin.c:3265
+#: builtin.c:3267
 #, c-format
 msgid "%s: can be called indirectly only with two arguments"
 msgstr "%s: kan alleen indirect aangeroepen worden met twee argumenten"
 
-#: builtin.c:3388
+#: builtin.c:3390
 #, c-format
 msgid "indirect call to %s requires at least two arguments"
 msgstr "indirecte aanroep van %s vereist minstens twee argumenten"
 
-#: builtin.c:3463
+#: builtin.c:3465
 #, c-format
 msgid "lshift(%f, %f): negative values are not allowed"
 msgstr "lshift(%f, %f): negatieve waarden zijn niet toegestaan"
 
-#: builtin.c:3467
+#: builtin.c:3469
 #, c-format
 msgid "lshift(%f, %f): fractional values will be truncated"
 msgstr "lshift(%f, %f): cijfers na de komma worden afgekapt"
 
-#: builtin.c:3469
+#: builtin.c:3471
 #, c-format
 msgid "lshift(%f, %f): too large shift value will give strange results"
 msgstr "lshift(%f, %f): te grote opschuifwaarden geven rare resultaten"
 
-#: builtin.c:3502
+#: builtin.c:3504
 #, c-format
 msgid "rshift(%f, %f): negative values are not allowed"
 msgstr "rshift(%f, %f): negatieve waarden zijn niet toegestaan"
 
-#: builtin.c:3506
+#: builtin.c:3508
 #, c-format
 msgid "rshift(%f, %f): fractional values will be truncated"
 msgstr "rshift(%f, %f): cijfers na de komma worden afgekapt"
 
-#: builtin.c:3508
+#: builtin.c:3510
 #, c-format
 msgid "rshift(%f, %f): too large shift value will give strange results"
 msgstr "rshift(%f, %f): te grote opschuifwaarden geven rare resultaten"
 
-#: builtin.c:3532 builtin.c:3563 builtin.c:3593
+#: builtin.c:3534 builtin.c:3565 builtin.c:3595
 #, c-format
 msgid "%s: called with less than two arguments"
 msgstr "%s: aangeroepen met minder dan twee argumenten"
 
-#: builtin.c:3537 builtin.c:3568 builtin.c:3599
+#: builtin.c:3539 builtin.c:3570 builtin.c:3601
 #, c-format
 msgid "%s: argument %d is non-numeric"
 msgstr "%s: argument %d is niet-numeriek"
 
-#: builtin.c:3541 builtin.c:3572 builtin.c:3603
+#: builtin.c:3543 builtin.c:3574 builtin.c:3605
 #, c-format
 msgid "%s: argument %d negative value %g is not allowed"
 msgstr "%1$s: negatieve waarde %3$g van argument %2$d is niet toegestaan"
 
-#: builtin.c:3630
+#: builtin.c:3632
 #, c-format
 msgid "compl(%f): negative value is not allowed"
 msgstr "compl(%f): negatieve waarde is niet toegestaan"
 
-#: builtin.c:3633
+#: builtin.c:3635
 #, c-format
 msgid "compl(%f): fractional value will be truncated"
 msgstr "compl(%f): cijfers na de komma worden afgekapt"
 
-#: builtin.c:3819
+#: builtin.c:3821
 #, c-format
 msgid "dcgettext: `%s' is not a valid locale category"
 msgstr "dcgettext: '%s' is geen geldige taalregio-deelcategorie"
 
-#: builtin.c:4046 mpfr.c:1261
+#: builtin.c:4048 mpfr.c:1261
 msgid "intdiv: third argument is not an array"
 msgstr "intdiv: derde argument is geen array"
 
-#: builtin.c:4065 mpfr.c:1310
+#: builtin.c:4067 mpfr.c:1310
 #, fuzzy
 msgid "intdiv: division by zero attempted"
 msgstr "intdiv: deling door nul"
 
-#: builtin.c:4104
+#: builtin.c:4106
 msgid "typeof: second argument is not an array"
 msgstr "typeof: tweede argument is geen array"
 
-#: builtin.c:4176
+#: builtin.c:4178
 #, c-format
 msgid ""
 "typeof detected invalid flags combination `%s'; please file a bug report"
 msgstr ""
 
-#: builtin.c:4196
+#: builtin.c:4198
 #, c-format
 msgid "typeof: invalid argument type `%s'"
 msgstr "typeof: ongeldig argumenttype '%s'"
 
-#: builtin.c:4200
+#: builtin.c:4202
 #, c-format
 msgid "typeof: unknown argument type `%s'"
 msgstr "typeof: onbekend argumenttype '%s'"
@@ -1433,7 +1433,7 @@ msgstr ""
 "where[N] - (zelfde als backtrace) een trace weergeven van alle of N "
 "binnenste frames (of buitenste als N < 0)"
 
-#: command.y:1017 debug.c:423 gawkapi.c:251 msg.c:141
+#: command.y:1017 debug.c:423 gawkapi.c:251 msg.c:142
 #, c-format
 msgid "error: "
 msgstr "fout: "
@@ -2424,7 +2424,7 @@ msgstr "ord: eerste argument is geen string"
 msgid "chr: first argument is not a number"
 msgstr "chr: eerste argument is geen getal"
 
-#: extension/readdir.c:276
+#: extension/readdir.c:277
 #, c-format
 msgid "dir_take_control_of: opendir/fdopendir failed: %s"
 msgstr "dir_take_control_of(): opendir()/fdopendir() is mislukt: %s"
@@ -3553,7 +3553,7 @@ msgstr "intdiv: eerste argument is geen getal"
 msgid "intdiv: received non-numeric second argument"
 msgstr "intdiv: tweede argument is geen getal"
 
-#: msg.c:75
+#: msg.c:76
 #, c-format
 msgid "cmd. line:"
 msgstr "commandoregel:"
@@ -3877,12 +3877,12 @@ msgstr "Ongepaarde ) of \\)"
 msgid "No previous regular expression"
 msgstr "Geen eerdere reguliere expressie"
 
-#: symbol.c:703
+#: symbol.c:698
 #, fuzzy, c-format
 msgid "function `%s': cannot use function `%s' as a parameter name"
 msgstr "functie '%s': kan functie '%s' niet als parameternaam gebruiken"
 
-#: symbol.c:833
+#: symbol.c:828
 #, fuzzy
 msgid "cannot pop main context"
 msgstr "kan hoofdcontext niet poppen"

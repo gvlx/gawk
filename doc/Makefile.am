@@ -49,8 +49,8 @@ EXTRA_DIST = ChangeLog ChangeLog.0 ChangeLog.1 \
 	macros colors no.colors $(man_MANS) \
 	lflashlight-small.xpic lflashlight.eps lflashlight.pdf \
 	rflashlight-small.xpic rflashlight.eps rflashlight.pdf \
-	statist.jpg statist.eps statist.pdf \
-	wordlist wordlist2 wordlist3 \
+	statist.jpg statist.eps statist.pdf statist.txt \
+	wordlist wordlist2 wordlist3 wordlist4 \
 	bc_notes
 
 # Get rid of generated files when cleaning

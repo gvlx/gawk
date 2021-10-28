@@ -31,6 +31,7 @@ AR = @AR@
 # Stuff to include in the dist that doesn't need it's own
 # Makefile.am files
 EXTRA_DIST = \
+        ChangeLog.0 \
 	Makefile.am \
 	Makefile.in \
 	regcomp.c \
