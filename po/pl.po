@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gawk 4.1.0b\n"
 "Report-Msgid-Bugs-To: bug-gawk@gnu.org\n"
-"POT-Creation-Date: 2021-09-19 11:16+0300\n"
+"POT-Creation-Date: 2021-10-27 07:58+0300\n"
 "PO-Revision-Date: 2014-03-22 17:49+0100\n"
 "Last-Translator: Wojciech Polak <polak@gnu.org>\n"
 "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
@@ -40,7 +40,7 @@ msgid "attempt to use scalar `%s' as an array"
 msgstr "próba użycia skalaru `%s' jako tablicy"
 
 #: array.c:402 array.c:569 builtin.c:89 builtin.c:1677 builtin.c:1723
-#: builtin.c:1736 builtin.c:2231 builtin.c:2258 eval.c:1155 eval.c:1159
+#: builtin.c:1736 builtin.c:2233 builtin.c:2260 eval.c:1155 eval.c:1159
 #: eval.c:1541
 #, c-format
 msgid "attempt to use array `%s' in a scalar context"
@@ -252,11 +252,11 @@ msgstr "próba użycia funkcji `%s' jako tablicy"
 msgid "invalid subscript expression"
 msgstr "nieprawidłowe wyrażenie indeksowe"
 
-#: awkgram.y:2488 awkgram.y:2508 gawkapi.c:265 gawkapi.c:282 msg.c:132
+#: awkgram.y:2488 awkgram.y:2508 gawkapi.c:265 gawkapi.c:282 msg.c:133
 msgid "warning: "
 msgstr "ostrzeżenie: "
 
-#: awkgram.y:2506 gawkapi.c:237 gawkapi.c:280 msg.c:164
+#: awkgram.y:2506 gawkapi.c:237 gawkapi.c:280 msg.c:165
 msgid "fatal: "
 msgstr "fatalny błąd: "
 
@@ -625,8 +625,8 @@ msgstr "standardowe wyjście"
 msgid "standard error"
 msgstr "standardowe wyjście"
 
-#: builtin.c:163 builtin.c:493 builtin.c:583 builtin.c:1786 builtin.c:2508
-#: builtin.c:2524 builtin.c:2638 builtin.c:3625 mpfr.c:761
+#: builtin.c:163 builtin.c:493 builtin.c:583 builtin.c:1786 builtin.c:2510
+#: builtin.c:2526 builtin.c:2640 builtin.c:3627 mpfr.c:761
 #, c-format
 msgid "%s: received non-numeric argument"
 msgstr "%s: otrzymano argument, który nie jest liczbą"
@@ -683,7 +683,7 @@ msgstr "length: otrzymano argument, który jest tablicą"
 msgid "`length(array)' is a gawk extension"
 msgstr "`length(tablica)' jest rozszerzeniem gawk"
 
-#: builtin.c:554 builtin.c:2113 builtin.c:2171 builtin.c:2423 builtin.c:2454
+#: builtin.c:554 builtin.c:2113 builtin.c:2173 builtin.c:2425 builtin.c:2456
 #, fuzzy, c-format
 msgid "%s: received non-string argument"
 msgstr "system: otrzymano argument, który nie jest łańcuchem"
@@ -864,7 +864,7 @@ msgid "strftime: format value in PROCINFO[\"strftime\"] has numeric type"
 msgstr ""
 "strftime: wartość formatu w PROCINFO[\"strftime\"] posiada typ numeryczny"
 
-#: builtin.c:1997 builtin.c:2489 builtin.c:3457 builtin.c:3496 builtin.c:4056
+#: builtin.c:1997 builtin.c:2491 builtin.c:3459 builtin.c:3498 builtin.c:4058
 #, fuzzy, c-format
 msgid "%s: received non-numeric second argument"
 msgstr "or: otrzymano drugi argument, który nie jest liczbą"
@@ -882,140 +882,140 @@ msgstr "strftime: drugi argument mniejszy od 0 lub zbyt duży dla time_t"
 msgid "strftime: received empty format string"
 msgstr "strftime: otrzymano pusty łańcuch formatujący"
 
-#: builtin.c:2130
+#: builtin.c:2132
 msgid "mktime: at least one of the values is out of the default range"
 msgstr "mktime: przynajmniej jedna z wartości jest poza domyślnym zakresem"
 
-#: builtin.c:2166
+#: builtin.c:2168
 msgid "'system' function not allowed in sandbox mode"
 msgstr "funkcja 'system' nie jest dozwolona w trybie piaskownicy"
 
-#: builtin.c:2240 builtin.c:2315
+#: builtin.c:2242 builtin.c:2317
 msgid "print: attempt to write to closed write end of two-way pipe"
 msgstr ""
 
-#: builtin.c:2338
+#: builtin.c:2340
 #, c-format
 msgid "reference to uninitialized field `$%d'"
 msgstr "odwołanie do niezainicjowanego pola `$%d'"
 
-#: builtin.c:2487 builtin.c:3455 builtin.c:3494 builtin.c:4054
+#: builtin.c:2489 builtin.c:3457 builtin.c:3496 builtin.c:4056
 #, fuzzy, c-format
 msgid "%s: received non-numeric first argument"
 msgstr "or: otrzymano pierwszy argument, który nie jest liczbą"
 
-#: builtin.c:2669
+#: builtin.c:2671
 msgid "match: third argument is not an array"
 msgstr "match: otrzymano trzeci argument, który nie jest tablicą"
 
-#: builtin.c:2671
+#: builtin.c:2673
 #, fuzzy, c-format
 #| msgid "fnmatch: could not get third argument"
 msgid "%s: cannot use %s as third argument"
 msgstr "fnmatch: nie można pobrać trzeciego argumentu"
 
-#: builtin.c:2914
+#: builtin.c:2916
 #, fuzzy, c-format
 msgid "gensub: third argument `%.*s' treated as 1"
 msgstr "gensub: trzeci argument 0 potraktowany jako 1"
 
-#: builtin.c:3265
+#: builtin.c:3267
 #, fuzzy, c-format
 msgid "%s: can be called indirectly only with two arguments"
 msgstr "and: wywołano z mniej niż dwoma argumentami"
 
-#: builtin.c:3388
+#: builtin.c:3390
 #, fuzzy, c-format
 msgid "indirect call to %s requires at least two arguments"
 msgstr "and: wywołano z mniej niż dwoma argumentami"
 
-#: builtin.c:3463
+#: builtin.c:3465
 #, fuzzy, c-format
 msgid "lshift(%f, %f): negative values are not allowed"
 msgstr "lshift(%f, %f): ujemne wartości spowodują dziwne wyniki"
 
-#: builtin.c:3467
+#: builtin.c:3469
 #, c-format
 msgid "lshift(%f, %f): fractional values will be truncated"
 msgstr "lshift(%f, %f): ułamkowe wartości zostaną obcięte"
 
-#: builtin.c:3469
+#: builtin.c:3471
 #, c-format
 msgid "lshift(%f, %f): too large shift value will give strange results"
 msgstr "lshift(%f, %f): zbyt duża wartość przesunięcia spowoduje dziwne wyniki"
 
-#: builtin.c:3502
+#: builtin.c:3504
 #, fuzzy, c-format
 msgid "rshift(%f, %f): negative values are not allowed"
 msgstr "rshift(%f, %f): ujemne wartości spowodują dziwne wyniki"
 
-#: builtin.c:3506
+#: builtin.c:3508
 #, c-format
 msgid "rshift(%f, %f): fractional values will be truncated"
 msgstr "rshift(%f, %f): ułamkowe wartości zostaną obcięte"
 
-#: builtin.c:3508
+#: builtin.c:3510
 #, c-format
 msgid "rshift(%f, %f): too large shift value will give strange results"
 msgstr "rshift(%f, %f): zbyt duża wartość przesunięcia spowoduje dziwne wyniki"
 
-#: builtin.c:3532 builtin.c:3563 builtin.c:3593
+#: builtin.c:3534 builtin.c:3565 builtin.c:3595
 #, fuzzy, c-format
 msgid "%s: called with less than two arguments"
 msgstr "or: wywołano z mniej niż dwoma argumentami"
 
-#: builtin.c:3537 builtin.c:3568 builtin.c:3599
+#: builtin.c:3539 builtin.c:3570 builtin.c:3601
 #, fuzzy, c-format
 msgid "%s: argument %d is non-numeric"
 msgstr "or: argument %d nie jest liczbą"
 
-#: builtin.c:3541 builtin.c:3572 builtin.c:3603
+#: builtin.c:3543 builtin.c:3574 builtin.c:3605
 #, fuzzy, c-format
 msgid "%s: argument %d negative value %g is not allowed"
 msgstr "%s: argument #%d ujemna wartość %Rg spowoduje dziwne wyniki"
 
-#: builtin.c:3630
+#: builtin.c:3632
 #, fuzzy, c-format
 msgid "compl(%f): negative value is not allowed"
 msgstr "compl(%f): ujemne wartości spowodują dziwne wyniki"
 
-#: builtin.c:3633
+#: builtin.c:3635
 #, c-format
 msgid "compl(%f): fractional value will be truncated"
 msgstr "compl(%f): ułamkowe wartości zostaną obcięte"
 
-#: builtin.c:3819
+#: builtin.c:3821
 #, c-format
 msgid "dcgettext: `%s' is not a valid locale category"
 msgstr "dcgettext: `%s' nie jest prawidłową kategorią lokalizacji"
 
-#: builtin.c:4046 mpfr.c:1261
+#: builtin.c:4048 mpfr.c:1261
 #, fuzzy
 msgid "intdiv: third argument is not an array"
 msgstr "match: otrzymano trzeci argument, który nie jest tablicą"
 
-#: builtin.c:4065 mpfr.c:1310
+#: builtin.c:4067 mpfr.c:1310
 #, fuzzy
 msgid "intdiv: division by zero attempted"
 msgstr "próba dzielenia przez zero"
 
-#: builtin.c:4104
+#: builtin.c:4106
 #, fuzzy
 msgid "typeof: second argument is not an array"
 msgstr "split: drugi argument nie jest tablicą"
 
-#: builtin.c:4176
+#: builtin.c:4178
 #, c-format
 msgid ""
 "typeof detected invalid flags combination `%s'; please file a bug report"
 msgstr ""
 
-#: builtin.c:4196
+#: builtin.c:4198
 #, fuzzy, c-format
 msgid "typeof: invalid argument type `%s'"
 msgstr "option: nieprawidłowy parametr - \"%s\""
 
-#: builtin.c:4200
+#: builtin.c:4202
 #, c-format
 msgid "typeof: unknown argument type `%s'"
 msgstr ""
@@ -1309,7 +1309,7 @@ msgid ""
 "if N < 0) frames"
 msgstr ""
 
-#: command.y:1017 debug.c:423 gawkapi.c:251 msg.c:141
+#: command.y:1017 debug.c:423 gawkapi.c:251 msg.c:142
 #, c-format
 msgid "error: "
 msgstr "błąd: "
@@ -2285,7 +2285,7 @@ msgstr "do_reada: argument 0 nie jest tekstem\n"
 msgid "chr: first argument is not a number"
 msgstr "asort: pierwszy argument nie jest tablicą"
 
-#: extension/readdir.c:276
+#: extension/readdir.c:277
 #, c-format
 msgid "dir_take_control_of: opendir/fdopendir failed: %s"
 msgstr "dir_take_control_of: wywołanie opendir/fdopendir nie powiodło się: %s"
@@ -3447,7 +3447,7 @@ msgstr "and: otrzymano pierwszy argument, który nie jest liczbą"
 msgid "intdiv: received non-numeric second argument"
 msgstr "and: otrzymano drugi argument, który nie jest liczbą"
 
-#: msg.c:75
+#: msg.c:76
 #, c-format
 msgid "cmd. line:"
 msgstr "linia poleceń:"
@@ -3771,12 +3771,12 @@ msgstr "Niedopasowany znak ) lub \\)"
 msgid "No previous regular expression"
 msgstr "Brak poprzedniego wyrażenia regularnego"
 
-#: symbol.c:703
+#: symbol.c:698
 #, fuzzy, c-format
 msgid "function `%s': cannot use function `%s' as a parameter name"
 msgstr "funkcja `%s': nie można użyć nazwy funkcji jako nazwy parametru"
 
-#: symbol.c:833
+#: symbol.c:828
 #, fuzzy
 msgid "cannot pop main context"
 msgstr "nie można zdjąć głównego kontekstu"

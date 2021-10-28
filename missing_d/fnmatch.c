@@ -1,5 +1,5 @@
-/* Copyright (C) 1991, 1992, 1993, 1996, 1997, 1998, 1999 Free Software
-Foundation, Inc.
+/* Copyright (C) 1991, 1992, 1993, 1996, 1997, 1998, 1999, 2021,
+Free Software Foundation, Inc.
 This file is part of the GNU C Library.
 
 This library is free software; you can redistribute it and/or

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gawk 5.1.1e\n"
 "Report-Msgid-Bugs-To: bug-gawk@gnu.org\n"
-"POT-Creation-Date: 2021-09-19 11:16+0300\n"
+"POT-Creation-Date: 2021-10-27 07:58+0300\n"
 "PO-Revision-Date: 2021-09-07 11:55+0900\n"
 "Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
 "Language-Team: Korean <translation-team-ko@googlegroups.com>\n"
@@ -39,7 +39,7 @@ msgid "attempt to use scalar `%s' as an array"
 msgstr "`%s' 스칼라 구조를 배열 구조로 취급하려고 합니다"
 
 #: array.c:402 array.c:569 builtin.c:89 builtin.c:1677 builtin.c:1723
-#: builtin.c:1736 builtin.c:2231 builtin.c:2258 eval.c:1155 eval.c:1159
+#: builtin.c:1736 builtin.c:2233 builtin.c:2260 eval.c:1155 eval.c:1159
 #: eval.c:1541
 #, c-format
 msgid "attempt to use array `%s' in a scalar context"
@@ -247,11 +247,11 @@ msgstr "함수가 아닌 `%s' 이름을 함수 호출 구역 안에서 취급하
 msgid "invalid subscript expression"
 msgstr "잘못된 하위스크립트 연산식"
 
-#: awkgram.y:2488 awkgram.y:2508 gawkapi.c:265 gawkapi.c:282 msg.c:132
+#: awkgram.y:2488 awkgram.y:2508 gawkapi.c:265 gawkapi.c:282 msg.c:133
 msgid "warning: "
 msgstr "경고: "
 
-#: awkgram.y:2506 gawkapi.c:237 gawkapi.c:280 msg.c:164
+#: awkgram.y:2506 gawkapi.c:237 gawkapi.c:280 msg.c:165
 msgid "fatal: "
 msgstr "실패: "
 
@@ -611,8 +611,8 @@ msgstr "표준 출력"
 msgid "standard error"
 msgstr "표준 오류"
 
-#: builtin.c:163 builtin.c:493 builtin.c:583 builtin.c:1786 builtin.c:2508
-#: builtin.c:2524 builtin.c:2638 builtin.c:3625 mpfr.c:761
+#: builtin.c:163 builtin.c:493 builtin.c:583 builtin.c:1786 builtin.c:2510
+#: builtin.c:2526 builtin.c:2640 builtin.c:3627 mpfr.c:761
 #, c-format
 msgid "%s: received non-numeric argument"
 msgstr "%s: 숫자가 아닌 인자 값을 받았습니다"
@@ -666,7 +666,7 @@ msgstr "length: 배열 인자 값을 받았습니다"
 msgid "`length(array)' is a gawk extension"
 msgstr "`length(array)'는 gawk 확장 기능입니다"
 
-#: builtin.c:554 builtin.c:2113 builtin.c:2171 builtin.c:2423 builtin.c:2454
+#: builtin.c:554 builtin.c:2113 builtin.c:2173 builtin.c:2425 builtin.c:2456
 #, c-format
 msgid "%s: received non-string argument"
 msgstr "%s: 문자열이 아닌 인자값을 받았습니다"
@@ -838,7 +838,7 @@ msgstr ""
 msgid "strftime: format value in PROCINFO[\"strftime\"] has numeric type"
 msgstr "strftime: PROCINFO[\"strftime\"]의 형식 값에 숫자 값이 있습니다"
 
-#: builtin.c:1997 builtin.c:2489 builtin.c:3457 builtin.c:3496 builtin.c:4056
+#: builtin.c:1997 builtin.c:2491 builtin.c:3459 builtin.c:3498 builtin.c:4058
 #, c-format
 msgid "%s: received non-numeric second argument"
 msgstr "%s: 숫자가 아닌 두번째 인자 값을 받았습니다"
@@ -855,137 +855,137 @@ msgstr "strftime: 두번째 인자 값이 time_t 범위를 벗어납니다"
 msgid "strftime: received empty format string"
 msgstr "strftime: 빈 형식 문자열을 받았습니다"
 
-#: builtin.c:2130
+#: builtin.c:2132
 msgid "mktime: at least one of the values is out of the default range"
 msgstr "mktime: 지정 값 중 최소 한개 이상이 기본 범위를 벗어납니다"
 
-#: builtin.c:2166
+#: builtin.c:2168
 msgid "'system' function not allowed in sandbox mode"
 msgstr "샌드박스 모드에서는 'system' 함수 실행을 허용하지 않습니다"
 
-#: builtin.c:2240 builtin.c:2315
+#: builtin.c:2242 builtin.c:2317
 msgid "print: attempt to write to closed write end of two-way pipe"
 msgstr "print: 이미 닫힌 양방향 파이프라인의 쓰기 끝 지점에서 쓰기 시도"
 
-#: builtin.c:2338
+#: builtin.c:2340
 #, c-format
 msgid "reference to uninitialized field `$%d'"
 msgstr "초기화하지 않은 `$%d'번 필드 참조"
 
-#: builtin.c:2487 builtin.c:3455 builtin.c:3494 builtin.c:4054
+#: builtin.c:2489 builtin.c:3457 builtin.c:3496 builtin.c:4056
 #, c-format
 msgid "%s: received non-numeric first argument"
 msgstr "%s: 숫자가 아닌 첫번째 인자 값을 받았습니다"
 
-#: builtin.c:2669
+#: builtin.c:2671
 msgid "match: third argument is not an array"
 msgstr "match: 세번째 인자 값이 배열이 아닙니다"
 
-#: builtin.c:2671
+#: builtin.c:2673
 #, c-format
 msgid "%s: cannot use %s as third argument"
 msgstr "%s: %s을(를) 세번째 인자 값으로 사용할 수 없습니다"
 
-#: builtin.c:2914
+#: builtin.c:2916
 #, c-format
 msgid "gensub: third argument `%.*s' treated as 1"
 msgstr "gensub: 세번째 `%.*s' 인자 값을 1로 취급합니다"
 
-#: builtin.c:3265
+#: builtin.c:3267
 #, c-format
 msgid "%s: can be called indirectly only with two arguments"
 msgstr "%s: 인자 값 2개만을 사용하여 간접 호출할 수 있습니다"
 
-#: builtin.c:3388
+#: builtin.c:3390
 #, c-format
 msgid "indirect call to %s requires at least two arguments"
 msgstr "%s 간접 호출시 최소 인자 값 2개가 필요합니다"
 
-#: builtin.c:3463
+#: builtin.c:3465
 #, c-format
 msgid "lshift(%f, %f): negative values are not allowed"
 msgstr "lshift(%f, %f): 음수 값은 허용하지 않습니다"
 
-#: builtin.c:3467
+#: builtin.c:3469
 #, c-format
 msgid "lshift(%f, %f): fractional values will be truncated"
 msgstr "lshift(%f, %f): 소숫점 아래 값은 잘립니다"
 
-#: builtin.c:3469
+#: builtin.c:3471
 #, c-format
 msgid "lshift(%f, %f): too large shift value will give strange results"
 msgstr "lshift(%f, %f): 쉬프팅한 값이 크면 이상한 결과를 가져올 수 있습니다"
 
-#: builtin.c:3502
+#: builtin.c:3504
 #, c-format
 msgid "rshift(%f, %f): negative values are not allowed"
 msgstr "rshift(%f, %f): 음수 값은 허용하지 않습니다"
 
-#: builtin.c:3506
+#: builtin.c:3508
 #, c-format
 msgid "rshift(%f, %f): fractional values will be truncated"
 msgstr "rshift(%f, %f): 소숫점 아래 값은 잘립니다"
 
-#: builtin.c:3508
+#: builtin.c:3510
 #, c-format
 msgid "rshift(%f, %f): too large shift value will give strange results"
 msgstr "rshift(%f, %f): 쉬프팅한 값이 크면 이상한 결과를 가져올 수 있습니다"
 
-#: builtin.c:3532 builtin.c:3563 builtin.c:3593
+#: builtin.c:3534 builtin.c:3565 builtin.c:3595
 #, c-format
 msgid "%s: called with less than two arguments"
 msgstr "%s: 인자 갯수가 둘 미만입니다"
 
-#: builtin.c:3537 builtin.c:3568 builtin.c:3599
+#: builtin.c:3539 builtin.c:3570 builtin.c:3601
 #, c-format
 msgid "%s: argument %d is non-numeric"
 msgstr "%s: %d번째 인자 값은 숫자가 아닙니다"
 
-#: builtin.c:3541 builtin.c:3572 builtin.c:3603
+#: builtin.c:3543 builtin.c:3574 builtin.c:3605
 #, c-format
 msgid "%s: argument %d negative value %g is not allowed"
 msgstr "%s: %d번째 인자 %g 음수 값은 허용하지 않습니다"
 
-#: builtin.c:3630
+#: builtin.c:3632
 #, c-format
 msgid "compl(%f): negative value is not allowed"
 msgstr "compl(%f): 음수 값은 허용하지 않습니다"
 
-#: builtin.c:3633
+#: builtin.c:3635
 #, c-format
 msgid "compl(%f): fractional value will be truncated"
 msgstr "compl(%f): 소숫점 아래 값은 잘립니다"
 
-#: builtin.c:3819
+#: builtin.c:3821
 #, c-format
 msgid "dcgettext: `%s' is not a valid locale category"
 msgstr "dcgettext: `%s'은(는) 유효한 로캘 분류가 아닙니다"
 
-#: builtin.c:4046 mpfr.c:1261
+#: builtin.c:4048 mpfr.c:1261
 msgid "intdiv: third argument is not an array"
 msgstr "intdiv: 세번째 인자 값이 배열이 아닙니다"
 
-#: builtin.c:4065 mpfr.c:1310
+#: builtin.c:4067 mpfr.c:1310
 msgid "intdiv: division by zero attempted"
 msgstr "intdiv: 0으로 나누기를 시도했습니다"
 
-#: builtin.c:4104
+#: builtin.c:4106
 msgid "typeof: second argument is not an array"
 msgstr "typeof: 두번째 인자 값이 배열이 아닙니다"
 
-#: builtin.c:4176
+#: builtin.c:4178
 #, c-format
 msgid ""
 "typeof detected invalid flags combination `%s'; please file a bug report"
 msgstr ""
 "typeof에서 잘못된 `%s' 플래그 조합을 발견했습니다. 오류 보고서를 제출하십시오"
 
-#: builtin.c:4196
+#: builtin.c:4198
 #, c-format
 msgid "typeof: invalid argument type `%s'"
 msgstr "typeof: 잘못된 `%s' 인자 형식"
 
-#: builtin.c:4200
+#: builtin.c:4202
 #, c-format
 msgid "typeof: unknown argument type `%s'"
 msgstr "typeof: 알 수 없는 `%s' 인자 형식"
@@ -1300,7 +1300,7 @@ msgstr ""
 "where [N] - (backtrace와 동일) 전체 또는 안쪽 프레임 N개(N이 음수이면 바깥 프"
 "레임 N개) 추적 단계를 출력합니다"
 
-#: command.y:1017 debug.c:423 gawkapi.c:251 msg.c:141
+#: command.y:1017 debug.c:423 gawkapi.c:251 msg.c:142
 #, c-format
 msgid "error: "
 msgstr "오류: "
@@ -2261,7 +2261,7 @@ msgstr "ord: 첫번째 인자 값은 문자열이 아닙니다"
 msgid "chr: first argument is not a number"
 msgstr "chr: 첫번째 인자 값은 숫자가 아닙니다"
 
-#: extension/readdir.c:276
+#: extension/readdir.c:277
 #, c-format
 msgid "dir_take_control_of: opendir/fdopendir failed: %s"
 msgstr "dir_take_control_of: opendir/fdopendir 동작 실패: %s"
@@ -3373,7 +3373,7 @@ msgstr "intdiv: 숫자가 아닌 첫번째 인자 값을 받았습니다"
 msgid "intdiv: received non-numeric second argument"
 msgstr "intdiv: 숫자가 아닌 두번째 인자 값을 받았습니다"
 
-#: msg.c:75
+#: msg.c:76
 #, c-format
 msgid "cmd. line:"
 msgstr "명령행:"
@@ -3693,12 +3693,12 @@ msgstr "일치하지 않는 ) 또는 \\) 괄호"
 msgid "No previous regular expression"
 msgstr "이전 정규 표현식 없음"
 
-#: symbol.c:703
+#: symbol.c:698
 #, c-format
 msgid "function `%s': cannot use function `%s' as a parameter name"
 msgstr "`%s' 함수: `%s' 함수를 매개변수 이름으로 사용할 수 없습니다"
 
-#: symbol.c:833
+#: symbol.c:828
 msgid "cannot pop main context"
 msgstr "주 컨텍스트에서 빠져나올 수 없습니다"
 

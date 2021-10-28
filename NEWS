@@ -63,25 +63,28 @@ Changes from 5.1.0 to 5.1.1
 10. Several example programs in the manual have been updated to their
     modern POSIX equivalents.
 
-11. Handling of Infinity and NaN values has been improved.
+11. A number of examples in doc/gawkinet.texi have been updated for
+    current times. Thanks to Juergen Kahrs for the work.
 
-12. There has been a general tightening up of the use of const and
+12. Handling of Infinity and NaN values has been improved.
+
+13. There has been a general tightening up of the use of const and
     of types.
 
-13. The "no effect" lint warnings have been fixed up and now behave
+14. The "no effect" lint warnings have been fixed up and now behave
     more sanely.
 
-14. The manual has been updated with much more information about what is
+15. The manual has been updated with much more information about what is
     and is not a bug, and the changes in the gawk mailing lists.
 
-15. The behavior of strongly-typed regexp constants when passed as the
+16. The behavior of strongly-typed regexp constants when passed as the
     third argument to sub() or gsub() has been clarified in the code and
     in the manual.
 
-16. Similar to item #4 above, division by zero is now fatal in MPFR
+17. Similar to item #4 above, division by zero is now fatal in MPFR
     mode, as it is in regular mode.
 
-17. There have been numerous minor code cleanups and bug fixes. See the
+18. There have been numerous minor code cleanups and bug fixes. See the
     ChangeLog for details.
 
 Changes from 5.0.1 to 5.1.0
