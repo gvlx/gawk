@@ -28268,7 +28268,7 @@ and also available @uref{https://www.gnu.org/software/texinfo/manual/texinfo/, o
 @end ifnotinfo
 @ifinfo
 (The Texinfo language is described fully, starting with
-@inforef{Top, , Texinfo, texinfo,Texinfo---The GNU Documentation Format}.)
+@ref{Top, , Texinfo, texinfo,Texinfo---The GNU Documentation Format}.)
 @end ifinfo
 
 For our purposes, it is enough to know three things about Texinfo input
@@ -30534,8 +30534,7 @@ It then prints the results and closes the connection.
 Because this topic is extensive, the use of @command{gawk} for
 TCP/IP programming is documented separately.
 @ifinfo
-See
-@inforef{Top, , General Introduction, gawkinet, @value{GAWKINETTITLE}},
+@xref{Top, , General Introduction, gawkinet, @value{GAWKINETTITLE}},
 @end ifinfo
 @ifnotinfo
 See
@@ -31863,7 +31862,7 @@ using the GNU @command{gettext} package.
 (GNU @command{gettext} is described in
 complete detail in
 @ifinfo
-@inforef{Top, , GNU @command{gettext} utilities, gettext, GNU @command{gettext} utilities}.)
+@xref{Top, , GNU @command{gettext} utilities, gettext, GNU @command{gettext} utilities}.)
 @end ifinfo
 @ifnotinfo
 @uref{https://www.gnu.org/software/gettext/manual/,
@@ -42243,7 +42242,7 @@ The generated Info file for this @value{DOCUMENT}.
 @item doc/gawkinet.texi
 The Texinfo source file for
 @ifinfo
-@inforef{Top, , General Introduction, gawkinet, @value{GAWKINETTITLE}}.
+@ref{Top, , General Introduction, gawkinet, @value{GAWKINETTITLE}}.
 @end ifinfo
 @ifnotinfo
 @cite{@value{GAWKINETTITLE}}.
@@ -42260,7 +42259,7 @@ The generated Info file for
 @item doc/gawkworkflow.texi
 The Texinfo source file for
 @ifinfo
-@inforef{Top, , General Introduction, gawkworkflow, @value{GAWKWORKFLOWTITLE}}.
+@ref{Top, , General Introduction, gawkworkflow, @value{GAWKWORKFLOWTITLE}}.
 @end ifinfo
 @ifnotinfo
 @cite{@value{GAWKWORKFLOWTITLE}}.
@@ -42405,7 +42404,7 @@ the Free Software Foundation's website}.)
 @end ifnotinfo
 @ifinfo
 (The Autoconf software is described fully starting with
-@inforef{Top, , Autoconf, autoconf,Autoconf---Generating Automatic Configuration Scripts}.)
+@ref{Top, , Autoconf, autoconf,Autoconf---Generating Automatic Configuration Scripts}.)
 @end ifinfo
 
 To configure @command{gawk}, simply run @command{configure}:
@@ -44145,7 +44144,7 @@ for information on getting the latest version of @command{gawk}.)
 Follow the @cite{GNU Coding Standards}.
 @end ifnotinfo
 @ifinfo
-See @inforef{Top, , Version, standards, GNU Coding Standards}.
+@xref{Top, , Version, standards, GNU Coding Standards}.
 @end ifinfo
 This document describes how GNU software should be written. If you haven't
 read it, please do so, preferably @emph{before} starting to modify @command{gawk}.

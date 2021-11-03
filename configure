@@ -7066,7 +7066,7 @@ unknown)
 esac
 
 
-AR_FLAGS = cru		# set default
+ARFLAGS=cru		# set default
 
 
 # This is mainly for my use during testing and development.

@@ -1,3 +1,8 @@
+2021-11-03         Sam James             <sam@gentoo.org>
+
+	* configure.ac: Fix AR_FLAGS assignment typo.
+	* configure.ac: Rename AR_FLAGS to ARFLAGS.
+
 2021-10-27         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* 5.1.1: Release tar ball made.
