@@ -111,7 +111,7 @@ AC_PROG_MAKE_SET
 # support/ builds libsupport.a, allow for cross version of ar
 AM_PROG_AR
 
-AR_FLAGS = cru		# set default
+ARFLAGS=cru		# set default
 AC_SUBST(AR)
 
 # This is mainly for my use during testing and development.
