@@ -1,3 +1,7 @@
+2021-11-04         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawk.info: Regenerated, using makeinfo 6.8.
+
 2021-11-03         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawktexi.in: Change @inforef to @xref in preparation
