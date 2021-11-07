@@ -20,7 +20,6 @@ extension/readfile.c
 extension/revoutput.c
 extension/revtwoway.c
 extension/rwarray.c
-extension/rwarray0.c
 extension/stack.c
 extension/testext.c
 extension/time.c
