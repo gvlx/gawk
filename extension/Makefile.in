@@ -568,8 +568,6 @@ ACLOCAL_AMFLAGS = -I ../m4
 
 # For some make's, e.g. OpenBSD, that don't define this
 RM = rm -f
-
-# Note: rwarray does not currently compile.
 pkgextension_LTLIBRARIES = \
 	filefuncs.la	\
 	fnmatch.la	\
@@ -652,8 +650,7 @@ EXTRA_DIST = \
 	ChangeLog.1 \
 	ext_custom.h \
 	fts.3 \
-	README.fts \
-	rwarray0.c
+	README.fts
 
 dist_man_MANS = \
 	filefuncs.3am fnmatch.3am fork.3am inplace.3am \

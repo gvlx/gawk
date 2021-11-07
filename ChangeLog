@@ -1,3 +1,8 @@
+2021-11-07         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* mkinstalldirs: Removed, it wasn't used.
+	* Makefile.in: Regenerated.
+
 2021-11-03         Sam James             <sam@gentoo.org>
 
 	* configure.ac: Fix AR_FLAGS assignment typo.
