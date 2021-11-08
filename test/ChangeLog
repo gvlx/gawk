@@ -1,3 +1,10 @@
+2021-11-08         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.am: Add a '-' to tests so that if they fail, the whole
+	suite will continue to run. Thanks to Andreas Schwab
+	<schwab@linux-m68k.org> for the report.
+	* Gentests: Ditto.
+
 2021-10-27         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* 5.1.1: Release tar ball made.

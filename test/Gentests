@@ -241,12 +241,12 @@ function generate(x,	s, i, locale_string)
 		printf "\t@echo $@\n"
 
 	# default is the leading tab and @
-	locale_string = "\t@"
+	locale_string = "\t@-"
 	if (x in all_locale_tests) {
 		delete all_locale_tests[x]
 		for (i in locale_tests) {
 			if (x in locale_tests[i]) {
-				locale_string = sprintf("\t@[ -z \"$$GAWKLOCALE\" ] && GAWKLOCALE=%s; export GAWKLOCALE; \\\n\t", Locale[i])
+				locale_string = sprintf("\t@-[ -z \"$$GAWKLOCALE\" ] && GAWKLOCALE=%s; export GAWKLOCALE; \\\n\t", Locale[i])
 				delete locale_tests[i][x]
 				break
 			}
