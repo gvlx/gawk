@@ -1,3 +1,8 @@
+2021-11-14         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* iolint.awk: Disable test with race condition. Thanks to
+	Andreas Schwab <schwab@linux-m68k.org> for the report.
+
 2021-11-08         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* Makefile.am: Add a '-' to tests so that if they fail, the whole

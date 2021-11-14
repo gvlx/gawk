@@ -55,12 +55,15 @@ BEGIN {
 	print close("cat")
 	fflush()
 
+	# 11/2021: Disable this test since it's a race condition
+	# and fails intermittently on some systems.
+	#
 	# `%.*s' used for input pipe and output pipe
-	"echo hello" | getline junk
-	print "hello" | "echo hello"
-	print close("echo hello")
-	print close("echo hello")
-	fflush()
+	# "echo hello" | getline junk
+	# print "hello" | "echo hello"
+	# print close("echo hello")
+	# print close("echo hello")
+	# fflush()
 
 	# `%.*s' used for output file and output pipe"
 	BINMODE = 2
