@@ -1,3 +1,8 @@
+2021-11-15         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.in: Fix a small typo.  Thanks to J Naman
+	<gawker@703n.com> for the report.
+
 2021-11-04         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawk.info: Regenerated, using makeinfo 6.8.
