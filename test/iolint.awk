@@ -55,15 +55,20 @@ BEGIN {
 	print close("cat")
 	fflush()
 
-	# 11/2021: Disable this test since it's a race condition
-	# and fails intermittently on some systems.
+	# 11/2021: Use a nice trick to avoid race conditions in
+	# child processes. Thanks to Miguel Pineiro Jr. <mpj@pineiro.cc>.
 	#
 	# `%.*s' used for input pipe and output pipe
-	# "echo hello" | getline junk
-	# print "hello" | "echo hello"
-	# print close("echo hello")
-	# print close("echo hello")
-	# fflush()
+	pipecmd = "eval $CMD_TO_RUN"
+
+	ENVIRON["CMD_TO_RUN"] = "echo hello"
+	pipecmd | getline junk 
+	ENVIRON["CMD_TO_RUN"] = "read junk"
+	print "hello" | pipecmd
+
+	print close(pipecmd)
+	print close(pipecmd)
+	fflush()
 
 	# `%.*s' used for output file and output pipe"
 	BINMODE = 2
