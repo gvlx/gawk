@@ -1,3 +1,7 @@
+2021-11-18         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* rwarray.awk: Improve test, add string and numbers.
+
 2021-11-14         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* iolint.awk: Disable test with race condition. Thanks to
