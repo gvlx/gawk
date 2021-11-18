@@ -1,3 +1,8 @@
+2021-11-18         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawkapi.c (awk_value_to_node): Fix handling of MPFR values
+	coming back from an extension.
+
 2021-11-07         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* mkinstalldirs: Removed, it wasn't used.

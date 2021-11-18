@@ -5,6 +5,7 @@
  * May 2009
  * Redone June 2012
  * Improved September 2017
+ * GMP/MPFR support added November 2021
  */
 
 /*
@@ -50,6 +51,11 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
+#ifdef HAVE_MPFR
+#include <gmp.h>
+#include <mpfr.h>
+#endif
+
 #include "gawkapi.h"
 
 #include "gettext.h"
@@ -57,12 +63,12 @@
 #define N_(msgid) msgid
 
 #define MAGIC "awkrulz\n"
-#define MAJOR 3
+#define MAJOR 4
 #define MINOR 1
 
 static const gawk_api_t *api;	/* for convenience macros to work */
 static awk_ext_id_t ext_id;
-static const char *ext_version = "rwarray extension: version 1.2";
+static const char *ext_version = "rwarray extension: version 2.1";
 static awk_bool_t (*init_func)(void) = NULL;
 
 int plugin_is_GPL_compatible;
@@ -70,10 +76,12 @@ int plugin_is_GPL_compatible;
 static awk_bool_t write_array(FILE *fp, awk_array_t array);
 static awk_bool_t write_elem(FILE *fp, awk_element_t *element);
 static awk_bool_t write_value(FILE *fp, awk_value_t *val);
+static awk_bool_t write_number(FILE *fp, awk_value_t *val);
 
 static awk_bool_t read_array(FILE *fp, awk_array_t array);
 static awk_bool_t read_elem(FILE *fp, awk_element_t *element);
 static awk_bool_t read_value(FILE *fp, awk_value_t *value);
+static awk_bool_t read_number(FILE *fp, awk_value_t *value, uint32_t code);
 
 /*
  * Format of array info:
@@ -87,7 +95,7 @@ static awk_bool_t read_value(FILE *fp, awk_value_t *value);
  * For each element:
  * Length of index val:	4 bytes - network order
  * Index val as characters (N bytes)
- * Value type		4 bytes (0 = string, 1 = number, 2 = array, 3 = regex, 4 = strnum, 5 = undefined)
+ * Value type		4 bytes (see list below)
  * IF string:
  * 	Length of value	4 bytes
  * 	Value as characters (N bytes)
@@ -98,6 +106,16 @@ static awk_bool_t read_value(FILE *fp, awk_value_t *value);
  * 	Elements
  * END IF
  */
+
+#define VT_STRING	1
+#define VT_NUMBER	2
+#define VT_GMP		3
+#define VT_MPFR		4
+#define VT_ARRAY	5
+#define VT_REGEX	6
+#define VT_STRNUM	7
+#define VT_BOOL		8
+#define VT_UNDEFINED	20
 
 /* do_writea --- write an array */
 
@@ -223,66 +241,110 @@ write_value(FILE *fp, awk_value_t *val)
 	uint32_t code, len;
 
 	if (val->val_type == AWK_ARRAY) {
-		code = htonl(2);
+		code = htonl(VT_ARRAY);
 		if (fwrite(& code, 1, sizeof(code), fp) != sizeof(code))
 			return awk_false;
 		return write_array(fp, val->array_cookie);
 	}
 
-	if (val->val_type == AWK_NUMBER) {
-		code = htonl(1);
-		if (fwrite(& code, 1, sizeof(code), fp) != sizeof(code))
-			return awk_false;
+	if (val->val_type == AWK_NUMBER)
+		return write_number(fp, val);
 
-		if (fwrite(& val->num_value, 1, sizeof(val->num_value), fp) != sizeof(val->num_value))
-			return awk_false;
-	} else {
-		switch (val->val_type) {
-		case AWK_STRING:
-			code = htonl(0);
-			break;
-		case AWK_STRNUM:
-			code = htonl(4);
-			break;
-		case AWK_REGEX:
-			code = htonl(3);
-			break;
-		case AWK_UNDEFINED:
-			code = htonl(5);
-			break;
-		case AWK_BOOL:
-			code = htonl(6);
-			break;
-		default:
-			/* XXX can this happen? */
-			code = htonl(0);
-			warning(ext_id, _("array value has unknown type %d"), val->val_type);
-			break;
-		}
-		if (fwrite(& code, 1, sizeof(code), fp) != sizeof(code))
-			return awk_false;
-
-		if (code == ntohl(6)) {
-			len = (val->bool_value == awk_true ? 4 : 5);
-			len = htonl(len);
-			const char *s = (val->bool_value == awk_true ? "TRUE" : "FALSE");
-
-			if (fwrite(& len, 1, sizeof(len), fp) != sizeof(len))
-				return awk_false;
-
-			if (fwrite(s, 1, strlen(s), fp) != (ssize_t) strlen(s))
-				return awk_false;
-		} else {
-			len = htonl(val->str_value.len);
-			if (fwrite(& len, 1, sizeof(len), fp) != sizeof(len))
-				return awk_false;
-
-			if (fwrite(val->str_value.str, 1, val->str_value.len, fp)
-					!= (ssize_t) val->str_value.len)
-				return awk_false;
-		}
+	switch (val->val_type) {
+	case AWK_STRING:
+		code = htonl(VT_STRING);
+		break;
+	case AWK_STRNUM:
+		code = htonl(VT_STRNUM);
+		break;
+	case AWK_REGEX:
+		code = htonl(VT_REGEX);
+		break;
+	case AWK_BOOL:
+		code = htonl(VT_BOOL);
+		break;
+	case AWK_UNDEFINED:
+		code = htonl(VT_UNDEFINED);
+		break;
+	default:
+		/* XXX can this happen? */
+		code = htonl(VT_UNDEFINED);
+		warning(ext_id, _("array value has unknown type %d"), val->val_type);
+		break;
 	}
 
+	if (fwrite(& code, 1, sizeof(code), fp) != sizeof(code))
+		return awk_false;
+
+	if (code == ntohl(VT_BOOL)) {
+		len = (val->bool_value == awk_true ? 4 : 5);
+		len = htonl(len);
+		const char *s = (val->bool_value == awk_true ? "TRUE" : "FALSE");
+
+		if (fwrite(& len, 1, sizeof(len), fp) != sizeof(len))
+			return awk_false;
+
+		if (fwrite(s, 1, strlen(s), fp) != (ssize_t) strlen(s))
+			return awk_false;
+	} else {
+		len = htonl(val->str_value.len);
+		if (fwrite(& len, 1, sizeof(len), fp) != sizeof(len))
+			return awk_false;
+
+		if (fwrite(val->str_value.str, 1, val->str_value.len, fp)
+				!= (ssize_t) val->str_value.len)
+			return awk_false;
+	}
+	return awk_true;
+}
+
+/* write_number --- write a double, GMP or MPFR number */
+
+static awk_bool_t
+write_number(FILE *fp, awk_value_t *val)
+{
+	uint32_t len, code;
+	char buffer[BUFSIZ];
+
+	if (val->num_type == AWK_NUMBER_TYPE_DOUBLE) {
+		uint32_t network_order_len;
+
+		code = htonl(VT_NUMBER);
+		if (fwrite(& code, 1, sizeof(code), fp) != sizeof(code))
+			return awk_false;
+
+		// for portability, save double precision number as a string
+		sprintf(buffer, "%.17g", val->num_value);
+		len = strlen(buffer) + 1;	// get trailing '\0' too...
+		network_order_len = htonl(len);
+
+		if (fwrite(& network_order_len, 1, sizeof(len), fp) != sizeof(len))
+			return awk_false;
+
+		if (fwrite(buffer, 1, len, fp) != len)
+			return awk_false;
+	} else {
+#ifdef HAVE_MPFR
+		if (val->num_type == AWK_NUMBER_TYPE_MPFR) {
+			code = htonl(VT_MPFR);
+			if (fwrite(& code, 1, sizeof(code), fp) != sizeof(code))
+				return awk_false;
+
+			if (mpfr_fpif_export(fp, val->num_ptr) != 0)
+				return awk_false;
+		} else {
+			code = htonl(VT_GMP);
+			if (fwrite(& code, 1, sizeof(code), fp) != sizeof(code))
+				return awk_false;
+
+			if (mpz_out_raw(fp, val->num_ptr) == 0)
+				return awk_false;
+		}
+#else
+		fatal(ext_id, _("rwarray extension: received GMP/MPFR value but compiled without GMP/MPFR support."));
+#endif
+	}
+	// all the OK cases fall through to here
 	return awk_true;
 }
 
@@ -464,7 +526,7 @@ read_value(FILE *fp, awk_value_t *value)
 
 	code = ntohl(code);
 
-	if (code == 2) {
+	if (code == VT_ARRAY) {
 		awk_array_t array = create_array();
 
 		if (! read_array(fp, array))
@@ -473,34 +535,29 @@ read_value(FILE *fp, awk_value_t *value)
 		/* hook into value */
 		value->val_type = AWK_ARRAY;
 		value->array_cookie = array;
-	} else if (code == 1) {
-		double d;
-
-		if (fread(& d, 1, sizeof(d), fp) != sizeof(d))
-			return awk_false;
-
-		/* hook into value */
-		value->val_type = AWK_NUMBER;
-		value->num_value = d;
+	} else if (code == VT_NUMBER
+		   || code == VT_GMP
+		   || code == VT_MPFR) {
+		return read_number(fp, value, code);
 	} else {
 		if (fread(& len, 1, sizeof(len), fp) != sizeof(len)) {
 			return awk_false;
 		}
 		len = ntohl(len);
 		switch (code) {
-		case 0:
+		case VT_STRING:
 			value->val_type = AWK_STRING;
 			break;
-		case 3:
+		case VT_REGEX:
 			value->val_type = AWK_REGEX;
 			break;
-		case 4:
+		case VT_STRNUM:
 			value->val_type = AWK_STRNUM;
 			break;
-		case 5:
+		case VT_UNDEFINED:
 			value->val_type = AWK_UNDEFINED;
 			break;
-		case 6:
+		case VT_BOOL:
 			value->val_type = AWK_BOOL;
 			break;
 		default:
@@ -518,12 +575,63 @@ read_value(FILE *fp, awk_value_t *value)
 		}
 		value->str_value.str[len] = '\0';
 		value->str_value.len = len;
-		if (code == 6) {
-			/* bool type */
+
+		if (code == VT_BOOL) {
 			bool val = (strcmp(value->str_value.str, "TRUE") == 0);
+
 			gawk_free(value->str_value.str);
+			value->str_value.str = NULL;
 			value->bool_value = val ? awk_true : awk_false;
 		}
+	}
+
+	return awk_true;
+}
+
+/* read_number --- read a double, GMP, or MPFR number */
+
+static awk_bool_t
+read_number(FILE *fp, awk_value_t *value, uint32_t code)
+{
+	uint32_t len;
+
+	if (code == VT_NUMBER) {
+		char buffer[BUFSIZ];
+		double d;
+
+		if (fread(& len, 1, sizeof(len), fp) != sizeof(len))
+			return awk_false;
+
+		len = ntohl(len);
+		if (fread(buffer, 1, len, fp) != len)
+			return awk_false;
+
+		(void) sscanf(buffer, "%lg", & d);
+
+		/* hook into value */
+		value = make_number(d, value);
+	} else {
+#ifdef HAVE_MPFR
+		if (code == VT_GMP) {
+			mpz_t mp_ptr;
+
+			mpz_init(mp_ptr);
+    			if (mpz_inp_raw(mp_ptr, fp) == 0)
+				return awk_false;
+
+			value = make_number_mpz(mp_ptr, value);
+		} else {
+			mpfr_t mpfr_val;
+			mpfr_init(mpfr_val);
+
+			if (mpfr_fpif_import(mpfr_val, fp) != 0)
+				return awk_false;
+
+			value = make_number_mpfr(& mpfr_val, value);
+		}
+#else
+		fatal(ext_id(_("rwarray extension: GMP/MPFR value in file but compiled without GMP/MPFR support."));
+#endif
 	}
 
 	return awk_true;

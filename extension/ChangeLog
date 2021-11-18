@@ -1,3 +1,9 @@
+2021-11-18         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* rwarray.c: Add support for writing/reading GMP and MPFR values.
+	Rework usage of constants while we're at it and bump version
+	numbers.
+
 2021-11-07         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* rwarray0.c: Removed, it wasn't used.

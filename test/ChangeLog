@@ -1,3 +1,13 @@
+2021-11-18         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* rwarray.awk: Improve test, add string and numbers.
+
+	Unrelated:
+
+	* iolint.awk: Restore the disabled test using eval in the child to
+	run different commands. Thanks to Miguel Pineiro Jr.,
+	<mpj@pineiro.cc>.
+
 2021-11-14         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* iolint.awk: Disable test with race condition. Thanks to

@@ -14,6 +14,11 @@ BEGIN {
 	bool_sub = "bool-sub"
 	dict[bool_sub] = mkbool(1)
 
+	dict["x"] = "x"
+
+	dict["42"] = 42
+	dict["42.42"] = 42.42
+
 	n = asorti(dict, dictindices)
 	for (i = 1; i <= n; i++)
 		printf("dict[%s] = %s\n", dictindices[i], dict[dictindices[i]]) > "orig.out"
