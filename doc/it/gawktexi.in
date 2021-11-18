@@ -12505,7 +12505,7 @@ fortemente tipizzate sono usate come terzo argomento nelle chiamate a
 Quindi, in un caso come quello di quest'esempio:
 
 @example
-re = @/non allarmatevi!/
+re = @@/non allarmatevi!/
 sub(/non/, "", re)
 print typeof(re), re
 @end example
