@@ -1,3 +1,9 @@
+2021-11-21         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.am (EXTRA_DIST): stupid5, new test.
+	* stupid5.awk, stupid5.ok: New files.
+	* stupid3.ok, stupid4.ok: Updated after code changes.
+
 2021-11-18         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* rwarray.awk: Improve test, add string and numbers.
