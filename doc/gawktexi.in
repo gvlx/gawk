@@ -22879,9 +22879,11 @@ As a side point, @command{gawk} actually uses the GNU @code{getopt_long()}
 function to process both normal and GNU-style long options
 (@pxref{Options}).
 
+@cindex Minshall, Greg
 The abstraction provided by @code{getopt()} is very useful and is quite
 handy in @command{awk} programs as well.  Following is an @command{awk}
 version of @code{getopt()} that accepts both short and long options.
+(Support for long options was supplied by Greg Minshall. We thank him.)
 
 This function highlights one of the
 greatest weaknesses in @command{awk}, which is that it is very poor at
