@@ -1,3 +1,7 @@
+2021-11-22         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.in: Add info about AWKgo, an awk to go translator.
+
 2021-11-21         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawktexi.in (Getopt Function): Note that long option support

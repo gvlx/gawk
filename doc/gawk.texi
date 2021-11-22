@@ -43887,6 +43887,18 @@ The author wrote a nice
 @uref{https://benhoyt.com/writings/goawk/, article}
 describing the implementation.
 
+@cindex @command{AWKgo}
+@cindex @command{awk} to Go translator
+@cindex source code @subentry @command{AWKgo}
+@cindex programming languages @subentry Go
+This is an @command{awk} to Go translator.
+It was written by the author of @command{goawk}.
+(See the previous entry in this list.) Source code is
+available from
+@uref{https://github.com/benhoyt/goawk/tree/master/awkgo}.
+The author's article about it is at
+@uref{https://benhoyt.com/writings/awkgo/}.
+
 @cindex @command{jawk}
 @cindex Java implementation of @command{awk}
 @cindex source code @subentry @command{jawk}
