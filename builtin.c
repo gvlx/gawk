@@ -4189,8 +4189,29 @@ do_typeof(int nargs)
 		}
 		break;
 	case Node_var_new:
-	case Node_array_ref:
 		res = "untyped";
+		deref = false;
+		break;
+	case Node_array_ref:
+		/*
+		 *	function f(x) {
+		 *	   print typeof(x)
+		 *	   y = x
+		 *	   print typeof(x)
+		 *	}
+		 *
+		 *	BEGIN {
+		 *	   print typeof(x)
+		 *	   f(x)
+		 *	}
+		 */
+		if (arg->orig_array->type == Node_var
+		    && (arg->orig_array->var_value == Nnull_string
+		        || (arg->orig_array->var_value->flags & NULL_FIELD) != 0)) {
+			res = "unassigned";
+		} else {
+			res = "untyped";
+		}
 		deref = false;
 		break;
 	case Node_var:

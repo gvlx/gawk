@@ -1243,6 +1243,8 @@ EXTRA_DIST = \
 	stupid3.ok \
 	stupid4.awk \
 	stupid4.ok \
+	stupid5.awk \
+	stupid5.ok \
 	subamp.awk \
 	subamp.in \
 	subamp.ok \
@@ -1462,7 +1464,7 @@ GAWK_EXT_TESTS = \
 	regnul1 regnul2 regx8bit reint reint2 rsgetline rsglstdin rsstart1 \
 	rsstart2 rsstart3 rstest6 sandbox1 shadow shadowbuiltin sortfor \
 	sortfor2 sortu sourcesplit split_after_fpat splitarg4 strftfld \
-	strftime strtonum strtonum1 stupid1 stupid2 stupid3 stupid4 \
+	strftime strtonum strtonum1 stupid1 stupid2 stupid3 stupid4 stupid5 \
 	switch2 symtab1 symtab10 symtab11 symtab2 symtab3 symtab4 symtab5 \
 	symtab6 symtab7 symtab8 symtab9 timeout typedregex1 typedregex2 \
 	typedregex3 typedregex4 typedregex5 typedregex6 typeof1 typeof2 \

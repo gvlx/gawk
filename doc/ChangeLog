@@ -1,3 +1,8 @@
+2021-11-21         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.in (Getopt Function): Note that long option support
+	was contributed by Greg Minshall, and add him to the index.
+
 2021-11-15         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawktexi.in: Fix a small typo.  Thanks to J Naman

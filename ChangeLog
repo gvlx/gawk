@@ -1,3 +1,8 @@
+2021-11-21         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* builtin.c (do_typeof): Make Node_array_ref handling smarter.
+	See test/stupid5.awk.
+
 2021-11-18         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawkapi.c (awk_value_to_node): Fix handling of MPFR values
