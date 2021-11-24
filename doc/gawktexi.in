@@ -41252,6 +41252,14 @@ See also the @file{README_d/README.pc} file in the distribution.
 The only supported binary distribution for MS-Windows systems
 is that provided by Eli Zaretskii's @uref{https://sourceforge.net/projects/ezwinports/,
 ``ezwinports''} project.  Install the compiled @command{gawk} from there.
+Note that to run that port, you need to have the
+@file{libgcc_s_dw2-1.dll} file installed on your system.  This file is
+part of the GCC distribution, and should reside either in the same
+directory where you install @file{gawk.exe} or somewhere on your
+system's @env{Path}.  You can download this file from @uref{the MinGW
+site, https://osdn.net/projects/mingw/releases}; look under the
+``MinGW.org Compiler Collection (GCC)'' for the @code{LibGCC-1.DLL}
+download.
 
 @node PC Compiling
 @appendixsubsubsec Compiling @command{gawk} for PC Operating Systems
