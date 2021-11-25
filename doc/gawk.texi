@@ -42741,6 +42741,14 @@ See also the @file{README_d/README.pc} file in the distribution.
 The only supported binary distribution for MS-Windows systems
 is that provided by Eli Zaretskii's @uref{https://sourceforge.net/projects/ezwinports/,
 ``ezwinports''} project.  Install the compiled @command{gawk} from there.
+Note that to run that port, you need to have the
+@file{libgcc_s_dw2-1.dll} file installed on your system.  This file is
+part of the GCC distribution, and should reside either in the same
+directory where you install @file{gawk.exe} or somewhere on your
+system's @env{Path}.  You can download this file from
+@uref{https://osdn.net/projects/mingw/releases, the MinGW site}; look under the
+``MinGW.org Compiler Collection (GCC)'' for the @code{LibGCC-1.DLL}
+download.
 
 @node PC Compiling
 @appendixsubsubsec Compiling @command{gawk} for PC Operating Systems
@@ -43891,6 +43899,7 @@ describing the implementation.
 @cindex @command{awk} to Go translator
 @cindex source code @subentry @command{AWKgo}
 @cindex programming languages @subentry Go
+@item @command{AWKgo}
 This is an @command{awk} to Go translator.
 It was written by the author of @command{goawk}.
 (See the previous entry in this list.) Source code is
