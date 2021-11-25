@@ -1,3 +1,13 @@
+2021-11-25         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.in: Add missing @item for AWKgo. Thanks to Antonio
+	Columbo. Small fix in Eli Zaretskii's addition.
+
+2021-11-24  Eli Zaretskii  <eliz@gnu.org>
+
+	* gawktexi.in (PC Binary Installation): Mention the need for
+	installing libgcc_s_dw2-1.dll.
+
 2021-11-22         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawktexi.in: Add info about AWKgo, an awk to go translator.

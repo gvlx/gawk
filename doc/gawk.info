@@ -31257,7 +31257,13 @@ B.3.1.1 Installing a Prepared Distribution for MS-Windows Systems
 The only supported binary distribution for MS-Windows systems is that
 provided by Eli Zaretskii's "ezwinports"
 (https://sourceforge.net/projects/ezwinports/) project.  Install the
-compiled 'gawk' from there.
+compiled 'gawk' from there.  Note that to run that port, you need to
+have the 'libgcc_s_dw2-1.dll' file installed on your system.  This file
+is part of the GCC distribution, and should reside either in the same
+directory where you install 'gawk.exe' or somewhere on your system's
+'Path'.  You can download this file from the MinGW site
+(https://osdn.net/projects/mingw/releases); look under the "MinGW.org
+Compiler Collection (GCC)" for the 'LibGCC-1.DLL' download.
 
 
 File: gawk.info,  Node: PC Compiling,  Next: PC Using,  Prev: PC Binary Installation,  Up: PC Installation
@@ -32189,6 +32195,7 @@ The OpenSolaris POSIX 'awk'
      article (https://benhoyt.com/writings/goawk/) describing the
      implementation.
 
+'AWKgo'
      This is an 'awk' to Go translator.  It was written by the author of
      'goawk'.  (See the previous entry in this list.)  Source code is
      available from
@@ -37315,9 +37322,9 @@ Index
 * Jaegermann, Michal:                    Acknowledgments.     (line  60)
 * Jaegermann, Michal <1>:                Contributors.        (line  46)
 * Jannick:                               Contributors.        (line 152)
-* Java implementation of awk:            Other Versions.      (line 139)
+* Java implementation of awk:            Other Versions.      (line 140)
 * Java programming language:             Glossary.            (line 466)
-* jawk:                                  Other Versions.      (line 139)
+* jawk:                                  Other Versions.      (line 140)
 * jedi knights:                          Undocumented.        (line   6)
 * Johansen, Chris:                       Signature Program.   (line  25)
 * join() user-defined function:          Join Function.       (line  18)
@@ -37373,7 +37380,7 @@ Index
 * length of string:                      String Functions.    (line 184)
 * Lesser General Public License (LGPL):  Glossary.            (line 489)
 * LGPL (Lesser General Public License):  Glossary.            (line 489)
-* libmawk:                               Other Versions.      (line 152)
+* libmawk:                               Other Versions.      (line 153)
 * libraries of awk functions:            Library Functions.   (line   6)
 * libraries of awk functions, associative arrays and: Library Names.
                                                               (line  58)
@@ -37542,7 +37549,7 @@ Index
 * naming issues, functions:              Definition Syntax.   (line  24)
 * naming issues:                         Library Names.       (line   6)
 * naming rules, namespace and component names: Naming Rules.  (line   6)
-* Neacsu, Mircea:                        Other Versions.      (line 155)
+* Neacsu, Mircea:                        Other Versions.      (line 156)
 * NetBSD:                                Glossary.            (line 747)
 * networks, support for:                 Special Network.     (line   6)
 * networks, programming:                 TCP/IP Networking.   (line   6)
@@ -37723,7 +37730,7 @@ Index
 * patterns, counts, in a profile:        Profiling.           (line 118)
 * pawk (profiling version of Brian Kernighan's awk): Other Versions.
                                                               (line  82)
-* pawk, awk-like facilities for Python:  Other Versions.      (line 160)
+* pawk, awk-like facilities for Python:  Other Versions.      (line 161)
 * PC operating systems, gawk on, installing: PC Installation. (line   6)
 * PC operating systems, gawk on:         PC Using.            (line   6)
 * percent sign (%), %= operator:         Assignment Ops.      (line 129)
@@ -37952,7 +37959,7 @@ Index
 * pwcat program:                         Passwd Functions.    (line  23)
 * q debugger command (alias for quit):   Miscellaneous Debugger Commands.
                                                               (line 100)
-* QSE awk:                               Other Versions.      (line 166)
+* QSE awk:                               Other Versions.      (line 167)
 * qualified name, definition of:         Qualified Names.     (line   6)
 * qualified name, use of:                Qualified Names.     (line  17)
 * Quanstrom, Erik:                       Alarm Program.       (line   8)
@@ -37961,7 +37968,7 @@ Index
 * question mark (?), regexp operator <1>: GNU Regexp Operators.
                                                               (line  59)
 * question mark (?), ?: operator:        Precedence.          (line  91)
-* QuikTrim Awk:                          Other Versions.      (line 170)
+* QuikTrim Awk:                          Other Versions.      (line 171)
 * quit debugger command:                 Miscellaneous Debugger Commands.
                                                               (line 100)
 * QUIT signal (MS-Windows):              Profiling.           (line 220)
@@ -38329,12 +38336,12 @@ Index
 * source code, frawk:                    Other Versions.      (line 117)
 * source code, goawk:                    Other Versions.      (line 125)
 * source code, AWKgo:                    Other Versions.      (line 133)
-* source code, jawk:                     Other Versions.      (line 139)
-* source code, libmawk:                  Other Versions.      (line 152)
-* source code, embeddable awk interpreter: Other Versions.    (line 155)
-* source code, pawk (Python version):    Other Versions.      (line 160)
-* source code, QSE awk:                  Other Versions.      (line 166)
-* source code, QuikTrim Awk:             Other Versions.      (line 170)
+* source code, jawk:                     Other Versions.      (line 140)
+* source code, libmawk:                  Other Versions.      (line 153)
+* source code, embeddable awk interpreter: Other Versions.    (line 156)
+* source code, pawk (Python version):    Other Versions.      (line 161)
+* source code, QSE awk:                  Other Versions.      (line 167)
+* source code, QuikTrim Awk:             Other Versions.      (line 171)
 * source file, show in debugger:         Debugger Info.       (line  37)
 * source files, search path for:         Programs Exercises.  (line  70)
 * sparse arrays:                         Array Intro.         (line  76)
@@ -39275,56 +39282,56 @@ Node: Building the Documentation1255515
 Node: Non-Unix Installation1256899
 Node: PC Installation1257359
 Node: PC Binary Installation1258197
-Node: PC Compiling1258632
-Node: PC Using1259749
-Node: Cygwin1263302
-Node: MSYS1264526
-Node: VMS Installation1265128
-Node: VMS Compilation1265847
-Ref: VMS Compilation-Footnote-11267076
-Node: VMS Dynamic Extensions1267134
-Node: VMS Installation Details1268819
-Node: VMS Running1271081
-Node: VMS GNV1275360
-Node: Bugs1276074
-Node: Bug definition1276986
-Node: Bug address1279922
-Node: Usenet1283310
-Node: Performance bugs1284499
-Node: Asking for help1287420
-Node: Maintainers1289387
-Node: Other Versions1290581
-Node: Installation summary1298737
-Node: Notes1300101
-Node: Compatibility Mode1300895
-Node: Additions1301677
-Node: Accessing The Source1302602
-Node: Adding Code1304039
-Node: New Ports1310231
-Node: Derived Files1314606
-Ref: Derived Files-Footnote-11320266
-Ref: Derived Files-Footnote-21320301
-Ref: Derived Files-Footnote-31320899
-Node: Future Extensions1321013
-Node: Implementation Limitations1321671
-Node: Extension Design1322881
-Node: Old Extension Problems1324025
-Ref: Old Extension Problems-Footnote-11325543
-Node: Extension New Mechanism Goals1325600
-Ref: Extension New Mechanism Goals-Footnote-11328964
-Node: Extension Other Design Decisions1329153
-Node: Extension Future Growth1331266
-Node: Notes summary1331872
-Node: Basic Concepts1333030
-Node: Basic High Level1333711
-Ref: figure-general-flow1333993
-Ref: figure-process-flow1334679
-Ref: Basic High Level-Footnote-11337981
-Node: Basic Data Typing1338166
-Node: Glossary1341494
-Node: Copying1373381
-Node: GNU Free Documentation License1410924
-Node: Index1436044
+Node: PC Compiling1259070
+Node: PC Using1260187
+Node: Cygwin1263740
+Node: MSYS1264964
+Node: VMS Installation1265566
+Node: VMS Compilation1266285
+Ref: VMS Compilation-Footnote-11267514
+Node: VMS Dynamic Extensions1267572
+Node: VMS Installation Details1269257
+Node: VMS Running1271519
+Node: VMS GNV1275798
+Node: Bugs1276512
+Node: Bug definition1277424
+Node: Bug address1280360
+Node: Usenet1283748
+Node: Performance bugs1284937
+Node: Asking for help1287858
+Node: Maintainers1289825
+Node: Other Versions1291019
+Node: Installation summary1299183
+Node: Notes1300547
+Node: Compatibility Mode1301341
+Node: Additions1302123
+Node: Accessing The Source1303048
+Node: Adding Code1304485
+Node: New Ports1310677
+Node: Derived Files1315052
+Ref: Derived Files-Footnote-11320712
+Ref: Derived Files-Footnote-21320747
+Ref: Derived Files-Footnote-31321345
+Node: Future Extensions1321459
+Node: Implementation Limitations1322117
+Node: Extension Design1323327
+Node: Old Extension Problems1324471
+Ref: Old Extension Problems-Footnote-11325989
+Node: Extension New Mechanism Goals1326046
+Ref: Extension New Mechanism Goals-Footnote-11329410
+Node: Extension Other Design Decisions1329599
+Node: Extension Future Growth1331712
+Node: Notes summary1332318
+Node: Basic Concepts1333476
+Node: Basic High Level1334157
+Ref: figure-general-flow1334439
+Ref: figure-process-flow1335125
+Ref: Basic High Level-Footnote-11338427
+Node: Basic Data Typing1338612
+Node: Glossary1341940
+Node: Copying1373827
+Node: GNU Free Documentation License1411370
+Node: Index1436490
 
 End Tag Table
 
