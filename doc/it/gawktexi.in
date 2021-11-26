@@ -45611,7 +45611,17 @@ Si veda anche il file @file{README_d/README.pc} nella distribuzione.
 La sola distribuzione binaria predisposta supportata per i sistem MS-Windows
 @`e quella messa a disposizione da Eli Zaretskii
 @uref{https://sourceforge.net/projects/ezwinports/, progetto ``ezwinports''}.
-Si parta da l@`{@dotless{i}} per installare il comando @command{gawk} precompilato.
+Si parta da l@`{@dotless{i}} per installare il comando @command{gawk}
+precompilato.
+Si noti che per eseguire questa versione @`e necessario che sia disponibile sul
+vostro sistema il file @file{libgcc_s_dw2-1.dll}.  Tale file fa parte della
+distribuzione di GCC (in ambiente MinGW), e dovrebbe trovarsi nella stessa
+directory in cui @`e installato @file{gawk.exe} oppure essere raggiungibile
+in qualche libreria della lista contenuta nella variabile @env{Path} del
+vostro sistema.  @`E possibile scaricare il file dal
+@uref{https://osdn.net/projects/mingw/releases, sito MinGW};
+cercare ``MinGW.org Compiler Collection (GCC)'' e da quella pagina
+scaricare @code{LibGCC-1.DLL}.
 
 @node Compilazione su PC
 @appendixsubsubsec Compilare @command{gawk} per sistemi operativi di PC
@@ -46893,13 +46903,13 @@ L'autore ha scritto un buon
 @uref{https://benhoyt.com/writings/goawk/, articolo}
 che descrive l'implementazione.
 
-@item @command{AWKgo}
 @cindex @command{AWKgo} @subentry traduttore da @command{awk} @subentry al linguaggio Go
 @cindex @command{awk} @subentry traduttore al linguaggio Go
 @cindex Go subentry traduttore @command{AWKgo} da @command{awk} al linguaggio
 @cindex codice sorgente @subentry @command{AWKgo}
 @cindex Go @subentry linguaggio di programmazione
 @cindex linguaggi di programmazione @subentry Go
+@item @command{AWKgo}
 Questo @`e un traduttore da @command{awk} al linguaggio Go.
 @`E stato scritto dall'autore di @command{goawk}.
 (Vedere l'elemento precedente di questa lista.)
