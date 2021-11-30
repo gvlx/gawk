@@ -1464,6 +1464,7 @@ extern bool is_identchar(int c);
 extern NODE *make_regnode(NODETYPE type, NODE *exp);
 extern bool validate_qualified_name(char *token);
 /* builtin.c */
+extern void efflush(FILE *fp, const char *from, struct redirect *rp);
 extern double double_to_int(double d);
 extern NODE *do_exp(int nargs);
 extern NODE *do_fflush(int nargs);

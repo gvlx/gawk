@@ -1375,6 +1375,9 @@ close_redir(struct redirect *rp, bool exitwarn, two_way_close_type how)
 
 	if (rp == NULL)
 		return 0;
+	if ((rp->flag & RED_WRITE) && rp->output.fp)
+		/* flush before closing to leverage special error handling */
+		efflush(rp->output.fp, "flush", rp);
 	if (rp->output.fp == stdout || rp->output.fp == stderr)
 		goto checkwarn;		/* bypass closing, remove from list */
 
