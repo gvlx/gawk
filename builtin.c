@@ -102,10 +102,8 @@ fatal(_("attempt to use array `%s' in a scalar context"), array_vname(s1)); \
 static void
 wrerror(FILE *fp, const char *from, struct redirect *rp)
 {
-#ifdef __MINGW32__
-	if (errno == 0 || errno == EINVAL)
-		w32_maybe_set_errno();
-#endif
+	os_maybe_set_errno();
+
 	/* for stdout, die with a real SIGPIPE, like other awks */
 	if (fp == stdout && errno == EPIPE)
 		die_via_sigpipe();

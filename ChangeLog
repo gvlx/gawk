@@ -4,6 +4,15 @@
 	returning void. It works, but is funky, and I think some
 	compilers will complain.
 
+	Unrelated. Clean up the calls to w32_maybe_set_errno.
+
+	* awk.h (os_maybe_set_errno): Add declaration.
+	* builtin.c (wrerror): Replaced ifdef'ed code calling
+	w32_maybe_set_errno() with simple call to os_maybe_set_errno().
+	* io.c (non_fatal_flush_std_file, close_io): Ditto.
+	* main.c (usage, copyleft): Ditto.
+	* nonposix.h (w32_maybe_set_errno): Remove declaration.
+
 2021-11-30         Andrew J. Schorr      <aschorr@telemetry-investments.com>
 
 	Improve output redirection error handling for problems not detected

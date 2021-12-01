@@ -660,3 +660,8 @@ void
 init_sockets(void)
 {
 }
+
+void
+os_maybe_set_errno(void)
+{
+}

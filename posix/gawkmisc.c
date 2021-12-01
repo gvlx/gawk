@@ -290,6 +290,11 @@ init_sockets(void)
 {
 }
 
+void
+os_maybe_set_errno(void)
+{
+}
+
 // For MSYS, restore behavior of working in text mode.
 #ifdef __MSYS__
 void
