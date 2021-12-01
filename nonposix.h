@@ -56,7 +56,6 @@ unsigned int getegid (void);
 /* gawkmisc.pc */
 int unsetenv (const char *);
 int setenv (const char *, const char *, int);
-void w32_maybe_set_errno (void);
 char *w32_setlocale (int, const char *);
 /* libintl.h from GNU gettext defines setlocale to redirect that to
    its own function.  Note: this will have to be revisited if MinGW

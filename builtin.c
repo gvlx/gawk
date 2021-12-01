@@ -96,43 +96,14 @@ fatal(_("attempt to use array `%s' in a scalar context"), array_vname(s1)); \
  */
 #define GAWK_RANDOM_MAX 0x7fffffffL
 
-/* efwrite --- like fwrite, but with error checking */
+
+/* wrerror --- handle a write or flush error */
 
 static void
-efwrite(const void *ptr,
-	size_t size,
-	size_t count,
-	FILE *fp,
-	const char *from,
-	struct redirect *rp,
-	bool flush)
+wrerror(FILE *fp, const char *from, struct redirect *rp)
 {
-	errno = 0;
-	if (rp != NULL) {
-		if (rp->output.gawk_fwrite(ptr, size, count, fp, rp->output.opaque) != count)
-			goto wrerror;
-	} else if (fwrite(ptr, size, count, fp) != count)
-		goto wrerror;
-	if (flush
-	  && ((fp == stdout && output_is_tty)
-	      || (rp != NULL && (rp->flag & RED_NOBUF) != 0))) {
-		if (rp != NULL) {
-			rp->output.gawk_fflush(fp, rp->output.opaque);
-			if (rp->output.gawk_ferror(fp, rp->output.opaque))
-				goto wrerror;
-		} else {
-			fflush(fp);
-			if (ferror(fp))
-				goto wrerror;
-		}
-	}
-	return;
+	os_maybe_set_errno();
 
-wrerror:
-#ifdef __MINGW32__
-	if (errno == 0 || errno == EINVAL)
-		w32_maybe_set_errno();
-#endif
 	/* for stdout, die with a real SIGPIPE, like other awks */
 	if (fp == stdout && errno == EPIPE)
 		die_via_sigpipe();
@@ -148,6 +119,46 @@ wrerror:
 					? _("standard output")
 					: _("standard error"),
 			errno ? strerror(errno) : _("reason unknown"));
+}
+
+/* efflush --- flush output with proper error handling */
+
+void
+efflush(FILE *fp, const char *from, struct redirect *rp)
+{
+	errno = 0;
+	if (rp != NULL) {
+		rp->output.gawk_fflush(fp, rp->output.opaque);
+		if (rp->output.gawk_ferror(fp, rp->output.opaque))
+			wrerror(fp, from, rp);
+	} else {
+		fflush(fp);
+		if (ferror(fp))
+			wrerror(fp, from, rp);
+	}
+}
+
+/* efwrite --- like fwrite, but with error checking */
+
+static void
+efwrite(const void *ptr,
+	size_t size,
+	size_t count,
+	FILE *fp,
+	const char *from,
+	struct redirect *rp,
+	bool flush)
+{
+	errno = 0;
+	if (rp != NULL) {
+		if (rp->output.gawk_fwrite(ptr, size, count, fp, rp->output.opaque) != count)
+			return wrerror(fp, from, rp);
+	} else if (fwrite(ptr, size, count, fp) != count)
+		return wrerror(fp, from, rp);
+	if (flush
+	  && ((fp == stdout && output_is_tty)
+	      || (rp != NULL && (rp->flag & RED_NOBUF) != 0)))
+		efflush(fp, from, rp);
 }
 
 /* do_exp --- exponential function */

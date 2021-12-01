@@ -1,3 +1,8 @@
+2021-12-01         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawkmisc.pc (os_maybe_set_errno): Renamed from
+	w32_maybe_set_errno. Add check for errno values.
+
 2021-11-21         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* Makefile.tst: Regenerated.

@@ -1,3 +1,36 @@
+2021-12-01         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* builtin.c (efflush): Don't use return in call of function
+	returning void. It works, but is funky, and I think some
+	compilers will complain.
+
+	Unrelated. Clean up the calls to w32_maybe_set_errno.
+
+	* awk.h (os_maybe_set_errno): Add declaration.
+	* builtin.c (wrerror): Replaced ifdef'ed code calling
+	w32_maybe_set_errno() with simple call to os_maybe_set_errno().
+	* io.c (non_fatal_flush_std_file, close_io): Ditto.
+	* main.c (usage, copyleft): Ditto.
+	* nonposix.h (w32_maybe_set_errno): Remove declaration.
+
+2021-11-30         Andrew J. Schorr      <aschorr@telemetry-investments.com>
+
+	Improve output redirection error handling for problems not detected
+	until the final flush or close. Thanks to Miguel Pineiro Jr.
+	<mpj@pineiro.cc> for the bug report and suggesting a fix.
+
+	* awk.h (efflush): Add declaration.
+	* builtin.c (efwrite): Break up into 3 functions by moving the
+	flushing logic into efflush and the error handling logic into
+	wrerror.
+	(wrerror): New function containing the error-handling logic extracted
+	from efwrite.
+	(efflush): New function containing the fflush logic extracted from
+	efwrite.
+	* io.c (close_redir): Call efflush prior to closing the redirection
+	to identify any problems with flushing output and to take advantage
+	of the error-handling logic used for print and printf.
+
 2021-11-21         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* builtin.c (do_typeof): Make Node_array_ref handling smarter.

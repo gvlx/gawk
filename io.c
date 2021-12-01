@@ -1375,6 +1375,9 @@ close_redir(struct redirect *rp, bool exitwarn, two_way_close_type how)
 
 	if (rp == NULL)
 		return 0;
+	if ((rp->flag & RED_WRITE) && rp->output.fp)
+		/* flush before closing to leverage special error handling */
+		efflush(rp->output.fp, "flush", rp);
 	if (rp->output.fp == stdout || rp->output.fp == stderr)
 		goto checkwarn;		/* bypass closing, remove from list */
 
@@ -1460,10 +1463,8 @@ non_fatal_flush_std_file(FILE *fp)
 		bool is_fatal = ! is_non_fatal_std(fp);
 
 		if (is_fatal) {
-#ifdef __MINGW32__
-			if (errno == 0 || errno == EINVAL)
-				w32_maybe_set_errno();
-#endif
+			os_maybe_set_errno();
+
 			if (errno == EPIPE)
 				die_via_sigpipe();
 			else
@@ -1560,10 +1561,8 @@ close_io(bool *stdio_problem, bool *got_EPIPE)
 	*stdio_problem = false;
 	/* we don't warn about stdout/stderr if EPIPE, but we do error exit */
 	if (fflush(stdout) != 0) {
-#ifdef __MINGW32__
-		if (errno == 0 || errno == EINVAL)
-			w32_maybe_set_errno();
-#endif
+		os_maybe_set_errno();
+
 		if (errno != EPIPE)
 			warning(_("error writing standard output: %s"), strerror(errno));
 		else
@@ -1573,10 +1572,8 @@ close_io(bool *stdio_problem, bool *got_EPIPE)
 		*stdio_problem = true;
 	}
 	if (fflush(stderr) != 0) {
-#ifdef __MINGW32__
-		if (errno == 0 || errno == EINVAL)
-			w32_maybe_set_errno();
-#endif
+		os_maybe_set_errno();
+
 		if (errno != EPIPE)
 			warning(_("error writing standard error: %s"), strerror(errno));
 		else
