@@ -1,11 +1,18 @@
+2021-12-01         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* builtin.c (efflush): Don't use return in call of function
+	returning void. It works, but is funky, and I think some
+	compilers will complain.
+
 2021-11-30         Andrew J. Schorr      <aschorr@telemetry-investments.com>
 
 	Improve output redirection error handling for problems not detected
 	until the final flush or close. Thanks to Miguel Pineiro Jr.
 	<mpj@pineiro.cc> for the bug report and suggesting a fix.
+
 	* awk.h (efflush): Add declaration.
 	* builtin.c (efwrite): Break up into 3 functions by moving the
-	flushing logic into efflush and the error handling loginc into
+	flushing logic into efflush and the error handling logic into
 	wrerror.
 	(wrerror): New function containing the error-handling logic extracted
 	from efwrite.

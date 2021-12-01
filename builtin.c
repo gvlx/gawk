@@ -132,11 +132,11 @@ efflush(FILE *fp, const char *from, struct redirect *rp)
 	if (rp != NULL) {
 		rp->output.gawk_fflush(fp, rp->output.opaque);
 		if (rp->output.gawk_ferror(fp, rp->output.opaque))
-			return wrerror(fp, from, rp);
+			wrerror(fp, from, rp);
 	} else {
 		fflush(fp);
 		if (ferror(fp))
-			return wrerror(fp, from, rp);
+			wrerror(fp, from, rp);
 	}
 }
 
