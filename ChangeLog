@@ -1,3 +1,8 @@
+2021-12-02         Andrew J. Schorr      <aschorr@telemetry-investments.com>
+
+	* builtin.c (efwrite): Don't use return in call of function
+	returning void. Some compilers might not like it.
+
 2021-12-01         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* builtin.c (efflush): Don't use return in call of function
