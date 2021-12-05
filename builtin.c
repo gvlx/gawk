@@ -151,10 +151,14 @@ efwrite(const void *ptr,
 {
 	errno = 0;
 	if (rp != NULL) {
-		if (rp->output.gawk_fwrite(ptr, size, count, fp, rp->output.opaque) != count)
-			return wrerror(fp, from, rp);
-	} else if (fwrite(ptr, size, count, fp) != count)
-		return wrerror(fp, from, rp);
+		if (rp->output.gawk_fwrite(ptr, size, count, fp, rp->output.opaque) != count) {
+			wrerror(fp, from, rp);
+			return;
+		}
+	} else if (fwrite(ptr, size, count, fp) != count) {
+		wrerror(fp, from, rp);
+		return;
+	}
 	if (flush
 	  && ((fp == stdout && output_is_tty)
 	      || (rp != NULL && (rp->flag & RED_NOBUF) != 0)))
