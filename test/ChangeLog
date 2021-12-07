@@ -1,3 +1,10 @@
+2021-12-07         Andrew J. Schorr      <aschorr@telemetry-investments.com>
+
+	* iolint.awk, iolint.ok: Reorder "cat" pipe/output file test to reduce
+	the likelihood of a race condition, since close operates on the
+	most-recently-used item. Thanks to Miguel Pineiro Jr.,
+	<mpj@pineiro.cc>, for suggesting the fix.
+
 2021-11-21         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* Makefile.am (EXTRA_DIST): stupid5, new test.
