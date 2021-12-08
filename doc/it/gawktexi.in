@@ -6375,7 +6375,7 @@ Viene qui descritto un uso avanzato delle @dfn{regexp}.
 Pu@`o essere saltato in una prima lettura.
 
 Si pu@`o specificare una costante @dfn{regexp} vuota (@samp{//}) in ogni
-posto in cui ci si aspetta di trova una @dfn{regexp}.
+posto in cui ci si aspetta di trovare una @dfn{regexp}.
 Pu@`o servire a qualcosa farlo?  A cosa corrisponde?
 
 Ha senso farlo.  Corrisponde alla stringa vuota (invisibile),
@@ -6460,7 +6460,7 @@ Le espressioni di intervallo possono essere implementate internamente
 tramite ripetizioni.  Per esempio, @samp{^(a|bc)@{2,4@}$} potrebbe
 essere implementata come @samp{^(a|bc)(a|bc)((a|bc)(a|bc)?)?$}.
 Un contatore di ripetizioni elevato potrebbe esaurire la memoria del computer
-o rallentare grandemente la determinazione delle corrispondenze.
+o rallentare in modo considerevole la determinazione delle corrispondenze.
 Anche contatori bassi possono causare problemi se sono inseriti
 "a cascata"; per esempio,
 @samp{grep -E ".*@{10,@}@{10,@}@{10,@}@{10,@}@{10,@}"}
@@ -8937,7 +8937,7 @@ messa a disposizione da Manuel Collado.  Vedere:
 @node FS rispetto a FPAT
 @subsection @code{FS} rispetto a @code{FPAT}: Una differenza sottile
 
-Come gi@`a spiegato, @code{FS} descrive i data che si trovano tra un campo e
+Come gi@`a spiegato, @code{FS} descrive i dati che si trovano tra un campo e
 l'altro (``ci@`o che non @`e un campo'') mentre @code{FPAT} descrive i campi stessi
 (``ci@`o che @`e un campo'').
 Ci@`o pu@`o portare a una sottile differenza nell'individuazione dei campi, se si usano
@@ -21902,7 +21902,7 @@ non ancora tipizzati (untyped) a non ancora assegnati (unassigned).
 
 @cindex angolo buio @subentry elementi di un vettore creati per riferimento
 Per ``variabile'' intendiamo quelle descritte da un identificativo semplice.
-Degli elementi di un vettore che vengano creati semplicemente facendo un
+Elementi di un vettore che vengono creati semplicemente facendo un
 riferimento agli stessi sono differenti, e sono automaticamente forzati
 a essere delle variabili scalari.  Si consideri:
 
@@ -21916,7 +21916,7 @@ $ @kbd{gawk 'BEGIN @{ print typeof(x["pippo"]) @}'}
 @noindent
 @code{x["pippo"]} viene creato prima di essere passato alla funzione
 @code{typeof()}; @code{typeof()} non @`e in grado di determinare se
-esisteva o meno prima che la funzione fosse chiamata.
+esisteva o no prima che la funzione fosse chiamata.
 @value{DARKCORNER}
 
 @c FIXME: For 5.2, if this will change, update this bit of doc.
@@ -24450,14 +24450,14 @@ function shell_quote(s,             # parametro
 @node Funzione isnumeric
 @subsection Controllare se un valore @`e numerico
 
-Una domanda spesso posta in programmazioni @`e come accertarsi se un dato
+Una domanda ricorrente sulla programmazione @`e come accertarsi se un dato
 valore @`e di tipo numerico.  Il problema pu@`o essere risolto usando la
 funzione di esempio @code{isnumeric()}, che utilizza l'artificio di
-trasformare l'input ricevuto dell'utente nel valore di una stringa,
+trasformare l'input ricevuto dall'utente nel valore di una stringa,
 utilizzando la funzione @code{split()}:
 
 @cindex @code{isnumeric()} @subentry funzione definita dall'utente
-@cindex funzione definita dall'utente @subentry @subentry @code{isnumeric()}
+@cindex funzione definita dall'utente @subentry @code{isnumeric()}
 @example
 @c file eg/lib/isnumeric.awk
 # isnumeric --- controlla se un valore @`e numerico
@@ -31174,11 +31174,11 @@ I valori scalari in @command{awk} sono numeri o stringhe di caratteri.
 (@pxref{Costanti @dfn{regexp} forti}).
 
 Come descritto in @ref{Valori di verit@`a}, ai valori booleani in
-@command{awk} non viene assegnato un tipo loro proprio:
+@command{awk} non viene assegnato un tipo proprio:
 un valore @`e ``true'' [vero] se @`e diverso da zero e dalla stringa nulla
 e ``false'' [falso] in tutti gli altri casi.
 
-Se se devono scambiare dati con linguaggi che possiedono un tipo di
+Se si devono scambiare dati con linguaggi che possiedono un tipo di
 variabile booleana vera e propria, usando un formato standard come
 JSON o XML, la mancanza di un vero tipo di variabile booleana
 in @command{awk} pu@`o essere un problema.
@@ -44221,7 +44221,7 @@ stampare una traccia dei @dfn{byte code} mentre vengono eseguiti
 
 @item
 @code{$0} e i campi sono ora azzerati prima di eseguire una
-regola @code{BEGINFILE} rule (@pxref{BEGINFILE/ENDFILE}).
+regola @code{BEGINFILE} (@pxref{BEGINFILE/ENDFILE}).
 
 @item
 Parecchi fra i programmi di esempio sono stati aggiornati per
@@ -46239,7 +46239,7 @@ al modo di operare di una particolare funzionalit@`a.
 @end itemize
 
 La lista che segue elenca casi che @emph{non sono} bug e che non dovrebbero
-essere segnalati ala mailing list dei bug.  Domande al riguardo possono
+essere segnalati alla mailing list dei bug.  Domande al riguardo possono
 essere rivolte alla mailing list di ``help''
 (@pxref{Richieste di aiuto}), ma non dovreste meravigliarvi di ricevere
 una risposta del tipo ``@command{gawk} funziona cos@`{@dotless{i}}, e continuer@`a
@@ -46524,7 +46524,7 @@ $ @kbd{make}
 @end example
 
 @item
-Eseguire, usando @command{gawk} cos@`{@dotless{i}} compilato un @emph{vero}
+Eseguire, usando @command{gawk} cos@`{@dotless{i}} compilato, un @emph{vero}
 programma, usando @emph{veri} dati.  Usare un programma scritto solo per
 verificare il funzionamento di una particolare funzionalit@`a di
 @command{gawk} non serve a nulla; i veri programmi @command{awk} generalmente
@@ -46560,7 +46560,7 @@ per verificare se le @dfn{patch} hanno risolto il problema.
 
 @end enumerate
 
-Se non si @`e in grado di, o non si vuole, eseguire i passi sopra elencati,
+Se non si @`e in grado di eseguire i passi sopra elencati, o non si vuole farlo,
 ci si deve rassegnare a vivere con il @command{gawk} disponibile.
 
 @node Richieste di aiuto
