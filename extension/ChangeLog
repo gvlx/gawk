@@ -1,5 +1,22 @@
 2021-12-08         Andrew J. Schorr      <aschorr@telemetry-investments.com>
 
+	* rwarray.c: Fix valgrind complaints related to creating mpz and mpfr
+	values on the stack in read_number by passing down storage from
+	the calling function that loads the data into gawk.
+	(value_storage): New union type to contain mpz_t or mpfr_t data.
+	(read_global): Allocate value_storage on the stack and pass a pointer
+	to read_elem.
+	(read_array): Ditto.
+	(read_elem): Receive new arg pointing to value_storage, and pass it
+	down to read_value.
+	(read_value): Receive new arg pointing to value_storage, and pass it
+	down to read_number.
+	(read_number): Receive new arg pointing to value_storage, and create
+	mpz and mpfr variables using that storage instead of in the local
+	scope.
+
+2021-12-08         Andrew J. Schorr      <aschorr@telemetry-investments.com>
+
 	* rwarray.c: Add new functions writeall and readall to implement
 	persistent state.
 	(write_backend): New helper function containing most of the logic

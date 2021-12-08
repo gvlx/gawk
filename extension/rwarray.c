@@ -78,11 +78,16 @@ static awk_bool_t write_elem(FILE *fp, awk_element_t *element);
 static awk_bool_t write_value(FILE *fp, awk_value_t *val);
 static awk_bool_t write_number(FILE *fp, awk_value_t *val);
 
+typedef union {
+	mpz_t mpz_val;
+	mpfr_t mpfr_val;
+} value_storage;
+
 typedef awk_array_t (*array_handle_t)(awk_value_t *);
 static awk_bool_t read_array(FILE *fp, awk_array_t array);
-static awk_bool_t read_elem(FILE *fp, awk_element_t *element, array_handle_t);
-static awk_bool_t read_value(FILE *fp, awk_value_t *value, array_handle_t, awk_value_t *idx);
-static awk_bool_t read_number(FILE *fp, awk_value_t *value, uint32_t code);
+static awk_bool_t read_elem(FILE *fp, awk_element_t *element, array_handle_t, value_storage *);
+static awk_bool_t read_value(FILE *fp, awk_value_t *value, array_handle_t, awk_value_t *idx, value_storage *vs);
+static awk_bool_t read_number(FILE *fp, awk_value_t *value, uint32_t code, value_storage *);
 
 /*
  * Format of array info:
@@ -481,6 +486,7 @@ read_global(FILE *fp, awk_array_t unused)
 	uint32_t i;
 	uint32_t count;
 	awk_element_t new_elem;
+	value_storage vs;
 
 	if (fread(& count, 1, sizeof(count), fp) != sizeof(count))
 		return awk_false;
@@ -488,7 +494,7 @@ read_global(FILE *fp, awk_array_t unused)
 	count = ntohl(count);
 
 	for (i = 0; i < count; i++) {
-		if (read_elem(fp, & new_elem, global_array_handle)) {
+		if (read_elem(fp, & new_elem, global_array_handle, &vs)) {
 			if (! do_poke(& new_elem))
 				free_value(& new_elem.value);
 			if (new_elem.index.str_value.len)
@@ -620,6 +626,7 @@ read_array(FILE *fp, awk_array_t array)
 	uint32_t i;
 	uint32_t count;
 	awk_element_t new_elem;
+	value_storage vs;
 
 	if (fread(& count, 1, sizeof(count), fp) != sizeof(count))
 		return awk_false;
@@ -627,7 +634,7 @@ read_array(FILE *fp, awk_array_t array)
 	count = ntohl(count);
 
 	for (i = 0; i < count; i++) {
-		if (read_elem(fp, & new_elem, regular_array_handle)) {
+		if (read_elem(fp, & new_elem, regular_array_handle, &vs)) {
 			/* add to array */
 			if (! set_array_element_by_elem(array, & new_elem)) {
 				warning(ext_id, _("read_array: set_array_element failed"));
@@ -646,7 +653,7 @@ read_array(FILE *fp, awk_array_t array)
 /* read_elem --- read in a single element */
 
 static awk_bool_t
-read_elem(FILE *fp, awk_element_t *element, array_handle_t array_handle)
+read_elem(FILE *fp, awk_element_t *element, array_handle_t array_handle, value_storage *vs)
 {
 	uint32_t index_len;
 	static char *buffer;
@@ -684,7 +691,7 @@ read_elem(FILE *fp, awk_element_t *element, array_handle_t array_handle)
 		make_null_string(& element->index);
 	}
 
-	if (! read_value(fp, & element->value, array_handle, & element->index))
+	if (! read_value(fp, & element->value, array_handle, & element->index, vs))
 		return awk_false;
 
 	return awk_true;
@@ -693,7 +700,7 @@ read_elem(FILE *fp, awk_element_t *element, array_handle_t array_handle)
 /* read_value --- read a number or a string */
 
 static awk_bool_t
-read_value(FILE *fp, awk_value_t *value, array_handle_t array_handle, awk_value_t *idx)
+read_value(FILE *fp, awk_value_t *value, array_handle_t array_handle, awk_value_t *idx, value_storage *vs)
 {
 	uint32_t code, len;
 
@@ -714,7 +721,7 @@ read_value(FILE *fp, awk_value_t *value, array_handle_t array_handle, awk_value_
 	} else if (code == VT_NUMBER
 		   || code == VT_GMP
 		   || code == VT_MPFR) {
-		return read_number(fp, value, code);
+		return read_number(fp, value, code, vs);
 	} else {
 		if (fread(& len, 1, sizeof(len), fp) != sizeof(len)) {
 			return awk_false;
@@ -767,7 +774,7 @@ read_value(FILE *fp, awk_value_t *value, array_handle_t array_handle, awk_value_
 /* read_number --- read a double, GMP, or MPFR number */
 
 static awk_bool_t
-read_number(FILE *fp, awk_value_t *value, uint32_t code)
+read_number(FILE *fp, awk_value_t *value, uint32_t code, value_storage *vs)
 {
 	uint32_t len;
 
@@ -789,28 +796,24 @@ read_number(FILE *fp, awk_value_t *value, uint32_t code)
 	} else {
 #ifdef HAVE_MPFR
 		if (code == VT_GMP) {
-			mpz_t mp_ptr;
-
-			mpz_init(mp_ptr);
-    			if (mpz_inp_raw(mp_ptr, fp) == 0)
+			mpz_init(vs->mpz_val);
+    			if (mpz_inp_raw(vs->mpz_val, fp) == 0)
 				return awk_false;
 
-			value = make_number_mpz(mp_ptr, value);
+			value = make_number_mpz(vs->mpz_val, value);
 		} else {
-			mpfr_t mpfr_val;
-			mpfr_init(mpfr_val);
-
+			mpfr_init(vs->mpfr_val);
 #ifdef USE_MPFR_FPIF
 			/* preferable if widely available and stable */
-			if (mpfr_fpif_import(mpfr_val, fp) != 0)
+			if (mpfr_fpif_import(vs->mpfr_val, fp) != 0)
 #else
 			/* N.B. need to consume the terminating space we wrote
 			 * after mpfr_out_str */
-			if ((mpfr_inp_str(mpfr_val, fp, MPFR_STR_BASE, MPFR_STR_ROUND) == 0) || (getc(fp) != ' '))
+			if ((mpfr_inp_str(vs->mpfr_val, fp, MPFR_STR_BASE, MPFR_STR_ROUND) == 0) || (getc(fp) != ' '))
 #endif
 				return awk_false;
 
-			value = make_number_mpfr(& mpfr_val, value);
+			value = make_number_mpfr(vs->mpfr_val, value);
 		}
 #else
 		fatal(ext_id(_("rwarray extension: GMP/MPFR value in file but compiled without GMP/MPFR support."));
