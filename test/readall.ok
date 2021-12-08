@@ -1,0 +1,7 @@
+1
+1
+5.9 3 -2.327
+zebra[archie] = banana
+zebra[0] = apple
+zebra[3][foo] = bar
+zebra[3][bar] = foo

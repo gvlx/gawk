@@ -1,5 +1,43 @@
 2021-12-08         Andrew J. Schorr      <aschorr@telemetry-investments.com>
 
+	* rwarray.c: Add new functions writeall and readall to implement
+	persistent state.
+	(write_backend): New helper function containing most of the logic
+	from do_writea. Note that we do not need to check nargs < 2 because
+	gawk will issue a fatal error if a function is called with fewer
+	than min_required_args. Clean up some minor issues with error
+	handling.
+	(do_writea): Grab the array argument and use write_backend to
+	do the rest of the work.
+	(do_writeall): Lookup SYMTAB and invoke write_backend.
+	(free_value): New function to free memory for data we end up ignoring
+	because the variables exist already.
+	(do_poke): Attempt to create variables that don't exist already or
+	are undefined.
+	(regular_array_handle): Wrapper around create_array.
+	(global_array_handle): Call create_array unless the variable exists
+	already and is an array with zero elements.
+	(read_global): New function used by readall to load global variables
+	from a file.
+	(read_one): New function to read a single array from a file.
+	(read_backend): New helper function containing most of the logic
+	from do_reada. Remove the superfluous nargs check. Read the file
+	prologue and then call read_global or read_one as appropriate to load
+	the data.
+	(do_reada): Grab the array argument and call read_backend with
+	read_one to load the data.
+	(do_readall): Call read_backend with read_global to load the data.
+	(read_array): Call read_elem with additional arg regular_array_handle.
+	(read_elem): Add a function argument controlling array creation to
+	pass down to read_value.
+	(read_value): Add a function argument to call for array creation
+	instead of calling create_array directly, since we may need to use
+	an existing array when populating global arrays in readall.
+	(func_table): Add writeall and readall.
+	* rwarray.3am: Document new functions writeall and readall.
+
+2021-12-08         Andrew J. Schorr      <aschorr@telemetry-investments.com>
+
 	* testext.c (test_array_create): New function to create an array
 	by name that enables testing whether an undefined variable can
 	be converted by the API into an array.

@@ -1510,6 +1510,7 @@ rapidjson
 rdev
 rdquo
 reada
+readall
 readdir
 readfile
 readline
@@ -1796,6 +1797,7 @@ wnewmail
 wordfreq
 wr
 writea
+writeall
 www
 wy
 xA

@@ -233,6 +233,7 @@ SHLIB_TESTS = \
 	getfile \
 	inplace1 inplace2 inplace2bcomp inplace3 inplace3bcomp \
 	ordchr ordchr2 \
+	readall \
 	readdir readdir_test readdir_retest readfile readfile2 revout \
 	revtwoway rwarray \
 	testext time
@@ -345,7 +346,8 @@ EXPECTED_FAIL_ZOS = \
 GENTESTS_UNUSED = Makefile.in checknegtime.awk dtdgport.awk fix-fmtspcl.awk \
 	fmtspcl-mpfr.ok fmtspcl.awk fmtspcl.tok gtlnbufv.awk hello.awk \
 	inchello.awk inclib.awk inplace.1.in inplace.2.in inplace.in \
-	printfloat.awk readdir0.awk valgrind.awk xref.awk
+	printfloat.awk readdir0.awk valgrind.awk xref.awk \
+	readall1.awk readall2.awk
 
 
 # List of tests on MinGW or DJGPP that need a different cmp program
@@ -1062,6 +1064,13 @@ readdir_retest:
 	@-$(AWK) -lreaddir -F$(SLASH) -f "$(srcdir)"/$@.awk "$(top_srcdir)" > $@.ok
 	@-$(AWK) -lreaddir_test -F$(SLASH) -f "$(srcdir)"/$@.awk "$(top_srcdir)" > _$@
 	@-$(CMP) $@.ok _$@ && rm -f $@.ok _$@
+
+readall:
+	@echo $@
+	@-$(AWK) -lrwarray -f "$(srcdir)"/$@1.awk -v "ofile=readall.state" > _$@
+	@-$(AWK) -lrwarray -f "$(srcdir)"/$@2.awk -v "ifile=readall.state" >> _$@
+	@-$(CMP) $@.ok _$@ && rm -f _$@
+	@-$(RM) -f readall.state
 
 fts:
 	@echo $@

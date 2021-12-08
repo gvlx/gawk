@@ -78,9 +78,10 @@ static awk_bool_t write_elem(FILE *fp, awk_element_t *element);
 static awk_bool_t write_value(FILE *fp, awk_value_t *val);
 static awk_bool_t write_number(FILE *fp, awk_value_t *val);
 
+typedef awk_array_t (*array_handle_t)(awk_value_t *);
 static awk_bool_t read_array(FILE *fp, awk_array_t array);
-static awk_bool_t read_elem(FILE *fp, awk_element_t *element);
-static awk_bool_t read_value(FILE *fp, awk_value_t *value);
+static awk_bool_t read_elem(FILE *fp, awk_element_t *element, array_handle_t);
+static awk_bool_t read_value(FILE *fp, awk_value_t *value, array_handle_t, awk_value_t *idx);
 static awk_bool_t read_number(FILE *fp, awk_value_t *value, uint32_t code);
 
 /*
@@ -117,12 +118,12 @@ static awk_bool_t read_number(FILE *fp, awk_value_t *value, uint32_t code);
 #define VT_BOOL		8
 #define VT_UNDEFINED	20
 
-/* do_writea --- write an array */
+/* write_backend --- write an array */
 
 static awk_value_t *
-do_writea(int nargs, awk_value_t *result, struct awk_ext_func *unused)
+write_backend(awk_value_t *result, awk_array_t array, const char *name)
 {
-	awk_value_t filename, array;
+	awk_value_t filename;
 	FILE *fp = NULL;
 	uint32_t major = MAJOR;
 	uint32_t minor = MINOR;
@@ -130,18 +131,9 @@ do_writea(int nargs, awk_value_t *result, struct awk_ext_func *unused)
 	assert(result != NULL);
 	make_number(0.0, result);
 
-	if (nargs < 2)
-		goto out;
-
-	/* filename is first arg, array to dump is second */
+	/* filename is first arg */
 	if (! get_argument(0, AWK_STRING, & filename)) {
-		warning(ext_id, _("do_writea: first argument is not a string"));
-		errno = EINVAL;
-		goto done1;
-	}
-
-	if (! get_argument(1, AWK_ARRAY, & array)) {
-		warning(ext_id, _("do_writea: second argument is not an array"));
+		warning(ext_id, _("%s: first argument is not a string"), name);
 		errno = EINVAL;
 		goto done1;
 	}
@@ -162,19 +154,53 @@ do_writea(int nargs, awk_value_t *result, struct awk_ext_func *unused)
 	if (fwrite(& minor, 1, sizeof(minor), fp) != sizeof(minor))
 		goto done1;
 
-	if (write_array(fp, array.array_cookie)) {
+	if (write_array(fp, array)) {
 		make_number(1.0, result);
-		goto done0;
+		fclose(fp);
+		return result;
 	}
 
 done1:
 	update_ERRNO_int(errno);
-	unlink(filename.str_value.str);
-
-done0:
-	fclose(fp);
-out:
+	if (fp != NULL) {
+		fclose(fp);
+		unlink(filename.str_value.str);
+	}
 	return result;
+}
+
+/* do_writea --- write an array */
+
+static awk_value_t *
+do_writea(int nargs, awk_value_t *result, struct awk_ext_func *unused)
+{
+	awk_value_t array;
+
+	if (! get_argument(1, AWK_ARRAY, & array)) {
+		warning(ext_id, _("writea: second argument is not an array"));
+		errno = EINVAL;
+		update_ERRNO_int(errno);
+		make_number(0.0, result);
+		return result;
+	}
+	return write_backend(result, array.array_cookie, "writea");
+}
+
+/* do_writeall --- write out SYMTAB */
+
+static awk_value_t *
+do_writeall(int nargs, awk_value_t *result, struct awk_ext_func *unused)
+{
+	awk_value_t array;
+
+	if (! sym_lookup("SYMTAB", AWK_ARRAY, & array)) {
+		warning(ext_id, _("writeall: unable to find SYMTAB array"));
+		errno = EINVAL;
+		update_ERRNO_int(errno);
+		make_number(0.0, result);
+		return result;
+	}
+	return write_backend(result, array.array_cookie, "writeall");
 }
 
 
@@ -363,12 +389,138 @@ write_number(FILE *fp, awk_value_t *val)
 	return awk_true;
 }
 
-/* do_reada --- read an array */
+/* free_value --- release memory for ignored global variables */
+
+static void
+free_value(awk_value_t *v)
+{
+	switch (v->val_type) {
+	case AWK_ARRAY:
+		clear_array(v->array_cookie);
+		break;
+	case AWK_STRING:
+	case AWK_REGEX:
+	case AWK_STRNUM:
+	case AWK_UNDEFINED:
+		gawk_free(v->str_value.str);
+		break;
+	case AWK_BOOL:
+		/* no memory allocated */
+		break;
+	case AWK_NUMBER:
+		switch (v->num_type) {
+		case AWK_NUMBER_TYPE_DOUBLE:
+			/* no memory allocated */
+			break;
+		case AWK_NUMBER_TYPE_MPZ:
+			mpz_clear(v->num_ptr);
+			break;
+		case AWK_NUMBER_TYPE_MPFR:
+			mpfr_clear(v->num_ptr);
+			break;
+		default:
+			warning(ext_id, _("cannot free number with unknown type %d"), v->num_type);
+			break;
+		}
+		break;
+	default:
+		warning(ext_id, _("cannot free value with unhandled type %d"), v->val_type);
+		break;
+	}
+}
+
+/* do_poke --- create a global variable */
+
+static awk_bool_t
+do_poke(awk_element_t *e)
+{
+	awk_value_t t;
+
+	if (e->index.val_type != AWK_STRING)
+		return awk_false;
+	/* So this is a bit tricky. If the program refers to the variable,
+	 * then it will already exist in an undefined state after parsing.
+	 * If the program never refers to it, then the lookup fails.
+	 * We still need to create it in case the program accesses it via
+	 * indirection through the SYMTAB table. */
+	if (sym_lookup(e->index.str_value.str, AWK_UNDEFINED, &t) && (t.val_type != AWK_UNDEFINED))
+		return awk_false;
+	if (! sym_update(e->index.str_value.str, & e->value)) {
+		warning(ext_id, _("readall: unable to set %s"), e->index.str_value.str);
+		return awk_false;
+	}
+	return awk_true;
+}
+
+/* regular_array_handle --- array creation hook for normal reada */
+
+static awk_array_t
+regular_array_handle(awk_value_t *unused)
+{
+	return create_array();
+}
+
+/* global_array_handle --- array creation hook for readall */
+
+static awk_array_t
+global_array_handle(awk_value_t *n)
+{
+	awk_value_t t;
+	size_t count;
+
+	/* The array may exist already because it was instantiated during
+	 * program parsing, so we use the existing array if it is empty. */
+	return ((n->val_type == AWK_STRING) && sym_lookup(n->str_value.str, AWK_UNDEFINED, &t) && (t.val_type == AWK_ARRAY) && get_element_count(t.array_cookie, & count) && ! count) ? t.array_cookie : create_array();
+}
+
+/* read_global --- read top-level variables dumped from SYMTAB */
+
+static awk_bool_t
+read_global(FILE *fp, awk_array_t unused)
+{
+	uint32_t i;
+	uint32_t count;
+	awk_element_t new_elem;
+
+	if (fread(& count, 1, sizeof(count), fp) != sizeof(count))
+		return awk_false;
+
+	count = ntohl(count);
+
+	for (i = 0; i < count; i++) {
+		if (read_elem(fp, & new_elem, global_array_handle)) {
+			if (! do_poke(& new_elem))
+				free_value(& new_elem.value);
+			if (new_elem.index.str_value.len)
+				/* free string allocated by make_const_string */
+				gawk_free(new_elem.index.str_value.str);
+		} else
+			return awk_false;
+	}
+
+	return awk_true;
+}
+
+/* read_one --- read one array */
+
+static awk_bool_t
+read_one(FILE *fp, awk_array_t array)
+{
+	if (! clear_array(array)) {
+		errno = ENOMEM;
+		warning(ext_id, _("reada: clear_array failed"));
+		return awk_false;
+	}
+
+	return read_array(fp, array);
+}
+
+/* read_backend --- common code for reada and readall */
 
 static awk_value_t *
-do_reada(int nargs, awk_value_t *result, struct awk_ext_func *unused)
+read_backend(awk_value_t *result, awk_array_t array, const char *name, awk_bool_t (*func)(FILE *, awk_array_t))
 {
-	awk_value_t filename, array;
+	awk_value_t filename;
 	FILE *fp = NULL;
 	uint32_t major;
 	uint32_t minor;
@@ -377,18 +529,9 @@ do_reada(int nargs, awk_value_t *result, struct awk_ext_func *unused)
 	assert(result != NULL);
 	make_number(0.0, result);
 
-	if (nargs < 2)
-		goto out;
-
-	/* directory is first arg, array to read is second */
+	/* filename is first arg */
 	if (! get_argument(0, AWK_STRING, & filename)) {
-		warning(ext_id, _("do_reada: first argument is not a string"));
-		errno = EINVAL;
-		goto done1;
-	}
-
-	if (! get_argument(1, AWK_ARRAY, & array)) {
-		warning(ext_id, _("do_reada: second argument is not an array"));
+		warning(ext_id, _("%s: first argument is not a string"), name);
 		errno = EINVAL;
 		goto done1;
 	}
@@ -430,13 +573,7 @@ do_reada(int nargs, awk_value_t *result, struct awk_ext_func *unused)
 		goto done1;
 	}
 
-	if (! clear_array(array.array_cookie)) {
-		errno = ENOMEM;
-		warning(ext_id, _("do_reada: clear_array failed"));
-		goto done1;
-	}
-
-	if (read_array(fp, array.array_cookie)) {
+	if ((*func)(fp, array)) {
 		make_number(1.0, result);
 		goto done0;
 	}
@@ -446,8 +583,32 @@ done1:
 done0:
 	if (fp != NULL)
 		fclose(fp);
-out:
 	return result;
+}
+
+/* do_reada --- read an array */
+
+static awk_value_t *
+do_reada(int nargs, awk_value_t *result, struct awk_ext_func *unused)
+{
+	awk_value_t array;
+
+	if (! get_argument(1, AWK_ARRAY, & array)) {
+		warning(ext_id, _("reada: second argument is not an array"));
+		errno = EINVAL;
+		update_ERRNO_int(errno);
+		make_number(0.0, result);
+		return result;
+	}
+	return read_backend(result, array.array_cookie, "read", read_one);
+}
+
+/* do_readall --- read top-level variables */
+
+static awk_value_t *
+do_readall(int nargs, awk_value_t *result, struct awk_ext_func *unused)
+{
+	return read_backend(result, NULL, "readall", read_global);
 }
 
 
@@ -466,7 +627,7 @@ read_array(FILE *fp, awk_array_t array)
 	count = ntohl(count);
 
 	for (i = 0; i < count; i++) {
-		if (read_elem(fp, & new_elem)) {
+		if (read_elem(fp, & new_elem, regular_array_handle)) {
 			/* add to array */
 			if (! set_array_element_by_elem(array, & new_elem)) {
 				warning(ext_id, _("read_array: set_array_element failed"));
@@ -485,7 +646,7 @@ read_array(FILE *fp, awk_array_t array)
 /* read_elem --- read in a single element */
 
 static awk_bool_t
-read_elem(FILE *fp, awk_element_t *element)
+read_elem(FILE *fp, awk_element_t *element, array_handle_t array_handle)
 {
 	uint32_t index_len;
 	static char *buffer;
@@ -523,7 +684,7 @@ read_elem(FILE *fp, awk_element_t *element)
 		make_null_string(& element->index);
 	}
 
-	if (! read_value(fp, & element->value))
+	if (! read_value(fp, & element->value, array_handle, & element->index))
 		return awk_false;
 
 	return awk_true;
@@ -532,7 +693,7 @@ read_elem(FILE *fp, awk_element_t *element)
 /* read_value --- read a number or a string */
 
 static awk_bool_t
-read_value(FILE *fp, awk_value_t *value)
+read_value(FILE *fp, awk_value_t *value, array_handle_t array_handle, awk_value_t *idx)
 {
 	uint32_t code, len;
 
@@ -542,7 +703,7 @@ read_value(FILE *fp, awk_value_t *value)
 	code = ntohl(code);
 
 	if (code == VT_ARRAY) {
-		awk_array_t array = create_array();
+		awk_array_t array = (*array_handle)(idx);
 
 		if (! read_array(fp, array))
 			return awk_false;
@@ -662,6 +823,8 @@ read_number(FILE *fp, awk_value_t *value, uint32_t code)
 static awk_ext_func_t func_table[] = {
 	{ "writea", do_writea, 2, 2, awk_false, NULL },
 	{ "reada", do_reada, 2, 2, awk_false, NULL },
+	{ "writeall", do_writeall, 1, 1, awk_false, NULL },
+	{ "readall", do_readall, 1, 1, awk_false, NULL },
 };
 
 

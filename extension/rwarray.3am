@@ -1,6 +1,6 @@
 .TH RWARRAY 3am "Feb 02 2018" "Free Software Foundation" "GNU Awk Extension Modules"
 .SH NAME
-writea, reada \- write and read gawk arrays to/from files
+writea, reada, writeall, readall \- write and read gawk arrays to/from files
 .SH SYNOPSIS
 .ft CW
 @load "rwarray"
@@ -8,14 +8,20 @@ writea, reada \- write and read gawk arrays to/from files
 ret = writea(file, array)
 .br
 ret = reada(file, array)
+.br
+ret = writeall(file)
+.br
+ret = readall(file)
 .ft R
 .SH DESCRIPTION
 The
 .I rwarray
-extension adds two functions named
-.BR writea() .
-and
+extension adds functions named
+.BR writea() ,
 .BR reada() ,
+.BR writeaall() ,
+and
+.BR readaall() ,
 as follows.
 .TP
 .B writea()
@@ -33,6 +39,23 @@ it reads the file named as its first argument, filling in
 the array named as the second argument. It clears the array
 first.
 Here too, the return value is one on success and zero upon failure.
+.TP
+.B writeall()
+This function takes a string argument, which is the name of the
+file to which dump the state of all variables. Calling this function
+is completely equivalent to calling
+.B writea()
+with the second argument equal to
+.BR SYMTAB .
+It returns one on success, or zero upon failure.
+.TP
+.B readall()
+This function takes a string argument, which is the name of the
+file from which to read the contents of various global variables.
+For each variable in the file, the data is loaded unless the variable
+already exists. If the variable already exists, the data for that variable
+in the file is ignored.
+It returns one on success, or zero upon failure.
 .SH NOTES
 The array created by
 .B reada()
@@ -62,6 +85,10 @@ restored on systems with a different one, but this has not been tried.
 ret = writea("arraydump.bin", array)
 \&...
 ret = reada("arraydump.bin", array)
+\&...
+ret = writeall("globalstate.bin")
+\&...
+ret = readall("globalstate.bin")
 .fi
 .ft R
 .SH "SEE ALSO"

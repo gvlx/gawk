@@ -39729,8 +39729,9 @@ is:
 @node Extension Sample Read write array
 @subsection Dumping and Restoring an Array
 
-The @code{rwarray} extension adds two functions,
-named @code{writea()} and @code{reada()}, as follows:
+The @code{rwarray} extension adds four functions,
+named @code{writea()}, @code{reada()},
+@code{writeall()} and @code{readall()}, as follows:
 
 @table @code
 @item @@load "rwarray"
@@ -39749,6 +39750,24 @@ success, or zero upon failure.
 it reads the file named as its first argument, filling in
 the array named as the second argument. It clears the array first.
 Here too, the return value is one on success, or zero upon failure.
+
+@cindex @code{writeall()} extension function
+@item ret = writeall(file)
+This function takes a string argument, which is the name of the file
+to which to dump the state of all variables.
+Calling this function
+is completely equivalent to calling
+@code{writea(file, SYMTAB)}.
+It returns one on success, or zero upon failure
+
+@cindex @code{readall()} extension function
+@item ret = writeall(file)
+This function takes a string argument, which is the name of the
+file from which to read the contents of various global variables.
+For each variable in the file, the data is loaded unless the variable
+already exists. If the variable already exists, the data for that variable
+in the file is ignored.
+It returns one on success, or zero upon failure.
 @end table
 
 The array created by @code{reada()} is identical to that written by
@@ -39766,6 +39785,13 @@ as native binary data.  Thus, arrays containing only string data can
 theoretically be dumped on systems with one byte order and restored on
 systems with a different one, but this has not been tried.
 
+Note that the @code{writeall()} and @code{readall()} functions provide
+a mechanism for maintaining persistent state across repeated invocations of a
+program. If, for example, a program calculates some statistics based on the
+data in a series of files, it could save state using @code{writeall()} after
+processing N files, and then reload the state using @code{readall()} when
+the N+1st file arrives to update the results.
+
 Here is an example:
 
 @example
@@ -39774,6 +39800,10 @@ Here is an example:
 ret = writea("arraydump.bin", array)
 @dots{}
 ret = reada("arraydump.bin", array)
+@dots{}
+ret = writeall("globalstate.bin")
+@dots{}
+ret = readall("globalstate.bin")
 @end example
 
 @node Extension Sample Readfile
