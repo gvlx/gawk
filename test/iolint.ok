@@ -20,8 +20,8 @@ gawk: iolint.awk:42: warning: `echo hello' used for input pipe and output file
 0
 0
 gawk: iolint.awk:53: warning: `cat' used for output file and output pipe
-0
 hello
+0
 0
 gawk: iolint.awk:67: warning: `eval $CMD_TO_RUN' used for input pipe and output pipe
 0

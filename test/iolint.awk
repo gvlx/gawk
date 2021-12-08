@@ -49,8 +49,8 @@ BEGIN {
 	# `%.*s' used for output pipe and two-way pipe
 	# Not doing |& due to race condition and signals. sigh
 	cat = "cat"
-	print "hello" | "cat"
 	print "/bin/cat \"$@\"" > "cat"
+	print "hello" | "cat"
 	print close("cat")
 	print close("cat")
 	fflush()
