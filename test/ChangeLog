@@ -1,3 +1,11 @@
+2021-12-08         Andrew J. Schorr      <aschorr@telemetry-investments.com>
+
+	* Makefile.am (testext): Change awk pattern to include functions in
+	testext.awk.
+	(diffout): If running MPFR tests and there's an mpfr.ok file, compare
+	to that instead of to the regular ok file.
+	* testext.ok, testext-mpfr.ok: Update for new test_array_create test.
+
 2021-12-07         Andrew J. Schorr      <aschorr@telemetry-investments.com>
 
 	* iolint.awk, iolint.ok: Reorder "cat" pipe/output file test to reduce

@@ -1,3 +1,11 @@
+2021-12-08         Andrew J. Schorr      <aschorr@telemetry-investments.com>
+
+	* gawkapi.c (api_sym_update): Allow undefined Node_var_new variables
+	to be converted to arrays, otherwise API functions have no way
+	of creating an array that is referenced in an undefined fashion in
+	the program. This is somewhat comparable to how the set_argument
+	API allows an undefined argument variable to be converted to an array.
+
 2021-12-02         Andrew J. Schorr      <aschorr@telemetry-investments.com>
 
 	* builtin.c (efwrite): Don't use return in call of function

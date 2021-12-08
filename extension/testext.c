@@ -48,6 +48,7 @@ static const char *ext_version = "testext extension: version 1.0";
 int plugin_is_GPL_compatible;
 
 static void fill_in_array(awk_value_t *value);
+static int populate_array(awk_array_t);
 
 #ifdef __MINGW32__
 unsigned int
@@ -666,6 +667,54 @@ out:
 }
 
 /*
+function tfunc(f) {
+	if (isarray(f))
+		print "good: we have an array"
+}
+
+BEGIN {
+	printf "test_array_create returned %d\n", test_array_create("testarr")
+	tfunc(testarr)
+}
+*/
+
+static awk_value_t *
+test_array_create(int nargs, awk_value_t *result, struct awk_ext_func *unused)
+{
+	awk_value_t new_array;
+	awk_value_t arg0;
+
+	(void) nargs;		/* silence warnings */
+	make_number(0.0, result);
+
+	if (! get_argument(0, AWK_STRING, & arg0)) {
+		printf("test_array_create: could not get argument\n");
+		goto out;
+	}
+
+	if (arg0.val_type != AWK_STRING) {
+		printf("test_array_create: argument is not string (%d)\n",
+				arg0.val_type);
+		goto out;
+	}
+
+	new_array.val_type = AWK_ARRAY;
+	new_array.array_cookie = create_array();
+	if (! sym_update(arg0.str_value.str, & new_array)) {
+		printf("test_array_create: sym_update(\"%s\") failed!\n", arg0.str_value.str);
+		goto out;
+	}
+	if (populate_array(new_array.array_cookie) < 0) {
+		printf("test_array_create: populate(\"%s\") failed!\n", arg0.str_value.str);
+		goto out;
+	}
+
+	make_number(1.0, result);
+out:
+	return result;
+}
+
+/*
 BEGIN {
 	printf("Initial value of LINT is %d\n", LINT)
 	ret = print_do_lint();
@@ -958,29 +1007,40 @@ do_get_file(int nargs, awk_value_t *result, struct awk_ext_func *unused)
 	return make_number(1.0, result);
 }
 
-/* fill_in_array --- fill in a new array */
+/* populate_array --- fill in some array values */
 
-static void
-fill_in_array(awk_value_t *new_array)
+static int
+populate_array(awk_array_t a_cookie)
 {
-	awk_array_t a_cookie;
 	awk_value_t index, value;
-
-	a_cookie = create_array();
 
 	(void) make_const_string("hello", 5, & index);
 	(void) make_const_string("world", 5, & value);
 	if (! set_array_element(a_cookie, & index, & value)) {
 		printf("fill_in_array:%d: set_array_element failed\n", __LINE__);
-		return;
+		return -1;
 	}
 
 	(void) make_const_string("answer", 6, & index);
 	(void) make_number(42.0, & value);
 	if (! set_array_element(a_cookie, & index, & value)) {
 		printf("fill_in_array:%d: set_array_element failed\n", __LINE__);
-		return;
+		return -1;
 	}
+	return 0;
+}
+
+/* fill_in_array --- fill in a new array */
+
+static void
+fill_in_array(awk_value_t *new_array)
+{
+	awk_array_t a_cookie;
+
+	a_cookie = create_array();
+
+	if (populate_array(a_cookie) < 0)
+		return;
 
 	new_array->val_type = AWK_ARRAY;
 	new_array->array_cookie = a_cookie;
@@ -1061,6 +1121,7 @@ static awk_ext_func_t func_table[] = {
 	{ "test_array_size", test_array_size, 1, 1, awk_false, NULL },
 	{ "test_array_elem", test_array_elem, 2, 2, awk_false, NULL },
 	{ "test_array_param", test_array_param, 1, 1, awk_false, NULL },
+	{ "test_array_create", test_array_create, 1, 1, awk_false, NULL },
 	{ "print_do_lint", print_do_lint, 0, 0, awk_false, NULL },
 	{ "test_scalar", test_scalar, 1, 1, awk_false, NULL },
 	{ "test_scalar_reserved", test_scalar_reserved, 0, 0, awk_false, NULL },

@@ -1,5 +1,14 @@
 2021-12-08         Andrew J. Schorr      <aschorr@telemetry-investments.com>
 
+	* testext.c (test_array_create): New function to create an array
+	by name that enables testing whether an undefined variable can
+	be converted by the API into an array.
+	(populate_array): New helper function.
+	(fill_in_array): Use populate_array to fill in the elements.
+	(func_table): Add test_array_create.
+
+2021-12-08         Andrew J. Schorr      <aschorr@telemetry-investments.com>
+
 	* rwarray.c (write_number): Since mpfr_fpif_export is experimental
 	and not available in older versions of mpfr, add an ifdef to
 	use mpfr_out_str instead.

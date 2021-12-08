@@ -881,7 +881,8 @@ api_sym_update(awk_ext_id_t id,
 
 	/*
 	 * If we get here, then it exists already.  Any valid type is
-	 * OK except for AWK_ARRAY.
+	 * OK except for AWK_ARRAY (unless it is in Node_var_new undefined
+	 * state, in which case an array is OK).
 	 */
 	if (   (node->flags & NO_EXT_SET) != 0
 	    || is_off_limits_var(full_name)) {	/* most built-in vars not allowed */
@@ -892,8 +893,7 @@ api_sym_update(awk_ext_id_t id,
 
 	efree((void *) full_name);
 
-	if (    value->val_type != AWK_ARRAY
-	    && (node->type == Node_var || node->type == Node_var_new)) {
+	if ((node->type == Node_var && value->val_type != AWK_ARRAY) || node->type == Node_var_new) {
 		unref(node->var_value);
 		node->var_value = awk_value_to_node(value);
 		if (node->type == Node_var_new && value->val_type != AWK_UNDEFINED)

@@ -48,6 +48,8 @@ test_array_param: argument is not undefined (1)
 test_array_param() returned 0
 isarray(a_scalar) = 0
 
+test_array_create returned 1
+good: we have an array
 Initial value of LINT is 0
 print_do_lint: lint = 0
 print_do_lint() returned 1
