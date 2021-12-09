@@ -1,3 +1,10 @@
+2021-12-09         Andrew J. Schorr      <aschorr@telemetry-investments.com>
+
+	* rwarray.c (write_number, read_number): Use
+	mpfr_get_default_rounding_mode() instead of arbitrarily choosing
+	MPFR_RNDN, taking advantage of the fact that core gawk maintains
+	this using the ROUNDMODE global variable.
+
 2021-12-08         Andrew J. Schorr      <aschorr@telemetry-investments.com>
 
 	* rwarray.c: Fix valgrind complaints related to creating mpz and mpfr

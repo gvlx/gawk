@@ -369,8 +369,8 @@ write_number(FILE *fp, awk_value_t *val)
 			if (mpfr_fpif_export(fp, val->num_ptr) != 0)
 #else
 #define MPFR_STR_BASE	62	   /* maximize base to minimize string len */
-#define MPFR_STR_ROUND	MPFR_RNDN
-			/* XXX does the choice of MPFR_RNDN matter, given
+#define MPFR_STR_ROUND	mpfr_get_default_rounding_mode()
+			/* Does the choice of rounding mode matter, given
 			 * that the precision is 0, so we should be rendering
 			 * in full precision? */
 			/* We need to write a terminating space, since
