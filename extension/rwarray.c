@@ -373,7 +373,7 @@ write_number(FILE *fp, awk_value_t *val)
 #define MPFR_STR_BASE	62	   /* maximize base to minimize string len */
 #define MPFR_STR_ROUND	mpfr_get_default_rounding_mode()
 			/*
-			 * XXX does the choice of MPFR_RNDN matter, given
+			 * Does the choice of rounding mode matter, given
 			 * that the precision is 0, so we should be rendering
 			 * in full precision?
 			 */
