@@ -1,3 +1,15 @@
+2021-12-10         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* rwarray.c (write_number, read_number): Reformat comments a bit.
+
+2021-12-08         Andrew J. Schorr      <aschorr@telemetry-investments.com>
+
+	* rwarray.c (write_number): Since mpfr_fpif_export is experimental
+	and not available in older versions of mpfr, add an ifdef to
+	use mpfr_out_str instead.
+	(read_number): Similarly, use mpfr_inp_str instead of
+	mpfr_fpif_import.
+
 2021-11-18         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* rwarray.c: Add support for writing/reading GMP and MPFR values.

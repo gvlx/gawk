@@ -330,7 +330,26 @@ write_number(FILE *fp, awk_value_t *val)
 			if (fwrite(& code, 1, sizeof(code), fp) != sizeof(code))
 				return awk_false;
 
+#ifdef USE_MPFR_FPIF
+			/*
+			 * This would be preferable, but it is not available
+			 * on older platforms with mpfr 3.x. It's also marked
+			 * experimental in mpfr 4.1, so perhaps not ready for
+			 * production use yet.
+			 */
 			if (mpfr_fpif_export(fp, val->num_ptr) != 0)
+#else
+#define MPFR_STR_BASE	62	   /* maximize base to minimize string len */
+#define MPFR_STR_ROUND	MPFR_RNDN
+			/*
+			 * XXX does the choice of MPFR_RNDN matter, given
+			 * that the precision is 0, so we should be rendering
+			 * in full precision?
+			 */
+			// We need to write a terminating space, since
+			// mpfr_inp_str reads until it hits a space or EOF
+			if ((mpfr_out_str(fp, MPFR_STR_BASE, 0, val->num_ptr, MPFR_STR_ROUND) == 0) || (putc(' ', fp) == EOF))
+#endif
 				return awk_false;
 		} else {
 			code = htonl(VT_GMP);
@@ -624,7 +643,14 @@ read_number(FILE *fp, awk_value_t *value, uint32_t code)
 			mpfr_t mpfr_val;
 			mpfr_init(mpfr_val);
 
+#ifdef USE_MPFR_FPIF
+			/* preferable if widely available and stable */
 			if (mpfr_fpif_import(mpfr_val, fp) != 0)
+#else
+			// N.B. need to consume the terminating space we wrote
+			// after mpfr_out_str
+			if ((mpfr_inp_str(mpfr_val, fp, MPFR_STR_BASE, MPFR_STR_ROUND) == 0) || (getc(fp) != ' '))
+#endif
 				return awk_false;
 
 			value = make_number_mpfr(& mpfr_val, value);
