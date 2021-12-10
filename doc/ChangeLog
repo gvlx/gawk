@@ -1,3 +1,7 @@
+2021-12-10         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* texinfo.tex: Updated from GNULIB.
+
 2021-12-08         Andrew J. Schorr      <aschorr@telemetry-investments.com>
 
 	* gawktexi.in: Document new rwarray functions writeall and readall.
