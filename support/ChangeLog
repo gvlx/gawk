@@ -1,3 +1,8 @@
+2021-12-10         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* intprops.h, regcomp.c, regex_internal.c, regex_internal.h,
+	regexec.c: Sync with GNULIB.
+
 2021-10-27         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* 5.1.1: Release tar ball made.
