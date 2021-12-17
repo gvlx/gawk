@@ -64,7 +64,7 @@ int input_fd;
 static SRCFILE *cur_srcfile;
 static long cur_frame = 0;
 static INSTRUCTION *cur_pc;
-int cur_rule = 0;
+static int cur_rule = 0;
 
 static bool prog_running = false;
 
@@ -3303,7 +3303,7 @@ do_return(CMDARG *arg, int cmd)
 
 /* check_until --- process until, returns true if stopping */
 
-int
+static int
 check_until(INSTRUCTION **pi)
 {
 	if (fcall_count < stop.fcall_count) { /* current stack frame returned */

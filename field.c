@@ -81,13 +81,13 @@ static awk_fieldwidth_info_t *FIELDWIDTHS = NULL;
 
 NODE **fields_arr;		/* array of pointers to the field nodes */
 bool field0_valid;		/* $(>0) has not been changed yet */
-int default_FS;			/* true when FS == " " */
-Regexp *FS_re_yes_case = NULL;
-Regexp *FS_re_no_case = NULL;
-Regexp *FS_regexp = NULL;
-Regexp *FPAT_re_yes_case = NULL;
-Regexp *FPAT_re_no_case = NULL;
-Regexp *FPAT_regexp = NULL;
+static int default_FS;		/* true when FS == " " */
+static Regexp *FS_re_yes_case = NULL;
+static Regexp *FS_re_no_case = NULL;
+static Regexp *FS_regexp = NULL;
+static Regexp *FPAT_re_yes_case = NULL;
+static Regexp *FPAT_re_no_case = NULL;
+static Regexp *FPAT_regexp = NULL;
 NODE *Null_field = NULL;
 
 #define clear_mpfr(n) ((n)->flags &= ~(MPFN | MPZN | NUMCUR))
@@ -837,7 +837,7 @@ fw_parse_field(long up_to,	/* parse only up to this field number */
 
 /* invalidate_field0 --- $0 needs reconstruction */
 
-void
+static void
 invalidate_field0()
 {
 	field0_valid = false;

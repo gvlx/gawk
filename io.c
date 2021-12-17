@@ -4170,7 +4170,7 @@ pty_vs_pipe(const char *command)
 
 /* iopflags2str --- make IOP flags printable */
 
-const char *
+static const char *
 iopflags2str(int flag)
 {
 	static const struct flagtab values[] = {

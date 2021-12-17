@@ -73,7 +73,8 @@ static const char *platform_name();
 
 /* These nodes store all the special variables AWK uses */
 NODE *ARGC_node, *ARGIND_node, *ARGV_node, *BINMODE_node, *CONVFMT_node;
-NODE *ENVIRON_node, *ERRNO_node, *FIELDWIDTHS_node, *FILENAME_node;
+static NODE *ENVIRON_node;
+NODE *ERRNO_node, *FIELDWIDTHS_node, *FILENAME_node;
 NODE *FNR_node, *FPAT_node, *FS_node, *IGNORECASE_node, *LINT_node;
 NODE *NF_node, *NR_node, *OFMT_node, *OFS_node, *ORS_node, *PROCINFO_node;
 NODE *RLENGTH_node, *RSTART_node, *RS_node, *RT_node, *SUBSEP_node;
