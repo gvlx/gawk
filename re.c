@@ -517,7 +517,7 @@ reisstring(const char *text, size_t len, Regexp *re, const char *buf)
 
 /* reflags2str --- make a regex flags value readable */
 
-const char *
+static const char *
 reflags2str(int flagval)
 {
 	static const struct flagtab values[] = {

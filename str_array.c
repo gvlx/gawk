@@ -76,7 +76,7 @@ static NODE **env_store(NODE *symbol, NODE *subs);
 static NODE **env_clear(NODE *symbol, NODE *subs);
 
 /* special case for ENVIRON */
-const array_funcs_t env_array_func = {
+static const array_funcs_t env_array_func = {
 	"env",
 	str_array_init,
 	(afunc_t) 0,

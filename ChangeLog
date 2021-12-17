@@ -1,3 +1,16 @@
+2021-12-17         Yuri Gribov           <tetra2005@gmail.com>
+
+	Make a number of functions and variables static.
+
+	* cint_array.c (argv_array_func): Make static.
+	* debug.c (cur_rule, check_until): Ditto.
+	* field.c (default_FS, FS_re_yes_case, FS_re_no_case, FS_regexp,
+	FPAT_re_yes_case, FPAT_re_no_case, invalidate_field0: Ditto.
+	* io.c (iopflags2str): Ditto.
+	* main.c (ENVIRON_node): Ditto.
+	* re.c (reflags2str): Ditto.
+	* str_array.c (env_array_func): Ditto.
+
 2021-12-02         Andrew J. Schorr      <aschorr@telemetry-investments.com>
 
 	* builtin.c (efwrite): Don't use return in call of function
