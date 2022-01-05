@@ -1,3 +1,16 @@
+2022-01-05         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* awkgram.y (change_namespace): New function. Extracted from
+	set_namespace.
+	(want_namespace): New variable.
+	[grammar]: Add explanatory comment about the change.
+	(yylex): Change the namespace immediately from the lexer.
+	(set_namespace): Adjust code.
+	* symbol.c (load_symbols): Strip off leading awk:: so that
+	PROCINFO["identifiers"] is like SYMTAB and FUNCTAB. This makes
+	the code match the documentation. Thanks to John Naman
+	<gawker@703n.com> for the bug report.
+
 2021-12-17         Yuri Gribov           <tetra2005@gmail.com>
 
 	Make a number of functions and variables static.

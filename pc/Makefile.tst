@@ -203,7 +203,7 @@ GAWK_EXT_TESTS = \
 	modifiers muldimposix nastyparm negtime next nondec nondec2 \
 	nonfatal1 nonfatal2 nonfatal3 nsawk1a nsawk1b nsawk1c nsawk2a \
 	nsawk2b nsbad nsbad_cmd nsforloop nsfuncrecurse nsindirect1 \
-	nsindirect2 nsprof1 nsprof2 octdec patsplit posix printfbad1 \
+	nsidentifier nsindirect2 nsprof1 nsprof2 octdec patsplit posix printfbad1 \
 	printfbad2 printfbad3 printfbad4 printhuge procinfs profile0 \
 	profile1 profile10 profile11 profile12 profile13 profile14 \
 	profile15 profile16 profile2 profile3 profile4 profile5 profile6 \
@@ -3067,6 +3067,11 @@ nsfuncrecurse:
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 nsindirect1:
+	@echo $@
+	@-AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
+	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
+
+nsidentifier:
 	@echo $@
 	@-AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@

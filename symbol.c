@@ -604,7 +604,10 @@ load_symbols()
 			    || r->type == Node_var
 			    || r->type == Node_var_array
 			    || r->type == Node_var_new) {
-				tmp = make_string(r->vname, strlen(r->vname));
+				if (strncmp(r->vname, "awk::", 5) == 0)
+					tmp = make_string(r->vname + 5, strlen(r->vname) - 5);
+				else
+					tmp = make_string(r->vname, strlen(r->vname));
 				aptr = assoc_lookup(sym_array, tmp);
 				unref(tmp);
 				unref(*aptr);
