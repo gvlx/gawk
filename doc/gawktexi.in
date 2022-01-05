@@ -20897,8 +20897,8 @@ a closing parenthesis, with the addition of a leading @samp{@@}
 character:
 
 @example
-the_func = "sum"
-result = @@the_func()   # calls the sum() function
+the_function = "sum"
+result = @@the_function()   # calls the sum() function
 @end example
 
 Here is a full program that processes the previously shown data,
@@ -21210,7 +21210,7 @@ For example, in the following case:
 
 @example
 for (i = 1; i <= n; i++)
-    @@the_func()
+    @@the_function()
 @end example
 
 @noindent
