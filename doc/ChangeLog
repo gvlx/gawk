@@ -1,3 +1,8 @@
+2022-01-05         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.ini (Indirect Calls): Use `the_function' everywhere.
+	Thanks to John Naman, <gawker@703n.com> for the report.
+
 2021-12-10         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* texinfo.tex: Updated from GNULIB.
