@@ -1,3 +1,8 @@
+2022-01-05         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.am (EXTRA_DIST): nsidentifier, new test.
+	* nsidentifier.awk, nsidentifier.ok: New files.
+
 2021-12-07         Andrew J. Schorr      <aschorr@telemetry-investments.com>
 
 	* iolint.awk, iolint.ok: Reorder "cat" pipe/output file test to reduce

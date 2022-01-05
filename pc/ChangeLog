@@ -1,3 +1,7 @@
+2022-01-05         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.tst: Regenerated.
+
 2021-12-01         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawkmisc.pc (os_maybe_set_errno): Renamed from
