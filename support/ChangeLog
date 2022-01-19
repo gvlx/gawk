@@ -1,3 +1,14 @@
+2022-01-19         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* cdefs.h, dfa.c, dfa.h, dynarray.h, flexmember.h, idx.h,
+	intprops.h, libc-config.h, localeinfo.c, localeinfo.h,
+	malloc/dynarray-skeleton.c, malloc/dynarray.h,
+	malloc/dynarray_at_failure.c, malloc/dynarray_emplace_enlarge.c,
+	malloc/dynarray_finalize.c, malloc/dynarray_resize.c,
+	malloc/dynarray_resize_clear.c, regcomp.c, regex.c, regex.h,
+	regex_internal.c, regex_internal.h, regexec.c, verify.h: Sync
+	with GNULIB. Primarily updates copyright year.
+
 2021-12-10         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* intprops.h, regcomp.c, regex_internal.c, regex_internal.h,
