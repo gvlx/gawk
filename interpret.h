@@ -1132,6 +1132,7 @@ match_re:
 			NODE *f = NULL;
 			int arg_count;
 			char save;
+			NODE *function_name;
 
 			arg_count = (pc + 1)->expr_count;
 			t1 = PEEK(arg_count);	/* indirect var */
@@ -1173,6 +1174,9 @@ match_re:
 				else
 					r = the_func(arg_count);
 				str_restore(t1, save);
+
+				function_name = POP();	// pop function name off stack
+				DEREF(function_name);
 
 				PUSH(r);
 				break;

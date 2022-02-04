@@ -1,3 +1,14 @@
+2022-02-04         Arnold D. Robbins     <arnold@skeeve.com>
+
+	Start fixing issues with indirect calls of builtins.
+	Thanks to Denis Shirokov <cosmogen@gmail.com> for the initial report.
+	Much more remains to be done.
+
+	* builtin.c (do_length): Check number of arguments, fatal if not one.
+	If passed Node_var_new, turn it into the null string.
+	* interpret.h (r_interpret): For Op_indirect_call, pop the function
+	name off the stack.
+
 2022-01-05         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* awkgram.y (change_namespace): New function. Extracted from

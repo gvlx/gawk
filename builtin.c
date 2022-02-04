@@ -538,6 +538,10 @@ do_length(int nargs)
 	NODE *tmp;
 	size_t len;
 
+	// indirect call can pass too many arguments
+	if (nargs != 1)
+		fatal(_("length: called with %d arguments"), nargs);
+
 	tmp = POP();
 	if (tmp->type == Node_var_array) {
 		static bool warned = false;
@@ -561,6 +565,10 @@ do_length(int nargs)
 
 		size = assoc_length(tmp);
 		return make_number(size);
+	} else if (tmp->type == Node_var_new) {
+		// this can happen from an indirect call
+		DEREF(tmp);
+		tmp = dupnode(Nnull_string);
 	}
 
 	assert(tmp->type == Node_val);
