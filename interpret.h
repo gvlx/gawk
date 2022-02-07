@@ -67,6 +67,7 @@ r_interpret(INSTRUCTION *code)
 	Regexp *rp;
 	NODE *set_array = NULL;	/* array with a post-assignment routine */
 	NODE *set_idx = NULL;	/* the index of the array element */
+	bool in_indirect_call = false;
 
 
 /* array subscript */
@@ -1059,6 +1060,14 @@ arrayfor:
 					DEREF(t1);
 			}
 			free_api_string_copies();
+
+			if (in_indirect_call) {
+				// pop function name off the stack
+				NODE *fname = POP();
+				DEREF(fname);
+				in_indirect_call = false;
+			}
+
 			PUSH(r);
 		}
 			break;
@@ -1175,7 +1184,10 @@ match_re:
 					r = the_func(arg_count);
 				str_restore(t1, save);
 
-				function_name = POP();	// pop function name off stack
+				// Normally, setup_frame() handles getting rid of the
+				// function name.  Since we have called the builtin directly,
+				// we have to manually do this here.
+				function_name = POP();
 				DEREF(function_name);
 
 				PUSH(r);
@@ -1199,6 +1211,7 @@ match_re:
 					npc[1] = pc[1];
 					npc[1].func_name = fname;	/* name of the builtin */
 					npc[1].c_function = bc->c_function;
+					in_indirect_call = true;
 					ni = npc;
 					JUMPTO(ni);
 				} else

@@ -1514,6 +1514,8 @@ extern int strncasecmpmbs(const unsigned char *,
 			  const unsigned char *, size_t);
 extern int sanitize_exit_status(int status);
 extern void check_symtab_functab(NODE *dest, const char *fname, const char *msg);
+extern void check_exact_args(int nargs, const char *fname, int count);
+extern void check_args_min_max(int nargs, const char *fname, int min, int max);
 /* debug.c */
 extern void init_debug(void);
 extern int debug_prog(INSTRUCTION *pc);

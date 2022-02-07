@@ -90,6 +90,22 @@ fatal(_("attempt to use array `%s' in a scalar context"), array_vname(s1)); \
 }} while (false)
 
 
+/* check argument counts --- for use when called indirectly */
+
+void
+check_exact_args(int nargs, const char *fname, int count)
+{
+	if (nargs != count)
+		fatal(_("%s: called with %d arguments"), fname, nargs);
+}
+
+void
+check_args_min_max(int nargs, const char *fname, int min, int max)
+{
+	if (nargs < min || nargs > max)
+		fatal(_("%s: called with %d arguments"), fname, nargs);
+}
+
 /*
  * Since we supply the version of random(), we know what
  * value to use here.
@@ -173,6 +189,8 @@ do_exp(int nargs)
 	NODE *tmp;
 	double d, res;
 
+	check_exact_args(nargs, "exp", 1);
+
 	tmp = POP_SCALAR();
 	if (do_lint && (fixtype(tmp)->flags & NUMBER) == 0)
 		lintwarn(_("%s: received non-numeric argument"), "exp");
@@ -234,6 +252,8 @@ do_fflush(int nargs)
 	 * 	fflush("")	--- flush everything
 	 * Now, both calls flush everything.
 	 */
+
+	check_args_min_max(nargs, "fflush", 0, 1);
 
 	/* fflush() */
 	if (nargs == 0) {
@@ -381,6 +401,8 @@ do_index(int nargs)
 	bool do_single_byte = false;
 	mbstate_t mbs1, mbs2;
 
+	check_exact_args(nargs, "index", 2);
+
 	if (gawk_mb_cur_max > 1) {
 		memset(& mbs1, 0, sizeof(mbstate_t));
 		memset(& mbs2, 0, sizeof(mbstate_t));
@@ -503,6 +525,8 @@ do_int(int nargs)
 	NODE *tmp;
 	double d;
 
+	check_exact_args(nargs, "int", 1);
+
 	tmp = POP_SCALAR();
 	if (do_lint && (fixtype(tmp)->flags & NUMBER) == 0)
 		lintwarn(_("%s: received non-numeric argument"), "int");
@@ -519,6 +543,8 @@ do_isarray(int nargs)
 {
 	NODE *tmp;
 	int ret = 1;
+
+	check_exact_args(nargs, "isarray", 1);
 
 	tmp = POP();
 	if (tmp->type != Node_var_array) {
@@ -538,9 +564,7 @@ do_length(int nargs)
 	NODE *tmp;
 	size_t len;
 
-	// indirect call can pass too many arguments
-	if (nargs != 1)
-		fatal(_("length: called with %d arguments"), nargs);
+	check_exact_args(nargs, "length", 1);
 
 	tmp = POP();
 	if (tmp->type == Node_var_array) {
@@ -600,6 +624,8 @@ do_log(int nargs)
 {
 	NODE *tmp;
 	double d, arg;
+
+	check_exact_args(nargs, "log", 1);
 
 	tmp = POP_SCALAR();
 	if (do_lint && (fixtype(tmp)->flags & NUMBER) == 0)
@@ -1804,6 +1830,8 @@ do_sqrt(int nargs)
 	NODE *tmp;
 	double arg;
 
+	check_exact_args(nargs, "sqrt", 1);
+
 	tmp = POP_SCALAR();
 	if (do_lint && (fixtype(tmp)->flags & NUMBER) == 0)
 		lintwarn(_("%s: received non-numeric argument"), "sqrt");
@@ -1825,6 +1853,8 @@ do_substr(int nargs)
 	size_t length = 0;
 	double d_index = 0, d_length = 0;
 	size_t src_len;
+
+	check_args_min_max(nargs, "substr", 2, 3);
 
 	if (nargs == 3) {
 		t1 = POP_NUMBER();
@@ -1990,6 +2020,8 @@ do_strftime(int nargs)
 	(void) time(& fclock);	/* current time of day */
 	do_gmt = false;
 
+	check_args_min_max(nargs, "strftime", 0, 3);
+
 	if (PROCINFO_node != NULL) {
 		sub = make_string("strftime", 8);
 		val = in_array(PROCINFO_node, sub);
@@ -2106,6 +2138,8 @@ do_systime(int nargs ATTRIBUTE_UNUSED)
 {
 	time_t lclock;
 
+	check_exact_args(nargs, "systime", 0);
+
 	(void) time(& lclock);
 	return make_number((AWKNUM) lclock);
 }
@@ -2123,6 +2157,8 @@ do_mktime(int nargs)
 	time_t then_stamp;
 	char save;
 	bool do_gmt;
+
+	check_args_min_max(nargs, "mktime", 1, 2);
 
 	if (nargs == 2) {
 		t2 = POP_SCALAR();
@@ -2186,6 +2222,8 @@ do_system(int nargs)
 	char *cmd;
 	char save;
 	int status;
+
+	check_exact_args(nargs, "system", 1);
 
 	if (do_sandbox)
 		fatal(_("'system' function not allowed in sandbox mode"));
@@ -2443,6 +2481,8 @@ do_tolower(int nargs)
 {
 	NODE *t1, *t2;
 
+	check_exact_args(nargs, "tolower", 1);
+
 	t1 = POP_SCALAR();
 	if (do_lint && (fixtype(t1)->flags & STRING) == 0)
 		lintwarn(_("%s: received non-string argument"), "tolower");
@@ -2473,6 +2513,8 @@ NODE *
 do_toupper(int nargs)
 {
 	NODE *t1, *t2;
+
+	check_exact_args(nargs, "toupper", 1);
 
 	t1 = POP_SCALAR();
 	if (do_lint && (fixtype(t1)->flags & STRING) == 0)
@@ -2506,6 +2548,8 @@ do_atan2(int nargs)
 	NODE *t1, *t2;
 	double d1, d2;
 
+	check_exact_args(nargs, "atan2", 2);
+
 	POP_TWO_SCALARS(t1, t2);
 	if (do_lint) {
 		if ((fixtype(t1)->flags & NUMBER) == 0)
@@ -2528,6 +2572,8 @@ do_sin(int nargs)
 	NODE *tmp;
 	double d;
 
+	check_exact_args(nargs, "sin", 1);
+
 	tmp = POP_SCALAR();
 	if (do_lint && (fixtype(tmp)->flags & NUMBER) == 0)
 		lintwarn(_("%s: received non-numeric argument"), "sin");
@@ -2543,6 +2589,8 @@ do_cos(int nargs)
 {
 	NODE *tmp;
 	double d;
+
+	check_exact_args(nargs, "cos", 1);
 
 	tmp = POP_SCALAR();
 	if (do_lint && (fixtype(tmp)->flags & NUMBER) == 0)
@@ -2565,6 +2613,9 @@ NODE *
 do_rand(int nargs ATTRIBUTE_UNUSED)
 {
 	double tmprand;
+
+	check_exact_args(nargs, "rand", 0);
+
 #define RAND_DIVISOR ((double)GAWK_RANDOM_MAX+1.0)
 	if (firstrand) {
 		(void) initstate((unsigned) 1, state, SIZEOF_STATE);
@@ -2655,6 +2706,8 @@ do_srand(int nargs)
 		(void) setstate(state);
 	}
 
+	check_args_min_max(nargs, "srand", 0, 1);
+
 	if (nargs == 0)
 		srandom((unsigned int) (save_seed = (long) time((time_t *) 0)));
 	else {
@@ -2686,6 +2739,8 @@ do_match(int nargs)
 	size_t amt, oldamt = 0, ilen, slen;
 	char *subsepstr;
 	size_t subseplen;
+
+	check_args_min_max(nargs, "match", 2, 3);
 
 	dest = NULL;
 	if (nargs == 3) {	/* 3rd optional arg for the subpatterns */
@@ -2915,6 +2970,8 @@ do_sub(int nargs, unsigned int flags)
 		double d;
 		NODE *glob_flag;
 
+		check_exact_args(nargs, "gensub", 4);
+
 		tmp = PEEK(3);
 		rp = re_update(tmp);
 
@@ -2943,6 +3000,12 @@ do_sub(int nargs, unsigned int flags)
 		}
 		DEREF(glob_flag);
 	} else {
+		if ((flags & GSUB) != 0) {
+			check_exact_args(nargs, "gsub", 3);
+		} else {
+			check_exact_args(nargs, "sub", 3);
+		}
+
 		/* take care of regexp early, in case re_update is fatal */
 
 		tmp = PEEK(2);
@@ -3309,6 +3372,9 @@ call_sub(const char *name, int nargs)
 		PUSH_ADDRESS(lhs);
 	} else {
 		/* gensub */
+		if (nargs < 3 || nargs > 4)
+			fatal(_("indirect call to gensub requires three to four arguments"));
+
 		if (nargs == 4)
 			rhs = POP();
 		else
@@ -3368,6 +3434,9 @@ call_match(int nargs)
 	NODE *regex, *text, *array;
 	NODE *result;
 
+	if (nargs < 2 || nargs > 3)
+		fatal(_("indirect call to match requires two or three arguments"));
+
 	regex = text = array = NULL;
 	if (nargs == 3)
 		array = POP();
@@ -3409,8 +3478,8 @@ call_split_func(const char *name, int nargs)
 	NODE *result;
 
 	regex = seps = NULL;
-	if (nargs < 2)
-		fatal(_("indirect call to %s requires at least two arguments"),
+	if (nargs < 2 || nargs > 4)
+		fatal(_("indirect call to %s requires two to four arguments"),
 				name);
 
 	if (nargs == 4)
@@ -3474,6 +3543,8 @@ do_lshift(int nargs)
 	uintmax_t uval, ushift, res;
 	AWKNUM val, shift;
 
+	check_exact_args(nargs, "lshift", 2);
+
 	POP_TWO_SCALARS(s1, s2);
 	if (do_lint) {
 		if ((fixtype(s1)->flags & NUMBER) == 0)
@@ -3512,6 +3583,8 @@ do_rshift(int nargs)
 	NODE *s1, *s2;
 	uintmax_t uval, ushift, res;
 	AWKNUM val, shift;
+
+	check_exact_args(nargs, "rshift", 2);
 
 	POP_TWO_SCALARS(s1, s2);
 	if (do_lint) {
@@ -3645,6 +3718,8 @@ do_compl(int nargs)
 	double d;
 	uintmax_t uval;
 
+	check_exact_args(nargs, "compl", 1);
+
 	tmp = POP_SCALAR();
 	if (do_lint && (fixtype(tmp)->flags & NUMBER) == 0)
 		lintwarn(_("%s: received non-numeric argument"), "compl");
@@ -3669,6 +3744,8 @@ do_strtonum(int nargs)
 {
 	NODE *tmp;
 	AWKNUM d;
+
+	check_exact_args(nargs, "strtonum", 1);
 
 	tmp = fixtype(POP_SCALAR());
 	if ((tmp->flags & NUMBER) != 0)
@@ -3871,6 +3948,8 @@ do_dcgettext(int nargs)
 	char *domain;
 	char save1 = '\0', save2 = '\0';
 
+	check_args_min_max(nargs, "dcgettext", 1, 3);
+
 	if (nargs == 3) {	/* third argument */
 		tmp = POP_STRING();
 		lc_cat = localecategory_from_argument(tmp);
@@ -3931,6 +4010,8 @@ do_dcngettext(int nargs)
 	char *domain;
 	char save = '\0', save1 = '\0', save2 = '\0';
 	bool saved_end = false;
+
+	check_args_min_max(nargs, "dcngettext", 3, 5);
 
 	if (nargs == 5) {	/* fifth argument */
 		tmp = POP_STRING();
@@ -4013,6 +4094,8 @@ do_bindtextdomain(int nargs)
 	const char *directory, *domain;
 	const char *the_result;
 
+	check_args_min_max(nargs, "bindtextdomain", 1, 2);
+
 	t1 = t2 = NULL;
 	/* set defaults */
 	directory = NULL;
@@ -4065,6 +4148,8 @@ do_intdiv(int nargs)
 {
 	NODE *numerator, *denominator, *result;
 	double num, denom, quotient, remainder;
+
+	check_exact_args(nargs, "intdiv", 3);
 
 	result = POP_PARAM();
 	if (result->type != Node_var_array)
@@ -4122,6 +4207,8 @@ do_typeof(int nargs)
 	const char *res = NULL;
 	bool deref = true;
 	NODE *dbg;
+
+	check_args_min_max(nargs, "typeof", 1, 2);
 
 	if (nargs == 2) {	/* 2nd optional arg for debugging */
 		dbg = POP_PARAM();
