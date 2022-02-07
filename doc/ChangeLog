@@ -1,6 +1,13 @@
+2022-02-07         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.in (Indirect Calls): Expand discussion of calling
+	built-in functions directly.
+	(POSIX Floating Point Problems): Add a note that the sign of
+	NaN values can vary.
+
 2022-01-05         Arnold D. Robbins     <arnold@skeeve.com>
 
-	* gawktexi.ini (Indirect Calls): Use `the_function' everywhere.
+	* gawktexi.in (Indirect Calls): Use `the_function' everywhere.
 	Thanks to John Naman, <gawker@703n.com> for the report.
 
 2021-12-10         Arnold D. Robbins     <arnold@skeeve.com>
