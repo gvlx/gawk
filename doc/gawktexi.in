@@ -21193,16 +21193,28 @@ built-in functions indirectly, as follows.
 @itemize @value{BULLET}
 @item
 You cannot pass a regular expression constant to a built-in function
-through an indirect function call.@footnote{This may change in a future
-version; recheck the documentation that comes with your version of
-@command{gawk} to see if it has.} This applies to the @code{sub()},
+through an indirect function call.  This applies to the @code{sub()},
 @code{gsub()}, @code{gensub()}, @code{match()}, @code{split()} and
-@code{patsplit()} functions.
+@code{patsplit()} functions.  However, you can pass a strongly typed
+regexp constant (@pxref{Strong Regexp Constants}).
 
 @item
 If calling @code{sub()} or @code{gsub()}, you may only pass two arguments,
 since those functions are unusual in that they update their third argument.
 This means that @code{$0} will be updated.
+
+@item
+You cannot indirectly call built-in functions that can take @code{$0} as
+a default parameter; you must supply an argument instead.  For example,
+you must pass an argument to @code{length()} if calling it indirectly.
+
+@item
+Calling a built-in function indirectly with the wrong number of arguments
+for that function causes a fatal error. For example, calling
+@code{length()} with two arguments.  These errors are found at runtime
+instead of when @command{gawk} parses your program, since @command{gawk}
+doesn't know until runtime if you have passed the correct number of
+arguments or not.
 @end itemize
 
 @command{gawk} does its best to make indirect function calls efficient.
@@ -34126,6 +34138,14 @@ just described: @samp{+inf}, @samp{-inf}, @samp{+nan}, or @samp{-nan}.
 Similarly, in POSIX mode, @command{gawk} prints the result of
 the system's C @code{printf()} function using the @code{%g} format string
 for the value, whatever that may be.
+
+@quotation NOTE
+The sign used for NaN values can vary!  The result depends upon both
+the underlying system architecture and the underlying library used to
+format NaN values. In particular, it's possible to get different results
+for the same function call depending upon whether or not @command{gawk}
+is running in MPFR mode (@option{-M}) or not. Caveat Emptor!
+@end quotation
 
 @node Floating point summary
 @section Summary

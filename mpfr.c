@@ -767,6 +767,8 @@ do_mpfr_atan2(int nargs)
 	mpfr_ptr p1, p2;
 	int tval;
 
+	check_exact_args(nargs, "atan2", 2);
+
 	t2 = POP_SCALAR();
 	t1 = POP_SCALAR();
 
@@ -802,6 +804,8 @@ do_mpfr_func(const char *name,
 	mpfr_ptr p1;
 	int tval;
 	mpfr_prec_t argprec;
+
+	check_exact_args(nargs, name, 1);
 
 	t1 = POP_SCALAR();
 	if (do_lint && (fixtype(t1)->flags & NUMBER) == 0)
@@ -874,6 +878,8 @@ do_mpfr_int(int nargs)
 {
 	NODE *tmp, *r;
 
+	check_exact_args(nargs, "int", 1);
+
 	tmp = POP_SCALAR();
 	if (do_lint && (fixtype(tmp)->flags & NUMBER) == 0)
 		lintwarn(_("int: received non-numeric argument"));
@@ -903,6 +909,8 @@ do_mpfr_compl(int nargs)
 {
 	NODE *tmp, *r;
 	mpz_ptr zptr;
+
+	check_exact_args(nargs, "compl", 1);
 
 	tmp = POP_SCALAR();
 	if (do_lint && (fixtype(tmp)->flags & NUMBER) == 0)
@@ -1023,6 +1031,8 @@ do_mpfr_lshift(int nargs)
 	unsigned long shift;
 	mpz_ptr pz1, pz2;
 
+	check_exact_args(nargs, "lshift", 2);
+
 	t2 = POP_SCALAR();
 	t1 = POP_SCALAR();
 
@@ -1054,6 +1064,8 @@ do_mpfr_rshift(int nargs)
 	NODE *t1, *t2, *res;
 	unsigned long shift;
 	mpz_ptr pz1, pz2;
+
+	check_exact_args(nargs, "rshift", 2);
 
 	t2 = POP_SCALAR();
 	t1 = POP_SCALAR();
@@ -1175,6 +1187,8 @@ do_mpfr_strtonum(int nargs)
 {
 	NODE *tmp, *r;
 
+	check_exact_args(nargs, "strtonum", 1);
+
 	tmp = fixtype(POP_SCALAR());
 	if ((tmp->flags & NUMBER) == 0) {
 		r = mpg_integer();	/* will be changed to MPFR float if necessary in force_mpnum() */
@@ -1211,6 +1225,8 @@ do_mpfr_rand(int nargs ATTRIBUTE_UNUSED)
 {
 	NODE *res;
 	int tval;
+
+	check_exact_args(nargs, "rand", 0);
 
 	if (firstrand) {
 #if 0
@@ -1262,6 +1278,8 @@ do_mpfr_srand(int nargs)
 		firstrand = false;
 	}
 
+	check_args_min_max(nargs, "srand", 0, 1);
+
 	res = mpg_integer();
 	mpz_set(res->mpg_i, seed);	/* previous seed */
 
@@ -1302,6 +1320,8 @@ do_mpfr_intdiv(int nargs)
 	NODE *num, *denom;
 	NODE *quotient, *remainder;
 	NODE *sub, **lhs;
+
+	check_exact_args(nargs, "intdiv", 3);
 
 	result = POP_PARAM();
 	if (result->type != Node_var_array)

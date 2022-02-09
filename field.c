@@ -979,6 +979,8 @@ do_split(int nargs)
 			 Regexp *, Setfunc, NODE *, NODE *, bool);
 	Regexp *rp = NULL;
 
+	check_args_min_max(nargs, "split", 3, 4);
+
 	if (nargs == 4) {
 		static bool warned = false;
 
@@ -1080,6 +1082,8 @@ do_patsplit(int nargs)
 	NODE *src, *arr, *sep, *fpat, *tmp, *sep_arr = NULL;
 	char *s;
 	Regexp *rp = NULL;
+
+	check_args_min_max(nargs, "patsplit", 3, 4);
 
 	if (nargs == 4) {
 		sep_arr = POP_PARAM();
