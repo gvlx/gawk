@@ -196,6 +196,7 @@ GAWK_EXT_TESTS = \
 	gnuops2 gnuops3 gnureops gsubind icasefs icasers id igncdym igncfs \
 	ignrcas2 ignrcas4 ignrcase incdupe incdupe2 incdupe3 incdupe4 \
 	incdupe5 incdupe6 incdupe7 include include2 indirectbuiltin \
+	indirectbuiltin2 \
 	indirectcall indirectcall2 inf-nan-torture intarray iolint \
 	isarrayunset lint lintexp lintindex lintint lintlength lintplus \
 	lintold lintset lintwarn manyfiles match1 match2 match3 mbstr1 \
@@ -1234,6 +1235,13 @@ iolint:
 argcasfile:
 	@echo $@
 	@-$(AWK) -f "$(srcdir)"/$@.awk ARGC=1 ' /no/such/file' < "$(srcdir)/$@.in" >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
+	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
+
+indirectbuiltin2:
+	@echo $@
+	@-for test in 0 1 2 3 4 5 ; do \
+	$(AWK) -v test=$$test -f "$(srcdir)"/$@.awk ; \
+	done > _$@ 2>&1 || exit 0
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 Gt-dummy:
 # file Maketests, generated from Makefile.am by the Gentests program
