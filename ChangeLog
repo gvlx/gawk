@@ -1,3 +1,35 @@
+2022-02-07         Arnold D. Robbins     <arnold@skeeve.com>
+
+	Continue fixing indirect calls of builtins.
+
+	* awk.h (check_exact_args, check_args_min_max): Add declarations.
+	* builtin.c (check_exact_args, check_args_min_max): New functions.
+	(do_exp, do_fflush, do_index, do_int, do_isarray, do_length, do_log,
+	do_sqrt, do_strftime, do_systime, do_mktime, do_system, do_tolower,
+	do_toupper, do_atan2, do_sin, do_cos, do_rand, do_srand, do_match,
+	do_sub, do_lshift, do_rshift, do_compl, do_strtonum, do_dcgettext,
+	do_dcngettext, do_bindtextdomain, do_intdiv, do_typeof): Call
+	the argument checking functions.
+	(call_sub, call_match): Manually check argument count.
+	* field.c (do_split, do_patsplit): Call the argument checking
+	functions.
+	* interpret.h (r_interpret): For indirect call of extension functions,
+	pop the function name off the stack when done.
+	* mpfr.c (do_atan2, do_mpfr_func, do_mpfr_int, do_mpfr_compl,
+	do_mpfr_lshift, do_mpfr_rshift, do_mpfr_strtonum, do_mpfr_rand,
+	do_mpfr_srand, do_mpfr_intdiv): Call the argument checking functions.
+
+2022-02-04         Arnold D. Robbins     <arnold@skeeve.com>
+
+	Start fixing issues with indirect calls of builtins.
+	Thanks to Denis Shirokov <cosmogen@gmail.com> for the initial report.
+	Much more remains to be done.
+
+	* builtin.c (do_length): Check number of arguments, fatal if not one.
+	If passed Node_var_new, turn it into the null string.
+	* interpret.h (r_interpret): For Op_indirect_call, pop the function
+	name off the stack.
+
 2022-01-05         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* awkgram.y (change_namespace): New function. Extracted from
