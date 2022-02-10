@@ -90,6 +90,7 @@ list
 log
 lshift
 match
+mkbool
 mktime
 n
 ns::ns1
