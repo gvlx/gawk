@@ -1,3 +1,7 @@
+2022-02-10         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* builtin.c (sanitize_exit_status): Fix formatting.
+
 2022-02-07         Arnold D. Robbins     <arnold@skeeve.com>
 
 	Continue fixing indirect calls of builtins.
