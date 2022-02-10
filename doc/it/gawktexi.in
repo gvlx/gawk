@@ -23208,19 +23208,33 @@ in maniera indiretta delle funzioni predefinite, come qui dettagliato:
 @itemize @value{BULLET}
 @item
 Non si pu@`o passare una costante @dfn{regexp} a una funzione predefinita
-effettuando una chiamata di funzione indiretta.@footnote{Questa
-limitazione potrebbe cambiare in una futura versione;
-per appurarlo, si controlli la documentazione che accompagna
-la versione in uso di @command{gawk}.}
+effettuando una chiamata di funzione indiretta.
 Quanto sopra vale per le funzioni
 @code{sub()}, @code{gsub()}, @code{gensub()}, @code{match()},
-@code{split()} e @code{patsplit()}.
+@code{split()} e @code{patsplit()}.  Si pu@`o comunque passare a tali
+funzioni un'espressione regolare fortemente tipizzata
+(@pxref{Costanti @dfn{regexp} forti}).
 
 @item
 Nel chiamare @code{sub()} o @code{gsub()}, sono accettati solo due argomenti,
 poich@'e queste funzioni sono atipiche, in quanto aggiornano il loro terzo
 argomento.  Questo significa che verr@`a sempre aggiornato l'argomento di
 default, @code{$0}.
+
+@item
+Non @`e possibile chiamare indirettamente quelle funzioni predefinite
+che accettano @code{$0} come parametro di default; occorre invece fornire
+esplicitamente un argomento.  Per esempio, occorre passare un argomento
+alla funzione @code{length()} se viene chiamata indirettamente.
+
+@item
+Quando si chiama indirettamente una funzione predefinita e si specifica
+un numero errato di argomenti per tale funzione, viene generato un
+errore fatale.  Per esempio, quando si chiama la funzione
+@code{length()} specificando due argomenti.  Tali errori sono rilevati
+al momento dell'esecuzione della chiamata, e non quando @command{gawk}
+analizza il programma, poich@'e @command{gawk} non @`e in grado di stabilire
+prima di allora se il numero di argomenti passato sia corretto o no.
 @end itemize
 
 @command{gawk} fa del suo meglio per rendere efficiente la chiamata indiretta
