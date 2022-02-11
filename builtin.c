@@ -4402,7 +4402,8 @@ mbc_char_count(const char *ptr, size_t numbytes)
 
 /* sanitize_exit_status --- convert a 16 bit Unix exit status into something reasonable */
 
-int sanitize_exit_status(int status)
+int
+sanitize_exit_status(int status)
 {
 	int ret = 0;
 
