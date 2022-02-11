@@ -1,3 +1,17 @@
+2022-12-10         Andrew J. Schorr      <aschorr@telemetry-investments.com>
+
+	* io.c (wait_any): When saving a saved exit status returned by
+	_cwait or waitpid or wait in struct redirect's status field, we
+	should actually save the valued returned by sanitize_exit_status
+	instead of the raw status. This fixes a bug whereby a saved status
+	for a previously exited process was being returned by gawk_pclose
+	without first being sanitized. Thanks to Jakub Martisko
+	<jamartis@redhat.com> for reporting the bug.
+
+2022-02-10         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* builtin.c (sanitize_exit_status): Fix formatting.
+
 2022-02-07         Arnold D. Robbins     <arnold@skeeve.com>
 
 	Continue fixing indirect calls of builtins.

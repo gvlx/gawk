@@ -191,6 +191,8 @@ EXTRA_DIST = \
 	clos1way6.ok \
 	closebad.awk \
 	closebad.ok \
+	close_status.awk \
+	close_status.ok \
 	clsflnam.awk \
 	clsflnam.in \
 	clsflnam.ok \
@@ -1404,7 +1406,8 @@ BASIC_TESTS = \
 	aryprm2 aryprm3 aryprm4 aryprm5 aryprm6 aryprm7 aryprm8 aryprm9 \
 	arysubnm aryunasgn asgext awkpath assignnumfield assignnumfield2 \
 	back89 backgsub badassign1 badbuild callparam childin clobber \
-	closebad clsflnam compare compare2 concat1 concat2 concat3 concat4 \
+	closebad close_status clsflnam compare compare2 concat1 concat2 \
+	concat3 concat4 \
 	concat5 convfmt datanonl defref delargv delarpm2 delarprm delfunc \
 	dfacheck2 dfamb1 dfastress dynlj escapebrace eofsplit eofsrc1 \
 	exit2 exitval1 exitval2 exitval3 fcall_exit fcall_exit2 fldchg \
