@@ -2599,7 +2599,7 @@ wait_any(int interesting)	/* pid of interest, if any */
 		for (redp = red_head; redp != NULL; redp = redp->next)
 			if (interesting == redp->pid) {
 				redp->pid = -1;
-				redp->status = status;
+				redp->status = sanitize_exit_status(status);
 				break;
 			}
 	}
@@ -2629,7 +2629,7 @@ wait_any(int interesting)	/* pid of interest, if any */
 			for (redp = red_head; redp != NULL; redp = redp->next)
 				if (pid == redp->pid) {
 					redp->pid = -1;
-					redp->status = status;
+					redp->status = sanitize_exit_status(status);
 					break;
 				}
 		}

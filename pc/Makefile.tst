@@ -147,7 +147,8 @@ BASIC_TESTS = \
 	aryprm2 aryprm3 aryprm4 aryprm5 aryprm6 aryprm7 aryprm8 aryprm9 \
 	arysubnm aryunasgn asgext awkpath assignnumfield assignnumfield2 \
 	back89 backgsub badassign1 badbuild callparam childin clobber \
-	closebad clsflnam compare compare2 concat1 concat2 concat3 concat4 \
+	closebad close_status clsflnam compare compare2 concat1 concat2 \
+	concat3 concat4 \
 	concat5 convfmt datanonl defref delargv delarpm2 delarprm delfunc \
 	dfacheck2 dfamb1 dfastress dynlj escapebrace eofsplit eofsrc1 \
 	exit2 exitval1 exitval2 exitval3 fcall_exit fcall_exit2 fldchg \
@@ -1427,6 +1428,11 @@ childin:
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 closebad:
+	@echo $@
+	@-AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
+	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
+
+close_status:
 	@echo $@
 	@-AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
