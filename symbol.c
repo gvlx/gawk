@@ -644,6 +644,7 @@ load_symbols()
 	unref(scalar);
 	unref(untyped);
 	unref(array);
+	unref(built_in);
 }
 
 /* check_param_names --- make sure no parameter is the name of a function */

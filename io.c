@@ -628,8 +628,8 @@ remap_std_file(int oldfd)
 	if (newfd >= 0) {
 		/* if oldfd is open, dup2() will close oldfd for us first. */
 		ret = dup2(newfd, oldfd);
-		if (ret == 0)
-			close(newfd);
+		// close unconditionally, calling code assumes it
+		close(newfd);
 	} else
 		ret = 0;
 
