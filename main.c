@@ -368,8 +368,12 @@ main(int argc, char **argv)
 		}
 	}
 
-	if (do_lint && os_is_setuid())
-		lintwarn(_("running %s setuid root may be a security problem"), myname);
+	if (do_lint) {
+		if (os_is_setuid())
+			lintwarn(_("running %s setuid root may be a security problem"), myname);
+		if (do_intervals)
+			lintwarn(_("The -r/--re-interval options no longer have any effect"));
+	}
 
 	if (do_debug)	/* Need to register the debugger pre-exec hook before any other */
 		init_debug();
@@ -1688,6 +1692,8 @@ parse_args(int argc, char **argv)
 			break;
 
 		case 'r':
+			// This no longer has any effect. It remains for the
+			// lint check in main().
 			do_flags |= DO_INTERVALS;
  			break;
 

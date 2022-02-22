@@ -1,6 +1,13 @@
+2022-02-22         Arnold D. Robbins     <arnold@skeeve.com>
+
+	Fix resource links found by Coverity. Thanks to
+	Jakub Martisko <jamartis@redhat.com> for the report.
+
+	* readfile.c (do_readfile): Close fd if text == NULL.
+
 2021-12-10         Andrew J. Schorr      <aschorr@telemetry-investments.com>
 
-	*rwarray.c (write_number): Update comment to reflect that we are
+	* rwarray.c (write_number): Update comment to reflect that we are
 	now using mpfr_get_default_rounding_mode() instead of MPFR_RNDN.
 
 2021-12-10         Arnold D. Robbins     <arnold@skeeve.com>

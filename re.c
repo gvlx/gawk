@@ -478,10 +478,16 @@ resetup()
 
 	/*
 	 * Interval expressions are now on by default, as POSIX is
-	 * wide-spread enough that people want it. The do_intervals
-	 * variable remains for use with --traditional.
+	 * wide-spread enough that people want it.
+	 *
+	 * 2/2022: BWK awk has supported interval expressions since
+	 * March 2019, with an important fix added in Januay 2020.
+	 * So we add that support even for --traditional. It's easier to
+	 * do it here than to try to get the GLIBC / GNULIB folks to change
+	 * the definition of RE_SYNTAX_AWK, which likely would cause
+	 * binary compatibility issues.
 	 */
-	if (do_intervals)
+	if (do_traditional)
 		syn |= RE_INTERVALS | RE_INVALID_INTERVAL_ORD | RE_NO_BK_BRACES;
 
 	(void) re_set_syntax(syn);

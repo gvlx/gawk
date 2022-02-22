@@ -24,6 +24,10 @@ Boolean. This is mainly for use with data exchange to/from languages
 or environments that support real Boolean values. See the manual
 for details.
 
+5. As BWK awk has supported interval expressions since 2019, they are
+now enabled even if --traditional is supplied. The -r/--re-interval option
+remains, but it does nothing.
+
 Changes from 5.1.1 to 5.1.2
 ---------------------------
 

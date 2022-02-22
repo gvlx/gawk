@@ -128,6 +128,7 @@ make_builtin(const char *name_space, const awk_ext_func_t *funcinfo)
 			/* multiple extension() calls etc. */
 			if (do_lint)
 				lintwarn(_("make_builtin: function `%s' already defined"), name);
+			free((void *) install_name);
 			return awk_false;
 		} else
 			/* variable name etc. */

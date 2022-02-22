@@ -304,8 +304,7 @@ The profile contains execution counts in the left margin.
 .TI "\*(FC\-P\*(FR, \*(FC\-\^\-posix\*(FR
 Disable common and GNU extensions.
 .TI "\*(FC\-r\*(FR, \*(FC\-\^\-re\-interval\*(FR
-Enable \*(FIinterval expressions\*(FR.
-(Needed with \*(FC\-c\*(FR.)\*(CB
+Does nothing; for backwards compatibility only.\*(CB
 .in -4n
 .EB "\s+2\f(HBCOMMAND LINE ARGUMENTS (\*(GK\f(HB)\*(FR\s0"
 
