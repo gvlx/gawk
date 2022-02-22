@@ -121,8 +121,10 @@ do_readfile(int nargs, awk_value_t *result, struct awk_ext_func *unused)
 		}
 
 		text = read_file_to_buffer(fd, & sbuf);
-		if (text == NULL)
+		if (text == NULL) {
+			close(fd);
 			goto done;	/* ERRNO already updated */
+		}
 
 		close(fd);
 		make_malloced_string(text, sbuf.st_size, result);
