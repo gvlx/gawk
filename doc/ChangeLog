@@ -1,3 +1,8 @@
+2022-02-22         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* awkcard.in: Update --re-interval description.
+	* gawktexi.in: Ditto, in all relevant places.
+
 2022-02-07         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawktexi.in (Indirect Calls): Expand discussion of calling

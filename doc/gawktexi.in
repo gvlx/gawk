@@ -4231,8 +4231,7 @@ Allow interval expressions
 (@pxref{Regexp Operators})
 in regexps.
 This is now @command{gawk}'s default behavior.
-Nevertheless, this option remains (both for backward compatibility
-and for use in combination with @option{--traditional}).
+Nevertheless, this option remains for backward compatibility.
 
 @item @option{-s}
 @itemx @option{--no-optimize}
@@ -5838,11 +5837,12 @@ When @samp{@{} and @samp{@}} appear in regexp constants
 in a way that cannot be interpreted as an interval expression
 (such as @code{/q@{a@}/}), then they stand for themselves.
 
+@cindex BWK @command{awk} @subentry interval expressions in
 As mentioned, interval expressions were not traditionally available
 in @command{awk}. In March of 2019, BWK @command{awk} (finally) acquired them.
-Nonetheless, because they were not available for
-so many decades, @command{gawk} continues to not supply them
-when in compatibility mode (@pxref{Options}).
+Starting with @value{PVERSION} 5.2, @command{gawk}'s
+@option{--traditional} option no longer disables interval
+expressions in regular expressions.
 
 POSIX says that interval expressions containing repetition counts greater
 than 255 produce unspecified results.
@@ -6362,16 +6362,15 @@ are allowed.
 @cindex Brian Kernighan's @command{awk}
 @item @option{--traditional}
 Match traditional Unix @command{awk} regexps. The GNU operators
-are not special, and interval expressions are not available.
-Because BWK @command{awk} supports them,
+are not special.  Because BWK @command{awk} supports them,
 the POSIX character classes (@samp{[[:alnum:]]}, etc.) are available.
+So too, interval expressions are allowed.
 Characters described by octal and hexadecimal escape sequences are
 treated literally, even if they represent regexp metacharacters.
 
 @item @option{--re-interval}
-Allow interval expressions in regexps, if @option{--traditional}
-has been provided.
-Otherwise, interval expressions are available by default.
+This option remains for backwards compatibility but no longer has any
+real effect.
 @end table
 
 @node Case-sensitivity

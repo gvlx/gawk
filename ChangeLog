@@ -1,5 +1,16 @@
 2022-02-22         Arnold D. Robbins     <arnold@skeeve.com>
 
+	Enable interval expressions even for --traditional, as BWK
+	awk has supported them since 2019.
+
+	* NEWS: Updated.
+	* main.c (main): Add lint warning for --re-interval.
+	(parse_args): Add explanatory comment.
+	* re.c (resetup): Update the comment w.r.t. interval expressions.
+	Change the test for enabled them to if do_traditional.
+
+2022-02-22         Arnold D. Robbins     <arnold@skeeve.com>
+
 	Fix resource links found by Coverity. Thanks to
 	Jakub Martisko <jamartis@redhat.com> for the report.
 
