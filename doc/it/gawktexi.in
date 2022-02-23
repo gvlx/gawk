@@ -6440,12 +6440,13 @@ Quando @samp{@{} e @samp{@}} appaiono in costanti @dfn{regexp}
 in un modo non interpretabile come espressione di intervallo
 (come in @code{/q@{a@}/}), allora sono prese letteralmente.
 
+@cindex Brian Kernighan @subsentry @command{awk} di @subentry espressioni di intervallo in
 Come detto sopra, le espressioni di intervallo non erano tradizionalmente
-disponibili in @command{awk}.  Con la versione di Marzo 2019 di
+disponibili in @command{awk}.  Con la versione di marzo 2019 di
 BWK @command{awk} sono (finalmente) disponibili.
-Ciononostante, non essendo state disponibili per parecchi decenni,
-@command{gawk} continua a non renderle disponibili quando viene
-eseguito in modalit@`a compatibile (@pxref{Opzioni}).
+A partire dalla @value{PVERSION} 5.2 l'opzione @option{--traditional}
+di @command{gawk} non disabilita pi@`u le espressioni di intervallo
+contenute in espressioni regolari.
 
 POSIX afferma che espressioni di intervallo che contengano
 contatori di ripetizione maggiori di 255 producono risultati
@@ -7009,17 +7010,16 @@ Le espressioni di intervallo sono ammesse.
 @cindex Brian Kernighan @subentry @command{awk} di
 @item @option{--traditional}
 Le @dfn{regexp} Unix tradizionali di @command{awk} sono ammesse.  Gli
-operatori GNU non sono speciali, e le espressioni
-di intervallo non sono ammesse.
-Le classi di caratteri POSIX (@samp{[[:alnum:]]}, etc.) sono ammesse,
-poich@'e BWK @command{awk} le prevede.
+operatori GNU non sono speciali.  Poich@'e sono supportate anche da
+BWK @command{awk},
+le classi di caratteri POSIX (@samp{[[:alnum:]]}, etc.) sono disponibili.
+Quindi, anche le espressioni di intervallo sono consentite.
 I caratteri descritti usando sequenze di protezione ottali ed esadecimali sono
 trattati letteralmente, anche se rappresentano metacaratteri di @dfn{regexp}.
 
 @item @option{--re-interval}
-Sono consentite espressioni di intervallo in @dfn{regexp},
-se @option{--traditional} @`e stata specificata.
-Altrimenti, le espressioni di intervallo sono disponibili per default.
+Quest'opzione rimane specificabile per compatibilit@`a all'indietro,
+ma non ha in pratica alcun effetto.
 @end table
 
 @node Maiuscolo-Minuscolo
@@ -16620,7 +16620,7 @@ costituito da un unico carattere.
 @cindex differenze tra @command{awk} e @command{gawk} @subentry variabile @code{LINT}
 @cindex @dfn{lint} @subentry controlli
 @cindex controllo @subentry @dfn{lint}
-@item LINT o
+@item LINT #
 Quando questa variabile @`e vera (non uguale a zero e non uguale alla stringa
 nulla), @command{gawk} si comporta come se fosse stata specificata sulla
 riga di comando l'opzione @option{--lint}
@@ -42232,8 +42232,9 @@ anche in questo caso @`e:
 @node Esempio di estensione Rwarray
 @subsection Scaricare e ricaricare un vettore
 
-L'estensione @code{rwarray} aggiunge due funzioni,
-di nome @code{writea()} e @code{reada()}, come segue:
+L'estensione @code{rwarray} aggiunge quattro funzioni,
+di nome @code{writea()}, @code{reada()},
+@code{writeall()} e @code{readall()}, come segue:
 
 @table @code
 @item @@load "rwarray"
@@ -42251,11 +42252,31 @@ valore uno se completa il lavoro o zero se non va a buon fine.
 @cindex estensione @subentry @code{reada()}
 @item ret = reada(file, vettore)
 @code{reada()} @`e la funzione inversa di @code{writea()};
-legge il file il cui nome @`e fornito come primo argomento, riempiendo il
+legge il file il cui nome @`e fornito come primo argomento, caricando il
 vettore il cui nome @`e il secondo argomento. Il vettore viene preventivamente
 svuotato.
-Anche in questo caso, il valore restituito @`e uno se tutto va bene o zero se
-la funzione non va a buon fine.
+Anche in questo caso, la funzione restituisce il valore uno se completa il
+il lavoro o zero se non va a buon fine.
+
+@cindex @code{writeall()} (estensione)
+@cindex estensione @subentry @code{writeall()}
+@item ret = writeall(file)
+Questa funzione ha come argomento una stringa, che @`e il nome del file
+sul quale scaricare tutte le variabili e i rispettivi valori.
+Chiamare questa funzione @`e completamente equivalente a chiamare
+@code{writea(file, SYMTAB)}.  Restituisce il
+valore uno se completa il lavoro o zero se non va a buon fine.
+
+@cindex @code{readall()} (estensione)
+@cindex estensione @subentry @code{readall()}
+@item ret = readall(file)
+Questa funzione ha come argomento una stringa, che @`e il nome del file
+dal quale leggere i valori di molteplici variabili globali.
+Per ogni variabile contenuta nel file, il relativo valore viene
+caricato, a meno che la variabile sia gi@`a esistente.
+Se la variabile esiste gi@`a, il valore della variabile specificato
+nel file viene ignorato.  Restituisce il
+valore uno se completa il lavoro o zero se non va a buon fine.
 @end table
 
 Il vettore creato da @code{reada()} @`e identico a quello scritto da
@@ -42279,6 +42300,16 @@ stringa possono essere scaricati da un sistema con un certo ordine di byte
 e ripristinati su un sistema con un ordine di byte differente, anche se
 un test al riguardo non @`e mai stato fatto.
 
+Si noti che le funzioni @code{writeall()} e @code{readall()} forniscono
+un meccanismo che consente di ripristinare una situazione esistente
+nel caso in cui si chiami ripetutamente lo stesso programma.
+Se, per esempio, un programma calcola alcune statistiche basandosi sui
+dati contenuti in una serie di file, si potrebbe salvare lo stato delle
+variabili usando la funzione @code{writeall()} dopo aver elaborato
+N file, e in seguito ricaricare lo stato delle variabili usando la
+funzione @code{readall()} quando @`e disponibile il file N+1, cos@`{@dotless{i}}
+da poter aggiornare i risultati.
+
 Ecco un esempio:
 
 @example
@@ -42287,6 +42318,10 @@ Ecco un esempio:
 ret = writea("scaricato.bin", vettore)
 @dots{}
 ret = reada("scaricato.bin", vettore)
+@dots{}
+ret = writeall("situazione-corrente.bin")
+@dots{}
+ret = readall("situazione-corrente.bin")
 @end example
 
 @node Esempio di estensione Readfile
