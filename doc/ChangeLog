@@ -1,3 +1,8 @@
+2022-02-23         Andrew J. Schorr      <aschorr@telemetry-investments.com>
+
+	* gawktexi.in (Extension Sample Read write array): Fix description of
+	readall to say readall instead of writeall.
+
 2022-02-22         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* awkcard.in: Update --re-interval description.
