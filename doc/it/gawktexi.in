@@ -316,7 +316,7 @@ Some comments on the layout for TeX.
 Tel.: +1-617-542-5942 Fax: +1-617-542-2652 Email: <email>gnu@@gnu.org</email>
 URL: <ulink url="https://www.gnu.org">https://www.gnu.org/</ulink></literallayout>
 
-<literallayout class="normal">Copyright &copy; 1989, 1991, 1992, 1993, 1996&ndash;2005, 2007, 2009&ndash;2021
+<literallayout class="normal">Copyright &copy; 1989, 1991, 1992, 1993, 1996&ndash;2005, 2007, 2009&ndash;2022
 Free Software Foundation, Inc.
 All Rights Reserved.
 </literallayout>
@@ -346,7 +346,7 @@ All Rights Reserved.
 
 @ifnotdocbook
 @iftex
-Copyright @copyright{} 1989, 1991, 1992, 1993, 1996--2005, 2007, 2009--2021 @*
+Copyright @copyright{} 1989, 1991, 1992, 1993, 1996--2005, 2007, 2009--2022 @*
 Free Software Foundation, Inc.
 @end iftex
 @end ifnotdocbook
@@ -431,7 +431,7 @@ URL: @uref{https://www.gnu.org/}
 @c This one is correct for gawk 3.1.0 from the FSF
 ISBN 1-882114-28-0
 @sp 0
-Copyright @copyright{} 1989, 1991, 1992, 1993, 1996--2005, 2007, 2009--2018 @*
+Copyright @copyright{} 1989, 1991, 1992, 1993, 1996--2005, 2007, 2009--2022 @*
 Free Software Foundation, Inc.
 @sp 1
 Traduzione e revisione:@*
@@ -38364,15 +38364,22 @@ assegnandogli dei puntatori. Per esempio:
 @example
 char *p = gawk_malloc(42);      p @ii{``possiede'' la memoria}
 char *q = p;
-p = NULL;                       @ii{ora} q @ii{la ``possiede''}
+p = NULL;                       @ii{adesso} q @ii{la ``possiede''}
 @end example
 
-Gli oggetti MPFR e GMP sono certamente allocati sullo @dfn{stack}
+Gli oggetti MPFR e GMP sono in effetti allocati sullo @dfn{stack}
 oppure dinamicamente, ma le librerie MPFR e GMP trattano questi
 oggetti come valori, allo stesso modo in cui si passa normalmente
 un valore intero (@code{int}) o uno a virgola mobile a doppia
 precisione (@code{double}) per valore.  Non c'@`e modo di
 ``trasferire il possesso'' di oggetti MPFR e GMP.
+
+Il risultato finale di un calcolo effettuato tramite MPFR o GMP
+dovrebbe essere restituito a @command{gawk} per valore, come
+si farebbe se si trattasse di una stringa o di un numero
+a virgola mobile a doppia precisione (@code{double}).
+@command{gawk} libererà la memoria occupata dal numero stesso.
+
 Per questo motivo, il codice in un'estensione dovrebbe essere
 simile a questo:
 
@@ -38387,11 +38394,10 @@ mpz_add(risposta, part1, part2);
 /* di tipo (awk_value_t *). */
 make_number_mpz(risposta, & risultato); @ii{assegnare valore finale GMP}
 
-mpz_clear(part1);                    @ii{rilasciare valori intermedi}
+mpz_clear(part1);                       @ii{rilasciare valori intermedi}
 mpz_clear(part2);
-mpz_clear(risposta);
 
-return result;
+return risultato;           @ii{valore in @code{risposta} gestito da @code{gawk}}
 @end example
 
 @node Funzioni di registrazione
