@@ -38623,7 +38623,7 @@ is completely equivalent to calling
 It returns one on success, or zero upon failure
 
 @cindex @code{readall()} extension function
-@item ret = writeall(file)
+@item ret = readall(file)
 This function takes a string argument, which is the name of the
 file from which to read the contents of various global variables.
 For each variable in the file, the data is loaded unless the variable

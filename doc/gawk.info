@@ -29164,7 +29164,7 @@ The 'rwarray' extension adds four functions, named 'writea()',
      function is completely equivalent to calling 'writea(file,
      SYMTAB)'.  It returns one on success, or zero upon failure
 
-'ret = writeall(file)'
+'ret = readall(file)'
      This function takes a string argument, which is the name of the
      file from which to read the contents of various global variables.
      For each variable in the file, the data is loaded unless the
@@ -39288,92 +39288,92 @@ Ref: table-readdir-file-types1175318
 Node: Extension Sample Revout1176386
 Node: Extension Sample Rev2way1176975
 Node: Extension Sample Read write array1177715
-Node: Extension Sample Readfile1180881
-Node: Extension Sample Time1181976
-Node: Extension Sample API Tests1183728
-Node: gawkextlib1184220
-Node: Extension summary1187138
-Node: Extension Exercises1190840
-Node: Language History1192082
-Node: V7/SVR3.11193738
-Node: SVR41195890
-Node: POSIX1197324
-Node: BTL1198705
-Node: POSIX/GNU1199434
-Node: Feature History1205212
-Node: Common Extensions1222387
-Node: Ranges and Locales1223670
-Ref: Ranges and Locales-Footnote-11228286
-Ref: Ranges and Locales-Footnote-21228313
-Ref: Ranges and Locales-Footnote-31228548
-Node: Contributors1228771
-Node: History summary1234768
-Node: Installation1236148
-Node: Gawk Distribution1237092
-Node: Getting1237576
-Node: Extracting1238539
-Node: Distribution contents1240177
-Node: Unix Installation1247238
-Node: Quick Installation1248042
-Node: Compiling with MPFR1250462
-Node: Shell Startup Files1251152
-Node: Additional Configuration Options1252241
-Node: Configuration Philosophy1254556
-Node: Compiling from Git1256952
-Node: Building the Documentation1257507
-Node: Non-Unix Installation1258891
-Node: PC Installation1259351
-Node: PC Binary Installation1260189
-Node: PC Compiling1261062
-Node: PC Using1262179
-Node: Cygwin1265732
-Node: MSYS1266956
-Node: VMS Installation1267558
-Node: VMS Compilation1268277
-Ref: VMS Compilation-Footnote-11269506
-Node: VMS Dynamic Extensions1269564
-Node: VMS Installation Details1271249
-Node: VMS Running1273511
-Node: VMS GNV1277790
-Node: Bugs1278504
-Node: Bug definition1279416
-Node: Bug address1282352
-Node: Usenet1285740
-Node: Performance bugs1286929
-Node: Asking for help1289850
-Node: Maintainers1291817
-Node: Other Versions1293011
-Node: Installation summary1301175
-Node: Notes1302539
-Node: Compatibility Mode1303333
-Node: Additions1304115
-Node: Accessing The Source1305040
-Node: Adding Code1306477
-Node: New Ports1312669
-Node: Derived Files1317044
-Ref: Derived Files-Footnote-11322704
-Ref: Derived Files-Footnote-21322739
-Ref: Derived Files-Footnote-31323337
-Node: Future Extensions1323451
-Node: Implementation Limitations1324109
-Node: Extension Design1325319
-Node: Old Extension Problems1326463
-Ref: Old Extension Problems-Footnote-11327981
-Node: Extension New Mechanism Goals1328038
-Ref: Extension New Mechanism Goals-Footnote-11331402
-Node: Extension Other Design Decisions1331591
-Node: Extension Future Growth1333704
-Node: Notes summary1334310
-Node: Basic Concepts1335468
-Node: Basic High Level1336149
-Ref: figure-general-flow1336431
-Ref: figure-process-flow1337117
-Ref: Basic High Level-Footnote-11340419
-Node: Basic Data Typing1340604
-Node: Glossary1343932
-Node: Copying1375819
-Node: GNU Free Documentation License1413362
-Node: Index1438482
+Node: Extension Sample Readfile1180880
+Node: Extension Sample Time1181975
+Node: Extension Sample API Tests1183727
+Node: gawkextlib1184219
+Node: Extension summary1187137
+Node: Extension Exercises1190839
+Node: Language History1192081
+Node: V7/SVR3.11193737
+Node: SVR41195889
+Node: POSIX1197323
+Node: BTL1198704
+Node: POSIX/GNU1199433
+Node: Feature History1205211
+Node: Common Extensions1222386
+Node: Ranges and Locales1223669
+Ref: Ranges and Locales-Footnote-11228285
+Ref: Ranges and Locales-Footnote-21228312
+Ref: Ranges and Locales-Footnote-31228547
+Node: Contributors1228770
+Node: History summary1234767
+Node: Installation1236147
+Node: Gawk Distribution1237091
+Node: Getting1237575
+Node: Extracting1238538
+Node: Distribution contents1240176
+Node: Unix Installation1247237
+Node: Quick Installation1248041
+Node: Compiling with MPFR1250461
+Node: Shell Startup Files1251151
+Node: Additional Configuration Options1252240
+Node: Configuration Philosophy1254555
+Node: Compiling from Git1256951
+Node: Building the Documentation1257506
+Node: Non-Unix Installation1258890
+Node: PC Installation1259350
+Node: PC Binary Installation1260188
+Node: PC Compiling1261061
+Node: PC Using1262178
+Node: Cygwin1265731
+Node: MSYS1266955
+Node: VMS Installation1267557
+Node: VMS Compilation1268276
+Ref: VMS Compilation-Footnote-11269505
+Node: VMS Dynamic Extensions1269563
+Node: VMS Installation Details1271248
+Node: VMS Running1273510
+Node: VMS GNV1277789
+Node: Bugs1278503
+Node: Bug definition1279415
+Node: Bug address1282351
+Node: Usenet1285739
+Node: Performance bugs1286928
+Node: Asking for help1289849
+Node: Maintainers1291816
+Node: Other Versions1293010
+Node: Installation summary1301174
+Node: Notes1302538
+Node: Compatibility Mode1303332
+Node: Additions1304114
+Node: Accessing The Source1305039
+Node: Adding Code1306476
+Node: New Ports1312668
+Node: Derived Files1317043
+Ref: Derived Files-Footnote-11322703
+Ref: Derived Files-Footnote-21322738
+Ref: Derived Files-Footnote-31323336
+Node: Future Extensions1323450
+Node: Implementation Limitations1324108
+Node: Extension Design1325318
+Node: Old Extension Problems1326462
+Ref: Old Extension Problems-Footnote-11327980
+Node: Extension New Mechanism Goals1328037
+Ref: Extension New Mechanism Goals-Footnote-11331401
+Node: Extension Other Design Decisions1331590
+Node: Extension Future Growth1333703
+Node: Notes summary1334309
+Node: Basic Concepts1335467
+Node: Basic High Level1336148
+Ref: figure-general-flow1336430
+Ref: figure-process-flow1337116
+Ref: Basic High Level-Footnote-11340418
+Node: Basic Data Typing1340603
+Node: Glossary1343931
+Node: Copying1375818
+Node: GNU Free Documentation License1413361
+Node: Index1438481
 
 End Tag Table
 
