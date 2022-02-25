@@ -222,9 +222,6 @@ do_intdiv(int nargs, awk_value_t *result, struct awk_ext_func *unused)
 		array_set_mpz(array, "quotient", 8, quotient);
 		array_set_mpz(array, "remainder", 9, remainder);
 
-		mpz_clear(quotient);
-		mpz_clear(remainder);
-
 		/* release temporary variables */
 		if (numer == numer_tmp)
 			mpz_clear(numer);

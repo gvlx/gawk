@@ -39,6 +39,11 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
+#ifdef HAVE_MPFR
+#include <gmp.h>
+#include <mpfr.h>
+#endif
+
 #include "gawkapi.h"
 
 static const gawk_api_t *api;	/* for convenience macros to work */
@@ -767,6 +772,10 @@ test_scalar(int nargs, awk_value_t *result, struct awk_ext_func *unused)
 {
 	awk_value_t new_value, new_value2;
 	awk_value_t the_scalar;
+#ifdef HAVE_MPFR
+	mpz_t mpz_val;
+	mpfr_t mpfr_val;
+#endif
 
 	(void) nargs;		/* silence warnings */
 	make_number(0.0, result);
@@ -786,8 +795,26 @@ test_scalar(int nargs, awk_value_t *result, struct awk_ext_func *unused)
 
 	if (new_value.val_type == AWK_STRING) {
 		make_const_string(new_value.str_value.str, new_value.str_value.len, & new_value2);
-	} else {
+	} else {	/* AWK_NUMBER */
+#ifdef HAVE_MPFR
+		switch (new_value.num_type) {
+		case AWK_NUMBER_TYPE_MPZ:
+			mpz_init(mpz_val);
+			mpz_set(mpz_val, new_value.num_ptr);
+			make_number_mpz(mpz_val, & new_value2);
+			break;
+		case AWK_NUMBER_TYPE_MPFR:
+			mpfr_init(mpfr_val);
+			mpfr_set(mpfr_val, (mpfr_ptr) new_value.num_ptr, mpfr_get_default_rounding_mode());
+			make_number_mpfr(mpfr_val, & new_value2);
+			break;
+		default:
+			new_value2 = new_value;
+			break;
+		}
+#else
 		new_value2 = new_value;
+#endif
 	}
 
 	if (! sym_update_scalar(the_scalar.scalar_cookie, & new_value2)) {

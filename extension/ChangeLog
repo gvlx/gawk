@@ -1,3 +1,10 @@
+2022-02-25         Andrew J. Schorr      <aschorr@telemetry-investments.com>
+
+	Memory issues with MPFR, fix part 1.
+
+	* intdiv.c (do_intdiv): Don't clear quotient and remainder.
+	* testext.c (test_scalar): Add GMP/MPFR support.
+
 2022-02-22         Arnold D. Robbins     <arnold@skeeve.com>
 
 	Fix resource links found by Coverity. Thanks to

@@ -1,3 +1,12 @@
+2022-02-25         Arnold D. Robbins     <arnold@skeeve.com>
+
+	Memory issues with MPFR, fix part 2. (Part 1 is in the
+	extension directory.)
+
+	* gawkapi.c (awk_value_to_node): Clear the GMP/MPFR values
+	returned from the C extension after setting the internal
+	variable.
+	
 2022-02-22         Arnold D. Robbins     <arnold@skeeve.com>
 
 	Enable interval expressions even for --traditional, as BWK
