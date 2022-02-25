@@ -36243,8 +36243,13 @@ p = NULL;                       @ii{now} q @ii{``owns'' it}
 MPFR and GMP objects are indeed allocated on the stack or dynamically,
 but the MPFR and GMP libraries treat these objects as values, the same way that
 you would pass an @code{int} or a @code{double} by value.  There is no
-way to ``transfer ownership'' of MPFR and GMP objects.  Thus, code in
-an extension should look like this:
+way to ``transfer ownership'' of MPFR and GMP objects.
+
+The final results of an MPFR or GMP calculation should be passed back
+to @command{gawk}, by value, as you would a string or a @code{double}.
+@command{gawk} will take care of freeing the storage.
+
+Thus, code in an extension should look like this:
 
 @example
 mpz_t part1, part2, answer;             @ii{declare local values}
@@ -36258,9 +36263,8 @@ make_number_mpz(answer, & result);      @ii{set it with final GMP value}
 
 mpz_clear(part1);                       @ii{release intermediate values}
 mpz_clear(part2);
-mpz_clear(answer);
 
-return result;
+return result;                          @ii{value in @code{answer} managed by @code{gawk}}
 @end example
 
 @node Registration Functions

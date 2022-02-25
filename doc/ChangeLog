@@ -1,3 +1,8 @@
+2022-02-25         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.in (API Ownership of MPFR and GMP Values): Rework for
+	changes to code.
+
 2022-02-23         Andrew J. Schorr      <aschorr@telemetry-investments.com>
 
 	* gawktexi.in (Extension Sample Read write array): Fix description of
