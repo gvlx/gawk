@@ -1,3 +1,8 @@
+2022-02-27         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.in (Array Sorting Functions): Add a note to be careful
+	to use local variables in comparison functions.
+
 2022-02-07         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawktexi.in (Indirect Calls): Expand discussion of calling
