@@ -236,7 +236,7 @@ uninitialized_scalar:
 				break;
 
 			default:
-				cant_happen();
+				cant_happen("unexpected parameter type %s", nodetype2str(m->type));
 			}
 		}
 			break;
@@ -427,7 +427,7 @@ uninitialized_scalar:
 					break;
 
 				default:
-					cant_happen();
+					cant_happen("unexpected lint type value %d", (int) pc->lint_type);
 				}
 			}
 			break;
@@ -1260,7 +1260,7 @@ match_re:
 		}
 
 		case Op_K_return_from_eval:
-			cant_happen();
+			cant_happen("unexpected opcode %s", opcode2str(op));
 			break;
 
 		case Op_K_return:

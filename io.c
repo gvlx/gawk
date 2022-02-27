@@ -841,7 +841,7 @@ redirect_string(const char *str, size_t explen, bool not_string,
 		what = "|&";
 		break;
 	default:
-		cant_happen();
+		cant_happen("invalid redirection type %d", (int) redirtype);
 	}
 	if (do_lint && not_string)
 		lintwarn(_("expression in `%s' redirection is a number"),
@@ -1020,7 +1020,7 @@ redirect_string(const char *str, size_t explen, bool not_string,
 			}
 			break;
 		default:
-			cant_happen();
+			cant_happen("invalid redirection type %d", (int) redirtype);
 		}
 
 		if (mode != NULL) {
@@ -1617,7 +1617,7 @@ str2mode(const char *mode)
 
 	default:
 		ret = 0;		/* lint */
-		cant_happen();
+		cant_happen("invalid open mode \"%s\"", mode);
 	}
 	if (strchr(mode, 'b') != NULL)
 		ret |= O_BINARY;

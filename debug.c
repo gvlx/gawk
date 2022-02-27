@@ -1732,7 +1732,7 @@ watchpoint_triggered(struct list_item *w)
 		case Node_var_new:
 			break;
 		default:
-			cant_happen();
+			cant_happen("unexpected symbol type %s", nodetype2str(symbol->type));
 		}
 	}
 
