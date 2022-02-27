@@ -1,5 +1,9 @@
 2022-02-27         Arnold D. Robbins     <arnold@skeeve.com>
 
+	* main.c (usage): Update the message for the gawkbug program.
+
+2022-02-27         Arnold D. Robbins     <arnold@skeeve.com>
+
 	Add `gawkbug' reporting program.
 
 	* gawkbug.in: New file.

@@ -204,8 +204,8 @@ T}
 .\" --- Bug Reports
 .ES
 .fi
-\*(CDIf you find a bug in this reference card, please report it via electronic
-mail to \*(FCbug-gawk@gnu.org\*(FR.\*(CX
+\*(CDIf you find a bug in this reference card, please use
+\*(FCgawkbug\*(FR to report it.\*(CX
 .EB "\s+2\f(HBBUG REPORTS\*(FR\s0"
 
 .BT

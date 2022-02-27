@@ -42313,17 +42313,17 @@ to do something or not, report that too; it's a bug in the documentation!
 @item
 Before reporting a bug or trying to fix it yourself, try to isolate it
 to the smallest possible @command{awk} program and input @value{DF} that
-reproduce the problem.  Then send us:
+reproduce the problem.
+
+@item
+@cindex @command{gawkbug} utility
+Use the @command{gawkbug} program to submit the bug report. This
+program sets up a bug report template and opens it in your editor.
+You then need to edit it appropriately to include:
 
 @itemize @bullet
 @item
 The program and @value{DF}.
-
-@item
-Some idea of what kind of Unix system you're using.
-
-@item
-The compiler you used to compile @command{gawk}.
 
 @item
 The exact results
@@ -42331,17 +42331,16 @@ The exact results
 us decide whether the problem is really in the documentation.
 
 @item
-The version number of @command{gawk} you are using.
-You can get this information with the command @samp{gawk --version}.
+A fix if you have one.
 @end itemize
 
 @item
 Do @emph{not} send screenshots. Instead, use copy/paste to send text, or
 send files.
 
-@item
-Do send files as attachments, instead of inline. This avoids corruption
-by mailer programs out in the wilds of the Internet.
+@c @item
+@c Do send files as attachments, instead of inline. This avoids corruption
+@c by mailer programs out in the wilds of the Internet.
 
 @item
 Please be sure to send all mail in @emph{plain text},
@@ -42355,12 +42354,12 @@ understood in common by all the maintainers.}
 @cindex @email{bug-gawk@@gnu.org} bug reporting address
 @cindex email address for bug reports, @email{bug-gawk@@gnu.org}
 @cindex bug reports, email address, @email{bug-gawk@@gnu.org}
-Once you have a precise problem description, send email to
+The @command{gawkbug} program sends email to
 @EMAIL{bug-gawk@@gnu.org,bug dash gawk at gnu dot org}.
 
 The @command{gawk} maintainers subscribe to this address, and
 thus they will receive your bug report.
-Although you can send mail to the maintainers directly,
+Do @emph{not} send mail to the maintainers directly;
 the bug reporting address is preferred because the
 email list is archived at the GNU Project.
 

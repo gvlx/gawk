@@ -641,7 +641,8 @@ usage(int exitval, FILE *fp)
 	/* This is one string to make things easier on translators. */
 	/* TRANSLATORS: --help output (end)
 	   no-wrap */
-	fputs(_("\nTo report bugs, see node `Bugs' in `gawk.info'\n\
+	fputs(_("\nTo report bugs, use the `gawkbug' program.\n\
+For full instructions, see the node `Bugs' in `gawk.info'\n\
 which is section `Reporting Problems and Bugs' in the\n\
 printed version.  This same information may be found at\n\
 https://www.gnu.org/software/gawk/manual/html_node/Bugs.html.\n\

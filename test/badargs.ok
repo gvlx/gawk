@@ -32,7 +32,8 @@ Short options:		GNU long options: (extensions)
 	-t			--lint-old
 	-V			--version
 
-To report bugs, see node `Bugs' in `gawk.info'
+To report bugs, use the `gawkbug' program.
+For full instructions, see the node `Bugs' in `gawk.info'
 which is section `Reporting Problems and Bugs' in the
 printed version.  This same information may be found at
 https://www.gnu.org/software/gawk/manual/html_node/Bugs.html.

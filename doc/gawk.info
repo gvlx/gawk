@@ -31885,26 +31885,22 @@ make both your life and the lives of the maintainers much easier.
 
   5. Before reporting a bug or trying to fix it yourself, try to isolate
      it to the smallest possible 'awk' program and input data file that
-     reproduce the problem.  Then send us:
+     reproduce the problem.
+
+  6. Use the 'gawkbug' program to submit the bug report.  This program
+     sets up a bug report template and opens it in your editor.  You
+     then need to edit it appropriately to include:
 
         * The program and data file.
-
-        * Some idea of what kind of Unix system you're using.
-
-        * The compiler you used to compile 'gawk'.
 
         * The exact results 'gawk' gave you.  Also say what you expected
           to occur; this helps us decide whether the problem is really
           in the documentation.
 
-        * The version number of 'gawk' you are using.  You can get this
-          information with the command 'gawk --version'.
+        * A fix if you have one.
 
-  6. Do _not_ send screenshots.  Instead, use copy/paste to send text,
+  7. Do _not_ send screenshots.  Instead, use copy/paste to send text,
      or send files.
-
-  7. Do send files as attachments, instead of inline.  This avoids
-     corruption by mailer programs out in the wilds of the Internet.
 
   8. Please be sure to send all mail in _plain text_, not (or not
      exclusively) in HTML.
@@ -31912,12 +31908,11 @@ make both your life and the lives of the maintainers much easier.
   9. _All email must be in English.  This is the only language
      understood in common by all the maintainers._
 
-   Once you have a precise problem description, send email to
-<bug-gawk@gnu.org>.
+   The 'gawkbug' program sends email to <bug-gawk@gnu.org>.
 
    The 'gawk' maintainers subscribe to this address, and thus they will
-receive your bug report.  Although you can send mail to the maintainers
-directly, the bug reporting address is preferred because the email list
+receive your bug report.  Do _not_ send mail to the maintainers
+directly; the bug reporting address is preferred because the email list
 is archived at the GNU Project.
 
      NOTE: Many distributions of GNU/Linux and the various BSD-based
@@ -36027,8 +36022,8 @@ Index
 * buffers, flushing:                     I/O Functions.       (line  32)
 * buffers, flushing <1>:                 I/O Functions.       (line 168)
 * bug reports, email address, <bug-gawk@gnu.org>: Bug address.
-                                                              (line  56)
-* <bug-gawk@gnu.org> bug reporting address: Bug address.      (line  56)
+                                                              (line  52)
+* <bug-gawk@gnu.org> bug reporting address: Bug address.      (line  52)
 * built-in functions:                    Functions.           (line   6)
 * built-in functions, evaluation order:  Calling Built-in.    (line  30)
 * BusyBox Awk:                           Other Versions.      (line  92)
@@ -36628,7 +36623,7 @@ Index
                                                               (line  48)
 * elements in arrays, deleting:          Delete.              (line   6)
 * email address for bug reports, <bug-gawk@gnu.org>: Bug address.
-                                                              (line  56)
+                                                              (line  52)
 * empty array elements:                  Reference to Elements.
                                                               (line  18)
 * empty pattern:                         Empty.               (line   6)
@@ -37125,6 +37120,7 @@ Index
 * gawk, implementation issues, debugging: Compatibility Mode. (line   6)
 * gawk, features, adding:                Adding Code.         (line   6)
 * gawk, coding style in:                 Adding Code.         (line  37)
+* gawkbug utility:                       Bug address.         (line  31)
 * gawkextlib project:                    gawkextlib.          (line   6)
 * gawklibpath_append shell function:     Shell Startup Files. (line  29)
 * gawklibpath_default shell function:    Shell Startup Files. (line  22)
@@ -39351,42 +39347,42 @@ Node: VMS GNV1278546
 Node: Bugs1279260
 Node: Bug definition1280172
 Node: Bug address1283108
-Node: Usenet1286496
-Node: Performance bugs1287685
-Node: Asking for help1290606
-Node: Maintainers1292573
-Node: Other Versions1293767
-Node: Installation summary1301931
-Node: Notes1303295
-Node: Compatibility Mode1304089
-Node: Additions1304871
-Node: Accessing The Source1305796
-Node: Adding Code1307233
-Node: New Ports1313425
-Node: Derived Files1317800
-Ref: Derived Files-Footnote-11323460
-Ref: Derived Files-Footnote-21323495
-Ref: Derived Files-Footnote-31324093
-Node: Future Extensions1324207
-Node: Implementation Limitations1324865
-Node: Extension Design1326075
-Node: Old Extension Problems1327219
-Ref: Old Extension Problems-Footnote-11328737
-Node: Extension New Mechanism Goals1328794
-Ref: Extension New Mechanism Goals-Footnote-11332158
-Node: Extension Other Design Decisions1332347
-Node: Extension Future Growth1334460
-Node: Notes summary1335066
-Node: Basic Concepts1336224
-Node: Basic High Level1336905
-Ref: figure-general-flow1337187
-Ref: figure-process-flow1337873
-Ref: Basic High Level-Footnote-11341175
-Node: Basic Data Typing1341360
-Node: Glossary1344688
-Node: Copying1376575
-Node: GNU Free Documentation License1414118
-Node: Index1439238
+Node: Usenet1286296
+Node: Performance bugs1287485
+Node: Asking for help1290406
+Node: Maintainers1292373
+Node: Other Versions1293567
+Node: Installation summary1301731
+Node: Notes1303095
+Node: Compatibility Mode1303889
+Node: Additions1304671
+Node: Accessing The Source1305596
+Node: Adding Code1307033
+Node: New Ports1313225
+Node: Derived Files1317600
+Ref: Derived Files-Footnote-11323260
+Ref: Derived Files-Footnote-21323295
+Ref: Derived Files-Footnote-31323893
+Node: Future Extensions1324007
+Node: Implementation Limitations1324665
+Node: Extension Design1325875
+Node: Old Extension Problems1327019
+Ref: Old Extension Problems-Footnote-11328537
+Node: Extension New Mechanism Goals1328594
+Ref: Extension New Mechanism Goals-Footnote-11331958
+Node: Extension Other Design Decisions1332147
+Node: Extension Future Growth1334260
+Node: Notes summary1334866
+Node: Basic Concepts1336024
+Node: Basic High Level1336705
+Ref: figure-general-flow1336987
+Ref: figure-process-flow1337673
+Ref: Basic High Level-Footnote-11340975
+Node: Basic Data Typing1341160
+Node: Glossary1344488
+Node: Copying1376375
+Node: GNU Free Documentation License1413918
+Node: Index1439038
 
 End Tag Table
 

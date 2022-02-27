@@ -1,5 +1,10 @@
 2022-02-27         Arnold D. Robbins     <arnold@skeeve.com>
 
+	* gawktexi.in (Bugs): Updated to describe the gawkbug program.
+	* awkcard.in: Ditto.
+
+2022-02-27         Arnold D. Robbins     <arnold@skeeve.com>
+
 	* gawkbug.1, wordlist5: New files.
 	* Makefile.am: Adjust everything for additional man page.
 
