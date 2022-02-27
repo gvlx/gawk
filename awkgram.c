@@ -6913,7 +6913,7 @@ retry:
 				/* regular code */
 				break;
 			default:
-				cant_happen();
+				cant_happen("bad value %d for want_param_names", (int) want_param_names);
 				break;
 			}
 		}
@@ -8872,7 +8872,7 @@ list_append(INSTRUCTION *l, INSTRUCTION *x)
 {
 #ifdef GAWKDEBUG
 	if (l->opcode != Op_list)
-		cant_happen();
+		cant_happen("unexpected value %s for opcode", opcode2str(l->opcode));
 #endif
 	l->lasti->nexti = x;
 	l->lasti = x;
@@ -8884,7 +8884,7 @@ list_prepend(INSTRUCTION *l, INSTRUCTION *x)
 {
 #ifdef GAWKDEBUG
 	if (l->opcode != Op_list)
-		cant_happen();
+		cant_happen("unexpected value %s for opcode", opcode2str(l->opcode));
 #endif
 	x->nexti = l->nexti;
 	l->nexti = x;
@@ -8896,9 +8896,9 @@ list_merge(INSTRUCTION *l1, INSTRUCTION *l2)
 {
 #ifdef GAWKDEBUG
 	if (l1->opcode != Op_list)
-		cant_happen();
+		cant_happen("unexpected value %s for opcode", opcode2str(l1->opcode));
 	if (l2->opcode != Op_list)
-		cant_happen();
+		cant_happen("unexpected value %s for opcode", opcode2str(l2->opcode));
 #endif
 	l1->lasti->nexti = l2->nexti;
 	l1->lasti = l2->lasti;

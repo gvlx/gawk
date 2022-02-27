@@ -144,7 +144,7 @@ make_regexp(const char *s, size_t len, bool ignorecase, bool dfa, bool canfatal)
 			case '7':
 				c2 = parse_escape(&src);
 				if (c2 < 0)
-					cant_happen();
+					cant_happen("received bad result %d from parse_escape()", c2);
 				/*
 				 * Unix awk treats octal (and hex?) chars
 				 * literally in re's, so escape regexp

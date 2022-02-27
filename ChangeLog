@@ -1,3 +1,11 @@
+2022-02-27         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* awk.h (cant_happen): Change to allow a format string and arguments,
+	in order to provide a clue as to what went wrong, and not just
+	print "internal error".
+	* awkgram.y, debug.c, eval.c, interpret.h, io.c, main.c, mpfr.c,
+	profile.c, re.c, symbol.c: Fix all uses of cant_happen().
+
 2022-02-25         Arnold D. Robbins     <arnold@skeeve.com>
 
 	Memory issues with MPFR, fix part 2. (Part 1 is in the

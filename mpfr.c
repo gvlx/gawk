@@ -516,7 +516,7 @@ mpg_cmp_as_numbers(const NODE *t1, const NODE *t2, scalar_cmp_t comparison_type)
 		ret = (di >= 0);
 		break;
 	default:
-		cant_happen();
+		cant_happen("invalid comparison type %d", (int) comparison_type);
 		break;
 	}
 
@@ -543,7 +543,7 @@ mpg_update_var(NODE *n)
 		nr = FNR;
 		nq = MFNR;
 	} else
-		cant_happen();
+		cant_happen("invalid node for mpg_update_var%s", "");
 
 	if (mpz_sgn(nq) == 0) {
 		/* Efficiency hack similar to that for AWKNUM */
@@ -575,7 +575,7 @@ mpg_set_var(NODE *n)
 	else if (n == FNR_node)
 		nq = MFNR;
 	else
-		cant_happen();
+		cant_happen("invalid node for mpg_set_var%s", "");
 
 	if (is_mpg_integer(val))
 		r = val->mpg_i;
@@ -1894,7 +1894,7 @@ mod:
 			r = mpg_pow(t1, t2);
 			break;
 		default:
-			cant_happen();
+			cant_happen("unexpected opcode %s", opcode2str(op));
 		}
 
 		DEREF(t2);

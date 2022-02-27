@@ -373,8 +373,7 @@ pprint(INSTRUCTION *startp, INSTRUCTION *endp, int flags)
 				break;
 
 			default:
-				fprintf(stderr, "Got unexpected type %s\n", nodetype2str(m->type));
-				cant_happen();
+				cant_happen("got unexpected type %s", nodetype2str(m->type));
 			}
 
 			switch (pc->opcode) {
@@ -581,7 +580,7 @@ cleanup:
 
 		case Op_K_delete_loop:
 			/* Efficency hack not in effect because of exec_count instruction */
-			cant_happen();
+			cant_happen("unexpected opcode %s", opcode2str(pc->opcode));
 			break;
 
 		case Op_in_array:
@@ -1219,7 +1218,7 @@ cleanup:
 			break;
 
 		default:
-			cant_happen();
+			cant_happen("unexpected opcode %s", opcode2str(pc->opcode));
 		}
 
 		if (pc == endp)

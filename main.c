@@ -1293,7 +1293,7 @@ catchsig(int sig)
 		fflush(NULL);
 		abort();
 	} else
-		cant_happen();
+		cant_happen("unexpected signal, number %s", strsignal(sig));
 	/* NOTREACHED */
 }
 

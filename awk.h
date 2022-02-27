@@ -1381,8 +1381,8 @@ extern void r_freeblock(void *, int id);
 #define		ALREADY_MALLOCED	2
 #define		ELIDE_BACK_NL		4
 
-#define	cant_happen()	r_fatal("internal error line %d, file: %s", \
-				__LINE__, __FILE__)
+#define	cant_happen(format, ...)	r_fatal("internal error: file %s, line %d: " format, \
+				__FILE__, __LINE__, __VA_ARGS__)
 
 #define	emalloc(var,ty,x,str)	(void) (var = (ty) emalloc_real((size_t)(x), str, #var, __FILE__, __LINE__))
 #define	ezalloc(var,ty,x,str)	(void) (var = (ty) ezalloc_real((size_t)(x), str, #var, __FILE__, __LINE__))
