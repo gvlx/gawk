@@ -27,7 +27,7 @@
 
 info_TEXINFOS = gawk.texi gawkinet.texi gawkworkflow.texi
 
-man_MANS = gawk.1
+man_MANS = gawk.1 gawkbug.1
 
 EXTRA_DIST = ChangeLog ChangeLog.0 ChangeLog.1 \
 	README.card ad.block setter.outline \
@@ -54,7 +54,7 @@ EXTRA_DIST = ChangeLog ChangeLog.0 ChangeLog.1 \
 	bc_notes
 
 # Get rid of generated files when cleaning
-CLEANFILES = *.ps *.html *.dvi *~ awkcard.nc awkcard.tr gawk.pdf gawkinet.pdf gawkworkflow.pdf awkcard.pdf gawk.1.pdf
+CLEANFILES = *.ps *.html *.dvi *~ awkcard.nc awkcard.tr gawk.pdf gawkinet.pdf gawkworkflow.pdf awkcard.pdf gawk.1.pdf gawkbug.1.pdf
 
 MAKEINFO = @MAKEINFO@ --no-split --force
 
@@ -80,9 +80,9 @@ AWKCARD = awkcard.ps
 gawk.texi: $(srcdir)/gawktexi.in $(srcdir)/sidebar.awk
 	awk -f $(srcdir)/sidebar.awk < $(srcdir)/gawktexi.in > gawk.texi
 
-postscript: gawk.ps gawkinet.ps gawkworkflow.ps gawk.1.ps $(AWKCARD)
+postscript: gawk.ps gawkinet.ps gawkworkflow.ps gawk.1.ps gawkbug.1.ps $(AWKCARD)
 
-pdf-local: postscript gawk.pdf gawkinet.pdf awkcard.pdf gawk.1.pdf
+pdf-local: postscript gawk.pdf gawkinet.pdf awkcard.pdf gawk.1.pdf gawkbug.1.pdf
 
 gawk.ps: gawk.dvi
 	TEXINPUTS=$(srcdir): dvips -o gawk.ps gawk.dvi
@@ -98,6 +98,12 @@ gawk.1.ps: gawk.1
 
 gawk.1.pdf: gawk.1.ps
 	ps2pdf gawk.1.ps gawk.1.pdf
+
+gawkbug.1.ps: gawkbug.1
+	-groff -man $(srcdir)/gawkbug.1 > gawkbug.1.ps
+
+gawkbug.1.pdf: gawkbug.1.ps
+	ps2pdf gawkbug.1.ps gawkbug.1.pdf
 
 awkcard.tr: awkcard.in
 	sed 's:SRCDIR:$(srcdir):' < $(srcdir)/awkcard.in > awkcard.tr
@@ -123,10 +129,17 @@ spellworkflow:
 	export LC_ALL=C ; spell "$(srcdir)"/gawkworkflow.texi | \
 	sort -u | comm -23 - "$(srcdir)"/wordlist2
 
-spellmanpage:
+spellmanpage: spellgawkmanpage spellgawkbugmanpage
+
+spellgawkmanpage:
 	@echo ==== gawk.1 ====
 	export LC_ALL=C ; spell "$(srcdir)"/gawk.1 | \
 	sort -u | comm -23 - "$(srcdir)"/wordlist3
+
+spellgawkbugmanpage:
+	@echo ==== gawkbug.1 ====
+	export LC_ALL=C ; spell "$(srcdir)"/gawkbug.1 | \
+	sort -u | comm -23 - "$(srcdir)"/wordlist5
 
 spellinet:
 	@echo ==== gawkinet.texi ====

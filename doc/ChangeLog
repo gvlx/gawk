@@ -1,5 +1,10 @@
 2022-02-27         Arnold D. Robbins     <arnold@skeeve.com>
 
+	* gawkbug.1, wordlist5: New files.
+	* Makefile.am: Adjust everything for additional man page.
+
+2022-02-27         Arnold D. Robbins     <arnold@skeeve.com>
+
 	* gawktexi.in (Array Sorting Functions): Add a note to be careful
 	to use local variables in comparison functions.
 

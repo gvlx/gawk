@@ -1,5 +1,15 @@
 2022-02-27         Arnold D. Robbins     <arnold@skeeve.com>
 
+	Add `gawkbug' reporting program.
+
+	* gawkbug.in: New file.
+	* Makefile.am (bin_SCRIPTS): New, for  gawkbug.
+	* configure.ac: Add gawkbug to AC_CONFIG_FILES list.
+	* NEWS: Updated.
+	* .gitignore: Updated.
+
+2022-02-27         Arnold D. Robbins     <arnold@skeeve.com>
+
 	* awk.h (cant_happen): Change to allow a format string and arguments,
 	in order to provide a clue as to what went wrong, and not just
 	print "internal error".

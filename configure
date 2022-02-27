@@ -13682,6 +13682,8 @@ esac
 
 ac_config_files="$ac_config_files Makefile support/Makefile awklib/Makefile doc/Makefile extras/Makefile po/Makefile.in test/Makefile"
 
+ac_config_files="$ac_config_files gawkbug"
+
 if test "$enable_extensions" = "yes"
 then
 
@@ -14439,6 +14441,7 @@ do
     "extras/Makefile") CONFIG_FILES="$CONFIG_FILES extras/Makefile" ;;
     "po/Makefile.in") CONFIG_FILES="$CONFIG_FILES po/Makefile.in" ;;
     "test/Makefile") CONFIG_FILES="$CONFIG_FILES test/Makefile" ;;
+    "gawkbug") CONFIG_FILES="$CONFIG_FILES gawkbug" ;;
 
   *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5;;
   esac
@@ -15241,6 +15244,7 @@ See \`config.log' for more details" "$LINENO" 5; }
         ;;
       esac
     done ;;
+    "gawkbug":F) chmod +x gawkbug ;;
 
   esac
 done # for ac_tag

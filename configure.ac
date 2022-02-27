@@ -475,13 +475,14 @@ dylib)	GAWKLIBEXT=so ;;	# MacOS uses .dylib for shared libraries, but libtool us
 esac
 AC_SUBST(GAWKLIBEXT)
 
-AC_CONFIG_FILES(Makefile
+AC_CONFIG_FILES([Makefile
 	support/Makefile
 	awklib/Makefile
 	doc/Makefile
 	extras/Makefile
 	po/Makefile.in
-	test/Makefile)
+	test/Makefile])
+AC_CONFIG_FILES([gawkbug], [chmod +x gawkbug])
 if test "$enable_extensions" = "yes"
 then
 	AC_CONFIG_SUBDIRS(extension)

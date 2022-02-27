@@ -31,6 +31,8 @@ remains, but it does nothing.
 6. The rwarray extension has two new functions, writeall() and readall(),
 for saving / restoring all of gawk's variables and arrays.
 
+7. The new `gawkbug' script should be used for reporting bugs.
+
 Changes from 5.1.1 to 5.1.2
 ---------------------------
 

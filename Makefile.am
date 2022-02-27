@@ -70,10 +70,11 @@ SUBDIRS += extras doc awklib po test
 
 # what to make and install
 bin_PROGRAMS = gawk
+bin_SCRIPTS = gawkbug
 include_HEADERS = gawkapi.h
 BUILT_SOURCES = $(srcdir)/pc/Makefile.tst
 
-# sources for both gawk and dgawk
+# sources for gawk
 base_sources = \
 	array.c \
 	awk.h \
@@ -129,10 +130,13 @@ DEFLIBPATH="\"$(pkgextensiondir)\""
 DEFS= -DDEFPATH=$(DEFPATH) -DDEFLIBPATH=$(DEFLIBPATH) -DSHLIBEXT=$(SHLIBEXT) -DHAVE_CONFIG_H -DGAWK -DLOCALEDIR='"$(datadir)/locale"' -I"$(srcdir)/support"
 
 # Get rid of core files when cleaning
-CLEANFILES = core core.*
+CLEANFILES = core core.* $(bin_SCRIPTS)
 
 # We want hard links for install-exec-hook, below
 LN= ln
+
+# Make copies...
+CP= cp
 
 # For some make's, e.g. OpenBSD, that don't define this
 RM = rm -f
