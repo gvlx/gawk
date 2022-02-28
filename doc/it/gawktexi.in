@@ -21778,8 +21778,9 @@ $ @kbd{gawk -M 'BEGIN @{ printf "%#x\n", compl(42) @}'}
 @print{} 0xffffffffffffffd5
 @end example
 
-Quando si usa l'opzione @option{-M}, nel dettaglio, @command{gawk} usa
-gli interi a precisione arbitraria di GNU MP che hanno almeno 64 bit di precisione.
+Quando si usa l'opzione @option{-M}, ``sotto il coperchio'', @command{gawk} usa
+gli interi a precisione arbitraria di GNU MP che hanno almeno 64 bit di
+precisione.
 Quando non si usa l'opzione @option{-M}, @command{gawk} memorizza i valori
 interi come regolari valori in virgola mobile con doppia precisione, che
 mantengono solo 53 bit di precisione.  Inoltre, la libreria GNU MP tratta
@@ -21787,8 +21788,9 @@ mantengono solo 53 bit di precisione.  Inoltre, la libreria GNU MP tratta
 cos@`{@dotless{i}} il
 risultato con @option{-M} in questo caso @`e un numero negativo.
 
-In breve, usare @command{gawk} per qualsiasi tipo di operazione "bit a bit",
-tranne le pi@`u semplici, probabilmente @`e una cattiva idea; @dfn{caveat emptor}!
+In poche parole, usare @command{gawk} per qualsiasi tipo di operazione
+"bit a bit", tranne le pi@`u semplici, probabilmente @`e una cattiva idea;
+@dfn{caveat emptor}!
 
 @end sidebar
 
@@ -31723,6 +31725,20 @@ $ @kbd{gawk -f confronta_in_minuscolo.awk}
 @print{} n N O o p P Q q r R S s t T u U V v w W X x y Y z Z
 @end example
 
+@quotation NOTA
+``Sotto il coperchio,'' @command{gawk} usa la funzione di libreria
+C @code{qsort()} per gestire le operazioni di ordinamento.
+@code{qsort()} pu@`o anche chiamare se stesso ricorsivamente.
+Ci@`o implica che, nello scrivere una funzione di confronto, si
+dovrebbe stare attenti a evitare l'uso di variabili e di vettori
+globali; si dovrebbero usare solo variabili locali e vettori che
+sono definiti come parametri ulteriori passati alla funzione che
+effettua il confronto.  In caso contrario, @`e possibile che avvengano
+delle corruzioni inintenzionali di memoria dei vettori
+globali e anche che lo stesso programma @command{gawk} finisca con
+un errore.
+@end quotation
+
 @node I/O bidirezionale
 @section Comunicazioni bidirezionali con un altro processo
 
@@ -38378,7 +38394,7 @@ Il risultato finale di un calcolo effettuato tramite MPFR o GMP
 dovrebbe essere restituito a @command{gawk} per valore, come
 si farebbe se si trattasse di una stringa o di un numero
 a virgola mobile a doppia precisione (@code{double}).
-@command{gawk} libererà la memoria occupata dal numero stesso.
+@command{gawk} liberer@`a la memoria occupata dal numero stesso.
 
 Per questo motivo, il codice in un'estensione dovrebbe essere
 simile a questo:
@@ -46383,40 +46399,39 @@ fare quella particolare cosa o no, occorre segnalarlo; in questo caso si tratta
 di un bug nella documentazione!
 
 @item
-Prima di segnalare un bug o di tentare di risolverlo personalmente, si tenti
+Prima di segnalare un bug o di tentare di risolverlo da soli, si tenti
 di isolarlo preparando un programma @command{awk} il pi@`u piccolo possibile,
 con un @value{DF} in input che possa riprodurre il problema.
 
-Dopo averlo fatto, si spedisca:
+@item
+@cindex @command{gawkbug} utility
+@cindex programma di utilit@`a @subentry @command{gawkbug}
+Si usi il programma @command{gawkbug} per preparare la segnalazione
+del bug.  Questo programma prepara un modello di segnalazione
+di bug e vi permette di modificarlo nel vostro programma di edit.
+Va quindi modificato appropriatamente per includere:
 
 @itemize @bullet
 @item
 il programma e il @value{DF}.
 
 @item
-Qualche informazioni sul tipo di sistema Unix in uso.
-
-@item
-Il compilatore usato per compilare @command{gawk},
-
-@item
 I risultati esatti che @command{gawk} ha prodotto.  Inoltre andrebbe
 specificato cosa ci si aspettava che il programma facesse; questo @`e
-di aiuto per decidere se il problema @`e un problema di documentazione.
+di aiuto per decidere se il problema @`e in realt@`a un problema
+di documentazione.
 
 @item
-Il numero di versione di @command{gawk} in uso.
-Questa informazione si pu@`o ottenere con il comando @samp{gawk --version}.
+Una soluzione al problema, se ne avete una.
 @end itemize
 
 @item
 @emph{Non} inviare immagini di videate.  In alternativa, usate COPIA/INCOLLA
 per inviare testo, o per spedire file.
 
-@item
-Spedite file come allegati, invece che nel corpo del messaggio.
-Ci@`o evita la possibile corruzione del file da programmi di gestione
-della posta attraverso cui il messaggio transita in Internet.
+@c @item
+@c Do send files as attachments, instead of inline. This avoids corruption
+@c by mailer programs out in the wilds of the Internet.
 
 @item
 Accertatevi di spedire tutta la posta in formato @emph{testo},
@@ -46432,17 +46447,14 @@ lingua che tutti i manutentori comprendono.}
 @cindex indirizzo email per segnalare bug @subentry @email{bug-gawk@@gnu.org}
 @cindex bug @subentry segnalare @subentry indirizzo email, @email{bug-gawk@@gnu.org}
 @cindex segnalare bug @subentry indirizzo email @subentry @email{bug-gawk@@gnu.org}
-Una volta pronta la descrizione precisa del problema, si spedisca un messaggio
-di posta elettronica a
+Il programma @command{gawkbug} spedisce un messaggio di posta elettronica a
 @EMAIL{bug-gawk@@gnu.org,bug (trattino) gawk (chiocciola) gnu (punto) org}.
 
 I manutentori di @command{gawk} sono i destinatari, e riceveranno la
-segnalazione di errore.  Sebbene sia possibile spedire messaggi direttamente ai
-manutentori, @`e preferibile usare l'indirizzo sopra fornito perch@'e quella
-mailing list rimane in archivio presso il Progetto GNU.  @emph{Tutti i messaggi
-devono essere in inglese. @`E questo il solo linguaggio che tutti i manutentori
-conoscono.} Inoltre, occorre accertarsi di spedire tutti i messaggi in formato
-@emph{testo}, e non (o non soltanto) in formato HTML.
+segnalazione di errore.
+@emph{Non} spedite messaggi di posta elettronica direttamente ai manutentori;
+@`e preferibile usare l'indirizzo sopra fornito perch@'e quella
+mailing list rimane in archivio presso il Progetto GNU.
 
 @quotation NOTA
 Molte distribuzioni di GNU/Linux e i vari sistemi operativi basati su
