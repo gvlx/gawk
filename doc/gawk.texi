@@ -30168,7 +30168,7 @@ $ @kbd{gawk -f case_fold_compare.awk}
 @end example
 
 @quotation NOTE
-`Under the hood,'' @command{gawk} uses the C library @code{qsort()}
+``Under the hood,'' @command{gawk} uses the C library @code{qsort()}
 function to manage the sorting. @code{qsort()} can call itself
 recursively.  This means that when you write a comparison function,
 you should be careful to avoid the use of global variables and arrays;

@@ -1,3 +1,8 @@
+2022-03-01         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.in: Typo fix. Thanks to Antonio Columbo for pointing
+	it out.
+
 2022-02-27         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawktexi.in (Bugs): Updated to describe the gawkbug program.
