@@ -21551,7 +21551,7 @@ both values to lowercase in order to compare them ignoring case.
      -| A a B b c C D d e E F f g G H h i I J j k K l L M m
      -| n N O o p P Q q r R S s t T u U V v w W X x y Y z Z
 
-     NOTE: 'Under the hood," 'gawk' uses the C library 'qsort()'
+     NOTE: "Under the hood," 'gawk' uses the C library 'qsort()'
      function to manage the sorting.  'qsort()' can call itself
      recursively.  This means that when you write a comparison function,
      you should be careful to avoid the use of global variables and
