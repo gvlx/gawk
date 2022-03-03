@@ -1,3 +1,7 @@
+2022-03-03         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* NEWS: Updated.
+
 2022-02-27         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* main.c (usage): Update the message for the gawkbug program.

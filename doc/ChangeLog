@@ -1,3 +1,9 @@
+2022-03-03         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawk.1: Chopped down in size by about 40%.
+	* wordlist3: Updated for new man page.
+	* wordlist: Updated since it needed it.
+
 2022-03-01         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawktexi.in: Typo fix. Thanks to Antonio Columbo for pointing

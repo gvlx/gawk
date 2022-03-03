@@ -1,4 +1,4 @@
-   Copyright (C) 2019, 2020, 2021 Free Software Foundation, Inc.
+   Copyright (C) 2019, 2020, 2021, 2022 Free Software Foundation, Inc.
    
    Copying and distribution of this file, with or without modification,
    are permitted in any medium without royalty provided the copyright
@@ -32,6 +32,10 @@ remains, but it does nothing.
 for saving / restoring all of gawk's variables and arrays.
 
 7. The new `gawkbug' script should be used for reporting bugs.
+
+8. The manual page (doc/gawk.1) has been considerably reduced in size.
+Wherever possible, details were replaced with references to the online
+copy of the manual.
 
 Changes from 5.1.1 to 5.1.2
 ---------------------------
