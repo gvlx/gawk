@@ -20,6 +20,7 @@ AWKBUFSIZE
 AWKLIBPATH
 AWKPATH
 AWKREADFUNC
+AWKgo
 AbbC
 AdditionalResources
 Affero
@@ -44,6 +45,7 @@ BEGINFILE
 BEL
 BINMODE
 BLKSIZE
+BOOL
 BREs
 BSIZE
 BTL
@@ -52,6 +54,7 @@ Banzai
 BeOS
 Benzinger
 Bleah
+Bool
 Bornstein
 Brin's
 Brini
@@ -115,6 +118,7 @@ DHAVE
 DIR
 DJGPP
 DK
+DLL
 DST
 DTD
 DVI
@@ -157,6 +161,7 @@ FIXME
 FN
 FNM
 FNR
+FNV
 FOO
 FORmula
 FP
@@ -273,6 +278,7 @@ LINENO
 LXIX
 Langston
 LeBlanc
+LibGCC
 Libmawk
 Libtool
 Lijewski
@@ -630,6 +636,7 @@ awk
 awka
 awkcard
 awkforai
+awkgo
 awkgram
 awklang
 awklib
@@ -681,6 +688,7 @@ blockdev
 blockquote
 blocksize
 bool
+boolval
 boundar
 br
 brabble
@@ -734,6 +742,7 @@ chem
 chet
 chien
 chmod
+chongo
 chown
 chr
 cilnqsvx
@@ -841,6 +850,7 @@ distributable
 div
 djgpp
 dl
+dll
 dlopen
 dlsym
 dn
@@ -858,6 +868,7 @@ duncan
 dup
 dupword
 dvi
+dw
 dx
 ebcdic
 eca
@@ -887,6 +898,7 @@ enrichening
 enum
 env
 eof
+eq
 eql
 equiv
 erealloc
@@ -948,6 +960,7 @@ fmode
 fn
 fname
 fnmatch
+fnv
 fo
 foObAr
 foo
@@ -985,6 +998,7 @@ ga
 gai
 gatech
 gawkapi
+gawkbug
 gawkextlib
 gawkfts
 gawkinet
@@ -1024,6 +1038,7 @@ getuid
 gid
 gierd
 github
+globalstate
 gmail
 gmo
 gmon
@@ -1048,6 +1063,7 @@ groupset
 grp
 gst
 gsub
+gt
 guerrero
 gunzip
 gvim
@@ -1140,6 +1156,7 @@ isatty
 isnumeric
 iso
 ist
+isthe
 itd
 itemx
 ith
@@ -1187,6 +1204,7 @@ lgpl
 lhs
 li
 libexec
+libgcc
 libintl
 libmawk
 libs
@@ -1250,6 +1268,7 @@ mingw
 miriam
 misc
 mit
+mkbool
 mkdir
 mkinstalldirs
 mktime
@@ -1406,6 +1425,7 @@ org
 orig
 orspan
 os
+osdn
 otherc
 otherd
 otiens
@@ -1489,6 +1509,7 @@ pwcat
 pwd
 pwent
 pxref
+py
 qb
 qc
 qquad
@@ -1621,6 +1642,7 @@ stat
 statdata
 statfunc
 std
+stdbool
 stdbuf
 stddef
 stderr
