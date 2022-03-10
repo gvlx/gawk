@@ -185,8 +185,7 @@ Each argument supplied via
 .B \-e
 is treated as if it begins with an implicit \fB@namespace "awk"\fR statement.
 .TP
-.BI \-E " file"\fR, "\c
-.BI \-\^\-exec " file"
+\fB\-E \fIfile\fR, \fB\-\^\-exec \fIfile\fR
 Similar to
 .BR \-f ,
 however, this is option is the last one processed.
@@ -213,8 +212,7 @@ Per the
 .IR "GNU Coding Standards" ,
 these options cause an immediate, successful exit.
 .TP
-.BI "\-i " include-file"\fR, "\c
-.BI \-\^\-include " include-file"
+\fB\-i \fIinclude-file\fR, \fB\-\^\-include \fIinclude-file\fR
 Load an awk source library.
 This searches for the library using the
 .B AWKPATH
