@@ -1,3 +1,7 @@
+2022-03-11         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* rwarray.3m: Typo fixes, update copyright and modification dates.
+
 2022-02-25         Andrew J. Schorr      <aschorr@telemetry-investments.com>
 
 	Memory issues with MPFR, fix part 1.
