@@ -1,4 +1,4 @@
-.TH RWARRAY 3am "Feb 02 2018" "Free Software Foundation" "GNU Awk Extension Modules"
+.TH RWARRAY 3am "Mar 11 2022" "Free Software Foundation" "GNU Awk Extension Modules"
 .SH NAME
 writea, reada, writeall, readall \- write and read gawk arrays to/from files
 .SH SYNOPSIS
@@ -19,9 +19,9 @@ The
 extension adds functions named
 .BR writea() ,
 .BR reada() ,
-.BR writeaall() ,
+.BR writeall() ,
 and
-.BR readaall() ,
+.BR readall() ,
 as follows.
 .TP
 .B writea()
@@ -106,7 +106,7 @@ ret = readall("globalstate.bin")
 Arnold Robbins,
 .BR arnold@skeeve.com .
 .SH COPYING PERMISSIONS
-Copyright \(co 2012, 2013, 2018,
+Copyright \(co 2012, 2013, 2018, 2022
 Free Software Foundation, Inc.
 .PP
 Permission is granted to make and distribute verbatim copies of
