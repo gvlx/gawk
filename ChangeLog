@@ -1,3 +1,21 @@
+2022-03-22         Arnold D. Robbins     <arnold@skeeve.com>
+
+	Make lint checks for builtin functions smarter. Initial
+	report from Timothy Sample <samplet@ngyro.com>.
+
+	* builtin.c (do_fflush): Require string type.
+	(printf_common): Ditto.
+	(do_index): Allow strnum for both arguments.
+	(do_length): Ditto.
+	(do_strftime): Ditto.
+	(do_substr): Require numbers for arguments 2 and 3, string or
+	strnum for argument 1.
+	(do_match): Require string or strnum for argument 1.
+	(do_dcgettext): Require strings for all arguments.
+	(do_bindtextdomain): Ditto.
+	(do_dcngettext): Require strings for arguments 5, 4, 2, and 1, and
+	number for argument 3.
+
 2022-03-03         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* NEWS: Updated.
