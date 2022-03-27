@@ -111,7 +111,7 @@ static void merge_comments(INSTRUCTION *c1, INSTRUCTION *c2);
 static INSTRUCTION *make_braced_statements(INSTRUCTION *lbrace, INSTRUCTION *stmts, INSTRUCTION *rbrace);
 static void add_sign_to_num(NODE *n, char sign);
 
-static bool at_seen = false;
+static int at_seen = 0;
 static bool want_source = false;
 static bool want_namespace = false;
 static bool want_regexp = false;	/* lexical scanning kludge */
@@ -300,7 +300,7 @@ rule
 	| '@' LEX_INCLUDE source statement_term
 	  {
 		want_source = false;
-		at_seen = false;
+		at_seen--;
 		if ($3 != NULL && $4 != NULL) {
 			SRCFILE *s = (SRCFILE *) $3;
 			s->comment = $4;
@@ -310,7 +310,7 @@ rule
 	| '@' LEX_LOAD library statement_term
 	  {
 		want_source = false;
-		at_seen = false;
+		at_seen--;
 		if ($3 != NULL && $4 != NULL) {
 			SRCFILE *s = (SRCFILE *) $3;
 			s->comment = $4;
@@ -333,7 +333,7 @@ rule
 
 		want_source = false;
 		want_namespace = false;
-		at_seen = false;
+		at_seen--;
 
 		// this frees $3 storage in all cases
 		set_namespace($3, $4);
@@ -504,7 +504,7 @@ func_name
 	| '@' LEX_EVAL
 	  {
 		$$ = $2;
-		at_seen = false;
+		at_seen--;
 	  }
 	;
 
@@ -2041,7 +2041,7 @@ func_call
 		 */
 
 		$$ = list_prepend($2, t);
-		at_seen = false;
+		at_seen--;
 	  }
 	;
 
@@ -3791,7 +3791,7 @@ retry:
 			goto collect_regexp;
 		}
 		pushback();
-		at_seen = true;
+		at_seen++;
 		return lasttok = '@';
 
 	case '\\':

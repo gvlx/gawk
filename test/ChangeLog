@@ -1,3 +1,8 @@
+2022-03-27         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.am (EXTRA_DIST): indirectcall3, new test.
+	* indirectcall3.awk, indirectcall3.ok: New files.
+
 2022-02-27         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* badargs.ok: Updated after code change.
