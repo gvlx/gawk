@@ -198,7 +198,7 @@ GAWK_EXT_TESTS = \
 	ignrcas2 ignrcas4 ignrcase incdupe incdupe2 incdupe3 incdupe4 \
 	incdupe5 incdupe6 incdupe7 include include2 indirectbuiltin \
 	indirectbuiltin2 \
-	indirectcall indirectcall2 inf-nan-torture intarray iolint \
+	indirectcall indirectcall2 indirectcall3 inf-nan-torture intarray iolint \
 	isarrayunset lint lintexp lintindex lintint lintlength lintplus \
 	lintold lintset lintwarn manyfiles match1 match2 match3 mbstr1 \
 	mbstr2 mixed1 mktime modifiers muldimposix nastyparm negtime \
@@ -2909,6 +2909,11 @@ indirectcall:
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 indirectcall2:
+	@echo $@
+	@-AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
+	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
+
+indirectcall3:
 	@echo $@
 	@-AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@

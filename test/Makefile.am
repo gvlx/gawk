@@ -573,6 +573,8 @@ EXTRA_DIST = \
 	indirectbuiltin2.ok \
 	indirectcall2.awk \
 	indirectcall2.ok \
+	indirectcall3.awk \
+	indirectcall3.ok \
 	indirectcall.awk \
 	indirectcall.in \
 	indirectcall.ok \
@@ -1455,7 +1457,7 @@ GAWK_EXT_TESTS = \
 	ignrcas2 ignrcas4 ignrcase incdupe incdupe2 incdupe3 incdupe4 \
 	incdupe5 incdupe6 incdupe7 include include2 indirectbuiltin \
 	indirectbuiltin2 \
-	indirectcall indirectcall2 inf-nan-torture intarray iolint \
+	indirectcall indirectcall2 indirectcall3 inf-nan-torture intarray iolint \
 	isarrayunset lint lintexp lintindex lintint lintlength lintplus \
 	lintold lintset lintwarn manyfiles match1 match2 match3 mbstr1 \
 	mbstr2 mixed1 mktime modifiers muldimposix nastyparm negtime \
