@@ -1,3 +1,7 @@
+2022-03-30         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* delarprm2.awk, delarprm2.ok: Changes to make test more helpful.
+
 2022-03-27         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* Makefile.am (EXTRA_DIST): indirectcall3, new test.
