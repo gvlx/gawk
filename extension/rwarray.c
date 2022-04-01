@@ -820,7 +820,7 @@ read_number(FILE *fp, awk_value_t *value, uint32_t code, value_storage *vs)
 			value = make_number_mpfr(vs->mpfr_val, value);
 		}
 #else
-		fatal(ext_id(_("rwarray extension: GMP/MPFR value in file but compiled without GMP/MPFR support."));
+		fatal(ext_id, _("rwarray extension: GMP/MPFR value in file but compiled without GMP/MPFR support."));
 #endif
 	}
 

@@ -1,3 +1,9 @@
+2022-04-01         Arnold D. Robbins     <arnold@skeeve.com>
+
+	Small fix from the persistent-gawk guys.
+
+	* rwarray.c (read_number): Fix typo in case MPFR isn't available.
+
 2022-03-11         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* rwarray.3m: Typo fixes, update copyright and modification dates.

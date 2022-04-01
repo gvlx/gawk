@@ -1,3 +1,9 @@
+2022-04-01         Arnold D. Robbins     <arnold@skeeve.com>
+
+	Small fix from the persistent-gawk guys.
+
+	* profile.c (pprint): Use estrdup instead of strdup.
+
 2022-03-27         Arnold D. Robbins     <arnold@skeeve.com>
 
 	Allow nested indirect function calls. Thanks to
