@@ -668,7 +668,7 @@ cleanup:
 		case Op_K_print_rec:
 			if (pc->opcode == Op_K_print_rec)
 				// instead of `print $0', just `print'
-				tmp = strdup("");
+				tmp = estrdup("", 0);
 			else if (pc->redir_type != 0) {
 				// Avoid turning printf("hello\n") into printf(("hello\n"))
 				NODE *n = pp_top();
@@ -678,7 +678,7 @@ cleanup:
 				    && n->pp_str[n->pp_len - 1] == ')') {
 					n = pp_pop();
 
-					tmp = strdup(n->pp_str);
+					tmp = estrdup(n->pp_str, strlen(n->pp_str));
 					pp_free(n);
 				} else
 					tmp = pp_list(pc->expr_count, "()", ", ");
