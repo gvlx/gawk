@@ -1090,7 +1090,7 @@ parse_bracket_exp (struct dfa *dfa)
               if (wc != wc2 || wc == WEOF)
                 {
                   if (dfa->localeinfo.simple
-                      || (isasciidigit (c) & isasciidigit (c2)))
+                      || (isasciidigit (c) && isasciidigit (c2)))
                     {
                       for (int ci = c; ci <= c2; ci++)
                         if (dfa->syntax.case_fold && isalpha (ci))
