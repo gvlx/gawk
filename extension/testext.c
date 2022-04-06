@@ -643,7 +643,7 @@ BEGIN {
 static awk_value_t *
 test_array_param(int nargs, awk_value_t *result, struct awk_ext_func *unused)
 {
-	awk_value_t new_array;
+	awk_value_t new_array = { 0 };	// init to zero, silences warnings
 	awk_value_t arg0;
 
 	(void) nargs;		/* silence warnings */
