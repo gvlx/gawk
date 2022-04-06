@@ -1,3 +1,8 @@
+2022-04-05         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* testext.c (test_array_param): Init new_array to avoid
+	compiler warnings. Thanks to Michal Jaegermann for the report.
+
 2022-04-01         Arnold D. Robbins     <arnold@skeeve.com>
 
 	Small fix from the persistent-gawk guys.
