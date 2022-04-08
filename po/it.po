@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GNU Awk 5.1.1, API: 3.0\n"
 "Report-Msgid-Bugs-To: bug-gawk@gnu.org\n"
-"POT-Creation-Date: 2022-02-23 10:45+0100\n"
-"PO-Revision-Date: 2022-02-23 11:10+0100\n"
+"POT-Creation-Date: 2022-04-08 11:30+0200\n"
+"PO-Revision-Date: 2022-04-08 11:50+0100\n"
 "Last-Translator: Antonio Colombo <azc100@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "Language: it\n"
@@ -34,8 +34,8 @@ msgstr "tentativo di usare il parametro scalare `%s' come un vettore"
 msgid "attempt to use scalar `%s' as an array"
 msgstr "tentativo di usare scalare '%s' come vettore"
 
-#: array.c:402 array.c:569 builtin.c:89 builtin.c:1726 builtin.c:1772
-#: builtin.c:1785 builtin.c:2294 builtin.c:2321 eval.c:1154 eval.c:1158
+#: array.c:402 array.c:569 builtin.c:89 builtin.c:1728 builtin.c:1776
+#: builtin.c:1789 builtin.c:2305 builtin.c:2332 eval.c:1154 eval.c:1158
 #: eval.c:1539
 #, c-format
 msgid "attempt to use array `%s' in a scalar context"
@@ -132,12 +132,14 @@ msgstr "`%s' è una funzione interna, non si può ridefinire"
 
 #: awkgram.y:564
 msgid "regexp constant `//' looks like a C++ comment, but is not"
-msgstr "espressione regolare costante `//' sembra un commento C++, ma non lo è"
+msgstr ""
+"espressione regolare costante `//' sembra un commento C++, ma non lo è"
 
 #: awkgram.y:568
 #, c-format
 msgid "regexp constant `/%s/' looks like a C comment, but is not"
-msgstr "espressione regolare costante `/%s/' sembra un commento C, ma non lo è"
+msgstr ""
+"espressione regolare costante `/%s/' sembra un commento C, ma non lo è"
 
 #: awkgram.y:695
 #, c-format
@@ -247,11 +249,11 @@ msgstr "tentativo di usare la non-funzione `%s' in una chiamata di funzione"
 msgid "invalid subscript expression"
 msgstr "espressione indice invalida"
 
-#: awkgram.y:2504 awkgram.y:2524 gawkapi.c:269 gawkapi.c:286 msg.c:133
+#: awkgram.y:2504 awkgram.y:2524 gawkapi.c:272 gawkapi.c:289 msg.c:133
 msgid "warning: "
 msgstr "attenzione: "
 
-#: awkgram.y:2522 gawkapi.c:241 gawkapi.c:284 msg.c:165
+#: awkgram.y:2522 gawkapi.c:244 gawkapi.c:287 msg.c:165
 msgid "fatal: "
 msgstr "fatale: "
 
@@ -386,7 +388,7 @@ msgstr "operatore `%s' non supportato nel vecchio awk"
 msgid "unterminated string"
 msgstr "stringa non delimitata"
 
-#: awkgram.y:4077 main.c:1223
+#: awkgram.y:4077 main.c:1224
 msgid "POSIX does not allow physical newlines in string values"
 msgstr ""
 "POSIX non consente dei caratteri di ritorno a capo nei valori assegnati a "
@@ -500,8 +502,8 @@ msgstr "funzione `%s': non si può usare nome di funzione come nome parametro"
 #, c-format
 msgid "function `%s': cannot use special variable `%s' as a function parameter"
 msgstr ""
-"funzione `%s': non si può usare la variabile speciale `%s' come parametro di "
-"funzione"
+"funzione `%s': non si può usare la variabile speciale `%s' come parametro "
+"di funzione"
 
 #: awkgram.y:5126
 #, c-format
@@ -619,6 +621,7 @@ msgstr ""
 "degli identificativi"
 
 #: builtin.c:99 builtin.c:106
+#, c-format
 msgid "%s: called with %d arguments"
 msgstr "%s: chiamata con %d argomenti"
 
@@ -635,8 +638,8 @@ msgstr "standard output"
 msgid "standard error"
 msgstr "standard error"
 
-#: builtin.c:196 builtin.c:532 builtin.c:632 builtin.c:1837 builtin.c:2579
-#: builtin.c:2597 builtin.c:2716 builtin.c:3725 mpfr.c:812
+#: builtin.c:196 builtin.c:534 builtin.c:634 builtin.c:1841 builtin.c:2590
+#: builtin.c:2608 builtin.c:2727 builtin.c:3738 mpfr.c:812
 #, c-format
 msgid "%s: received non-numeric argument"
 msgstr "%s: ricevuto argomento non numerico"
@@ -646,219 +649,235 @@ msgstr "%s: ricevuto argomento non numerico"
 msgid "exp: argument %g is out of range"
 msgstr "exp: argomento %g fuori intervallo"
 
-#: builtin.c:281
+#: builtin.c:266 builtin.c:603 builtin.c:2183 builtin.c:2245 builtin.c:2499
+#: builtin.c:2532
+#, c-format
+msgid "%s: received non-string argument"
+msgstr "%s: ricevuto argomento che non è una stringa"
+
+#: builtin.c:283
 #, c-format
 msgid "fflush: cannot flush: pipe `%.*s' opened for reading, not writing"
 msgstr ""
 "fflush: non riesco a scaricare: `pipe' `%.*s' aperta in lettura, non in "
 "scrittura"
 
-#: builtin.c:284
+#: builtin.c:286
 #, c-format
 msgid "fflush: cannot flush: file `%.*s' opened for reading, not writing"
 msgstr ""
 "fflush: non riesco a scaricare: file `%.*s' aperto in lettura, non in "
 "scrittura"
 
-#: builtin.c:295
+#: builtin.c:297
 #, c-format
 msgid "fflush: cannot flush file `%.*s': %s"
 msgstr "fflush: non riesco a scaricare file `%.*s': %s"
 
-#: builtin.c:300
+#: builtin.c:302
 #, c-format
 msgid "fflush: cannot flush: two-way pipe `%.*s' has closed write end"
 msgstr ""
 "fflush: non riesco a scaricare: `pipe' bidirezionale `%.*s' ha chiuso il "
 "lato in scrittura"
 
-#: builtin.c:306
+#: builtin.c:308
 #, c-format
 msgid "fflush: `%.*s' is not an open file, pipe or co-process"
 msgstr "fflush: `%.*s' non è un file aperto, una `pipe' o un co-processo"
 
-#: builtin.c:415 builtin.c:2078
+#: builtin.c:417 builtin.c:1879 builtin.c:2089 builtin.c:2769 builtin.c:4000
+#: builtin.c:4087 builtin.c:4154
 #, c-format
 msgid "%s: received non-string first argument"
 msgstr "%s: ricevuto primo argomento che non è una stringa"
 
-#: builtin.c:417
+#: builtin.c:419 builtin.c:3978 builtin.c:3993 builtin.c:4083 builtin.c:4145
 #, c-format
 msgid "%s: received non-string second argument"
 msgstr "%s: ricevuto secondo argomento che non è una stringa"
 
-#: builtin.c:575
+#: builtin.c:577
 msgid "length: received array argument"
 msgstr "length: ricevuto argomento che è un vettore"
 
-#: builtin.c:578
+#: builtin.c:580
 msgid "`length(array)' is a gawk extension"
 msgstr "`length(array)' è un'estensione gawk"
 
-#: builtin.c:601 builtin.c:2172 builtin.c:2234 builtin.c:2488 builtin.c:2521
-#, c-format
-msgid "%s: received non-string argument"
-msgstr "%s: ricevuto argomento che non è una stringa"
-
-#: builtin.c:635 builtin.c:1841
+#: builtin.c:637 builtin.c:1845
 #, c-format
 msgid "%s: received negative argument %g"
 msgstr "%s: ricevuto argomento negativo %g"
 
-#: builtin.c:840 builtin.c:845 builtin.c:999
+#: builtin.c:842 builtin.c:847 builtin.c:1001
 msgid "fatal: must use `count$' on all formats or none"
 msgstr "fatale: `count$' va usato per tutti i formati o per nessuno"
 
-#: builtin.c:918
+#: builtin.c:920
 #, c-format
 msgid "field width is ignored for `%%' specifier"
 msgstr "larghezza campo ignorata per la specifica `%%'"
 
-#: builtin.c:920
+#: builtin.c:922
 #, c-format
 msgid "precision is ignored for `%%' specifier"
 msgstr "precisione ignorata per la specifica `%%'"
 
-#: builtin.c:922
+#: builtin.c:924
 #, c-format
 msgid "field width and precision are ignored for `%%' specifier"
 msgstr "larghezza campo e precisone ignorate per la specifica `%%'"
 
-#: builtin.c:973
+#: builtin.c:975
 msgid "fatal: `$' is not permitted in awk formats"
 msgstr "fatale: operatore `$' non consentito nei formati awk"
 
-#: builtin.c:982
+#: builtin.c:984
 msgid "fatal: argument index with `$' must be > 0"
 msgstr "fatale: indice argomenti con `$' dev'essere > 0"
 
-#: builtin.c:986
+#: builtin.c:988
 #, c-format
 msgid ""
 "fatal: argument index %ld greater than total number of supplied arguments"
 msgstr ""
 "fatale: indice argomenti %ld maggiore del numero totale argomenti specificati"
 
-#: builtin.c:990
+#: builtin.c:992
 msgid "fatal: `$' not permitted after period in format"
 msgstr "fatale: `$' non consentito dopo il punto in un formato"
 
-#: builtin.c:1009
+#: builtin.c:1011
 msgid "fatal: no `$' supplied for positional field width or precision"
 msgstr "fatale: manca `$' per i campi posizionali larghezza o precisione"
 
-#: builtin.c:1084
+#: builtin.c:1086
 #, c-format
 msgid "`%c' is meaningless in awk formats; ignored"
 msgstr "`%c' non ha senso nei formati awk; ignorato"
 
-#: builtin.c:1088
+#: builtin.c:1090
 #, c-format
 msgid "fatal: `%c' is not permitted in POSIX awk formats"
 msgstr "fatale: `%c' non consentito nei formati POSIX awk"
 
-#: builtin.c:1119
+#: builtin.c:1121
 #, c-format
 msgid "[s]printf: value %g is too big for %%c format"
 msgstr "[s]printf: valore %g troppo elevato per il formato %%c"
 
-#: builtin.c:1132
+#: builtin.c:1134
 #, c-format
 msgid "[s]printf: value %g is not a valid wide character"
 msgstr "[s]printf: valore %g non è un carattere multibyte valido "
 
-#: builtin.c:1524
+#: builtin.c:1526
 #, c-format
 msgid "[s]printf: value %g is out of range for `%%%c' format"
 msgstr "[s]printf: valore %g fuori intervallo per il formato `%%%c'"
 
-#: builtin.c:1532
+#: builtin.c:1534
 #, c-format
 msgid "[s]printf: value %s is out of range for `%%%c' format"
 msgstr "[s]printf: valore %s fuori intervallo per il formato `%%%c'"
 
-#: builtin.c:1557
+#: builtin.c:1559
 #, c-format
 msgid "%%%c format is POSIX standard but not portable to other awks"
 msgstr "il formato %%%c è nello standard POSIX ma non-portabile ad altri awk"
 
-#: builtin.c:1668
+#: builtin.c:1670
 #, c-format
 msgid "ignoring unknown format specifier character `%c': no argument converted"
 msgstr "carattere di formato ignoto `%c' ignorato: nessun argomento convertito"
 
-#: builtin.c:1673
+#: builtin.c:1675
 msgid "fatal: not enough arguments to satisfy format string"
 msgstr ""
 "fatale: argomenti in numero minore di quelli richiesti dalla stringa di "
 "formato"
 
-#: builtin.c:1675
+#: builtin.c:1677
 msgid "^ ran out for this one"
 msgstr "^ esauriti a questo punto"
 
-#: builtin.c:1682
+#: builtin.c:1684
 msgid "[s]printf: format specifier does not have control letter"
 msgstr "[s]printf: specifica di formato senza un carattere di controllo"
 
-#: builtin.c:1685
+#: builtin.c:1687
 msgid "too many arguments supplied for format string"
 msgstr "troppi argomenti specificati per questa stringa di formato"
 
-#: builtin.c:1745
+#: builtin.c:1734
+msgid "%s: received non-string format string argument"
+msgstr "%s: ricevuto argomento formato che non è una stringa"
+
+#: builtin.c:1749
 msgid "sprintf: no arguments"
 msgstr "sprintf: nessun argomento"
 
-#: builtin.c:1768 builtin.c:1779
+#: builtin.c:1772 builtin.c:1783
 msgid "printf: no arguments"
 msgstr "printf: nessun argomento"
 
-#: builtin.c:1794
+#: builtin.c:1798
 msgid "printf: attempt to write to closed write end of two-way pipe"
 msgstr ""
 "printf: tentativo di scrivere al lato in scrittura, chiuso, di una `pipe' "
 "bidirezionale"
 
-#: builtin.c:1874
+#: builtin.c:1866 builtin.c:4076
+msgid "%s: received non-numeric third argument"
+msgstr "%s: ricevuto terzo argomento non numerico"
+
+#: builtin.c:1873 builtin.c:2063 builtin.c:2569 builtin.c:3566 builtin.c:3607
+#: builtin.c:4207
+#, c-format
+msgid "%s: received non-numeric second argument"
+msgstr "%s: ricevuto secondo argomento non numerico"
+
+#: builtin.c:1884
 #, c-format
 msgid "substr: length %g is not >= 1"
 msgstr "substr: lunghezza %g non >= 1"
 
-#: builtin.c:1876
+#: builtin.c:1886
 #, c-format
 msgid "substr: length %g is not >= 0"
 msgstr "substr: lunghezza %g non >= 0"
 
-#: builtin.c:1890
+#: builtin.c:1900
 #, c-format
 msgid "substr: non-integer length %g will be truncated"
 msgstr "substr: lunghezza non intera %g: sarà troncata"
 
-#: builtin.c:1895
+#: builtin.c:1905
 #, c-format
 msgid "substr: length %g too big for string indexing, truncating to %g"
 msgstr "substr: lunghezza %g troppo elevata per indice stringa, tronco a %g"
 
-#: builtin.c:1907
+#: builtin.c:1917
 #, c-format
 msgid "substr: start index %g is invalid, using 1"
 msgstr "substr: indice di partenza %g non valido, uso 1"
 
-#: builtin.c:1912
+#: builtin.c:1922
 #, c-format
 msgid "substr: non-integer start index %g will be truncated"
 msgstr "substr: indice di partenza non intero %g: sarà troncato"
 
-#: builtin.c:1935
+#: builtin.c:1945
 msgid "substr: source string is zero length"
 msgstr "substr: stringa di partenza lunga zero"
 
-#: builtin.c:1949
+#: builtin.c:1959
 #, c-format
 msgid "substr: start index %g is past end of string"
 msgstr "substr: indice di partenza %g oltre la fine della stringa"
 
-#: builtin.c:1957
+#: builtin.c:1967
 #, c-format
 msgid ""
 "substr: length %g at start index %g exceeds length of first argument (%lu)"
@@ -866,156 +885,164 @@ msgstr ""
 "substr: lunghezza %g all'indice di partenza %g supera la lunghezza del primo "
 "argomento (%lu)"
 
-#: builtin.c:2032
+#: builtin.c:2042
 msgid "strftime: format value in PROCINFO[\"strftime\"] has numeric type"
 msgstr ""
 "strftime: il valore del formato in PROCINFO[\"strftime\"] è di tipo numerico"
 
-#: builtin.c:2052 builtin.c:2558 builtin.c:3553 builtin.c:3594 builtin.c:4166
-#, c-format
-msgid "%s: received non-numeric second argument"
-msgstr "%s: ricevuto secondo argomento non numerico"
-
-#: builtin.c:2062
+#: builtin.c:2073
 msgid "strftime: second argument less than 0 or too big for time_t"
 msgstr "strftime: secondo argomento minore di 0 o troppo elevato per time_t"
 
-#: builtin.c:2069
+#: builtin.c:2080
 msgid "strftime: second argument out of range for time_t"
 msgstr "strftime: il secondo argomento è fuori intervallo per time_t"
 
-#: builtin.c:2085
+#: builtin.c:2096
 msgid "strftime: received empty format string"
 msgstr "strftime: ricevuta stringa nulla come formato"
 
-#: builtin.c:2191
+#: builtin.c:2202
 msgid "mktime: at least one of the values is out of the default range"
 msgstr "mktime: almeno un valore è fuori dall'intervallo di default"
 
-#: builtin.c:2229
+#: builtin.c:2240
 msgid "'system' function not allowed in sandbox mode"
 msgstr "funzione 'system' non consentita in modo `sandbox'"
 
-#: builtin.c:2303 builtin.c:2378
+#: builtin.c:2314 builtin.c:2389
 msgid "print: attempt to write to closed write end of two-way pipe"
 msgstr ""
 "print: tentativo di scrivere al lato in scrittura, chiuso, di una `pipe' "
 "bidirezionale"
 
-#: builtin.c:2401
+#: builtin.c:2412
 #, c-format
 msgid "reference to uninitialized field `$%d'"
 msgstr "riferimento a variabile non inizializzata `$%d'"
 
-#: builtin.c:2556 builtin.c:3551 builtin.c:3592 builtin.c:4164
+#: builtin.c:2567 builtin.c:3564 builtin.c:3605 builtin.c:4205
 #, c-format
 msgid "%s: received non-numeric first argument"
 msgstr "%s: ricevuto primo argomento non numerico"
 
-#: builtin.c:2749
+#: builtin.c:2760
 msgid "match: third argument is not an array"
 msgstr "match: il terzo argomento non è un vettore"
 
-#: builtin.c:2751
+#: builtin.c:2762
 #, c-format
 msgid "%s: cannot use %s as third argument"
 msgstr "%s: non si può usare %s come terzo argomento"
 
-#: builtin.c:2996
+#: builtin.c:3009
 #, c-format
 msgid "gensub: third argument `%.*s' treated as 1"
 msgstr "gensub: il terzo argomento `%.*s' trattato come 1"
 
-#: builtin.c:3353
+#: builtin.c:3366
 #, c-format
 msgid "%s: can be called indirectly only with two arguments"
 msgstr "%s: può essere chiamata indirettamente solo con due argomenti"
 
-#: builtin.c:3376
+#: builtin.c:3389
 msgid "indirect call to gensub requires three to four arguments"
 msgstr "la chiamata indiretta a gensub richiede tre o quattro argomenti"
 
-#: builtin.c:3438
+#: builtin.c:3451
 msgid "indirect call to match requires two or three arguments"
 msgstr "la chiamata indiretta a match richiede due o tre argomenti"
 
-#: builtin.c:3482
+#: builtin.c:3495
+#, c-format
 msgid "indirect call to %s requires two to four arguments"
 msgstr "la chiamata indiretta a %s richiede da due a quattro argomenti"
 
-#: builtin.c:3559
+#: builtin.c:3572
 #, c-format
 msgid "lshift(%f, %f): negative values are not allowed"
 msgstr "lshift(%f, %f): valori negativi non sono consentiti"
 
-#: builtin.c:3563
+#: builtin.c:3576
 #, c-format
 msgid "lshift(%f, %f): fractional values will be truncated"
 msgstr "lshift(%f, %f): valori decimali saranno troncati"
 
-#: builtin.c:3565
+#: builtin.c:3578
 #, c-format
 msgid "lshift(%f, %f): too large shift value will give strange results"
 msgstr "lshift(%f, %f): valori troppo alti daranno risultati strani"
 
-#: builtin.c:3600
+#: builtin.c:3613
 #, c-format
 msgid "rshift(%f, %f): negative values are not allowed"
 msgstr "rshift(%f, %f): valori negativi non sono consentiti"
 
-#: builtin.c:3604
+#: builtin.c:3617
 #, c-format
 msgid "rshift(%f, %f): fractional values will be truncated"
 msgstr "rshift(%f, %f): valori decimali saranno troncati"
 
-#: builtin.c:3606
+#: builtin.c:3619
 #, c-format
 msgid "rshift(%f, %f): too large shift value will give strange results"
 msgstr "rshift(%f, %f): valori troppo alti daranno risultati strani"
 
-#: builtin.c:3630 builtin.c:3661 builtin.c:3691
+#: builtin.c:3643 builtin.c:3674 builtin.c:3704
 #, c-format
 msgid "%s: called with less than two arguments"
 msgstr "%s: chiamata con meno di due argomenti"
 
-#: builtin.c:3635 builtin.c:3666 builtin.c:3697
+#: builtin.c:3648 builtin.c:3679 builtin.c:3710
 #, c-format
 msgid "%s: argument %d is non-numeric"
 msgstr "%s: argomento %d non numerico"
 
-#: builtin.c:3639 builtin.c:3670 builtin.c:3701
+#: builtin.c:3652 builtin.c:3683 builtin.c:3714
 #, c-format
 msgid "%s: argument %d negative value %g is not allowed"
 msgstr "%s: argomento %d con valore negativo %g non consentito"
 
-#: builtin.c:3730
+#: builtin.c:3743
 #, c-format
 msgid "compl(%f): negative value is not allowed"
 msgstr "compl(%f): valore negativo non consentito"
 
-#: builtin.c:3733
+#: builtin.c:3746
 #, c-format
 msgid "compl(%f): fractional value will be truncated"
 msgstr "compl(%f): valori decimali saranno troncati"
 
-#: builtin.c:3921
+#: builtin.c:3934
 #, c-format
 msgid "dcgettext: `%s' is not a valid locale category"
 msgstr "dcgettext: `%s' non è una categoria `locale' valida"
 
-#: builtin.c:4156 mpfr.c:1328
+#: builtin.c:3969 builtin.c:3987
+msgid "%s: received non-string third argument"
+msgstr "%s: ricevuto terzo argomento che non è una stringa"
+
+#: builtin.c:4042 builtin.c:4063
+msgid "%s: received non-string fifth argument"
+msgstr "%s: ricevuto quinto argomento che non è una stringa"
+
+#: builtin.c:4052 builtin.c:4069
+msgid "%s: received non-string fourth argument"
+msgstr "%s: ricevuto quarto argomento che non è una stringa"
+
+#: builtin.c:4197 mpfr.c:1328
 msgid "intdiv: third argument is not an array"
 msgstr "intdiv: il terzo argomento non è un vettore"
 
-#: builtin.c:4175 mpfr.c:1377
+#: builtin.c:4216 mpfr.c:1377
 msgid "intdiv: division by zero attempted"
 msgstr "intdiv: tentativo di dividere per zero"
 
-#: builtin.c:4216
+#: builtin.c:4257
 msgid "typeof: second argument is not an array"
 msgstr "typeof: il secondo argomento non è un vettore"
 
-#: builtin.c:4291
+#: builtin.c:4332
 #, c-format
 msgid ""
 "typeof detected invalid flags combination `%s'; please file a bug report"
@@ -1023,12 +1050,12 @@ msgstr ""
 "typeof ha trovato una combinazione di flag `%s' non valida; siete pregati di "
 "notificare questo bug"
 
-#: builtin.c:4332
+#: builtin.c:4373
 #, c-format
 msgid "typeof: invalid argument type `%s'"
 msgstr "typeof: tipo di argomento sconosciuto `%s'"
 
-#: builtin.c:4336
+#: builtin.c:4377
 #, c-format
 msgid "typeof: unknown argument type `%s'"
 msgstr "typeof: tipo di argomento sconosciuto `%s'"
@@ -1301,8 +1328,8 @@ msgstr "source nome-file - esegui comandi contenuti nel file"
 #: command.y:888
 msgid "step [COUNT] - step program until it reaches a different source line"
 msgstr ""
-"step [CONTATORE] - esegui il programma finché non arriva a un'istruzione con "
-"numero di riga differente"
+"step [CONTATORE] - esegui il programma finché non arriva a un'istruzione "
+"con numero di riga differente"
 
 #: command.y:890
 msgid "stepi [COUNT] - step one instruction exactly"
@@ -1349,7 +1376,7 @@ msgstr ""
 "where [N] - (equivale a backtrace) stampa traccia di tutti gli elementi o "
 "degli N più interni (degli N più esterni se N <0)"
 
-#: command.y:1017 debug.c:423 gawkapi.c:255 msg.c:142
+#: command.y:1017 debug.c:423 gawkapi.c:258 msg.c:142
 #, c-format
 msgid "error: "
 msgstr "errore: "
@@ -2327,6 +2354,7 @@ msgid "revoutput: could not initialize REVOUT variable"
 msgstr "revoutput: non riesco a inizializzare la variabile REVOUT"
 
 #: extension/rwarray.c:141 extension/rwarray.c:544
+#, c-format
 msgid "%s: first argument is not a string"
 msgstr "%s: il primo argomento non è una stringa"
 
@@ -2356,14 +2384,16 @@ msgid ""
 "rwarray extension: received GMP/MPFR value but compiled without GMP/MPFR "
 "support."
 msgstr ""
-"estensione rwarray: ricevuto valore GMP/MPFR ma il supporto GMP/MPFR non "
-"è disponibile."
+"estensione rwarray: ricevuto valore GMP/MPFR ma il supporto GMP/MPFR non è "
+"disponibile."
 
 #: extension/rwarray.c:431
+#, c-format
 msgid "cannot free number with unknown type %d"
 msgstr "non posso liberare un numero di tipo sconosciuto %d"
 
 #: extension/rwarray.c:436
+#, c-format
 msgid "cannot free value with unhandled type %d"
 msgstr "non posso liberare un valore di tipo non gestito %d"
 
@@ -2395,8 +2425,8 @@ msgid ""
 "rwarray extension: GMP/MPFR value in file but compiled without GMP/MPFR "
 "support."
 msgstr ""
-"estensione rwarray: trovato valore GMP/MPFR nel file ma il supporto "
-"GMP/MPFR non è disponibile."
+"estensione rwarray: trovato valore GMP/MPFR nel file ma il supporto GMP/MPFR "
+"non è disponibile."
 
 #: extension/time.c:141
 msgid "gettimeofday: not supported on this platform"
@@ -2526,24 +2556,24 @@ msgstr "`FPAT' è un'estensione gawk"
 msgid "awk_value_to_node: received null retval"
 msgstr "awk_value_to_node: ricevuto retval nullo"
 
-#: gawkapi.c:174 gawkapi.c:186
+#: gawkapi.c:174 gawkapi.c:187
 msgid "awk_value_to_node: not in MPFR mode"
 msgstr "awk_value_to_node: non in modalità MPFR"
 
-#: gawkapi.c:180 gawkapi.c:190
+#: gawkapi.c:181 gawkapi.c:193
 msgid "awk_value_to_node: MPFR not supported"
 msgstr "awk_value_to_node: MPFR non disponibile"
 
-#: gawkapi.c:194
+#: gawkapi.c:197
 #, c-format
 msgid "awk_value_to_node: invalid number type `%d'"
 msgstr "awk_value_to_node: tipo di numero non valido `%d'"
 
-#: gawkapi.c:381
+#: gawkapi.c:384
 msgid "add_ext_func: received NULL name_space parameter"
 msgstr "add_ext_func: ricevuto come nome dello spazio-dei-nomi la stringa NULL"
 
-#: gawkapi.c:519
+#: gawkapi.c:522
 #, c-format
 msgid ""
 "node_to_awk_value: detected invalid numeric flags combination `%s'; please "
@@ -2552,15 +2582,15 @@ msgstr ""
 "node_to_awk_value: trovata combinazione numerica di flag non valida `%s'; "
 "siete pregati di notificare questo bug"
 
-#: gawkapi.c:557
+#: gawkapi.c:560
 msgid "node_to_awk_value: received null node"
 msgstr "node_to_awk_value: ricevuto nodo nullo"
 
-#: gawkapi.c:560
+#: gawkapi.c:563
 msgid "node_to_awk_value: received null val"
 msgstr "node_to_awk_value: ricevuto valore nullo"
 
-#: gawkapi.c:627 gawkapi.c:664 gawkapi.c:694 gawkapi.c:731
+#: gawkapi.c:630 gawkapi.c:667 gawkapi.c:697 gawkapi.c:734
 #, c-format
 msgid ""
 "node_to_awk_value detected invalid flags combination `%s'; please file a bug "
@@ -2569,35 +2599,35 @@ msgstr ""
 "node_to_awk_value ha trovato la combinazione flag invalida `%s'; siete "
 "pregati di notificare questo bug"
 
-#: gawkapi.c:1109
+#: gawkapi.c:1112
 msgid "remove_element: received null array"
 msgstr "remove_element: ricevuto vettore nullo"
 
-#: gawkapi.c:1112
+#: gawkapi.c:1115
 msgid "remove_element: received null subscript"
 msgstr "remove_element: ricevuto indice nullo"
 
-#: gawkapi.c:1244
+#: gawkapi.c:1247
 #, c-format
 msgid "api_flatten_array_typed: could not convert index %d to %s"
 msgstr ""
 "api_flatten_array_typed: non sono riuscito a convertire l'indice %d a %s"
 
-#: gawkapi.c:1249
+#: gawkapi.c:1252
 #, c-format
 msgid "api_flatten_array_typed: could not convert value %d to %s"
 msgstr ""
 "api_flatten_array_typed: non sono riuscito a convertire il valore %d a %s"
 
-#: gawkapi.c:1345 gawkapi.c:1362
+#: gawkapi.c:1348 gawkapi.c:1365
 msgid "api_get_mpfr: MPFR not supported"
 msgstr "api_get_mpfr: MPFR non disponibile"
 
-#: gawkapi.c:1393
+#: gawkapi.c:1396
 msgid "cannot find end of BEGINFILE rule"
 msgstr "non riesco a trovare la fine di una regola BEGINFILE"
 
-#: gawkapi.c:1447
+#: gawkapi.c:1450
 #, c-format
 msgid "cannot open unrecognized file type `%s' for `%s'"
 msgstr "non riesco ad aprire file di tipo non riconosciuto `%s' per `%s'"
@@ -2813,12 +2843,12 @@ msgstr "fflush: non riesco a terminare lo standard output: %s"
 msgid "fflush: cannot flush standard error: %s"
 msgstr "fflush: non riesco a terminare lo standard error: %s"
 
-#: io.c:1478 io.c:1567 main.c:669 main.c:714
+#: io.c:1478 io.c:1567 main.c:670 main.c:715
 #, c-format
 msgid "error writing standard output: %s"
 msgstr "errore scrivendo `standard output': %s"
 
-#: io.c:1479 io.c:1578 main.c:671
+#: io.c:1479 io.c:1578 main.c:672
 #, c-format
 msgid "error writing standard error: %s"
 msgstr "errore scrivendo `standard error': %s"
@@ -3210,9 +3240,19 @@ msgstr "\t-Z locale-name\t\t--locale=locale-name\n"
 #. TRANSLATORS: --help output (end)
 #. no-wrap
 #: main.c:644
+#| msgid ""
+#| "\n"
+#| "To report bugs, see node `Bugs' in `gawk.info'\n"
+#| "which is section `Reporting Problems and Bugs' in the\n"
+#| "printed version.  This same information may be found at\n"
+#| "https://www.gnu.org/software/gawk/manual/html_node/Bugs.html.\n"
+#| "PLEASE do NOT try to report bugs by posting in comp.lang.awk,\n"
+#| "or by using a web forum such as Stack Overflow.\n"
+#| "\n"
 msgid ""
 "\n"
-"To report bugs, see node `Bugs' in `gawk.info'\n"
+"To report bugs, use the `gawkbug' program.\n"
+"For full instructions, see the node `Bugs' in `gawk.info'\n"
 "which is section `Reporting Problems and Bugs' in the\n"
 "printed version.  This same information may be found at\n"
 "https://www.gnu.org/software/gawk/manual/html_node/Bugs.html.\n"
@@ -3221,15 +3261,16 @@ msgid ""
 "\n"
 msgstr ""
 "\n"
-"Per segnalare problemi, vedere nodo `Bugs' in `gawk.info', oppure la\n"
-"sezione `Segnalazione di problemi e bug' nella versione a stampa.\n"
-"La stessa informazione è disponibile in\n"
+"Per segnalare problemi, usare il programma `gawkbug'\n"
+"Per informazioni dettagliate, vedere il nodo `Bugs' in `gawk.info'\n"
+"che è la sezione `Segnalazione di problemi e bug' nella versione\n"
+"a stampa. La stessa informazione è disponibile in\n"
 "https://www.gnu.org/software/gawk/manual/html_node/Bugs.html.\n"
-"Siete pregati di NON segnalare bug scrivendo a comp.lang.awk.\n"
-"Per problemi di traduzione, contattare: azc100@gmail.com.\n"
+"Siete pregati di NON segnalare bug scrivendo a comp.lang.awk,\n"
+"o usando un forum online del tipo di Stack Overflow.\n"
 "\n"
 
-#: main.c:652
+#: main.c:653
 msgid ""
 "gawk is a pattern scanning and processing language.\n"
 "By default it reads standard input and writes standard output.\n"
@@ -3239,7 +3280,7 @@ msgstr ""
 "Senza parametri, legge da `standard input' e scrive su `standard output'.\n"
 "\n"
 
-#: main.c:656
+#: main.c:657
 #, c-format
 msgid ""
 "Examples:\n"
@@ -3250,7 +3291,7 @@ msgstr ""
 "\t%s '{ sum += $1 }; END { print sum }' file\n"
 "\t%s -F: '{ print $1 }' /etc/passwd\n"
 
-#: main.c:686
+#: main.c:687
 #, c-format
 msgid ""
 "Copyright (C) 1989, 1991-%d Free Software Foundation.\n"
@@ -3269,7 +3310,7 @@ msgstr ""
 "Licenza, o (a tua scelta) a una qualsiasi versione successiva.\n"
 "\n"
 
-#: main.c:694
+#: main.c:695
 msgid ""
 "This program is distributed in the hope that it will be useful,\n"
 "but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
@@ -3283,7 +3324,7 @@ msgstr ""
 "Vedi la 'GNU General Public License' per ulteriori dettagli.\n"
 "\n"
 
-#: main.c:700
+#: main.c:701
 msgid ""
 "You should have received a copy of the GNU General Public License\n"
 "along with this program. If not, see http://www.gnu.org/licenses/.\n"
@@ -3292,11 +3333,11 @@ msgstr ""
 "assieme a questo programma; se non è così, vedi http://www.gnu.org/"
 "licenses/.\n"
 
-#: main.c:739
+#: main.c:740
 msgid "-Ft does not set FS to tab in POSIX awk"
 msgstr "-Ft non imposta FS a `tab' nell'awk POSIX"
 
-#: main.c:1153
+#: main.c:1154
 #, c-format
 msgid ""
 "%s: `%s' argument to `-v' not in `var=value' form\n"
@@ -3305,70 +3346,70 @@ msgstr ""
 "%s: `%s' argomento di `-v' non in forma `var=valore'\n"
 "\n"
 
-#: main.c:1179
+#: main.c:1180
 #, c-format
 msgid "`%s' is not a legal variable name"
 msgstr "`%s' non è un nome di variabile ammesso"
 
-#: main.c:1182
+#: main.c:1183
 #, c-format
 msgid "`%s' is not a variable name, looking for file `%s=%s'"
 msgstr "`%s' non è un nome di variabile, cerco il file `%s=%s'"
 
-#: main.c:1196
+#: main.c:1197
 #, c-format
 msgid "cannot use gawk builtin `%s' as variable name"
 msgstr "nome funzione interna gawk `%s' non ammesso come nome variabile"
 
-#: main.c:1201
+#: main.c:1202
 #, c-format
 msgid "cannot use function `%s' as variable name"
 msgstr "non è possibile usare nome di funzione `%s' come nome di variabile"
 
-#: main.c:1280
+#: main.c:1281
 msgid "floating point exception"
 msgstr "eccezione floating point"
 
-#: main.c:1290
+#: main.c:1291
 msgid "fatal error: internal error"
 msgstr "errore fatale: errore interno"
 
-#: main.c:1310
+#: main.c:1311
 msgid "fatal error: internal error: segfault"
 msgstr "errore fatale: errore interno: segfault"
 
-#: main.c:1323
+#: main.c:1324
 msgid "fatal error: internal error: stack overflow"
 msgstr "errore fatale: errore interno: stack overflow"
 
-#: main.c:1383
+#: main.c:1384
 #, c-format
 msgid "no pre-opened fd %d"
 msgstr "manca `fd' pre-aperta %d"
 
-#: main.c:1390
+#: main.c:1391
 #, c-format
 msgid "could not pre-open /dev/null for fd %d"
 msgstr "non riesco a pre-aprire /dev/null per `fd' %d"
 
-#: main.c:1604
+#: main.c:1605
 msgid "empty argument to `-e/--source' ignored"
 msgstr "argomento di `-e/--source' nullo, ignorato"
 
-#: main.c:1669 main.c:1674
+#: main.c:1670 main.c:1675
 msgid "`--profile' overrides `--pretty-print'"
 msgstr "`--profile' annulla `--pretty-print'"
 
-#: main.c:1686
+#: main.c:1687
 msgid "-M ignored: MPFR/GMP support not compiled in"
 msgstr "-M ignorato: supporto per MPFR/GMP non generato"
 
-#: main.c:1713
+#: main.c:1714
 #, c-format
 msgid "%s: option `-W %s' unrecognized, ignored\n"
 msgstr "%s: opzione `-W %s' non riconosciuta, ignorata\n"
 
-#: main.c:1766
+#: main.c:1767
 #, c-format
 msgid "%s: option requires an argument -- %c\n"
 msgstr "%s: l'opzione richiede un argomento -- %c\n"
@@ -3504,8 +3545,8 @@ msgid ""
 "Invalid multibyte data detected. There may be a mismatch between your data "
 "and your locale"
 msgstr ""
-"Trovati dati multi-byte invalidi. Può esserci una differenza tra i dati e la "
-"codifica locale"
+"Trovati dati multi-byte invalidi. Può esserci una differenza tra i dati e "
+"la codifica locale"
 
 #: posix/gawkmisc.c:177
 #, c-format
@@ -3551,11 +3592,11 @@ msgstr ""
 msgid "internal error: %s with null vname"
 msgstr "errore interno: %s con `vname' nullo"
 
-#: profile.c:663
+#: profile.c:662
 msgid "internal error: builtin with null fname"
 msgstr "errore interno: funzione interna con `fname' nullo"
 
-#: profile.c:1318
+#: profile.c:1317
 #, c-format
 msgid ""
 "%s# Loaded extensions (-l and/or @load)\n"
@@ -3564,7 +3605,7 @@ msgstr ""
 "%s# Estensioni caricate (-l e/o @load)\n"
 "\n"
 
-#: profile.c:1349
+#: profile.c:1348
 #, c-format
 msgid ""
 "\n"
@@ -3575,12 +3616,12 @@ msgstr ""
 "# File inclusi (-i e/o @include)\n"
 "\n"
 
-#: profile.c:1413
+#: profile.c:1412
 #, c-format
 msgid "\t# gawk profile, created %s\n"
 msgstr "\t# profilo gawk, creato %s\n"
 
-#: profile.c:1981
+#: profile.c:1980
 #, c-format
 msgid ""
 "\n"
@@ -3589,7 +3630,7 @@ msgstr ""
 "\n"
 "\t# Funzioni, in ordine alfabetico\n"
 
-#: profile.c:2042
+#: profile.c:2041
 #, c-format
 msgid "redir2str: unknown redirection type %d"
 msgstr "redir2str: tipo di ri-direzione non noto %d"
