@@ -38,14 +38,14 @@ export PATH
 : ${TMPDIR:=/tmp}
 
 #Securely create a temporary directory for the temporary files
-TEMPDIR=$TMPDIR/bbug.$$
+TEMPDIR=$TMPDIR/gbug.$$
 (umask 077 && mkdir "$TEMPDIR") || {
 	echo "$0: could not create temporary directory" >&2
 	exit 1
 }
 
-TEMPFILE1=$TEMPDIR/bbug1
-TEMPFILE2=$TEMPDIR/bbug2
+TEMPFILE1=$TEMPDIR/gbug1
+TEMPFILE2=$TEMPDIR/gbug2
         
 USAGE="Usage: $0 [--help] [--version] [bug-report-email-address]"
 VERSTR="GNU gawkbug, version ${VERSION}"
@@ -83,7 +83,11 @@ for when Gawk doesn't behave like you'd like, or expect.
 Gawkbug will start up your editor (as defined by the shell's
 EDITOR environment variable) with a preformatted bug report
 template for you to fill in. The report will be mailed to the
-bug-gawk mailing list by default. See the manual for details.
+bug-gawk mailing list by default.
+
+Please see https://www.gnu.org/software/gawk/manual/html_node/Bugs.html
+for bug reporting instructions.  Reading that information before
+repoting a bug will make everyones' lives easier.
 
 If you invoke gawkbug by accident, just quit your editor without
 saving any changes to the template, and no bug report will be sent.

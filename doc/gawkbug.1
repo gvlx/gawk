@@ -4,9 +4,9 @@
 .\"     Arnold Robbins
 .\"     bug-gawk@gnu.org
 .\"
-.\"     Last Change: Sat Feb 26 22:38:19 IST 2022
+.\"     Last Change: Mon Apr 18 16:21:25 IDT 2022
 .\"
-.TH GAWKBUG 1 "2022 Feb 26" "GNU Awk 5.2"
+.TH GAWKBUG 1 "2022 Apr 18" "GNU Awk 5.2"
 .SH NAME
 gawkbug \- report a bug in gawk
 .SH SYNOPSIS
@@ -14,7 +14,9 @@ gawkbug \- report a bug in gawk
 .SH DESCRIPTION
 .B gawkbug
 is a shell script to help the user compose and mail bug reports
-concerning gawk in a standard format.
+concerning
+.B gawk
+in a standard format.
 .B gawkbug
 invokes the editor specified by the environment variable
 .SM
@@ -28,7 +30,8 @@ file \fIdead.gawkbug\fP in the invoking user's home directory.
 .PP
 The bug report format outline consists of several sections.  The first
 section provides information about the machine, operating system, the
-gawk version, and the compilation environment.  The second section
+.B gawk
+version, and the compilation environment.  The second section
 should be filled in with a description of the bug.  The third section
 should be a description of how to reproduce the bug.  The optional
 fourth section is for a proposed fix.  Fixes are encouraged.
@@ -44,7 +47,7 @@ is not set,
 .B gawkbug
 attempts to locate a number of alternative editors, including
 .BR vim ,
-and if must,
+and if it must,
 .BR emacs .
 If
 .B gawkbug
