@@ -43044,6 +43044,12 @@ make it possible to include them:
 
 @enumerate 1
 @item
+Discuss the proposed new feature with the @command{gawk} maintainer.
+The bug list may be used for this.  Even if I don't
+wish to include your feature, be aware that you are still free to
+add it and distribute your own ``fork'' of @command{gawk}.
+
+@item
 Before building the new feature into @command{gawk} itself,
 consider writing it as an extension
 (@pxref{Dynamic Extensions}).
@@ -43107,8 +43113,10 @@ line above the line with the name and arguments of the function.
 
 @item
 Put spaces around parentheses used in control structures
-(@code{if}, @code{while}, @code{for}, @code{do}, @code{switch},
-and @code{return}).
+(@code{if}, @code{while}, @code{for}, @code{do}, and @code{switch}).
+
+@item
+Do not parenthesize the expression used with @code{return}.
 
 @item
 Do not put spaces in front of parentheses used in function calls.
@@ -43131,6 +43139,12 @@ Use comparisons against @code{NULL} and @code{'\0'} in the conditions of
 @code{if}, @code{while}, and @code{for} statements, as well as in the @code{case}s
 of @code{switch} statements, instead of just the
 plain pointer or character value.
+
+@item
+Do not, @emph{under any circumstances}, use the @samp{-1 == foo} or
+@samp{0 >= bar} style of comparison expressions.  I have known about
+it for decades, and I understand why some people like it.  Nonetheless,
+I abhor it with a passion, and code that uses it will never be accepted.
 
 @item
 Use @code{true} and @code{false} for @code{bool} values,

@@ -32445,11 +32445,16 @@ you want your changes to be incorporated into the 'gawk' distribution,
 there are several steps that you need to take in order to make it
 possible to include them:
 
-  1. Before building the new feature into 'gawk' itself, consider
+  1. Discuss the proposed new feature with the 'gawk' maintainer.  The
+     bug list may be used for this.  Even if I don't wish to include
+     your feature, be aware that you are still free to add it and
+     distribute your own "fork" of 'gawk'.
+
+  2. Before building the new feature into 'gawk' itself, consider
      writing it as an extension (*note Dynamic Extensions::).  If that's
      not possible, continue with the rest of the steps in this list.
 
-  2. Be prepared to sign the appropriate paperwork.  In order for the
+  3. Be prepared to sign the appropriate paperwork.  In order for the
      FSF to distribute your changes, you must either place those changes
      in the public domain and submit a signed statement to that effect,
      or assign the copyright in your changes to the FSF. Both of these
@@ -32457,21 +32462,21 @@ possible to include them:
      you have questions, please contact me (*note Bugs::), or
      <assign@gnu.org>.
 
-  3. Get the latest version.  It is much easier for me to integrate
+  4. Get the latest version.  It is much easier for me to integrate
      changes if they are relative to the most recent distributed version
      of 'gawk', or better yet, relative to the latest code in the Git
      repository.  If your version of 'gawk' is very old, I may not be
      able to integrate your changes at all.  (*Note Getting::, for
      information on getting the latest version of 'gawk'.)
 
-  4. *Note Version: (standards)Top.  This document describes how GNU
+  5. *Note Version: (standards)Top.  This document describes how GNU
      software should be written.  If you haven't read it, please do so,
      preferably _before_ starting to modify 'gawk'.  (The 'GNU Coding
      Standards' are available from the GNU Project's website
      (https://www.gnu.org/prep/standards/).  Texinfo, Info, and DVI
      versions are also available.)
 
-  5. Use the 'gawk' coding style.  The C code for 'gawk' follows the
+  6. Use the 'gawk' coding style.  The C code for 'gawk' follows the
      instructions in the 'GNU Coding Standards', with minor exceptions.
      The code is formatted using the traditional "K&R" style,
      particularly as regards to the placement of braces and the use of
@@ -32489,7 +32494,9 @@ possible to include them:
           function.
 
         * Put spaces around parentheses used in control structures
-          ('if', 'while', 'for', 'do', 'switch', and 'return').
+          ('if', 'while', 'for', 'do', and 'switch').
+
+        * Do not parenthesize the expression used with 'return'.
 
         * Do not put spaces in front of parentheses used in function
           calls.
@@ -32509,6 +32516,12 @@ possible to include them:
           'if', 'while', and 'for' statements, as well as in the 'case's
           of 'switch' statements, instead of just the plain pointer or
           character value.
+
+        * Do not, _under any circumstances_, use the '-1 == foo' or '0
+          >= bar' style of comparison expressions.  I have known about
+          it for decades, and I understand why some people like it.
+          Nonetheless, I abhor it with a passion, and code that uses it
+          will never be accepted.
 
         * Use 'true' and 'false' for 'bool' values, the 'NULL' symbolic
           constant for pointer values, and the character constant ''\0''
@@ -32534,7 +32547,7 @@ possible to include them:
           style used in 'gawk', I may not bother to integrate your
           changes at all.
 
-  6. Update the documentation.  Along with your new code, please supply
+  7. Update the documentation.  Along with your new code, please supply
      new sections and/or chapters for this Info file.  If at all
      possible, please use real Texinfo, instead of just supplying
      unformatted ASCII text (although even that is better than no
@@ -32546,7 +32559,7 @@ possible to include them:
      You will also have to sign paperwork for your documentation
      changes.
 
-  7. Submit changes as unified diffs.  Use 'diff -u -r -N' to compare
+  8. Submit changes as unified diffs.  Use 'diff -u -r -N' to compare
      the original 'gawk' source tree with your version.  I recommend
      using the GNU version of 'diff', or best of all, 'git diff' or 'git
      format-patch'.  Send the output produced by 'diff' to me when you
@@ -32558,7 +32571,7 @@ possible to include them:
      have to apply the changes manually, using a text editor, I may not
      do so, particularly if there are lots of changes.
 
-  8. Include an entry for the 'ChangeLog' file with your submission.
+  9. Include an entry for the 'ChangeLog' file with your submission.
      This helps further minimize the amount of work I have to do, making
      it easier for me to accept patches.  It is simplest if you just
      make this part of your diff.
@@ -37119,7 +37132,7 @@ Index
                                                               (line   6)
 * gawk, implementation issues, debugging: Compatibility Mode. (line   6)
 * gawk, features, adding:                Adding Code.         (line   6)
-* gawk, coding style in:                 Adding Code.         (line  37)
+* gawk, coding style in:                 Adding Code.         (line  42)
 * gawkbug utility:                       Bug address.         (line  31)
 * gawkextlib project:                    gawkextlib.          (line   6)
 * gawklibpath_append shell function:     Shell Startup Files. (line  29)
@@ -37186,7 +37199,7 @@ Index
 * git utility <1>:                       Other Versions.      (line  18)
 * git utility <2>:                       Accessing The Source.
                                                               (line  10)
-* git utility <3>:                       Adding Code.         (line 112)
+* git utility <3>:                       Adding Code.         (line 125)
 * Git, use of for gawk source code:      Derived Files.       (line   6)
 * global variables, show in debugger:    Debugger Info.       (line  48)
 * GMP values, API ownership of:          API Ownership of MPFR and GMP Values.
@@ -38511,7 +38524,7 @@ Index
 * Texinfo <3>:                           Extract Program.     (line  12)
 * Texinfo <4>:                           Distribution contents.
                                                               (line  89)
-* Texinfo <5>:                           Adding Code.         (line 100)
+* Texinfo <5>:                           Adding Code.         (line 113)
 * text, printing:                        Print.               (line  22)
 * text, printing, unduplicated lines of: Uniq Program.        (line   6)
 * TEXTDOMAIN variable:                   User-modified.       (line 154)
@@ -39358,31 +39371,31 @@ Node: Compatibility Mode1303889
 Node: Additions1304671
 Node: Accessing The Source1305596
 Node: Adding Code1307033
-Node: New Ports1313225
-Node: Derived Files1317600
-Ref: Derived Files-Footnote-11323260
-Ref: Derived Files-Footnote-21323295
-Ref: Derived Files-Footnote-31323893
-Node: Future Extensions1324007
-Node: Implementation Limitations1324665
-Node: Extension Design1325875
-Node: Old Extension Problems1327019
-Ref: Old Extension Problems-Footnote-11328537
-Node: Extension New Mechanism Goals1328594
-Ref: Extension New Mechanism Goals-Footnote-11331958
-Node: Extension Other Design Decisions1332147
-Node: Extension Future Growth1334260
-Node: Notes summary1334866
-Node: Basic Concepts1336024
-Node: Basic High Level1336705
-Ref: figure-general-flow1336987
-Ref: figure-process-flow1337673
-Ref: Basic High Level-Footnote-11340975
-Node: Basic Data Typing1341160
-Node: Glossary1344488
-Node: Copying1376375
-Node: GNU Free Documentation License1413918
-Node: Index1439038
+Node: New Ports1313848
+Node: Derived Files1318223
+Ref: Derived Files-Footnote-11323883
+Ref: Derived Files-Footnote-21323918
+Ref: Derived Files-Footnote-31324516
+Node: Future Extensions1324630
+Node: Implementation Limitations1325288
+Node: Extension Design1326498
+Node: Old Extension Problems1327642
+Ref: Old Extension Problems-Footnote-11329160
+Node: Extension New Mechanism Goals1329217
+Ref: Extension New Mechanism Goals-Footnote-11332581
+Node: Extension Other Design Decisions1332770
+Node: Extension Future Growth1334883
+Node: Notes summary1335489
+Node: Basic Concepts1336647
+Node: Basic High Level1337328
+Ref: figure-general-flow1337610
+Ref: figure-process-flow1338296
+Ref: Basic High Level-Footnote-11341598
+Node: Basic Data Typing1341783
+Node: Glossary1345111
+Node: Copying1376998
+Node: GNU Free Documentation License1414541
+Node: Index1439661
 
 End Tag Table
 
