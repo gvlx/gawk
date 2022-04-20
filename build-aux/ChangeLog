@@ -1,3 +1,8 @@
+2022-04-20         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* ar-lib, compile, config.guess, config.rpath, config.sub,
+	depcomp, texinfo.tex: Updated from GNULIB.
+
 2021-12-10         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* texinfo.tex: Updated from GNULIB.
