@@ -47256,6 +47256,15 @@ rendere possibile la loro inclusione:
 
 @enumerate 1
 @item
+Esporre al manutentore di @command{gawk} la nuova funzionalit@`a che
+si vuole introdurre.
+La lista per segnalare i bug pu@`o essere usata per fare questo.
+Anche se non si ritiene opportuno aggiungere la funzionalit@`a
+proposta, si @`e comunque sempre liberi di aggiungerla e di
+distribuire una versione alternativa, che sia un ``fork'' di
+@command{gawk}.
+
+@item
 Prima di inserire la nuova funzionalit@`a all'interno di @command{gawk},
 prendere in considerazione la possibilit@`a di scriverla sotto forma di
 estensione  (@pxref{Estensioni dinamiche}).
@@ -47324,8 +47333,10 @@ della funzione.
 
 @item
 Mettere degli spazi attorno alle parentesi usate nelle strutture di controllo
-(@code{if}, @code{while}, @code{for}, @code{do}, @code{switch}
-e @code{return}).
+(@code{if}, @code{while}, @code{for}, @code{do} e, @code{switch}.
+
+@item
+Non mettere tra parentesi l'espressione usata con l'istruzione @code{return}.
 
 @item
 Non mettere spazi davanti alle parentesi usate nelle chiamate di funzione.
@@ -47351,6 +47362,13 @@ Usare confronti con @code{NULL} e @code{'\0'} per le condizioni
 contenute nelle istruzioni @code{if}, @code{while} e @code{for}, e anche
 nelle varie clausole @code{case} delle istruzioni @code{switch}, invece
 del semplice puntatore o il semplice valore del carattere.
+
+@item
+Non usare, @emph{MAI}, lo stile di confronto tra espressioni
+@samp{-1 == pippo} o @samp{0 >= paperino}.  Sono decenni che @`e in uso,
+e capisco perch@'e possa piacere a qualcuno.  Nonostante questo,
+@`e uno stile assolutamente deprecabile, e del codice che ne faccia uso
+non sar@`a mai accettato.
 
 @item
 Usare i valori @code{true} e @code{false} per le variabili @code{booleane},
