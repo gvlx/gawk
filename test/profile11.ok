@@ -150,11 +150,9 @@ BEGIN {
 # comments/switch.awk
 BEGIN {
 	a = 5
-	switch (a) {
-	# switch EOL comment
+	switch (a) {	# switch EOL comment
 	
 	# switch block comment
-	
 	# lbrace EOL comment
 	
 	# lbrace block comment
@@ -173,11 +171,9 @@ BEGIN {
 # comments2/switch.awk
 BEGIN {
 	a = 5
-	switch (a) {
-	# switch EOL comment
+	switch (a) {	# switch EOL comment
 	
 	# switch block comment
-	
 	# lbrace EOL comment
 	
 	# lbrace block comment
@@ -316,9 +312,7 @@ function bar(p1, p2)
 # rbrace block bar
 
 # comments2/function.awk
-
 # comment
-
 # comment before braces
 function baz(p1, p2)
 {
@@ -345,11 +339,8 @@ function callme(a, b, c)
 # rbrace block baz
 
 # comments/function.awk
-
 # param comment 1
-
 # param comment 2
-
 # Comment between header and body
 function funny(param1, param2, param3, param4)
 {

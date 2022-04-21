@@ -210,6 +210,7 @@ GAWK_EXT_TESTS = \
 	profile1 profile10 profile11 profile12 profile13 profile14 \
 	profile15 profile16 profile2 profile3 profile4 profile5 profile6 \
 	profile7 profile8 profile9 pty1 pty2 rebuf regexsub reginttrad \
+	profile17 \
 	regnul1 regnul2 regx8bit reint reint2 rsgetline rsglstdin rsstart1 \
 	rsstart2 rsstart3 rstest6 sandbox1 shadow shadowbuiltin sortfor \
 	sortfor2 sortu sourcesplit split_after_fpat splitarg4 strftfld \
@@ -271,7 +272,7 @@ NEED_POSIX = escapebrace printf0 posix2008sub paramasfunc1 paramasfunc2 muldimpo
 # List of tests that need --pretty-print
 NEED_PRETTY = nsprof1 nsprof2 \
 	profile4 profile5 profile8 profile9 profile10 profile11 profile13 \
-	profile14 profile15 profile16
+	profile14 profile15 profile16 profile17
 
 
 # List of tests that need --re-interval
@@ -3199,6 +3200,11 @@ profile9:
 regexsub:
 	@echo $@
 	@-AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
+	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
+
+profile17:
+	@echo $@
+	@-AWKPATH="$(srcdir)" $(AWK) -f $@.awk  --pretty-print=_$@ >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 regnul1:

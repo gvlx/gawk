@@ -1,3 +1,12 @@
+2022-04-21         Arnold D. Robbins     <arnold@skeeve.com>
+
+	Fix some profiling issues related to comments in switch / case
+	statements.
+
+	* awkgram.y (merge_comments): Remove newline between comments being
+	merged.
+	* profile.c (pprint): Improve code for Op_K_switch, Op_K_case.
+
 2022-04-18         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawkbug.in: Small changes.
