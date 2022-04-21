@@ -1,3 +1,9 @@
+2022-04-21         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* regcomp.c (peek_token_bracket): Allow "---" to be a range
+	consisting of a single minus. Thanks to Nelson Beebe for the initial
+	report, way back in May of 2015.
+
 2022-04-20         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* verify.h: Sync with GNULIB.
