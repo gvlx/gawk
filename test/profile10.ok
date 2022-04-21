@@ -16,8 +16,7 @@ BEGIN {	# Comment 0
 	for (z = 1; z <= 10; z++) {	# Comment 15
 		print "MNO"	# Comment 16
 	}	# Comment 17
-	switch (q) {
-	# Comment 18
+	switch (q) {	# Comment 18
 	case "a":	# Comment 19
 	case "b":
 		# Comment 20

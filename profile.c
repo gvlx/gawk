@@ -998,9 +998,11 @@ cleanup:
 			fprintf(prof_fp, "%s (", op2str(pc->opcode));
 			pprint(pc->nexti, ip1->switch_start, NO_PPRINT_FLAGS);
 			t1 = pp_pop();
-			fprintf(prof_fp, "%s) {\n", t1->pp_str);
+			fprintf(prof_fp, "%s) {", t1->pp_str);
 			if (pc->comment)
 				print_comment(pc->comment, 0);
+			else
+				fprintf(prof_fp, "\n");
 			pp_free(t1);
 			pprint(ip1->switch_start, ip1->switch_end, NO_PPRINT_FLAGS);
 			indent(SPACEOVER);
@@ -1022,9 +1024,11 @@ cleanup:
 
 			indent_in();
 			if (pc->comment != NULL) {
-				if (pc->comment->memory->comment_type == EOL_COMMENT)
+				if (pc->comment->memory->comment_type == EOL_COMMENT) {
 					fprintf(prof_fp, "\t%s", pc->comment->memory->stptr);
-				else {
+					if (pc->comment->comment != NULL)
+						print_comment(pc->comment->comment, indent_level);
+				} else {
 					fprintf(prof_fp, "\n");
 					print_comment(pc->comment, indent_level);
 				}

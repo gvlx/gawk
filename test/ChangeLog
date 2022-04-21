@@ -1,3 +1,8 @@
+2022-04-21         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* profile5.ok, profile10.ok, profile11.ok: Updated after code changes.
+	* profile17.awk, profile17.ok: New files.
+
 2022-03-30         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* delarprm2.awk, delarprm2.ok: Changes to make test more helpful.
