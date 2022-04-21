@@ -2039,7 +2039,21 @@ peek_token_bracket (re_token_t *token, re_string_t *input, reg_syntax_t syntax)
   switch (c)
     {
     case '-':
-      token->type = OP_CHARSET_RANGE;
+      // Special case. V7 Unix grep and Unix awk and mawk allow
+      // [...---...] (3 minus signs in a bracket expression) to represent
+      // a single minus sign.  Let's try to support that without breaking
+      // anything else.
+      if (re_string_peek_byte (input, 1) == '-' && re_string_peek_byte (input, 2) == '-')
+	{
+	   // advance past the minus signs
+	   (void) re_string_fetch_byte (input);
+	   (void) re_string_fetch_byte (input);
+
+	   token->type = CHARACTER;
+	   token->opr.c = '-';
+	}
+      else
+	token->type = OP_CHARSET_RANGE;
       break;
     case ']':
       token->type = OP_CLOSE_BRACKET;

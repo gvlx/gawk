@@ -164,6 +164,7 @@ int main(int argc, char **argv)
 		pat.translate = NULL;
 		syn &= ~RE_ICASE;
 	}
+	pat.allocated = 0;
 
 
 	dfa_syn = syn;
@@ -183,7 +184,7 @@ int main(int argc, char **argv)
 
 	dfareg = dfaalloc();
 	init_localeinfo(&localeinfo);
-	dfasyntax(dfareg, &localeinfo, dfa_syn, 0);
+	dfasyntax(dfareg, &localeinfo, dfa_syn, DFA_ANCHOR);
 
 	printf("Calling dfacomp(%s, %d, %p, true)\n",
 			pattern, (int) len, dfareg);
@@ -194,9 +195,43 @@ int main(int argc, char **argv)
 	data = databuf(STDIN_FILENO);
 	len = strlen(data);
 
+	if (data[len-1] == '\n')
+		data[--len] = '\0';	// clobber newline
+
+	printf("data: <%s>\n", data);
+
 	/* run the regex matcher */
+	ret = re_search(& pat, data, len, 0, len, NULL);
+	printf("re_search with NULL returned position %d (%s)\n", ret, (ret >= 0) ? "true" : "false");
+#if 0
+	printf("pat.allocated = %ld\n", pat.allocated);
+	printf("pat.used = %ld\n", pat.used);
+	printf("pat.syntax = %ld\n", pat.syntax);
+	printf("pat.re_nsub = %ld\n", pat.re_nsub);
+	printf("pat.can_be_null = %d\n", pat.can_be_null);
+	printf("pat.regs_allocated = %d\n", pat.regs_allocated);
+	printf("pat.fastmap_accurate = %d\n", pat.fastmap_accurate);
+	printf("pat.no_sub = %d\n", pat.no_sub);
+	printf("pat.not_bol = %d\n", pat.not_bol);
+	printf("pat.not_eol = %d\n", pat.not_eol);
+	printf("pat.newline_anchor = %d\n", pat.newline_anchor);
+#endif
+
 	ret = re_search(& pat, data, len, 0, len, &regs);
 	printf("re_search returned position %d (%s)\n", ret, (ret >= 0) ? "true" : "false");
+#if 0
+	printf("pat.allocated = %ld\n", pat.allocated);
+	printf("pat.used = %ld\n", pat.used);
+	printf("pat.syntax = %ld\n", pat.syntax);
+	printf("pat.re_nsub = %ld\n", pat.re_nsub);
+	printf("pat.can_be_null = %d\n", pat.can_be_null);
+	printf("pat.regs_allocated = %d\n", pat.regs_allocated);
+	printf("pat.fastmap_accurate = %d\n", pat.fastmap_accurate);
+	printf("pat.no_sub = %d\n", pat.no_sub);
+	printf("pat.not_bol = %d\n", pat.not_bol);
+	printf("pat.not_eol = %d\n", pat.not_eol);
+	printf("pat.newline_anchor = %d\n", pat.newline_anchor);
+#endif
 
 	/* run the dfa matcher */
 	/*
