@@ -1,3 +1,9 @@
+2022-04-27         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.in: Fix a typo. Thanks to Alan Welsh <alan.welsh@proton.me>
+	for the report.
+	* wordlist: Updated.
+
 2022-04-20         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* texinfo.tex: Updated from GNULIB.
