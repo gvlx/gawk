@@ -1331,6 +1331,8 @@ EXTRA_DIST = \
 	regeq.awk \
 	regeq.in \
 	regeq.ok \
+	regex3minus.awk \
+	regex3minus.ok \
 	regexpbrack.awk \
 	regexpbrack.in \
 	regexpbrack.ok \
@@ -1696,6 +1698,7 @@ BASIC_TESTS = \
 	posix2008sub prdupval prec printf0 printf1 printfchar prmarscl \
 	prmreuse prt1eval prtoeval rand randtest range1 range2 readbuf \
 	rebrackloc rebt8b1 rebuild redfilnm regeq regexpbrack regexpbrack2 \
+	regex3minus \
 	regexprange regrange reindops reparse resplit rri1 rs rscompat \
 	rsnul1nl rsnulbig rsnulbig2 rsnullre rsnulw rstest1 rstest2 \
 	rstest3 rstest4 rstest5 rswhite scalar sclforin sclifin setrec0 \
@@ -3879,6 +3882,11 @@ regexpbrack:
 regexpbrack2:
 	@echo $@
 	@-AWKPATH="$(srcdir)" $(AWK) -f $@.awk  < "$(srcdir)"/$@.in >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
+	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
+
+regex3minus:
+	@echo $@
+	@-AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 regexprange:
