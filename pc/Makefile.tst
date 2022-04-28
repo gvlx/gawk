@@ -260,7 +260,7 @@ NEED_MPFR = \
 	mpfrbigint mpfrbigint2 mpfrcase mpfrcase2 mpfrexprange mpfrfield \
 	mpfrieee mpfrmemok1 mpfrnegzero mpfrnonum mpfrnr mpfrrem mpfrrnd \
 	mpfrrndeval mpfrsort mpfrsqrt mpfrstrtonum mpgforcenum mpfruplus \
-	mpfranswer42
+	mpfranswer42 mpfrnegzero2
 
 
 # List of tests that need --non-decimal-data
@@ -3681,6 +3681,11 @@ mpfrstrtonum:
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 mpgforcenum:
+	@echo $@
+	@-AWKPATH="$(srcdir)" $(AWK) -f $@.awk  -M >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
+	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
+
+mpfrnegzero2:
 	@echo $@
 	@-AWKPATH="$(srcdir)" $(AWK) -f $@.awk  -M >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@

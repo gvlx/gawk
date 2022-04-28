@@ -746,6 +746,8 @@ EXTRA_DIST = \
 	mpfrmemok1.ok \
 	mpfrnegzero.awk \
 	mpfrnegzero.ok \
+	mpfrnegzero2.awk \
+	mpfrnegzero2.ok \
 	mpfrnonum.awk \
 	mpfrnonum.in \
 	mpfrnonum.ok \
@@ -1527,7 +1529,7 @@ NEED_MPFR = \
 	mpfrbigint mpfrbigint2 mpfrcase mpfrcase2 mpfrexprange mpfrfield \
 	mpfrieee mpfrmemok1 mpfrnegzero mpfrnonum mpfrnr mpfrrem mpfrrnd \
 	mpfrrndeval mpfrsort mpfrsqrt mpfrstrtonum mpgforcenum mpfruplus \
-	mpfranswer42
+	mpfranswer42 mpfrnegzero2
 
 # List of tests that need --non-decimal-data
 NEED_NONDEC = mpfrbigint2 nondec2 intarray forcenum
