@@ -329,6 +329,24 @@ uninitialized_scalar:
 			t2 = mk_sub(pc->sub_count);
 			t1 = POP_ARRAY(false);
 			r = in_array(t1, t2);
+
+			if (r == NULL) {
+				t2 = force_string(t2);
+
+				if (t1 == func_table) {
+					fatal(_("reference to uninitialized element `%s[\"%.*s\"] is not allowed'"),
+						"FUNCTAB", (int) t2->stlen, t2->stptr);
+				} else if (t1 == symbol_table) {
+					fatal(_("reference to uninitialized element `%s[\"%.*s\"] is not allowed'"),
+						"SYMTAB", (int) t2->stlen, t2->stptr);
+				} else if (do_lint) {
+					lintwarn(_("reference to uninitialized element `%s[\"%.*s\"]'"),
+						array_vname(t1), (int) t2->stlen, t2->stptr);
+					if (t2->stlen == 0)
+						lintwarn(_("subscript of array `%s' is null string"), array_vname(t1));
+				}
+			}
+
 			if (r == NULL) {
 				r = make_array();
 				r->parent_array = t1;

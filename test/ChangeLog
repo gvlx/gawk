@@ -1,3 +1,19 @@
+2022-04-28         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.am (EXTRA_DIST): symtab12, new test.
+	* symtab12.awk, symtab12.ok: New files.
+
+	Unrelated:
+
+	* Makefile.am (EXTRA_DIST): mpfrnegzero2, new test.
+	(NEED_MPFR): Ditto.
+	* mpfrnegzero2.awk, mpfrnegzero2.ok: New files.
+
+2022-04-27         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.am (EXTRA_DIST): regex3minus, new test.
+	* regex3minus.awk, regex3minus.ok: New files.
+
 2022-04-21         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* profile5.ok, profile10.ok, profile11.ok: Updated after code changes.
@@ -535,7 +551,7 @@
 
 2019-05-07         Arnold D. Robbins     <arnold@skeeve.com>
 
-	* Gentests: Finish handlinig NEED_SANDBOX.
+	* Gentests: Finish handling NEED_SANDBOX.
 
 2019-05-06         Arnold D. Robbins     <arnold@skeeve.com>
 

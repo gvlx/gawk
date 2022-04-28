@@ -1842,8 +1842,17 @@ mod:
 			tval = mpfr_neg(r->mpg_numbr, t1->mpg_numbr, ROUND_MODE);
 			IEEE_FMT(r->mpg_numbr, tval);
 		} else {
-			r = mpg_integer();
-			mpz_neg(r->mpg_i, t1->mpg_i);
+			if (! is_zero(t1)) {
+				r = mpg_integer();
+				mpz_neg(r->mpg_i, t1->mpg_i);
+			} else {
+				// have to convert to MPFR for -0.0. sigh
+				r = mpg_float();
+				tval = mpfr_set_d(r->mpg_numbr, 0.0, ROUND_MODE);
+				IEEE_FMT(r->mpg_numbr, tval);
+				tval = mpfr_neg(r->mpg_numbr, r->mpg_numbr, ROUND_MODE);
+				IEEE_FMT(r->mpg_numbr, tval);
+			}
 		}
 		DEREF(t1);
 		REPLACE(r);

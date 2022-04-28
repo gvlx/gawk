@@ -1,3 +1,16 @@
+2022-04-28         Arnold D. Robbins     <arnold@skeeve.com>
+
+	Disallow SYMTAB["x"]["y"]. Reported by Jason C. Kwan.
+
+	* interpret.h (r_interpret): Add checks at Op_sub_array case.
+
+	Unrelated. Fix MPFR mode unary minus applied to a variable with
+	a zero MPG value. Also reported by Jason C. Kwan.
+
+	* mpfr.c (mpg_interpret): Fix Op_unary_minus to create an
+	MPFR -0 value. MPG doesn't distinguish negative zero from
+	positive zero.
+
 2022-04-21         Arnold D. Robbins     <arnold@skeeve.com>
 
 	Fix some profiling issues related to comments in switch / case

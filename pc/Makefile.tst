@@ -169,6 +169,7 @@ BASIC_TESTS = \
 	posix2008sub prdupval prec printf0 printf1 printfchar prmarscl \
 	prmreuse prt1eval prtoeval rand randtest range1 range2 readbuf \
 	rebrackloc rebt8b1 rebuild redfilnm regeq regexpbrack regexpbrack2 \
+	regex3minus \
 	regexprange regrange reindops reparse resplit rri1 rs rscompat \
 	rsnul1nl rsnulbig rsnulbig2 rsnullre rsnulw rstest1 rstest2 \
 	rstest3 rstest4 rstest5 rswhite scalar sclforin sclifin setrec0 \
@@ -217,6 +218,7 @@ GAWK_EXT_TESTS = \
 	strftime strtonum strtonum1 stupid1 stupid2 stupid3 stupid4 stupid5 \
 	switch2 symtab1 symtab10 symtab11 symtab2 symtab3 symtab4 symtab5 \
 	symtab6 symtab7 symtab8 symtab9 timeout typedregex1 typedregex2 \
+	symtab12 \
 	typedregex3 typedregex4 typedregex5 typedregex6 typeof1 typeof2 \
 	typeof3 typeof4 typeof5 typeof6 watchpoint1
 
@@ -260,7 +262,7 @@ NEED_MPFR = \
 	mpfrbigint mpfrbigint2 mpfrcase mpfrcase2 mpfrexprange mpfrfield \
 	mpfrieee mpfrmemok1 mpfrnegzero mpfrnonum mpfrnr mpfrrem mpfrrnd \
 	mpfrrndeval mpfrsort mpfrsqrt mpfrstrtonum mpgforcenum mpfruplus \
-	mpfranswer42
+	mpfranswer42 mpfrnegzero2
 
 
 # List of tests that need --non-decimal-data
@@ -2183,6 +2185,11 @@ regexpbrack2:
 	@-AWKPATH="$(srcdir)" $(AWK) -f $@.awk  < "$(srcdir)"/$@.in >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
+regex3minus:
+	@echo $@
+	@-AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
+	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
+
 regexprange:
 	@echo $@
 	@-AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
@@ -3395,6 +3402,11 @@ typedregex2:
 	@-AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
+symtab12:
+	@echo $@
+	@-AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
+	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
+
 typedregex3:
 	@echo $@
 	@-AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
@@ -3684,6 +3696,11 @@ mpfrstrtonum:
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 mpgforcenum:
+	@echo $@
+	@-AWKPATH="$(srcdir)" $(AWK) -f $@.awk  -M >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
+	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
+
+mpfrnegzero2:
 	@echo $@
 	@-AWKPATH="$(srcdir)" $(AWK) -f $@.awk  -M >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
