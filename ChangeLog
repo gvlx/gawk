@@ -1,3 +1,9 @@
+2022-04-28         Arnold D. Robbins     <arnold@skeeve.com>
+
+	Disallow SYMTAB["x"]["y"]. Reported by Jason C. Kwan.
+
+	* interpret.h (r_interpret): Add checks at Op_sub_array case.
+
 2022-04-21         Arnold D. Robbins     <arnold@skeeve.com>
 
 	Fix some profiling issues related to comments in switch / case

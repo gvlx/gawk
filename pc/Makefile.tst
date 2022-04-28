@@ -217,6 +217,7 @@ GAWK_EXT_TESTS = \
 	strftime strtonum strtonum1 stupid1 stupid2 stupid3 stupid4 stupid5 \
 	switch2 symtab1 symtab2 symtab3 symtab4 symtab5 symtab6 symtab7 \
 	symtab8 symtab9 symtab10 symtab11 timeout typedregex1 typedregex2 \
+	symtab12 \
 	typedregex3 typedregex4 typedregex5 typedregex6 typeof1 typeof2 \
 	typeof3 typeof4 typeof5 typeof6 watchpoint1
 
@@ -3382,6 +3383,11 @@ typedregex1:
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
 
 typedregex2:
+	@echo $@
+	@-AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
+	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
+
+symtab12:
 	@echo $@
 	@-AWKPATH="$(srcdir)" $(AWK) -f $@.awk  >_$@ 2>&1 || echo EXIT CODE: $$? >>_$@
 	@-$(CMP) "$(srcdir)"/$@.ok _$@ && rm -f _$@
