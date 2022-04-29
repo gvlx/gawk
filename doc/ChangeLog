@@ -3,6 +3,11 @@
 	* gawktexi.in: Fix a some minor grammar issues.
 	Thanks to Alan Welsh <alan.welsh@proton.me> for the reports.
 
+	Unrelated:
+
+	* gawktexi.in (Array Example): After some whining in comp.lang.awk,
+	make the filenames clearer and add some more explanatory text.
+
 2022-04-27         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawktexi.in: Fix a typo. Thanks to Alan Welsh <alan.welsh@proton.me>

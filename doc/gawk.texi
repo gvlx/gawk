@@ -17368,7 +17368,7 @@ confused upon encountering repeated numbers, gaps, or lines that don't
 begin with a number:
 
 @example
-@c file eg/misc/arraymax.awk
+@c file eg/misc/arrayorder.awk
 @{
     if ($1 > max)
         max = $1
@@ -17391,7 +17391,7 @@ When this program is run with the following input:
 
 @example
 @group
-@c file eg/misc/arraymax.data
+@c file eg/misc/arrayorder.data
 5  I am the Five man
 2  Who are you?  The new number two!
 4  . . . And four on the floor
@@ -17428,6 +17428,10 @@ END @{
 @}
 @end group
 @end example
+
+As mentioned, the program is simplistic. It can be easily
+confused; for example, by using negative or nonalphabetic line numbers.
+The point here is merely to demonstrate basic array usage.
 
 @node Scanning an Array
 @subsection Scanning All Elements of an Array
