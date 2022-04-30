@@ -56,7 +56,7 @@
 @c applies to and all the info about who's publishing this edition
 
 @c These apply across the board.
-@set UPDATE-MONTH Ottobre 2021
+@set UPDATE-MONTH Aprile 2022
 @set VERSION 5.1
 @set PATCHLEVEL 1
 
@@ -2330,12 +2330,12 @@ aiuta a contenere la distribuzione @command{gawk} entro dimensioni gestibili.
 L'iniziale raccolta di materiale, cos@`{@dotless{i}} com'@`e, @`e tuttora disponibile
 su @uref{ftp://ftp.freefriends.org/arnold/Awkstuff}.
 
-Nella speranza di fare qualcosa di pi@`u generale, ho acuisito il dominio
+Nella speranza di fare qualcosa di pi@`u generale, ho acquisito il dominio
 @code{awklang.org}.  A fine anno 2017 un volontario si @`e assunto il compito
 di gestirlo.
 
-Se qualcuno ha scritto un programma @command{awk} interessante, o
-un'estensione a @command{gawk} che vuole condividere col resto del mondo,
+Se qualcuno ha scritto un programma @command{awk} interessante,
+che vuole condividere col resto del mondo,
 @`e invitato a consultare la pagina @uref{http://www.awklang.org} e a usare
 il puntatore ``Contact''.
 
@@ -9947,14 +9947,16 @@ significa che non @`e possibile usarlo per ottenere input multipli,
 provenienti da due o pi@`u sorgenti.  @xref{Proseguire dopo errore in input}
 per una modalit@`a che consente di tentare ulteriori operazioni di I/O.
 
-Assegnare un valore di tempo limite previene un blocco a tempo indeterminato
-legato a operazioni di lettura.  Si tenga per@`o presente che ci sono altre
+Assegnare un valore di tempo limite previene, per le operazioni di lettura,
+un [possibile] blocco a tempo indeterminato.
+Si tenga per@`o presente che ci sono altre
 situazioni in cui @command{gawk} pu@`o restare bloccato in attesa che un
 dispositivo di input sia pronto.  Un cliente di rete a volte pu@`o impiegare
 molto tempo per stabilire una
 connessione prima di poter iniziare a leggere qualsiasi dato,
-oppure il tentativo di aprire un file speciale FIFO in lettura pu@`o bloccarsi
-indefinitamente in attesa che qualche altro processo lo apra in scrittura.
+oppure il tentativo di aprire un file speciale FIFO in lettura pu@`o rimanere
+bloccato indefinitamente in attesa che qualche altro processo lo apra in
+scrittura.
 
 @node Proseguire dopo errore in input
 @section Elaborare ulteriore input dopo certi errori di I/O
@@ -18079,7 +18081,7 @@ grado di gestire numeri ripetuti, salti di riga o righe che non
 iniziano con un numero:
 
 @example
-@c file eg/misc/arraymax.awk
+@c file eg/misc/arrayorder.awk
 @{
     if ($1 > massimo)
         massimo = $1
@@ -18103,7 +18105,7 @@ Quando questo programma viene eseguito col seguente input:
 
 @example
 @group
-@c file eg/misc/arraymax.data
+@c file eg/misc/arrayorder.data
 5  Io sono l'uomo Cinque
 2  Chi sei?  Il nuovo numero due!
 4  . . . E quattro a terra
@@ -18141,6 +18143,11 @@ END @{
 @}
 @end group
 @end example
+
+Come accennato, il programma @`e piuttosto semplice.  Pu@`o facilmente
+andare in errore; per esempio, se si usano numeri di riga negativi o
+non-alfabetici.  Lo scopo del programma @`e solo quello di mostrare
+l'utilizzo di base dei vettori.
 
 @node Visitare un intero vettore
 @subsection Visitare tutti gli elementi di un vettore
