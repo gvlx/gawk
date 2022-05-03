@@ -13,7 +13,7 @@
 .		if \w'\(rq' .ds rq "\(rq
 .	\}
 .\}
-.TH GAWK 1 "March 1 2022" "Free Software Foundation" "Utility Commands"
+.TH GAWK 1 "May 03 2022" "Free Software Foundation" "Utility Commands"
 .SH NAME
 gawk \- pattern scanning and processing language
 .SH SYNOPSIS
@@ -264,6 +264,15 @@ is not compiled to use the GNU MPFR and GMP libraries.
 (In such a case,
 .I gawk
 issues a warning.)
+.sp
+.B NOTE:
+This feature is
+.IR deprecated .
+It will be removed from
+.I gawk
+in 2024 and its use produces a warning messge. Set
+.B GAWK_NO_MPFR_WARN
+in the environment to silence the warning.
 .TP
 .BR \-n ", "\c
 .B \-\^\-non\-decimal\-data
@@ -2306,6 +2315,11 @@ If
 has been specified,
 .I gawk
 issues a warning message to this effect.
+.PP
+Set
+.B GAWK_NO_MPFR_WARN
+in the environment to silence the warning about MPFR mode
+being deprecated.
 .SH EXIT STATUS
 If the
 .B exit
