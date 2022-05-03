@@ -7,6 +7,13 @@
 Changes from 5.1.x to 5.2.0
 ---------------------------
 
+***********************************************************************
+* MPFR mode (the -M option) is now DEPRECATED.  This feature will be  *
+* removed in 2024.  Using -M produces a warning message unless you    *
+* set GAWK_NO_MPFR_WARN in the environment.  For more information see *
+* https://......                                                      *
+***********************************************************************
+
 1. Numeric scalars now compare in the same way as C for the relational
 operators. Comparison order for sorting has not changed.  This only
 makes a difference when comparing Infinity and NaN values with

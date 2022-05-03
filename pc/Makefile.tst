@@ -60,7 +60,7 @@
 SHELL = /bin/sh
 
 # Point to gawk
-AWK = AWKLIBPATH=../extension $(AWKPROG)
+AWK = AWKLIBPATH=../extension GAWK_NO_MPFR_WARN=1 $(AWKPROG)
 AWKPROG = ../gawk.exe
 # Point $(LS) to a version of ls.exe that reports true Windows file
 # index numbers, because this is what the readdir test expects.

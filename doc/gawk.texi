@@ -4195,6 +4195,13 @@ Select arbitrary-precision arithmetic on numbers. This option has no effect
 if @command{gawk} is not compiled to use the GNU MPFR and MP libraries
 (@pxref{Arbitrary Precision Arithmetic}).
 
+As of @value{PVERSION} 5.2,
+the arbitrary precision arithmetic features in @command{gawk}
+are @emph{deprecated}.  They will be removed from @command{gawk} in 2024.
+If you use this option, @command{gawk} generates a warning message.
+Create the environment variable @env{GAWK_NO_MPFR_WARN} with an arbitrary
+value in order to silence the warning.
+
 @item @option{-n}
 @itemx @option{--non-decimal-data}
 @cindex @option{-n} option
@@ -4820,6 +4827,10 @@ Specifies the interval between connection retries,
 in milliseconds. On systems that do not support
 the @code{usleep()} system call,
 the value is rounded up to an integral number of seconds.
+
+@item GAWK_NO_MPFR_WARN
+Specifies that @command{gawk} should not print a deprecation
+warning when used with the @option{-M}/@option{--bignum} options.
 
 @item GAWK_READ_TIMEOUT
 Specifies the time, in milliseconds, for @command{gawk} to
@@ -34151,6 +34162,21 @@ one extra bit of significand.
 @node MPFR features
 @section Arbitrary-Precision Arithmetic Features in @command{gawk}
 
+@quotation WARNING
+As of @value{PVERSION} 5.2,
+arbitrary precision arithmetic in @command{gawk}
+is @emph{deprecated}.  It will be removed from @command{gawk} in 2024.
+
+MPFR support is deprecated because its inclusion was a mistake. It has
+led to endless bug reports, misuse of the feature and public abuse of the
+maintainer, for no real increased value.
+
+If you use this feature, you should start working now to find a different
+toolset with which to accomplish your goals.@footnote{Of course, you can
+always continue to use a version of @command{gawk} that still supports
+MPFR mode. It simply will be unmaintained.}
+@end quotation
+
 By default, @command{gawk} uses the double-precision floating-point values
 supplied by the hardware of the system it runs on.  However, if it was
 compiled to do so, and the @option{-M} command-line option is supplied,
@@ -34161,8 +34187,8 @@ is available like so:
 
 @example
 $ @kbd{gawk --version}
-@print{} GNU Awk 4.1.2, API: 1.1 (GNU MPFR 3.1.0-p3, GNU MP 5.0.2)
-@print{} Copyright (C) 1989, 1991-2015 Free Software Foundation.
+@print{} GNU Awk 5.2.0, API: 3.2 (GNU MPFR 4.0.2, GNU MP 6.2.0)
+@print{} Copyright (C) 1989, 1991-2022 Free Software Foundation.
 @dots{}
 @end example
 

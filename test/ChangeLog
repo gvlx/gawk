@@ -1,3 +1,7 @@
+2022-05-03         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* Makefile.am (AWK): Add GAWK_NO_MPFR_WARN=1 to the list.
+
 2022-04-28         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* Makefile.am (EXTRA_DIST): symtab12, new test.
