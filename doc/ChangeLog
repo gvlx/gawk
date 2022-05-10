@@ -1,3 +1,9 @@
+2022-05-10         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.in (MPFR Features): Add subsections for deprecating
+	and the intro material.
+	(Obsolete): Add note about MPFR features.
+
 2022-05-03         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawk.1: Document that -M is deprecated.

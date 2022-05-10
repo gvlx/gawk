@@ -921,6 +921,8 @@ particular records in a file and perform operations upon them.
 * Computer Arithmetic::                 A quick intro to computer math.
 * Math Definitions::                    Defining terms used.
 * MPFR features::                       The MPFR features in @command{gawk}.
+* MPFR Deprecated::                     MPFR features are deprecated!
+* MPFR Intro::                          MPFR General introduction.
 * FP Math Caution::                     Things to know.
 * Inexactness of computations::         Floating point math is not exact.
 * Inexact representation::              Numbers are not exactly represented.
@@ -4993,19 +4995,26 @@ It also describes the @code{ordchr} extension.
 This @value{SECTION} describes features and/or command-line options from
 previous releases of @command{gawk} that either are not available in the
 current version or are still supported but deprecated (meaning that
-they will @emph{not} be in the next release).
+they will @emph{not} be in a future release).
 
+@ignore
+@c This happened long enough ago that we can remove it.
 The process-related special files @file{/dev/pid}, @file{/dev/ppid},
 @file{/dev/pgrpid}, and @file{/dev/user} were deprecated in @command{gawk}
 3.1, but still worked.  As of @value{PVERSION} 4.0, they are no longer
 interpreted specially by @command{gawk}.  (Use @code{PROCINFO} instead;
 see @ref{Auto-set}.)
+@end ignore
 
 @ignore
 This @value{SECTION}
 is thus essentially a place holder,
 in case some option becomes obsolete in a future version of @command{gawk}.
 @end ignore
+
+The multiprecision arithmetic feature is deprecated as of @command{gawk} @value{PVERSION} 5.2.
+Use of @option{-M}/@option{--bignum} produces a warning message.  The feature
+will be removed in the release of 2024.
 
 @node Undocumented
 @section Undocumented Options and Features
@@ -33044,20 +33053,37 @@ one extra bit of significand.
 @node MPFR features
 @section Arbitrary-Precision Arithmetic Features in @command{gawk}
 
-@quotation WARNING
+This @value{SECTION} briefly describes arbitrary-precision
+arithmetic in @command{gawk}.
+
+@menu
+* MPFR Deprecated::             MPFR features are deprecated!
+* MPFR Intro::                  MPFR General introduction.
+@end menu
+
+@node MPFR Deprecated
+@subsection Arbitrary Precision Arithmetic is Deprecated!
+
 As of @value{PVERSION} 5.2,
 arbitrary precision arithmetic in @command{gawk}
 is @emph{deprecated}.  It will be removed from @command{gawk} in 2024.
 
-MPFR support is deprecated because its inclusion was a mistake. It has
+This feature is deprecated because its inclusion was a mistake. It has
 led to endless bug reports, misuse of the feature and public abuse of the
 maintainer, for no real increased value.
 
 If you use this feature, you should start working now to find a different
 toolset with which to accomplish your goals.@footnote{Of course, you can
 always continue to use a version of @command{gawk} that still supports
-MPFR mode. It simply will be unmaintained.}
-@end quotation
+arbitrary precison arithmetic. It simply will be unmaintained.}
+
+If the feature is very important to you, then consider if you are willing
+to volunteer to maintain it, so that it can continue to be included
+in @command{gawk}. If that is the case, contact the maintainer to discuss it
+with him.  You may do so by submitting a bug report.
+
+@node MPFR Intro
+@subsection Arbitrary Precsioon Introduction
 
 By default, @command{gawk} uses the double-precision floating-point values
 supplied by the hardware of the system it runs on.  However, if it was
