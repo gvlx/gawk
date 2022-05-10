@@ -1,3 +1,8 @@
+2022-05-10         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawkbug.in: Add attestation for having read bug reporting
+	section in the manual. (Yes, I'm pretty paranoid.)
+
 2022-05-03         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* main.c (deprecate_mpfr): New function.

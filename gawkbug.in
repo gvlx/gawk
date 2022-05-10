@@ -194,12 +194,15 @@ Machine Type: $MACHTYPE
 
 Gawk Version: $VERSION
 
+Attestation:
+	I have read https://www.gnu.org/software/gawk/manual/html_node/Bugs.html.
+	Yes / No  [ Choose one. If "No", then why haven't you? ]
+
 Description:
 	[Detailed description of the problem, suggestion, or complaint.]
 
 Repeat-By:
-	[Describe the sequence of events that causes the problem
-	to occur.]
+	[Describe the sequence of events that causes the problem to occur.]
 
 Fix:
 	[Description of how to fix the problem.  If you don't know a
