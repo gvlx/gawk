@@ -16,7 +16,8 @@
 .\"Aggiornam. a gawk-5.1.0 di A.G. Colombo - Luglio 2020
 .\"Aggiornam. a gawk-5.1.1 di A.G. Colombo - Maggio 2021
 .\"Aggiornam. a gawk-5.1.1 di A.G. Colombo - Luglio 2021
-.\"Aggiornam. a gawk-5.1.1 di A.G. Colombo - Marzo 2022
+.\"Aggiornam. a gawk-5.1.1 di A.G. Colombo - Marzo  2022
+.\"Aggiornam. a gawk-5.1.1 di A.G. Colombo - Maggio 2022
 
 .ds PX \s-1POSIX\s+1
 .ds UX \s-1UNIX\s+1
@@ -33,7 +34,7 @@
 .		if \w'\(rq' .ds rq "\(rq
 .	\}
 .\}
-.TH GAWK 1 "Marzo 01 2022" "Free Software Foundation" "Utility Commands"
+.TH GAWK 1 "Maggio 03 2022" "Free Software Foundation" "Utility Commands"
 .SH NOME
 gawk \- linguaggio per il riconoscimento e il trattamento di espressioni
 regolari
@@ -286,6 +287,16 @@ non è compilato per utilizzare le librerie GNU MPFR e GMP.
 (In tal caso,
 .I gawk
 invia un messaggio di avvertimento.)
+.sp
+.B NOTA:
+Questa funzionalità è
+.IR deprecata .
+Sarà rimossa da
+.I gawk
+nel 2024 e se la si usa si riceve un messaggio di avvertimento.
+Impostare la variabile di ambiente
+.B GAWK_NO_MPFR_WARN
+a 1 per non far visualizzare il messaggio.
 .TP
 .BR \-n ", "\c
 .B \-\^\-non\-decimal\-data
@@ -2329,6 +2340,11 @@ Se
 è stato specificato,
 .I gawk
 emette un messaggio di avvertimento riguardo a questo.
+.PP
+Impostare a 1 la variabile d'ambiente
+.B GAWK_NO_MPFR_WARN
+per non ricevere il messaggio di avvertimento
+che l'uso di MPFR e GMP è deprecato.
 .SH STATO DI USCITA
 Se l'istruzione
 .B exit

@@ -3962,7 +3962,7 @@ e per ordinare dei vettori.
 
 Nel seguito della presentazione del linguaggio @command{awk}, saranno
 introdotte molte delle variabili e parecchie funzioni.  Esse sono
-descritte sistematicamente in @ref{Variabili predefinite} e in
+descritte sistematicamente nella @ref{Variabili predefinite} e nel
 @ref{Funzioni}.
 
 @node Quando
@@ -4429,7 +4429,12 @@ Analizza il programma sorgente e
 genera un file GNU @command{gettext} @dfn{portable object template} sullo
 standard output per tutte le costanti di tipo stringa che sono state marcate
 come da tradurre.
+@iftex
+@xrefil{Internazionalizzazione},
+@end iftex
+@ifnottex
 @xref{Internazionalizzazione},
+@end ifnottex
 per informazioni su quest'opzione.
 
 @item @option{-h}
@@ -4499,7 +4504,7 @@ fornito per default, perci@`o non @`e necessario specificarlo nel nome
 dell'estensione.  La routine di inizializzazione dell'estensione dovrebbe
 essere denominata @code{dl_load()}.  Un'alternativa @`e quella di usare la
 direttiva @code{@@load} all'interno del programma per caricare una libreria
-condivisa.  Questa funzionalit@`a avanzata @`e descritta in dettaglio in
+condivisa.  Questa funzionalit@`a avanzata @`e descritta in dettaglio nel
 @ref{Estensioni dinamiche}.
 
 @item @option{-L}[@var{valore}]
@@ -4549,8 +4554,21 @@ brevi, questa non @`e un'operazione gravosa.
 @cindex opzione @subentry @option{--bignum}
 Chiede il calcolo con precisione arbitraria sui numeri.  Quest'opzione non ha
 alcun effetto se @command{gawk} non @`e compilato per l'uso delle librerie GNU
-MPFR e MP
+MPFR ed MP
+@iftex
+(@pxrefil{Calcolo con precisione arbitraria}).
+@end iftex
+@ifnottex
 (@pxref{Calcolo con precisione arbitraria}).
+@end ifnottex
+
+A partire dalla @value{PVERSION} 5.2,
+le funzionalit@`a di calcolo con precisione arbitraria in @command{gawk}
+sono @emph{deprecate}.  Tali funzionalit@`a saranno rimosse da @command{gawk}
+nel 2024.
+Se si utilizza quest'opzione, @command{gawk} genera un messaggio di
+avvertimento.  Per evitare di ricevere il messaggio, si definisca la
+variabile d'ambiente @env{GAWK_NO_MPFR_WARN} con un valore qualsiasi.
 
 @item @option{-n}
 @itemx @option{--non-decimal-data}
@@ -5204,6 +5222,11 @@ in millisecondi.  Sui sistemi che non prevedono
 la chiamata di sistema @code{usleep()},
 il valore @`e arrotondato a un numero intero di secondi .
 
+@item GAWK_NO_MPFR_WARN
+Specifica che @command{gawk} non deve stampare un avviso
+di deprecazione quando viene usato specificando l'opzione
+@option{-M} o @option{--bignum}.
+
 @item GAWK_READ_TIMEOUT
 Specifica per quanto tempo, in millisecondi, @command{gawk}
 aspetta l'input prima di emettere un messaggio di errore.
@@ -5754,7 +5777,7 @@ comando  @option{-i} e @option{-f}.
 @item
 @command{gawk} consente di caricare funzioni aggiuntive scritte in C
 o C++ con la direttiva @code{@@load} e/o con l'opzione @option{-l}
-(questa funzionalit@`a avanzata @`e descritta pi@`u avanti, in
+(questa funzionalit@`a avanzata @`e descritta pi@`u avanti, nel
 @ref{Estensioni dinamiche}).
 @end itemize
 @node Espressioni regolari
@@ -6440,7 +6463,7 @@ Quando @samp{@{} e @samp{@}} appaiono in costanti @dfn{regexp}
 in un modo non interpretabile come espressione di intervallo
 (come in @code{/q@{a@}/}), allora sono prese letteralmente.
 
-@cindex Brian Kernighan @subsentry @command{awk} di @subentry espressioni di intervallo in
+@cindex Brian Kernighan @subentry @command{awk} di @subentry espressioni di intervallo in
 Come detto sopra, le espressioni di intervallo non erano tradizionalmente
 disponibili in @command{awk}.  Con la versione di marzo 2019 di
 BWK @command{awk} sono (finalmente) disponibili.
@@ -12004,7 +12027,13 @@ numero intero, una frazione decimale o un numero in notazione scientifica
 (esponenziale).@footnote{La rappresentazione interna di tutti i numeri,
 compresi gli interi, usa numeri in virgola mobile a doppia precisione.
 Sui sistemi pi@`u moderni, questi sono nel formato standard IEEE 754.
-@xref{Calcolo con precisione arbitraria}, per maggiori informazioni.}
+@iftex
+@xrefil{Calcolo con precisione arbitraria},
+@end iftex
+@ifnottex
+@xref{Calcolo con precisione arbitraria},
+@end ifnottex
+per maggiori informazioni.}
 Ecco alcuni esempi di costanti numeriche che hanno tutte lo stesso
 valore:
 
@@ -14119,7 +14148,7 @@ Una particolare posizione dove @code{/pippo/} @emph{non} @`e un'abbreviazione di
 @samp{$0 ~ /pippo/} @`e quella in cui @`e l'operando di destra di @samp{~} o
 @samp{!~}.
 @xref{Usare le costanti @dfn{regexp}},
-dove questo punto @`e trattato in maggiore dettaglio.
+dove questo punto @`e trattato in maggior dettaglio.
 
 @node Confronto POSIX di stringhe
 @subsubsection Confronto tra stringhe usando l'ordine di collazione locale
@@ -14414,7 +14443,13 @@ definire delle funzioni da usare nel proprio programma.
 @xref{Funzioni definite dall'utente}
 per istruzioni su come farlo.
 Infine, @command{gawk} permette di scrivere funzioni in C o in C++ che possono
-essere chiamate dal proprio programma (@pxref{Estensioni dinamiche}).
+essere chiamate dal proprio programma
+@iftex
+(@pxrefil{Estensioni dinamiche}).
+@end iftex
+@ifnottex
+(@pxref{Estensioni dinamiche}).
+@end ifnottex
 
 @cindex argomenti @subentry nelle chiamate di funzione
 Una funzione viene utilizzata invocandola tramite un'espressione di
@@ -14807,7 +14842,7 @@ Le chiamate di funzione restituiscono un valore che pu@`o essere usato come part
 di un'espressione pi@`u lunga.  Le espressioni usate per passare valori di
 parametro vengono valutate completamente prima di chiamare la funzione.
 @command{awk} fornisce funzioni predefinite e prevede quelle definite
-dall'utente; questo @`e descritto in
+dall'utente; questo @`e descritto nel
 @ref{Funzioni}.
 
 @item
@@ -17131,7 +17166,12 @@ I seguenti elementi addizionali del vettore
 sono disponibili per fornire informazioni sulle librerie MPFR e GMP,
 se la versione in uso di @command{gawk} consente il calcolo con precisione
 arbitraria
+@iftex
+(@pxrefil{Calcolo con precisione arbitraria}):
+@end iftex
+@ifnottex
 (@pxref{Calcolo con precisione arbitraria}):
+@end ifnottex
 
 @table @code
 @item PROCINFO["gmp_version"]
@@ -18343,7 +18383,12 @@ l'ordine in cui sono presentati gli elementi @`e: dapprima le
 funzioni predefinite (@pxref{Funzioni predefinite}), poi
 le funzioni definite dall'utente (@pxref{Funzioni definite dall'utente})
 e infine le funzioni caricate da un'estensione
+@iftex
+(@pxrefil{Estensioni dinamiche}).
+@end iftex
+@ifnottex
 (@pxref{Estensioni dinamiche}).
+@end ifnottex
 
 @item "@@val_str_asc"
 Ordinare secondo il valore degli elementi in ordine crescente (invece che in
@@ -21765,7 +21810,14 @@ intervallo di valori interi; i numeri al di fuori di questo intervallo vengono
 ridotti per rientrare all'interno dell'intervallo.}
 
 Comunque, quando si usa il calcolo con precisione arbitraria con l'opzione
-@option{-M} (@pxref{Calcolo con precisione arbitraria}), il risultato pu@`o
+@option{-M}
+@iftex
+(@pxrefil{Calcolo con precisione arbitraria}),
+@end iftex
+@ifnottex
+(@pxref{Calcolo con precisione arbitraria}),
+@end ifnottex
+il risultato pu@`o
 essere diverso.  Questo @`e particolarmente evidente con la funzione @code{compl()}:
 
 @example
@@ -21946,7 +21998,12 @@ esisteva o no prima che la funzione fosse chiamata.
 @command{awk}.
 Questi sono costituiti dalle funzioni descritte nella lista seguente.
 Le descrizioni sono volutamente concise.
+@iftex
+@xrefil{Internazionalizzazione},
+@end iftex
+@ifnottex
 @xref{Internazionalizzazione},
+@end ifnottex
 per un'esposizione completa.
 I parametri opzionali sono racchiusi tra parentesi quadre ([ ]):
 
@@ -23211,7 +23268,13 @@ A partire dalla @value{PVERSION} 4.1.2 di @command{gawk}, le chiamate
 indirette di funzione
 possono anche essere usate per chiamare funzioni predefinite e con
 funzioni di estensione
-(@pxref{Estensioni dinamiche}). Ci sono alcune limitazioni nel richiamare
+@iftex
+(@pxrefil{Estensioni dinamiche}).
+@end iftex
+@ifnottex
+(@pxref{Estensioni dinamiche}).
+@end ifnottex
+Ci sono alcune limitazioni nel richiamare
 in maniera indiretta delle funzioni predefinite, come qui dettagliato:
 
 @itemize @value{BULLET}
@@ -32549,7 +32612,13 @@ Come descritto sin qui e nei successivi @value{CHAPTERS},
 rispetto a quelle presenti nel comando @command{awk} standard.
 Queste sono state sviluppate col passare del tempo.
 Pi@`u recentemente, l'attenzione si @`e spostata sull'uso
-del meccanismo delle estensioni (@pxref{Estensioni dinamiche})
+del meccanismo delle estensioni
+@iftex
+(@pxrefil{Estensioni dinamiche})
+@end iftex
+@ifnottex
+(@pxref{Estensioni dinamiche})
+@end ifnottex
 per aggiungere ulteriori funzionalit@`a.
 @ifnotinfo
 Questa @value{SECTION}
@@ -35764,7 +35833,14 @@ degli spazi-dei-nomi, e il comando @code{dump} del debugger
 @cindex spazio-dei-nomi @subentry interazione con l'estensione API
 @cindex estensione API @subentry interazione con lo spazio-dei-nomi
 @cindex API (estensione) @subentry interazione con lo spazio-dei-nomi
-L'estensione API (@pxref{Estensioni dinamiche}) ha sempre previsto
+L'estensione API
+@iftex
+(@pxrefil{Estensioni dinamiche})
+@end iftex
+@ifnottex
+(@pxref{Estensioni dinamiche})
+@end ifnottex
+ha sempre previsto
 di avere funzioni in uno spazio-dei-nomi differente, sebbene ci@`o
 non fosse stato ancora implementato.  Tuttavia, le routine di
 ricerca e di aggiornamento dei simbolo non prevedevano l'utilizzo
@@ -35806,7 +35882,13 @@ Altre parti di @command{gawk} sono state estese come necessario per
 integrare gli spazi-dei-nomi nel loro funzionamento.
 Questo vale soprattutto per la profilazione / ``stampa-elegante''
 (@pxref{Profilare}) e per le funzionalit@`a relative alle
-estensioni (@pxref{Estensioni dinamiche}).
+estensioni
+@iftex
+(@pxrefil{Estensioni dinamiche}).
+@end iftex
+@ifnottex
+(@pxref{Estensioni dinamiche}).
+@end ifnottex
 
 @cindex spazio-dei-nomi @subentry compatibilit@`a all'indietro
 @item
@@ -36107,6 +36189,23 @@ implicita, il che equivale ad avere un bit in pi@`u nella mantissa.
 @node Funzionalit@`a MPFR
 @section Funzionalit@`a per il calcolo a precisione arbitraria in @command{gawk}
 
+@quotation AVVERTIMENTO
+A partire dalla @value{PVERSION} 5.2,
+l'aritmetica a precisione arbitraria in @command{gawk}
+@`e @emph{deprecata}.  Verr@`a rimossa da @command{gawk} nel 2024.
+
+Il supporto MPFR @`e deprecato perch@'e @`e stato un errore fornirlo.
+Tale supporto ha generato moltissime segnalazioni di problemi,
+la funzionalit@`a @`e stata abusata, e anche il manutentore di @command{gawk}
+ha subito pubblici abusi, senza un effettivo vantaggio per tutti.
+
+Se si usa questa funzionalit@`a, si dovrebbe iniziare a lavorare fin da ora
+per trova un differente insieme di strumenti software per raggiungere
+gli obiettivi desiderati.@footnote{Naturalmente, nulla vieta di continuare
+a usare una versione di @command{gawk} che ancora fornisce la possibilit@`a
+di usare MPFR. Semplicemente, tale versione non verr@`a pi@`u aggiornata.}
+@end quotation
+
 Per default, @command{gawk} usa i valori in virgola mobile a doppia precisione
 disponibili nell'hardware del sistema su cui viene eseguito.
 Tuttavia, se @`e stato compilato in modo da includere questa funzionalit@`a
@@ -36118,8 +36217,8 @@ Si pu@`o verificare se il supporto a MPFR @`e disponibile in questo modo:
 
 @example
 $ @kbd{gawk --version}
-@print{} GNU Awk 4.1.2, API: 1.1 (GNU MPFR 3.1.0-p3, GNU MP 5.0.2)
-@print{} Copyright (C) 1989, 1991-2015 Free Software Foundation.
+@print{} GNU Awk 5.2.0, API: 3.2 (GNU MPFR 4.0.2, GNU MP 6.2.0)
+@print{} Copyright (C) 1989, 1991-2022 Free Software Foundation.
 @dots{}
 @end example
 
@@ -38543,7 +38642,13 @@ estensione va registrata con @command{gawk} usando questa funzione dell'API:
 Questa funzione restituisce il valore @dfn{true} se ha successo,
 oppure @dfn{false} in caso contrario.
 Il parametro @code{name_space} indica lo spazio-dei-nomi in cui porre
-la funzione (@pxref{Spazi-dei-nomi}).
+la funzione
+@iftex
+(@pxrefil{Spazi-dei-nomi}).
+@end iftex
+@ifnottex
+(@pxref{Spazi-dei-nomi}).
+@end ifnottex
 Si usi una stringa vuota (@code{""}) o @code{"awk"} per porre la funzione
 nello spazio-dei-nomi @code{awk}, che @`e quello di default.
 Il puntatore @code{func} @`e l'indirizzo di una struttura
@@ -43291,7 +43396,12 @@ oppure no
 @item
 Le funzioni @code{bindtextdomain()}, @code{dcgettext()}
 e @code{dcngettext()} per l'internazionalizzazione
+@iftex
+(@pxrefil{I18N per programmatore})
+@end iftex
+@ifnottex
 (@pxref{I18N per programmatore})
+@end ifnottex
 
 @ifset INTDIV
 @item
@@ -43697,7 +43807,13 @@ processo in esecuzione.
 
 @item
 @code{TEXTDOMAIN}, per impostare il dominio testuale in cui internazionalizzare
-un'applicazione (@pxref{Internazionalizzazione}).
+un'applicazione
+@iftex
+(@pxrefil{Internazionalizzazione}).
+@end iftex
+@ifnottex
+(@pxref{Internazionalizzazione}).
+@end ifnottex
 @end itemize
 
 @item
@@ -43741,7 +43857,12 @@ Le funzioni @code{asort()} e @code{asorti()} per l'ordinamento di vettori
 @item
 Le funzioni @code{bindtextdomain()}, @code{dcgettext()} e @code{dcngettext()}
 per l'internationalizzazione
+@iftex
+(@pxrefil{I18N per programmatore}).
+@end iftex
+@ifnottex
 (@pxref{I18N per programmatore}).
+@end ifnottex
 
 @item
 La funzione @code{extension()} e la possibilit@`a di aggiungere
@@ -44107,7 +44228,12 @@ L'opzione @option{-R} @`e stata rimossa.
 
 @item
 Supporto per il calcolo ad alta precisione con MPFR
+@iftex
+(@pxrefil{Calcolo con precisione arbitraria}).
+@end iftex
+@ifnottex
 (@pxref{Calcolo con precisione arbitraria}).
+@end ifnottex
 
 @item
 Le funzioni @code{and()}, @code{or()} e @code{xor()} sono state modificate
@@ -44227,7 +44353,12 @@ in input sono mantenute nell'output generato.
 
 @item
 Miglioramenti all'API per l'estensione
+@iftex
+(@pxrefil{Estensioni dinamiche}):
+@end iftex
+@ifnottex
 (@pxref{Estensioni dinamiche}):
+@end ifnottex
 
 @c nested
 @itemize @value{MINUS}
@@ -45209,7 +45340,13 @@ nelle appropriate sottodirectory di @file{awklib/eg}.
 @item extension/*
 Il codice sorgente, le pagine di manuale, e i file di infrastruttura per
 gli esempi di estensione incluse con @command{gawk}.
-@xref{Estensioni dinamiche}, per ulteriori dettagli.
+@iftex
+@xrefil{Estensioni dinamiche},
+@end iftex
+@ifnottex
+@xref{Estensioni dinamiche},
+@end ifnottex
+per ulteriori dettagli.
 
 @item extras/*
 Ulteriori file, non-essenziali.  Al momento, questa directory contiene
@@ -47274,7 +47411,13 @@ distribuire una versione alternativa, che sia un ``fork'' di
 @item
 Prima di inserire la nuova funzionalit@`a all'interno di @command{gawk},
 prendere in considerazione la possibilit@`a di scriverla sotto forma di
-estensione  (@pxref{Estensioni dinamiche}).
+estensione
+@iftex
+(@pxrefil{Estensioni dinamiche}).
+@end iftex
+@ifnottex
+(@pxref{Estensioni dinamiche}).
+@end ifnottex
 Se ci@`o non @`e possibile, continuare con i passi rimanenti descritti in questa
 lista.
 
