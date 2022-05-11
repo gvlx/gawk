@@ -1,3 +1,9 @@
+2022-05-11         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawktexi.in: Fix spelling errors. Thanks to Antonio
+	Columbo for the report.
+	* wordlist: Updated with new words.
+
 2022-05-10         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawktexi.in (MPFR Features): Add subsections for deprecating
