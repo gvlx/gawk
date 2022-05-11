@@ -1073,8 +1073,10 @@ Copyright dell'edizione italiana @copyright{} 2016 -- Free Software Foundation, 
 * Aritmetica del computer::             Una rapida introduzione alla matematica del
                                         computer.
 * Definizioni matematiche::             Altre cose da sapere.
-* Funzionalit@`a MPFR::                   Funzionalit@`a per il calcolo a
+* Funzionalit@`a MPFR::                 Funzionalit@`a per il calcolo a
                                         precisione arbitraria in @command{gawk}
+* MPFR Deprecato::                      Le funzionalit@`a MPFR sono deprecate!
+* Introduzione a MPFR::                 Introduzione generale a MPFR.
 * Cautela col calcolo in VM::           Cose da sapere.
 * Inesattezza nei calcoli::             La matematica in virgola mobile non @`e
                                         esatta.
@@ -5554,20 +5556,28 @@ Questo
 @value{SECTION} descrive funzionalit@`a o opzioni da riga di comando
 provenienti da precedenti versioni di @command{gawk} che non sono pi@`u
 disponibili nella versione corrente, o che sono ancora utilizzabili ma sono
-deprecate (ci@`o significa che @emph{non} saranno presenti nella prossima
+deprecate (ci@`o significa che @emph{non} saranno presenti in una futura
 versione).
 
-I file speciali relativi ai processi @file{/dev/pid}, @file{/dev/ppid},
-@file{/dev/pgrpid} e @file{/dev/user} erano deprecati, ma ancora disponibili,
-in @command{gawk} 3.1.  A partire dalla @value{PVERSION} 4.0, non sono
-pi@`u interpretati da @command{gawk} in modo speciale (al loro posto usare
-invece @code{PROCINFO}; si veda @ref{Variabili auto-assegnate}).
+@ignore
+@c This happened long enough ago that we can remove it.
+The process-related special files @file{/dev/pid}, @file{/dev/ppid},
+@file{/dev/pgrpid}, and @file{/dev/user} were deprecated in @command{gawk}
+3.1, but still worked.  As of @value{PVERSION} 4.0, they are no longer
+interpreted specially by @command{gawk}.  (Use @code{PROCINFO} instead;
+see @ref{Auto-set}.)
+@end ignore
 
 @ignore
 This @value{SECTION}
 is thus essentially a place holder,
 in case some option becomes obsolete in a future version of @command{gawk}.
 @end ignore
+
+La funzionalit@`a di aritmetica a precisione arbitraria @`e deprecata
+a partire dalla @value{PVERSION} 5.2 di @command{gawk}.
+Se si usa l'opzione @option{-M}/@option{--bignum} viene emesso un messaggio
+di avvertimento.  La funzionalit@`a verr@`a rimossa nella versione del 2024.
 
 @node Non documentato
 @section Opzioni e funzionalit@`a non documentate
@@ -36189,12 +36199,28 @@ implicita, il che equivale ad avere un bit in pi@`u nella mantissa.
 @node Funzionalit@`a MPFR
 @section Funzionalit@`a per il calcolo a precisione arbitraria in @command{gawk}
 
-@quotation AVVERTIMENTO
+@ifnotinfo
+Questa
+@end ifnotinfo
+@ifinfo
+Questo
+@end ifinfo
+@value{SECTION} descrive brevemente l'aritmetica a precisione arbitraria
+disponibile in @command{gawk}.
+
+@menu
+* MPFR Deprecato::              Le funzionalit@`a MPFR sono deprecate!
+* Introduzione a MPFR::         Introduzione generale a MPFR.
+@end menu
+
+@node MPFR Deprecato
+@subsection L'aritmetica a precisione arbitraria @`e deprecata!
+
 A partire dalla @value{PVERSION} 5.2,
 l'aritmetica a precisione arbitraria in @command{gawk}
 @`e @emph{deprecata}.  Verr@`a rimossa da @command{gawk} nel 2024.
 
-Il supporto MPFR @`e deprecato perch@'e @`e stato un errore fornirlo.
+Questa funzionalit@`a @`e deprecata perch@'e @`e stato un errore fornirla.
 Tale supporto ha generato moltissime segnalazioni di problemi,
 la funzionalit@`a @`e stata abusata, e anche il manutentore di @command{gawk}
 ha subito pubblici abusi, senza un effettivo vantaggio per tutti.
@@ -36203,8 +36229,17 @@ Se si usa questa funzionalit@`a, si dovrebbe iniziare a lavorare fin da ora
 per trova un differente insieme di strumenti software per raggiungere
 gli obiettivi desiderati.@footnote{Naturalmente, nulla vieta di continuare
 a usare una versione di @command{gawk} che ancora fornisce la possibilit@`a
-di usare MPFR. Semplicemente, tale versione non verr@`a pi@`u aggiornata.}
-@end quotation
+di usare l'aritmetica a precisione arbitraria.
+Semplicemente, tale versione non verr@`a pi@`u aggiornata.}
+
+Se ritenete molto importante questa funzionalit@`a, prendete in esame la
+possibilit@`a di offrirvi volontari per mantenerla, in modo che continui a
+rimanere disponibile in @command{gawk}.  Se siete disposti a farlo, contattate
+il manutentore per discutere la cosa con lui.
+Ci@`o pu@`o essere fatto inviando una segnalazione di bug.
+
+@node Introduzione a MPFR
+@subsection Introduzione all'aritmetica a precisione arbitraria
 
 Per default, @command{gawk} usa i valori in virgola mobile a doppia precisione
 disponibili nell'hardware del sistema su cui viene eseguito.
