@@ -1,3 +1,7 @@
+2022-05-11         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* profile.c (pp_list): Typo fix in a comment.
+
 2022-05-10         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawkbug.in: Add attestation for having read bug reporting

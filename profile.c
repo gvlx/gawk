@@ -1791,7 +1791,7 @@ pp_list(int nargs, const char *paren, const char *delim)
 			len += r->pp_len + delimlen;
 			if (r->pp_comment != NULL) {
 				comment = (INSTRUCTION *) r->pp_comment;
-				len += comment->memory->stlen + indent_level + 1;	// comment\n ident
+				len += comment->memory->stlen + indent_level + 1;	// comment\n indent
 			}
 		}
 		if (paren != NULL) {

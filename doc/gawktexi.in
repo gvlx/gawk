@@ -5012,9 +5012,10 @@ is thus essentially a place holder,
 in case some option becomes obsolete in a future version of @command{gawk}.
 @end ignore
 
-The multiprecision arithmetic feature is deprecated as of @command{gawk} @value{PVERSION} 5.2.
-Use of @option{-M}/@option{--bignum} produces a warning message.  The feature
-will be removed in the release of 2024.
+The arbitrary precision arithmetic feature is deprecated as of
+@command{gawk} @value{PVERSION} 5.2.
+Use of @option{-M}/@option{--bignum} produces a warning message.
+The feature will be removed in the release of 2024.
 
 @node Undocumented
 @section Undocumented Options and Features
@@ -33075,7 +33076,7 @@ maintainer, for no real increased value.
 If you use this feature, you should start working now to find a different
 toolset with which to accomplish your goals.@footnote{Of course, you can
 always continue to use a version of @command{gawk} that still supports
-arbitrary precison arithmetic. It simply will be unmaintained.}
+arbitrary precision arithmetic. It simply will be unmaintained.}
 
 If the feature is very important to you, then consider if you are willing
 to volunteer to maintain it, so that it can continue to be included
@@ -33083,7 +33084,7 @@ in @command{gawk}. If that is the case, contact the maintainer to discuss it
 with him.  You may do so by submitting a bug report.
 
 @node MPFR Intro
-@subsection Arbitrary Precsioon Introduction
+@subsection Arbitrary Precision Introduction
 
 By default, @command{gawk} uses the double-precision floating-point values
 supplied by the hardware of the system it runs on.  However, if it was

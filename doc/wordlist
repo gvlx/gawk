@@ -610,6 +610,7 @@ arnold
 arr
 arraydump
 arraymax
+arrayorder
 arsenio
 asc
 aschorr
@@ -1723,6 +1724,7 @@ tm
 tmp
 tmy
 tolower
+toolset
 toupper
 tr
 tracy
