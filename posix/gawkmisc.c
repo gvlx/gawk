@@ -18,10 +18,7 @@
    Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
 
 #ifdef __CYGWIN__
-#include <stdio.h>
-#include <windows.h>
-#include <sys/cygwin.h>
-#include <io.h>
+#include <io.h>		/* for declaration of setmode(). */
 #endif
 
 const char quote = '\'';

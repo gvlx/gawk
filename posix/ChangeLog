@@ -1,3 +1,9 @@
+2022-05-17         Arnold D. Robbins     <arnold@skeeve.com>
+
+	* gawkmisc.c (CYGWIN): Remove unecessary includes, leaving only
+	include of <io.h>.  Thanks to Tom Gray <tom_gray@keysight.com>
+	for the report.
+
 2021-12-01         Arnold D. Robbins     <arnold@skeeve.com>
 
 	* gawkmisc.c (os_maybe_set_errno): New, empty function.
