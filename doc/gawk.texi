@@ -44095,6 +44095,9 @@ Wikipedia article} on @command{awk} for information on additional versions.
 An interesting collection of library functions is available
 at @uref{https://github.com/e36freak/awk-libs}.
 
+An interesting collection of @command{gawk} extensions is
+available @uref{https://github.com/su8/gawk-extensions}.
+
 @node Installation summary
 @appendixsec Summary
 

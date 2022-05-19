@@ -32354,6 +32354,9 @@ Other versions
    An interesting collection of library functions is available at
 <https://github.com/e36freak/awk-libs>.
 
+   An interesting collection of 'gawk' extensions is available
+<https://github.com/su8/gawk-extensions>.
+
 
 File: gawk.info,  Node: Installation summary,  Prev: Other Versions,  Up: Installation
 
@@ -39424,37 +39427,37 @@ Node: Performance bugs1289671
 Node: Asking for help1292592
 Node: Maintainers1294559
 Node: Other Versions1295753
-Node: Installation summary1303917
-Node: Notes1305281
-Node: Compatibility Mode1306075
-Node: Additions1306857
-Node: Accessing The Source1307782
-Node: Adding Code1309219
-Node: New Ports1316034
-Node: Derived Files1320409
-Ref: Derived Files-Footnote-11326069
-Ref: Derived Files-Footnote-21326104
-Ref: Derived Files-Footnote-31326702
-Node: Future Extensions1326816
-Node: Implementation Limitations1327474
-Node: Extension Design1328684
-Node: Old Extension Problems1329828
-Ref: Old Extension Problems-Footnote-11331346
-Node: Extension New Mechanism Goals1331403
-Ref: Extension New Mechanism Goals-Footnote-11334767
-Node: Extension Other Design Decisions1334956
-Node: Extension Future Growth1337069
-Node: Notes summary1337675
-Node: Basic Concepts1338833
-Node: Basic High Level1339514
-Ref: figure-general-flow1339796
-Ref: figure-process-flow1340482
-Ref: Basic High Level-Footnote-11343784
-Node: Basic Data Typing1343969
-Node: Glossary1347297
-Node: Copying1379184
-Node: GNU Free Documentation License1416727
-Node: Index1441847
+Node: Installation summary1304023
+Node: Notes1305387
+Node: Compatibility Mode1306181
+Node: Additions1306963
+Node: Accessing The Source1307888
+Node: Adding Code1309325
+Node: New Ports1316140
+Node: Derived Files1320515
+Ref: Derived Files-Footnote-11326175
+Ref: Derived Files-Footnote-21326210
+Ref: Derived Files-Footnote-31326808
+Node: Future Extensions1326922
+Node: Implementation Limitations1327580
+Node: Extension Design1328790
+Node: Old Extension Problems1329934
+Ref: Old Extension Problems-Footnote-11331452
+Node: Extension New Mechanism Goals1331509
+Ref: Extension New Mechanism Goals-Footnote-11334873
+Node: Extension Other Design Decisions1335062
+Node: Extension Future Growth1337175
+Node: Notes summary1337781
+Node: Basic Concepts1338939
+Node: Basic High Level1339620
+Ref: figure-general-flow1339902
+Ref: figure-process-flow1340588
+Ref: Basic High Level-Footnote-11343890
+Node: Basic Data Typing1344075
+Node: Glossary1347403
+Node: Copying1379290
+Node: GNU Free Documentation License1416833
+Node: Index1441953
 
 End Tag Table
 
