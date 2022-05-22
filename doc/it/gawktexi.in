@@ -47242,6 +47242,9 @@ Wikipedia} su @command{awk} per informazioni su ulteriori versioni.
 Un'interessante raccolta di funzioni di libreria @`e disponibile sul sito
 @uref{https://github.com/e36freak/awk-libs}.
 
+Un'interessante raccolta di estensioni per @command{gawk} @`e disponibile sul sito
+@uref{https://github.com/su8/gawk-extensions}.
+
 @node Sommario dell'installazione
 @appendixsec Sommario
 
