@@ -44,13 +44,13 @@
 #define assume_nonnull(x) assume ((x) != NULL)
 
 static bool
-streq (char const *a, char const *b)
+str_eq (char const *a, char const *b)
 {
   return strcmp (a, b) == 0;
 }
 
 static bool
-isasciidigit (char c)
+c_isdigit (char c)
 {
   return '0' <= c && c <= '9';
 }
@@ -59,6 +59,7 @@ isasciidigit (char c)
 #define _(str) gettext (str)
 
 #include <wchar.h>
+#include <wctype.h>
 
 #include "xalloc.h"
 #include "localeinfo.h"
@@ -399,14 +400,11 @@ struct regex_syntax
 {
   /* Syntax bits controlling the behavior of the lexical analyzer.  */
   reg_syntax_t syntax_bits;
+  int dfaopts;
   bool syntax_bits_set;
 
   /* Flag for case-folding letters into sets.  */
   bool case_fold;
-
-  /* True if ^ and $ match only the start and end of data, and do not match
-     end-of-line within data.  */
-  bool anchor;
 
   /* End-of-line byte in data.  */
   unsigned char eolbyte;
@@ -836,7 +834,7 @@ unibyte_word_constituent (struct dfa const *dfa, unsigned char c)
 static int
 char_context (struct dfa const *dfa, unsigned char c)
 {
-  if (c == dfa->syntax.eolbyte && !dfa->syntax.anchor)
+  if (c == dfa->syntax.eolbyte && !(dfa->syntax.dfaopts & DFA_ANCHOR))
     return CTX_NEWLINE;
   if (unibyte_word_constituent (dfa, c))
     return CTX_LETTER;
@@ -930,7 +928,7 @@ static const struct dfa_ctype *_GL_ATTRIBUTE_PURE
 find_pred (const char *str)
 {
   for (int i = 0; prednames[i].name; i++)
-    if (streq (str, prednames[i].name))
+    if (str_eq (str, prednames[i].name))
       return &prednames[i];
   return NULL;
 }
@@ -1009,8 +1007,8 @@ parse_bracket_exp (struct dfa *dfa)
                    worry about that possibility.  */
                 {
                   char const *class
-                    = (dfa->syntax.case_fold && (streq (str, "upper")
-                                                 || streq (str, "lower"))
+                    = (dfa->syntax.case_fold && (str_eq (str, "upper")
+                                                 || str_eq (str, "lower"))
                        ? "alpha" : str);
                   const struct dfa_ctype *pred = find_pred (class);
                   if (!pred)
@@ -1090,7 +1088,7 @@ parse_bracket_exp (struct dfa *dfa)
               if (wc != wc2 || wc == WEOF)
                 {
                   if (dfa->localeinfo.simple
-                      || (isasciidigit (c) && isasciidigit (c2)))
+                      || (c_isdigit (c) & c_isdigit (c2)))
                     {
                       for (int ci = c; ci <= c2; ci++)
                         if (dfa->syntax.case_fold && isalpha (ci))
@@ -1140,7 +1138,9 @@ parse_bracket_exp (struct dfa *dfa)
   while ((wc = wc1, (c = c1) != ']'));
 
   if (colon_warning_state == 7)
-    dfawarn (_("character class syntax is [[:space:]], not [:space:]"));
+    ((dfa->syntax.dfaopts & DFA_CONFUSING_BRACKETS_ERROR
+      ? dfaerror : dfawarn)
+     (_("character class syntax is [[:space:]], not [:space:]")));
 
   if (! known_bracket_exp)
     return BACKREF;
@@ -1193,8 +1193,7 @@ lex (struct dfa *dfa)
      we set the backslash flag and go through the loop again.
      On the plus side, this avoids having a duplicate of the
      main switch inside the backslash case.  On the minus side,
-     it means that just about every case begins with
-     "if (backslash) ...".  */
+     it means that just about every case tests the backslash flag.  */
   for (int i = 0; i < 2; ++i)
     {
       if (! dfa->lex.left)
@@ -1249,52 +1248,67 @@ lex (struct dfa *dfa)
         case '7':
         case '8':
         case '9':
-          if (backslash && !(dfa->syntax.syntax_bits & RE_NO_BK_REFS))
-            {
-              dfa->lex.laststart = false;
-              return dfa->lex.lasttok = BACKREF;
-            }
-          goto normal_char;
+          if (!backslash)
+            goto normal_char;
+          if (dfa->syntax.syntax_bits & RE_NO_BK_REFS)
+            goto stray_backslash;
+
+          dfa->lex.laststart = false;
+          return dfa->lex.lasttok = BACKREF;
 
         case '`':
-          if (backslash && !(dfa->syntax.syntax_bits & RE_NO_GNU_OPS))
-            {
-              /* FIXME: should be beginning of string */
-              return dfa->lex.lasttok = BEGLINE;
-            }
-          goto normal_char;
+          if (!backslash)
+            goto normal_char;
+          if (dfa->syntax.syntax_bits & RE_NO_GNU_OPS)
+            goto stray_backslash;
+
+          /* FIXME: should be beginning of string */
+          return dfa->lex.lasttok = BEGLINE;
 
         case '\'':
-          if (backslash && !(dfa->syntax.syntax_bits & RE_NO_GNU_OPS))
-            {
-              /* FIXME: should be end of string */
-              return dfa->lex.lasttok = ENDLINE;
-            }
-          goto normal_char;
+          if (!backslash)
+            goto normal_char;
+          if (dfa->syntax.syntax_bits & RE_NO_GNU_OPS)
+            goto stray_backslash;
+
+          /* FIXME: should be end of string */
+          return dfa->lex.lasttok = ENDLINE;
 
         case '<':
-          if (backslash && !(dfa->syntax.syntax_bits & RE_NO_GNU_OPS))
-            return dfa->lex.lasttok = BEGWORD;
-          goto normal_char;
+          if (!backslash)
+            goto normal_char;
+          if (dfa->syntax.syntax_bits & RE_NO_GNU_OPS)
+            goto stray_backslash;
+
+          return dfa->lex.lasttok = BEGWORD;
 
         case '>':
-          if (backslash && !(dfa->syntax.syntax_bits & RE_NO_GNU_OPS))
-            return dfa->lex.lasttok = ENDWORD;
-          goto normal_char;
+          if (!backslash)
+            goto normal_char;
+          if (dfa->syntax.syntax_bits & RE_NO_GNU_OPS)
+            goto stray_backslash;
+
+          return dfa->lex.lasttok = ENDWORD;
 
         case 'b':
-          if (backslash && !(dfa->syntax.syntax_bits & RE_NO_GNU_OPS))
-            return dfa->lex.lasttok = LIMWORD;
-          goto normal_char;
+          if (!backslash)
+            goto normal_char;
+          if (dfa->syntax.syntax_bits & RE_NO_GNU_OPS)
+            goto stray_backslash;
+
+          return dfa->lex.lasttok = LIMWORD;
 
         case 'B':
-          if (backslash && !(dfa->syntax.syntax_bits & RE_NO_GNU_OPS))
-            return dfa->lex.lasttok = NOTLIMWORD;
-          goto normal_char;
+          if (!backslash)
+            goto normal_char;
+          if (dfa->syntax.syntax_bits & RE_NO_GNU_OPS)
+            goto stray_backslash;
+
+          return dfa->lex.lasttok = NOTLIMWORD;
 
         case '?':
           if (dfa->syntax.syntax_bits & RE_LIMITED_OPS)
-            goto normal_char;
+            goto default_case;
           if (backslash != ((dfa->syntax.syntax_bits & RE_BK_PLUS_QM) != 0))
             goto normal_char;
           if (!(dfa->syntax.syntax_bits & RE_CONTEXT_INDEP_OPS)
@@ -1312,7 +1326,7 @@ lex (struct dfa *dfa)
 
         case '+':
           if (dfa->syntax.syntax_bits & RE_LIMITED_OPS)
-            goto normal_char;
+            goto default_case;
           if (backslash != ((dfa->syntax.syntax_bits & RE_BK_PLUS_QM) != 0))
             goto normal_char;
           if (!(dfa->syntax.syntax_bits & RE_CONTEXT_INDEP_OPS)
@@ -1322,7 +1336,7 @@ lex (struct dfa *dfa)
 
         case '{':
           if (!(dfa->syntax.syntax_bits & RE_INTERVALS))
-            goto normal_char;
+            goto default_case;
           if (backslash != ((dfa->syntax.syntax_bits & RE_NO_BK_BRACES) == 0))
             goto normal_char;
           if (!(dfa->syntax.syntax_bits & RE_CONTEXT_INDEP_OPS)
@@ -1339,7 +1353,7 @@ lex (struct dfa *dfa)
             char const *p = dfa->lex.ptr;
             char const *lim = p + dfa->lex.left;
             dfa->lex.minrep = dfa->lex.maxrep = -1;
-            for (; p != lim && isasciidigit (*p); p++)
+            for (; p != lim && c_isdigit (*p); p++)
               dfa->lex.minrep = (dfa->lex.minrep < 0
                                  ? *p - '0'
                                  : MIN (RE_DUP_MAX + 1,
@@ -1352,7 +1366,7 @@ lex (struct dfa *dfa)
                   {
                     if (dfa->lex.minrep < 0)
                       dfa->lex.minrep = 0;
-                    while (++p != lim && isasciidigit (*p))
+                    while (++p != lim && c_isdigit (*p))
                       dfa->lex.maxrep
                         = (dfa->lex.maxrep < 0
                            ? *p - '0'
@@ -1380,15 +1394,16 @@ lex (struct dfa *dfa)
 
         case '|':
           if (dfa->syntax.syntax_bits & RE_LIMITED_OPS)
-            goto normal_char;
+            goto default_case;
           if (backslash != ((dfa->syntax.syntax_bits & RE_NO_BK_VBAR) == 0))
             goto normal_char;
           dfa->lex.laststart = true;
           return dfa->lex.lasttok = OR;
 
         case '\n':
-          if (dfa->syntax.syntax_bits & RE_LIMITED_OPS
-              || backslash || !(dfa->syntax.syntax_bits & RE_NEWLINE_ALT))
+          if (!(dfa->syntax.syntax_bits & RE_NEWLINE_ALT))
+            goto default_case;
+          if (backslash)
             goto normal_char;
           dfa->lex.laststart = true;
           return dfa->lex.lasttok = OR;
@@ -1434,8 +1449,11 @@ lex (struct dfa *dfa)
 
         case 's':
         case 'S':
-          if (!backslash || (dfa->syntax.syntax_bits & RE_NO_GNU_OPS))
+          if (!backslash)
             goto normal_char;
+          if (dfa->syntax.syntax_bits & RE_NO_GNU_OPS)
+            goto stray_backslash;
+
           if (!dfa->localeinfo.multibyte)
             {
               charclass ccl;
@@ -1467,8 +1485,10 @@ lex (struct dfa *dfa)
 
         case 'w':
         case 'W':
-          if (!backslash || (dfa->syntax.syntax_bits & RE_NO_GNU_OPS))
+          if (!backslash)
             goto normal_char;
+          if (dfa->syntax.syntax_bits & RE_NO_GNU_OPS)
+            goto stray_backslash;
 
           if (!dfa->localeinfo.multibyte)
             {
@@ -1506,6 +1526,26 @@ lex (struct dfa *dfa)
           return dfa->lex.lasttok = parse_bracket_exp (dfa);
 
         default:
+        default_case:
+          if (!backslash)
+            goto normal_char;
+        stray_backslash:
+          if (dfa->syntax.dfaopts & DFA_STRAY_BACKSLASH_WARN)
+            {
+              char const *msg;
+              char msgbuf[100];
+              if (!iswprint (dfa->lex.wctok))
+                msg = _("stray \\ before unprintable character");
+              else if (iswspace (dfa->lex.wctok))
+                msg = _("stray \\ before white space");
+              else
+                {
+                  int n = snprintf (msgbuf, sizeof msgbuf,
+                                    _("stray \\ before %lc"), dfa->lex.wctok);
+                  msg = 0 <= n && n < sizeof msgbuf ? msgbuf : _("stray \\");
+                }
+              dfawarn (msg);
+            }
         normal_char:
           dfa->lex.laststart = false;
           /* For multibyte character sets, folding is done in atom.  Always
@@ -1704,7 +1744,7 @@ add_utf8_anychar (struct dfa *dfa)
     /* G. ed (just a token).  */
 
     /* H. 80-9f: 2nd byte of a "GHC" sequence.  */
-    CHARCLASS_INIT (0, 0, 0, 0, 0xffff, 0, 0, 0),
+    CHARCLASS_INIT (0, 0, 0, 0, 0xffffffff, 0, 0, 0),
 
     /* I. f0 (just a token).  */
 
@@ -1717,7 +1757,7 @@ add_utf8_anychar (struct dfa *dfa)
     /* L. f4 (just a token).  */
 
     /* M. 80-8f: 2nd byte of a "LMCC" sequence.  */
-    CHARCLASS_INIT (0, 0, 0, 0, 0xff, 0, 0, 0),
+    CHARCLASS_INIT (0, 0, 0, 0, 0xffff, 0, 0, 0),
   };
 
   /* Define the character classes that are needed below.  */
@@ -4116,7 +4156,7 @@ dfamust (struct dfa const *d)
             idx_t j, ln, rn, n;
 
             /* Guaranteed to be.  Unlikely, but ...  */
-            if (streq (lmp->is, rmp->is))
+            if (str_eq (lmp->is, rmp->is))
               {
                 lmp->begline &= rmp->begline;
                 lmp->endline &= rmp->endline;
@@ -4163,7 +4203,7 @@ dfamust (struct dfa const *d)
           for (idx_t i = 0; mp->in[i] != NULL; i++)
             if (strlen (mp->in[i]) > strlen (result))
               result = mp->in[i];
-          if (streq (result, mp->is))
+          if (str_eq (result, mp->is))
             {
               if ((!need_begline || mp->begline) && (!need_endline
                                                      || mp->endline))
@@ -4327,9 +4367,9 @@ dfasyntax (struct dfa *dfa, struct localeinfo const *linfo,
   dfa->canychar = -1;
   dfa->syntax.syntax_bits_set = true;
   dfa->syntax.case_fold = (bits & RE_ICASE) != 0;
-  dfa->syntax.anchor = (dfaopts & DFA_ANCHOR) != 0;
   dfa->syntax.eolbyte = dfaopts & DFA_EOL_NUL ? '\0' : '\n';
   dfa->syntax.syntax_bits = bits;
+  dfa->syntax.dfaopts = dfaopts;
 
   for (int i = CHAR_MIN; i <= CHAR_MAX; ++i)
     {
