@@ -73,7 +73,14 @@ enum
     DFA_ANCHOR = 1 << 0,
 
     /* '\0' in data is end-of-line, instead of the traditional '\n'.  */
-    DFA_EOL_NUL = 1 << 1
+    DFA_EOL_NUL = 1 << 1,
+
+    /* Treat [:alpha:] etc. as an error at the top level, instead of
+       merely a warning.  */
+    DFA_CONFUSING_BRACKETS_ERROR = 1 << 2,
+
+    /* Warn about stray backslashes before ordinary characters.  */
+    DFA_STRAY_BACKSLASH_WARN = 1 << 3,
   };
 
 /* Initialize or reinitialize a DFA.  The arguments are:
