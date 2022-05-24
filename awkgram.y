@@ -5399,6 +5399,9 @@ make_assignable(INSTRUCTION *ip)
 	case Op_subscript:
 		ip->opcode = Op_subscript_lhs;
 		return ip;
+	case Op_field_assign:
+		ip->opcode = Op_field_assign;
+		return ip;
 	default:
 		break;	/* keeps gcc -Wall happy */
 	}
