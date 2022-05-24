@@ -488,6 +488,8 @@ EXTRA_DIST = \
 	getlnbuf.ok \
 	getlndir.awk \
 	getlndir.ok \
+	getlnfa.awk \
+	getlnfa.ok \
 	getlnhd.awk \
 	getlnhd.ok \
 	getnr2tb.awk \
@@ -1427,7 +1429,7 @@ BASIC_TESTS = \
 	fldchgnf fldterm fnamedat fnarray fnarray2 fnaryscl fnasgnm \
 	fnmisc fordel forref forsimp fsbs fscaret fsnul1 fsrs fsspcoln \
 	fstabplus funsemnl funsmnam funstack getline getline2 getline3 \
-	getline4 getline5 getlnbuf getnr2tb getnr2tm gsubasgn gsubtest \
+	getline4 getline5 getlnbuf getlnfa getnr2tb getnr2tm gsubasgn gsubtest \
 	gsubtst2 gsubtst3 gsubtst4 gsubtst5 gsubtst6 gsubtst7 gsubtst8 \
 	hex hex2 hsprint inpref inputred intest intprec iobug1 leaddig \
 	leadnl litoct longsub longwrds manglprm math membug1 memleak \
